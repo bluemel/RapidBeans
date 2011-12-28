@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ * Rapid Beans Framework: ConfigAuthorization.xml
+ *
+ * Copyright (C) 2009 Martin Bluemel
+ *
+ * Creation Date: 01/01/2005
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * You should have received a copies of the GNU Lesser General Public License and the
+ * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<beantype name="org.rapidbeans.presentation.config.ConfigAuthorization">
+	<description><![CDATA[Configures authorization (including authentification).]]></description>
+	<property name="docurl">
+		<description><![CDATA[Specifies where the document with authorization information is located.
+The specification of such a document including user, roles and access
+contro is the basic prerequisite for using authorization (including authentification)]]></description>
+	</property>
+	<property name="authenticationmethod"
+		type="choice"
+		enum="org.rapidbeans.security.LoginType"
+		multiple="true"
+		>
+		<description><![CDATA[multiple choice of the inbound authentication endpoint supported.
+Planned is { "userpassword" | "certificate" | "os" }.
+Currently only "userpassword is supported."]]></description>
+	</property>
+	<property name="loginmaxtries"
+		type="integer"
+		default="3"
+	/>
+	<property name="pwdhashalgorithm"
+		default="SHA-1"
+	/>
+	<property name="realm"/>
+	<property name="roletype"/>
+	<property name="rolemodel"
+		type="choice"
+		enum="org.rapidbeans.security.RoleModelType"
+		default="oneroleperuser">
+		<description><![CDATA[Specifies]]></description>
+	</property>
+</beantype>

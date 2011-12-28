@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<applicationcfg
+	name="Test"
+	rootpackage="org.rapidbeans"
+	applicationclass="org.rapidbeans.presentation.TestClient"
+	guitype="swing"
+	defaultlocale="en"
+	defaultcharset="UTF-8"
+	lookandfeel="metal"
+	>
+	<locale
+		id="en"
+		name="en"
+		/>
+	<action
+		id="org.rapidbeans.service.ActionQuit"
+		classname="org.rapidbeans.service.ActionQuit"
+		waitcursor="true"
+		background="false"
+		progressbar="false"
+		/>
+	<mainwindow
+		name="mainwindow"
+		width="800"
+		height="500"
+		/>
+	<currency
+		restricttoone="true"
+		uselocal="true"
+		/>
+	<xmlbinding
+		/>
+</applicationcfg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<beantype name="org.me.addressbook.Person">
+    <property name="lastname"/>
+    <property name="firstname"/>
+    <property name="dateofbirth" type="date"/>
+    <property name="sex" type="choice"
+        enum="Sex"
+    />
+    <property name="shoesize" type="integer"
+        minval="15" maxval="60"
+    />
+    <property name="height" type="quantity"
+        quantity="Length"
+    />
+</beantype>

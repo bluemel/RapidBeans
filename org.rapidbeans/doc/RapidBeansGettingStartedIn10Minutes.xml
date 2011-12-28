@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book SYSTEM "docbook.dtd">
+
+<book>
+	<title>
+		Getting started with RapidBeans in 10 minutes
+		<author>
+			<personname>Martin Blümel</personname>
+		</author>
+	</title>
+	<preface>
+		<para>
+			If you do not want to spend too much time, try this small example.
+			It shows a simple Java application based on the RapidBeans framework.
+		</para>
+	</preface>
+	<chapter>
+		<title>Preconditions</title>
+		<para>
+			The minimal prerequisites are:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Java Runtime Environment (version >= 1.5) installed at your computer
+						(a Java development kit – JDK - is not necessary for your first experience with RapidBeans
+						because for this lesson you do not have to code one single line of Java.
+						You just model using XML instead).
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						You have downloaded and unzipped the example zip file from the
+						<link xlink:href="http://www.rapidbeans.org/releases/latest/index.html">RapidBeans download page</link>
+						somewhere into your file system (e. g. into C:\tmp).
+						<figure>
+							<title>the example unpacked on a Windows file system</title>
+							<mediaobject>
+								<imageobject>
+									<imagedata format="JPG" fileref="RapidBeansGettingStartedIn10Minutes-files/image01a.jpg" />
+								</imageobject>
+							</mediaobject>
+						</figure>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						As development tools you’ll need a text editor (Notepad, Ultraedit, Kate, vi, etc…)
+						A command prompt or command shell to start the demo application.
+						Most operating systems will provide a mechanism to execute the run script directly.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<para>
+			In order to get a deeper understanding of this example you should have some experience in:
+			Program development in general, object orientation, XML.
+			But even If you do not have this knowledge it might be worth having a try.
+		</para>
+	</chapter>
+	<chapter>
+		<title>A simple running example</title>
+		<subtitle>10 minutes walkthrough</subtitle>
+		<para>
+			The example will demonstrate a simple "address book" application to store address information about persons.
+		</para>
+		<section>
+			<title>Explore the domain model</title>
+			<para>
+				The first exercise is to have a look at our application’s simple domain model.
+				An address book simply consists of an arbitrary number of persons.
+				A person stores last name, first name and the date of birth.
+			</para>
+			<figure>
+				<title>a simple domain model</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="GIF" fileref="RapidBeansGettingStartedIn10Minutes-files/image02a.gif"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<para>
+				Instead of a UML model like shown above RapidBeans uses a simple, minimalistic XML dialect
+				to express this model which basically lets you define declaratively:
+			</para>
+			<itemizedlist>
+				<listitem><para>bean types (classes)</para></listitem>
+				<listitem><para>properties (attributes)</para></listitem>
+				<listitem><para>associations - by means of special "association" properties</para></listitem>
+				<listitem><para>constraints on property values.</para></listitem>
+			</itemizedlist>
+			<formalpara>
+				<title>File /org/me/addressbook/Person.xml:</title>
+				<para>
+					<programlisting><![CDATA[<beantype name="org.me.addressbook.Person">
+    <property name="lastname"/>
+    <property name="firstname"/>
+    <property name="dateofbirth" type="date"/>
+</beantype>]]></programlisting>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>File model/org/me/addressbook/Addressbook.xml:</title>
+				<para>
+					<programlisting><![CDATA[<beantype name="org.me.addressbook.Addressbook">
+    <property name="persons" type="association"
+        composition="true"
+        targettype="Person"
+        sorting="byPropertyValues: lastname, firstname, dateofbirth"
+    />
+</beantype>]]></programlisting>
+				</para>
+			</formalpara>
+			<para>
+				Please note that these two bean type declarations completely describe the UML diagram shown before.
+				That would even work out properly without the sorting declaration you see here on the
+				"persons" association. This declaration defines the linear order of associated elements
+				when accessed through this association.
+			</para>
+		</section>
+		<section>
+			<title>Explore the GUI</title>
+			<para>
+				The second exercise is to start the application by using the run command (Unix: run_en.sh, Windows: run_en.cmd).
+				This should immediately open a GUI which presents you an address book according to the schema presented before
+				containing some sample data.
+			</para>
+			<figure>
+				<title>the generic RapidBeans GUI presenting a sample addressbook</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata format="JPG" fileref="RapidBeansGettingStartedIn10Minutes-files/image02b.jpg" />
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<para>
+				If you are interested you may also try the run_de.cmd / .sh
+				which will show the same GUI with German texts.
+			</para>
+			<para>
+				A look at the resource file that defines GUI texts shows that there is not too much
+				specific work needed for localization. An interesting aspect may be that translation
+				is not done at the level of GUI widgets but instead at the level of bean types
+				(classes, entities) and properties (attributes).
+			</para>
+			<formalpara>
+				<title>File res/org/me/addressbook/lang/en/res.xml:</title>
+				<para>
+					<programlisting><![CDATA[bean.org.me.addressbook.addressbook=Address Book
+bean.org.me.addressbook.addressbook.id=Address Book
+bean.org.me.addressbook.person=Person
+bean.org.me.addressbook.person.id={lastname}, {firstname}
+bean.org.me.addressbook.person.plural=Persons
+bean.org.me.addressbook.person.prop.dateofbirth=Date of birth
+bean.org.me.addressbook.person.prop.firstname=First name
+bean.org.me.addressbook.person.prop.lastname=Last name
+mainwindow.title=Address Book]]></programlisting>
+				</para>
+			</formalpara>
+			<para>
+				The naming is very simple:
+			</para>
+			<itemizedlist>
+				<listitem><para>Bean types are specified with full classname (including all parent packages).</para></listitem>
+				<listitem><para>Properties are specified using .prop.&lt;property name&gt; after the classes specification.</para></listitem>
+				<listitem>
+					<para>
+						A special concept is .id. which is not neccessarily the id in the sense of data modelling.
+						Here you can specify a speaking name for every instance using property expansion.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Besides the class centric GUI text specification you could also use the
+						classical GUI element centric one where we specify
+						window titles, menu texts, etc...
+					</para>
+				</listitem>
+			</itemizedlist>
+		</section>
+		<section>
+			<title>Explore persisted data</title>
+			<para>
+				Have a look at file testdata/myaddressbook.xml.
+				It is maybe not a big surprise that you find the
+				example address book’s data persisted in an XML file:
+			</para>
+			<programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook>
+	<person
+		lastname="Edison"
+		firstname="Thomas Alva"
+		dateofbirth="18470211"
+		/>
+	<person
+		lastname="Einstein"
+		firstname="Albert"
+		dateofbirth="18790314"
+		/>
+. . .]]></programlisting>
+			<para>
+				Please note that in order to have the XML document's root named addressbook,
+				you simply add the following small <phrase>xmlbinding</phrase>
+				declaration to the Addressbook type definintion.
+			</para>
+			<programlisting><![CDATA[
+<xmlbinding xmlrootelement="addressbook"/>]]></programlisting> 
+		</section>
+
+		<section>
+			<title>Short wrap up</title>
+			<para>
+				So far we have seen
+				<itemizedlist>
+					<listitem><para>a model defining entities</para></listitem>
+					<listitem><para>some generic GUI presenting documents composed out of these entities</para></listitem>
+					<listitem><para>and some generic persistence storing these document in XML form</para></listitem>
+				</itemizedlist>
+				Congratulations if you have managed to read through these lines and run the example within 10 minutes.
+				If you want to explore the power of this "model driven" approach please have a look at
+				<link xlink:href="http://www.rapidbeans.org/documentation/RapidBeansGettingStarted.html">Getting Started with RapidBeans</link>
+			</para>
+		</section>
+	</chapter>
+</book>

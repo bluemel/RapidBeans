@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook
+	>
+	<person
+		id="22a89d92-646e-485b-b837-e37ec533b0e4"
+		lastname="Edison"
+		firstname="Thomas Alva"
+		dateofbirth="18470211"
+		shoesize="43"
+		sex="male"
+		height="1.75 meter"
+		groups="Office Private"
+		/>
+	<person
+		id="59ff3420-9bb5-4fd7-8571-4d3cd8b863f2"
+		lastname="Einstein"
+		firstname="Albert"
+		dateofbirth="18790314"
+		groups="Office"
+		/>
+	<person
+		id="cde7c864-6c96-4c21-a247-fcf9edf83c66"
+		lastname="Gauß"
+		firstname="Johann Carl Friedrich"
+		dateofbirth="17770430"
+		/>
+	<person
+		id="73eca74d-aca4-4abb-86f2-ef47419837ef"
+		lastname="Kant"
+		firstname="Immanuel"
+		dateofbirth="17240424"
+		groups="Office"
+		/>
+	<person
+		id="a817d4d1-26e1-43bf-835c-466e59533ded"
+		lastname="Newton"
+		firstname="Isaac"
+		dateofbirth="16430104"
+		groups="IBT"
+		/>
+	<person
+		id="73e060bd-eaf7-430c-b972-2d71c103b6de"
+		lastname="Voltaire"
+		firstname="François Marie Arouet"
+		dateofbirth="16941121"
+		groups="Siemens"
+		/>
+	<group
+		id="Office"
+		name="Office"
+		persons="59ff3420-9bb5-4fd7-8571-4d3cd8b863f2 73eca74d-aca4-4abb-86f2-ef47419837ef 22a89d92-646e-485b-b837-e37ec533b0e4"
+		>
+		<subgroup
+			id="BMW"
+			name="BMW"
+			/>
+		<subgroup
+			id="Siemens"
+			name="Siemens"
+			persons="73e060bd-eaf7-430c-b972-2d71c103b6de"
+			>
+			<subgroup
+				id="IBT"
+				name="IBT"
+				persons="a817d4d1-26e1-43bf-835c-466e59533ded"
+				/>
+			<subgroup
+				id="MED"
+				name="MED"
+				persons=""
+				/>
+		</subgroup>
+	</group>
+	<group
+		id="Private"
+		name="Private"
+		persons="22a89d92-646e-485b-b837-e37ec533b0e4"
+		>
+		<subgroup
+			id="Family"
+			name="Family"
+			/>
+		<subgroup
+			id="Friends"
+			name="Friends"
+			/>
+	</group>
+</addressbook>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ * Rapid Beans Framework: Action.xml
+ *
+ * Copyright (C) 2009 Martin Bluemel
+ *
+ * Creation Date: 01/01/2005
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * You should have received a copies of the GNU Lesser General Public License and the
+ * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<beantype name="org.rapidbeans.service.Action"
+	idtype="keyprops">
+	<property name="classname" key="true"/>
+	<property name="arguments"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.service.ActionArgument"
+	/>
+	<property name="state"
+		type="choice"
+		enum="org.rapidbeans.service.ActionState"
+	/>
+	<property name="waitcursor"
+		type="boolean"
+		default="true"
+	/>
+	<property name="background"
+		type="boolean"
+		default="false"
+	/>
+	<property name="progressbar"
+		type="boolean"
+		default="false"
+	/>
+	<property name="rolesrequired"
+		type="choice"
+		enum="org.rapidbeans.core.basic.RapidEnum"
+		multiple="true"
+	/>
+	<property name="enabler"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.enabler.Enabler"
+		maxmult="1"
+		collectionclass="java.util.ArrayList"
+	/>
+	<codegen mode="joint"/>
+</beantype>

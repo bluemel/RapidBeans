@@ -1,0 +1,12 @@
+<beantype name="org.me.addressbook.Group"
+	idtype="keyprops">
+    <property name="name" key="true"/>
+        <property name="persons" type="association"
+        targettype="Person"
+        inverse="groups"
+    />
+    <property name="subgroups" type="association"
+        targettype="Group"
+        composition="true"
+    />
+</beantype>

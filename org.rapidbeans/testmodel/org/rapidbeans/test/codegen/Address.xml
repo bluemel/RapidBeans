@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype
+	name="org.rapidbeans.test.codegen.Address"
+	idtype="numeric"
+	>
+	<property name="country"
+		type="string"
+		testempty=""
+	/>
+<!--
+	<property name="zipcode"
+		type="zipcode"
+		key="true"
+		minval="10000"
+		maxval="99999"
+	/>
+-->
+	<property name="city"
+		type="string"
+	/>
+	<property name="street"
+		type="string"
+	/>
+	<property name="streetno"
+		type="integer"
+		minval="0"
+		maxval="100000"
+	/>
+	<property name="inhabitants"
+		type="association"
+		inverse="address"
+		targettype="Person"
+		maxmult="5"
+	/>
+</beantype>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.TestBeanGen">
+	<property name="surname"
+		type="string"
+		key="true"
+		maxlength="32"
+		minlength="3"
+	/>
+	<property name="prename"
+		type="string"
+		key="true"
+	/>
+	<property name="dateofbirth"
+		type="date"
+		key="true"
+		maxval="20100101"
+		minval="19000101"
+	/>
+	<property name="city"
+		type="string"
+		must="true"
+		default="Ismaning"
+	/>
+	<property name="zipcode"
+		type="integer"
+		default="85737"
+		maxval="99999"
+		minval="10000"
+	/>
+	<property name="email"
+		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
+	/>
+	<property name="sex"
+		type="choice"
+		default="male"
+		enum="org.rapidbeans.domain.org.Sex"
+	/>
+	<property name="married"
+		type="boolean"
+		default="true"
+	/>
+	<property name="height"
+		type="quantity"
+		quantity="org.rapidbeans.domain.math.Length"
+		default="1.73 m"
+		maxval="3.00 m"
+		minval="0.30 m"
+	/>
+	<codegen mode="none"/>
+</beantype>

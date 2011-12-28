@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ * Rapid Beans Framework: ConfigApplication.xml
+ *
+ * Copyright (C) 2009 Martin Bluemel
+ *
+ * Creation Date: 01/01/2005
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * You should have received a copies of the GNU Lesser General Public License and the
+ * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<beantype name="org.rapidbeans.presentation.config.ConfigApplication"
+	final="false">
+	<property name="name"
+		default="Application"
+	/>
+	<property name="rootpackage"/>
+	<property name="applicationclass"/>
+	<property name="guitype"
+		type="choice"
+		default="swing"
+		enum="org.rapidbeans.presentation.config.ApplicationGuiType"
+	/>
+	<property name="defaultlocale"/>
+	<property name="defaultcharset"
+		default="UTF-8"/>
+	<property name="locales"
+		type="association"
+		composition="true"
+		collectionclass="java.util.ArrayList"
+		targettype="org.rapidbeans.presentation.config.ConfigLocale"
+	/>
+    <property name="branding"
+        type="association"
+        composition="true"
+        targettype="org.rapidbeans.presentation.config.ConfigBranding"
+		maxmult="1"
+    />
+	<property name="beaneditors"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.config.ConfigEditorBean"
+	/>
+	<property name="documents"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.config.ConfigDocument"
+	/>
+	<property name="actions"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.service.Action"
+	/>
+	<property name="mainwindow"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.config.ConfigMainWindow"
+		maxmult="1"
+	/>
+	<property name="authorization"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.config.ConfigAuthorization"
+		maxmult="1"
+	/>
+	<property name="currency"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.presentation.config.ConfigCurrency"
+		minmult="1"
+		maxmult="1"
+	/>
+	<property name="xmlbinding"
+        type="association"
+        composition="true"
+        targettype="org.rapidbeans.presentation.config.ConfigXmlBinding"
+        minmult="1"
+        maxmult="1"
+	/>
+
+    <xmlbinding xmlrootelement="applicationcfg"/>
+	<codegen mode="joint"/>
+</beantype>

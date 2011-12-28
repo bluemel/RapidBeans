@@ -1,0 +1,51 @@
+<!ELEMENT project (#PCDATA | property | installunit)*>
+<!ATTLIST project
+	name CDATA #REQUIRED
+	branch CDATA #IMPLIED
+	installsourceurl CDATA #IMPLIED
+	installtargetdir CDATA #IMPLIED
+	profiledir CDATA #IMPLIED
+>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+	name CDATA #REQUIRED
+	description CDATA #IMPLIED
+	value CDATA #IMPLIED
+	mustExist (false | true) #IMPLIED
+	createIfNotExist (false | true) #IMPLIED
+	normalize (false | true) #IMPLIED
+>
+
+<!ELEMENT installunit (#PCDATA | propertiesfile | textfile | xmlfile)*>
+<!ATTLIST installunit
+	space CDATA #IMPLIED
+	name CDATA #IMPLIED
+	version CDATA #REQUIRED
+	sourceurl CDATA #IMPLIED
+	homedir CDATA #IMPLIED
+	installmode (put | unpack | execute) #IMPLIED
+	removerootdirs (false | true) #IMPLIED
+>
+
+<!ELEMENT propertiesfile EMPTY>
+<!ATTLIST propertiesfile
+	path CDATA #REQUIRED
+	sourceurl CDATA #IMPLIED
+>
+
+<!ELEMENT textfile EMPTY>
+<!ATTLIST textfile
+	path CDATA #REQUIRED
+	sourceurl CDATA #IMPLIED
+>
+
+<!ELEMENT xmlfile EMPTY>
+<!ATTLIST xmlfile
+	path CDATA #REQUIRED
+	sourceurl CDATA #IMPLIED
+	addeleminnewline (false | true) #IMPLIED
+	addattrinnewline (false | true) #IMPLIED
+	indent CDATA #IMPLIED
+>
+

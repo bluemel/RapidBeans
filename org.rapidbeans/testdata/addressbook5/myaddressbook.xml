@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook
+	>
+	<person
+		lastname="Abalbert"
+		firstname="Alfred"
+		dateofbirth="19500101"
+		/>
+	<person
+		lastname="Bluemel"
+		firstname="Martin"
+		dateofbirth="19641014"
+		/>
+	<person
+		lastname="Citrone"
+		firstname="Caesar"
+		/>
+	<person
+		lastname="Doof"
+		firstname="Detlef"
+		/>
+	<person
+		lastname="Esel"
+		firstname="Emilio"
+		/>
+	<person
+		lastname="Fendrich"
+		firstname="Franz"
+		/>
+	<person
+		lastname="Xenophon"
+		firstname="Xaver"
+		dateofbirth="00900101"
+		/>
+	<user
+		accountname="martin"
+		/>
+</addressbook>

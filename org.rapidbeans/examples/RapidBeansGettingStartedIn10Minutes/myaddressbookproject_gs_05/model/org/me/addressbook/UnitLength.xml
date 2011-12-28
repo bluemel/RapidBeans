@@ -1,0 +1,4 @@
+<enumtype name="org.me.addressbook.UnitLength">
+    <enum name="meter"/>
+    <enum name="centimeter"/>
+</enumtype>

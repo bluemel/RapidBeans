@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book SYSTEM "docbook.dtd">
+
+<book>
+	<title>
+		RapidBeans User Manual
+		<author>
+			<personname>Martin Blümel</personname>
+		</author>
+	</title>
+	<preface>
+		<para>
+			Please note that this document is under construction!
+		</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata format="GIF" fileref="RapidBeansUserManual-pictures/image001_underConstruction.gif"/>
+			</imageobject>
+		</mediaobject>
+	</preface>
+	<chapter>
+		<title>Goal of this project</title>
+		<para>
+			RapidBeans provides an easy to use environment to define a so called
+			<phrase>domain model</phrase> which usually expresses the pure
+			business logic of your application. The core idea of domain model
+			centric development is that the domain model and the business logic
+			implementation is the main part of your application.
+			Other infrastructural parts of the application like UI
+			(presentation layer) or persistence (datasource layer) should
+			be handled by the framework as far as possible and require minimal
+			implementation effort. The effort of evolution of this domain model
+			should also be minimal. The infrastructure should adapt changes as good
+			as possible. This includes as well evolving the UI as also the data shema
+			- however data migration of course is an intrinsic problem.
+		</para>
+	</chapter>
+	<chapter>
+		<title>Key concepts</title>
+		<para>
+			The key concepts of the RapidBeans framework are:
+			<itemizedlist>
+				<listitem>
+					<para>
+						<emphasis>Simplicity:</emphasis>
+						The KISS principle ("Keep it simple, stupid" or "Keep it simple and
+						straightforward" are only two of many similar interpretations) is
+						widely accepted. A similar principle is called "principle of least surprise"
+						that means: do the things like most people would expect you to do them.
+						However this goal is often hard to reach if you want to solve complex problems.
+						The great art of information technology has always been to hide complexity and
+						to let look complicated things simple and clear. It it as simple as that.
+						Software that does not follow the KISS and the "least surprise" principle won't
+						be maintainable and living in the long run.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<emphasis>Document centricity:</emphasis>
+						A Document is a bunch of structured, human and machine readable,
+						self describing, more or less cohesive persistent data. A very simple
+						and widely used approach is to store it into a single file.
+						Document centric applications use documents not only to persist but
+						also to exchange data.
+						XML or JSON are widely accepted formats to store semantic (self describing)
+						data that trade off human readability against machine readability.
+						The RapidBeans framework currently provides an easy to use XML based
+						approach to store an object graph into a file and to load it vice versa.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</chapter>
+	<chapter>
+		<title>RapidBeans FrameworkLayers</title>
+		<section>
+			<title>RapidBeans Core</title>
+			<para>
+				The RapidBeans core layer 
+			</para>
+		</section>
+		<section>
+			<title>RapidBeans Datasource</title>
+			<para>
+				The RapidBeans datasource layer...
+			</para>
+		</section>
+		<section>
+			<title>RapidBeans Presentation</title>
+			<para></para>
+		</section>
+		<section>
+			<title>RapidBeans Domain</title>
+			<para>
+				The RapidBeans Domain layer provides domain concepts
+				beyond the very basic types from the core layer for usage
+				in many domain models like DayOfWeek, Money, Length etc...
+			</para>
+		</section>
+	</chapter>
+	<chapter>
+		<title>The RapidBeans modelling language</title>
+				<para>
+					The RapidBeans modelling language lets you describe an OO data model
+					and type system similarly to an UML class diagram or Eclipse EMF Ecore
+					in a very simple manner. Besides simplicity RapidBeans focuses on velocity.
+					Therefore RapidBeans provides simple and flexible means of code generation
+					but is also able to interpret the model immediately. You even are able to
+					build a first simple application prototype out of the data model without
+					generating one single line of code.
+				</para>
+				<section>
+					<title>Types</title>
+					<para>
+						Basically you can use 3 different categories of types:
+						<itemizedlist>
+							<listitem><para>beantype</para></listitem>
+							<listitem><para>enumtype</para></listitem>
+							<listitem><para>quantitytype</para></listitem>
+						</itemizedlist>
+					</para>
+					<section>
+						<title>beantype</title>
+						<para>Bean types a the core modelling unit describing complex
+						datatypes equivalent to classes in the sense of OO.
+						However while classes in the usual OO programming languages
+						focus on describing attributes and operations, beantypes
+						focus on describing attributes (called <emphasis>properties</emphasis>
+						in this case) and their contraints (validations, businessrules).
+						The second strenght is explicit modelling of associations.
+						Operations are currently intentionally left out of the modelling
+						language in order to keep it simple. However you probably will
+						like to define some operations for your domain classes. In this
+						case you can generate a Java class out of a bean type using the
+						RapidBeans code generation facility and simply code your operations
+						using Java methods.
+						</para>
+						<para>
+						Example:
+							<programlisting><![CDATA[<beantype name="org.me.addressbook.Person">
+    <property name="lastname"/>
+    <property name="firstname"/>
+    <property name="dateofbirth" type="date"/>
+    <property name="sex" type="choice"
+        enum="Sex"
+    />
+    <property name="height" type="quantity"
+        quantity="Length
+    />
+    <property name="groups" type="association"
+        targettype="Group"
+        inverse="persons"
+    />
+</beantype>]]></programlisting>
+						</para>
+					</section>
+					<section>
+						<title>enumtype</title>
+						<para>The concept of enumeration types is widely known.
+						Maybe their use for domain modelling sometimes is slightly underestimated.
+						The RapidBeans enumeration types even are bit more powerful than enums
+						as you might know them from C. You can also define a table of constant
+						values together with such an enum (value table).
+						Because since Java 5 enumeration types are also supported which have
+						an idiom to support value tables the RapidBeans code generation facility
+						perfectly maps them to Java.
+						</para>
+						<para>
+							Example, simple enum:
+							<programlisting><![CDATA[<enumtype name="org.me.addressbook.Sex">
+    <enum name="male"/>
+    <enum name="female"/>
+</enumtype>]]></programlisting>
+							Example, value table:
+							<programlisting><![CDATA[<enumtype name="org.rapidbeans.domain.finance.Currency">
+	<header>
+		<column name="short2" type="String"/>
+		<column name="short3" type="String"/>
+	</header>
+	<enum name="dollar">
+		<cell name="short2" value="UD"/>
+		<cell name="short3" value="USD"/>
+	</enum>
+	<enum name="euro">
+		<cell name="short2" value="EU"/>
+		<cell name="short3" value="EUR"/>
+	</enum>
+	<enum name="pound">
+		<cell name="short2" value="LB"/>
+		<cell name="short3" value="LIB"/>
+	</enum>
+</enumtype>]]></programlisting>
+						</para>
+					</section>
+		<section>
+				<title>quantitytype</title>
+				<para>
+					Quantity types lets you model physical quantities combining
+					a magnitude a a unit. The type information for a quantity simply
+					combines an enumeration of units with conversion factors.
+					While the current implementation of quantity only provides
+					BigDecimal as magnitude type (arbitrary precision) in the future
+					quantities will support differnt magnitude number formats.
+					</para>
+					<para>
+						Example, unit enum:
+						<programlisting><![CDATA[<enumtype name="org.me.addressbook.UnitLength">
+    <enum name="meter"/>
+    <enum name="centimeter"/>
+</enumtype>]]></programlisting>
+						Example, quantitytype:
+						<programlisting><![CDATA[<quantitytype name="org.me.addressbook.Length" 
+    unitenum="UnitLength">
+    <unit name="meter" factor="1"/>
+    <unit name="centimeter" factor="/1E2"/>
+</quantitytype>
+]]></programlisting>
+				</para>
+			</section>
+		</section>
+		<section>
+			<title>Properties</title>
+			<para>
+				Properties are equivalent to attributes in the sense of OO but provide
+				more than simple fields by allowing you to define constraints and
+				associations is a declarative manner. This way you can easily implement
+				a flexible and powerful domain value type system.
+			</para>
+			<table>
+				<title>common property constraints</title>
+				<tgroup cols="4">
+					<colspec/>
+					<thead>
+						<row>
+							<entry>constraint</entry>
+							<entry>type</entry>
+							<entry>default</entry>
+							<entry>description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>mandatory</entry>
+							<entry>boolean</entry>
+							<entry>false</entry>
+							<entry>null values not allowed</entry>
+						</row>
+						<row>
+							<entry>key</entry>
+							<entry>boolean</entry>
+							<entry>false</entry>
+							<entry>input for property aware identity (keypropsstrict, keypropsloose)</entry>
+						</row>
+						<row>
+							<entry>readonly</entry>
+							<entry>boolean</entry>
+							<entry>false</entry>
+							<entry>use for constants or derived properties (properties that may be only set by the program</entry>
+						</row>
+						<row>
+							<entry>transient</entry>
+							<entry>boolean</entry>
+							<entry>false</entry>
+							<entry>property will not be persistet</entry>
+						</row>
+						<row>
+							<entry>final</entry>
+							<entry>boolean</entry>
+							<entry>false</entry>
+							<entry>property will not be inherited</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			<section>
+				<title>string</title>
+				<para>
+					String simply stores a sequence of charecters limited only by the lenght of
+					a single Java Straing. String is the default type for every property.
+				</para>
+				<table>
+					<title>string property constraints</title>
+					<tgroup cols="4">
+						<colspec/>
+						<thead>
+							<row>
+								<entry>constraint</entry>
+								<entry>type</entry>
+								<entry>default</entry>
+								<entry>description</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>emptyvalid</entry>
+								<entry>boolean</entry>
+								<entry>false</entry>
+								<entry>empty strings are valid or not</entry>
+							</row>
+							<row>
+								<entry>maxlen</entry>
+								<entry>positive integer</entry>
+								<entry>unlimited (-1)</entry>
+								<entry>maximal string length</entry>
+							</row>
+							<row>
+								<entry>minlen</entry>
+								<entry>positive integer</entry>
+								<entry>0</entry>
+								<entry>minimal string length</entry>
+							</row>
+							<row>
+								<entry>pattern</entry>
+								<entry>Java regular expressions</entry>
+								<entry>none (null)</entry>
+								<entry>Defines a regular expression pattern to validate the string</entry>
+							</row>
+							<row>
+								<entry>multiline</entry>
+								<entry>boolean</entry>
+								<entry>false</entry>
+								<entry>if multiple lines are possible or not</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+			<section>
+				<title>boolean</title>
+				<para>
+				</para>
+			</section>
+			<section>
+				<title>number: integer, decimal</title>
+				<para>
+				</para>
+				<table>
+					<title>number properties</title>
+					<tgroup cols="2">
+						<colspec/>
+						<thead>
+							<row>
+								<entry>property type</entry>
+								<entry>encoding</entry>
+								<entry>size / precision</entry>
+								<entry>Java implementation</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>integer</entry>
+								<entry>2nd complement / BCD</entry>
+								<entry>byte01 / 8 bit, byte02 / 16 bit, byte04 / 32 bit, byte08 / 64 bit, unlimited</entry>
+								<entry>byte, short, int, double, BigInteger</entry>
+							</row>
+							<row>
+								<entry>decimal (not yet impl.)</entry>
+								<entry>floating point / BCD</entry>
+								<entry>byte04 / 32 bit, byte08 / 64 bit, unlimited</entry>
+								<entry>float, double, BigDecimal</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+			<section>
+				<title>choice</title>
+				<para>
+				</para>
+			</section>
+			<section>
+				<title>quantity</title>
+				<para>
+				</para>
+			</section>
+			<section>
+				<title>date</title>
+				<para>
+				</para>
+			</section>
+			<section>
+				<title>file</title>
+				<para>
+				</para>
+			</section>
+			<section>
+				<title>blob: clob, picture</title>
+				<para>
+					Not yet implemented
+				</para>
+			</section>
+			<section>
+				<title>associationend: collection, map</title>
+				<para>
+				</para>
+			</section>
+		</section>
+	</chapter>
+</book>

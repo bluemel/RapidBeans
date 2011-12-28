@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project default="">
+<!--
+  ####################################################
+  # javadoc
+  ####################################################
+-->
+  <target name="javadoc" depends="classes"
+    description="generates javadoc api documentation if necessary"
+    >
+    <uptodate
+      property="javadoc.notrequired"
+      targetfile="doc/api/index.html"
+      >
+      <srcfiles dir="src"/>
+    </uptodate>
+    <ant target="_javadoc"/>
+  </target>
+
+  <target name="_javadoc" unless="javadoc.notrequired"
+    description="generates api documentation by means of javadoc"
+    >
+    <javadoc
+      sourcepath="src"
+      packagenames="*"
+      destdir="doc/api"
+    >
+      <link href="file:${env.JAVA_HOME}/docs/api/"/>
+    </javadoc>
+
+  </target>
+
+</project>

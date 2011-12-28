@@ -1,0 +1,68 @@
+/*
+ * File: TestClass.java
+ */
+package easybiz.ant;
+
+/**
+ * @author Martin Bluemel
+ */
+public final class TestClass {
+    # BEGIN hand written code
+    # TestClass.classBody
+    /**
+     * one constant.
+     */
+    private static final String ONE_CONSTANT = 815;
+
+    /**
+     * test attribute 1.
+     */
+    private int xxx = 0;
+
+    /**
+     * test attribute 2.
+     */
+    private String yyy = null;
+    # END hand written code
+
+    /**
+     * one generated constant.
+     */
+    private static final String ONE_GENERATED_CONSTANT = "xxx";
+
+    /**
+     * Default constructor.
+     */
+    public TestClass() {
+        yyy = ONE_GENERATED_CONSTANT;
+        # BEGIN hand written code
+        # TestClass.TestClass()
+        this.xxx = ONE_CONSTANT;
+        # END hand written code
+    }
+
+    /**
+     * test method that changes signature.
+     */
+    public void testSomething(int i) {
+        # BEGIN hand written code
+        # TestClass.testSomething(int)
+        # END hand written code
+    }
+
+    /**
+     * test method that changes signature.
+     */
+    public void testSomethingNew() {
+        # BEGIN hand written code
+        # TestClass.testSomethingNew()
+        # END hand written code
+    }
+}
+
+!!!! BEGIN unmatched hand written code
+        # BEGIN hand written code
+        # TestClass.testSomething()
+        System.out.println("test!!!");
+        # END hand written code
+!!!! END unmatched hand written code

@@ -1,0 +1,5 @@
+<enumtype name="org.me.addressbook.Role">
+    <enum name="user"/>
+    <enum name="administrator"/>
+    <enum name="superadministrator"/>
+</enumtype>

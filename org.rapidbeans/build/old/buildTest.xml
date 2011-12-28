@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project default="">
+  <path id="project.classpath"/>
+
+<!--
+  ####################################################
+  # test
+  ####################################################
+-->
+  <target name="test"
+    depends="resources,modelsources,classes"
+    description="runs all tests and generates a test report"
+    >
+    <uptodate property="test.notRequired" targetfile="testreport/testOkLastStamp">
+      <srcfiles dir="${project.home}">
+        <include name="${test.testedlib}"/>
+        <include name="${ant.project.name}/src/**/*.java"/>
+        <include name="${ant.project.name}/model/**/*.xml"/>
+      </srcfiles>
+    </uptodate>
+    <antcall target="_test"/>
+  </target>
+
+  <target name="_test" unless="test.notRequired">
+    <delete dir="testreport"/>
+    <mkdir dir="testreport"/>
+  
+    <junit
+      showoutput="yes"
+      printsummary="yes"
+      dir="${basedir}"
+      failureproperty="test.failed"
+      >
+      <formatter type="xml"/>
+      <batchtest fork="yes"
+        todir="testreport"
+        >
+        <fileset dir="bin">
+          <include name="**/*Test.class"/>
+          <exclude name="**/AllTest.class"/>
+        </fileset>
+      </batchtest>
+      <sysproperty key="java.compiler" value=""/>
+      <sysproperty key="test.rootdir" value="${basedir}" />
+      <classpath refid="project.classpath"/>
+    </junit>
+
+    <junitreport todir="testreport">
+      <fileset dir="testreport">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="testreport"/>
+    </junitreport>
+
+    <antcall target="_touchTestOkStamp"/>
+
+    <fail if="test.failed" message="EasyBiz library test failed, see ${basedir}${file.separator}testreport."/>
+
+  </target>
+
+  <target name="_touchTestOkStamp" unless="test.failed">
+    <touch file="testreport/testOkLastStamp"/>
+  </target>
+
+</project>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook
+	>
+	<person
+		id="53488990-3669-40ca-a7b2-4b15654906c7"
+		lastname="Edison"
+		firstname="Thomas Alva"
+		dateofbirth="18470211"
+		shoesize="43"
+		sex="male"
+		height="1.80 meter"
+		groups=""
+		/>
+	<person
+		id="8c12e0f2-3f29-48d3-a987-cafacf198ab6"
+		lastname="Einstein"
+		firstname="Albert"
+		dateofbirth="18790314"
+		groups=""
+		/>
+	<person
+		id="cd6038f7-d9f2-4203-a5c8-64ce8547fe71"
+		lastname="Gauß"
+		firstname="Johann Carl Friedrich"
+		dateofbirth="17770430"
+		groups="Judo"
+		/>
+	<person
+		id="881e1ec2-7657-42c1-947e-26b0bcff9e06"
+		lastname="Kant"
+		firstname="Immanuel"
+		dateofbirth="17240424"
+		groups="BCI"
+		/>
+	<person
+		id="7a247fb2-4dc1-463b-bf52-4e51e79d9063"
+		lastname="Newton"
+		firstname="Isaac"
+		dateofbirth="16430104"
+		groups=""
+		/>
+	<person
+		id="74ad61f7-43bf-4fff-9d0d-2f3b034ad6a2"
+		lastname="Voltaire"
+		firstname="François Marie Arouet"
+		dateofbirth="16941121"
+		groups="SBT"
+		/>
+	<group
+		id="BCI"
+		name="BCI"
+		persons="881e1ec2-7657-42c1-947e-26b0bcff9e06"
+		>
+		<subgroup
+			id="Aikido"
+			name="Aikido"
+			persons=""
+			/>
+		<subgroup
+			id="Judo"
+			name="Judo"
+			persons="cd6038f7-d9f2-4203-a5c8-64ce8547fe71"
+			/>
+	</group>
+	<group
+		id="SBT"
+		name="SBT"
+		persons="74ad61f7-43bf-4fff-9d0d-2f3b034ad6a2"
+		/>
+</addressbook>

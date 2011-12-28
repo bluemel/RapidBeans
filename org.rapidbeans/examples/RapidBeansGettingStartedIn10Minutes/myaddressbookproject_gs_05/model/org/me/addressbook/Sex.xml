@@ -1,0 +1,4 @@
+<enumtype name="org.me.addressbook.Sex">
+    <enum name="male"/>
+    <enum name="female"/>
+</enumtype>

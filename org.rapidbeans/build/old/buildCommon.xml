@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project PUBLIC "" "ant162.dtd">
+
+<project default="">
+  <path id="project.classpath"/>
+
+<!--
+  ####################################################
+  # modelsources
+  ####################################################
+-->
+  <taskdef name="genmodel" classname="org.rapidbeans.ant.TaskGenModel"/>
+  <target name="modelsources"
+    description="EasyBiz source code generation (java classes)"
+    >
+    <geneasybizmodel
+      srcdir="model"
+      destdir="src"
+      styledir="${project.home}/build"
+			force="yes"
+    />
+  </target>
+
+<!--
+  ####################################################
+  # classes
+  ####################################################
+-->
+  <target name="classes"
+    description="compile java classes source code"
+    >
+    <mkdir dir="bin"/>
+    <javac srcdir="src" destdir="bin" debug="no">
+      <classpath refid="project.classpath"/>
+    </javac>
+  </target>
+
+<!--
+  ####################################################
+  # resources
+  ####################################################
+-->
+  <target name="resources"
+    description="copy resource files into the classes folders"
+    >
+    <copy todir="bin">
+      <fileset dir="model"/>
+    </copy>
+  </target>
+
+<!--
+  ####################################################
+  # clean
+  # because the delete task does not complain about
+  # directories that are not existent we simply delete
+  # the superset of all artefact directories
+  ####################################################
+-->
+  <target name="clean"
+    description="removes all files produced during any build"
+    >
+    <delete dir="bin"/>
+    <delete dir="dist"/>
+    <delete dir="doc"/>
+    <delete dir="testreport"/>
+  </target>
+
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook
+	>
+	<person
+		id="eb16a7cf-2778-45c0-9a83-d0cbe9bb127c"
+		lastname="Edison1"
+		firstname="Thomas Alva"
+		dateofbirth="18470211"
+		/>
+	<person
+		id="d6f4fce7-f2cf-4c60-a51c-311260b5256d"
+		lastname="Einstein"
+		firstname="Albert"
+		dateofbirth="18790314"
+		/>
+	<person
+		id="ce8e638e-7209-4a89-a711-6d812967ef38"
+		lastname="Gauß"
+		firstname="Johann Carl Friedrich"
+		dateofbirth="17770430"
+		/>
+	<person
+		id="3d871eb6-fb35-4414-a490-5ffb7c2407fc"
+		lastname="Kant"
+		firstname="Immanuel"
+		dateofbirth="17240424"
+		/>
+	<person
+		id="c3c06b9e-3acc-4463-bcc3-5fd90d670634"
+		lastname="Newton"
+		firstname="Isaac"
+		dateofbirth="16430104"
+		/>
+	<person
+		id="ca3a7793-41ef-4195-b208-bcaeb71cd304"
+		lastname="Voltaire"
+		firstname="François Marie Arouet"
+		dateofbirth="16941121"
+		/>
+</addressbook>

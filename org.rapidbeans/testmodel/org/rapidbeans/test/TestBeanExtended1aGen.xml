@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.TestBeanExtended1Gen"
+	extends="org.rapidbeans.test.TestBeanGen"
+	>
+    <property name = "sex"
+        type="choice"
+        default="female"
+        enum="org.rapidbeans.domain.org.Sex"
+		readonly="true"
+    />
+	<codegen mode="none"/>
+</beantype>

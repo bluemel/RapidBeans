@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.test.BillingPeriod"
+	>
+	<location
+		id="Turnhalle Grundschule Süd"
+		name="Turnhalle Grundschule Süd"
+		street="Camerloher Straße 20"
+		city="85737 Ismaning"
+		closedons="20051222_Weihnachtsferien"
+		/>
+	<location
+		id="Eurythmiesaal 1 Waldorfschule"
+		name="Eurythmiesaal 1 Waldorfschule"
+		street="Dorfstraße 52"
+		city="85737 Ismaning"
+		closedons="20060116_Schulputztag,20051222_Weihnachtsferien"
+		/>
+	<closingperiod
+		id="20051222_Weihnachtsferien"
+		from="20051222"
+		name="Weihnachtsferien"
+		to="20060108"
+		locations="Turnhalle Grundschule Süd,Eurythmiesaal 1 Waldorfschule"
+		/>
+	<closingperiod
+		id="20060116_Schulputztag"
+		from="20060116"
+		name="Schulputztag"
+		to="20060116"
+		locations="Eurythmiesaal 1 Waldorfschule"
+		/>
+</rb:bean>
