@@ -1,1 +1,17 @@
 env/profile
+org.rapidbeans/classes
+org.rapidbeans/classes_eclipse
+org.rapidbeans/classes_test
+org.rapidbeans/dist
+org.rapidbeans/doc/dist
+org.rapidbeans/examples/dist
+org.rapidbeans/gensrc
+org.rapidbeans/gensrc_test
+org.rapidbeans/testreport
+org.rapidbeans.ant/classes
+org.rapidbeans.ant/classes_eclipse
+org.rapidbeans.ant/classes_test
+org.rapidbeans.ant/dist
+org.rapidbeans.ant/gensrc
+org.rapidbeans.ant/gensrc_test
+org.rapidbeans.ant/testreport

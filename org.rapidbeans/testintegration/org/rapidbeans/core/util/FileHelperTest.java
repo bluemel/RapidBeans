@@ -17,7 +17,6 @@ public class FileHelperTest {
         try {
             FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
             Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
-            Assert.assertTrue(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").exists());
         } finally {
             if ((new File("copytest")).exists()) {
@@ -57,15 +56,6 @@ public class FileHelperTest {
         FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"), false, true);
         Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
         Assert.assertFalse(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
-        Assert.assertTrue(new File("copytest/config/Client.xml").exists());
-        FileHelper.deleteDeep(new File("copytest"));
-    }
-
-    @Test
-    public final void testCopyDeepExcludeSvnDirsNot() {
-        FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"), false, false);
-        Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
-        Assert.assertTrue(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
         Assert.assertTrue(new File("copytest/config/Client.xml").exists());
         FileHelper.deleteDeep(new File("copytest"));
     }
@@ -115,11 +105,9 @@ public class FileHelperTest {
     public final void testDeleteDeepFile() {
         FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
         Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
-        Assert.assertTrue(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
         Assert.assertTrue(new File("copytest/config/Client.xml").exists());
         FileHelper.deleteDeep(new File("copytest"));
         Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
-        Assert.assertFalse(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
         Assert.assertFalse(new File("copytest/config/Client.xml").exists());
     }
 
@@ -128,7 +116,6 @@ public class FileHelperTest {
         try {
             FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
             Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
-            Assert.assertTrue(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").setReadOnly());
             try {
@@ -138,7 +125,6 @@ public class FileHelperTest {
                 Assert.assertTrue(true);
             }
             Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
-            Assert.assertFalse(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").exists());
         } finally {
             if (new File("copytest").exists()) {
@@ -152,12 +138,10 @@ public class FileHelperTest {
         try {
             FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
             Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
-            Assert.assertTrue(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").exists());
             Assert.assertTrue(new File("copytest/config/Client.xml").setReadOnly());
             FileHelper.deleteDeep(new File("copytest"), true);
             Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
-            Assert.assertFalse(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
             Assert.assertFalse(new File("copytest/config/Client.xml").exists());
             Assert.assertFalse(new File("copytest").exists());
         } finally {
@@ -200,20 +184,8 @@ public class FileHelperTest {
     }
 
     @Test
-    public final void testDirsEqualExcludeDotDirs() {
-        FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin"));
-        Assert.assertTrue(new File("copytest/rapidclubadmin/.svn").exists());
-        FileHelper.deleteDeep(new File("copytest/rapidclubadmin/.svn"));
-        Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
-        Assert.assertTrue(FileHelper.dirsEqualExcludeDotDirs(new File("testdata/rapidclubadmin"),
-                "copytest/rapidclubadmin"));
-        FileHelper.deleteDeep(new File("copytest"));
-    }
-
-    @Test
     public final void testDirsEqualDepthLimited() {
         FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin"));
-        Assert.assertTrue(new File("copytest/rapidclubadmin/.svn").exists());
         FileHelper.deleteDeep(new File("copytest/rapidclubadmin/config/subfolder"));
         Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
         Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"),
@@ -278,9 +250,9 @@ public class FileHelperTest {
     public final void testListFilesFilterSubdirs() {
         File testfolder = new File("testdata/rapidclubadmin/config");
         Assert.assertEquals(6, FileHelper.listFilesExcludeFilter(testfolder, "\\.*").length);
-        Assert.assertEquals(2, FileHelper.listFilesExcludeFilter(testfolder, "*.xml").length);
+        Assert.assertEquals(1, FileHelper.listFilesExcludeFilter(testfolder, "*.xml").length);
         Assert.assertEquals(0, FileHelper.listFilesExcludeFilter(testfolder, "*").length);
-        Assert.assertEquals(7, FileHelper.listFilesExcludeFilter(testfolder, "xxx").length);
+        Assert.assertEquals(6, FileHelper.listFilesExcludeFilter(testfolder, "xxx").length);
     }
 
     @Test
