@@ -1,0 +1,1588 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<repository name='JBoss Tools - Core Site Artifacts' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1323909913665'/>
+    <property name='p2.compressed' value='true'/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='217'>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.community.project.examples.feature' version='1.2.1.v20111213-1557-H39-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3862'/>
+        <property name='download.size' value='3862'/>
+        <property name='download.md5' value='5ad40972892d27d373f7cee95a340061'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.runtime.core.feature' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3827'/>
+        <property name='download.size' value='3827'/>
+        <property name='download.md5' value='8475e936f0bbee5e37f3027bb2b368a4'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.birt.core' version='1.3.0.v20111208-2002-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='53768'/>
+        <property name='download.size' value='53768'/>
+        <property name='download.md5' value='2a1433f281d0449ffcb73abe4d04c714'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts.vpe.struts' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='5068'/>
+        <property name='download.size' value='5068'/>
+        <property name='download.md5' value='13100a3930d0e59ff785140dba730924'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.freemarker.feature' version='1.2.0.v20111208-2109-H35-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4303'/>
+        <property name='download.size' value='4303'/>
+        <property name='download.md5' value='dcef1845e301a5443f3596d7369de617'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.jstl' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='13802'/>
+        <property name='download.size' value='13802'/>
+        <property name='download.md5' value='fc9dc7e3cccacc10d3a131f3277569fa'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.wtp.core' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='54094'/>
+        <property name='download.size' value='54094'/>
+        <property name='download.md5' value='ea088a5b03538f41b4f586052a792f56'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.xulrunner' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='77443'/>
+        <property name='download.size' value='77443'/>
+        <property name='download.md5' value='da6013b1a4f01b3c3d029f99df8fb4ea'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web.tiles' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='63617'/>
+        <property name='download.size' value='63617'/>
+        <property name='download.md5' value='d02d8f09d5ef0e448f0b764644ea8f20'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.xml.ui' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='34621'/>
+        <property name='download.size' value='34621'/>
+        <property name='download.md5' value='6393bcc435c34fe06598b51c0f493bab'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.mozilla.xulrunner.feature' version='1.9.218.v20111123-2024-H140-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='2371'/>
+        <property name='download.size' value='2371'/>
+        <property name='download.md5' value='5791d32792f1882db2987b3336ae95af'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.jsp' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='5281'/>
+        <property name='download.size' value='5281'/>
+        <property name='download.md5' value='125cf08b8fe4e55d456fcc778a91705d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.gwt.core' version='1.0.2.v20111208-2109-H29-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='5013140'/>
+        <property name='download.size' value='5013140'/>
+        <property name='download.md5' value='4e364973518e90e5abbe44882a54ed4c'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.pages.xml' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='124613'/>
+        <property name='download.size' value='124613'/>
+        <property name='download.md5' value='58413328db9e09d2358b91518ae531c2'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3734'/>
+        <property name='download.size' value='3734'/>
+        <property name='download.md5' value='48ed01948001394d52f913427e31e596'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.vpe.feature' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3626'/>
+        <property name='download.size' value='3626'/>
+        <property name='download.md5' value='7af0cc6a9c437ccd5baabad806ae13c7'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.text.ext' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='27819'/>
+        <property name='download.size' value='27819'/>
+        <property name='download.md5' value='641c277a970b27bbbbea1004bc48c100'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.runtime.feature' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3694'/>
+        <property name='download.size' value='3694'/>
+        <property name='download.md5' value='a4d7f87409160a1d8ede79d8e5bb9458'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.verification.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='75354'/>
+        <property name='download.size' value='75354'/>
+        <property name='download.md5' value='da2aa1381e0c007978d9dde37c81bb08'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web.tiles.ui' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='187663'/>
+        <property name='download.size' value='187663'/>
+        <property name='download.md5' value='2726dbe1574d632831b1bace62646f25'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.vpe.browsersim.feature' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3747'/>
+        <property name='download.size' value='3747'/>
+        <property name='download.md5' value='ad62d7779e16a8bdf877f55a918c6f5f'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.runtime.ui' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='85438'/>
+        <property name='download.size' value='85438'/>
+        <property name='download.md5' value='05740b149904b688474ed7a2daf407d1'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='778497'/>
+        <property name='download.size' value='778497'/>
+        <property name='download.md5' value='be925d77703f769917175ce48d6ed0f6'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.community.central.feature' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3787'/>
+        <property name='download.size' value='3787'/>
+        <property name='download.md5' value='a63858987eeba8ddb5713cdbf6138291'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.spring' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12178'/>
+        <property name='download.size' value='12178'/>
+        <property name='download.md5' value='8f97e374058afc34743727e9960e3845'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.core' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='30945'/>
+        <property name='download.size' value='30945'/>
+        <property name='download.md5' value='84590edd0a2be8f000a28b8af5668905'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.runtime.core' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='23289'/>
+        <property name='download.size' value='23289'/>
+        <property name='download.md5' value='a056ade1d24c766a2a519ff014be318d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.forge.runtime' version='1.0.0.v20111208-2108-H31-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='23569504'/>
+        <property name='download.size' value='23569504'/>
+        <property name='download.md5' value='385236135d641fa4fad00937d02f964d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.jbpm' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='11341'/>
+        <property name='download.size' value='11341'/>
+        <property name='download.md5' value='47b8073eec30e0854cdc73ba3e10f088'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.xml' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='36066'/>
+        <property name='download.size' value='36066'/>
+        <property name='download.md5' value='0b9747b6d25b0dd6d4aeb872f29c0eb3'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.ws.jaxrs.feature' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3328'/>
+        <property name='download.size' value='3328'/>
+        <property name='download.md5' value='88472f045d4934f2f10e32c3872a7659'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.xulrunner.feature' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='20586'/>
+        <property name='download.size' value='20586'/>
+        <property name='download.md5' value='10b7ed05daf432c9c11d8a4618c8a1eb'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.browsersim' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='59368'/>
+        <property name='download.size' value='59368'/>
+        <property name='download.md5' value='ebbdbe59749d94873d0b0cf29e6ea65d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.xml.ui' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='17310'/>
+        <property name='download.size' value='17310'/>
+        <property name='download.md5' value='a4701f94639c3aa0ecc878c8ef9a1e2c'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.docbook' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='20349'/>
+        <property name='download.size' value='20349'/>
+        <property name='download.md5' value='0e660ecd19e18461c8826b6f94ef76f1'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.central.discovery.feature' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3772'/>
+        <property name='download.size' value='3772'/>
+        <property name='download.md5' value='b76efdd3631a144e560e587332205000'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.cdi.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3728'/>
+        <property name='download.size' value='3728'/>
+        <property name='download.md5' value='1e6ae1d2984ab684611dfadf792d1b58'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.creation.ui' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='40203'/>
+        <property name='download.size' value='40203'/>
+        <property name='download.md5' value='2182a1cdf4962dbef5a5b622f5a6db1a'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.model' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1030238'/>
+        <property name='download.size' value='1030238'/>
+        <property name='download.md5' value='18e9084e9674ff7cb6e79dfc05e9ed32'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.text.xml' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='120173'/>
+        <property name='download.size' value='120173'/>
+        <property name='download.md5' value='25b58dfe3649757b7d000cf3856e7519'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.seam.feature' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3799'/>
+        <property name='download.size' value='3799'/>
+        <property name='download.md5' value='8793b936215945ed9b6980b9aa4c261f'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.ui.palette' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='56655'/>
+        <property name='download.size' value='56655'/>
+        <property name='download.md5' value='d9ed4de72b421782da8d27eaebc85faf'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.verification' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='20300'/>
+        <property name='download.size' value='20300'/>
+        <property name='download.md5' value='8189c7957c6927ace1324763ef20548b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.usage.feature' version='1.1.0.v20111208-2055-H31-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3971'/>
+        <property name='download.size' value='3971'/>
+        <property name='download.md5' value='cf0fc74c59319d615a627f3d5b8d5058'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.text.ext' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='111092'/>
+        <property name='download.size' value='111092'/>
+        <property name='download.md5' value='e5bfcba2b19db82011a2d6adc899cf8c'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='565011'/>
+        <property name='download.size' value='565011'/>
+        <property name='download.md5' value='cfb35f9aaa1787806bdfb8289a9ade9b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.jdt.debug.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='83001'/>
+        <property name='download.size' value='83001'/>
+        <property name='download.md5' value='1298ab6b2784ce1dbf23b8b72c52a067'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.help' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='299406'/>
+        <property name='download.size' value='299406'/>
+        <property name='download.md5' value='875bb434e475907e360aabd4159db0e1'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.forge.ui' version='1.0.0.v20111208-2108-H31-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='77313'/>
+        <property name='download.size' value='77313'/>
+        <property name='download.md5' value='8412ddb5e17108a3e9b82497e4251cb3'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.ajax4jsf' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='22072'/>
+        <property name='download.size' value='22072'/>
+        <property name='download.md5' value='b410b279b73513d98203fbacbb6e3cfa'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.jsp' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='489859'/>
+        <property name='download.size' value='489859'/>
+        <property name='download.md5' value='57a8f754436da02df4744077b7d86f18'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.ui.mbeans' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='120598'/>
+        <property name='download.size' value='120598'/>
+        <property name='download.md5' value='046086297684db5a936d0faaa07d8e37'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.project.examples.feature' version='1.2.1.v20111213-1557-H39-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3820'/>
+        <property name='download.size' value='3820'/>
+        <property name='download.md5' value='8247a4d990cf582c523c4cb2b54f9bed'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.portlet.feature' version='1.2.0.v20111207-1651-H35-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3788'/>
+        <property name='download.size' value='3788'/>
+        <property name='download.md5' value='d2dec67a6440fe7c049739e5902254b3'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mozilla.xulrunner.gtk.linux.x86' version='1.9.2.16b'>
+      <properties size='3'>
+        <property name='artifact.size' value='10598833'/>
+        <property name='download.size' value='10598833'/>
+        <property name='download.md5' value='9b858315d632e7b8d897d139ae569851'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernateextension4_0' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='8413728'/>
+        <property name='download.size' value='8413728'/>
+        <property name='download.md5' value='5556e462a99bb9d30e4b6de29d4eabce'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.ui' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='466917'/>
+        <property name='download.size' value='466917'/>
+        <property name='download.md5' value='dc6fd0e996e27e3610c70a4cdb364634'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.rse.core' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='44980'/>
+        <property name='download.size' value='44980'/>
+        <property name='download.md5' value='02eaf96e024b9cb7dca17402b1a99511'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.archives.webtools' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='143114'/>
+        <property name='download.size' value='143114'/>
+        <property name='download.md5' value='146393209f1812ca5af38f45653210a2'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernate.xml.ui' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='62033'/>
+        <property name='download.size' value='62033'/>
+        <property name='download.md5' value='2cd62383246d6441b642a536464a5f0b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.text.ext.richfaces' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='10435'/>
+        <property name='download.size' value='10435'/>
+        <property name='download.md5' value='8702c97b356c5078c18d7bc9b1f30e73'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mozilla.xulrunner.gtk.linux.x86_64' version='1.9.2.19pre'>
+      <properties size='3'>
+        <property name='artifact.size' value='12665160'/>
+        <property name='download.size' value='12665160'/>
+        <property name='download.md5' value='358eb35fd623beaa3d5375517f09ac42'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.central.discovery' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='78596'/>
+        <property name='download.size' value='78596'/>
+        <property name='download.md5' value='8ba2e0569174ec571545e2c5067d7f87'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.runtime.as.detector' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='19469'/>
+        <property name='download.size' value='19469'/>
+        <property name='download.md5' value='f7e752c7044f9d4d4147c1cf6eb42531'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.ui' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='90194'/>
+        <property name='download.size' value='90194'/>
+        <property name='download.md5' value='96a78258615d59a88a2395c63a82affa'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.forge.runtime.ext' version='1.0.0.v20111208-2108-H31-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='13242'/>
+        <property name='download.size' value='13242'/>
+        <property name='download.md5' value='953093d1d3e982f1d0639356990de939'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.core' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='38859'/>
+        <property name='download.size' value='38859'/>
+        <property name='download.md5' value='836b4d00d57b2286ce85a118265688e4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.freemarker' version='1.2.0.v20111208-2109-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1026114'/>
+        <property name='download.size' value='1026114'/>
+        <property name='download.md5' value='c97868d6e216f71c415e7378925222da'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web.verification' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='18060'/>
+        <property name='download.size' value='18060'/>
+        <property name='download.md5' value='7c4f491bfc4bf3ba3b9f9c3689a348ad'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.archives.feature' version='3.2.1.v20111208-2106-H38-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3882'/>
+        <property name='download.size' value='3882'/>
+        <property name='download.md5' value='9e37edffa446304868d3f6229055615d'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.gef' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='57567'/>
+        <property name='download.size' value='57567'/>
+        <property name='download.md5' value='7d7c93661e8704a2fa7623f2112e155b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.management.as71' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1232556'/>
+        <property name='download.size' value='1232556'/>
+        <property name='download.md5' value='e814b5b31cc56f381b925b239fbef8bb'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.jdt.debug' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='24152'/>
+        <property name='download.size' value='24152'/>
+        <property name='download.md5' value='73578b28cfee7b7e2f640056ca4977d2'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='721107'/>
+        <property name='download.size' value='721107'/>
+        <property name='download.md5' value='873b3ec4fdd2dfcf7012b6cfea3a2987'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.central.feature' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3746'/>
+        <property name='download.size' value='3746'/>
+        <property name='download.md5' value='28c00c61320cc9d4e1a099e17da8c083'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web.kb' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='396345'/>
+        <property name='download.size' value='396345'/>
+        <property name='download.md5' value='f908c5239596d2142b0365591243b1ca'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.ui.pages' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='217663'/>
+        <property name='download.size' value='217663'/>
+        <property name='download.md5' value='d38664c006d8bd32c436d6dd26247c19'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.model.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1277718'/>
+        <property name='download.size' value='1277718'/>
+        <property name='download.md5' value='7a6c6adbe926f83b5ade6382dbf61404'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.ui' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='285001'/>
+        <property name='download.size' value='285001'/>
+        <property name='download.md5' value='90057374e484f2d66d0a6583811aef85'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.text.ext' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='111597'/>
+        <property name='download.size' value='111597'/>
+        <property name='download.md5' value='908ce0ef24326c1b35a3cc27ab40210a'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.creation.core' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='104671'/>
+        <property name='download.size' value='104671'/>
+        <property name='download.md5' value='89d08b3eddf0cac85751903dc96e0b63'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts.verification' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='24413'/>
+        <property name='download.size' value='24413'/>
+        <property name='download.md5' value='65c7b90c7c43081be0855b11cdc66e52'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.archives.jdt.integration' version='3.2.1.v20111208-2106-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='26474'/>
+        <property name='download.size' value='26474'/>
+        <property name='download.md5' value='b1616ba81f531ba058170c2f4bd815d1'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.xulrunner' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='3621'/>
+        <property name='download.size' value='3621'/>
+        <property name='download.md5' value='b6633d4c638613ebea189ec647298864'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.usage' version='1.1.0.v20111208-2055-H31-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='150725'/>
+        <property name='download.size' value='150725'/>
+        <property name='download.md5' value='4763165a5a3b6cb24eff4bbb85836f3d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernateextension3_5' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='46304'/>
+        <property name='download.size' value='46304'/>
+        <property name='download.md5' value='eec6789509db26bc03d08c9387e43f9e'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.seam.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3780'/>
+        <property name='download.size' value='3780'/>
+        <property name='download.md5' value='013bbde8bd0ca924a1bc95a1c77c3b2c'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.openshift.egit.core' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='21450'/>
+        <property name='download.size' value='21450'/>
+        <property name='download.md5' value='fb7d531215b73d6584943d8c829d46bc'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernate.jpt.core' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='327333'/>
+        <property name='download.size' value='327333'/>
+        <property name='download.md5' value='c3edbf2b301d592490c0a66fd82bf09f'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.gwt.ui' version='1.0.2.v20111208-2109-H29-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='6564'/>
+        <property name='download.size' value='6564'/>
+        <property name='download.md5' value='6cc8289029e3f39bcbbc700beacc9c21'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.management.as7' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1170062'/>
+        <property name='download.size' value='1170062'/>
+        <property name='download.md5' value='516033b5cba3621603f9db64b88bbfb5'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.as.feature' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4275'/>
+        <property name='download.size' value='4275'/>
+        <property name='download.md5' value='6f5ec19250e448cde21b3a767bd5a3fe'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.jdt' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='13883'/>
+        <property name='download.size' value='13883'/>
+        <property name='download.md5' value='d9e5a1770ed922b42a53c4a918f0f845'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.cdi' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12948'/>
+        <property name='download.size' value='12948'/>
+        <property name='download.md5' value='d1eb0405cac35e5a2402b2ef691b3fd6'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.xulrunner.initializer' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='9925'/>
+        <property name='download.size' value='9925'/>
+        <property name='download.md5' value='3cfae0e2815d7f2d1fa70e22c7d898e4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='112590'/>
+        <property name='download.size' value='112590'/>
+        <property name='download.md5' value='1517b272bf664bc7a0bc7af62cb10917'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.text.ext' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='36946'/>
+        <property name='download.size' value='36946'/>
+        <property name='download.md5' value='6f6dd0db476fb1494982abb04abadbd1'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.openshift.egit.ui' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='9273'/>
+        <property name='download.size' value='9273'/>
+        <property name='download.md5' value='a843fd4b68d7c8f6c1600b0ee18520d5'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.jsf.feature' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3479'/>
+        <property name='download.size' value='3479'/>
+        <property name='download.md5' value='4fc6b3d9676c0f668975526e87f278eb'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.ui' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1846072'/>
+        <property name='download.size' value='1846072'/>
+        <property name='download.md5' value='49f7c4821805d9a016d7aa8cf0f5b9d3'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.jdt.apt.ui' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='4496'/>
+        <property name='download.size' value='4496'/>
+        <property name='download.md5' value='e3a6c5a45d4f070f7732f1799ad66333'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.community.central' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='7750'/>
+        <property name='download.size' value='7750'/>
+        <property name='download.md5' value='5add33c69348e32e1486040d04f8be8b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.css' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='260565'/>
+        <property name='download.size' value='260565'/>
+        <property name='download.md5' value='6037a80e5d7e5d96b0ca27e3359e8508'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.project.examples.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3846'/>
+        <property name='download.size' value='3846'/>
+        <property name='download.md5' value='e74287621c872c533a1b23162d6a9676'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.el.core' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='168347'/>
+        <property name='download.size' value='168347'/>
+        <property name='download.md5' value='b3836c217c56cbdf060597d6ba1946c7'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.config.ui' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='29075'/>
+        <property name='download.size' value='29075'/>
+        <property name='download.md5' value='eac454fce7b73e00c4a974485d133447'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.portlet.core' version='1.2.0.v20111207-1651-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='186909'/>
+        <property name='download.size' value='186909'/>
+        <property name='download.md5' value='a368368e94009461d13c4c021f0dc3b4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.as.server.rse.integration.feature' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4140'/>
+        <property name='download.size' value='4140'/>
+        <property name='download.md5' value='ab8219c322984548beb0d06c7d79246e'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.mylyn.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3127'/>
+        <property name='download.size' value='3127'/>
+        <property name='download.md5' value='95c520901b3a4a10ab253ad92edbc792'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mozilla.xulrunner.win32.win32.x86' version='1.9.2.16b'>
+      <properties size='3'>
+        <property name='artifact.size' value='10458595'/>
+        <property name='download.size' value='10458595'/>
+        <property name='download.md5' value='797c93079c168d379cb186e624aa9e31'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernate.ui' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='259294'/>
+        <property name='download.size' value='259294'/>
+        <property name='download.md5' value='f8ff05f6dc54b5cfc268680fc23cb167'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.core.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3177'/>
+        <property name='download.size' value='3177'/>
+        <property name='download.md5' value='0dadc82b70112043c07a415b056652a2'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.libs' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12694275'/>
+        <property name='download.size' value='12694275'/>
+        <property name='download.md5' value='7898dbb8c70ccfa99912589bde1e9124'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.jdt.ui' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='188698'/>
+        <property name='download.size' value='188698'/>
+        <property name='download.md5' value='14edf33b65607ed4a4f0b6398216a71d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.project.examples' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='79757'/>
+        <property name='download.size' value='79757'/>
+        <property name='download.md5' value='42e0cbefdb8f2eeda6e4b08a708e33fe'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.xml' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='203008'/>
+        <property name='download.size' value='203008'/>
+        <property name='download.md5' value='a4e11d68b5d5045f7482f33c26f22f7c'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.ui' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='527579'/>
+        <property name='download.size' value='527579'/>
+        <property name='download.md5' value='8f0599321eb8afca4d4dc60b87c3a14c'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.jmx.feature' version='1.2.0.v20111208-2111-H30-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3539'/>
+        <property name='download.size' value='3539'/>
+        <property name='download.md5' value='5f5efa118b1c490a99815b1d03824f59'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.jbosspackaging.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3849'/>
+        <property name='download.size' value='3849'/>
+        <property name='download.md5' value='efccbab05063e4afd356adfe99607996'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.community.project.examples' version='1.2.1.v20111213-1557-H39-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='5636'/>
+        <property name='download.size' value='5636'/>
+        <property name='download.md5' value='ca5fd81ff4a6295add52a8a379995234'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.archives.core' version='3.2.1.v20111208-2106-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='2677023'/>
+        <property name='download.size' value='2677023'/>
+        <property name='download.md5' value='2bd9e3cb3c30ae1029c7853074489cde'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.jbosspackaging' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='21796'/>
+        <property name='download.size' value='21796'/>
+        <property name='download.md5' value='8e20979cc380c7214996a157c82b90ef'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.as.serverAdapter.wtp.feature' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4442'/>
+        <property name='download.size' value='4442'/>
+        <property name='download.md5' value='2fee462919db0ddfd528b5925af3aa34'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.openshift.egit.integration.feature' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3793'/>
+        <property name='download.size' value='3793'/>
+        <property name='download.md5' value='2a3ee133d51891453c5d35f5a3e897d3'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.wtp.ui' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='106468'/>
+        <property name='download.size' value='106468'/>
+        <property name='download.md5' value='ec28f6711c4b07e80603e4727c5b030b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.html' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='20999'/>
+        <property name='download.size' value='20999'/>
+        <property name='download.md5' value='cd52965ecc03a20520b09ce1aabe7c80'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.seam' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='604344'/>
+        <property name='download.size' value='604344'/>
+        <property name='download.md5' value='b04c93e4dbe43f1df9ba6cbe811f7f43'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.hibernate.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3779'/>
+        <property name='download.size' value='3779'/>
+        <property name='download.md5' value='ce8536bf3d577a9f02eab645413b8378'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.text.ext.facelets' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='7750'/>
+        <property name='download.size' value='7750'/>
+        <property name='download.md5' value='4c1d25d003a622b9e1e82cd03817a7c3'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.openshift.express.ui' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='237586'/>
+        <property name='download.size' value='237586'/>
+        <property name='download.md5' value='14b720d2d0e1f615c940f519318e435a'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='126116'/>
+        <property name='download.size' value='126116'/>
+        <property name='download.md5' value='a4fc44b026d63b56736af2a34f73e6e8'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.runtime.seam.detector.feature' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3836'/>
+        <property name='download.size' value='3836'/>
+        <property name='download.md5' value='1f99766689f42c24ca9992f97bc09706'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.mapper' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='176080'/>
+        <property name='download.size' value='176080'/>
+        <property name='download.md5' value='0fcf2d042a0fb7c71cf5df0558aded24'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.openshift.express.client' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='162689'/>
+        <property name='download.size' value='162689'/>
+        <property name='download.md5' value='4336a872e5aba2f43eba110421c238a8'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.jsf.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3792'/>
+        <property name='download.size' value='3792'/>
+        <property name='download.md5' value='f5dd7ca5954413ff8737cef6bfb7646c'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.portlet' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12302'/>
+        <property name='download.size' value='12302'/>
+        <property name='download.md5' value='52ae28f4eab73a1b5dc9c9fab9d5e2fd'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.cdi.feature' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3518'/>
+        <property name='download.size' value='3518'/>
+        <property name='download.md5' value='610dc5dfefcc45e239fcf5da6a9b0345'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.config.core' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='67964'/>
+        <property name='download.size' value='67964'/>
+        <property name='download.md5' value='7d211fdee695be898810db4c551aa050'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3210'/>
+        <property name='download.size' value='3210'/>
+        <property name='download.md5' value='3701c56b3a81ea99677bff7ac734b4f8'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.faces.core' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='6504'/>
+        <property name='download.size' value='6504'/>
+        <property name='download.md5' value='053cfb5f26ec3b8a57f7236c43529fa9'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.verification' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='89437'/>
+        <property name='download.size' value='89437'/>
+        <property name='download.md5' value='07306e5dd2c0d85be0f2705f2319839a'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.classpath.ui' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='27831'/>
+        <property name='download.size' value='27831'/>
+        <property name='download.md5' value='7dd1f4edd9eddf340980199e8069ccd4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.verification.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3202'/>
+        <property name='download.size' value='3202'/>
+        <property name='download.md5' value='648a6e38dfabad62964fecfdad19384b'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.hibernate' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='10183'/>
+        <property name='download.size' value='10183'/>
+        <property name='download.md5' value='8bbdb0707174daeaf020381a25ad8030'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.core' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='362063'/>
+        <property name='download.size' value='362063'/>
+        <property name='download.md5' value='8665391b8f8088bfd8c3a00d677295dd'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.jaxrs.core' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='188239'/>
+        <property name='download.size' value='188239'/>
+        <property name='download.md5' value='430d1353c577d8bf8ead150fcb88d308'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.text.ext.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3263'/>
+        <property name='download.size' value='3263'/>
+        <property name='download.md5' value='d09ee678c4a35bf5e96023eb3f5523e0'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.runtime' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='15546'/>
+        <property name='download.size' value='15546'/>
+        <property name='download.md5' value='522523fd89bff2707fb3c51e4ba02aec'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.project.examples' version='1.2.1.v20111213-1557-H39-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='176280'/>
+        <property name='download.size' value='176280'/>
+        <property name='download.md5' value='ea643d3f1b0b68563545311c7fc166dc'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.jaxrs.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3795'/>
+        <property name='download.size' value='3795'/>
+        <property name='download.md5' value='f45902fac1cabcd8d7cd4ae07c0c0354'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.forge.core' version='1.0.0.v20111208-2108-H31-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='27497'/>
+        <property name='download.size' value='27497'/>
+        <property name='download.md5' value='0b267671485e0b923d4888210e9d10c0'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.cdi.seam.solder.core' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='58707'/>
+        <property name='download.size' value='58707'/>
+        <property name='download.md5' value='29be4e923431fa34af0b55e4150c865b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.el.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='21831'/>
+        <property name='download.size' value='21831'/>
+        <property name='download.md5' value='042e8dcc14a63161e3b29436186da717'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.projecttemplates' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='18298894'/>
+        <property name='download.size' value='18298894'/>
+        <property name='download.md5' value='299084501fca61087dfdf21f37ee92fa'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.jmx.integration' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='42809'/>
+        <property name='download.size' value='42809'/>
+        <property name='download.md5' value='bac5cdc4958f62e9983ddb2593f360d4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.project.examples.cheatsheet' version='1.2.1.v20111213-1557-H39-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='20870'/>
+        <property name='download.size' value='20870'/>
+        <property name='download.md5' value='2efce4b00feee6eef8dbe4557308b629'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.text.ext' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='140007'/>
+        <property name='download.size' value='140007'/>
+        <property name='download.md5' value='3c138927b4c916e9391c0ef964c859fe'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.runtime.as.detector.feature' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3822'/>
+        <property name='download.size' value='3822'/>
+        <property name='download.md5' value='893b52f263cf59fbf9caaa8bdda46aee'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.core' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='50904'/>
+        <property name='download.size' value='50904'/>
+        <property name='download.md5' value='73b0e0ac3e0d987e6880216bc275cc4f'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.myfaces' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='9877'/>
+        <property name='download.size' value='9877'/>
+        <property name='download.md5' value='05b09b792a8d65cd00a1d0099ce11f84'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.forge.feature' version='1.0.0.v20111208-2108-H31-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3439'/>
+        <property name='download.size' value='3439'/>
+        <property name='download.md5' value='ecdb92fd6a16b37d7962e15df58d40cf'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='491242'/>
+        <property name='download.size' value='491242'/>
+        <property name='download.md5' value='dd87fd11a7f25c62f1653f96cb603f71'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.as.jmx.integration.feature' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4110'/>
+        <property name='download.size' value='4110'/>
+        <property name='download.md5' value='3179e44b56b3f27741780e2bb312cab0'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jmx.ui' version='1.2.0.v20111208-2111-H30-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='183525'/>
+        <property name='download.size' value='183525'/>
+        <property name='download.md5' value='aa895c38bf1a27008d93e7afa1958d88'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.browsersim.eclipse' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12763'/>
+        <property name='download.size' value='12763'/>
+        <property name='download.md5' value='a2024566a2d18928f407de191e91eeb5'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.birt.oda.ui' version='1.3.0.v20111208-2002-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='39803'/>
+        <property name='download.size' value='39803'/>
+        <property name='download.md5' value='905e7e3bb716c0effc846cf6fd8b7e43'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.browsersim.browser' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='14757'/>
+        <property name='download.size' value='14757'/>
+        <property name='download.md5' value='c219b24237b7ec52fdd4def6ee18758d'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.seam' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='47952'/>
+        <property name='download.size' value='47952'/>
+        <property name='download.md5' value='0e574a725f2b50444636e35a4aa18c90'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mozilla.xulrunner.cocoa.macosx' version='1.9.2.16'>
+      <properties size='3'>
+        <property name='artifact.size' value='14147629'/>
+        <property name='download.size' value='14147629'/>
+        <property name='download.md5' value='5eaf5b34f79fe851dbbd1e0a1bd531eb'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.seam.core' version='3.3.0.v20111207-1453-H52-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='422580'/>
+        <property name='download.size' value='422580'/>
+        <property name='download.md5' value='018bbd386af8c6f28d06c62d365c0f84'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts.text.ext' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='126681'/>
+        <property name='download.size' value='126681'/>
+        <property name='download.md5' value='68d700968c0471da41dcf63faafe1882'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.facelets' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='14904'/>
+        <property name='download.size' value='14904'/>
+        <property name='download.md5' value='bb7f184406b58dac02826516506ade55'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.richfaces' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1465793'/>
+        <property name='download.size' value='1465793'/>
+        <property name='download.md5' value='4dc93bd5493fec84ff6183f0edbb676b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernate.jpt.ui' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='295221'/>
+        <property name='download.size' value='295221'/>
+        <property name='download.md5' value='481d38653a401ab93c3599e395b74ede'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.gwt.feature' version='1.0.2.v20111208-2109-H29-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3801'/>
+        <property name='download.size' value='3801'/>
+        <property name='download.md5' value='4af27faec46f760f3fccc0d41db618a5'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.runtime.seam.detector' version='1.3.0.v20111208-1602-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='11257'/>
+        <property name='download.size' value='11257'/>
+        <property name='download.md5' value='f5d6aa1cf807a7f39f1991e2680d6297'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.jdt.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='30025'/>
+        <property name='download.size' value='30025'/>
+        <property name='download.md5' value='86075f06fff6a3a01baa258d5e433142'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mozilla.xpcom' version='1.9.2.16'>
+      <properties size='3'>
+        <property name='artifact.size' value='560842'/>
+        <property name='download.size' value='560842'/>
+        <property name='download.md5' value='aec762da76ae5275e2c60c8f2acc73bc'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.jdt.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3785'/>
+        <property name='download.size' value='3785'/>
+        <property name='download.md5' value='54cebd26f2a4020af9c13a98921d1894'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.core' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='1024010'/>
+        <property name='download.size' value='1024010'/>
+        <property name='download.md5' value='4b4d0ffb2448cfd9c597653d8767a244'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.ws.jaxrs.ui' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='54066'/>
+        <property name='download.size' value='54066'/>
+        <property name='download.md5' value='5f6f24aa35e410e28920b81eddc71a01'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.jaxrs' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='14022'/>
+        <property name='download.size' value='14022'/>
+        <property name='download.md5' value='47d5e22089e1ffa84a500c2851a4affb'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.richfaces.feature' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='9231'/>
+        <property name='download.size' value='9231'/>
+        <property name='download.md5' value='0e5fb80e3cc0aea6eab3eff4498b3c63'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.model.ui.capabilities' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='3670'/>
+        <property name='download.size' value='3670'/>
+        <property name='download.md5' value='014e9e7ef8a01a20f19ed9b1f75508b8'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse.console' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='2420991'/>
+        <property name='download.size' value='2420991'/>
+        <property name='download.md5' value='ac8f4c1702452504127b9ca9c5bf38eb'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.text.ext' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='74078'/>
+        <property name='download.size' value='74078'/>
+        <property name='download.md5' value='a51fb03ff249120294001c7c6d27fcbe'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.central' version='1.0.0.v20111213-1606-H19-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='314549'/>
+        <property name='download.size' value='314549'/>
+        <property name='download.md5' value='407965967995ae617d5eb72fa109cbe4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.jst.feature' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3293'/>
+        <property name='download.size' value='3293'/>
+        <property name='download.md5' value='fed934e11cc1c3472635749a89766cf6'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.rse.ui' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='51712'/>
+        <property name='download.size' value='51712'/>
+        <property name='download.md5' value='b2d24ca0b743069c36863e1fdc717190'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.vpe.jsf' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='80360'/>
+        <property name='download.size' value='80360'/>
+        <property name='download.md5' value='2b8edcf16bec9fe0031f76377cad5f5b'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.resref.ui' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12297'/>
+        <property name='download.size' value='12297'/>
+        <property name='download.md5' value='e67793cfc4e513cbcd30ea656e359b50'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.openshift.express.feature' version='2.3.0.v20111213-1457-H21-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3759'/>
+        <property name='download.size' value='3759'/>
+        <property name='download.md5' value='e91899d76b9a20af14c77323128c6ea3'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.hibernate.xml' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='137900'/>
+        <property name='download.size' value='137900'/>
+        <property name='download.md5' value='2473fcc1f599ae83fd9ab009fb7172e2'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.resref.core' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='13055'/>
+        <property name='download.size' value='13055'/>
+        <property name='download.md5' value='9cea58193d39be8c172a112b4c6a876a'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.ws.feature' version='1.2.2.v20111213-1525-H50-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3697'/>
+        <property name='download.size' value='3697'/>
+        <property name='download.md5' value='cf42042e1ec8c92bc9913b1ef11f5ae1'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jmx.core' version='1.2.0.v20111208-2111-H30-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='55837'/>
+        <property name='download.size' value='55837'/>
+        <property name='download.md5' value='b5a14f43a7dd1f6775dd1a61229a111e'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.hibernate.eclipse.feature' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4202'/>
+        <property name='download.size' value='4202'/>
+        <property name='download.md5' value='8668a9bc58a4a4e5e4f0f6e7ac68cada'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.maven.jsf' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='17084'/>
+        <property name='download.size' value='17084'/>
+        <property name='download.md5' value='6e69cfa800cc1824767ccd4719476f30'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.birt.feature' version='1.3.0.v20111208-2002-H38-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4217'/>
+        <property name='download.size' value='4217'/>
+        <property name='download.md5' value='56f55fe63aea73bf5c2a76c4793530e1'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.maven.portlet.feature' version='1.3.0.v20111209-0524-H40-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3811'/>
+        <property name='download.size' value='3811'/>
+        <property name='download.md5' value='9f1b790e7045dc680b1dc5eae34324fb'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.archives.ui' version='3.2.1.v20111208-2106-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='158575'/>
+        <property name='download.size' value='158575'/>
+        <property name='download.md5' value='332e0aaea9e8cbffed2fd4fd81e68981'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.validation' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='47872'/>
+        <property name='download.size' value='47872'/>
+        <property name='download.md5' value='6d5f0dabb98c35f1bbd7487878b33958'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.hibernate.eclipse' version='3.4.0.v20111213-1944-H40-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='142743'/>
+        <property name='download.size' value='142743'/>
+        <property name='download.md5' value='9e4b807ff06121f146ee8a3e727a07e9'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.ide.eclipse.as.archives.integration.feature' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='4109'/>
+        <property name='download.size' value='4109'/>
+        <property name='download.md5' value='300a4e8bbbbf05628559ca77563217e1'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.firstrun' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='12060'/>
+        <property name='download.size' value='12060'/>
+        <property name='download.md5' value='59cbd1bc5578a59acc400a838dd3e037'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.vpe.resref' version='3.3.0.v20111208-2357-H33-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='56041'/>
+        <property name='download.size' value='56041'/>
+        <property name='download.md5' value='a52a556a1a358bbf8e3ad5fc81661ea4'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts.validator.ui' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='136425'/>
+        <property name='download.size' value='136425'/>
+        <property name='download.md5' value='f81b67e9ebfdc9add7ce16074b88882f'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jsf.ui' version='3.3.0.v20111213-1958-H41-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='489557'/>
+        <property name='download.size' value='489557'/>
+        <property name='download.md5' value='6fe709b2729bf063eea83bdb5d0a4546'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.ide.eclipse.as.classpath.core' version='2.3.0.v20111213-1423-H61-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='2937268'/>
+        <property name='download.size' value='2937268'/>
+        <property name='download.md5' value='29d2736d62d87aad6e8d42a07a0e2b64'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.birt.oda' version='1.3.0.v20111208-2002-H38-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='33287'/>
+        <property name='download.size' value='33287'/>
+        <property name='download.md5' value='e1400c99f24112486dc9967e4e498047'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.cdi.seam.feature' version='1.2.0.v20111208-2203-H35-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3551'/>
+        <property name='download.size' value='3551'/>
+        <property name='download.md5' value='92f1c65f619864684e719fdda19b38a3'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.common.ui.feature' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3226'/>
+        <property name='download.size' value='3226'/>
+        <property name='download.md5' value='16268e45b8a0a94d27e444ca4e7b9ab3'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.jst.web.ui' version='3.3.0.v20111208-2115-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='349693'/>
+        <property name='download.size' value='349693'/>
+        <property name='download.md5' value='d2ae83d108c756c4aeaf105b674dc805'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.jboss.tools.struts.feature' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='4'>
+        <property name='artifact.size' value='3808'/>
+        <property name='download.size' value='3808'/>
+        <property name='download.md5' value='ce7a32148cd11c1dd67ef7ea8d419628'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.common.mylyn' version='3.3.0.v20111208-2036-H34-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='3385'/>
+        <property name='download.size' value='3385'/>
+        <property name='download.md5' value='39f9d30bbdb68715b22d23373ea3a02f'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.struts.ui' version='3.3.0.v20111207-0022-H37-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='447974'/>
+        <property name='download.size' value='447974'/>
+        <property name='download.md5' value='9d05e5be879166fcc56edae0d9fa1cad'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.jboss.tools.portlet.ui' version='1.2.0.v20111207-1651-H35-M5'>
+      <properties size='3'>
+        <property name='artifact.size' value='134682'/>
+        <property name='download.size' value='134682'/>
+        <property name='download.md5' value='a93019e13e8fd13ae03a865eefffc725'/>
+      </properties>
+    </artifact>
+  </artifacts>
+</repository>
