@@ -28,6 +28,8 @@ import org.rapidbeans.test.ClosingPeriod;
 import org.rapidbeans.test.Location;
 import org.rapidbeans.test.TestBean;
 import org.rapidbeans.test.TestHelper;
+import org.rapidbeans.test.addressbook.Addressbook;
+import org.rapidbeans.test.addressbook.Group;
 import org.rapidbeans.test.codegen.Address;
 import org.rapidbeans.test.codegen.AddressBook;
 import org.rapidbeans.test.codegen.Person;
@@ -971,9 +973,9 @@ public class PropertyCollectionTest {
         // configure collection properties of Location and ClosingPeriod
         // to use TreeSet as collection implementing class
         ((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-                .setCollectionClass(ArrayList.class);
+        .setCollectionClass(ArrayList.class);
         ((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
-                .setCollectionClass(ArrayList.class);
+        .setCollectionClass(ArrayList.class);
         tstNMAssociationInverse();
     }
 
@@ -985,9 +987,9 @@ public class PropertyCollectionTest {
         // configure collection properties of Location and ClosingPeriod
         // to use TreeSet as collection implementing class
         ((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-                .setCollectionClass(LinkedHashSet.class);
+        .setCollectionClass(LinkedHashSet.class);
         ((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
-                .setCollectionClass(LinkedHashSet.class);
+        .setCollectionClass(LinkedHashSet.class);
         tstNMAssociationInverse();
     }
 
@@ -999,9 +1001,9 @@ public class PropertyCollectionTest {
         // configure collection properties of Location and ClosingPeriod
         // to use TreeSet as collection implementing class
         ((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-                .setCollectionClass(TreeSet.class);
+        .setCollectionClass(TreeSet.class);
         ((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
-                .setCollectionClass(TreeSet.class);
+        .setCollectionClass(TreeSet.class);
         tstNMAssociationInverse();
     }
 
@@ -1012,9 +1014,9 @@ public class PropertyCollectionTest {
         // configure collection properties of Location and ClosingPeriod
         // to use TreeSet as collection implementing class
         ((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-                .setCollectionClass(TreeSet.class);
+        .setCollectionClass(TreeSet.class);
         ((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
-                .setCollectionClass(TreeSet.class);
+        .setCollectionClass(TreeSet.class);
         // set up two locations and closing periods
         ClosingPeriod cp1 = new ClosingPeriod("\"20050101\" \"1\"");
         ClosingPeriod cp2 = new ClosingPeriod("\"20050201\" \"2\"");
@@ -1121,62 +1123,117 @@ public class PropertyCollectionTest {
         Assert.assertEquals(2, locB.getClosedons().size());
     }
 
-//    @Test
-//    public void testDeletePersonFromGroup() {
-//        org.rapidbeans.test.addressbook.Addressbook adrbook = new Addressbook();
-//        Document doc = new Document(adrbook);
-//
-//        org.rapidbeans.test.addressbook.Person fru = new org.rapidbeans.test.addressbook.Person();
-//        fru.setLastname("Fru");
-//        org.rapidbeans.test.addressbook.Person blu = new org.rapidbeans.test.addressbook.Person();
-//        blu.setLastname("Bluemel");
-//        adrbook.addPerson(fru);
-//        adrbook.addPerson(blu);
-//
-//        org.rapidbeans.test.addressbook.Group group = new Group();
-//        group.setName("Sports");
-//        group.addPerson(fru);
-//        group.addPerson(blu);
-//        adrbook.addGroup(group);
-//        TestCase.assertEquals(2, group.getPersons().size());
-//        adrbook.removePerson(blu);
-////        TestCase.assertEquals(1, group.getPersons().size());
-//    }
-//
-//    @Test
-//    public void testDeletePersonFromDocument() {
-//        org.rapidbeans.test.addressbook.Addressbook adrbook = new Addressbook();
-//        Document doc = new Document(adrbook);
-//        Assert.assertNotNull(doc);
-//
-//        org.rapidbeans.test.addressbook.Person fru = new org.rapidbeans.test.addressbook.Person();
-//        fru.setLastname("Fru");
-//        org.rapidbeans.test.addressbook.Person blu = new org.rapidbeans.test.addressbook.Person();
-//        blu.setLastname("Bluemel");
-//        adrbook.addPerson(fru);
-//        adrbook.addPerson(blu);
-//
-//        org.rapidbeans.test.addressbook.Group group = new Group();
-//        group.setName("Sports");
-//        group.addPerson(fru);
-//        group.addPerson(blu);
-//        adrbook.addGroup(group);
-//        TestCase.assertEquals(2, adrbook.getPersons().size());
-//        TestCase.assertTrue(adrbook.getPersons().contains(fru));
-//        TestCase.assertTrue(adrbook.getPersons().contains(blu));
-//        TestCase.assertEquals(2, group.getPersons().size());
-//        TestCase.assertTrue(group.getPersons().contains(fru));
-//        TestCase.assertTrue(group.getPersons().contains(blu));
-//
-//        blu.delete();
-//
-//        TestCase.assertEquals(1, adrbook.getPersons().size());
-//        TestCase.assertTrue(adrbook.getPersons().contains(fru));
-//        TestCase.assertFalse(adrbook.getPersons().contains(blu));
-//        TestCase.assertEquals(1, group.getPersons().size());
-//        TestCase.assertTrue(group.getPersons().contains(fru));
-//        TestCase.assertFalse(group.getPersons().contains(blu));
-//    }
+    @Test
+    public void testDeletePersonFromGroup() {
+        org.rapidbeans.test.addressbook.Addressbook adrbook = new Addressbook();
+        // we need the context of a document in order have
+        // the group associations cleaned up properly
+        Document doc = new Document(adrbook);
+        org.rapidbeans.test.addressbook.Person fru = new org.rapidbeans.test.addressbook.Person();
+        fru.setLastname("Fru");
+        org.rapidbeans.test.addressbook.Person blu = new org.rapidbeans.test.addressbook.Person();
+        blu.setLastname("Bluemel");
+        adrbook.addPerson(fru);
+        adrbook.addPerson(blu);
+        org.rapidbeans.test.addressbook.Group group = new Group();
+        group.setName("Sports");
+        adrbook.addGroup(group);
+        group.addPerson(fru);
+        group.addPerson(blu);
+        Assert.assertEquals(2, group.getPersons().size());
+        Assert.assertEquals(fru, group.getPersons().get(0));
+        Assert.assertEquals(blu, group.getPersons().get(1));
+        Assert.assertEquals(1, fru.getGroups().size());
+        Assert.assertEquals(group, fru.getGroups().get(0));
+        Assert.assertEquals(1, blu.getGroups().size());
+        Assert.assertEquals(group, blu.getGroups().get(0));
+        Assert.assertEquals(2, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+
+        adrbook.removePerson(blu);
+
+        Assert.assertEquals(1, group.getPersons().size());
+        Assert.assertEquals(fru, group.getPersons().get(0));
+        Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
+        Assert.assertEquals(1, fru.getGroups().size());
+        Assert.assertEquals(group, fru.getGroups().get(0));
+        Assert.assertEquals(0, blu.getGroups().size());
+        Assert.assertEquals(1, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+    }
+
+    @Test
+    public void testDeletePersonFromDocument() {
+        org.rapidbeans.test.addressbook.Addressbook adrbook = new Addressbook();
+        Document doc = new Document(adrbook);
+        org.rapidbeans.test.addressbook.Person fru = new org.rapidbeans.test.addressbook.Person();
+        fru.setLastname("Fru");
+        org.rapidbeans.test.addressbook.Person blu = new org.rapidbeans.test.addressbook.Person();
+        blu.setLastname("Bluemel");
+        adrbook.addPerson(fru);
+        adrbook.addPerson(blu);
+        org.rapidbeans.test.addressbook.Group group = new Group();
+        group.setName("Sports");
+        adrbook.addGroup(group);
+        group.addPerson(fru);
+        group.addPerson(blu);
+        Assert.assertEquals(2, group.getPersons().size());
+        Assert.assertEquals(fru, group.getPersons().get(0));
+        Assert.assertEquals(blu, group.getPersons().get(1));
+        Assert.assertEquals(1, fru.getGroups().size());
+        Assert.assertEquals(group, fru.getGroups().get(0));
+        Assert.assertEquals(1, blu.getGroups().size());
+        Assert.assertEquals(group, blu.getGroups().get(0));
+        Assert.assertEquals(2, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+
+        blu.delete(); // = doc.delete(blu)
+
+        Assert.assertEquals(1, adrbook.getPersons().size());
+        Assert.assertTrue(adrbook.getPersons().contains(fru));
+        Assert.assertFalse(adrbook.getPersons().contains(blu));
+        Assert.assertEquals(1, group.getPersons().size());
+        Assert.assertTrue(group.getPersons().contains(fru));
+        Assert.assertFalse(group.getPersons().contains(blu));
+        Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
+        Assert.assertEquals(1, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+
+        adrbook = new Addressbook();
+        doc = new Document(adrbook);
+        fru = new org.rapidbeans.test.addressbook.Person();
+        fru.setLastname("Fru");
+        blu = new org.rapidbeans.test.addressbook.Person();
+        blu.setLastname("Bluemel");
+        adrbook.addPerson(fru);
+        adrbook.addPerson(blu);
+        group = new Group();
+        group.setName("Sports");
+        adrbook.addGroup(group);
+        group.addPerson(fru);
+        group.addPerson(blu);
+        Assert.assertEquals(2, group.getPersons().size());
+        Assert.assertEquals(fru, group.getPersons().get(0));
+        Assert.assertEquals(blu, group.getPersons().get(1));
+        Assert.assertEquals(1, fru.getGroups().size());
+        Assert.assertEquals(group, fru.getGroups().get(0));
+        Assert.assertEquals(1, blu.getGroups().size());
+        Assert.assertEquals(group, blu.getGroups().get(0));
+        Assert.assertEquals(2, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+
+        fru.delete(); // = doc.delete(blu)
+
+        Assert.assertEquals(1, adrbook.getPersons().size());
+        Assert.assertTrue(adrbook.getPersons().contains(blu));
+        Assert.assertFalse(adrbook.getPersons().contains(fru));
+        Assert.assertEquals(1, group.getPersons().size());
+        Assert.assertTrue(group.getPersons().contains(blu));
+        Assert.assertFalse(group.getPersons().contains(fru));
+        Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
+        Assert.assertEquals(1, doc.findBeansByType(
+                "org.rapidbeans.test.addressbook.Person").size());
+    }
 
     /**
      * create a generic TestBean.

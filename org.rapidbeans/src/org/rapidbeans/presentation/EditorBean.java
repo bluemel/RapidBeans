@@ -1037,9 +1037,15 @@ public abstract class EditorBean
             return;
         }
         if (this.getBean() == e.getBean()) {
-            if (ApplicationManager.getApplication().messageYesNo(
-                    "Close that Editor?", "bean removed")) {
-                this.handleActionClose();
+            boolean close;
+            if (ApplicationManager.getApplication().getTestMode()) {
+                close = true;
+            } else {
+                close = ApplicationManager.getApplication().messageYesNo(
+                        "Close that Editor?", "bean removed");
+            }
+            if (close) {
+                this.fireEditorClosed();
             } else {
                 this.handleActionClose();
             }
