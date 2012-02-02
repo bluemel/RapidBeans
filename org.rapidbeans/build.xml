@@ -473,7 +473,7 @@
 	<target name="documents"
 		description="generate HTML / PDF documents">
 		<xslt in="doc/RapidBeansGettingStartedIn10Minutes.xml"
-			style="doc/dist/docbook/docbook-xsl-${version.docbook}/html/docbook.xsl"
+			style="${env.DOCBOOK_XSL_HOME}/html/docbook.xsl"
 			out="doc/dist/doc/RapidBeansGettingStartedIn10Minutes.html"
 			force="${force}"
 			/>
@@ -481,7 +481,7 @@
 			<fileset dir="doc/RapidBeansGettingStartedIn10Minutes-pictures" includes="*"/>
 		</copy>
 		<xslt in="doc/RapidBeansGettingStarted.xml"
-			style="doc/dist/docbook/docbook-xsl-${version.docbook}/html/docbook.xsl"
+			style="${env.DOCBOOK_XSL_HOME}/html/docbook.xsl"
 			out="doc/dist/doc/RapidBeansGettingStarted.html"
 			force="${force}"
 			/>
@@ -489,7 +489,7 @@
 			<fileset dir="doc/RapidBeansGettingStarted-pictures" includes="*"/>
 		</copy>
 		<xslt in="doc/RapidBeansUserManual.xml"
-			style="doc/dist/docbook/docbook-xsl-${version.docbook}/html/docbook.xsl"
+			style="${env.DOCBOOK_XSL_HOME}/html/docbook.xsl"
 			out="doc/dist/doc/RapidBeansUserManual.html"
 			force="${force}"
 			/>
@@ -499,10 +499,6 @@
 	</target>
 
 <!--
-			style="D:/Docbook/docbook-xsl-1.74.0/xhtml/onechunk.xsl"
--->
-
-<!--
 	####################################################
 	# doczip
 	####################################################
@@ -510,6 +506,7 @@
 	<target name="doczip"
 		description="document generation and packaging">
 		<mkdir dir="dist"/>
+<!--
 		<unzip src="${env.M2_REPO}/net/sf/docbook/docbook-xsl/${version.docbook}/docbook-xsl-${version.docbook}-resources.zip"
 			dest="doc/dist/docbook"/>
 		<move file="doc/dist/docbook/docbook" tofile="doc/dist/docbook/docbook-xsl-${version.docbook}"/>
@@ -524,7 +521,7 @@
 			todir="${env.ANT_HOME}/lib"/>
 		<copy file="${env.M2_REPO}/xalan/serializer/${version.xalan}/serializer-${version.xalan}.jar"
 			todir="${env.ANT_HOME}/lib"/>
-
+-->
 		<antcall target="documents"/>
 		<antcall target="javadoc"/>
 		<zip zipfile="dist/rapidbeans-framework-${version}-doc.zip">
