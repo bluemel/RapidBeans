@@ -63,19 +63,6 @@ public final class PresentationSwingTestHelper {
     }
 
     /**
-     * release the TestClient.
-     */
-    public static void releaseTestClient() {
-        if (testClient == null) {
-            Assert.fail("test client aleady reset");
-        }
-        ApplicationManager.resetApplication();
-        testClient = null;
-        testDocview = null;
-        testDocument = null;
-    }
-
-    /**
      * the test document.
      */
     private static Document testDocument = null;
@@ -129,6 +116,20 @@ public final class PresentationSwingTestHelper {
         getTestClient();
         testClient.removeDocument(testDocument);
         testClient.removeView(testDocview);
+        testClient = null;
+        testDocview = null;
+        testDocument = null;
+    }
+
+    /**
+     * release the TestClient.
+     */
+    public static void releaseTestClient() {
+        if (testClient == null) {
+            Assert.fail("test client aleady reset");
+        }
+        ApplicationManager.resetApplication();
+        testClient = null;
         testDocview = null;
         testDocument = null;
     }
@@ -159,7 +160,7 @@ public final class PresentationSwingTestHelper {
     /**
      * create a test document. This document contains:
      * - 1 BillingPeriod object as top level object
-     * - 3 Trainer objects: Blümel, Dahlheimer, Dautovic
+     * - 3 Trainer objects: Bluemel, Dahlheimer, Dautovic
      * - 3 TrainingDate objects:
      * @param certificatesMandatory if the certificate of a Trainer are mandatory
      *

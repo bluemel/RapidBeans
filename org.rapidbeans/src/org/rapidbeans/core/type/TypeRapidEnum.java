@@ -390,7 +390,8 @@ public final class TypeRapidEnum extends RapidBeansType {
     private void checkElements() {
         if (this.elements.size() == 0) {
             if (!this.getName().equals("org.rapidbeans.core.basic.RapidEnum")) {
-                throw new EnumException("An enum must at least have one member");
+                throw new EnumException("Problems with enumeration type \""
+                        + getName() + "\". An enum must at least have one member");
             }
         }
         int j;
