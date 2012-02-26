@@ -18,4 +18,5 @@ org.rapidbeans.ant/dist
 org.rapidbeans.ant/gensrc
 org.rapidbeans.ant/gensrc_test
 org.rapidbeans.ant/testreport
+org.rapidbeans.exception/classes_eclipse
 tools
