@@ -37,6 +37,8 @@ public final class PlatformHelper {
 
     private static Version osVersion = null;
 
+    private static String hostname = null;
+
     /**
      * @return the current operating system
      */
@@ -76,6 +78,7 @@ public final class PlatformHelper {
         } else if (osName.startsWith("Mac")) {
             os = OperatingSystem.mac;
         }
+        hostname = getHostname();
     }
 
     /**
@@ -95,6 +98,10 @@ public final class PlatformHelper {
      * @return the host name
      */
     public static String hostname() {
+    	return hostname;
+    }
+
+    private static String getHostname() {
         LineNumberReader reader = null;
         try {
             final Process proc = Runtime.getRuntime().exec("hostname");
