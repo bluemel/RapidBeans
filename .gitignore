@@ -6,7 +6,9 @@ org.rapidbeans/classes
 org.rapidbeans/classes_eclipse
 org.rapidbeans/classes_test
 org.rapidbeans/dist
+org.rapidbeans/diststamps
 org.rapidbeans/doc/dist
+org.rapidbeans/docstamps
 org.rapidbeans/examples/dist
 org.rapidbeans/gensrc
 org.rapidbeans/gensrc_test
@@ -19,4 +21,6 @@ org.rapidbeans.ant/gensrc
 org.rapidbeans.ant/gensrc_test
 org.rapidbeans.ant/testreport
 org.rapidbeans.exception/classes_eclipse
+org.rapidbeans.xslt/bin
+org.rapidbeans.xslt/dist
 tools
