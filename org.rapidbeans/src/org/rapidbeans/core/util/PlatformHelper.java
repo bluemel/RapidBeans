@@ -33,7 +33,7 @@ import org.rapidbeans.core.exception.UtilException;
  */
 public final class PlatformHelper {
 
-    private static OperatingSystem os = null;
+    private static OperatingSystemFamily os = null;
 
     private static Version osVersion = null;
 
@@ -42,7 +42,7 @@ public final class PlatformHelper {
     /**
      * @return the current operating system
      */
-    public static OperatingSystem getOs() {
+    public static OperatingSystemFamily getOsfamily() {
         return os;
     }
 
@@ -72,11 +72,11 @@ public final class PlatformHelper {
         final String osName = System.getProperty("os.name");
         osVersion = new Version(System.getProperty("os.version"));
         if (osName.equals("Linux")) {
-            os = OperatingSystem.linux;
+            os = OperatingSystemFamily.linux;
         } else if (osName.startsWith("Windows")) {
-            os = OperatingSystem.windows;
+            os = OperatingSystemFamily.windows;
         } else if (osName.startsWith("Mac")) {
-            os = OperatingSystem.mac;
+            os = OperatingSystemFamily.mac;
         }
         hostname = getHostname();
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
- * Rapid Beans Framework: SortingType.xml
+ * Rapid Beans Framework: OperatingSystemFamily.xml
  *
  * Copyright (C) 2009 Martin Bluemel
  *
@@ -16,7 +16,7 @@
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
 -->
 
-<enumtype name="org.rapidbeans.core.util.OperatingSystem">
+<enumtype name="org.rapidbeans.core.util.OperatingSystemFamily">
 	<enum name="linux"/>
 	<enum name="windows"/>
 	<enum name="mac"/>

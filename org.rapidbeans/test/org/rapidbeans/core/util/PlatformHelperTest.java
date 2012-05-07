@@ -13,19 +13,21 @@ import junit.framework.TestCase;
 public class PlatformHelperTest extends TestCase {
 
     public void testGetOs() {
-        assertNotNull(PlatformHelper.getOs());
+        assertNotNull(PlatformHelper.getOsfamily());
     }
 
     public void testGetOsName() {
+    	System.out.println(PlatformHelper.getOsfamily().toString());
         assertTrue(PlatformHelper.getOsName().length() > 0);
     }
 
     public void testGetOsVersion() {
+    	System.out.println(PlatformHelper.getOsVersion().toString());
         assertTrue(PlatformHelper.getOsVersion().toString().length() > 0);
     }
 
     public void testGetLineFeed() {
-        switch (PlatformHelper.getOs()) {
+        switch (PlatformHelper.getOsfamily()) {
         case windows:
             assertEquals("\r\n", PlatformHelper.getLineFeed());
             break;

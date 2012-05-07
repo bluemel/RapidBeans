@@ -110,7 +110,7 @@ public class Addressbook5IntegrationTest {
     @Before
     public void setUp() throws IOException {
         String viewname = "file:";
-        switch (PlatformHelper.getOs()) {
+        switch (PlatformHelper.getOsfamily()) {
         case windows:
             viewname += "/"
                     + testDocument.getCanonicalPath().replace(File.separatorChar, '/');
