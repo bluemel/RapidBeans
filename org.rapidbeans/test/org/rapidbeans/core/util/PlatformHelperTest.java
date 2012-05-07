@@ -18,6 +18,7 @@ public class PlatformHelperTest extends TestCase {
 
     public void testGetOsName() {
     	System.out.println(PlatformHelper.getOsfamily().toString());
+    	System.out.println(PlatformHelper.getOs().toString());
         assertTrue(PlatformHelper.getOsName().length() > 0);
     }
 
