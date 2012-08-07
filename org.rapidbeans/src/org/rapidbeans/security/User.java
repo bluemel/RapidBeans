@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeRapidBean;
@@ -38,7 +39,7 @@ import sun.misc.BASE64Encoder;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class User extends RapidBean {
+public class User extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // User.classBody
@@ -203,7 +204,7 @@ public class User extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.accountname = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("accountname");
         this.pwd = (org.rapidbeans.core.basic.PropertyString)

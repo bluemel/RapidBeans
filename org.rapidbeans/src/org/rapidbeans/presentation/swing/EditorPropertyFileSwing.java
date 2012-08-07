@@ -33,8 +33,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.rapidbeans.core.basic.PropertyFile;
 import org.rapidbeans.core.basic.Property;
+import org.rapidbeans.core.basic.PropertyFile;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypePropertyFile;

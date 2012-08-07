@@ -9,8 +9,6 @@ package org.rapidbeans.core.util;
 
 import java.io.File;
 
-import org.rapidbeans.core.util.FileFilterRegExp;
-
 import junit.framework.TestCase;
 
 /**

@@ -204,7 +204,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.on = (org.rapidbeans.core.basic.PropertyBoolean)
             this.getProperty("on");

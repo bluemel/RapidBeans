@@ -7,10 +7,9 @@
  */
 package org.rapidbeans.core.type;
 
-import org.rapidbeans.core.type.TypeRapidQuantity;
-import org.rapidbeans.domain.math.Length;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.domain.math.Length;
 
 /**
  * UnitTests for class TypeRapidQuantity.

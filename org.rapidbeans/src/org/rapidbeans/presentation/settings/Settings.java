@@ -20,7 +20,7 @@ package org.rapidbeans.presentation.settings;
 import java.util.ArrayList;
 
 import org.rapidbeans.core.basic.PropertyCollection;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 
 
@@ -32,7 +32,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class Settings extends RapidBean {
+public class Settings extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // Settings.classBody
@@ -87,7 +87,7 @@ public class Settings extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
     }
 
 

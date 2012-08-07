@@ -19,7 +19,7 @@ package org.rapidbeans.presentation;
 // MenuEntry.import
 import java.util.MissingResourceException;
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeRapidBean;
@@ -38,7 +38,7 @@ import org.rapidbeans.presentation.config.ConfigSubmenu;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public abstract class MenuEntry extends RapidBean {
+public abstract class MenuEntry extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // MenuEntry.classBody
@@ -114,7 +114,7 @@ public abstract class MenuEntry extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
     }

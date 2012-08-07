@@ -7,9 +7,6 @@
  */
 package org.rapidbeans.domain.math;
 
-import org.rapidbeans.domain.math.Time;
-import org.rapidbeans.domain.math.UnitTime;
-
 import junit.framework.TestCase;
 
 /**

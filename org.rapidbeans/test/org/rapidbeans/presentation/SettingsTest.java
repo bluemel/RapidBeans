@@ -7,11 +7,11 @@
 */
 package org.rapidbeans.presentation;
 
+import junit.framework.TestCase;
+
 import org.rapidbeans.presentation.settings.SettingsAll;
 import org.rapidbeans.presentation.settings.SettingsBasic;
 import org.rapidbeans.presentation.settings.SettingsBasicGui;
-
-import junit.framework.TestCase;
 
 /**
  * Unit tests for class SettingsAll.

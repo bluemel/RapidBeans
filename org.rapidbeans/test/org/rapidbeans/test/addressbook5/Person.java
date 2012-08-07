@@ -19,13 +19,14 @@ package org.rapidbeans.test.addressbook5;
 // Person.import
 import org.rapidbeans.core.basic.Link;
 import org.rapidbeans.core.basic.LinkFrozen;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.UnresolvedLinkException;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.domain.math.Length;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.security.User;
 import org.rapidbeans.test.addressbook.Group;
+
 // END manual code section
 
 
@@ -34,7 +35,7 @@ import org.rapidbeans.test.addressbook.Group;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class Person extends RapidBean {
+public class Person extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // Person.classBody
@@ -84,7 +85,7 @@ public class Person extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.lastname = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("lastname");
         this.firstname = (org.rapidbeans.core.basic.PropertyString)

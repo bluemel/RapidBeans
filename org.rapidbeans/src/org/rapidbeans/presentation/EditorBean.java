@@ -30,6 +30,7 @@ import org.rapidbeans.core.basic.IdType;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.basic.ThreadLocalValidationSettings;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.event.PropertyChangeEvent;
@@ -624,11 +625,11 @@ public abstract class EditorBean
 
         switch (this.createApplyMode) {
         case resetall:
-            this.bean = RapidBean.createInstance(this.bean.getType().getName());
+            this.bean = RapidBeanImplStrict.createInstance(this.bean.getType().getName());
             break;
         case resetnothing:
         case resetkey:
-            final RapidBean newBean = RapidBean.createInstance(this.bean.getType().getName());
+            final RapidBean newBean = RapidBeanImplStrict.createInstance(this.bean.getType().getName());
             for (Property prop : newBean.getPropertyList()) {
                 if (!prop.getType().isKeyCandidate() || this.createApplyMode == CreateNewBeansEditorApplyBehaviour.resetnothing) {
                     try {

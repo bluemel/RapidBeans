@@ -48,7 +48,7 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend)
             this.getProperty("menuentrys");

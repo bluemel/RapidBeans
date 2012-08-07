@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import org.rapidbeans.core.basic.PropertyCollection;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.presentation.MenuItem;
 import org.rapidbeans.presentation.Submenu;
 
@@ -32,7 +32,7 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
         if (!this.isWarmedUp) {
             System.out.println("[BeanCompositeCreateRuntimePerfTest] warm up...");
             Thread.sleep(100);
-            Submenu menu0 = (Submenu) RapidBean.createInstance("org.rapidbeans.presentation.Submenu");
+            Submenu menu0 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
             createSubmenus(menu0, 100000);
             this.isWarmedUp = true;
         }
@@ -86,7 +86,7 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
                 + " setting up the composite tree...");
         final long timeStart = System.currentTimeMillis();
         Thread.sleep(100);
-        Submenu menu1 = (Submenu) RapidBean.createInstance("org.rapidbeans.presentation.Submenu");
+        Submenu menu1 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
         createSubmenus(menu1, count);
 
         // check runtime
@@ -109,7 +109,7 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
         PropertyCollection propCol = (PropertyCollection) menu.getProperty("menuentrys");
         MenuItem item;
         for (int i = 1; i < count; i++) {
-            item = (MenuItem) RapidBean.createInstance("org.rapidbeans.presentation.MenuItem");
+            item = (MenuItem) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
             propCol.addLink(item);
         }
     }

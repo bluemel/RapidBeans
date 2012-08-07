@@ -9,12 +9,11 @@ package org.rapidbeans.core.basic;
 
 import java.io.ByteArrayInputStream;
 
-import org.rapidbeans.core.basic.PropertyBoolean;
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypePropertyBoolean;
 import org.rapidbeans.core.util.XmlNode;
-
-import junit.framework.TestCase;
 
 /**
  * Unit Tests for class PropertyBoolean.
@@ -165,7 +164,7 @@ public class PropertyBooleanTest extends TestCase {
                     + " \"java.lang.Integer\" for a boolean property"));
 //            assertTrue(e.getLocalizedMessage().startsWith("Property \"test\": invalid data type"
 //                    + " \"java.lang.Integer\" for a boolean property"));
-//            RapidBeansLocale locale = (RapidBeansLocale) RapidBean.createInstance("org.rapidbeans.core.common.RapidBeansLocale");
+//            RapidBeansLocale locale = (RapidBeansLocale) RapidBeanImplStrict.createInstance("org.rapidbeans.core.common.RapidBeansLocale");
 //            assertTrue(e.getLocalizedMessage(locale, Integer.class.getName()).startsWith(
 //                    "Invalid data type \"java.lang.Integer\" for a boolean property"));
         }

@@ -101,7 +101,7 @@ package </xsl:text><xsl:value-of select="$package"/><xsl:text>;
 	<xsl:otherwise>
 		<xsl:if test="(not ($codegen)) or ($codegen != 'joint')">
 		<xsl:text>
-import org.rapidbeans.core.basic.RapidBean;</xsl:text>
+import org.rapidbeans.core.basic.RapidBeanImplStrict;</xsl:text>
 		</xsl:if>
 	</xsl:otherwise>
 </xsl:choose>
@@ -176,7 +176,7 @@ public</xsl:text>
 		<xsl:value-of select="@extends"/>
 	</xsl:when>
 	<xsl:otherwise>
-		<xsl:text>RapidBean</xsl:text>
+		<xsl:text>RapidBeanImplStrict</xsl:text>
 	</xsl:otherwise>
 </xsl:choose>
 <xsl:text> {</xsl:text>
@@ -233,7 +233,7 @@ public</xsl:text>
     /**
      * property references initialization.
      */
-    protected void initProperties() {</xsl:text>
+    public void initProperties() {</xsl:text>
 <xsl:if test="@extends">
 <xsl:text>
         super.initProperties();</xsl:text>

@@ -20,6 +20,7 @@ import junit.framework.Assert;
 
 import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.XmlNode;
@@ -242,7 +243,7 @@ public final class PresentationSwingTestHelper {
             XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("BillingPeriod");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
         bean.setPropValue("from", dateBegin);
         bean.setPropValue("to", dateEnd);
         return bean;
@@ -279,7 +280,7 @@ public final class PresentationSwingTestHelper {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Trainer");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
         bean.setPropValue("lastname", lastname);
         bean.setPropValue("firstname", firstname);
         bean.setPropValue("leader", new Boolean(leader));
@@ -303,7 +304,7 @@ public final class PresentationSwingTestHelper {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Certificate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
         bean.setPropValue("name", name);
         return bean;
     }
@@ -337,7 +338,7 @@ public final class PresentationSwingTestHelper {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("TrainingDate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
         bean.setPropValue("name", name);
         bean.setPropValue("dayofweek", dayofweek);
         bean.setPropValue("timestart", tstart);

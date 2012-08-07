@@ -10,13 +10,9 @@ package org.rapidbeans.presentation.config;
 import java.io.File;
 import java.util.List;
 
-import org.rapidbeans.datasource.Document;
-import org.rapidbeans.presentation.config.ConfigApplication;
-import org.rapidbeans.presentation.config.ConfigDocument;
-import org.rapidbeans.presentation.config.ConfigEditorBean;
-import org.rapidbeans.presentation.config.ConfigView;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.datasource.Document;
 
 /**
  *

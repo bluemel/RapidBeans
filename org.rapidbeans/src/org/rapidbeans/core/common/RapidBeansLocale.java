@@ -23,7 +23,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.presentation.Application;
 
@@ -35,7 +35,7 @@ import org.rapidbeans.presentation.Application;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class RapidBeansLocale extends RapidBean {
+public class RapidBeansLocale extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // RapidBeansLocale.classBody
@@ -256,7 +256,7 @@ public class RapidBeansLocale extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
     }

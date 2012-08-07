@@ -7,8 +7,6 @@
 */
 package org.rapidbeans.presentation;
 
-import org.rapidbeans.presentation.Menubar;
-
 import junit.framework.TestCase;
 
 /**

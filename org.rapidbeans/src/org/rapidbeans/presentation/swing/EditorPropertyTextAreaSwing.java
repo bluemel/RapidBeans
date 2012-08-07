@@ -25,13 +25,13 @@ import java.util.Collection;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.Property;
+import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.exception.ValidationException;
+import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypePropertyString;
-import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.EditorBean;
 import org.rapidbeans.presentation.config.ConfigPropEditorBean;

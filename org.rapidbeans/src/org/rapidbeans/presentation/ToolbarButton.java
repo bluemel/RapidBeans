@@ -19,7 +19,7 @@ package org.rapidbeans.presentation;
 // ToolbarButton.import
 import org.rapidbeans.core.basic.Link;
 import org.rapidbeans.core.basic.LinkFrozen;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.exception.UnresolvedLinkException;
 import org.rapidbeans.core.type.TypeRapidBean;
@@ -36,7 +36,7 @@ import org.rapidbeans.service.Action;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ToolbarButton extends RapidBean {
+public class ToolbarButton extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ToolbarButton.classBody
@@ -135,7 +135,7 @@ public class ToolbarButton extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.action = (org.rapidbeans.core.basic.PropertyAssociationend)

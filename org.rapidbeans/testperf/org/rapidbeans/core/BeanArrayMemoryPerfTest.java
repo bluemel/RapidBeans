@@ -2,10 +2,11 @@ package org.rapidbeans.core;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.exception.RapidBeansRuntimeException;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 
 
 /**
@@ -32,7 +33,7 @@ public final class BeanArrayMemoryPerfTest extends TestCase {
         Thread.sleep(100);
         RapidBean[] beans1 = new RapidBean[count];
         for (int i = 0; i < count; i++) {
-            beans1[i] = RapidBean.createInstance("org.rapidbeans.presentation.MenuItem");
+            beans1[i] = RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
         }
 
         // set up a second array and expect an InvocationTargetException
@@ -43,7 +44,7 @@ public final class BeanArrayMemoryPerfTest extends TestCase {
         RapidBean[] beans2 = new RapidBean[count];
         try {
             for (int i = 0; i < count; i++) {
-                beans2[i] = RapidBean.createInstance("org.rapidbeans.presentation.MenuItem");
+                beans2[i] = RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
             }
             fail("expected RapidBeansRuntimeException");
         } catch (RapidBeansRuntimeException e) {
@@ -71,7 +72,7 @@ public final class BeanArrayMemoryPerfTest extends TestCase {
         Thread.sleep(100);
         beans2 = new RapidBean[count];
         for (int i = 0; i < count; i++) {
-            beans2[i] = RapidBean.createInstance("org.rapidbeans.presentation.MenuItem");
+            beans2[i] = RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
         }
 
         System.out.println("[BeanArrayMemoryPerfTest] finished: garbage collection succeded");

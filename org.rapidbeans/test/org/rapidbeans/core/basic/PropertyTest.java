@@ -9,12 +9,11 @@ package org.rapidbeans.core.basic;
 
 import java.io.ByteArrayInputStream;
 
-import org.rapidbeans.core.basic.PropertyString;
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypePropertyString;
 import org.rapidbeans.core.util.XmlNode;
-
-import junit.framework.TestCase;
 
 /**
  * Unit Tests for class PropertyString.

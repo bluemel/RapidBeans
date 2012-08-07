@@ -2,11 +2,11 @@ package org.rapidbeans.core.basic;
 
 import junit.framework.TestCase;
 
+import org.rapidbeans.core.type.RapidBeansTypeLoader;
+import org.rapidbeans.core.type.TestHelperTypeLoader;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.type.TypeRapidEnum;
-import org.rapidbeans.core.type.RapidBeansTypeLoader;
 import org.rapidbeans.core.type.TypeRapidQuantity;
-import org.rapidbeans.core.type.TestHelperTypeLoader;
 import org.rapidbeans.core.util.XmlNode;
 
 /**
@@ -78,7 +78,7 @@ public class GenericQuantityTest extends TestCase {
                     XmlNode.getDocumentTopLevel(descr), null, true);
             assertEquals("TestBean", beantype.getName());
 
-            RapidBean bean = RapidBean.createInstance(beantype);
+            RapidBean bean = RapidBeanImplStrict.createInstance(beantype);
             PropertyString propName = (PropertyString) bean.getProperty("name");
             assertEquals("xxx", propName.getValue());
             PropertyQuantity propTension = (PropertyQuantity) bean.getProperty("tension");

@@ -7,8 +7,6 @@
  */
 package org.rapidbeans.domain.org;
 
-import org.rapidbeans.domain.org.Sex;
-
 import junit.framework.TestCase;
 
 /**

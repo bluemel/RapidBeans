@@ -2,8 +2,8 @@ package org.rapidbeans.core.basic;
 
 import junit.framework.TestCase;
 
-import org.rapidbeans.core.type.TypeRapidEnum;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
+import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
  * Test generic enums.

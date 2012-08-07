@@ -25,7 +25,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  *
  * @author Martin Bluemel
  */
-public class GenericBean extends RapidBean {
+public class GenericBean extends RapidBeanImplStrict {
 
     /**
      * The Rapid Bean type instance.
@@ -47,7 +47,7 @@ public class GenericBean extends RapidBean {
      * you can access properties only over the generic ways
      * not the concrete ones like in non generic Beans.
      */
-    protected void initProperties() {
+    public void initProperties() {
         // do absolutely nothing
     }
 

@@ -22,11 +22,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.domain.math.UnitTime;
-
 
 // END manual code section
 
@@ -36,7 +35,7 @@ import org.rapidbeans.domain.math.UnitTime;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class WorkTime extends RapidBean {
+public class WorkTime extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // WorkTime.classBody
@@ -79,7 +78,7 @@ public class WorkTime extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.from = (org.rapidbeans.core.basic.PropertyDate)
             this.getProperty("from");
         this.to = (org.rapidbeans.core.basic.PropertyDate)

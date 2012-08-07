@@ -61,10 +61,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+import junit.framework.TestCase;
+
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.test.WorkTime;
-
-import junit.framework.TestCase;
 
 /**
  * Unit Test for domain class WorkTime.

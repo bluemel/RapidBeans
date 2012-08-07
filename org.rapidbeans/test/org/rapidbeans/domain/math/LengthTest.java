@@ -9,11 +9,9 @@ package org.rapidbeans.domain.math;
 
 import java.math.BigDecimal;
 
-import org.rapidbeans.core.type.TypeRapidQuantity;
-import org.rapidbeans.domain.math.Length;
-import org.rapidbeans.domain.math.UnitLength;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.core.type.TypeRapidQuantity;
 
 /**
  * Unit tests for class Length.

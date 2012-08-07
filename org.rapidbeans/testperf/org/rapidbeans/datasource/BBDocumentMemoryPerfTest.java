@@ -3,15 +3,14 @@ package org.rapidbeans.datasource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypePropertyCollection;
-import org.rapidbeans.datasource.Document;
 import org.rapidbeans.test.codegen.Address;
 import org.rapidbeans.test.codegen.AddressBook;
 import org.rapidbeans.test.codegen.Person;
-
-import junit.framework.TestCase;
 
 
 /**

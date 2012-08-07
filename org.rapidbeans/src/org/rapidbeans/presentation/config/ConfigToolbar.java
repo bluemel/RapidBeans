@@ -52,7 +52,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");

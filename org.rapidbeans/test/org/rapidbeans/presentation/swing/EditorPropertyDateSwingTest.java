@@ -10,21 +10,20 @@ import java.util.Locale;
 
 import javax.swing.JTextField;
 
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.PropertyDate;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.exception.ValidationException;
-import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
 import org.rapidbeans.core.type.TestHelperTypeLoader;
+import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.XmlNode;
 import org.rapidbeans.presentation.TestClient;
 import org.rapidbeans.presentation.config.ConfigApplication;
-import org.rapidbeans.presentation.swing.EditorPropertyDateSwing;
-import org.rapidbeans.presentation.swing.EditorPropertySwing;
-
-import junit.framework.TestCase;
 
 /**
  * @author Bluemel Martin
@@ -226,7 +225,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
             new TypeRapidBean(null, xmlNode, null, true);
         }
         GenericBean bean =
-            (GenericBean) RapidBean.createInstance("TestBean1");
+            (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
         return bean;
     }
 

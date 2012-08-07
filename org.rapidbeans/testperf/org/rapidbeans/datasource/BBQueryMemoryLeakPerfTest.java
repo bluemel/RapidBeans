@@ -1,8 +1,8 @@
 package org.rapidbeans.datasource;
 
-import org.rapidbeans.datasource.query.Query;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.datasource.query.Query;
 
 
 /**

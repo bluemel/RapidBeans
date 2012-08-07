@@ -24,7 +24,7 @@ import java.util.MissingResourceException;
 
 import org.rapidbeans.core.basic.Link;
 import org.rapidbeans.core.basic.LinkFrozen;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.exception.UnresolvedLinkException;
 import org.rapidbeans.core.type.TypeRapidBean;
@@ -39,7 +39,7 @@ import org.rapidbeans.presentation.ApplicationManager;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class Action extends RapidBean {
+public class Action extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // Action.classBody
@@ -202,7 +202,7 @@ public class Action extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.classname = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("classname");
         this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend)

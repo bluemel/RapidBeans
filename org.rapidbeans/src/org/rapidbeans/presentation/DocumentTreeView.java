@@ -17,8 +17,8 @@
 
 package org.rapidbeans.presentation;
 
-import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.Property;
+import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.datasource.Document;

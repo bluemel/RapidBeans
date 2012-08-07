@@ -8,10 +8,10 @@ import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypeRapidBean;
-import org.rapidbeans.test.codegen.AddressBook;
-import org.rapidbeans.test.codegen.Person;
 import org.rapidbeans.test.TestBean;
 import org.rapidbeans.test.TestHelper;
+import org.rapidbeans.test.codegen.AddressBook;
+import org.rapidbeans.test.codegen.Person;
 
 /**
  * UnitTests für IdKeyprops.

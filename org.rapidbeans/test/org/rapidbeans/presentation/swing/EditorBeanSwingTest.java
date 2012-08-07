@@ -177,7 +177,7 @@ public class EditorBeanSwingTest extends TestCase {
 //            Object key = keys[0];
 //            docTreeView.createbeany, prop);
 //            DocumentView docView = PresentationSwingTestHelper.getTestDocumentView();
-//            RapidBean newBean = RapidBean.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
+//            RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
 //            EditorBeanSwing editor = (EditorBeanSwing) docView.getEditor(newBean, true);
 //            assertNotSame(newBean, editor.getBean());
 //            assertEquals(newBean, editor.getBean());
@@ -320,7 +320,7 @@ public class EditorBeanSwingTest extends TestCase {
 //            Object key = keys[0];
 //            docTreeView.createbeany, prop);
 //            DocumentView docView = PresentationSwingTestHelper.getTestDocumentView();
-//            RapidBean newBean = RapidBean.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
+//            RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
 //            EditorBeanSwing editor = (EditorBeanSwing) docView.getEditor(newBean, true);
 //            assertNotSame(newBean, editor.getBean());
 //            assertEquals(newBean, editor.getBean());
@@ -377,7 +377,7 @@ public class EditorBeanSwingTest extends TestCase {
 //            Object key = keys[0];
 //            docTreeView.createbeany, prop);
 //            DocumentView docView = PresentationSwingTestHelper.getTestDocumentView();
-//            RapidBean newBean = RapidBean.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
+//            RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) prop.getType()).getTargetType().getName());
 //            EditorBeanSwing editor = (EditorBeanSwing) docView.getEditor(newBean, true);
 //            assertNotSame(newBean, editor.getBean());
 //            assertEquals(newBean, editor.getBean());

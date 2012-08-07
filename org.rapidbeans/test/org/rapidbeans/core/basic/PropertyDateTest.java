@@ -12,13 +12,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.rapidbeans.core.basic.PropertyDate;
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.exception.PropValueNullException;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypePropertyDate;
 import org.rapidbeans.core.util.XmlNode;
-
-import junit.framework.TestCase;
 
 /**
  * Unit Tests for class PropertyDate.

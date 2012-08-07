@@ -12,8 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 
-import org.rapidbeans.core.common.HistoryList;
-
 import junit.framework.TestCase;
 
 /**

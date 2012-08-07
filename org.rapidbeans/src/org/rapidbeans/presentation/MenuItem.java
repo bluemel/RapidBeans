@@ -130,7 +130,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.action = (org.rapidbeans.core.basic.PropertyAssociationend)
             this.getProperty("action");

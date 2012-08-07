@@ -60,7 +60,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.openDocumentHistory = (org.rapidbeans.core.basic.PropertyAssociationend)
             this.getProperty("openDocumentHistory");

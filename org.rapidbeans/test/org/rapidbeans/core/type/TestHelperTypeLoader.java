@@ -1,6 +1,5 @@
 package org.rapidbeans.core.type;
 
-import org.rapidbeans.core.type.RapidBeansTypeLoader;
 
 public class TestHelperTypeLoader {
     

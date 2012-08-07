@@ -159,7 +159,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.basic = (org.rapidbeans.core.basic.PropertyAssociationend)
             this.getProperty("basic");

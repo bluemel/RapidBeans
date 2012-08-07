@@ -17,7 +17,7 @@ package org.rapidbeans.presentation.config;
 
 // BEGIN manual code section
 // ConfigMenubar.import
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 
 // END manual code section
@@ -28,7 +28,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ConfigMenubar extends RapidBean {
+public class ConfigMenubar extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ConfigMenubar.classBody
@@ -62,7 +62,7 @@ public class ConfigMenubar extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.menus = (org.rapidbeans.core.basic.PropertyAssociationend)

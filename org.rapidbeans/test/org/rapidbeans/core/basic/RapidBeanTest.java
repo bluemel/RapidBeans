@@ -42,7 +42,7 @@ public final class RapidBeanTest extends TestCase {
      * test method createInstance().
      */
     public void testCreateInstance() {
-        ConfigApplicationSwing bean = (ConfigApplicationSwing) RapidBean.createInstance(
+        ConfigApplicationSwing bean = (ConfigApplicationSwing) RapidBeanImplStrict.createInstance(
                     "org.rapidbeans.presentation.config.swing.ConfigApplicationSwing");
         assertSame(ConfigApplicationSwing.class, bean.getClass());
         assertSame(TypeRapidBean.forName(
@@ -65,7 +65,7 @@ public final class RapidBeanTest extends TestCase {
      */
     public void testCreateInstanceUnknownClass() {
         try {
-            RapidBean.createInstance("org.rapidbeans.test.Xyz");
+            RapidBeanImplStrict.createInstance("org.rapidbeans.test.Xyz");
         } catch (TypeNotFoundException e) {
             // O. K.
             assertTrue(true);
@@ -92,7 +92,7 @@ public final class RapidBeanTest extends TestCase {
      */
     public void testNavigateFromProperty() {
         ConfigApplication bean = (ConfigApplication)
-            RapidBean.createInstance("org.rapidbeans.presentation.config.ConfigApplication");
+            RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.config.ConfigApplication");
         assertSame(bean, bean.getProperty("name").getBean());
     }
 
@@ -254,7 +254,7 @@ public final class RapidBeanTest extends TestCase {
             XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("BillingPeriod");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
         bean.setPropValue("from", dateBegin);
         bean.setPropValue("to", dateEnd);
         return bean;
@@ -299,7 +299,7 @@ public final class RapidBeanTest extends TestCase {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Trainer");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
         bean.setPropValue("lastname", lastname);
         bean.setPropValue("firstname", firstname);
         bean.setPropValue("leader", new Boolean(leader));
@@ -323,7 +323,7 @@ public final class RapidBeanTest extends TestCase {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Certificate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
         bean.setPropValue("name", name);
         return bean;
     }
@@ -357,7 +357,7 @@ public final class RapidBeanTest extends TestCase {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("TrainingDate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
         bean.setPropValue("name", name);
         bean.setPropValue("dayofweek", dayofweek);
         bean.setPropValue("timestart", tstart);

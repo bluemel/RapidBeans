@@ -4,8 +4,6 @@ package org.rapidbeans.test;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.rapidbeans.test.TestSuiteHelper;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

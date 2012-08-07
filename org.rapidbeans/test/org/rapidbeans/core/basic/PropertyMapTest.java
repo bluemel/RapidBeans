@@ -21,9 +21,9 @@ import org.rapidbeans.core.type.RapidBeansTypeLoader;
 import org.rapidbeans.core.type.TypePropertyMap;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.XmlNode;
+import org.rapidbeans.test.TestHelper;
 import org.rapidbeans.test.codegen.Person;
 import org.rapidbeans.test.codegen.PersonMap;
-import org.rapidbeans.test.TestHelper;
 
 /**
  * Unit Tests for property class PropertyMap.

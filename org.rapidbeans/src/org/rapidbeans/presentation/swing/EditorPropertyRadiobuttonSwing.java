@@ -22,8 +22,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JRadioButton;
 
-import org.rapidbeans.core.basic.PropertyBoolean;
 import org.rapidbeans.core.basic.Property;
+import org.rapidbeans.core.basic.PropertyBoolean;
 import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.EditorBean;
 import org.rapidbeans.presentation.config.ConfigPropEditorBean;

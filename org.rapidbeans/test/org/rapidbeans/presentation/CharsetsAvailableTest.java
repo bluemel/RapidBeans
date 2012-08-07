@@ -7,9 +7,9 @@
  */
 package org.rapidbeans.presentation;
 
-import org.rapidbeans.datasource.CharsetsAvailable;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.datasource.CharsetsAvailable;
 
 /**
  * Test written after having problems with this generic enum after

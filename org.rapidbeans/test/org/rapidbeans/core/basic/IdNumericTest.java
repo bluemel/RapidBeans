@@ -1,11 +1,8 @@
 package org.rapidbeans.core.basic;
 
-import org.rapidbeans.core.basic.GenericBean;
-import org.rapidbeans.core.basic.IdGeneratorNumeric;
-import org.rapidbeans.core.basic.IdNumeric;
-import org.rapidbeans.test.TestHelper;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.test.TestHelper;
 
 /**
  * UnitTests für IdUid.

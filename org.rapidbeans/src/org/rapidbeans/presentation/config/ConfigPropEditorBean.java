@@ -19,7 +19,7 @@ package org.rapidbeans.presentation.config;
 // ConfigPropEditorBean.import
 import org.rapidbeans.core.basic.Link;
 import org.rapidbeans.core.basic.LinkFrozen;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.UnresolvedLinkException;
 import org.rapidbeans.core.type.TypeRapidBean;
 
@@ -32,7 +32,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ConfigPropEditorBean extends RapidBean {
+public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ConfigPropEditorBean.classBody
@@ -89,7 +89,7 @@ public class ConfigPropEditorBean extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.enabled = (org.rapidbeans.core.basic.PropertyBoolean)

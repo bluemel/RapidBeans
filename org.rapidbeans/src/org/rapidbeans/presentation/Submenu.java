@@ -110,7 +110,7 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend)
             this.getProperty("menuentrys");

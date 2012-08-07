@@ -112,10 +112,10 @@ public class GenericBeanTest extends TestCase {
      */
     public void testCreateInstanceFromModels() {
         GenericBean bean1 =
-            (GenericBean) RapidBean.createInstance("org.rapidbeans.test.TestBeanGen");
+            (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
         assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType().getName());
         GenericBean bean2 =
-            (GenericBean) RapidBean.createInstance("org.rapidbeans.test.TestBeanGen");
+            (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
         assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType().getName());
         // approve that the type instance is registered just once
         assertSame(bean1.getType(), bean2.getType());
@@ -123,7 +123,7 @@ public class GenericBeanTest extends TestCase {
 
     @SuppressWarnings("unchecked")
 	public void testDefaultValue() {
-        GenericBean bean = (GenericBean) RapidBean.createInstance(
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance(
                 "org.rapidbeans.test.TestBeanGen");
         Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
         assertSame(Sex.male, defaultSex);
@@ -131,7 +131,7 @@ public class GenericBeanTest extends TestCase {
 
     @SuppressWarnings("unchecked")
 	public void testOverriding() {
-        GenericBean bean = (GenericBean) RapidBean.createInstance(
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance(
                 "org.rapidbeans.test.TestBeanExtended1aGen");
         Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
         assertSame(Sex.female, defaultSex);

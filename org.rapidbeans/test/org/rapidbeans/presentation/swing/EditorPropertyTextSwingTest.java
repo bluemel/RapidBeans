@@ -17,6 +17,7 @@ import junit.framework.TestCase;
 import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.exception.ValidationMandatoryException;
@@ -471,7 +472,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
             new TypeRapidBean(null, xmlNode, null, true);
         }
         GenericBean bean =
-            (GenericBean) RapidBean.createInstance("TestBean1");
+            (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
         return bean;
     }
 

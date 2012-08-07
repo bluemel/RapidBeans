@@ -30,6 +30,11 @@ import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 public class IdKeyprops extends Id {
 
     /**
+     * empty key property array to avoid unnecessary instantiations.
+     */
+    public static final Property[] EMPTY_KEYPROP_ARRAY = new Property[0];
+
+    /**
      * Key properties.
      */
     private ArrayList<Property> keyprops = null;
@@ -38,7 +43,7 @@ public class IdKeyprops extends Id {
      * @return the key properties as array.
      */
     public Property[] getKeyprops() {
-        return this.keyprops.toArray(RapidBean.EMPTY_KEYPROP_ARRAY);
+        return this.keyprops.toArray(EMPTY_KEYPROP_ARRAY);
     }
 
     /**

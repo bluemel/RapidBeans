@@ -28,6 +28,7 @@ import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.IdGeneratorNumeric;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.BeanDuplicateException;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
@@ -1459,7 +1460,7 @@ public class DocumentTest {
             XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("BillingPeriod");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
         bean.setPropValue("from", dateBegin);
         bean.setPropValue("to", dateEnd);
         return bean;
@@ -1495,7 +1496,7 @@ public class DocumentTest {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Trainer");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
         bean.setPropValue("lastname", lastname);
         bean.setPropValue("firstname", firstname);
         bean.setPropValue("leader", new Boolean(leader));
@@ -1519,7 +1520,7 @@ public class DocumentTest {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("Certificate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
         bean.setPropValue("name", name);
         return bean;
     }
@@ -1553,7 +1554,7 @@ public class DocumentTest {
                     new ByteArrayInputStream(descr.getBytes()));
             new TypeRapidBean(null, xmlNode, null, true);
         }
-        GenericBean bean = (GenericBean) RapidBean.createInstance("TrainingDate");
+        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
         bean.setPropValue("name", name);
         bean.setPropValue("dayofweek", dayofweek);
         bean.setPropValue("timestart", tstart);

@@ -43,7 +43,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
      *
      * @param event the PropertyChangeEvent to fire
      */
-    protected void propertyChanged(final PropertyChangeEvent event) {
+    public void propertyChanged(final PropertyChangeEvent event) {
         final boolean eventLoceBefore = ThreadLocalEventLock.get();
         try {
             if (eventLoceBefore) {
@@ -173,7 +173,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.on = (org.rapidbeans.core.basic.PropertyBoolean)
             this.getProperty("on");

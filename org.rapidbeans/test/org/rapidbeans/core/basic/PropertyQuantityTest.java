@@ -3,8 +3,8 @@ package org.rapidbeans.core.basic;
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 
-import org.rapidbeans.core.basic.PropertyQuantity;
-import org.rapidbeans.core.basic.RapidQuantity;
+import junit.framework.TestCase;
+
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypePropertyQuantity;
 import org.rapidbeans.core.util.XmlNode;
@@ -13,8 +13,6 @@ import org.rapidbeans.domain.finance.Money;
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.domain.math.TimeOfDay;
 import org.rapidbeans.domain.math.UnitTime;
-
-import junit.framework.TestCase;
 
 /**
  * @author Martin Bluemel

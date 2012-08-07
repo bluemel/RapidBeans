@@ -75,7 +75,7 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
     }
 

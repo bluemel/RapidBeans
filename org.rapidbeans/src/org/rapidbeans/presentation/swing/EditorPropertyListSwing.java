@@ -32,8 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.rapidbeans.core.basic.Property;
-import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.PropertyChoice;
+import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.event.PropertyChangeEvent;

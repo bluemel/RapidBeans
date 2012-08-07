@@ -21,8 +21,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.basic.GenericEnum;
+import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**

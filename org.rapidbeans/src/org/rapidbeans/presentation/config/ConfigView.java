@@ -17,7 +17,7 @@ package org.rapidbeans.presentation.config;
 
 // BEGIN manual code section
 // ConfigView.import
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 
 
@@ -29,7 +29,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ConfigView extends RapidBean {
+public class ConfigView extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ConfigView.classBody
@@ -63,7 +63,7 @@ public class ConfigView extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.persistencestrategy = (org.rapidbeans.core.basic.PropertyChoice)

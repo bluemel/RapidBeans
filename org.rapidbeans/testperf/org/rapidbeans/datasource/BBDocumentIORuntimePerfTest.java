@@ -18,6 +18,7 @@ import junit.textui.TestRunner;
 
 import org.rapidbeans.core.basic.IdGeneratorNumeric;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.type.TypeRapidEnum;
@@ -51,7 +52,7 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
         if (!this.isWarmedUp) {
             System.out.println("[BBDocumentIORuntimePerfTest] warm up...");
             for (int i = 0; i < 100000; i++) {
-                RapidBean.createInstance("org.rapidbeans.test.Person");
+                RapidBeanImplStrict.createInstance("org.rapidbeans.test.Person");
             }
             this.isWarmedUp = true;
         }

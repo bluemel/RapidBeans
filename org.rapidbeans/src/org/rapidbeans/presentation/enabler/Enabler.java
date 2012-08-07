@@ -20,7 +20,7 @@ package org.rapidbeans.presentation.enabler;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.presentation.Application;
@@ -33,7 +33,7 @@ import org.rapidbeans.presentation.Application;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class Enabler extends RapidBean {
+public class Enabler extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // Enabler.classBody
@@ -115,7 +115,7 @@ public class Enabler extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.classname = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("classname");
     }

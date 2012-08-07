@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import org.rapidbeans.domain.math.DateGenerator;
-
 import junit.framework.TestCase;
 
 /**

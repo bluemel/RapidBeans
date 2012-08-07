@@ -19,9 +19,9 @@ package org.rapidbeans.presentation.swing;
 
 import javax.swing.DefaultComboBoxModel;
 
-import org.rapidbeans.core.type.TypeRapidEnum;
 import org.rapidbeans.core.type.TypePropertyChoice;
 import org.rapidbeans.core.type.TypePropertyQuantity;
+import org.rapidbeans.core.type.TypeRapidEnum;
 
 
 /**

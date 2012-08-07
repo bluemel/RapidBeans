@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.PropertyQuantity;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
@@ -135,7 +136,7 @@ public class EditorPropertyQuantitySwingTest {
             new TypeRapidBean(null, xmlNode, null, true);
         }
         GenericBean bean =
-            (GenericBean) RapidBean.createInstance("TestBean1");
+            (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
         return bean;
     }
 

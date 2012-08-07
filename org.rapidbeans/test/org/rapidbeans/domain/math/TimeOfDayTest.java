@@ -9,9 +9,6 @@ package org.rapidbeans.domain.math;
 
 import java.math.BigDecimal;
 
-import org.rapidbeans.domain.math.TimeOfDay;
-import org.rapidbeans.domain.math.UnitTime;
-
 import junit.framework.TestCase;
 
 /**

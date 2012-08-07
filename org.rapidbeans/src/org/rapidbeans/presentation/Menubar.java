@@ -20,7 +20,7 @@ package org.rapidbeans.presentation;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.presentation.config.ConfigMenubar;
@@ -35,7 +35,7 @@ import org.rapidbeans.presentation.swing.MenubarSwing;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class Menubar extends RapidBean {
+public class Menubar extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // Menubar.classBody
@@ -125,7 +125,7 @@ public class Menubar extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.menus = (org.rapidbeans.core.basic.PropertyAssociationend)

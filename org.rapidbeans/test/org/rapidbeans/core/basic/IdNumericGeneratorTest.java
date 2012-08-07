@@ -1,9 +1,8 @@
 package org.rapidbeans.core.basic;
 
-import org.rapidbeans.core.basic.IdGeneratorNumeric;
-import org.rapidbeans.core.exception.RapidBeansRuntimeException;
-
 import junit.framework.TestCase;
+
+import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 
 /**
  * JUnit tests.

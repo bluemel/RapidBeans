@@ -19,7 +19,7 @@ package org.rapidbeans.presentation.config;
 // ConfigMainWindow.import
 import org.rapidbeans.core.basic.Link;
 import org.rapidbeans.core.basic.LinkFrozen;
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.UnresolvedLinkException;
 import org.rapidbeans.core.type.TypeRapidBean;
 
@@ -31,7 +31,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ConfigMainWindow extends RapidBean {
+public class ConfigMainWindow extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ConfigMainWindow.classBody
@@ -71,7 +71,7 @@ public class ConfigMainWindow extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.name = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("name");
         this.width = (org.rapidbeans.core.basic.PropertyInteger)

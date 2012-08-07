@@ -381,7 +381,7 @@ public class DocumentTreeViewSwingTest extends TestCase {
 //                    new ByteArrayInputStream(descr.getBytes()));
 //            new TypeRapidBean(null, xmlNode, true);
 //        }
-//        GenericBean bean = (GenericBean) RapidBean.createInstance("Trainer");
+//        GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
 //        bean.setPropValue("lastname", lastname);
 //        bean.setPropValue("firstname", firstname);
 //        bean.setPropValue("leader", new Boolean(leader));

@@ -5,10 +5,10 @@
 package org.rapidbeans.test;
 
 
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 
-public class TestBean2 extends RapidBean {
+public class TestBean2 extends RapidBeanImplStrict {
 
 
     /**
@@ -49,7 +49,7 @@ public class TestBean2 extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.surname = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("surname");
         this.prename = (org.rapidbeans.core.basic.PropertyString)

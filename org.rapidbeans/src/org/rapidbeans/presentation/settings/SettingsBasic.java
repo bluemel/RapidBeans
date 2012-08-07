@@ -91,7 +91,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         super.initProperties();
         this.folderdoc = (org.rapidbeans.core.basic.PropertyFile)
             this.getProperty("folderdoc");

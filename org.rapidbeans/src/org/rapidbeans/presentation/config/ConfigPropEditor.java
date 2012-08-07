@@ -17,7 +17,7 @@ package org.rapidbeans.presentation.config;
 
 // BEGIN manual code section
 // ConfigPropEditor.import
-import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.type.TypeRapidBean;
 
 // END manual code section
@@ -28,7 +28,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class ConfigPropEditor extends RapidBean {
+public class ConfigPropEditor extends RapidBeanImplStrict {
 
     // BEGIN manual code section
     // ConfigPropEditor.classBody
@@ -53,7 +53,7 @@ public class ConfigPropEditor extends RapidBean {
     /**
      * property references initialization.
      */
-    protected void initProperties() {
+    public void initProperties() {
         this.editorclass = (org.rapidbeans.core.basic.PropertyString)
             this.getProperty("editorclass");
         this.basepackage = (org.rapidbeans.core.basic.PropertyString)
