@@ -1,7 +1,7 @@
 /*
  * Rapid Beans Framework: RapidBeanImplStrict.java
  *
- * Copyright (C) 2009 Martin Bluemel
+ * Copyright (C) 2012 Martin Bluemel
  *
  * Creation Date: 06/20/2012
  *
