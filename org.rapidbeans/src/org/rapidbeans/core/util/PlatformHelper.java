@@ -85,14 +85,18 @@ public final class PlatformHelper {
 			osFamily = OperatingSystemFamily.windows;
 			if (osName.endsWith("XP")) {
 				os = OperatingSystem.windows_xp;
+			} else if (osName.endsWith("Vista")) {
+				os = OperatingSystem.windows_vista;
 			} else if (osName.endsWith("7")) {
 				os = OperatingSystem.windows_7;
+			} else if (osName.endsWith("8")) {
+				os = OperatingSystem.windows_8;
 			} else {
 				// fallback for older Windows
 				if (osVersion.compareTo(new Version("5")) < 0) {
-					os = OperatingSystem.windows_xp;
-				} else if (osVersion.compareTo(new Version("7")) > 0) {
-					os = OperatingSystem.windows_7;
+					os = OperatingSystem.windows_unknown_old;
+				} else if (osVersion.compareTo(new Version("8")) > 0) {
+					os = OperatingSystem.windows_unknown_new;
 				} else {
 					throw new AssertionError("Unable to handle Windows operating system \"" + osName + "\".");
 				}

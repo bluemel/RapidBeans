@@ -18,7 +18,11 @@
 
 <enumtype name="org.rapidbeans.core.util.OperatingSystem">
 	<enum name="linux"/>
+	<enum name="windows_unknown_old"/>
 	<enum name="windows_xp"/>
+	<enum name="windows_vista"/>
 	<enum name="windows_7"/>
+	<enum name="windows_8"/>
+	<enum name="windows_unknown_new"/>
 	<enum name="mac"/>
 </enumtype>
