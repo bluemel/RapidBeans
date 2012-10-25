@@ -20,6 +20,7 @@ package org.rapidbeans.core.util;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.util.logging.Logger;
 
 import org.rapidbeans.core.exception.UtilException;
 
@@ -38,6 +39,8 @@ public final class PlatformHelper {
 	private static Version osVersion = null;
 
 	private static String hostname = null;
+
+	private static final Logger log = Logger.getLogger(PlatformHelper.class.getName());
 
 	/**
 	 * @return the current operating system family
@@ -77,7 +80,9 @@ public final class PlatformHelper {
 	// initializer
 	static {
 		final String osName = System.getProperty("os.name");
+		log.info("OS name = \"" + osName + "\"");
 		osVersion = new Version(System.getProperty("os.version"));
+		log.info("OS version = \"" + osVersion + "\"");
 		if (osName.equals("Linux")) {
 			osFamily = OperatingSystemFamily.linux;
 			os = OperatingSystem.linux;
@@ -98,7 +103,9 @@ public final class PlatformHelper {
 				} else if (osVersion.compareTo(new Version("8")) > 0) {
 					os = OperatingSystem.windows_unknown_new;
 				} else {
-					throw new AssertionError("Unable to handle Windows operating system \"" + osName + "\".");
+					throw new AssertionError(
+							"Unable to handle Windows operating system \""
+									+ osName + "\".");
 				}
 			}
 		} else if (osName.startsWith("Mac")) {
