@@ -80,8 +80,14 @@ public final class PlatformHelper {
 	// initializer
 	static {
 		final String osName = System.getProperty("os.name");
+		determineSystem(osName, System.getProperty("os.version"));
+		hostname = getHostname();
+	}
+
+	protected static void determineSystem(final String osName, final String osVersionString)
+			throws AssertionError {
 		log.info("OS name = \"" + osName + "\"");
-		osVersion = new Version(System.getProperty("os.version"));
+		osVersion = new Version(osVersionString);
 		log.info("OS version = \"" + osVersion + "\"");
 		if (osName.equals("Linux")) {
 			osFamily = OperatingSystemFamily.linux;
@@ -98,7 +104,7 @@ public final class PlatformHelper {
 				os = OperatingSystem.windows_8;
 			} else {
 				// fallback for older Windows
-				if (osVersion.compareTo(new Version("5")) < 0) {
+				if (osVersion.compareTo(new Version("5.1")) < 0) {
 					os = OperatingSystem.windows_unknown_old;
 				} else if (osVersion.compareTo(new Version("8")) > 0) {
 					os = OperatingSystem.windows_unknown_new;
@@ -112,7 +118,6 @@ public final class PlatformHelper {
 			osFamily = OperatingSystemFamily.mac;
 			os = OperatingSystem.mac;
 		}
-		hostname = getHostname();
 	}
 
 	/**
