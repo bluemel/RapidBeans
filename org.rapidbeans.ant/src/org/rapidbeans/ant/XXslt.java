@@ -356,6 +356,8 @@ public final class XXslt extends XSLTProcess {
             param.setName("root");
             param.setExpression(System.getProperty("user.dir"));
             break;
+        default:
+            break;
         }
     }
 
