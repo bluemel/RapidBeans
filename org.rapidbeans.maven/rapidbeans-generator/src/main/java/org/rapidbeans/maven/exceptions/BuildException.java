@@ -14,7 +14,7 @@
  * You should have received a copies of the GNU Lesser General Public License and the
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
-package org.rapidbeans.maven.generator.utils;
+package org.rapidbeans.maven.exceptions;
 
 /**
  * @author Mischur.Alexander

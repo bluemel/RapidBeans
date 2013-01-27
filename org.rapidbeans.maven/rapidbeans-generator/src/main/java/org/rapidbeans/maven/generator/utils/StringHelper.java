@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.rapidbeans.maven.exceptions.BuildException;
+
 /**
  * Helper class for string processing.
  * 

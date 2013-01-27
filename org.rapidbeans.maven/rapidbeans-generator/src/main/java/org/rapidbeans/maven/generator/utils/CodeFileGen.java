@@ -19,6 +19,8 @@ package org.rapidbeans.maven.generator.utils;
 
 import java.io.File;
 
+import org.rapidbeans.maven.exceptions.BuildException;
+
 /**
  * the source file with the generated code.
  * 

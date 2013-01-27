@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.rapidbeans.maven.exceptions.BuildException;
+
 /**
  * code file.
  * 

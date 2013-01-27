@@ -17,6 +17,8 @@
 
 package org.rapidbeans.maven.generator.utils;
 
+import org.rapidbeans.maven.exceptions.BuildException;
+
 /**
  * code body.
  * 
