@@ -30,7 +30,7 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 
 /**
- * this Ant task implements a very simple JDK base FTP upload.
+ * This Ant task implements a very simple JDK base FTP upload.
  *
  * @author Martin.Bluemel
  */

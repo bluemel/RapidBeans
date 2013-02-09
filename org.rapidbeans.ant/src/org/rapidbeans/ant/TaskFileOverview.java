@@ -28,7 +28,8 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 
 /**
- * the genclasses task.
+ * Generates an XML file containing a list of folders and files that might be used
+ * as an input for an XSLT transformation step.
  *
  * @author Martin Bluemel
  */

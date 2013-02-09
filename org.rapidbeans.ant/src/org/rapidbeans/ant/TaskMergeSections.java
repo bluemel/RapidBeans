@@ -26,7 +26,7 @@ import org.apache.tools.ant.Task;
 
 
 /**
- * this Ant task supports incremental code generation by merging the
+ * This Ant task supports incremental code generation by merging the
  * content of specially marked sections with manual code from one file
  * (sercfileman) to another file (srcfilegen).
  *

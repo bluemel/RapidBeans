@@ -34,7 +34,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
- * the genclasses task.
+ * This Ant task conveniently drives the XSLT based RapidBeans code generation for a whole directory hierarchy
+ * (similar to Ant task "javac").
  *
  * @author Martin Bluemel
  */
