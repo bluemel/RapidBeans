@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: RapidBeanImplSimple.java
- *
+ * 
  * Copyright (C) 2012 Martin Bluemel
- *
+ * 
  * Creation Date: 08/08/2012
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
