@@ -44,10 +44,12 @@ import org.rapidbeans.core.util.StringHelper;
 /**
  * The "simple" bean implementation of the RapidBeans framework.
  * 
- * * no extra property instance per attribute + rather memory friendly + easier
- * to debug - not perfectly save against illegal modifications * properties are
- * partially not immutable * setting properties to illegal values is easier than
- * with the strict beans
+ * no extra property instance per attribute
+ * + rather memory friendly
+ * + easier to debug
+ * - not perfectly save against illegal modifications
+ * properties are partially not immutable
+ * setting properties to illegal values is easier than with the strict beans
  * 
  * @author Martin Bluemel
  */
