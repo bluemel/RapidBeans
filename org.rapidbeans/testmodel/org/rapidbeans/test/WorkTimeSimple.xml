@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.WorkTimeSimple">
+	<property name="from"
+		type="date"
+		precision="minute"
+	/>
+	<property name="to"
+		type="date"
+		precision="minute"
+	/>
+	<codegen mode="joint" impl="simple"/>
+</beantype>
