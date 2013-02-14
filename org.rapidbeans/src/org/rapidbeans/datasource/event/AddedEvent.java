@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: AddedEvent.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/26/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -21,28 +21,30 @@ import org.rapidbeans.core.basic.RapidBean;
 
 /**
  * Bean added event.
- *
+ * 
  * @author Martin Bluemel
  */
 public final class AddedEvent {
 
-    /**
-     * the bean added.
-     */
-    private RapidBean bean = null;
+	/**
+	 * the bean added.
+	 */
+	private RapidBean bean = null;
 
-    /**
-     * @return the bean added
-     */
-    public RapidBean getBean() {
-        return this.bean;
-    }
+	/**
+	 * @return the bean added
+	 */
+	public RapidBean getBean() {
+		return this.bean;
+	}
 
-    /**
-     * constructor.
-     * @param addedBean the bean added
-     */
-    public AddedEvent(final RapidBean addedBean) {
-        this.bean = addedBean;
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param addedBean
+	 *            the bean added
+	 */
+	public AddedEvent(final RapidBean addedBean) {
+		this.bean = addedBean;
+	}
 }

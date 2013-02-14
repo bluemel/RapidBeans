@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: EditorPropertyFileSwing.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 12/22/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -45,215 +45,224 @@ import org.rapidbeans.presentation.config.ConfigPropEditorBean;
 
 /**
  * the bean editor GUI.
- *
+ * 
  * @author Martin Bluemel
  */
 public class EditorPropertyFileSwing extends EditorPropertySwing {
 
-    /**
-     * the text field.
-     */
-    private JTextField text = new JTextField();
+	/**
+	 * the text field.
+	 */
+	private JTextField text = new JTextField();
 
-    /**
-     * @return the editor's text widget
-     */
-    public final Object getTextWidget() {
-        return this.text;
-    }
+	/**
+	 * @return the editor's text widget
+	 */
+	public final Object getTextWidget() {
+		return this.text;
+	}
 
-    /**
-     * the text field.
-     */
-    private JButton button = new JButton("...");
+	/**
+	 * the text field.
+	 */
+	private JButton button = new JButton("...");
 
-    /**
-     * the text field.
-     */
-    private JPanel panel = new JPanel();
+	/**
+	 * the text field.
+	 */
+	private JPanel panel = new JPanel();
 
-    /**
-     * the layout manager.
-     */
-    private LayoutManager layout = new GridBagLayout();
+	/**
+	 * the layout manager.
+	 */
+	private LayoutManager layout = new GridBagLayout();
 
-    /**
-     * @return the editor's widget
-     */
-    public Object getWidget() {
-        return this.panel;
-    }
+	/**
+	 * @return the editor's widget
+	 */
+	public Object getWidget() {
+		return this.panel;
+	}
 
-    /**
-     * constructor.
-     *
-     * @param prop the bean property to edit
-     * @param propBak the bean property backup
-     * @param bizBeanEditor the parent bean editor
-     * @param client the client
-     */
-    public EditorPropertyFileSwing(final Application client,
-            final EditorBean bizBeanEditor,
-            final Property prop, final Property propBak) {
-        super(client, bizBeanEditor, prop, propBak);
-        if (!(prop instanceof PropertyFile)) {
-            throw new RapidBeansRuntimeException("invalid propperty for a file editor");
-        }
-        super.initColors();
-        if (prop.getType().isKeyCandidate()) {
-            // if the editor is in new mode
-            if (this.getBeanEditor().getParentBean() == null) {
-                this.text.setEditable(false);
-            }
-        }
+	/**
+	 * constructor.
+	 * 
+	 * @param prop
+	 *            the bean property to edit
+	 * @param propBak
+	 *            the bean property backup
+	 * @param bizBeanEditor
+	 *            the parent bean editor
+	 * @param client
+	 *            the client
+	 */
+	public EditorPropertyFileSwing(final Application client,
+			final EditorBean bizBeanEditor,
+			final Property prop, final Property propBak) {
+		super(client, bizBeanEditor, prop, propBak);
+		if (!(prop instanceof PropertyFile)) {
+			throw new RapidBeansRuntimeException("invalid propperty for a file editor");
+		}
+		super.initColors();
+		if (prop.getType().isKeyCandidate()) {
+			// if the editor is in new mode
+			if (this.getBeanEditor().getParentBean() == null) {
+				this.text.setEditable(false);
+			}
+		}
 
-        this.text.addKeyListener(new KeyListener() {
-            public void keyTyped(final KeyEvent e) {
-            }
-            public void keyPressed(final KeyEvent e) {
-            }
-            public void keyReleased(final KeyEvent e) {
-                fireInputFieldChanged();
-            }
-        });
-        this.button.addActionListener(new ActionListener() {
+		this.text.addKeyListener(new KeyListener() {
+			public void keyTyped(final KeyEvent e) {
+			}
 
-            /**
-             * @param e the event
-             */
-            public void actionPerformed(final ActionEvent e) {
-                chooseFile();
-            }
-        });
-        this.panel.setLayout(this.layout);
-        this.panel.add(this.text, new GridBagConstraints(
-                0, 0, 1, 1, 1.0, 0.0,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(5, 5, 5, 5), 0, 0));
-        this.panel.add(this.button, new GridBagConstraints(
-                1, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL,
-                new Insets(0, 0, 0, 0), 0, 0));
-        this.updateUI();
-        final ConfigPropEditorBean cfg = getConfig();
-        if (prop.getReadonly()
-                || (cfg != null && !cfg.getEnabled())) {
-            this.panel.setEnabled(false);
-        }
-    }
+			public void keyPressed(final KeyEvent e) {
+			}
 
-    /**
-     * update the string presented in the editor.
-     */
-    public void updateUI() {
-        try {
-            this.setUIEventLock();
-            this.text.setText((String) this.getProperty().toString());
-        } finally {
-            this.releaseUIEventLock();
-        }
-    }
+			public void keyReleased(final KeyEvent e) {
+				fireInputFieldChanged();
+			}
+		});
+		this.button.addActionListener(new ActionListener() {
 
-    /**
-     * @return the Text field's content
-     */
-    public Object getInputFieldValue() {
-        String ifValue = this.text.getText();
-        if (ifValue.equals("")) {
-            ifValue = null;
-        }
-        return ifValue;
-    }
+			/**
+			 * @param e
+			 *            the event
+			 */
+			public void actionPerformed(final ActionEvent e) {
+				chooseFile();
+			}
+		});
+		this.panel.setLayout(this.layout);
+		this.panel.add(this.text, new GridBagConstraints(
+				0, 0, 1, 1, 1.0, 0.0,
+				GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL,
+				new Insets(5, 5, 5, 5), 0, 0));
+		this.panel.add(this.button, new GridBagConstraints(
+				1, 0, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL,
+				new Insets(0, 0, 0, 0), 0, 0));
+		this.updateUI();
+		final ConfigPropEditorBean cfg = getConfig();
+		if (prop.getReadonly()
+				|| (cfg != null && !cfg.getEnabled())) {
+			this.panel.setEnabled(false);
+		}
+	}
 
-    /**
-     * @return the input field value as string.
-     */
-    public String getInputFieldValueString() {
-        return this.text.getText();
-    }
+	/**
+	 * update the string presented in the editor.
+	 */
+	public void updateUI() {
+		try {
+			this.setUIEventLock();
+			this.text.setText((String) this.getProperty().toString());
+		} finally {
+			this.releaseUIEventLock();
+		}
+	}
 
-    /**
-     * validate an input field.
-     * @return if the string in the input field is valid
-     * or at least could at least get after appending additional
-     * characters.
-     *
-     * @param ex the validation exception
-     */
-    protected boolean hasPotentiallyValidInputField(
-            final ValidationException ex) {
-        if (ex.getSignature().startsWith("invalid.prop.integer")) {
-            if (ex.getSignature().endsWith("lower")) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * @return the Text field's content
+	 */
+	public Object getInputFieldValue() {
+		String ifValue = this.text.getText();
+		if (ifValue.equals("")) {
+			ifValue = null;
+		}
+		return ifValue;
+	}
 
-    /**
-     * open a file chooser dialog and choose the file.
-     */
-    private void chooseFile() {
-        final JFileChooser chooser = new JFileChooser();
-        final Application client = ApplicationManager.getApplication();
-        File chooserDir = null;
-        if (this.getProperty().getValue() == null) {
-            // take the directory of you latest choice
-            if (client != null) {
-                chooserDir = client.getSettings().getBasic().getFolderfiles();
-            }
-        } else {
-            // take the parent directory of the file chosen lately for this property
-            chooserDir = (File) this.getProperty().getValue();
-            chooserDir = chooserDir.getParentFile();
-        }
+	/**
+	 * @return the input field value as string.
+	 */
+	public String getInputFieldValueString() {
+		return this.text.getText();
+	}
 
-        if (chooserDir != null) {
-            chooser.setCurrentDirectory(chooserDir);
-            if (client != null) {
-                client.getSettings().getBasic().setFolderfiles(chooserDir);
-            }
-        }
+	/**
+	 * validate an input field.
+	 * 
+	 * @return if the string in the input field is valid
+	 *         or at least could at least get after appending additional
+	 *         characters.
+	 * 
+	 * @param ex
+	 *            the validation exception
+	 */
+	protected boolean hasPotentiallyValidInputField(
+			final ValidationException ex) {
+		if (ex.getSignature().startsWith("invalid.prop.integer")) {
+			if (ex.getSignature().endsWith("lower")) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-        final TypePropertyFile type = (TypePropertyFile)
-            this.getProperty().getType();
-        switch (type.getFiletype()) {
-        case directory:
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            break;
-        case file:
-            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            break;
-        default:
-            chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            break;
-        }
+	/**
+	 * open a file chooser dialog and choose the file.
+	 */
+	private void chooseFile() {
+		final JFileChooser chooser = new JFileChooser();
+		final Application client = ApplicationManager.getApplication();
+		File chooserDir = null;
+		if (this.getProperty().getValue() == null) {
+			// take the directory of you latest choice
+			if (client != null) {
+				chooserDir = client.getSettings().getBasic().getFolderfiles();
+			}
+		} else {
+			// take the parent directory of the file chosen lately for this property
+			chooserDir = (File) this.getProperty().getValue();
+			chooserDir = chooserDir.getParentFile();
+		}
 
-        if (type.getSuffix() != null) {
-            ExampleFileFilter filter = new ExampleFileFilter();
-            filter.addExtension(type.getSuffix());
-            filter.setDescription(this.getProperty().getNameGui(this.getLocale()));
-            chooser.setFileFilter(filter);
-        }
+		if (chooserDir != null) {
+			chooser.setCurrentDirectory(chooserDir);
+			if (client != null) {
+				client.getSettings().getBasic().setFolderfiles(chooserDir);
+			}
+		}
 
-        chooser.setDialogTitle(this.getLocale().getStringGui("commongui.text.choose")
-                + ": " + this.getProperty().getNameGui(this.getLocale()));
-        int returnVal = chooser.showDialog((Component) this.getBeanEditor().
-                getDocumentView().getClient().getMainwindow().getWidget(),
-                this.getLocale().getStringGui("commongui.text.choose"));
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-           final File file = chooser.getSelectedFile();
-           if (file != null && file.exists()) {
-               chooserDir = file.getParentFile();
-               chooser.setCurrentDirectory(chooserDir);
-               if (client != null) {
-                   client.getSettings().getBasic().setFolderfiles(chooserDir);
-               }
-           }
-           this.text.setText(file.getAbsolutePath());
-           this.fireInputFieldChanged();
-        }
-    }
+		final TypePropertyFile type = (TypePropertyFile)
+				this.getProperty().getType();
+		switch (type.getFiletype()) {
+		case directory:
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			break;
+		case file:
+			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			break;
+		default:
+			chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+			break;
+		}
+
+		if (type.getSuffix() != null) {
+			ExampleFileFilter filter = new ExampleFileFilter();
+			filter.addExtension(type.getSuffix());
+			filter.setDescription(this.getProperty().getNameGui(this.getLocale()));
+			chooser.setFileFilter(filter);
+		}
+
+		chooser.setDialogTitle(this.getLocale().getStringGui("commongui.text.choose")
+				+ ": " + this.getProperty().getNameGui(this.getLocale()));
+		int returnVal = chooser.showDialog((Component) this.getBeanEditor().
+				getDocumentView().getClient().getMainwindow().getWidget(),
+				this.getLocale().getStringGui("commongui.text.choose"));
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			final File file = chooser.getSelectedFile();
+			if (file != null && file.exists()) {
+				chooserDir = file.getParentFile();
+				chooser.setCurrentDirectory(chooserDir);
+				if (client != null) {
+					client.getSettings().getBasic().setFolderfiles(chooserDir);
+				}
+			}
+			this.text.setText(file.getAbsolutePath());
+			this.fireInputFieldChanged();
+		}
+	}
 }

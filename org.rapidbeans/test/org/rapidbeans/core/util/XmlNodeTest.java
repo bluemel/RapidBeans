@@ -1,8 +1,8 @@
 /*
  * Rapid Beans Framework: BBXmNodeTest.java
- *
+ * 
  * Copyright Martin Bluemel, 2008
- *
+ * 
  * Nov 9, 2005
  */
 package org.rapidbeans.core.util;
@@ -18,7 +18,7 @@ import org.junit.Test;
 
 /**
  * The Unit Tests for XmlNode.
- *
+ * 
  * @author Martin Bluemel
  */
 public final class XmlNodeTest {
@@ -122,7 +122,9 @@ public final class XmlNodeTest {
 
 	/**
 	 * Test method.
-	 * @throws FileNotFoundException if file not found
+	 * 
+	 * @throws FileNotFoundException
+	 *             if file not found
 	 */
 	@Test
 	public void testGetDocumentTopLevelInputStream() throws FileNotFoundException {

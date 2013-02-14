@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: IdGenerator.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 11/21/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -19,15 +19,15 @@ package org.rapidbeans.core.basic;
 
 /**
  * The ID generator interface.
- *
+ * 
  * @author Martin Bluemel
  */
 public interface IdGenerator {
 
-    /**
-     * the generation method.
-     *
-     * @return the Id value
-     */
-    Object generateIdValue();
+	/**
+	 * the generation method.
+	 * 
+	 * @return the Id value
+	 */
+	Object generateIdValue();
 }

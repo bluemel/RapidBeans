@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: SettingsChangedEvent.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 03/10/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -21,30 +21,31 @@ import org.rapidbeans.core.basic.Property;
 
 /**
  * An event that indicates a change of a settings value.
- *
+ * 
  * @author Martin Bluemel
  */
 public class SettingsChangedEvent {
 
-    /**
-     * the signature.
-     */
-    private Property settingsProp = null;
+	/**
+	 * the signature.
+	 */
+	private Property settingsProp = null;
 
-    /**
-     * Constructor.
-     *
-     * @param prop the settingsProperty
-     *             that just has been changed
-     */
-    public SettingsChangedEvent(final Property prop) {
-        this.settingsProp = prop;
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param prop
+	 *            the settingsProperty
+	 *            that just has been changed
+	 */
+	public SettingsChangedEvent(final Property prop) {
+		this.settingsProp = prop;
+	}
 
-    /**
-     * @return the settings property that just has been changed.
-     */
-    public Property getSettingsProp() {
-        return this.settingsProp;
-    }
+	/**
+	 * @return the settings property that just has been changed.
+	 */
+	public Property getSettingsProp() {
+		return this.settingsProp;
+	}
 }

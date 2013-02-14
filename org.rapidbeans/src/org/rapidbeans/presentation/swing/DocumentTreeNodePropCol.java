@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: DocumentTreeNodePropCol.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 03/09/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -22,28 +22,30 @@ import org.rapidbeans.core.basic.PropertyCollection;
 /**
  * A wrapper class for PropertyCollection to avoid side
  * effects during rendering a Swing Tree.
- *
+ * 
  * @author Martin Bluemel
  */
 public class DocumentTreeNodePropCol {
 
-    /**
-     * the original collection property.
-     */
-    private PropertyCollection colProp = null;
+	/**
+	 * the original collection property.
+	 */
+	private PropertyCollection colProp = null;
 
-    /**
-     * @return the original collection propety
-     */
-    public PropertyCollection getColProp() {
-        return this.colProp;
-    }
+	/**
+	 * @return the original collection propety
+	 */
+	public PropertyCollection getColProp() {
+		return this.colProp;
+	}
 
-    /**
-     * constructor.
-     * @param col the Collection Property.
-     */
-    public DocumentTreeNodePropCol(final PropertyCollection col) {
-        this.colProp = col;
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param col
+	 *            the Collection Property.
+	 */
+	public DocumentTreeNodePropCol(final PropertyCollection col) {
+		this.colProp = col;
+	}
 }

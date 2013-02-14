@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: SplashScreenSwing.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 05/04/2009
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -21,18 +21,17 @@ import javax.swing.JDialog;
 
 import org.rapidbeans.presentation.SplashScreen;
 
-
 /**
  * The client application's splash screen.
  */
 public abstract class SplashScreenSwing extends SplashScreen {
 
-    private JDialog screen = null;
+	private JDialog screen = null;
 
-    public Object getWidget() {
-        return this.screen;
-    }
+	public Object getWidget() {
+		return this.screen;
+	}
 
-    public SplashScreenSwing() {
-    }
+	public SplashScreenSwing() {
+	}
 }

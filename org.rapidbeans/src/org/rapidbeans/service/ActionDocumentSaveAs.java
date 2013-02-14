@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: ActionDocumentSaveAs.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 01/01/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -21,22 +21,22 @@ import org.rapidbeans.presentation.DocumentController;
 
 /**
  * Action to drive saving a document into a different file.
- *
+ * 
  * @author Martin Bluemel
  */
 public class ActionDocumentSaveAs extends Action {
 
-    /**
-     * default constructor.
-     */
-    public ActionDocumentSaveAs() {
-    	super(ActionDocumentSaveAs.class.getName());
-    }
+	/**
+	 * default constructor.
+	 */
+	public ActionDocumentSaveAs() {
+		super(ActionDocumentSaveAs.class.getName());
+	}
 
-    /**
-     * save text document to a new file.
-     */
-    public void execute() {
-        DocumentController.saveAs();
-    }
+	/**
+	 * save text document to a new file.
+	 */
+	public void execute() {
+		DocumentController.saveAs();
+	}
 }

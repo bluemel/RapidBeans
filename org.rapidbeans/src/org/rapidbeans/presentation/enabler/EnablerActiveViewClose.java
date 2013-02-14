@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: EnablerActiveViewClose.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 08/11/2009
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -17,10 +17,9 @@
 
 package org.rapidbeans.presentation.enabler;
 
-
 /**
  * enables / disable the close document / view menu item.
- *
+ * 
  * @author Martin Bluemel
  */
 public class EnablerActiveViewClose extends Enabler {
@@ -29,15 +28,15 @@ public class EnablerActiveViewClose extends Enabler {
 		super(EnablerActiveViewClose.class.getName());
 	}
 
-    /**
-     * the excecute method of every Action.
-     *
-     * @return if the menu is enable or not.
-     */
-    public boolean getEnabled() {
-        if (this.getClient().getActiveView() == null) {
-            return false;
-        }
-        return true;
-    }
+	/**
+	 * the excecute method of every Action.
+	 * 
+	 * @return if the menu is enable or not.
+	 */
+	public boolean getEnabled() {
+		if (this.getClient().getActiveView() == null) {
+			return false;
+		}
+		return true;
+	}
 }

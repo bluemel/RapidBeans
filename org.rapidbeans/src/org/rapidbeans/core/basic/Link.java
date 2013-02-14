@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: Link.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 02/02/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -20,12 +20,12 @@ package org.rapidbeans.core.basic;
 /**
  * A Link is the super type for either a bean's id string (frozen link)
  * or a concrete bean (reference).
- *
+ * 
  * @author Martin Bluemel
  */
 public interface Link {
-    /**
-     * @return access the link's ID string
-     */
-    String getIdString();
+	/**
+	 * @return access the link's ID string
+	 */
+	String getIdString();
 }

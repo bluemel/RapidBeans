@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: TrimMode.java
- *
+ * 
  * Copyright (C) 2010 Martin Bluemel
- *
+ * 
  * Creation Date: 06/14/2010
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -17,14 +17,13 @@
 
 package org.rapidbeans.core.util;
 
-
 /**
  * Operating systems supported.
- *
+ * 
  * @author Martin Bluemel
  */
 public enum TrimMode {
-    leading,
-    trailing,
-    both
+	leading,
+	trailing,
+	both
 }

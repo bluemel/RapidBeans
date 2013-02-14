@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: SettingsChangedListener.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 03/10/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -19,15 +19,16 @@ package org.rapidbeans.presentation.event;
 
 /**
  * The listener interface for settings changed events.
- *
+ * 
  * @author Martin Bluemel
  */
 public interface SettingsChangedListener {
 
-    /**
-     * Called whenever a setting has been changed.
-     *
-     * @param e the change event
-     */
-    void settingsChanged(SettingsChangedEvent e);
+	/**
+	 * Called whenever a setting has been changed.
+	 * 
+	 * @param e
+	 *            the change event
+	 */
+	void settingsChanged(SettingsChangedEvent e);
 }

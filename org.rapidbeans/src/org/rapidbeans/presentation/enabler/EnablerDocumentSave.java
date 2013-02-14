@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: EnablerDocumentSave.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 12/27/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -21,7 +21,7 @@ import org.rapidbeans.datasource.Document;
 
 /**
  * enables / disable the save document menu item.
- *
+ * 
  * @author Martin Bluemel
  */
 public class EnablerDocumentSave extends Enabler {
@@ -30,19 +30,19 @@ public class EnablerDocumentSave extends Enabler {
 		super(EnablerDocumentSave.class.getName());
 	}
 
-    /**
-     * the execute method of every Action.
-     *
-     * @return if the menu is enable or not.
-     */
-    public boolean getEnabled() {
-        Document doc = this.getClient().getActiveDocument();
-        if (doc == null) {
-            return false;
-        } else if (doc.getUrl() == null) {
-           return false;
-        } else {
-           return doc.getChanged();
-        }
-    }
+	/**
+	 * the execute method of every Action.
+	 * 
+	 * @return if the menu is enable or not.
+	 */
+	public boolean getEnabled() {
+		Document doc = this.getClient().getActiveDocument();
+		if (doc == null) {
+			return false;
+		} else if (doc.getUrl() == null) {
+			return false;
+		} else {
+			return doc.getChanged();
+		}
+	}
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 /**
  * @author Bluemel1.Martin
- *
+ * 
  */
 public class CharsetsAvailableTest {
 

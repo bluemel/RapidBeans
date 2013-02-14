@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: SplashScreen.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 05/04/2009
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -17,14 +17,13 @@
 
 package org.rapidbeans.presentation;
 
-
 /**
  * The client application's splash screen usually pops up
  * during start up (initialization).
  */
 public abstract class SplashScreen {
 
-//    private int timeMinMillis = -1;
+	//    private int timeMinMillis = -1;
 
-    public abstract Object getWidget();
+	public abstract Object getWidget();
 }

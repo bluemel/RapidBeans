@@ -1,8 +1,8 @@
 /*
  * Rapid Beans Application RapidClubAdmin: ClosingPeriodPropFrom.java
- *
+ * 
  * Copyright Martin Bluemel, 2006
- *
+ * 
  * 19.10.2006
  */
 package org.rapidbeans.test;
@@ -15,51 +15,53 @@ import org.rapidbeans.core.exception.PropNotInitializedException;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeProperty;
 
-
 /**
  * extension from date property ClosingPeriod.from.
  */
 public class ClosingPeriodPropFrom extends PropertyDate {
 
-    /**
-     * constructor.
-     * @param type the property type
-     * @param parentBean the parent bean
-     */
-    public ClosingPeriodPropFrom(final TypeProperty type, final RapidBean parentBean) {
-        super(type, parentBean);
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param type
+	 *            the property type
+	 * @param parentBean
+	 *            the parent bean
+	 */
+	public ClosingPeriodPropFrom(final TypeProperty type, final RapidBean parentBean) {
+		super(type, parentBean);
+	}
 
-    /**
-     * the special part of the validation.<br>
-     * implicitly also converts the given object.
-     *
-     * @param newValue
-     *            the value object to validate
-     *
-     * @return the converted value which is the internal representation or if a
-     *         primitive type the corresponding value object
-     */
-    public Date validate(final Object newValue) {
-        final Date date = (Date) super.validate(newValue);
-        Date toTime = null;
-        try {
-            toTime = ((ClosingPeriod) this.getBean()).getTo();
-        } catch (PropNotInitializedException e) {
-            toTime = null;
-        }
-        if (toTime != null) {
-            if (date.getTime() > toTime.getTime()) {
-                throw new ValidationException("invalid.prop.closingperiod.from.greater.to",
-                		this,
-                        "invalid value \"" + date.toString()
-                        + "\" for property \"from\""
-                        + " greater than property \"to\" = \""
-                        + toTime.toString() + "\"");
-            }
-        }
-        return date;
-    }
+	/**
+	 * the special part of the validation.<br>
+	 * implicitly also converts the given object.
+	 * 
+	 * @param newValue
+	 *            the value object to validate
+	 * 
+	 * @return the converted value which is the internal representation or if a
+	 *         primitive type the corresponding value object
+	 */
+	public Date validate(final Object newValue) {
+		final Date date = (Date) super.validate(newValue);
+		Date toTime = null;
+		try {
+			toTime = ((ClosingPeriod) this.getBean()).getTo();
+		} catch (PropNotInitializedException e) {
+			toTime = null;
+		}
+		if (toTime != null) {
+			if (date.getTime() > toTime.getTime()) {
+				throw new ValidationException("invalid.prop.closingperiod.from.greater.to",
+						this,
+						"invalid value \"" + date.toString()
+								+ "\" for property \"from\""
+								+ " greater than property \"to\" = \""
+								+ toTime.toString() + "\"");
+			}
+		}
+		return date;
+	}
 }
 
 //        // BEGIN manual code section

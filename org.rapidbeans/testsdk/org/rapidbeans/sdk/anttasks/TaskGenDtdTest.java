@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: TaskGenDtdTest.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 05/11/2010
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -16,7 +16,6 @@
  */
 
 package org.rapidbeans.sdk.anttasks;
-
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,30 +31,30 @@ import org.rapidbeans.core.util.FileHelper;
 
 /**
  * Unit TestCase (Unit Tests).
- *
+ * 
  * @author Martin Bluemel
  */
 public final class TaskGenDtdTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
+	@Before
+	public void setUp() throws Exception {
+	}
 
-    @After
-    public void tearDown() throws Exception {
-    }
+	@After
+	public void tearDown() throws Exception {
+	}
 
-    @Test
-    public void testGenerateDTD() throws IOException {
-        TypeRapidBean roottype = TypeRapidBean.forName(
-                "org.rapidbeans.ant.test.Project");
-        File outfile = new File("testdata/sdk/out.dtd");
-        final FileWriter writer = new FileWriter(outfile);
-        TaskGenDtd.generateDTD(roottype, writer, null);
-        writer.close();
-        Assert.assertTrue(FileHelper.filesEqual(
-                new File("testdata/sdk/outref.dtd"), outfile,
-                true, true));
-        outfile.delete();
-    }
+	@Test
+	public void testGenerateDTD() throws IOException {
+		TypeRapidBean roottype = TypeRapidBean.forName(
+				"org.rapidbeans.ant.test.Project");
+		File outfile = new File("testdata/sdk/out.dtd");
+		final FileWriter writer = new FileWriter(outfile);
+		TaskGenDtd.generateDTD(roottype, writer, null);
+		writer.close();
+		Assert.assertTrue(FileHelper.filesEqual(
+				new File("testdata/sdk/outref.dtd"), outfile,
+				true, true));
+		outfile.delete();
+	}
 }

@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: RapidObject.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 11/22/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -22,13 +22,13 @@ import org.rapidbeans.core.type.TypeRapidEnum;
 /**
  * Base class for org.rapidbeans objects with special type or meta info:
  * enums, quantities, beans.
- *
+ * 
  * @author Martin Bluemel
  */
 public abstract class RapidObject implements Comparable<RapidObject> {
 
-    /**
-     * @return the type instance for this RapidEnum element.
-     */
-    public abstract TypeRapidEnum getType();
+	/**
+	 * @return the type instance for this RapidEnum element.
+	 */
+	public abstract TypeRapidEnum getType();
 }

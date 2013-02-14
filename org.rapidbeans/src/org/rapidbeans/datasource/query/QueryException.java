@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: QueryException.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 02/09/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -24,44 +24,48 @@ import org.rapidbeans.core.exception.RapidBeansRuntimeException;
  */
 public class QueryException extends RapidBeansRuntimeException {
 
-    /**
-     * serial version ID.
-     */
-    private static final long serialVersionUID = 1L;
+	/**
+	 * serial version ID.
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor for BBExPropValueException.
-     */
-    public QueryException() {
-        super();
-    }
+	/**
+	 * Constructor for BBExPropValueException.
+	 */
+	public QueryException() {
+		super();
+	}
 
-    /**
-     * Constructor for BBExPropValueException.
-     *
-     * @param arg0 message
-     */
-    public QueryException(final String arg0) {
-        super(arg0);
-    }
+	/**
+	 * Constructor for BBExPropValueException.
+	 * 
+	 * @param arg0
+	 *            message
+	 */
+	public QueryException(final String arg0) {
+		super(arg0);
+	}
 
-    /**
-     * Constructor for BBExPropValueException.
-     *
-     * @param arg0 message
-     * @param arg1 throwable to nest
-     */
-    public QueryException(final String arg0, final Throwable arg1) {
-        super(arg0, arg1);
-    }
+	/**
+	 * Constructor for BBExPropValueException.
+	 * 
+	 * @param arg0
+	 *            message
+	 * @param arg1
+	 *            throwable to nest
+	 */
+	public QueryException(final String arg0, final Throwable arg1) {
+		super(arg0, arg1);
+	}
 
-    /**
-     * Constructor for BBExPropValueException.
-     *
-     * @param arg0 throwable to nest
-     */
-    public QueryException(final Throwable arg0) {
-        super(arg0);
-    }
+	/**
+	 * Constructor for BBExPropValueException.
+	 * 
+	 * @param arg0
+	 *            throwable to nest
+	 */
+	public QueryException(final Throwable arg0) {
+		super(arg0);
+	}
 
 }

@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: SettingsBasicGuiPropTreeViewShowBeanLinks.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 01/14/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -24,29 +24,32 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 import org.rapidbeans.presentation.event.SettingsChangedEvent;
 
-
 /**
  * extension from date property BillingPeriod.to.
  */
 public class SettingsBasicGuiPropTreeViewShowBeanLinks extends PropertyBoolean {
 
-    /**
-     * constructor.
-     * @param type the property type
-     * @param parentBean the parent bean
-     */
-    public SettingsBasicGuiPropTreeViewShowBeanLinks(final TypeProperty type, final RapidBean parentBean) {
-        super(type, parentBean);
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param type
+	 *            the property type
+	 * @param parentBean
+	 *            the parent bean
+	 */
+	public SettingsBasicGuiPropTreeViewShowBeanLinks(final TypeProperty type, final RapidBean parentBean) {
+		super(type, parentBean);
+	}
 
-    /**
-     * @param newValue if links should be shown or not
-     */
-    public void setValue(final Object newValue) {
-        super.setValue(newValue);
-        Application client = ApplicationManager.getApplication();
-        if (client != null) {
-            client.fireSettingsChanged(new SettingsChangedEvent(this));
-        }
-    }
+	/**
+	 * @param newValue
+	 *            if links should be shown or not
+	 */
+	public void setValue(final Object newValue) {
+		super.setValue(newValue);
+		Application client = ApplicationManager.getApplication();
+		if (client != null) {
+			client.fireSettingsChanged(new SettingsChangedEvent(this));
+		}
+	}
 }

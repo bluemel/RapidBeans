@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: EditorBeanListener.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 02/18/2006
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -17,16 +17,16 @@
 
 package org.rapidbeans.presentation;
 
-
 /**
  * listener interface for bean editors.
- *
+ * 
  * @author Martin Bluemel
  */
 public interface EditorBeanListener {
 
-    /**
-     * @param editor the editor closed.
-     */
-    void editorClosed(EditorBean editor);
+	/**
+	 * @param editor
+	 *            the editor closed.
+	 */
+	void editorClosed(EditorBean editor);
 }

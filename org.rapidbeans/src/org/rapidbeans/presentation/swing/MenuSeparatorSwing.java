@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework: MenuSeparatorSwing.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 08/11/2009
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -23,28 +23,31 @@ import org.rapidbeans.presentation.config.ConfigMenuSeparator;
 
 /**
  * A MenuSeparaotr encapsulating a Swing JMenuItem.
- *
+ * 
  * @author Martin Bluemel
  */
 public class MenuSeparatorSwing extends MenuSeparator {
 
-    /**
-     * @return the Java Swing widget
-     */
-    public final Object getWidget() {
-        return null;
-    }
+	/**
+	 * @return the Java Swing widget
+	 */
+	public final Object getWidget() {
+		return null;
+	}
 
-    /**
-     * constructor.
-     *
-     * @param client the client
-     * @param menuItemConfig the menu item configuration
-     * @param resourcePath the resource path
-     */
-    public MenuSeparatorSwing(final ConfigMenuSeparator config,
-            final Application client,
-            final String resourcePath) {
-        super(client, config, resourcePath);
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param client
+	 *            the client
+	 * @param menuItemConfig
+	 *            the menu item configuration
+	 * @param resourcePath
+	 *            the resource path
+	 */
+	public MenuSeparatorSwing(final ConfigMenuSeparator config,
+			final Application client,
+			final String resourcePath) {
+		super(client, config, resourcePath);
+	}
 }
