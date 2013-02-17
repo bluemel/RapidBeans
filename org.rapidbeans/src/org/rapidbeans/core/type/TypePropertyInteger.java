@@ -34,6 +34,11 @@ import org.rapidbeans.core.util.XmlNode;
  */
 public final class TypePropertyInteger extends TypePropertyNumber {
 
+	@Override
+	public Class<?> getValuetype() {
+		return Number.class;
+	}
+
 	/**
 	 * Bit size of the current integer implementation.
 	 * Default: byte04 is the size of Java Integer (int).

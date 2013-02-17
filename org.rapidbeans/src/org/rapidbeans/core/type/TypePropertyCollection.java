@@ -25,6 +25,7 @@ import java.util.TreeSet;
 
 import org.rapidbeans.core.basic.AssociationendFlavor;
 import org.rapidbeans.core.basic.SortingType;
+import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.util.ClassHelper;
 import org.rapidbeans.core.util.StringHelper;
@@ -38,6 +39,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public class TypePropertyCollection extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return ReadonlyListCollection.class;
+	}
 
 	/**
 	 * the bean target type for the collection property.

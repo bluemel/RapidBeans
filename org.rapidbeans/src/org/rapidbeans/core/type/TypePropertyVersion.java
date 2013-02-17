@@ -17,6 +17,7 @@
 
 package org.rapidbeans.core.type;
 
+import org.rapidbeans.core.util.Version;
 import org.rapidbeans.core.util.XmlNode;
 
 /**
@@ -25,6 +26,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public class TypePropertyVersion extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return Version.class;
+	}
 
 	/**
 	 * Constructor.

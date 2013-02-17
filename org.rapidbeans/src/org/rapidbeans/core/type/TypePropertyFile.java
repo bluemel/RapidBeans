@@ -17,6 +17,8 @@
 
 package org.rapidbeans.core.type;
 
+import java.io.File;
+
 import org.rapidbeans.core.util.XmlNode;
 
 /**
@@ -25,6 +27,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public class TypePropertyFile extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return File.class;
+	}
 
 	/**
 	 * marks if the existence of the file is required.

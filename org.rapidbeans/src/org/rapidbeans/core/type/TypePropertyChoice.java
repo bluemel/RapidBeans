@@ -17,6 +17,7 @@
 
 package org.rapidbeans.core.type;
 
+import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.util.XmlNode;
 
@@ -26,6 +27,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public final class TypePropertyChoice extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return ReadonlyListCollection.class;
+	}
 
 	/**
 	 * the EasyBiz RapidEnum type for the choice property.

@@ -17,6 +17,8 @@
 
 package org.rapidbeans.core.basic;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.util.Calendar;
@@ -83,13 +85,31 @@ public class PropertyDate extends Property {
 	 * @return the value of this Property as java.util.Date
 	 */
 	public Date getValue() {
-		if (this.value == null) {
-			return null;
+		Date date = null;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			Method getter;
+			try {
+				getter = getBean().getClass().getMethod("get" + StringHelper.upperFirstCharacter(getName()));
+				date = (Date) getter.invoke(getBean());
+			} catch (SecurityException e) {
+				throw new RapidBeansRuntimeException(e);
+			} catch (NoSuchMethodException e) {
+				throw new RapidBeansRuntimeException(e);
+			} catch (IllegalArgumentException e) {
+				throw new RapidBeansRuntimeException(e);
+			} catch (IllegalAccessException e) {
+				throw new RapidBeansRuntimeException(e);
+			} catch (InvocationTargetException e) {
+				throw new RapidBeansRuntimeException(e);
+			}
 		} else {
-			// clone the date value object in order
-			// to compensate the Java design error of a mutable Date object 
-			return new Date(this.value.getTime());
+			if (this.value != null) {
+				// clone the date value object in order
+				// to compensate the Java design error of a mutable Date object 
+				date = new Date(this.value.getTime());
+			}
 		}
+		return date;
 	}
 
 	/**
@@ -99,10 +119,11 @@ public class PropertyDate extends Property {
 	 *         time value of a java.util.Date
 	 */
 	public long getValueTime() {
-		if (this.value == null) {
+		final Date date = getValue();
+		if (date == null) {
 			throw new PropValueNullException("value for property not defined");
 		}
-		return this.value.getTime();
+		return date.getTime();
 	}
 
 	/**
@@ -116,10 +137,11 @@ public class PropertyDate extends Property {
 	 * @return the String representation of this Property's value.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final Date date = this.getValue();
+		if (date == null) {
 			return null;
 		} else {
-			return format(this.value, ((TypePropertyDate) this.getType()).getPrecision());
+			return format(date, ((TypePropertyDate) this.getType()).getPrecision());
 		}
 	}
 
@@ -132,11 +154,34 @@ public class PropertyDate extends Property {
 	 *            the new value to set
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-			public void setValue(final Object newValue) {
-				value = (Date) newValue;
-			}
-		});
+		if (getBean() instanceof RapidBeanImplSimple) {
+			super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
+				public void setValue(final Object newValue) {
+					Method innerSetter;
+					try {
+						innerSetter = getBean().getClass().getMethod(
+								"_set" + StringHelper.upperFirstCharacter(getName()), Date.class);
+						innerSetter.invoke(getBean(), newValue);
+					} catch (SecurityException e) {
+						throw new RapidBeansRuntimeException(e);
+					} catch (NoSuchMethodException e) {
+						throw new RapidBeansRuntimeException(e);
+					} catch (IllegalArgumentException e) {
+						throw new RapidBeansRuntimeException(e);
+					} catch (IllegalAccessException e) {
+						throw new RapidBeansRuntimeException(e);
+					} catch (InvocationTargetException e) {
+						throw new RapidBeansRuntimeException(e);
+					}
+				}
+			});
+		} else {
+			super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+				public void setValue(final Object newValue) {
+					value = (Date) newValue;
+				}
+			});
+		}
 	}
 
 	/**

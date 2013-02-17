@@ -73,9 +73,11 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	private Date to;
 
 	/**
-	 * property references initialization.
+	 * property default values initialization.
 	 */
 	public void initProperties() {
+		this.from = (Date) getType().getPropertyType("from").getDefaultValue();
+		this.to = (Date) getType().getPropertyType("to").getDefaultValue();
 	}
 
 	/**
@@ -133,7 +135,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 */
 	public java.util.Date getFrom() {
 		if (this.from == null) {
-			return from;
+			return null;
 		} else {
 			return new Date(this.from.getTime());
 		}
@@ -145,9 +147,18 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 * @param argValue
 	 *            value of Property 'from' to set
 	 */
-	public void setFrom(final java.util.Date argValue) {
-		Property.createInstance(getType().getPropertyType("from"), this).validate(argValue);
-		this.from = argValue;
+	public void setFrom(final Date from) {
+		Property.createInstance(getType().getPropertyType("from"), this).setValue(from);
+	}
+
+	/**
+	 * inner setter for Property 'from'.
+	 * 
+	 * @param argValue
+	 *            value of Property 'from' to set
+	 */
+	public void _setFrom(final Date from) {
+		this.from = from;
 	}
 
 	/**
@@ -155,7 +166,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 */
 	public java.util.Date getTo() {
 		if (this.to == null) {
-			return to;
+			return null;
 		} else {
 			return new Date(this.to.getTime());
 		}
@@ -164,11 +175,20 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	/**
 	 * setter for Property 'to'.
 	 * 
+	 * @param to
+	 *            value of Property 'to' to set
+	 */
+	public void setTo(final Date to) {
+		Property.createInstance(getType().getPropertyType("to"), this).setValue(to);
+	}
+
+	/**
+	 * inner setter for Property 'to'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'to' to set
 	 */
-	public void setTo(final java.util.Date argValue) {
-		Property.createInstance(getType().getPropertyType("to"), this).validate(argValue);
-		this.to = argValue;
+	public void _setTo(final java.util.Date to) {
+		this.to = to;
 	}
 }

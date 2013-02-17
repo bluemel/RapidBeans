@@ -27,6 +27,11 @@ import org.rapidbeans.core.util.XmlNode;
  */
 public final class TypePropertyBoolean extends TypeProperty {
 
+	@Override
+	public Class<?> getValuetype() {
+		return Boolean.class;
+	}
+
 	/**
 	 * Constructor for TypePropertyInteger.
 	 * 

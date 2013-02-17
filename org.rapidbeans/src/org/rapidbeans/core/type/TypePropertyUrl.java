@@ -17,6 +17,8 @@
 
 package org.rapidbeans.core.type;
 
+import java.net.URL;
+
 import org.rapidbeans.core.util.XmlNode;
 
 /**
@@ -25,6 +27,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public class TypePropertyUrl extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return URL.class;
+	}
 
 	/**
 	 * Constructor.

@@ -17,6 +17,8 @@
 
 package org.rapidbeans.core.type;
 
+import java.util.Date;
+
 import org.rapidbeans.core.basic.PropertyDate;
 import org.rapidbeans.core.common.PrecisionDate;
 import org.rapidbeans.core.util.XmlNode;
@@ -27,6 +29,11 @@ import org.rapidbeans.core.util.XmlNode;
  * @author Martin Bluemel
  */
 public class TypePropertyDate extends TypeProperty {
+
+	@Override
+	public Class<?> getValuetype() {
+		return Date.class;
+	}
 
 	/**
 	 * defines the precision of the Date.

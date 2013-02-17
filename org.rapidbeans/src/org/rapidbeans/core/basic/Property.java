@@ -126,14 +126,16 @@ public abstract class Property
 	protected Property(final TypeProperty propType, final RapidBean parentBean) {
 		this.bean = parentBean;
 		this.type = propType;
-		try {
-			ThreadLocalValidationSettings.mandatoryOff();
-			ThreadLocalValidationSettings.readonlyOff();
-			if (!isDependent()) {
-				setValue(propType.getDefaultValue());
+		if (!(this.bean instanceof RapidBeanImplSimple)) {
+			try {
+				ThreadLocalValidationSettings.mandatoryOff();
+				ThreadLocalValidationSettings.readonlyOff();
+				if (!isDependent()) {
+					setValue(propType.getDefaultValue());
+				}
+			} finally {
+				ThreadLocalValidationSettings.remove();
 			}
-		} finally {
-			ThreadLocalValidationSettings.remove();
 		}
 	}
 

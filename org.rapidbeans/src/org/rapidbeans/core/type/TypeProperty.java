@@ -44,6 +44,11 @@ public abstract class TypeProperty {
 	public abstract PropertyType getProptype();
 
 	/**
+	 * @return the property's value type
+	 */
+	public abstract Class<?> getValuetype();
+
+	/**
 	 * the property's name.
 	 */
 	private String propName = null;

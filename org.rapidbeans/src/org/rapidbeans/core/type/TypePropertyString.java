@@ -32,6 +32,11 @@ import org.rapidbeans.core.util.XmlNode;
  */
 public class TypePropertyString extends TypeProperty {
 
+	@Override
+	public Class<?> getValuetype() {
+		return String.class;
+	}
+
 	/**
 	 * constant to code an unlimeted string length.
 	 */

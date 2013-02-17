@@ -30,6 +30,11 @@ import org.rapidbeans.core.util.XmlNode;
  */
 public class TypePropertyQuantity extends TypeProperty {
 
+	@Override
+	public Class<?> getValuetype() {
+		return RapidQuantity.class;
+	}
+
 	/**
 	 * defines the precision of the Date.
 	 */

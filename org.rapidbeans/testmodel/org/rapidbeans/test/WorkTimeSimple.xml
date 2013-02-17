@@ -4,6 +4,7 @@
 	<property name="from"
 		type="date"
 		precision="minute"
+		default="196410140001"
 	/>
 	<property name="to"
 		type="date"

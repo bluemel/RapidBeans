@@ -1,5 +1,6 @@
 package org.rapidbeans.core.basic;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -37,57 +38,50 @@ public class WorkTimeSimpleTest {
 	/**
 	 * Constructor test:
 	 * the constructor initializes all date attribute to empty (null).
-	 * 
-	 * @throws NoSuchFieldException
-	 * @throws SecurityException
 	 */
 	@Test
-	public void testWorkTime() throws SecurityException, NoSuchFieldException {
+	public void testWorkTime() throws SecurityException, NoSuchFieldException, ParseException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
-		Assert.assertEquals(null, worktime.getFrom());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 00:01:00"), worktime.getFrom());
 		Assert.assertEquals(null, worktime.getTo());
 		Assert.assertEquals(null, worktime.getTime());
 	}
 
 	/**
 	 * setting from should always adapt day.
-	 * 
-	 * @throws ParseException
-	 *             in case of date parsing error
 	 */
 	@Test
-	public void testSetFrom() throws ParseException {
+	public void testSetFrom() throws ParseException, SecurityException, NoSuchMethodException,
+			IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
 		worktime.setFrom(DFTIME.parse("14.10.1964 04:30:00"));
 		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getFrom());
-		// TODO Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getPropValue("from"));
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getPropValue("from"));
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getProperty("from").getValue());
 	}
 
 	/**
 	 * setting "to" should recompute time if "from" is set before.
-	 * 
-	 * @throws ParseException
-	 *             in case of date parsing error
 	 */
 	@Test
 	public void testSetToWithFromSetBefore() throws ParseException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
 		Assert.assertNull(worktime.getTime());
 		worktime.setFrom(DFTIME.parse("14.10.1964 04:30:00"));
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getFrom());
 		Assert.assertNull(worktime.getTime());
 		worktime.setTo(DFTIME.parse("14.10.1964 05:31:00"));
+		Assert.assertEquals(DFTIME.parse("14.10.1964 05:31:00"), worktime.getTo());
 		Assert.assertEquals(61, ((Time) worktime.getTime()).getMagnitudeLong());
 	}
 
 	/**
 	 * setting "from" should also recompute time if "to" is set before.
-	 * 
-	 * @throws ParseException
-	 *             in case of date parsing error
 	 */
 	@Test
 	public void testSetFromWithToSetBefore() throws ParseException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
+		worktime.setPropValue("from", null);
 		Assert.assertNull(worktime.getTime());
 		worktime.setTo(DFTIME.parse("14.10.1964 05:31:00"));
 		Assert.assertNull(worktime.getTime());
