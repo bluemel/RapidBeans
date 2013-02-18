@@ -55,7 +55,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 		if (this.from == null || this.to == null) {
 			return null;
 		}
-		long diff = this.to.getTime() - this.from.getTime();
+		long diff = getTo().getTime() - getFrom().getTime();
 		return new Time(new BigDecimal((int) (diff / 60000)), UnitTime.min);
 	}
 
