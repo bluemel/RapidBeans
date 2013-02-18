@@ -1,20 +1,20 @@
 /*
- * Partially generated code file: WorkTime.java
+ * Partially generated code file: WorkTimeSimple.java
  * !!!Do only edit manually in marked sections!!!
  * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
  * 
  * generated Java implementation of Rapid Beans bean type
- * org.rapidbeans.test.WorkTime
+ * org.rapidbeans.test.WorkTimeSimple
  * 
- * model: testmodel/org/rapidbeans/test/WorkTime.xml
+ * model: testmodel/org/rapidbeans/test/WorkTimeSimple.xml
  * template: codegentemplates/genBean.xsl
  */
 
 package org.rapidbeans.test;
 
 // BEGIN manual code section
-// WorkTime.import
+// WorkTimeSimple.import
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Date;
@@ -29,14 +29,13 @@ import org.rapidbeans.domain.math.UnitTime;
 // END manual code section
 
 /**
- * Rapid Bean class: WorkTime.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: WorkTime. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class WorkTimeSimple extends RapidBeanImplSimple {
 
 	// BEGIN manual code section
-	// WorkTime.classBody
+	// WorkTimeSimple.classBody
 	/**
 	 * Date formatter.
 	 */
@@ -86,7 +85,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	public WorkTimeSimple() {
 		super();
 		// BEGIN manual code section
-		// WorkTime.WorkTime()
+		// WorkTimeSimple.WorkTimeSimple()
 		// END manual code section
 
 	}
@@ -100,7 +99,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	public WorkTimeSimple(final String s) {
 		super(s);
 		// BEGIN manual code section
-		// WorkTime.WorkTime(String)
+		// WorkTimeSimple.WorkTimeSimple(String)
 		// END manual code section
 
 	}
@@ -114,14 +113,15 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	public WorkTimeSimple(final String[] sa) {
 		super(sa);
 		// BEGIN manual code section
-		// WorkTime.WorkTime(String[])
+		// WorkTimeSimple.WorkTimeSimple(String[])
 		// END manual code section
 	}
 
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(WorkTimeSimple.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(WorkTimeSimple.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -148,7 +148,8 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 *            value of Property 'from' to set
 	 */
 	public void setFrom(final Date from) {
-		Property.createInstance(getType().getPropertyType("from"), this).setValue(from);
+		Property.createInstance(getType().getPropertyType("from"), this)
+				.setValue(from);
 	}
 
 	/**
@@ -179,7 +180,8 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 *            value of Property 'to' to set
 	 */
 	public void setTo(final Date to) {
-		Property.createInstance(getType().getPropertyType("to"), this).setValue(to);
+		Property.createInstance(getType().getPropertyType("to"), this)
+				.setValue(to);
 	}
 
 	/**
