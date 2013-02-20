@@ -730,10 +730,8 @@
 						<xsl:value-of select="$indent3"/><xsl:text>if (enumList == null || enumList.size() == 0) {</xsl:text><xsl:value-of select="$newline"/>
 						<xsl:value-of select="$indent4"/><xsl:text>return null;</xsl:text><xsl:value-of select="$newline"/>
 						<xsl:value-of select="$indent3"/><xsl:text>} else {</xsl:text><xsl:value-of select="$newline"/>
-						<xsl:value-of select="$indent4"/><xsl:text>return (</xsl:text>
-						<xsl:value-of select="@enum"/>
-						<xsl:text>) enumList.get(0);
-						<xsl:value-of select="$indent3"/>}</xsl:text><xsl:value-of select="$newline"/>
+						<xsl:value-of select="$indent4"/><xsl:text>return (</xsl:text><xsl:value-of select="@enum"/><xsl:text>) enumList.get(0);</xsl:text><xsl:value-of select="$newline"/>
+						<xsl:value-of select="$indent3"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
 					</xsl:otherwise>
 				</xsl:choose>
 

@@ -255,19 +255,13 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 	<xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> * enum column </xsl:text><xsl:value-of select="@name"/><xsl:text>.</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
-	<xsl:value-of select="$indent1"/><xsl:text>private </xsl:text>
-	<xsl:value-of select="@type"/>
-	<xsl:text> </xsl:text>
-	<xsl:value-of select="@name"/>
-	<xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
+	<xsl:value-of select="$indent1"/><xsl:text>private </xsl:text><xsl:value-of select="@type"/><xsl:text> </xsl:text><xsl:value-of select="@name"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 
-	<xsl:value-of select="$indent1"/><xsl:text>/**<xsl:value-of select="$newline"/></xsl:text>
+	<xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> * get enum column </xsl:text><xsl:value-of select="@name"/><xsl:text>.</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> * @return enum column </xsl:text><xsl:value-of select="@name"/><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
-	<xsl:value-of select="$indent1"/><xsl:text>public </xsl:text>
-	<xsl:value-of select="@type"/>
-	<xsl:text> get</xsl:text>
+	<xsl:value-of select="$indent1"/><xsl:text>public </xsl:text><xsl:value-of select="@type"/><xsl:text> get</xsl:text>
 	<xsl:value-of select="translate(substring(@name,1, 1), 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
 	<xsl:value-of select="substring(@name,2, string-length(@name) - 1)"/>
 	<xsl:text>() {</xsl:text><xsl:value-of select="$newline"/>

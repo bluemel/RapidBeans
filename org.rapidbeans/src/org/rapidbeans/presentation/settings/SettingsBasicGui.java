@@ -159,7 +159,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.OpenWindowBehaviour) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("docViewOpenWindowBehaviour");
 		}
@@ -188,7 +188,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("createNewBeansEditorApplyBehaviour");
 		}

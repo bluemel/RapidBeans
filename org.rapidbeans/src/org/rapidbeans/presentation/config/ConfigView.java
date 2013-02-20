@@ -145,7 +145,7 @@ public class ConfigView extends RapidBeanImplStrict {
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.config.ConfigPropPersistencestrategy) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("persistencestrategy");
 		}

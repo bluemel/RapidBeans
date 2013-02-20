@@ -203,7 +203,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 				return null;
 			} else {
 				return (org.rapidbeans.datasource.CharsetsAvailable) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("defaultencoding");
 		}
@@ -232,7 +232,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.DefaultEncodingUsage) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("defaultencodingusage");
 		}

@@ -266,7 +266,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("presentation");
 		}

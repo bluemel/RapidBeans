@@ -234,7 +234,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.config.EditorPropNullBehaviour) enumList.get(0);
-						}			
+			}
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("nullbehaviour");
 		}
