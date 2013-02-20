@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: MenuEntry.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuEntry
  * 
- * model: model/org/rapidbeans/presentation/MenuEntry.xml
+ * model:    model/org/rapidbeans/presentation/MenuEntry.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuEntry.import
@@ -36,7 +37,6 @@ import org.rapidbeans.presentation.config.ConfigSubmenu;
  * !!!Do only edit manually in marked sections!!!
  **/
 public abstract class MenuEntry extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// MenuEntry.classBody
 	/**
@@ -116,7 +116,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 	}
 
 	/**
@@ -127,12 +127,10 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// MenuEntry.MenuEntry()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -141,12 +139,10 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// MenuEntry.MenuEntry(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -181,12 +177,11 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 }

@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: Settings.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.Settings
  * 
- * model: model/org/rapidbeans/presentation/settings/Settings.xml
+ * model:    model/org/rapidbeans/presentation/settings/Settings.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.settings;
+
+
 
 // BEGIN manual code section
 // Settings.import
@@ -29,7 +30,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class Settings extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// Settings.classBody
 	/**
@@ -94,12 +94,10 @@ public class Settings extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// Settings.Settings()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -108,12 +106,10 @@ public class Settings extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// Settings.Settings(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */

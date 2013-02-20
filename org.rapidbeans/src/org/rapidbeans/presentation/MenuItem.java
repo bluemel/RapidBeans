@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: MenuItem.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuItem
  * 
- * model: model/org/rapidbeans/presentation/MenuItem.xml
+ * model:    model/org/rapidbeans/presentation/MenuItem.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuItem.import
@@ -34,7 +35,6 @@ import org.rapidbeans.service.Action;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
-
 	// BEGIN manual code section
 	// MenuItem.classBody
 	/**
@@ -134,9 +134,9 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	public void initProperties() {
 		super.initProperties();
 		this.action = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("action");
+			this.getProperty("action");
 		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("enabler");
+			this.getProperty("enabler");
 	}
 
 	/**
@@ -147,12 +147,10 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// MenuItem.MenuItem()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -161,12 +159,10 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// MenuItem.MenuItem(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -195,8 +191,8 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.service.Action getAction() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -216,12 +212,11 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * setter for Property 'action'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'action' to set
 	 */
 	public void setAction(
-			final org.rapidbeans.service.Action argValue) {
+		final org.rapidbeans.service.Action argValue) {
 		this.action.setValue(argValue);
 	}
 
@@ -231,8 +226,8 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -252,12 +247,11 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * setter for Property 'enabler'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
 	public void setEnabler(
-			final org.rapidbeans.presentation.enabler.Enabler argValue) {
+		final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

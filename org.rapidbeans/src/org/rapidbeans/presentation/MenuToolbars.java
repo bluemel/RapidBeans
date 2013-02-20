@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: MenuToolbars.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuToolbars
  * 
- * model: model/org/rapidbeans/presentation/MenuToolbars.xml
+ * model:    model/org/rapidbeans/presentation/MenuToolbars.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuToolbars.import
@@ -28,7 +29,6 @@ import org.rapidbeans.presentation.swing.MenuToolbarsSwing;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
-
 	// BEGIN manual code section
 	// MenuToolbars.classBody
 
@@ -101,12 +101,10 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// MenuToolbars.MenuToolbars()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -115,12 +113,10 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// MenuToolbars.MenuToolbars(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */

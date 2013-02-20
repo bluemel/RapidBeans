@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ConfigPropEditor.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigPropEditor
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigPropEditor.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigPropEditor.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigPropEditor.import
@@ -26,7 +27,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigPropEditor extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// ConfigPropEditor.classBody
 	// END manual code section
@@ -51,11 +51,11 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.editorclass = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("editorclass");
+			this.getProperty("editorclass");
 		this.basepackage = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("basepackage");
+			this.getProperty("basepackage");
 		this.classnamepart = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("classnamepart");
+			this.getProperty("classnamepart");
 	}
 
 	/**
@@ -66,12 +66,10 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigPropEditor.ConfigPropEditor()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -80,12 +78,10 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigPropEditor.ConfigPropEditor(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -121,12 +117,11 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'editorclass'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'editorclass' to set
 	 */
 	public void setEditorclass(
-			final String argValue) {
+		final String argValue) {
 		this.editorclass.setValue(argValue);
 	}
 
@@ -143,12 +138,11 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'basepackage'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'basepackage' to set
 	 */
 	public void setBasepackage(
-			final String argValue) {
+		final String argValue) {
 		this.basepackage.setValue(argValue);
 	}
 
@@ -165,12 +159,11 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'classnamepart'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'classnamepart' to set
 	 */
 	public void setClassnamepart(
-			final String argValue) {
+		final String argValue) {
 		this.classnamepart.setValue(argValue);
 	}
 }

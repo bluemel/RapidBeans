@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: SettingsAll.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.SettingsAll
  * 
- * model: model/org/rapidbeans/presentation/settings/SettingsAll.xml
+ * model:    model/org/rapidbeans/presentation/settings/SettingsAll.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.settings;
+
+
 
 // BEGIN manual code section
 // SettingsAll.import
@@ -37,7 +38,6 @@ import org.rapidbeans.presentation.ApplicationManager;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
-
 	// BEGIN manual code section
 	// SettingsAll.classBody
 	/**
@@ -161,9 +161,9 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	public void initProperties() {
 		super.initProperties();
 		this.basic = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("basic");
+			this.getProperty("basic");
 		this.authn = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("authn");
+			this.getProperty("authn");
 	}
 
 	/**
@@ -175,12 +175,10 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 		// SettingsAll.SettingsAll()
 		init();
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -190,12 +188,10 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 		// SettingsAll.SettingsAll(String)
 		init();
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -225,8 +221,8 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.settings.SettingsBasic getBasic() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasic> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasic>) this.basic
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasic> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasic>) this.basic.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -246,12 +242,11 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 
 	/**
 	 * setter for Property 'basic'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'basic' to set
 	 */
 	public void setBasic(
-			final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
+		final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
 		this.basic.setValue(argValue);
 	}
 
@@ -261,8 +256,8 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.settings.SettingsAuthn getAuthn() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsAuthn> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsAuthn>) this.authn
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsAuthn> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsAuthn>) this.authn.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -282,12 +277,11 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 
 	/**
 	 * setter for Property 'authn'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'authn' to set
 	 */
 	public void setAuthn(
-			final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
+		final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
 		this.authn.setValue(argValue);
 	}
 }

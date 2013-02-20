@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ConfigSubmenu.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigSubmenu
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigSubmenu.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigSubmenu.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigSubmenu.import
@@ -25,7 +26,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenuEntry {
-
 	// BEGIN manual code section
 	// ConfigSubmenu.classBody
 	/**
@@ -48,7 +48,7 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 	public void initProperties() {
 		super.initProperties();
 		this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("menuentrys");
+			this.getProperty("menuentrys");
 	}
 
 	/**
@@ -59,12 +59,10 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 		// BEGIN manual code section
 		// ConfigSubmenu.ConfigSubmenu()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -73,12 +71,10 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 		// BEGIN manual code section
 		// ConfigSubmenu.ConfigSubmenu(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -107,8 +103,8 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenuEntry> getMenuentrys() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenuEntry>) this.menuentrys
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenuEntry>)
+			this.menuentrys.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("menuentrys");
 		}
@@ -116,30 +112,23 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * setter for Property 'menuentrys'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'menuentrys' to set
 	 */
 	public void setMenuentrys(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigMenuEntry> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.config.ConfigMenuEntry> argValue) {
 		this.menuentrys.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'menuentrys'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addMenuentry(final org.rapidbeans.presentation.config.ConfigMenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'menuentrys'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removeMenuentry(final org.rapidbeans.presentation.config.ConfigMenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).removeLink(bean);

@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: Submenu.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.Submenu
  * 
- * model: model/org/rapidbeans/presentation/Submenu.xml
+ * model:    model/org/rapidbeans/presentation/Submenu.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // Submenu.import
@@ -34,7 +35,6 @@ import org.rapidbeans.presentation.swing.SubmenuSwing;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class Submenu extends org.rapidbeans.presentation.MenuEntry {
-
 	// BEGIN manual code section
 	// Submenu.classBody
 	/**
@@ -116,7 +116,7 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	public void initProperties() {
 		super.initProperties();
 		this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("menuentrys");
+			this.getProperty("menuentrys");
 	}
 
 	/**
@@ -127,12 +127,10 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// Submenu.Submenu()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -141,12 +139,10 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 		// BEGIN manual code section
 		// Submenu.Submenu(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -175,8 +171,8 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry> getMenuentrys() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry>) this.menuentrys
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry>)
+			this.menuentrys.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("menuentrys");
 		}
@@ -184,30 +180,23 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * setter for Property 'menuentrys'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'menuentrys' to set
 	 */
 	public void setMenuentrys(
-			final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
 		this.menuentrys.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'menuentrys'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addMenuentry(final org.rapidbeans.presentation.MenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'menuentrys'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removeMenuentry(final org.rapidbeans.presentation.MenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).removeLink(bean);

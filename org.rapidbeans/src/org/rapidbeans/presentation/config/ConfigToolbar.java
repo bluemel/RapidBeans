@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ConfigToolbar.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigToolbar
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigToolbar.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigToolbar.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigToolbar.import
@@ -25,7 +26,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenuEntry {
-
 	// BEGIN manual code section
 	// ConfigToolbar.classBody
 	// END manual code section
@@ -51,11 +51,11 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	public void initProperties() {
 		super.initProperties();
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 		this.classname = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("classname");
+			this.getProperty("classname");
 		this.buttons = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("buttons");
+			this.getProperty("buttons");
 	}
 
 	/**
@@ -66,12 +66,10 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 		// BEGIN manual code section
 		// ConfigToolbar.ConfigToolbar()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -80,12 +78,10 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 		// BEGIN manual code section
 		// ConfigToolbar.ConfigToolbar(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -121,12 +117,11 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -143,12 +138,11 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * setter for Property 'classname'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
 	public void setClassname(
-			final String argValue) {
+		final String argValue) {
 		this.classname.setValue(argValue);
 	}
 
@@ -158,8 +152,8 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton> getButtons() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton>) this.buttons
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton>)
+			this.buttons.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("buttons");
 		}
@@ -167,30 +161,23 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * setter for Property 'buttons'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'buttons' to set
 	 */
 	public void setButtons(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
 		this.buttons.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'buttons'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'buttons'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removeButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).removeLink(bean);

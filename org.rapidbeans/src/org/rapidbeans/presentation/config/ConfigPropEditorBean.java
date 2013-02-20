@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ConfigPropEditorBean.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigPropEditorBean
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigPropEditorBean.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigPropEditorBean.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigPropEditorBean.import
@@ -29,7 +30,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigPropEditorBean extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// ConfigPropEditorBean.classBody
 	/**
@@ -88,17 +88,17 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 		this.enabled = (org.rapidbeans.core.basic.PropertyBoolean)
-				this.getProperty("enabled");
+			this.getProperty("enabled");
 		this.editor = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("editor");
+			this.getProperty("editor");
 		this.nullbehaviour = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("nullbehaviour");
+			this.getProperty("nullbehaviour");
 		this.detail = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("detail");
+			this.getProperty("detail");
 		this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("arguments");
+			this.getProperty("arguments");
 	}
 
 	/**
@@ -109,12 +109,10 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigPropEditorBean.ConfigPropEditorBean()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -123,12 +121,10 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigPropEditorBean.ConfigPropEditorBean(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -164,12 +160,11 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -186,12 +181,11 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'enabled'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'enabled' to set
 	 */
 	public void setEnabled(
-			final boolean argValue) {
+		final boolean argValue) {
 		this.enabled.setValue(new Boolean(argValue));
 	}
 
@@ -201,8 +195,8 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.config.ConfigPropEditor getEditor() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditor> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditor>) this.editor
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditor> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditor>) this.editor.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -222,12 +216,11 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'editor'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'editor' to set
 	 */
 	public void setEditor(
-			final org.rapidbeans.presentation.config.ConfigPropEditor argValue) {
+		final org.rapidbeans.presentation.config.ConfigPropEditor argValue) {
 		this.editor.setValue(argValue);
 	}
 
@@ -241,7 +234,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.config.EditorPropNullBehaviour) enumList.get(0);
-			}
+						}			
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("nullbehaviour");
 		}
@@ -249,14 +242,13 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'nullbehaviour'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'nullbehaviour' to set
 	 */
 	public void setNullbehaviour(
-			final org.rapidbeans.presentation.config.EditorPropNullBehaviour argValue) {
+		final org.rapidbeans.presentation.config.EditorPropNullBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.config.EditorPropNullBehaviour> list =
-				new java.util.ArrayList<org.rapidbeans.presentation.config.EditorPropNullBehaviour>();
+			new java.util.ArrayList<org.rapidbeans.presentation.config.EditorPropNullBehaviour>();
 		list.add(argValue);
 		this.nullbehaviour.setValue(list);
 	}
@@ -274,12 +266,11 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'detail'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'detail' to set
 	 */
 	public void setDetail(
-			final String argValue) {
+		final String argValue) {
 		this.detail.setValue(argValue);
 	}
 
@@ -289,8 +280,8 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorArgument> getArguments() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorArgument>) this.arguments
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorArgument>)
+			this.arguments.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("arguments");
 		}
@@ -298,30 +289,23 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'arguments'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'arguments' to set
 	 */
 	public void setArguments(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorArgument> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorArgument> argValue) {
 		this.arguments.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'arguments'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addArgument(final org.rapidbeans.presentation.config.ConfigPropEditorArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'arguments'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removeArgument(final org.rapidbeans.presentation.config.ConfigPropEditorArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).removeLink(bean);

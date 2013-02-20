@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: MenuHistoryOpenDocument.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuHistoryOpenDocument
  * 
- * model: model/org/rapidbeans/presentation/MenuHistoryOpenDocument.xml
+ * model:    model/org/rapidbeans/presentation/MenuHistoryOpenDocument.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuHistoryOpenDocument.import
@@ -33,7 +34,6 @@ import org.rapidbeans.presentation.swing.MenuHistoryOpenDocumentSwing;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEntry {
-
 	// BEGIN manual code section
 	// MenuHistoryOpenDocument.classBody
 
@@ -211,13 +211,13 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	public void initProperties() {
 		super.initProperties();
 		this.on = (org.rapidbeans.core.basic.PropertyBoolean)
-				this.getProperty("on");
+			this.getProperty("on");
 		this.presentation = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("presentation");
+			this.getProperty("presentation");
 		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean)
-				this.getProperty("entryShortage");
+			this.getProperty("entryShortage");
 		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("protocolFilter");
+			this.getProperty("protocolFilter");
 	}
 
 	/**
@@ -228,12 +228,10 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 		// BEGIN manual code section
 		// MenuHistoryOpenDocument.MenuHistoryOpenDocument()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -242,12 +240,10 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 		// BEGIN manual code section
 		// MenuHistoryOpenDocument.MenuHistoryOpenDocument(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -283,12 +279,11 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * setter for Property 'on'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'on' to set
 	 */
 	public void setOn(
-			final boolean argValue) {
+		final boolean argValue) {
 		this.on.setValue(new Boolean(argValue));
 	}
 
@@ -302,7 +297,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList.get(0);
-			}
+						}			
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("presentation");
 		}
@@ -310,14 +305,13 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * setter for Property 'presentation'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'presentation' to set
 	 */
 	public void setPresentation(
-			final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
+		final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
 		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list =
-				new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
+			new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
 		list.add(argValue);
 		this.presentation.setValue(list);
 	}
@@ -335,12 +329,11 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * setter for Property 'entryShortage'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'entryShortage' to set
 	 */
 	public void setEntryShortage(
-			final boolean argValue) {
+		final boolean argValue) {
 		this.entryShortage.setValue(new Boolean(argValue));
 	}
 
@@ -357,12 +350,11 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * setter for Property 'protocolFilter'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'protocolFilter' to set
 	 */
 	public void setProtocolFilter(
-			final String argValue) {
+		final String argValue) {
 		this.protocolFilter.setValue(argValue);
 	}
 }

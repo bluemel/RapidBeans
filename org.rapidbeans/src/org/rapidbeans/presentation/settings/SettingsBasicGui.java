@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: SettingsBasicGui.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.SettingsBasicGui
  * 
- * model: model/org/rapidbeans/presentation/settings/SettingsBasicGui.xml
+ * model:    model/org/rapidbeans/presentation/settings/SettingsBasicGui.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.settings;
+
+
 
 // BEGIN manual code section
 // SettingsBasicGui.import
@@ -28,7 +29,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Settings {
-
 	// BEGIN manual code section
 	// SettingsBasicGui.classBody
 	// END manual code section
@@ -59,13 +59,13 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	public void initProperties() {
 		super.initProperties();
 		this.openDocumentHistory = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("openDocumentHistory");
+			this.getProperty("openDocumentHistory");
 		this.docViewOpenWindowBehaviour = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("docViewOpenWindowBehaviour");
+			this.getProperty("docViewOpenWindowBehaviour");
 		this.createNewBeansEditorApplyBehaviour = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("createNewBeansEditorApplyBehaviour");
+			this.getProperty("createNewBeansEditorApplyBehaviour");
 		this.treeViewShowBeanLinks = (org.rapidbeans.core.basic.PropertyBoolean)
-				this.getProperty("treeViewShowBeanLinks");
+			this.getProperty("treeViewShowBeanLinks");
 	}
 
 	/**
@@ -76,12 +76,10 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 		// BEGIN manual code section
 		// SettingsBasicGui.SettingsBasicGui()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -90,12 +88,10 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 		// BEGIN manual code section
 		// SettingsBasicGui.SettingsBasicGui(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -124,8 +120,8 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory getOpenDocumentHistory() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory>) this.openDocumentHistory
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory>) this.openDocumentHistory.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -145,12 +141,11 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 
 	/**
 	 * setter for Property 'openDocumentHistory'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'openDocumentHistory' to set
 	 */
 	public void setOpenDocumentHistory(
-			final org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory argValue) {
+		final org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory argValue) {
 		this.openDocumentHistory.setValue(argValue);
 	}
 
@@ -164,7 +159,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.OpenWindowBehaviour) enumList.get(0);
-			}
+						}			
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("docViewOpenWindowBehaviour");
 		}
@@ -172,14 +167,13 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 
 	/**
 	 * setter for Property 'docViewOpenWindowBehaviour'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'docViewOpenWindowBehaviour' to set
 	 */
 	public void setDocViewOpenWindowBehaviour(
-			final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
+		final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.OpenWindowBehaviour> list =
-				new java.util.ArrayList<org.rapidbeans.presentation.OpenWindowBehaviour>();
+			new java.util.ArrayList<org.rapidbeans.presentation.OpenWindowBehaviour>();
 		list.add(argValue);
 		this.docViewOpenWindowBehaviour.setValue(list);
 	}
@@ -194,7 +188,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 				return null;
 			} else {
 				return (org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour) enumList.get(0);
-			}
+						}			
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("createNewBeansEditorApplyBehaviour");
 		}
@@ -202,14 +196,13 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 
 	/**
 	 * setter for Property 'createNewBeansEditorApplyBehaviour'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'createNewBeansEditorApplyBehaviour' to set
 	 */
 	public void setCreateNewBeansEditorApplyBehaviour(
-			final org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour argValue) {
+		final org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour> list =
-				new java.util.ArrayList<org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour>();
+			new java.util.ArrayList<org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour>();
 		list.add(argValue);
 		this.createNewBeansEditorApplyBehaviour.setValue(list);
 	}
@@ -227,12 +220,11 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 
 	/**
 	 * setter for Property 'treeViewShowBeanLinks'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'treeViewShowBeanLinks' to set
 	 */
 	public void setTreeViewShowBeanLinks(
-			final boolean argValue) {
+		final boolean argValue) {
 		this.treeViewShowBeanLinks.setValue(new Boolean(argValue));
 	}
 }

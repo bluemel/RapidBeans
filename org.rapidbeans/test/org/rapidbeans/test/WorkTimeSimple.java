@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: WorkTimeSimple.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.test.WorkTimeSimple
  * 
- * model: testmodel/org/rapidbeans/test/WorkTimeSimple.xml
+ * model:    testmodel/org/rapidbeans/test/WorkTimeSimple.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.test;
+
+
 
 // BEGIN manual code section
 // WorkTimeSimple.import
@@ -29,11 +30,11 @@ import org.rapidbeans.domain.math.UnitTime;
 // END manual code section
 
 /**
- * Rapid Bean class: WorkTime. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: WorkTimeSimple.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
-public class WorkTimeSimple extends RapidBeanImplSimple {
-
+public class WorkTimeSimple extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// WorkTimeSimple.classBody
 	/**
@@ -52,7 +53,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 * @return dependent attribute time
 	 */
 	public Time getTime() {
-		if (this.from == null || this.to == null) {
+		if (getFrom() == null || getTo() == null) {
 			return null;
 		}
 		long diff = getTo().getTime() - getFrom().getTime();
@@ -64,19 +65,21 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	/**
 	 * property "from".
 	 */
-	private Date from;
+	private org.rapidbeans.core.basic.PropertyDate from;
 
 	/**
 	 * property "to".
 	 */
-	private Date to;
+	private org.rapidbeans.core.basic.PropertyDate to;
 
 	/**
-	 * property default values initialization.
+	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.from = (Date) getType().getPropertyType("from").getDefaultValue();
-		this.to = (Date) getType().getPropertyType("to").getDefaultValue();
+		this.from = (org.rapidbeans.core.basic.PropertyDate)
+			this.getProperty("from");
+		this.to = (org.rapidbeans.core.basic.PropertyDate)
+			this.getProperty("to");
 	}
 
 	/**
@@ -87,12 +90,10 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 		// BEGIN manual code section
 		// WorkTimeSimple.WorkTimeSimple()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -101,12 +102,10 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 		// BEGIN manual code section
 		// WorkTimeSimple.WorkTimeSimple(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -120,8 +119,7 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(WorkTimeSimple.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(WorkTimeSimple.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -134,63 +132,41 @@ public class WorkTimeSimple extends RapidBeanImplSimple {
 	 * @return value of Property 'from'
 	 */
 	public java.util.Date getFrom() {
-		if (this.from == null) {
-			return null;
-		} else {
-			return new Date(this.from.getTime());
+		try {
+			return (java.util.Date) this.from.getValue();
+		} catch (NullPointerException e) {
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("from");
 		}
 	}
 
 	/**
 	 * setter for Property 'from'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'from' to set
 	 */
-	public void setFrom(final Date from) {
-		Property.createInstance(getType().getPropertyType("from"), this)
-				.setValue(from);
-	}
-
-	/**
-	 * inner setter for Property 'from'.
-	 * 
-	 * @param argValue
-	 *            value of Property 'from' to set
-	 */
-	public void _setFrom(final Date from) {
-		this.from = from;
+	public void setFrom(
+		final java.util.Date argValue) {
+		this.from.setValue(argValue);
 	}
 
 	/**
 	 * @return value of Property 'to'
 	 */
 	public java.util.Date getTo() {
-		if (this.to == null) {
-			return null;
-		} else {
-			return new Date(this.to.getTime());
+		try {
+			return (java.util.Date) this.to.getValue();
+		} catch (NullPointerException e) {
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("to");
 		}
 	}
 
 	/**
 	 * setter for Property 'to'.
-	 * 
-	 * @param to
-	 *            value of Property 'to' to set
-	 */
-	public void setTo(final Date to) {
-		Property.createInstance(getType().getPropertyType("to"), this)
-				.setValue(to);
-	}
-
-	/**
-	 * inner setter for Property 'to'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'to' to set
 	 */
-	public void _setTo(final java.util.Date to) {
-		this.to = to;
+	public void setTo(
+		final java.util.Date argValue) {
+		this.to.setValue(argValue);
 	}
 }

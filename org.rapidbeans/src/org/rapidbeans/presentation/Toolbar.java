@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: Toolbar.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.Toolbar
  * 
- * model: model/org/rapidbeans/presentation/Toolbar.xml
+ * model:    model/org/rapidbeans/presentation/Toolbar.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // Toolbar.import
@@ -38,7 +39,6 @@ import org.rapidbeans.presentation.swing.ToolbarSwing;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class Toolbar extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// Toolbar.classBody
 	private MainWindow mainWindow = null;
@@ -224,13 +224,13 @@ public class Toolbar extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 		this.on = (org.rapidbeans.core.basic.PropertyBoolean)
-				this.getProperty("on");
+			this.getProperty("on");
 		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("enabler");
+			this.getProperty("enabler");
 		this.buttons = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("buttons");
+			this.getProperty("buttons");
 	}
 
 	/**
@@ -241,12 +241,10 @@ public class Toolbar extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// Toolbar.Toolbar()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -255,12 +253,10 @@ public class Toolbar extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// Toolbar.Toolbar(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -296,12 +292,11 @@ public class Toolbar extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -318,12 +313,11 @@ public class Toolbar extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'on'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'on' to set
 	 */
 	public void setOn(
-			final boolean argValue) {
+		final boolean argValue) {
 		this.on.setValue(new Boolean(argValue));
 	}
 
@@ -333,8 +327,8 @@ public class Toolbar extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -354,12 +348,11 @@ public class Toolbar extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'enabler'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
 	public void setEnabler(
-			final org.rapidbeans.presentation.enabler.Enabler argValue) {
+		final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 
@@ -369,8 +362,8 @@ public class Toolbar extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.ToolbarButton> getButtons() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.ToolbarButton>) this.buttons
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.ToolbarButton>)
+			this.buttons.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("buttons");
 		}
@@ -378,30 +371,23 @@ public class Toolbar extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'buttons'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'buttons' to set
 	 */
 	public void setButtons(
-			final java.util.Collection<org.rapidbeans.presentation.ToolbarButton> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.ToolbarButton> argValue) {
 		this.buttons.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'buttons'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addButton(final org.rapidbeans.presentation.ToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'buttons'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removeButton(final org.rapidbeans.presentation.ToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).removeLink(bean);

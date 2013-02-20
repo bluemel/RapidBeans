@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: RapidBeansLocale.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.core.common.RapidBeansLocale
  * 
- * model: model/org/rapidbeans/core/common/RapidBeansLocale.xml
+ * model:    model/org/rapidbeans/core/common/RapidBeansLocale.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.core.common;
+
+
 
 // BEGIN manual code section
 // RapidBeansLocale.import
@@ -33,7 +34,6 @@ import org.rapidbeans.presentation.Application;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class RapidBeansLocale extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// RapidBeansLocale.classBody
 	private static final Logger log = Logger.getLogger(
@@ -282,7 +282,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 	}
 
 	/**
@@ -293,12 +293,10 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// RapidBeansLocale.RapidBeansLocale()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -307,12 +305,10 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// RapidBeansLocale.RapidBeansLocale(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -348,12 +344,11 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 }

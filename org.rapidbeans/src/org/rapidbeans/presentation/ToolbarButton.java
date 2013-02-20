@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ToolbarButton.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.ToolbarButton
  * 
- * model: model/org/rapidbeans/presentation/ToolbarButton.xml
+ * model:    model/org/rapidbeans/presentation/ToolbarButton.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // ToolbarButton.import
@@ -34,7 +35,6 @@ import org.rapidbeans.service.Action;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ToolbarButton extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// ToolbarButton.classBody
 	/**
@@ -138,11 +138,11 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.name = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("name");
+			this.getProperty("name");
 		this.action = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("action");
+			this.getProperty("action");
 		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("enabler");
+			this.getProperty("enabler");
 	}
 
 	/**
@@ -153,12 +153,10 @@ public class ToolbarButton extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ToolbarButton.ToolbarButton()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -167,12 +165,10 @@ public class ToolbarButton extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ToolbarButton.ToolbarButton(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -208,12 +204,11 @@ public class ToolbarButton extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
 	public void setName(
-			final String argValue) {
+		final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -223,8 +218,8 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.service.Action getAction() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -244,12 +239,11 @@ public class ToolbarButton extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'action'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'action' to set
 	 */
 	public void setAction(
-			final org.rapidbeans.service.Action argValue) {
+		final org.rapidbeans.service.Action argValue) {
 		this.action.setValue(argValue);
 	}
 
@@ -259,8 +253,8 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -280,12 +274,11 @@ public class ToolbarButton extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'enabler'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
 	public void setEnabler(
-			final org.rapidbeans.presentation.enabler.Enabler argValue) {
+		final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

@@ -1,17 +1,18 @@
 /*
  * Partially generated code file: ConfigEditorBean.java
  * !!!Do only edit manually in marked sections!!!
- * 
+ *
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
+ *
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigEditorBean
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigEditorBean.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigEditorBean.xml
  * template: codegentemplates/genBean.xsl
  */
-
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigEditorBean.import
@@ -26,7 +27,6 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigEditorBean extends RapidBeanImplStrict {
-
 	// BEGIN manual code section
 	// ConfigEditorBean.classBody
 	/**
@@ -70,11 +70,11 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 */
 	public void initProperties() {
 		this.beantype = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("beantype");
+			this.getProperty("beantype");
 		this.editorclass = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("editorclass");
+			this.getProperty("editorclass");
 		this.propertycfgs = (org.rapidbeans.core.basic.PropertyAssociationend)
-				this.getProperty("propertycfgs");
+			this.getProperty("propertycfgs");
 	}
 
 	/**
@@ -85,12 +85,10 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigEditorBean.ConfigEditorBean()
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -99,12 +97,10 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 		// BEGIN manual code section
 		// ConfigEditorBean.ConfigEditorBean(String)
 		// END manual code section
-
 	}
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -140,12 +136,11 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'beantype'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'beantype' to set
 	 */
 	public void setBeantype(
-			final String argValue) {
+		final String argValue) {
 		this.beantype.setValue(argValue);
 	}
 
@@ -162,12 +157,11 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'editorclass'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'editorclass' to set
 	 */
 	public void setEditorclass(
-			final String argValue) {
+		final String argValue) {
 		this.editorclass.setValue(argValue);
 	}
 
@@ -177,8 +171,8 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorBean> getPropertycfgs() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorBean>) this.propertycfgs
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorBean>)
+			this.propertycfgs.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("propertycfgs");
 		}
@@ -186,30 +180,23 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'propertycfgs'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'propertycfgs' to set
 	 */
 	public void setPropertycfgs(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorBean> argValue) {
+		final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorBean> argValue) {
 		this.propertycfgs.setValue(argValue);
 	}
-
 	/**
 	 * add method for Property 'propertycfgs'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void addPropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).addLink(bean);
 	}
-
 	/**
 	 * remove method for Property 'propertycfgs'.
-	 * 
-	 * @param bean
-	 *            the bean to add
+	 * @param bean the bean to add
 	 */
 	public void removePropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).removeLink(bean);
