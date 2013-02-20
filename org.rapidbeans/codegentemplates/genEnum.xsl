@@ -194,6 +194,7 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>// ------------------------------------------------------------------------</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>// enum elements</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>// -----------------------------------------------------------------------</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:for-each select="enum">
 
@@ -233,7 +234,8 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 			<xsl:text>;</xsl:text>
 		</xsl:otherwise>
 	</xsl:choose>
-
+	<xsl:value-of select="$newline"/>
+	<xsl:value-of select="$newline"/>
 </xsl:for-each>
 
 <!--
@@ -328,10 +330,10 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 	######################################################################
 -->
 <xsl:value-of select="$newline"/>
-<xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>// ------------------------------------------------------------------------</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>// fixed set of helper methods</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>// -----------------------------------------------------------------------</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * Get the description from the model (meta information - not UI).</xsl:text><xsl:value-of select="$newline"/>
@@ -341,6 +343,7 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>public String getDescription() {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>return type.getDescription(this);</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * @see org.rapidbeans.core.basic.Enum#toStringGui(org.rapidbeans.core.common.RapidBeansLocale)</xsl:text><xsl:value-of select="$newline"/>
@@ -348,6 +351,7 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>public String toStringGui(final RapidBeansLocale locale) {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>return type.getStringGui(this, locale);</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * @see org.rapidbeans.core.basic.Enum#toStringGuiShort(org.rapidbeans.core.common.RapidBeansLocale)</xsl:text><xsl:value-of select="$newline"/>
@@ -355,6 +359,7 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>public String toStringGuiShort(final RapidBeansLocale locale) {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>return type.getStringGuiShort(this, locale);</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * get the type object that describes the enum's metadata (like a Class object).</xsl:text><xsl:value-of select="$newline"/>
@@ -364,6 +369,7 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>public TypeRapidEnum getType() {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>return type;</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * set the type object that describes the enum's metadata (like a Class object).</xsl:text><xsl:value-of select="$newline"/>
@@ -372,19 +378,18 @@ Example to demonstrate the grammar of a Rapid Beans XML Enum type definition
 <xsl:value-of select="$indent1"/><xsl:text>protected void setType(final TypeRapidEnum argType) {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>type = argType;</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
+<xsl:value-of select="$newline"/>
 
 <xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> * internal static enum type with initialization.</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>private static TypeRapidEnum type = TypeRapidEnum.createInstance(</xsl:text><xsl:value-of select="$classname"/><xsl:text>.class);</xsl:text><xsl:value-of select="$newline"/>
 
-
 <!--
 	######################################################################
 	# Finish the class
 	######################################################################
 -->
-<xsl:value-of select="$newline"/>
 <xsl:text>}</xsl:text><xsl:value-of select="$newline"/>
 
 </xsl:template>
