@@ -10,5 +10,5 @@
 		type="date"
 		precision="minute"
 	/>
-	<codegen mode="joint" impl="simple"/>
+	<codegen mode="joint" implementation="simple"/>
 </beantype>
