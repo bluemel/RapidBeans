@@ -26,6 +26,7 @@ import java.util.List;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.exception.ValidationInstanceAssocTwiceException;
+import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.StringHelper;
@@ -205,10 +206,9 @@ public abstract class RapidBeanImplSimple
 	 */
 	public final List<Property> getPropertyList() {
 		final List<Property> proplist = new ArrayList<Property>();
-		// TODO
-		//		for (int i = 0; i < this.properties.length; i++) {
-		//			proplist.add(this.properties[i]);
-		//		}
+		for (TypeProperty proptype : getType().getPropertyTypes()) {
+			proplist.add(Property.createInstance(proptype, this));
+		}
 		return proplist;
 	}
 
@@ -222,13 +222,12 @@ public abstract class RapidBeanImplSimple
 	 */
 	public final List<PropertyCollection> getColProperties() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
-		// TODO
-		//		for (int i = 0; i < this.properties.length; i++) {
-		//			if (ClassHelper.classOf(TypePropertyCollection.class,
-		//					this.properties[i].getType().getClass())) {
-		//				colproplist.add((PropertyCollection) this.properties[i]);
-		//			}
-		//		}
+		for (TypeProperty proptype : getType().getPropertyTypes()) {
+			if (proptype instanceof TypePropertyCollection)
+			{
+				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
+			}
+		}
 		return colproplist;
 	}
 
@@ -237,15 +236,13 @@ public abstract class RapidBeanImplSimple
 	 */
 	public final List<PropertyCollection> getColPropertiesComposition() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
-		// TODO
-		//		for (int i = 0; i < this.properties.length; i++) {
-		//			if (ClassHelper.classOf(TypePropertyCollection.class,
-		//					this.properties[i].getType().getClass())
-		//					&& ((TypePropertyCollection) this.properties[i].getType())
-		//							.isComposition()) {
-		//				colproplist.add((PropertyCollection) this.properties[i]);
-		//			}
-		//		}
+		for (TypeProperty proptype : getType().getPropertyTypes()) {
+			if (proptype instanceof TypePropertyCollection
+					&& ((TypePropertyCollection) proptype).isComposition())
+			{
+				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
+			}
+		}
 		return colproplist;
 	}
 
