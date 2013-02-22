@@ -207,8 +207,7 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -242,8 +241,7 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'action' to set
 	 */
-	public void setAction(
-		final org.rapidbeans.service.Action argValue) {
+	public void setAction(final org.rapidbeans.service.Action argValue) {
 		this.action.setValue(argValue);
 	}
 
@@ -277,8 +275,7 @@ public class ToolbarButton extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
-	public void setEnabler(
-		final org.rapidbeans.presentation.enabler.Enabler argValue) {
+	public void setEnabler(final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

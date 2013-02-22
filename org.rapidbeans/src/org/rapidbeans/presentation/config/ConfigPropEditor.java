@@ -120,8 +120,7 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'editorclass' to set
 	 */
-	public void setEditorclass(
-		final String argValue) {
+	public void setEditorclass(final String argValue) {
 		this.editorclass.setValue(argValue);
 	}
 
@@ -141,8 +140,7 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'basepackage' to set
 	 */
-	public void setBasepackage(
-		final String argValue) {
+	public void setBasepackage(final String argValue) {
 		this.basepackage.setValue(argValue);
 	}
 
@@ -162,8 +160,7 @@ public class ConfigPropEditor extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'classnamepart' to set
 	 */
-	public void setClassnamepart(
-		final String argValue) {
+	public void setClassnamepart(final String argValue) {
 		this.classnamepart.setValue(argValue);
 	}
 }

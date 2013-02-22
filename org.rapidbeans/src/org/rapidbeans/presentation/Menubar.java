@@ -197,8 +197,7 @@ public class Menubar extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -220,8 +219,7 @@ public class Menubar extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'menus' to set
 	 */
-	public void setMenus(
-		final java.util.Collection<org.rapidbeans.presentation.Submenu> argValue) {
+	public void setMenus(final java.util.Collection<org.rapidbeans.presentation.Submenu> argValue) {
 		this.menus.setValue(argValue);
 	}
 	/**

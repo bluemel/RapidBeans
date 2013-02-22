@@ -282,8 +282,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue
 	 *            value of Property 'on' to set
 	 */
-	public void setOn(
-		final boolean argValue) {
+	public void setOn(final boolean argValue) {
 		this.on.setValue(new Boolean(argValue));
 	}
 
@@ -308,8 +307,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue
 	 *            value of Property 'presentation' to set
 	 */
-	public void setPresentation(
-		final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
+	public void setPresentation(final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
 		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
 		list.add(argValue);
@@ -332,8 +330,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue
 	 *            value of Property 'entryShortage' to set
 	 */
-	public void setEntryShortage(
-		final boolean argValue) {
+	public void setEntryShortage(final boolean argValue) {
 		this.entryShortage.setValue(new Boolean(argValue));
 	}
 
@@ -353,8 +350,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue
 	 *            value of Property 'protocolFilter' to set
 	 */
-	public void setProtocolFilter(
-		final String argValue) {
+	public void setProtocolFilter(final String argValue) {
 		this.protocolFilter.setValue(argValue);
 	}
 }

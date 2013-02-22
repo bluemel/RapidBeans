@@ -171,8 +171,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -192,8 +191,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'rootclass' to set
 	 */
-	public void setRootclass(
-		final String argValue) {
+	public void setRootclass(final String argValue) {
 		this.rootclass.setValue(argValue);
 	}
 
@@ -213,8 +211,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'defaultview' to set
 	 */
-	public void setDefaultview(
-		final String argValue) {
+	public void setDefaultview(final String argValue) {
 		this.defaultview.setValue(argValue);
 	}
 
@@ -235,8 +232,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'readaccessrolesrequired' to set
 	 */
-	public void setReadaccessrolesrequired(
-		final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setReadaccessrolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.readaccessrolesrequired.setValue(argValue);
 	}
 
@@ -257,8 +253,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'writeaccessrolesrequired' to set
 	 */
-	public void setWriteaccessrolesrequired(
-		final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setWriteaccessrolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.writeaccessrolesrequired.setValue(argValue);
 	}
 
@@ -280,8 +275,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'views' to set
 	 */
-	public void setViews(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigView> argValue) {
+	public void setViews(final java.util.Collection<org.rapidbeans.presentation.config.ConfigView> argValue) {
 		this.views.setValue(argValue);
 	}
 	/**
@@ -317,8 +311,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'filterrules' to set
 	 */
-	public void setFilterrules(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased> argValue) {
+	public void setFilterrules(final java.util.Collection<org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased> argValue) {
 		this.filterrules.setValue(argValue);
 	}
 	/**

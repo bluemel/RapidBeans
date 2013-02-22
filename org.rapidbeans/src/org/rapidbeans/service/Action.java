@@ -285,8 +285,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
-	public void setClassname(
-		final String argValue) {
+	public void setClassname(final String argValue) {
 		this.classname.setValue(argValue);
 	}
 
@@ -308,8 +307,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'arguments' to set
 	 */
-	public void setArguments(
-		final java.util.Collection<org.rapidbeans.service.ActionArgument> argValue) {
+	public void setArguments(final java.util.Collection<org.rapidbeans.service.ActionArgument> argValue) {
 		this.arguments.setValue(argValue);
 	}
 	/**
@@ -348,8 +346,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'state' to set
 	 */
-	public void setState(
-		final org.rapidbeans.service.ActionState argValue) {
+	public void setState(final org.rapidbeans.service.ActionState argValue) {
 		java.util.List<org.rapidbeans.service.ActionState> list =
 			new java.util.ArrayList<org.rapidbeans.service.ActionState>();
 		list.add(argValue);
@@ -372,8 +369,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'waitcursor' to set
 	 */
-	public void setWaitcursor(
-		final boolean argValue) {
+	public void setWaitcursor(final boolean argValue) {
 		this.waitcursor.setValue(new Boolean(argValue));
 	}
 
@@ -393,8 +389,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'background' to set
 	 */
-	public void setBackground(
-		final boolean argValue) {
+	public void setBackground(final boolean argValue) {
 		this.background.setValue(new Boolean(argValue));
 	}
 
@@ -414,8 +409,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'progressbar' to set
 	 */
-	public void setProgressbar(
-		final boolean argValue) {
+	public void setProgressbar(final boolean argValue) {
 		this.progressbar.setValue(new Boolean(argValue));
 	}
 
@@ -436,8 +430,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'rolesrequired' to set
 	 */
-	public void setRolesrequired(
-		final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setRolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.rolesrequired.setValue(argValue);
 	}
 
@@ -471,8 +464,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
-	public void setEnabler(
-		final org.rapidbeans.presentation.enabler.Enabler argValue) {
+	public void setEnabler(final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

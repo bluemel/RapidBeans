@@ -17,6 +17,7 @@
 
 package org.rapidbeans.core.basic;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
@@ -157,20 +158,17 @@ public class PropertyDate extends Property {
 		if (getBean() instanceof RapidBeanImplSimple) {
 			super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
 				public void setValue(final Object newValue) {
-					Method innerSetter;
 					try {
-						innerSetter = getBean().getClass().getMethod(
-								"_set" + StringHelper.upperFirstCharacter(getName()), Date.class);
-						innerSetter.invoke(getBean(), newValue);
+						final Field field = getBean().getClass().getDeclaredField(getName());
+						field.setAccessible(true);
+						field.set(getBean(), newValue);
 					} catch (SecurityException e) {
 						throw new RapidBeansRuntimeException(e);
-					} catch (NoSuchMethodException e) {
+					} catch (NoSuchFieldException e) {
 						throw new RapidBeansRuntimeException(e);
 					} catch (IllegalArgumentException e) {
 						throw new RapidBeansRuntimeException(e);
 					} catch (IllegalAccessException e) {
-						throw new RapidBeansRuntimeException(e);
-					} catch (InvocationTargetException e) {
 						throw new RapidBeansRuntimeException(e);
 					}
 				}

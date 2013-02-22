@@ -144,8 +144,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -165,8 +164,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'width' to set
 	 */
-	public void setWidth(
-		final int argValue) {
+	public void setWidth(final int argValue) {
 		this.width.setValue(new Integer(argValue));
 	}
 
@@ -186,8 +184,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'height' to set
 	 */
-	public void setHeight(
-		final int argValue) {
+	public void setHeight(final int argValue) {
 		this.height.setValue(new Integer(argValue));
 	}
 
@@ -209,8 +206,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'toolbars' to set
 	 */
-	public void setToolbars(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbar> argValue) {
+	public void setToolbars(final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbar> argValue) {
 		this.toolbars.setValue(argValue);
 	}
 	/**
@@ -258,8 +254,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'menubar' to set
 	 */
-	public void setMenubar(
-		final org.rapidbeans.presentation.config.ConfigMenubar argValue) {
+	public void setMenubar(final org.rapidbeans.presentation.config.ConfigMenubar argValue) {
 		this.menubar.setValue(argValue);
 	}
 
@@ -293,8 +288,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'footer' to set
 	 */
-	public void setFooter(
-		final org.rapidbeans.presentation.config.ConfigFooter argValue) {
+	public void setFooter(final org.rapidbeans.presentation.config.ConfigFooter argValue) {
 		this.footer.setValue(argValue);
 	}
 }

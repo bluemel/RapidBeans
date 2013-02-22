@@ -120,8 +120,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -141,8 +140,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
-	public void setClassname(
-		final String argValue) {
+	public void setClassname(final String argValue) {
 		this.classname.setValue(argValue);
 	}
 
@@ -164,8 +162,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	 * @param argValue
 	 *            value of Property 'buttons' to set
 	 */
-	public void setButtons(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
+	public void setButtons(final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
 		this.buttons.setValue(argValue);
 	}
 	/**

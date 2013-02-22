@@ -183,8 +183,7 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	 * @param argValue
 	 *            value of Property 'menuentrys' to set
 	 */
-	public void setMenuentrys(
-		final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
+	public void setMenuentrys(final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
 		this.menuentrys.setValue(argValue);
 	}
 	/**

@@ -163,8 +163,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -184,8 +183,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'enabled' to set
 	 */
-	public void setEnabled(
-		final boolean argValue) {
+	public void setEnabled(final boolean argValue) {
 		this.enabled.setValue(new Boolean(argValue));
 	}
 
@@ -219,8 +217,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'editor' to set
 	 */
-	public void setEditor(
-		final org.rapidbeans.presentation.config.ConfigPropEditor argValue) {
+	public void setEditor(final org.rapidbeans.presentation.config.ConfigPropEditor argValue) {
 		this.editor.setValue(argValue);
 	}
 
@@ -245,8 +242,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'nullbehaviour' to set
 	 */
-	public void setNullbehaviour(
-		final org.rapidbeans.presentation.config.EditorPropNullBehaviour argValue) {
+	public void setNullbehaviour(final org.rapidbeans.presentation.config.EditorPropNullBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.config.EditorPropNullBehaviour> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.config.EditorPropNullBehaviour>();
 		list.add(argValue);
@@ -269,8 +265,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'detail' to set
 	 */
-	public void setDetail(
-		final String argValue) {
+	public void setDetail(final String argValue) {
 		this.detail.setValue(argValue);
 	}
 
@@ -292,8 +287,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'arguments' to set
 	 */
-	public void setArguments(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorArgument> argValue) {
+	public void setArguments(final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorArgument> argValue) {
 		this.arguments.setValue(argValue);
 	}
 	/**

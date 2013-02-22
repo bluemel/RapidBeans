@@ -215,8 +215,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 * @param argValue
 	 *            value of Property 'action' to set
 	 */
-	public void setAction(
-		final org.rapidbeans.service.Action argValue) {
+	public void setAction(final org.rapidbeans.service.Action argValue) {
 		this.action.setValue(argValue);
 	}
 
@@ -250,8 +249,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
-	public void setEnabler(
-		final org.rapidbeans.presentation.enabler.Enabler argValue) {
+	public void setEnabler(final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

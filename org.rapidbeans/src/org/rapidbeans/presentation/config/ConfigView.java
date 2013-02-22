@@ -130,8 +130,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -156,8 +155,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'persistencestrategy' to set
 	 */
-	public void setPersistencestrategy(
-		final org.rapidbeans.presentation.config.ConfigPropPersistencestrategy argValue) {
+	public void setPersistencestrategy(final org.rapidbeans.presentation.config.ConfigPropPersistencestrategy argValue) {
 		java.util.List<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy>();
 		list.add(argValue);
@@ -180,8 +178,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'viewclass' to set
 	 */
-	public void setViewclass(
-		final String argValue) {
+	public void setViewclass(final String argValue) {
 		this.viewclass.setValue(argValue);
 	}
 }

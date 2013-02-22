@@ -273,8 +273,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -294,8 +293,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'rootpackage' to set
 	 */
-	public void setRootpackage(
-		final String argValue) {
+	public void setRootpackage(final String argValue) {
 		this.rootpackage.setValue(argValue);
 	}
 
@@ -315,8 +313,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'applicationclass' to set
 	 */
-	public void setApplicationclass(
-		final String argValue) {
+	public void setApplicationclass(final String argValue) {
 		this.applicationclass.setValue(argValue);
 	}
 
@@ -341,8 +338,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'guitype' to set
 	 */
-	public void setGuitype(
-		final org.rapidbeans.presentation.config.ApplicationGuiType argValue) {
+	public void setGuitype(final org.rapidbeans.presentation.config.ApplicationGuiType argValue) {
 		java.util.List<org.rapidbeans.presentation.config.ApplicationGuiType> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.config.ApplicationGuiType>();
 		list.add(argValue);
@@ -365,8 +361,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'defaultlocale' to set
 	 */
-	public void setDefaultlocale(
-		final String argValue) {
+	public void setDefaultlocale(final String argValue) {
 		this.defaultlocale.setValue(argValue);
 	}
 
@@ -386,8 +381,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'defaultcharset' to set
 	 */
-	public void setDefaultcharset(
-		final String argValue) {
+	public void setDefaultcharset(final String argValue) {
 		this.defaultcharset.setValue(argValue);
 	}
 
@@ -409,8 +403,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'locales' to set
 	 */
-	public void setLocales(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigLocale> argValue) {
+	public void setLocales(final java.util.Collection<org.rapidbeans.presentation.config.ConfigLocale> argValue) {
 		this.locales.setValue(argValue);
 	}
 	/**
@@ -458,8 +451,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'branding' to set
 	 */
-	public void setBranding(
-		final org.rapidbeans.presentation.config.ConfigBranding argValue) {
+	public void setBranding(final org.rapidbeans.presentation.config.ConfigBranding argValue) {
 		this.branding.setValue(argValue);
 	}
 
@@ -481,8 +473,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'beaneditors' to set
 	 */
-	public void setBeaneditors(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigEditorBean> argValue) {
+	public void setBeaneditors(final java.util.Collection<org.rapidbeans.presentation.config.ConfigEditorBean> argValue) {
 		this.beaneditors.setValue(argValue);
 	}
 	/**
@@ -518,8 +509,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'documents' to set
 	 */
-	public void setDocuments(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigDocument> argValue) {
+	public void setDocuments(final java.util.Collection<org.rapidbeans.presentation.config.ConfigDocument> argValue) {
 		this.documents.setValue(argValue);
 	}
 	/**
@@ -555,8 +545,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'actions' to set
 	 */
-	public void setActions(
-		final java.util.Collection<org.rapidbeans.service.Action> argValue) {
+	public void setActions(final java.util.Collection<org.rapidbeans.service.Action> argValue) {
 		this.actions.setValue(argValue);
 	}
 	/**
@@ -604,8 +593,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'mainwindow' to set
 	 */
-	public void setMainwindow(
-		final org.rapidbeans.presentation.config.ConfigMainWindow argValue) {
+	public void setMainwindow(final org.rapidbeans.presentation.config.ConfigMainWindow argValue) {
 		this.mainwindow.setValue(argValue);
 	}
 
@@ -639,8 +627,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'authorization' to set
 	 */
-	public void setAuthorization(
-		final org.rapidbeans.presentation.config.ConfigAuthorization argValue) {
+	public void setAuthorization(final org.rapidbeans.presentation.config.ConfigAuthorization argValue) {
 		this.authorization.setValue(argValue);
 	}
 
@@ -674,8 +661,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'currency' to set
 	 */
-	public void setCurrency(
-		final org.rapidbeans.presentation.config.ConfigCurrency argValue) {
+	public void setCurrency(final org.rapidbeans.presentation.config.ConfigCurrency argValue) {
 		this.currency.setValue(argValue);
 	}
 
@@ -709,8 +695,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'xmlbinding' to set
 	 */
-	public void setXmlbinding(
-		final org.rapidbeans.presentation.config.ConfigXmlBinding argValue) {
+	public void setXmlbinding(final org.rapidbeans.presentation.config.ConfigXmlBinding argValue) {
 		this.xmlbinding.setValue(argValue);
 	}
 }

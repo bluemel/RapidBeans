@@ -287,8 +287,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'accountname' to set
 	 */
-	public void setAccountname(
-		final String argValue) {
+	public void setAccountname(final String argValue) {
 		this.accountname.setValue(argValue);
 	}
 
@@ -308,8 +307,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'pwd' to set
 	 */
-	public void setPwd(
-		final String argValue) {
+	public void setPwd(final String argValue) {
 		this.pwd.setValue(argValue);
 	}
 
@@ -329,8 +327,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'lastname' to set
 	 */
-	public void setLastname(
-		final String argValue) {
+	public void setLastname(final String argValue) {
 		this.lastname.setValue(argValue);
 	}
 
@@ -350,8 +347,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'firstname' to set
 	 */
-	public void setFirstname(
-		final String argValue) {
+	public void setFirstname(final String argValue) {
 		this.firstname.setValue(argValue);
 	}
 
@@ -371,8 +367,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'email' to set
 	 */
-	public void setEmail(
-		final String argValue) {
+	public void setEmail(final String argValue) {
 		this.email.setValue(argValue);
 	}
 
@@ -393,8 +388,7 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'roles' to set
 	 */
-	public void setRoles(
-		final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setRoles(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.roles.setValue(argValue);
 	}
 }

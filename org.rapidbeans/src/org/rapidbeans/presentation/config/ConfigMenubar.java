@@ -128,8 +128,7 @@ public class ConfigMenubar extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
-	public void setName(
-		final String argValue) {
+	public void setName(final String argValue) {
 		this.name.setValue(argValue);
 	}
 
@@ -151,8 +150,7 @@ public class ConfigMenubar extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'menus' to set
 	 */
-	public void setMenus(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigSubmenu> argValue) {
+	public void setMenus(final java.util.Collection<org.rapidbeans.presentation.config.ConfigSubmenu> argValue) {
 		this.menus.setValue(argValue);
 	}
 	/**

@@ -245,8 +245,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 * @param argValue
 	 *            value of Property 'basic' to set
 	 */
-	public void setBasic(
-		final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
+	public void setBasic(final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
 		this.basic.setValue(argValue);
 	}
 
@@ -280,8 +279,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 * @param argValue
 	 *            value of Property 'authn' to set
 	 */
-	public void setAuthn(
-		final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
+	public void setAuthn(final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
 		this.authn.setValue(argValue);
 	}
 }

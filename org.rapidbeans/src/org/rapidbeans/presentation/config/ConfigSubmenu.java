@@ -115,8 +115,7 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 	 * @param argValue
 	 *            value of Property 'menuentrys' to set
 	 */
-	public void setMenuentrys(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigMenuEntry> argValue) {
+	public void setMenuentrys(final java.util.Collection<org.rapidbeans.presentation.config.ConfigMenuEntry> argValue) {
 		this.menuentrys.setValue(argValue);
 	}
 	/**

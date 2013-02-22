@@ -142,8 +142,7 @@ public class WorkTime extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'from' to set
 	 */
-	public void setFrom(
-		final java.util.Date argValue) {
+	public void setFrom(final java.util.Date argValue) {
 		this.from.setValue(argValue);
 	}
 
@@ -163,8 +162,7 @@ public class WorkTime extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'to' to set
 	 */
-	public void setTo(
-		final java.util.Date argValue) {
+	public void setTo(final java.util.Date argValue) {
 		this.to.setValue(argValue);
 	}
 }

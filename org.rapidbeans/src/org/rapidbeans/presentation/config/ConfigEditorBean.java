@@ -139,8 +139,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'beantype' to set
 	 */
-	public void setBeantype(
-		final String argValue) {
+	public void setBeantype(final String argValue) {
 		this.beantype.setValue(argValue);
 	}
 
@@ -160,8 +159,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'editorclass' to set
 	 */
-	public void setEditorclass(
-		final String argValue) {
+	public void setEditorclass(final String argValue) {
 		this.editorclass.setValue(argValue);
 	}
 
@@ -183,8 +181,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'propertycfgs' to set
 	 */
-	public void setPropertycfgs(
-		final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorBean> argValue) {
+	public void setPropertycfgs(final java.util.Collection<org.rapidbeans.presentation.config.ConfigPropEditorBean> argValue) {
 		this.propertycfgs.setValue(argValue);
 	}
 	/**

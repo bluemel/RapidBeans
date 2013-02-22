@@ -167,8 +167,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 	 * @param argValue
 	 *            value of Property 'folderdoc' to set
 	 */
-	public void setFolderdoc(
-		final java.io.File argValue) {
+	public void setFolderdoc(final java.io.File argValue) {
 		this.folderdoc.setValue(argValue);
 	}
 
@@ -188,8 +187,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 	 * @param argValue
 	 *            value of Property 'folderfiles' to set
 	 */
-	public void setFolderfiles(
-		final java.io.File argValue) {
+	public void setFolderfiles(final java.io.File argValue) {
 		this.folderfiles.setValue(argValue);
 	}
 
@@ -214,8 +212,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 	 * @param argValue
 	 *            value of Property 'defaultencoding' to set
 	 */
-	public void setDefaultencoding(
-		final org.rapidbeans.datasource.CharsetsAvailable argValue) {
+	public void setDefaultencoding(final org.rapidbeans.datasource.CharsetsAvailable argValue) {
 		java.util.List<org.rapidbeans.datasource.CharsetsAvailable> list =
 			new java.util.ArrayList<org.rapidbeans.datasource.CharsetsAvailable>();
 		list.add(argValue);
@@ -243,8 +240,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 	 * @param argValue
 	 *            value of Property 'defaultencodingusage' to set
 	 */
-	public void setDefaultencodingusage(
-		final org.rapidbeans.presentation.DefaultEncodingUsage argValue) {
+	public void setDefaultencodingusage(final org.rapidbeans.presentation.DefaultEncodingUsage argValue) {
 		java.util.List<org.rapidbeans.presentation.DefaultEncodingUsage> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.DefaultEncodingUsage>();
 		list.add(argValue);
@@ -281,8 +277,7 @@ public class SettingsBasic extends org.rapidbeans.presentation.settings.Settings
 	 * @param argValue
 	 *            value of Property 'gui' to set
 	 */
-	public void setGui(
-		final org.rapidbeans.presentation.settings.SettingsBasicGui argValue) {
+	public void setGui(final org.rapidbeans.presentation.settings.SettingsBasicGui argValue) {
 		this.gui.setValue(argValue);
 	}
 }

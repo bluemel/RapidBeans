@@ -182,8 +182,7 @@ public class Enabler extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
-	public void setClassname(
-		final String argValue) {
+	public void setClassname(final String argValue) {
 		this.classname.setValue(argValue);
 	}
 }

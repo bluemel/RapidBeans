@@ -144,8 +144,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	 * @param argValue
 	 *            value of Property 'openDocumentHistory' to set
 	 */
-	public void setOpenDocumentHistory(
-		final org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory argValue) {
+	public void setOpenDocumentHistory(final org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory argValue) {
 		this.openDocumentHistory.setValue(argValue);
 	}
 
@@ -170,8 +169,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	 * @param argValue
 	 *            value of Property 'docViewOpenWindowBehaviour' to set
 	 */
-	public void setDocViewOpenWindowBehaviour(
-		final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
+	public void setDocViewOpenWindowBehaviour(final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.OpenWindowBehaviour> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.OpenWindowBehaviour>();
 		list.add(argValue);
@@ -199,8 +197,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	 * @param argValue
 	 *            value of Property 'createNewBeansEditorApplyBehaviour' to set
 	 */
-	public void setCreateNewBeansEditorApplyBehaviour(
-		final org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour argValue) {
+	public void setCreateNewBeansEditorApplyBehaviour(final org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour> list =
 			new java.util.ArrayList<org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour>();
 		list.add(argValue);
@@ -223,8 +220,7 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	 * @param argValue
 	 *            value of Property 'treeViewShowBeanLinks' to set
 	 */
-	public void setTreeViewShowBeanLinks(
-		final boolean argValue) {
+	public void setTreeViewShowBeanLinks(final boolean argValue) {
 		this.treeViewShowBeanLinks.setValue(new Boolean(argValue));
 	}
 }

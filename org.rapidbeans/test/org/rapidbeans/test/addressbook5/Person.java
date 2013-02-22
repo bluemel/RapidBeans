@@ -162,8 +162,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'lastname' to set
 	 */
-	public void setLastname(
-		final String argValue) {
+	public void setLastname(final String argValue) {
 		this.lastname.setValue(argValue);
 	}
 
@@ -183,8 +182,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'firstname' to set
 	 */
-	public void setFirstname(
-		final String argValue) {
+	public void setFirstname(final String argValue) {
 		this.firstname.setValue(argValue);
 	}
 
@@ -204,8 +202,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'dateofbirth' to set
 	 */
-	public void setDateofbirth(
-		final java.util.Date argValue) {
+	public void setDateofbirth(final java.util.Date argValue) {
 		this.dateofbirth.setValue(argValue);
 	}
 
@@ -225,8 +222,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'shoesize' to set
 	 */
-	public void setShoesize(
-		final int argValue) {
+	public void setShoesize(final int argValue) {
 		this.shoesize.setValue(new Integer(argValue));
 	}
 
@@ -247,8 +243,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'sex' to set
 	 */
-	public void setSex(
-		final java.util.List<Sex> argValue) {
+	public void setSex(final java.util.List<Sex> argValue) {
 		this.sex.setValue(argValue);
 	}
 
@@ -268,8 +263,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'height' to set
 	 */
-	public void setHeight(
-		final Length argValue) {
+	public void setHeight(final Length argValue) {
 		this.height.setValue(argValue);
 	}
 
@@ -291,8 +285,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'groups' to set
 	 */
-	public void setGroups(
-		final java.util.Collection<Group> argValue) {
+	public void setGroups(final java.util.Collection<Group> argValue) {
 		this.groups.setValue(argValue);
 	}
 	/**
@@ -340,8 +333,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'user' to set
 	 */
-	public void setUser(
-		final User argValue) {
+	public void setUser(final User argValue) {
 		this.user.setValue(argValue);
 	}
 
