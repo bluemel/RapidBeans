@@ -13,4 +13,5 @@
 		targettype="org.rapidbeans.test.ClosingPeriod"
 		collectionclass="java.util.ArrayList"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

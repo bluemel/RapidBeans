@@ -20,4 +20,5 @@
 	<property name="file"/>
 	<property name="timemin" type="quantity"
 		quantity="org.rapidbeans.domain.math.Time"/>
+	<codegen implementation="strict"/>
 </beantype>

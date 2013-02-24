@@ -9,5 +9,5 @@
 		type="date"
 		precision="minute"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

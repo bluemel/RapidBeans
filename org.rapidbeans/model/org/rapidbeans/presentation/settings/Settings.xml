@@ -18,5 +18,5 @@
 
 <beantype name="org.rapidbeans.presentation.settings.Settings"
 	final="false">
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

@@ -27,5 +27,5 @@
 	<property name="depname" type="string"
 		depends="sex,firstname,lastname"
 	/>
-    <codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

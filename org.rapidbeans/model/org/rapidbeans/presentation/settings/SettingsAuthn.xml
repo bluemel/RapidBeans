@@ -24,4 +24,5 @@
 		targettype="org.rapidbeans.presentation.settings.SettingsCred"
 		maxmult="1"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -15,4 +15,5 @@
 		targettype="Person"
         collectionclass="java.util.ArrayList"
 		/>
+	<codegen implementation="strict"/>
 </beantype>

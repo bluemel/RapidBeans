@@ -21,4 +21,5 @@
 	<property name="logname"/>
 	<property name="pwd" emptyvalid="true"/>
 	<property name="encrypted" type="boolean"/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -22,4 +22,5 @@
 	<xmlbinding>
 		<property name="locations" separator="," escape="\"/>
 	</xmlbinding>
+	<codegen implementation="strict"/>
 </beantype>

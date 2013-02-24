@@ -34,5 +34,5 @@
     <property name="arguments" type="association" composition="true"
         targettype="org.rapidbeans.presentation.config.ConfigPropEditorArgument"
     />
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

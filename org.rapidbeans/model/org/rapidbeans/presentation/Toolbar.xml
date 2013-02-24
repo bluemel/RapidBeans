@@ -35,5 +35,5 @@
         targettype="org.rapidbeans.presentation.ToolbarButton"
 		collectionclass="java.util.ArrayList"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

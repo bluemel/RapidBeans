@@ -25,4 +25,5 @@
 		targettype="BeanEditorState"
 	/>
 	<property name="dividerLocation" type="integer"/>
+	<codegen implementation="strict"/>
 </beantype>

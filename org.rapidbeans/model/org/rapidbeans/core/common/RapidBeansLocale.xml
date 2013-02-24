@@ -19,5 +19,5 @@
 <beantype name="org.rapidbeans.core.common.RapidBeansLocale"
 	idtype="keyprops">
 	<property name="name" key="true"/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

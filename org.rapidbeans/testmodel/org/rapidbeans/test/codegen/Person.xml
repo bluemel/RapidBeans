@@ -55,4 +55,5 @@
 		<property name="comment2" bindingtype="element"/>
 		<property name="comment3" bindingtype="element"/>
 	</xmlbinding>
+	<codegen implementation="strict"/>
 </beantype>

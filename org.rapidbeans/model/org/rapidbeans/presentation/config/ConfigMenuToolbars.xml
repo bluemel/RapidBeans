@@ -18,4 +18,5 @@
 
 <beantype name="org.rapidbeans.presentation.config.ConfigMenuToolbars"
 	extends="org.rapidbeans.presentation.config.ConfigMenuEntry">
+	<codegen implementation="strict"/>
 </beantype>

@@ -28,5 +28,5 @@
         targettype="org.rapidbeans.presentation.config.ConfigToolbarButton"
 		collectionclass="java.util.ArrayList"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

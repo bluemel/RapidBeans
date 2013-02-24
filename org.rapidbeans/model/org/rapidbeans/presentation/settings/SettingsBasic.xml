@@ -44,5 +44,5 @@
 		minmult="1"
 		maxmult="1"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

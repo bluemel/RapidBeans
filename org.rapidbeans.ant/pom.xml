@@ -3,8 +3,8 @@
   <groupId>org.rapidbeans</groupId>
   <artifactId>rapidbeans-anttasks</artifactId>
   <packaging>jar</packaging>
-  <version>0.9.1</version>
-  <name>rapidbeans-framework</name>
+  <version>0.9.2</version>
+  <name>rapidbeans-anttasks</name>
   <url>https://github.com/bluemel/RapidBeans</url>
   <dependencies>
     <dependency>

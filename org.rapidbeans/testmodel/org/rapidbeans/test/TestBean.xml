@@ -88,4 +88,5 @@
 		navigable="false"
 	/>
 -->
-	</beantype>
+	<codegen implementation="strict"/>
+</beantype>

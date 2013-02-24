@@ -43,5 +43,5 @@
 		composition="true"
 		targettype="org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

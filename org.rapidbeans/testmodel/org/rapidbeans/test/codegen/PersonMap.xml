@@ -13,4 +13,5 @@
 		inverse="personmap"
 		targettype="Person"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

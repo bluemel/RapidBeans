@@ -27,5 +27,5 @@
 		default="ondemand"
 	/>
 	<property name="viewclass"/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

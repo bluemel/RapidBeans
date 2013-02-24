@@ -24,4 +24,5 @@
 		default="metal"
 		enum="org.rapidbeans.presentation.settings.swing.ApplicationLnfTypeSwing"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

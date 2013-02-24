@@ -38,5 +38,5 @@
 				xmlelement="submenu"/>
 		</property>
 	</xmlbinding>
-    <codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

@@ -14,4 +14,5 @@
 	<xmlbinding>
 		<property name="closedons" separator="," escape="\"/>
 	</xmlbinding>
+	<codegen implementation="strict"/>
 </beantype>

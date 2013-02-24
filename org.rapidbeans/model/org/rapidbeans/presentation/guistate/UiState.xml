@@ -24,4 +24,5 @@
 	<property name="historys" type="association" composition="true"
 		targettype="HistoryState"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

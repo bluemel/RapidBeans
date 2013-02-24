@@ -40,5 +40,5 @@
 		default="true"
 		propclass="org.rapidbeans.presentation.settings.SettingsBasicGuiPropTreeViewShowBeanLinks"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

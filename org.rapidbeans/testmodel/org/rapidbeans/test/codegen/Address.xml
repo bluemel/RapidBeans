@@ -33,4 +33,5 @@
 		targettype="Person"
 		maxmult="5"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

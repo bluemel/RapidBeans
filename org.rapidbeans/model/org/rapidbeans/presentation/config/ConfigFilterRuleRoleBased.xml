@@ -24,4 +24,5 @@
 	/>
 	<property name="excludesfilters"/>
 	<property name="includesfilters"/>
+	<codegen implementation="strict"/>
 </beantype>

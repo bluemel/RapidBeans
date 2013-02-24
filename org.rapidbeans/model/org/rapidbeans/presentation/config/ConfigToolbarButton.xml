@@ -44,5 +44,5 @@
 		maxmult="1"
 		collectionclass="java.util.ArrayList"
 		/>
-	<codegen mode="split"/>
+	<codegen mode="split" implementation="strict"/>
 </beantype>

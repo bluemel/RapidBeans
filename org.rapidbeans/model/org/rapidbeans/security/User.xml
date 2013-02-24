@@ -35,5 +35,5 @@
 		enum="org.rapidbeans.core.basic.RapidEnum"
 		multiple="true"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

@@ -11,4 +11,5 @@
 		targettype="org.rapidbeans.test.addressbook.Person"
 		inverse="address"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -13,4 +13,5 @@
 		targettype="org.rapidbeans.test.addressbook.Person"
 		inverse="groups"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -24,4 +24,5 @@
 	<property name="views" type="association" composition="true"
 		targettype="ViewState"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

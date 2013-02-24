@@ -48,5 +48,5 @@
         type="boolean"
         default="true"
     />
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

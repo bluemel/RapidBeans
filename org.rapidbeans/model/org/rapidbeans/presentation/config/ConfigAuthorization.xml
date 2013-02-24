@@ -47,4 +47,5 @@ Currently only "userpassword is supported."]]></description>
 		default="oneroleperuser">
 		<description><![CDATA[Specifies]]></description>
 	</property>
+	<codegen implementation="strict"/>
 </beantype>

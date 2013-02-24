@@ -20,5 +20,5 @@
 	<property name="editorclass"/>
 	<property name="basepackage"/>
 	<property name="classnamepart"/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

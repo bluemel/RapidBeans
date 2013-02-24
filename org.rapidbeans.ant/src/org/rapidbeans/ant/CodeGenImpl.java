@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
- * Rapid Beans Framework: MenuHistoryOpenDocument.xml
- *
- * Copyright (C) 2010 Martin Bluemel
- *
- * Creation Date: 02/18/2010
- *
+/*
+ * Rapid Beans Framework, SDK, Ant Tasks: CodeGenImpl.java
+ * 
+ * Copyright (C) 2009 Martin Bluemel
+ * 
+ * Creation Date: 11/01/2008
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -14,9 +13,11 @@
  * See the GNU Lesser General Public License for more details.
  * You should have received a copies of the GNU Lesser General Public License and the
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
--->
+ */
 
-<beantype name="org.rapidbeans.presentation.MenuToolbars"
-	extends="org.rapidbeans.presentation.MenuEntry">
-	<codegen mode="joint" implementation="strict"/>
-</beantype>
+package org.rapidbeans.ant;
+
+public enum CodeGenImpl {
+	simple,
+	strict
+}

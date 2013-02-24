@@ -19,4 +19,5 @@
 		targettype="org.rapidbeans.test.addressbook.Group"
 		collectionclass="java.util.TreeSet"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

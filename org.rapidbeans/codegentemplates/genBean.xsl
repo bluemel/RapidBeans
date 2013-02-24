@@ -30,9 +30,14 @@
 		style: the path of this style sheet
 
 		codegen: the code generation mode:
-			{ <not defined>,  | 'split' | 'join' }
+			{ 'node' | 'simple' | 'split' | 'joint' }
 
-			<not defined>: generates a simple RapidBean class with type safe
+			If codegen is given from outside it will overwrite
+			the settings in the model or the default.
+
+			none: no code generation. This template will stop processing in this case
+
+			simple: generates a simple RapidBean class with type safe
 				property (association) getters and setters.
 
 			split: generates an abstract RapidBean base class named
@@ -48,6 +53,14 @@
 				that transfers the content of the protected regions to a newly
 				generated version.
 
+		implementation: the RapidBean implementation { 'simple' | 'strict' }
+
+			If implementation is given from outside it will overwrite
+			the settings in the model or the default.
+
+		indent: the indentation string.
+			If not given TAB is taken as default.
+
 		All parameters are optional.
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -60,20 +73,62 @@
 <xsl:param name="in"/>
 <xsl:param name="out"/>
 <xsl:param name="style"/>
-<xsl:param name="codegen"/>
 <xsl:param name="root"/>
-<xsl:param name="indent"/>
+<xsl:param name="codegen"/>
 <xsl:param name="implementation"/>
+<xsl:param name="indent"/>
 
 <xsl:template match="//beantype">
 
-<xsl:variable name="implext">
+<xsl:variable name="codegenmode">
 	<xsl:choose>
-		<xsl:when test="$implementation = ''">
-			<xsl:value-of select="'model'"/>
+		<xsl:when test="$codegen = ''">
+			<xsl:choose>
+				<xsl:when test="codegen/@mode">
+					<!-- Read codegenmode from model -->
+					<xsl:value-of select="codegen/@mode"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<!--  take the default -->
+					<xsl:value-of select="'simple'"/>
+				</xsl:otherwise>
+			</xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:value-of select="$implementation"/>
+			<!-- take the given parameter -->
+			<xsl:value-of select="$codegen"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:variable>
+<xsl:if test="$codegenmode = 'none'">
+	<xsl:message terminate="yes">No code generation for RapidBean <xsl:value-of select="@name"/>!</xsl:message>
+</xsl:if>
+
+<xsl:variable name="codegenimpl">
+	<xsl:choose>
+		<xsl:when test="$implementation = ''">
+			<xsl:choose>
+				<xsl:when test="codegen/@implementation">
+					<!-- Read codegenimpl from model -->
+					<xsl:call-template name="String.upperFirstCharacter">
+						<xsl:with-param name="string">
+							<xsl:value-of select="codegen/@impementation"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!--  take the default -->
+					<xsl:value-of select="'Simple'"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:when>
+		<xsl:otherwise>
+			<!-- take the given parameter -->
+			<xsl:call-template name="String.upperFirstCharacter">
+				<xsl:with-param name="string">
+					<xsl:value-of select="$implementation"/>
+				</xsl:with-param>
+			</xsl:call-template>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:variable>
@@ -85,7 +140,7 @@
 </xsl:variable>
 
 <xsl:variable name="classname">
-	<xsl:if test="$codegen = 'split'">
+	<xsl:if test="$codegenmode = 'split'">
 		<xsl:text>RapidBeanBase</xsl:text>
 	</xsl:if>
 	<xsl:call-template name="Java.extractClassname">
@@ -174,7 +229,7 @@
 	<xsl:with-param name="package"><xsl:value-of select="$package"/></xsl:with-param>
 	<xsl:with-param name="in"><xsl:value-of select="$in"/></xsl:with-param>
 	<xsl:with-param name="style"><xsl:value-of select="$style"/></xsl:with-param>
-	<xsl:with-param name="codegen"><xsl:value-of select="$codegen"/></xsl:with-param>
+	<xsl:with-param name="codegen"><xsl:value-of select="$codegenmode"/></xsl:with-param>
 	<xsl:with-param name="root"><xsl:value-of select="$root"/></xsl:with-param>
 	<xsl:with-param name="kindoftype">bean</xsl:with-param>
 </xsl:call-template>
@@ -184,53 +239,30 @@
 <xsl:value-of select="$newline"/>
 <xsl:value-of select="$newline"/>
 
-<xsl:variable name="impl">
-	<xsl:choose>
-		<xsl:when test="$implext = 'strict'">
-			<xsl:value-of select="'Strict'"/>
-		</xsl:when>
-		<xsl:when test="$implext = 'simple'">
-			<xsl:value-of select="'Simple'"/>
-		</xsl:when>
-		<xsl:otherwise> <!-- $implext = 'model' -->
-			<xsl:choose>
-				<xsl:when test="codegen/@implementation = 'strict'">
-					<xsl:value-of select="'Strict'"/>
-				</xsl:when>
-				<xsl:when test="codegen/@implementation = 'simple'">
-					<xsl:value-of select="'Simple'"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="'Strict'"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:otherwise>
-	</xsl:choose>
-</xsl:variable>
 
 <xsl:choose>
 	<xsl:when test="@extends">
 	</xsl:when>
 	<xsl:otherwise>
-		<xsl:if test="(not ($codegen)) or ($codegen != 'joint')">
-			<xsl:text>import org.rapidbeans.core.basic.RapidBeanImpl</xsl:text><xsl:value-of select="$impl"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
+		<xsl:if test="(not ($codegenmode)) or ($codegenmode != 'joint')">
+			<xsl:text>import org.rapidbeans.core.basic.RapidBeanImpl</xsl:text><xsl:value-of select="$codegenimpl"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 		</xsl:if>
 	</xsl:otherwise>
 </xsl:choose>
 
-<xsl:if test="(not ($codegen)) or ($codegen != 'joint')">
+<xsl:if test="(not ($codegenmode)) or ($codegenmode != 'joint')">
 	<xsl:text>import org.rapidbeans.core.type.TypeRapidBean;</xsl:text><xsl:value-of select="$newline"/>
 </xsl:if>
 
 <xsl:if test="property[(@type = 'association' or @type = 'associationend') and @maxmult = '1']">
-	<xsl:if test="(not ($codegen)) or ($codegen != 'joint')">
+	<xsl:if test="(not ($codegenmode)) or ($codegenmode != 'joint')">
 		<xsl:text>import org.rapidbeans.core.basic.Link;</xsl:text><xsl:value-of select="$newline"/>
 		<xsl:text>import org.rapidbeans.core.basic.LinkFrozen;</xsl:text><xsl:value-of select="$newline"/>
 		<xsl:text>import org.rapidbeans.core.exception.UnresolvedLinkException;</xsl:text><xsl:value-of select="$newline"/>
 	</xsl:if>
 </xsl:if>
 
-<xsl:if test="$codegen = 'joint'">
+<xsl:if test="$codegenmode = 'joint'">
 	<xsl:value-of select="$newline"/>
 	<xsl:text>// BEGIN manual code section</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:text>// </xsl:text><xsl:value-of select="$classname"/><xsl:text>.import</xsl:text><xsl:value-of select="$newline"/>
@@ -248,7 +280,7 @@
 <xsl:text> * </xsl:text>
 
 <xsl:choose>
-	<xsl:when test="$codegen = 'joint'">
+	<xsl:when test="$codegenmode = 'joint'">
 		<xsl:text>Partially </xsl:text>
 	</xsl:when>
 	<xsl:otherwise>
@@ -257,7 +289,7 @@
 </xsl:choose>
 <xsl:text>generated Java class</xsl:text><xsl:value-of select="$newline"/>
 <xsl:choose>
-	<xsl:when test="$codegen = 'joint'">
+	<xsl:when test="$codegenmode = 'joint'">
 		<xsl:text> * !!!Do only edit manually in marked sections!!!</xsl:text><xsl:value-of select="$newline"/>
 	</xsl:when>
 	<xsl:otherwise>
@@ -268,7 +300,7 @@
 <xsl:text> **/</xsl:text><xsl:value-of select="$newline"/>
 <xsl:text>public</xsl:text>
 <xsl:choose>
-	<xsl:when test="@abstract = 'true' or $codegen = 'split'">
+	<xsl:when test="@abstract = 'true' or $codegenmode = 'split'">
 		<xsl:text> abstract</xsl:text>
 	</xsl:when>
 	<xsl:otherwise>
@@ -282,13 +314,13 @@
 		<xsl:value-of select="@extends"/>
 	</xsl:when>
 	<xsl:otherwise>
-		<xsl:text>RapidBeanImpl</xsl:text><xsl:value-of select="$impl"/>
+		<xsl:text>RapidBeanImpl</xsl:text><xsl:value-of select="$codegenimpl"/>
 	</xsl:otherwise>
 </xsl:choose>
 <xsl:text> {</xsl:text><xsl:value-of select="$newline"/>
 
 
-<xsl:if test="$codegen = 'joint'">
+<xsl:if test="$codegenmode = 'joint'">
 	<xsl:value-of select="$indent1"/><xsl:text>// BEGIN manual code section</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text>// </xsl:text><xsl:value-of select="$classname"/><xsl:text>.classBody</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text>// END manual code section</xsl:text><xsl:value-of select="$newline"/>
@@ -310,7 +342,7 @@
 			<xsl:value-of select="$indent1"/><xsl:text> * property "</xsl:text><xsl:value-of select="@name"/><xsl:text>".</xsl:text><xsl:value-of select="$newline"/>
 			<xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 			<xsl:choose>
-				<xsl:when test="$impl = 'Simple'">
+				<xsl:when test="$codegenimpl = 'Simple'">
 					<xsl:value-of select="$indent1"/><xsl:text>private </xsl:text>
 					<xsl:call-template name="javaType">
 						<xsl:with-param name="mode">get</xsl:with-param>
@@ -363,7 +395,7 @@
 			<xsl:text>this.</xsl:text><xsl:value-of select="@name"/>
 			<xsl:text> = </xsl:text>
 			<xsl:choose>
-				<xsl:when test="$impl = 'Simple'">
+				<xsl:when test="$codegenimpl = 'Simple'">
 					<!-- this.from = (Date) getType().getPropertyType("from").getDefaultValue(); -->
 					<xsl:text>(</xsl:text>
 					<xsl:call-template name="javaType">
@@ -465,7 +497,7 @@
 <xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>public </xsl:text><xsl:value-of select="$classname"/><xsl:text>() {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>super();</xsl:text><xsl:value-of select="$newline"/>
-<xsl:if test="$codegen = 'joint'">
+<xsl:if test="$codegenmode = 'joint'">
 	<xsl:value-of select="$indent2"/><xsl:text>// BEGIN manual code section</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent2"/><xsl:text>// </xsl:text><xsl:value-of select="$classname"/>
 	<xsl:text>.</xsl:text><xsl:value-of select="$classname"/><xsl:text>()</xsl:text><xsl:value-of select="$newline"/>
@@ -481,7 +513,7 @@
 <xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>public </xsl:text><xsl:value-of select="$classname"/><xsl:text>(final String s) {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>super(s);</xsl:text><xsl:value-of select="$newline"/>
-<xsl:if test="$codegen = 'joint'">
+<xsl:if test="$codegenmode = 'joint'">
 	<xsl:value-of select="$indent2"/><xsl:text>// BEGIN manual code section</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent2"/><xsl:text>// </xsl:text><xsl:value-of select="$classname"/><xsl:text>.</xsl:text><xsl:value-of select="$classname"/><xsl:text>(String)</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent2"/><xsl:text>// END manual code section</xsl:text><xsl:value-of select="$newline"/>
@@ -496,7 +528,7 @@
 <xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>public </xsl:text><xsl:value-of select="$classname"/><xsl:text>(final String[] sa) {</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent2"/><xsl:text>super(sa);</xsl:text><xsl:value-of select="$newline"/>
-<xsl:if test="$codegen = 'joint'">
+<xsl:if test="$codegenmode = 'joint'">
 	<xsl:value-of select="$indent2"/><xsl:text>// BEGIN manual code section</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent2"/><xsl:text>// </xsl:text><xsl:value-of select="$classname"/><xsl:text>.</xsl:text><xsl:value-of select="$classname"/><xsl:text>(String[])</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent2"/><xsl:text>// END manual code section</xsl:text><xsl:value-of select="$newline"/>
@@ -509,7 +541,7 @@
 	######################################################################
 -->
 
-<xsl:if test="$codegen != 'split'">
+<xsl:if test="$codegenmode != 'split'">
 	<xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text>/**</xsl:text><xsl:value-of select="$newline"/>
 	<xsl:value-of select="$indent1"/><xsl:text> * the bean's type (class variable).</xsl:text><xsl:value-of select="$newline"/>
@@ -525,10 +557,10 @@
 <xsl:value-of select="$indent1"/><xsl:text> * @return the Biz Bean's type</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text> */</xsl:text><xsl:value-of select="$newline"/>
 <xsl:value-of select="$indent1"/><xsl:text>public </xsl:text>
-<xsl:if test="@final = 'true' and (@abstract = 'true' or $codegen = 'split')">
+<xsl:if test="@final = 'true' and (@abstract = 'true' or $codegenmode = 'split')">
 	<xsl:message terminate="yes">ERROR a bean type can't be both: abstract and final</xsl:message>
 </xsl:if>
-<xsl:if test="@abstract = 'true' or $codegen = 'split'">
+<xsl:if test="@abstract = 'true' or $codegenmode = 'split'">
 	<xsl:text>abstract </xsl:text>
 </xsl:if>
 <xsl:if test="@final = 'true'">
@@ -536,7 +568,7 @@
 </xsl:if>
 <xsl:text>TypeRapidBean getType()</xsl:text>
 <xsl:choose>
-	<xsl:when test="@abstract = 'true' or $codegen = 'split'">
+	<xsl:when test="@abstract = 'true' or $codegenmode = 'split'">
 		<xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 	</xsl:when>
 	<xsl:otherwise>
@@ -572,7 +604,7 @@
 <xsl:value-of select="$indent1"/><xsl:text>public </xsl:text>
 <xsl:if test="@depends">
 	<xsl:choose>			
-		<xsl:when test="$codegen = 'split'">
+		<xsl:when test="$codegenmode = 'split'">
 			<xsl:text>abstract </xsl:text>
 		</xsl:when>
 	</xsl:choose>
@@ -597,7 +629,7 @@
 <xsl:text>()</xsl:text>
 
 <xsl:choose>			
-	<xsl:when test="@depends and $codegen = 'split'">
+	<xsl:when test="@depends and $codegenmode = 'split'">
 		<xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 	</xsl:when>
 	<xsl:otherwise>
@@ -610,7 +642,7 @@
 	<xsl:when test="@depends">
 
 		<xsl:choose>
-			<xsl:when test="$codegen = 'joint'">
+			<xsl:when test="$codegenmode = 'joint'">
 				<xsl:value-of select="$indent2" />
 				<xsl:text>// BEGIN manual code section</xsl:text>
 				<xsl:value-of select="$newline" />
@@ -644,7 +676,7 @@
 	</xsl:when>
 	<xsl:otherwise>
 		<xsl:choose>
-			<xsl:when test="$impl = 'Simple'">
+			<xsl:when test="$codegenimpl = 'Simple'">
 
 				<xsl:choose> <!-- switch over types -->
 
@@ -962,7 +994,7 @@
 
 		<xsl:choose>
 
-			<xsl:when test="$impl = 'Simple'"> <!-- implementation = Simple -->
+			<xsl:when test="$codegenimpl = 'Simple'"> <!-- implementation = Simple -->
 				<xsl:value-of select="$indent2" />
 
 				<xsl:choose> <!-- switch over types -->

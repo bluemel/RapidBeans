@@ -19,4 +19,5 @@
 <beantype name="org.rapidbeans.presentation.config.ConfigMenuSeparator"
 	extends="org.rapidbeans.presentation.config.ConfigMenuEntry">
 	<property name="name" mandatory="false"/>
+	<codegen implementation="strict"/>
 </beantype>

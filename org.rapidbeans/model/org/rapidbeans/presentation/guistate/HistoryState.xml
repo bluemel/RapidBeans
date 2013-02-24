@@ -18,4 +18,5 @@
 
 <beantype name="org.rapidbeans.presentation.guistate.HistoryState">
 	<property name="url"/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -45,5 +45,5 @@
 		targettype="org.rapidbeans.presentation.config.ConfigFooter"
 		maxmult="1"
 	/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

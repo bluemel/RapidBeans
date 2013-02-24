@@ -33,4 +33,5 @@
 		maxmult="1"
 		collectionclass="java.util.ArrayList"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

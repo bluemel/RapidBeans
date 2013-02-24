@@ -19,4 +19,5 @@
 <beantype name="org.rapidbeans.presentation.config.ConfigPropEditorArgument">
 	<property name="name"/>
 	<property name="value"/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -28,4 +28,5 @@
 		enum="org.rapidbeans.security.Role"
 		multiple="true"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

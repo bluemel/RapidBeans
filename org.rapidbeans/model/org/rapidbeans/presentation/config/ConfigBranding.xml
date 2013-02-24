@@ -20,4 +20,5 @@
 	<property name="icon"/>
 	<property name="splash" type="association" maxmult="1"
 		composition="true" targettype="ConfigBrandingSplash"/>
+	<codegen implementation="strict"/>
 </beantype>

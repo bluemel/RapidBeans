@@ -22,4 +22,5 @@
 	<property name="propertys" type="association" composition="true"
 		targettype="PropState"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

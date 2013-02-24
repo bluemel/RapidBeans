@@ -16,4 +16,5 @@
 		minmult="0"
 		maxmult="1"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

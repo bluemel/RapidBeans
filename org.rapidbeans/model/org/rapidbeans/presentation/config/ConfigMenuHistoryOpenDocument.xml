@@ -37,4 +37,5 @@
 		default="file"
         emptyvalid="true"
     />
+	<codegen implementation="strict"/>
 </beantype>

@@ -19,4 +19,5 @@
 <beantype name="org.rapidbeans.presentation.config.ConfigXmlBinding">
 	<property name="separator" maxlen="2"/>
     <property name="escape" maxlen="2"/>
+	<codegen implementation="strict"/>
 </beantype>

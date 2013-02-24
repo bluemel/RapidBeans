@@ -32,5 +32,5 @@
 		maxmult="1"
 		collectionclass="java.util.ArrayList"
 		/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

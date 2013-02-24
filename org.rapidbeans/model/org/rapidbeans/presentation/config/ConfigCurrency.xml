@@ -29,4 +29,5 @@
 		type="choice"
 		enum="org.rapidbeans.domain.finance.Currency"
 	/>
+	<codegen implementation="strict"/>
 </beantype>

@@ -18,5 +18,5 @@
 
 <beantype name="org.rapidbeans.presentation.enabler.Enabler">
 	<property name="classname"/>
-	<codegen mode="joint"/>
+	<codegen mode="joint" implementation="strict"/>
 </beantype>

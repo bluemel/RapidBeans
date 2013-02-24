@@ -19,4 +19,5 @@
 <beantype name="org.rapidbeans.service.ActionArgument">
 	<property name="name"/>
 	<property name="value"/>
+	<codegen implementation="strict"/>
 </beantype>

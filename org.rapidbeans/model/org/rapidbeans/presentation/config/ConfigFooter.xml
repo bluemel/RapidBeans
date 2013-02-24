@@ -22,4 +22,5 @@
 		enum="org.rapidbeans.presentation.FooterPresentationMode"
 		default="onmessagespecific"
 	/>
+	<codegen implementation="strict"/>
 </beantype>
