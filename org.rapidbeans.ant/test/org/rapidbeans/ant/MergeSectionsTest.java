@@ -1,8 +1,8 @@
 /*
  * Rapid Beans Framework: MergeSectionsTest.java
- *
+ * 
  * Copyright Martin Bluemel, 2008
- *
+ * 
  * Oct 29, 2005
  */
 
@@ -90,18 +90,15 @@ public final class MergeSectionsTest {
 	 *             I/O Error
 	 */
 	@Test
-	public void testMergeBodiesNormalAndSignatureChangeDifferentProps()
-			throws IOException {
+	public void testMergeBodiesNormalAndSignatureChangeDifferentProps() throws IOException {
 		AntGateway ant = new AntGateway();
 		File testDir = new File("testdata/test3");
 		File srcfilegen = new File(testDir, "testNewGen.txt");
 		File srcfileman = new File(testDir, "testOldMan.txt");
 		File destfile = new File(testDir, "testMergeResult.txt");
 		File destfileExpected = new File(testDir, "testMergeResultExpected.txt");
-		final MergeProperties mergeProps = new MergeProperties("#",
-				"BEGIN hand written code", "END hand written code",
-				"!!!! BEGIN unmatched hand written code",
-				"!!!! END unmatched hand written code");
+		final MergeProperties mergeProps = new MergeProperties("#", "BEGIN hand written code", "END hand written code",
+				"!!!! BEGIN unmatched hand written code", "!!!! END unmatched hand written code");
 		ant.mergeSections(srcfilegen, srcfileman, destfile, mergeProps);
 		assertTextFilesEquals(destfileExpected, destfile);
 		ant.delete(destfile);
@@ -159,38 +156,31 @@ public final class MergeSectionsTest {
 	 * @throws IOException
 	 *             error with IO
 	 */
-	public static void assertTextFilesEquals(final File f1, final File f2)
-			throws IOException {
+	public static void assertTextFilesEquals(final File f1, final File f2) throws IOException {
 		LineNumberReader rd1 = null;
 		LineNumberReader rd2 = null;
 		try {
-			rd1 = new LineNumberReader(new InputStreamReader(
-					new FileInputStream(f1)));
-			rd2 = new LineNumberReader(new InputStreamReader(
-					new FileInputStream(f2)));
+			rd1 = new LineNumberReader(new InputStreamReader(new FileInputStream(f1)));
+			rd2 = new LineNumberReader(new InputStreamReader(new FileInputStream(f2)));
 			int lineno = 1;
 			String line1 = rd1.readLine();
 			String line2;
 			while (line1 != null) {
 				line2 = rd2.readLine();
 				if (line2 == null) {
-					Assert.fail("file " + f2.getAbsolutePath()
-							+ " is shorter than file " + f1.getAbsolutePath()
-							+ "." + " file comparison failed in line " + lineno);
+					Assert.fail("file " + f2.getAbsolutePath() + " is shorter than file " + f1.getAbsolutePath() + "."
+							+ " file comparison failed in line " + lineno);
 				}
 				if (!line1.equals(line2)) {
-					Assert.fail(" file comparison failed in line " + lineno
-							+ "\nfile " + f1.getAbsolutePath() + ": \"" + line1
-							+ "\"" + "\nfile " + f2.getAbsolutePath() + ": \""
-							+ line2 + "\"");
+					Assert.fail(" file comparison failed in line " + lineno + "\nfile " + f1.getAbsolutePath() + ": \""
+							+ line1 + "\"" + "\nfile " + f2.getAbsolutePath() + ": \"" + line2 + "\"");
 				}
 				lineno++;
 				line1 = rd1.readLine();
 			}
 			line2 = rd2.readLine();
 			if (line2 != null) {
-				Assert.fail("file " + f2.getAbsolutePath()
-						+ " is longer than file " + f1.getAbsolutePath() + "."
+				Assert.fail("file " + f2.getAbsolutePath() + " is longer than file " + f1.getAbsolutePath() + "."
 						+ " file comparison failed in line " + lineno);
 			}
 		} finally {

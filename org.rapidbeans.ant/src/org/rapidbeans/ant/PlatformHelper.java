@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: PlatformHelper.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 12/07/2008
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -92,8 +92,7 @@ public final class PlatformHelper {
 		try {
 			final Process proc = Runtime.getRuntime().exec("hostname");
 			proc.waitFor();
-			reader = new LineNumberReader(new InputStreamReader(
-					proc.getInputStream()));
+			reader = new LineNumberReader(new InputStreamReader(proc.getInputStream()));
 			return reader.readLine().trim();
 		} catch (InterruptedException e) {
 			throw new BuildException(e);

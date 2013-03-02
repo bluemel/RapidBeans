@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: CodeFileDest.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -53,30 +53,23 @@ public class CodeFileDest extends CodeFile {
 	 */
 	public final void validate() {
 		if (this.getFile() == null) {
-			throw new BuildException(
-					"No value defined for mandatory attribute \"destfile\".");
+			throw new BuildException("No value defined for mandatory attribute \"destfile\".");
 		}
 		if (!this.getFile().getParentFile().exists()) {
 			this.ant.mkdir(this.getFile().getParentFile());
 		}
 		if (!this.getFile().getParentFile().exists()) {
-			throw new BuildException(
-					"invalid file given for attribute \"destfile\"."
-							+ "Can't nether find nor create parent directory for"
-							+ " file \"" + this.getFile().getAbsolutePath()
-							+ "\".");
+			throw new BuildException("invalid file given for attribute \"destfile\"."
+					+ "Can't nether find nor create parent directory for" + " file \""
+					+ this.getFile().getAbsolutePath() + "\".");
 		}
 		if (this.getFile().exists() && (!this.getFile().canWrite())) {
-			throw new BuildException(
-					"invalid file given for attribute \"destfile\"."
-							+ "Can't write file \""
-							+ this.getFile().getAbsolutePath() + "\".");
+			throw new BuildException("invalid file given for attribute \"destfile\"." + "Can't write file \""
+					+ this.getFile().getAbsolutePath() + "\".");
 		}
 		if (this.getFile().exists() && this.getFile().isDirectory()) {
-			throw new BuildException(
-					"invalid file given for attribute \"destfile\"."
-							+ "File \"" + this.getFile().getAbsolutePath()
-							+ "\" is a directory. Expected a file.");
+			throw new BuildException("invalid file given for attribute \"destfile\"." + "File \""
+					+ this.getFile().getAbsolutePath() + "\" is a directory. Expected a file.");
 		}
 	}
 
@@ -92,9 +85,8 @@ public class CodeFileDest extends CodeFile {
 	 * @param endUnmatchedSection
 	 *            marker string
 	 */
-	public final void merge(final CodeFileGen srcfilegen,
-			final CodeFileMan srcfileman, final String beginUnmatchedSection,
-			final String endUnmatchedSection) {
+	public final void merge(final CodeFileGen srcfilegen, final CodeFileMan srcfileman,
+			final String beginUnmatchedSection, final String endUnmatchedSection) {
 
 		// step 1: merge all bodies from srcfileman over the corresponding
 		// bodies in srcfilegen
@@ -105,8 +97,7 @@ public class CodeFileDest extends CodeFile {
 				final CodeFilePartBody bodyman = srcfileman.getBody(signature);
 				if (bodyman != null) {
 					if (bodyman.getMerged()) {
-						throw new BuildException("Body \"" + signature + "\""
-								+ "is already merged.");
+						throw new BuildException("Body \"" + signature + "\"" + "is already merged.");
 					}
 					this.appendBodyPart(bodyman);
 					bodyman.setMerged(true);
@@ -126,11 +117,9 @@ public class CodeFileDest extends CodeFile {
 					final CodeFilePartBody bodyman = (CodeFilePartBody) part2;
 					if (!bodyman.getMerged() && !bodyman.isEmpty()) {
 						this.appendPart(new CodeFilePartLine(""));
-						this.appendPart(new CodeFilePartLine(
-								beginUnmatchedSection));
+						this.appendPart(new CodeFilePartLine(beginUnmatchedSection));
 						this.appendBodyPart(bodyman);
-						this.appendPart(new CodeFilePartLine(
-								endUnmatchedSection));
+						this.appendPart(new CodeFilePartLine(endUnmatchedSection));
 					}
 				}
 			}

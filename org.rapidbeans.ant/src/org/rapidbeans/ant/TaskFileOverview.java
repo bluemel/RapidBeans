@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: TaskFileOverview.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 11/03/2010
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -139,58 +139,44 @@ public final class TaskFileOverview extends Task {
 	public void execute() {
 
 		final File rootDir = new File(this.dir);
-		getProject().log("     [fileoverview]   dir: " + this.dir,
-				Project.MSG_VERBOSE);
-		getProject().log("     [fileoverview]   path: " + rootDir.getPath(),
-				Project.MSG_VERBOSE);
-		getProject().log(
-				"     [fileoverview]   absolute path: "
-						+ rootDir.getAbsolutePath(), Project.MSG_VERBOSE);
+		getProject().log("     [fileoverview]   dir: " + this.dir, Project.MSG_VERBOSE);
+		getProject().log("     [fileoverview]   path: " + rootDir.getPath(), Project.MSG_VERBOSE);
+		getProject().log("     [fileoverview]   absolute path: " + rootDir.getAbsolutePath(), Project.MSG_VERBOSE);
 
 		// checks for attributes
 		if (this.dir == null) {
-			throw new BuildException(
-					"No directory defined. Please define value for attribute \"dir\".");
+			throw new BuildException("No directory defined. Please define value for attribute \"dir\".");
 		}
 		if (!rootDir.exists()) {
 			throw new BuildException("Directory \"" + this.dir + "\" not found");
 		}
 		if (!rootDir.isDirectory()) {
-			throw new BuildException("Invalid directory. File \"" + this.dir
-					+ " is not a directory");
+			throw new BuildException("Invalid directory. File \"" + this.dir + " is not a directory");
 		}
 		if (this.out == null) {
-			throw new BuildException(
-					"No out file defined. Please define value for attribute \"out\".");
+			throw new BuildException("No out file defined. Please define value for attribute \"out\".");
 		}
 		if (!this.out.getParentFile().exists()) {
 			if (!this.out.getParentFile().mkdirs())
-				throw new BuildException("Problems to create directory \""
-						+ this.out.getParentFile() + "\".");
+				throw new BuildException("Problems to create directory \"" + this.out.getParentFile() + "\".");
 		}
 		long dirLatestModified = 0;
 		if (!this.force) {
-			dirLatestModified = getLatestModificationDirDate(rootDir,
-					this.depth);
+			dirLatestModified = getLatestModificationDirDate(rootDir, this.depth);
 		}
-		if (!this.out.exists() || this.force
-				|| dirLatestModified > this.out.lastModified()) {
+		if (!this.out.exists() || this.force || dirLatestModified > this.out.lastModified()) {
 			this.getProject().log(
-					"     [fileoverview] Processing directory "
-							+ rootDir.getAbsolutePath() + " to "
+					"     [fileoverview] Processing directory " + rootDir.getAbsolutePath() + " to "
 							+ this.out.getAbsolutePath(), Project.MSG_INFO);
 			this.getProject().log(
-					"     [fileoverview]   depth = " + this.depth + "\n"
-							+ "     [fileoverview]   absolute = "
-							+ this.absolute + "\n"
-							+ "     [fileoverview]   excludedotdirs = "
-							+ this.excludedotdirs, Project.MSG_VERBOSE);
+					"     [fileoverview]   depth = " + this.depth + "\n" + "     [fileoverview]   absolute = "
+							+ this.absolute + "\n" + "     [fileoverview]   excludedotdirs = " + this.excludedotdirs,
+					Project.MSG_VERBOSE);
 			OutputStreamWriter writer = null;
 			try {
-				writer = new OutputStreamWriter(new FileOutputStream(this.out),
-						"UTF-8");
-				generateFolderAndFilesXML(rootDir, this.depth, 0, writer,
-						this.absolute, this.excludedotdirs, this.getProject());
+				writer = new OutputStreamWriter(new FileOutputStream(this.out), "UTF-8");
+				generateFolderAndFilesXML(rootDir, this.depth, 0, writer, this.absolute, this.excludedotdirs,
+						this.getProject());
 			} catch (IOException e) {
 				throw new BuildException(e);
 			} finally {
@@ -220,15 +206,12 @@ public final class TaskFileOverview extends Task {
 	 * @param absolute
 	 * @param excludedotdirs
 	 */
-	protected static void generateFolderAndFilesXML(final File dir,
-			final int maxdepth, final int depth, final Writer writer,
-			final boolean absolute, final boolean excludedotdirs,
-			final Project project) {
+	protected static void generateFolderAndFilesXML(final File dir, final int maxdepth, final int depth,
+			final Writer writer, final boolean absolute, final boolean excludedotdirs, final Project project) {
 
 		try {
 			if (depth == 0) {
-				writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-						+ LF);
+				writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + LF);
 			}
 
 			final StringBuffer indent = new StringBuffer();
@@ -240,8 +223,7 @@ public final class TaskFileOverview extends Task {
 			if (absolute) {
 				foldername = dir.getAbsolutePath();
 			}
-			writer.write(indent + "<folder path=\""
-					+ foldername.replace(File.separatorChar, '/') + "\">" + LF);
+			writer.write(indent + "<folder path=\"" + foldername.replace(File.separatorChar, '/') + "\">" + LF);
 
 			final int depth1 = depth + 1;
 			final StringBuffer indent1 = new StringBuffer();
@@ -251,15 +233,11 @@ public final class TaskFileOverview extends Task {
 
 			for (final File file : dir.listFiles()) {
 				if (file.isDirectory()) {
-					if ((maxdepth > depth || maxdepth < 0)
-							&& (!excludedotdirs || !file.getName().startsWith(
-									"."))) {
-						generateFolderAndFilesXML(file, maxdepth, depth1,
-								writer, absolute, excludedotdirs, project);
+					if ((maxdepth > depth || maxdepth < 0) && (!excludedotdirs || !file.getName().startsWith("."))) {
+						generateFolderAndFilesXML(file, maxdepth, depth1, writer, absolute, excludedotdirs, project);
 					}
 				} else {
-					writer.write(indent1 + "<file name=\"" + file.getName()
-							+ "\"/>" + LF);
+					writer.write(indent1 + "<file name=\"" + file.getName() + "\"/>" + LF);
 				}
 			}
 
@@ -282,15 +260,13 @@ public final class TaskFileOverview extends Task {
 	 * 
 	 * @throws BuildException
 	 */
-	protected static long getLatestModificationDirDate(final File dir,
-			final int depth) {
+	protected static long getLatestModificationDirDate(final File dir, final int depth) {
 		long lastModified = dir.lastModified();
 		if (depth > 0 || depth < 0) {
 			File[] files = dir.listFiles();
 			for (final File file : files) {
 				if (file.isDirectory()) {
-					final long lastModifiedTest = getLatestModificationDirDate(
-							file, depth - 1);
+					final long lastModifiedTest = getLatestModificationDirDate(file, depth - 1);
 					if (lastModifiedTest > lastModified) {
 						lastModified = lastModifiedTest;
 					}

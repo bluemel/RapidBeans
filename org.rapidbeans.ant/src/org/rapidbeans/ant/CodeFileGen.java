@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: CodeFileGen.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -46,26 +46,19 @@ public class CodeFileGen extends CodeFile {
 	 */
 	public final void validate() {
 		if (this.getFile() == null) {
-			throw new BuildException(
-					"No value defined for mandatory attribute \"srcfilegen\".");
+			throw new BuildException("No value defined for mandatory attribute \"srcfilegen\".");
 		}
 		if (!this.getFile().exists()) {
-			throw new BuildException(
-					"invalid path given for attribute \"srcfilegen\"."
-							+ "Can't find file \""
-							+ this.getFile().getAbsolutePath() + "\".");
+			throw new BuildException("invalid path given for attribute \"srcfilegen\"." + "Can't find file \""
+					+ this.getFile().getAbsolutePath() + "\".");
 		}
 		if (!this.getFile().canRead()) {
-			throw new BuildException(
-					"invalid file given for attribute \"srcfilegen\"."
-							+ "Can't read file \""
-							+ this.getFile().getAbsolutePath() + "\".");
+			throw new BuildException("invalid file given for attribute \"srcfilegen\"." + "Can't read file \""
+					+ this.getFile().getAbsolutePath() + "\".");
 		}
 		if (this.getFile().isDirectory()) {
-			throw new BuildException(
-					"invalid file given for attribute \"srcfilegen\"."
-							+ "File \"" + this.getFile().getAbsolutePath()
-							+ "\" is a directory. Expected a file.");
+			throw new BuildException("invalid file given for attribute \"srcfilegen\"." + "File \""
+					+ this.getFile().getAbsolutePath() + "\" is a directory. Expected a file.");
 		}
 	}
 }

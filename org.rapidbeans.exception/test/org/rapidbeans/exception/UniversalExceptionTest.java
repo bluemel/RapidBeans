@@ -237,8 +237,7 @@ public class UniversalExceptionTest {
 			// Assert.assertEquals(25, e.getStackTrace().length);
 			Assert.assertEquals("f6", e.getStackTrace()[0].getMethodName());
 			Assert.assertEquals("f1", e.getStackTrace()[5].getMethodName());
-			Assert.assertEquals("testRuntimeException",
-					e.getStackTrace()[6].getMethodName());
+			Assert.assertEquals("testRuntimeException", e.getStackTrace()[6].getMethodName());
 		}
 	}
 
@@ -252,9 +251,8 @@ public class UniversalExceptionTest {
 		final Date ts = sex.getTimeStamp();
 		// asserting the current time in milliseconds is a bit dangerous
 		if (!(currentTime.toString().equals(ts.toString()))) {
-			System.out.println("WARNING: exception time stamp: "
-					+ currentTime.toString() + " differs from current time "
-					+ ts.toString());
+			System.out.println("WARNING: exception time stamp: " + currentTime.toString()
+					+ " differs from current time " + ts.toString());
 		}
 		// assert immutability
 		final long time = ts.getTime();
@@ -279,8 +277,7 @@ public class UniversalExceptionTest {
 	public void testMessageWrapped() {
 		RuntimeException rex = new RuntimeException(TEST_MESSAGE);
 		UniversalException uniEx = new UniversalException(rex);
-		Assert.assertEquals("wrapped java.lang.RuntimeException: test message",
-				uniEx.getMessage());
+		Assert.assertEquals("wrapped java.lang.RuntimeException: test message", uniEx.getMessage());
 	}
 
 	/**
@@ -305,12 +302,10 @@ public class UniversalExceptionTest {
 			s01_1();
 		} catch (UniversalException uniEx) {
 			UniversalException rex = (UniversalException) uniEx.getCause();
-			Assert.assertEquals("java.lang.RuntimeException",
-					rex.getOriginalClassname());
+			Assert.assertEquals("java.lang.RuntimeException", rex.getOriginalClassname());
 			Assert.assertEquals(TEST_MESSAGE, rex.getMessage());
 			UniversalException mex = (UniversalException) rex.getCause();
-			Assert.assertEquals(
-					"org.rapidbeans.exception.UniversalExceptionTest$MyTinyLittleException",
+			Assert.assertEquals("org.rapidbeans.exception.UniversalExceptionTest$MyTinyLittleException",
 					mex.getOriginalClassname());
 			Assert.assertEquals(TEST_ERROR_MESSAGE, mex.getMessage());
 			Assert.assertEquals(BLA_BLA, mex.getProperty("detailedMessage"));
@@ -321,8 +316,7 @@ public class UniversalExceptionTest {
 			Assert.assertNull(mex.getProperty("message"));
 			Assert.assertNull(mex.getProperty("localizedMessage"));
 			Assert.assertNull(mex.getProperty("stackTrace"));
-			Assert.assertEquals(getStackTraceExpectedCauseChain(uniEx
-					.getTimeStamp().toString()),
+			Assert.assertEquals(getStackTraceExpectedCauseChain(uniEx.getTimeStamp().toString()),
 					filterEnvironment(printStackTraceWriter(uniEx)));
 		}
 	}
@@ -335,8 +329,7 @@ public class UniversalExceptionTest {
 		UniversalException uniEx2 = new UniversalException(TEST_MESSAGE);
 		RuntimeException rex = new RuntimeException(uniEx2);
 		UniversalException uniEx = new UniversalException(rex);
-		Assert.assertEquals("wrapped java.lang.RuntimeException: "
-				+ "org.rapidbeans.exception.UniversalException: "
+		Assert.assertEquals("wrapped java.lang.RuntimeException: " + "org.rapidbeans.exception.UniversalException: "
 				+ "test message", uniEx.getMessage());
 	}
 
@@ -366,8 +359,7 @@ public class UniversalExceptionTest {
 			if (line.startsWith("\t...")) {
 				append = false;
 			}
-			if (append && line.startsWith("\tat ")
-					&& (!line.startsWith("\tat org.rapidbeans"))) {
+			if (append && line.startsWith("\tat ") && (!line.startsWith("\tat org.rapidbeans"))) {
 				append = false;
 			}
 			if (append) {
@@ -400,8 +392,7 @@ public class UniversalExceptionTest {
 	 * @return the string
 	 */
 	private static String getStackTraceExpectedCauseChain(final String timeStamp) {
-		return "org.rapidbeans.exception.UniversalException:"
-				+ " wrapped java.lang.RuntimeException: test message"
+		return "org.rapidbeans.exception.UniversalException:" + " wrapped java.lang.RuntimeException: test message"
 				+ NL
 				+ TAB
 				+ "time stamp: "
@@ -447,42 +438,14 @@ public class UniversalExceptionTest {
 				+ NL
 				+ TAB
 				+ "testInvocationTargetException = \"<problems to retrieve exception property testInvocationTargetException>\""
-				+ NL
-				+ TAB
-				+ "nullExArg = \"<null>\""
-				+ NL
-				+ TAB
-				+ "detailedMessage = \"bla bla\""
-				+ NL
-				+ TAB
-				+ "x = \"11\""
-				+ NL
-				+ TAB
-				+ "at org.rapidbeans.exception."
-				+ "UniversalExceptionTest.s01_6("
-				+ "UniversalExceptionTest.java:"
-				+ Integer.toString(FIRST_LINE + 40)
-				+ ")"
-				+ NL
-				+ TAB
-				+ "at org.rapidbeans.exception."
-				+ "UniversalExceptionTest.s01_5("
-				+ "UniversalExceptionTest.java:"
-				+ Integer.toString(FIRST_LINE + 33)
-				+ ")"
-				+ NL
-				+ TAB
-				+ "at org.rapidbeans.exception."
-				+ "UniversalExceptionTest.s01_4("
-				+ "UniversalExceptionTest.java:"
-				+ Integer.toString(FIRST_LINE + 26)
-				+ ")"
-				+ NL
-				+ TAB
-				+ "at org.rapidbeans.exception."
-				+ "UniversalExceptionTest.s01_3("
-				+ "UniversalExceptionTest.java:"
-				+ Integer.toString(FIRST_LINE + 16) + ")" + NL;
+				+ NL + TAB + "nullExArg = \"<null>\"" + NL + TAB + "detailedMessage = \"bla bla\"" + NL + TAB
+				+ "x = \"11\"" + NL + TAB + "at org.rapidbeans.exception." + "UniversalExceptionTest.s01_6("
+				+ "UniversalExceptionTest.java:" + Integer.toString(FIRST_LINE + 40) + ")" + NL + TAB
+				+ "at org.rapidbeans.exception." + "UniversalExceptionTest.s01_5(" + "UniversalExceptionTest.java:"
+				+ Integer.toString(FIRST_LINE + 33) + ")" + NL + TAB + "at org.rapidbeans.exception."
+				+ "UniversalExceptionTest.s01_4(" + "UniversalExceptionTest.java:" + Integer.toString(FIRST_LINE + 26)
+				+ ")" + NL + TAB + "at org.rapidbeans.exception." + "UniversalExceptionTest.s01_3("
+				+ "UniversalExceptionTest.java:" + Integer.toString(FIRST_LINE + 16) + ")" + NL;
 	}
 
 	/**

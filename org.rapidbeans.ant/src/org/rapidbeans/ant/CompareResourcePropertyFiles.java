@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: CompareResourcePropertyFiles.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 02/05/2009
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -109,15 +109,11 @@ public final class CompareResourcePropertyFiles extends Task {
 						if (i != j) {
 							final Properties otherProps = propsArray[j];
 							if (otherProps.getProperty(key) == null) {
-								final String value = "TODO: TRANSLATE#"
-										+ props.getProperty(key);
+								final String value = "TODO: TRANSLATE#" + props.getProperty(key);
 								otherProps.setProperty(key, value);
 								this.getProject().log(
-										"ERROR in File: "
-												+ filesList.get(j)
-														.getAbsolutePath()
-												+ ":\n" + "  property \"" + key
-												+ "\" is not defined.");
+										"ERROR in File: " + filesList.get(j).getAbsolutePath() + ":\n"
+												+ "  property \"" + key + "\" is not defined.");
 								todo = true;
 								todosArray[j] = true;
 							}
@@ -125,13 +121,10 @@ public final class CompareResourcePropertyFiles extends Task {
 					}
 				}
 				for (final Object o : props.keySet()) {
-					if ((props.getProperty((String) o))
-							.startsWith("TODO: TRANSLATE#")) {
+					if ((props.getProperty((String) o)).startsWith("TODO: TRANSLATE#")) {
 						this.getProject().log(
-								"ERROR in File: "
-										+ filesList.get(i).getAbsolutePath()
-										+ ":\n" + "  Todo left for property \""
-										+ o + "\".");
+								"ERROR in File: " + filesList.get(i).getAbsolutePath() + ":\n"
+										+ "  Todo left for property \"" + o + "\".");
 						todo = true;
 						todosArray[i] = true;
 					}
@@ -143,8 +136,7 @@ public final class CompareResourcePropertyFiles extends Task {
 				int i = 0;
 				for (File file : filesList) {
 					if (!todosArray[i]) {
-						this.getProject().log(
-								"file OK: " + file.getAbsolutePath());
+						this.getProject().log("file OK: " + file.getAbsolutePath());
 						i++;
 						continue;
 					}
@@ -153,9 +145,7 @@ public final class CompareResourcePropertyFiles extends Task {
 						keyList.add((String) key);
 					}
 					Collections.sort(keyList);
-					this.getProject()
-							.log("rewiriting file " + file.getAbsolutePath()
-									+ "...");
+					this.getProject().log("rewiriting file " + file.getAbsolutePath() + "...");
 					final FileWriter ow = new FileWriter(file);
 					for (final String key : keyList) {
 						ow.write(key);
@@ -169,8 +159,7 @@ public final class CompareResourcePropertyFiles extends Task {
 			}
 
 			if (this.failontodo && todo) {
-				throw new BuildException(
-						"Please fix TODOs in resource properties.");
+				throw new BuildException("Please fix TODOs in resource properties.");
 			}
 		} catch (IOException e) {
 			throw new BuildException(e);

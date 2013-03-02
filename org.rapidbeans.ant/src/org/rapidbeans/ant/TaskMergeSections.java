@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: TaskMergeSections.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -34,12 +34,10 @@ import org.apache.tools.ant.Task;
  * <p>
  * 1) srcfileman:<br/>
  * <code>   ...<br/>
- *    // BEGIN manual code section    </code>&lt;-- section begin comment
- * <code><br/>
+ *    // BEGIN manual code section    </code>&lt;-- section begin comment <code><br/>
  *    // TestClass.doSomething()      </code>&lt;-- section signature<code><br/>
  *    this.xxx = YYY;<br/>
- *    // END manual code section      </code>&lt;-- section end comment
- * <code><br/>
+ *    // END manual code section      </code>&lt;-- section end comment <code><br/>
  *    ...</code><br/>
  * </p>
  * <p>
@@ -64,17 +62,13 @@ import org.apache.tools.ant.Task;
  * As you see you need three lines to mark a section that should be merged:
  * 
  * <p>
- * <b>- section begin comment:</b> a fix one line comment to mark the begin of a
- * section.
+ * <b>- section begin comment:</b> a fix one line comment to mark the begin of a section.
  * </p>
  * <p>
- * <b>- section signature:</b> a one line comment with a string that uniqely
- * identifies the section within one code file. The section signature always
- * directly follows the section begin comment.
+ * <b>- section signature:</b> a one line comment with a string that uniqely identifies the section within one code file. The section signature always directly follows the section begin comment.
  * </p>
  * <p>
- * <b>- section end comment:</b> a fix one line comment to mark the begin of a
- * section.
+ * <b>- section end comment:</b> a fix one line comment to mark the begin of a section.
  * </p>
  * 
  * @author Martin.Bluemel
@@ -218,54 +212,32 @@ public final class TaskMergeSections extends Task {
 	public void execute() {
 		try {
 			validateProperties();
-			this.log("srcfilegen = \""
-					+ this.srcfilegen.getFile().getAbsolutePath(),
-					Project.MSG_VERBOSE);
+			this.log("srcfilegen = \"" + this.srcfilegen.getFile().getAbsolutePath(), Project.MSG_VERBOSE);
 			if (this.srcfileman != null) {
-				this.log("srcfileman = \""
-						+ this.srcfileman.getFile().getAbsolutePath(),
-						Project.MSG_VERBOSE);
+				this.log("srcfileman = \"" + this.srcfileman.getFile().getAbsolutePath(), Project.MSG_VERBOSE);
 			}
 			if (this.destfile == null) {
-				this.destfile = new CodeFileDest(this.srcfileman.getFile(),
-						this.antGateway);
+				this.destfile = new CodeFileDest(this.srcfileman.getFile(), this.antGateway);
 			} else {
-				this.log("destfile = \""
-						+ this.destfile.getFile().getAbsolutePath(),
-						Project.MSG_VERBOSE);
+				this.log("destfile = \"" + this.destfile.getFile().getAbsolutePath(), Project.MSG_VERBOSE);
 			}
-			this.srcfilegen.parse(this.oneLineComment, this.sectionBegin,
-					this.sectionEnd);
+			this.srcfilegen.parse(this.oneLineComment, this.sectionBegin, this.sectionEnd);
 			if (this.srcfileman != null && this.srcfileman.getFile().exists()) {
-				this.srcfileman.parse(this.oneLineComment, this.sectionBegin,
-						this.sectionEnd);
+				this.srcfileman.parse(this.oneLineComment, this.sectionBegin, this.sectionEnd);
 			}
-			if (this.srcfilegen.getFile().lastModified() > this.destfile
-					.getFile().lastModified()
-					|| this.srcfileman.getFile().lastModified() > this.destfile
-							.getFile().lastModified()) {
+			if (this.srcfilegen.getFile().lastModified() > this.destfile.getFile().lastModified()
+					|| this.srcfileman.getFile().lastModified() > this.destfile.getFile().lastModified()) {
 				this.log("merging files", Project.MSG_VERBOSE);
-				if (this.srcfileman != null
-						&& this.srcfileman.getFile().exists()) {
-					this.log(
-							"merging new file\n"
-									+ this.srcfilegen.getFile()
-											.getAbsolutePath()
-									+ "\nwith bodies of file\n"
-									+ this.srcfileman.getFile()
-											.getAbsolutePath() + "\n to file\n"
-									+ this.destfile.getFile().getAbsolutePath()
-									+ "...", Project.MSG_VERBOSE);
+				if (this.srcfileman != null && this.srcfileman.getFile().exists()) {
+					this.log("merging new file\n" + this.srcfilegen.getFile().getAbsolutePath()
+							+ "\nwith bodies of file\n" + this.srcfileman.getFile().getAbsolutePath() + "\n to file\n"
+							+ this.destfile.getFile().getAbsolutePath() + "...", Project.MSG_VERBOSE);
 				} else {
-					this.log(
-							"copying new file\n"
-									+ this.srcfilegen.getFile()
-											.getAbsolutePath() + "\n to file\n"
-									+ this.destfile.getFile().getAbsolutePath()
-									+ "...", Project.MSG_VERBOSE);
+					this.log("copying new file\n" + this.srcfilegen.getFile().getAbsolutePath() + "\n to file\n"
+							+ this.destfile.getFile().getAbsolutePath() + "...", Project.MSG_VERBOSE);
 				}
-				this.destfile.merge(this.srcfilegen, this.srcfileman,
-						this.sectionUnmatchedBegin, this.sectionUnmatchedEnd);
+				this.destfile.merge(this.srcfilegen, this.srcfileman, this.sectionUnmatchedBegin,
+						this.sectionUnmatchedEnd);
 				this.destfile.write();
 			} else {
 				this.log("nothing to merge", Project.MSG_VERBOSE);
@@ -280,14 +252,12 @@ public final class TaskMergeSections extends Task {
 	 */
 	protected void validateProperties() {
 		if (this.srcfilegen == null) {
-			throw new BuildException(
-					"No value defined for mandatory attribute \"srcfilegen\".");
+			throw new BuildException("No value defined for mandatory attribute \"srcfilegen\".");
 		}
 
 		if (this.srcfileman == null && this.destfile == null) {
-			throw new BuildException(
-					"No values defined for attributes \"srcfileman\" and "
-							+ "\"destfile\". Please ether define srcfileman or destfile.");
+			throw new BuildException("No values defined for attributes \"srcfileman\" and "
+					+ "\"destfile\". Please ether define srcfileman or destfile.");
 		}
 	}
 }

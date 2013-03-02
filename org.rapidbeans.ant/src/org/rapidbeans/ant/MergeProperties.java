@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: MergeProperties.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 07/01/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -68,10 +68,8 @@ public class MergeProperties {
 	 *            the string to mark the end of an unmatched code section
 	 * 
 	 */
-	public MergeProperties(final String argOneLineComment,
-			final String argSectionBegin, final String argSectionEnd,
-			final String argSectionUnmatchedBegin,
-			final String argSectionUnmatchedEnd) {
+	public MergeProperties(final String argOneLineComment, final String argSectionBegin, final String argSectionEnd,
+			final String argSectionUnmatchedBegin, final String argSectionUnmatchedEnd) {
 		this.oneLineComment = argOneLineComment;
 		this.sectionBegin = argSectionBegin;
 		this.sectionEnd = argSectionEnd;

@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: StringHelper.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 11/01/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -65,8 +65,7 @@ public final class StringHelper {
 
 	private static final char[] WHITESPACE_CHARACTERS = { ' ', '\n', '\t' };
 
-	private static final String WHITESPACE_CHARACTER_STRING = new String(
-			WHITESPACE_CHARACTERS);
+	private static final String WHITESPACE_CHARACTER_STRING = new String(WHITESPACE_CHARACTERS);
 
 	/**
 	 * Check if the given string contains only digits or not.
@@ -160,8 +159,7 @@ public final class StringHelper {
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string, final char trimChar,
-			final StripMode mode) {
+	public static String strip(final String string, final char trimChar, final StripMode mode) {
 		return strip(string, new char[] { trimChar }, mode);
 	}
 
@@ -183,23 +181,19 @@ public final class StringHelper {
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string, final char[] trimChars,
-			final StripMode mode) {
+	public static String strip(final String string, final char[] trimChars, final StripMode mode) {
 		final int len = string.length();
 		int firstNonStrippedIndex = 0;
 		int lastNonStrippedIndex = len;
 		if (mode == StripMode.both || mode == StripMode.leading) {
 			firstNonStrippedIndex = -1;
-			while (firstNonStrippedIndex < len
-					&& charMatches(trimChars,
-							string.charAt(++firstNonStrippedIndex)))
+			while (firstNonStrippedIndex < len && charMatches(trimChars, string.charAt(++firstNonStrippedIndex)))
 				;
 		}
 		if (mode == StripMode.both || mode == StripMode.trailing) {
 			lastNonStrippedIndex = len;
 			while (lastNonStrippedIndex >= firstNonStrippedIndex
-					&& charMatches(trimChars,
-							string.charAt(--lastNonStrippedIndex)))
+					&& charMatches(trimChars, string.charAt(--lastNonStrippedIndex)))
 				;
 			lastNonStrippedIndex++;
 		}
@@ -238,8 +232,7 @@ public final class StringHelper {
 	 * 
 	 * @return the string filled up to the specified length
 	 */
-	public static String fillUp(final String string, final int length,
-			final char fillChar, final FillMode mode) {
+	public static String fillUp(final String string, final int length, final char fillChar, final FillMode mode) {
 		final int charsToFillCount = length - string.length();
 		final StringBuffer buf = new StringBuffer(length);
 		if (mode == FillMode.left) {
@@ -252,8 +245,7 @@ public final class StringHelper {
 		return buf.toString();
 	}
 
-	private static char[] newCharArray(final int charsToFillCount,
-			final char fillChar) {
+	private static char[] newCharArray(final int charsToFillCount, final char fillChar) {
 		final char[] ca = new char[charsToFillCount];
 		Arrays.fill(ca, fillChar);
 		return ca;
@@ -286,11 +278,9 @@ public final class StringHelper {
 	 * 
 	 * @return a list containing all tokens
 	 */
-	public static List<String> split(final String string,
-			final String delimChars) {
+	public static List<String> split(final String string, final String delimChars) {
 		final ArrayList<String> list = new ArrayList<String>();
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		while (tokenizer.hasMoreTokens()) {
 			list.add(tokenizer.nextToken());
 		}
@@ -322,8 +312,7 @@ public final class StringHelper {
 	 * @return the first token or null if no token has been found
 	 */
 	public static String splitFirst(final String string, final String delimChars) {
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		if (tokenizer.hasMoreTokens()) {
 			return tokenizer.nextToken();
 		} else {
@@ -357,8 +346,7 @@ public final class StringHelper {
 	 */
 	public static String splitLast(final String string, final String delimChars) {
 		String lastToken = null;
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		while (tokenizer.hasMoreTokens()) {
 			lastToken = tokenizer.nextToken(delimChars);
 		}
@@ -377,8 +365,7 @@ public final class StringHelper {
 	 * 
 	 * @return all tokens besides the last or null if no token has been found
 	 */
-	public static String splitBeforeLast(final String string,
-			final String delimChars) {
+	public static String splitBeforeLast(final String string, final String delimChars) {
 		final char[] delimCa = delimChars.toCharArray();
 		final int len = string.length();
 		int state = 0;
@@ -499,8 +486,7 @@ public final class StringHelper {
 			list.add(buffer.toString());
 			break;
 		case 2:
-			throw new BuildException("Missing qouote at the end of string\""
-					+ string + "\"");
+			throw new BuildException("Missing qouote at the end of string\"" + string + "\"");
 		}
 
 		return list.toArray(EMPTY_STRING_ARRAY);

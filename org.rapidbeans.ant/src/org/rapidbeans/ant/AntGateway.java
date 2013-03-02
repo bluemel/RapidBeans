@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: AntGateway.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -130,9 +130,8 @@ public final class AntGateway {
 	 *            merge properties. If not null the a merge is performed after
 	 *            XSL transformation.
 	 */
-	public void xxslt(final File style, final File in, final File out,
-			final KeyValuePair[] params, final MergeProperties mergeProps,
-			final boolean force) {
+	public void xxslt(final File style, final File in, final File out, final KeyValuePair[] params,
+			final MergeProperties mergeProps, final boolean force) {
 		XXslt task = new XXslt();
 		task.setProject(this.project);
 		setTaskName(task, "xxslt");
@@ -160,8 +159,7 @@ public final class AntGateway {
 				task.setSectionEnd(mergeProps.getSectionEnd());
 			}
 			if (mergeProps.getSectionUnmatchedBegin() != null) {
-				task.setSectionUnmatchedBegin(mergeProps
-						.getSectionUnmatchedBegin());
+				task.setSectionUnmatchedBegin(mergeProps.getSectionUnmatchedBegin());
 			}
 			if (mergeProps.getSectionUnmatchedEnd() != null) {
 				task.setSectionUnmatchedEnd(mergeProps.getSectionUnmatchedEnd());
@@ -182,8 +180,7 @@ public final class AntGateway {
 	 * @param params
 	 *            the parameter values
 	 */
-	public void xslt(final String style, final File in, final File out,
-			final KeyValuePair[] params) {
+	public void xslt(final String style, final File in, final File out, final KeyValuePair[] params) {
 		XSLTProcess task = new XSLTProcess();
 		this.setTaskName(task, "xslt");
 		task.setProject(this.project);
@@ -213,8 +210,8 @@ public final class AntGateway {
 	 * @param argProject
 	 *            the ant project
 	 */
-	public void xslt(final File style, final File in, final File out,
-			final KeyValuePair[] params, final Project argProject) {
+	public void xslt(final File style, final File in, final File out, final KeyValuePair[] params,
+			final Project argProject) {
 		XSLTProcess task = new XSLTProcess();
 		if (argProject == null) {
 			task.setProject(this.project);
@@ -226,17 +223,15 @@ public final class AntGateway {
 		task.setIn(in);
 		task.setOut(out);
 		XSLTProcess.Param param;
-		this.project.log("  style = " + style.getAbsolutePath(),
-				Project.MSG_VERBOSE);
+		this.project.log("  style = " + style.getAbsolutePath(), Project.MSG_VERBOSE);
 		this.project.log("  in = " + in.getAbsolutePath(), Project.MSG_VERBOSE);
-		this.project.log("  out = " + out.getAbsolutePath(),
-				Project.MSG_VERBOSE);
+		this.project.log("  out = " + out.getAbsolutePath(), Project.MSG_VERBOSE);
 		for (int i = 0; i < params.length; i++) {
 			param = task.createParam();
 			param.setName(params[i].getKey());
 			param.setExpression(params[i].getValue());
-			this.project.log("  param[" + i + "] = " + "(" + param.getName()
-					+ "|" + param.getExpression() + ")", Project.MSG_VERBOSE);
+			this.project.log("  param[" + i + "] = " + "(" + param.getName() + "|" + param.getExpression() + ")",
+					Project.MSG_VERBOSE);
 		}
 		task.execute();
 	}
@@ -252,8 +247,7 @@ public final class AntGateway {
 	 * @param destfile
 	 *            the file containing the merge result
 	 */
-	public void mergeSections(final File srcfilegen, final File srcfileman,
-			final File destfile) {
+	public void mergeSections(final File srcfilegen, final File srcfileman, final File destfile) {
 		TaskMergeSections task = new TaskMergeSections();
 		task.setProject(this.project);
 		setTaskName(task, "TaskMergeSections");
@@ -276,8 +270,8 @@ public final class AntGateway {
 	 * @param mergeProps
 	 *            the strings to configure the merge markers
 	 */
-	public void mergeSections(final File srcfilegen, final File srcfileman,
-			final File destfile, final MergeProperties mergeProps) {
+	public void mergeSections(final File srcfilegen, final File srcfileman, final File destfile,
+			final MergeProperties mergeProps) {
 		TaskMergeSections task = new TaskMergeSections();
 		task.setProject(this.project);
 		setTaskName(task, "TaskMergeSections");

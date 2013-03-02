@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: CodeFilePartBody.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -158,9 +158,7 @@ public final class CodeFilePartBody extends CodeFilePart {
 	 * @return text as String.
 	 */
 	public String getText() {
-		return this.beginComment + PlatformHelper.getLineFeed()
-				+ this.beginCommentSignature + PlatformHelper.getLineFeed()
-				+ this.lines.toString() + this.endComment
-				+ PlatformHelper.getLineFeed();
+		return this.beginComment + PlatformHelper.getLineFeed() + this.beginCommentSignature
+				+ PlatformHelper.getLineFeed() + this.lines.toString() + this.endComment + PlatformHelper.getLineFeed();
 	}
 }

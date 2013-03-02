@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: CodeFile.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -135,13 +135,11 @@ public abstract class CodeFile {
 	 * @throws IOException
 	 *             I/O problem
 	 */
-	public final void parse(final String oneLineComment,
-			final String beginSection, final String endSection)
+	public final void parse(final String oneLineComment, final String beginSection, final String endSection)
 			throws IOException {
 		final String beginSectionComment = oneLineComment + " " + beginSection;
 		final String endSectionComment = oneLineComment + " " + endSection;
-		final LineNumberReader reader = new LineNumberReader(new FileReader(
-				this.getFile()));
+		final LineNumberReader reader = new LineNumberReader(new FileReader(this.getFile()));
 		String line, trimmedLine, signature;
 		CodeFilePartBody body = null;
 		int state = 0;
@@ -174,8 +172,7 @@ public abstract class CodeFile {
 				}
 				break;
 			default:
-				throw new BuildException("Parser error: wrong state: "
-						+ Integer.toString(state));
+				throw new BuildException("Parser error: wrong state: " + Integer.toString(state));
 			}
 		}
 		reader.close();
@@ -207,7 +204,6 @@ public abstract class CodeFile {
 	 * @return the stripped string
 	 */
 	private static String stripOneLineComment(final String s) {
-		return StringHelper.strip(s, STRIP_CHARS_ONE_LINE_COMMENT,
-				StringHelper.StripMode.leading);
+		return StringHelper.strip(s, STRIP_CHARS_ONE_LINE_COMMENT, StringHelper.StripMode.leading);
 	}
 }

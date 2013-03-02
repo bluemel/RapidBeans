@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: Version.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 08/15/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -148,8 +148,7 @@ public class Version {
 				}
 			} else if (componentNumThis == null && componentNumThat == null) {
 				// if both components are no numbers compare them alphabetical
-				final int c = componentStringThis
-						.compareTo(componentStringThat);
+				final int c = componentStringThis.compareTo(componentStringThat);
 				if (c > 0) {
 					return 1;
 				}

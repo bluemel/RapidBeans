@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: TaskSimpleFtp.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 09/05/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -70,14 +70,12 @@ public final class TaskSimpleFtp extends Task {
 	 */
 	public void execute() {
 		if (this.stampdir != null && !this.stampdir.exists()) {
-			throw new BuildException("stampdir \""
-					+ this.stampdir.getAbsolutePath() + "\" does not exist.");
+			throw new BuildException("stampdir \"" + this.stampdir.getAbsolutePath() + "\" does not exist.");
 		}
 		ftpAllFiles(this.localdir, this.remotedir, this.stampdir);
 	}
 
-	private void ftpAllFiles(final File localDir, final String remoteDir,
-			final File stampDir) {
+	private void ftpAllFiles(final File localDir, final String remoteDir, final File stampDir) {
 		OutputStream os = null;
 		FileInputStream is = null;
 		int c;
@@ -85,12 +83,10 @@ public final class TaskSimpleFtp extends Task {
 		try {
 			if (stampDir != null && !stampDir.exists()) {
 				if (!stampDir.getParentFile().exists()) {
-					throw new BuildException("Stamp dir \""
-							+ stampDir.getParentFile() + "\" does not exist.");
+					throw new BuildException("Stamp dir \"" + stampDir.getParentFile() + "\" does not exist.");
 				}
 				if (stampDir != null && !stampDir.mkdir()) {
-					throw new BuildException("Could not create stamp dir \""
-							+ stampDir.getAbsolutePath() + "\"");
+					throw new BuildException("Could not create stamp dir \"" + stampDir.getAbsolutePath() + "\"");
 				}
 			}
 			for (File file : localDir.listFiles()) {
@@ -99,35 +95,25 @@ public final class TaskSimpleFtp extends Task {
 					if (stampDir != null) {
 						newStampDir = new File(stampDir, file.getName());
 					}
-					ftpAllFiles(new File(localDir, file.getName()), remoteDir
-							+ "/" + file.getName(), newStampDir);
+					ftpAllFiles(new File(localDir, file.getName()), remoteDir + "/" + file.getName(), newStampDir);
 				} else {
 					File stampFile = null;
 					if (stampDir != null) {
-						stampFile = new File(stampDir, file.getName()
-								+ ".stamp");
-						if (stampFile.exists()
-								&& stampFile.lastModified() > file
-										.lastModified()) {
-							this.getProject().log(
-									"skipping up to date file: "
-											+ file.getAbsolutePath(),
+						stampFile = new File(stampDir, file.getName() + ".stamp");
+						if (stampFile.exists() && stampFile.lastModified() > file.lastModified()) {
+							this.getProject().log("skipping up to date file: " + file.getAbsolutePath(),
 									Project.MSG_VERBOSE);
 							continue;
 						}
 						if (stampFile.exists()) {
-							stampFile.setLastModified(System
-									.currentTimeMillis());
+							stampFile.setLastModified(System.currentTimeMillis());
 						} else {
 							if (!stampFile.createNewFile()) {
-								throw new BuildException(
-										"Could not create stam file: "
-												+ stampFile.getAbsolutePath());
+								throw new BuildException("Could not create stam file: " + stampFile.getAbsolutePath());
 							}
 						}
 					}
-					final URL url = new URL("ftp://" + this.userid + ":"
-							+ this.password + "@" + this.server + "/"
+					final URL url = new URL("ftp://" + this.userid + ":" + this.password + "@" + this.server + "/"
 							+ remoteDir + "/" + file.getName() + ";type=i");
 					final URLConnection urlc = url.openConnection();
 					os = urlc.getOutputStream();
@@ -135,10 +121,8 @@ public final class TaskSimpleFtp extends Task {
 							"writing file: "
 									+ file.getAbsolutePath()
 									+ " to\n  "
-									+ url.toString().replaceFirst(
-											"ftp://" + this.userid + ":"
-													+ this.password + "@", ""),
-							Project.MSG_INFO);
+									+ url.toString().replaceFirst("ftp://" + this.userid + ":" + this.password + "@",
+											""), Project.MSG_INFO);
 					is = new FileInputStream(file);
 					while ((c = is.read()) != -1) {
 						os.write(c);

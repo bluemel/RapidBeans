@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: XXslt.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -276,11 +276,8 @@ public final class XXslt extends XSLTProcess {
 						lastModifiedIn = lm;
 					}
 				}
-				if (!this.force
-						&& (lastModifiedIn <= lastModifiedOut && this.style
-								.lastModified() <= lastModifiedOut)) {
-					this.log("nothing to do (multiple input)...",
-							Project.MSG_INFO);
+				if (!this.force && (lastModifiedIn <= lastModifiedOut && this.style.lastModified() <= lastModifiedOut)) {
+					this.log("nothing to do (multiple input)...", Project.MSG_INFO);
 					StringBuffer modelFiles = new StringBuffer();
 					boolean firstRun = true;
 					for (File file : infiles) {
@@ -290,14 +287,9 @@ public final class XXslt extends XSLTProcess {
 						modelFiles.append(file.getAbsolutePath());
 						firstRun = false;
 					}
-					this.log(
-							"neither one of the model files: "
-									+ modelFiles.toString()
-									+ " nor style sheet "
-									+ this.style.getAbsolutePath()
-									+ " is newer than output file"
-									+ this.out.getAbsolutePath() + ".",
-							Project.MSG_VERBOSE);
+					this.log("neither one of the model files: " + modelFiles.toString() + " nor style sheet "
+							+ this.style.getAbsolutePath() + " is newer than output file" + this.out.getAbsolutePath()
+							+ ".", Project.MSG_VERBOSE);
 					return;
 				}
 				concatXmls(infiles, this.in);
@@ -306,40 +298,32 @@ public final class XXslt extends XSLTProcess {
 			}
 		} else {
 			if (!this.force
-					&& (this.in.lastModified() <= lastModifiedOut && this.style
-							.lastModified() <= lastModifiedOut)) {
+					&& (this.in.lastModified() <= lastModifiedOut && this.style.lastModified() <= lastModifiedOut)) {
 				this.log("nothing to do (single input)...", Project.MSG_INFO);
 				this.log(
-						"neither model file " + this.in.getAbsolutePath()
-								+ " nor style sheet "
-								+ this.style.getAbsolutePath()
-								+ " is newer than output file"
-								+ this.out.getAbsolutePath() + ".",
-						Project.MSG_VERBOSE);
+						"neither model file " + this.in.getAbsolutePath() + " nor style sheet "
+								+ this.style.getAbsolutePath() + " is newer than output file"
+								+ this.out.getAbsolutePath() + ".", Project.MSG_VERBOSE);
 				return;
 			}
 		}
-		AntGateway antGateway = new AntGateway(this.getProject(),
-				this.getTaskName());
+		AntGateway antGateway = new AntGateway(this.getProject(), this.getTaskName());
 		try {
 			if (this.merge) {
 				out1 = new File(this.out.getAbsolutePath() + ".tmp1");
 				out2 = new File(this.out.getAbsolutePath() + ".tmp2");
 				super.setOut(out1);
 				this.log("calling sub task \"xslt\"...", Project.MSG_DEBUG);
-				this.log("  style = " + this.style.getAbsolutePath(),
-						Project.MSG_DEBUG);
+				this.log("  style = " + this.style.getAbsolutePath(), Project.MSG_DEBUG);
 				this.log("  in = " + this.in, Project.MSG_DEBUG);
 				this.log("  out = " + out1.getAbsolutePath(), Project.MSG_DEBUG);
 				initParams();
 				super.execute();
 
-				this.log("merging file " + this.out.getAbsolutePath()
-						+ " with result of XSL generation", Project.MSG_INFO);
-				MergeProperties mergeProps = new MergeProperties(
-						this.oneLineComment, this.sectionBegin,
-						this.sectionEnd, this.sectionUnmatchedBegin,
-						this.sectionUnmatchedEnd);
+				this.log("merging file " + this.out.getAbsolutePath() + " with result of XSL generation",
+						Project.MSG_INFO);
+				MergeProperties mergeProps = new MergeProperties(this.oneLineComment, this.sectionBegin,
+						this.sectionEnd, this.sectionUnmatchedBegin, this.sectionUnmatchedEnd);
 				antGateway.mergeSections(out1, this.out, out2, mergeProps);
 				this.log("calling sub task \"copy\"...", Project.MSG_VERBOSE);
 				antGateway.copy(out2, this.out);
@@ -430,8 +414,7 @@ public final class XXslt extends XSLTProcess {
 	 */
 	private void concatXmls(final Collection<File> files, final File catfile) {
 		try {
-			final DocumentBuilderFactory dbfwr = DocumentBuilderFactory
-					.newInstance();
+			final DocumentBuilderFactory dbfwr = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder dbwr = dbfwr.newDocumentBuilder();
 			final XxsltXmlErrorHandler errorHandler = new XxsltXmlErrorHandler();
 			errorHandler.setFile(catfile);
@@ -445,18 +428,14 @@ public final class XXslt extends XSLTProcess {
 			Element rootModelNode = catdoc.createElement("model");
 			catdoc.appendChild(rootModelNode);
 			for (final File file : files) {
-				final Element currentPackage = retrieveCurrentPackage(catdoc,
-						rootModelNode, file);
-				this.log("parsing XML file: " + file.getAbsolutePath() + "...",
-						Project.MSG_VERBOSE);
+				final Element currentPackage = retrieveCurrentPackage(catdoc, rootModelNode, file);
+				this.log("parsing XML file: " + file.getAbsolutePath() + "...", Project.MSG_VERBOSE);
 				final Document doc = parseXmlModelFile(file);
-				currentPackage.appendChild(cloneNode(catdoc,
-						doc.getDocumentElement()));
+				currentPackage.appendChild(cloneNode(catdoc, doc.getDocumentElement()));
 			}
 
 			// write the XML DOM document to catfile
-			Transformer trans = TransformerFactory.newInstance()
-					.newTransformer();
+			Transformer trans = TransformerFactory.newInstance().newTransformer();
 			Properties oformat = new Properties();
 			oformat.setProperty(OutputKeys.INDENT, "yes");
 			trans.setOutputProperties(oformat);
@@ -486,25 +465,21 @@ public final class XXslt extends XSLTProcess {
 	private Document parseXmlModelFile(final File file) {
 		LineNumberReader lnr = null;
 		try {
-			lnr = new LineNumberReader(new InputStreamReader(
-					new FileInputStream(file)));
+			lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(file)));
 			final String firstLine = lnr.readLine();
 			boolean validate = false;
 			if ((firstLine != null)
-					&& StringHelper.strip(firstLine, WSCHARS,
-							StringHelper.StripMode.leading).startsWith("<?xml")) {
+					&& StringHelper.strip(firstLine, WSCHARS, StringHelper.StripMode.leading).startsWith("<?xml")) {
 				final String secondLine = lnr.readLine();
 				if ((secondLine != null)
-						&& StringHelper.strip(secondLine, WSCHARS,
-								StringHelper.StripMode.leading).startsWith(
+						&& StringHelper.strip(secondLine, WSCHARS, StringHelper.StripMode.leading).startsWith(
 								"<!DOCTYPE")) {
 					validate = true;
 				}
 			}
 			final XxsltXmlErrorHandler errorHandler = new XxsltXmlErrorHandler();
 			errorHandler.setFile(file);
-			final DocumentBuilderFactory dbfrd = DocumentBuilderFactory
-					.newInstance();
+			final DocumentBuilderFactory dbfrd = DocumentBuilderFactory.newInstance();
 			dbfrd.setNamespaceAware(true);
 			dbfrd.setValidating(validate);
 			final DocumentBuilder dbrd = dbfrd.newDocumentBuilder();
@@ -583,8 +558,7 @@ public final class XXslt extends XSLTProcess {
 	 *            the file
 	 * @return the current package element in the XML DOM tree
 	 */
-	private Element retrieveCurrentPackage(final Document doc,
-			final Element rootNode, final File file) {
+	private Element retrieveCurrentPackage(final Document doc, final Element rootNode, final File file) {
 		Element currentPackage = rootNode;
 		String filePath = file.getPath();
 		final String currentDir = System.getProperty("user.dir");
@@ -595,8 +569,7 @@ public final class XXslt extends XSLTProcess {
 		while (st.hasMoreTokens()) {
 			final String pkgname = st.nextToken();
 			if (!pkgname.equals(file.getName())) {
-				final NodeList subPackages = rootNode
-						.getElementsByTagName("package");
+				final NodeList subPackages = rootNode.getElementsByTagName("package");
 				final int len = subPackages.getLength();
 				Element newSubPackage = null;
 				for (int i = 0; i < len; i++) {
@@ -647,8 +620,7 @@ public final class XXslt extends XSLTProcess {
 		 *             the exception
 		 */
 		public void warning(final SAXParseException e) throws SAXException {
-			throw new BuildException("XML Parser Warning in file \""
-					+ this.file.getAbsolutePath() + "\", line "
+			throw new BuildException("XML Parser Warning in file \"" + this.file.getAbsolutePath() + "\", line "
 					+ e.getLineNumber() + ":\n" + e.getMessage(), e);
 		}
 
@@ -661,8 +633,7 @@ public final class XXslt extends XSLTProcess {
 		 *             the exception
 		 */
 		public void error(final SAXParseException e) throws SAXException {
-			throw new BuildException("XML Parser Error in file\n    "
-					+ this.file.getAbsolutePath() + "\", line "
+			throw new BuildException("XML Parser Error in file\n    " + this.file.getAbsolutePath() + "\", line "
 					+ e.getLineNumber() + ":\n    " + e.getMessage(), e);
 		}
 
@@ -675,8 +646,7 @@ public final class XXslt extends XSLTProcess {
 		 *             the exception
 		 */
 		public void fatalError(final SAXParseException e) throws SAXException {
-			throw new BuildException("XML Parser Fatal Error in file \""
-					+ this.file.getAbsolutePath() + "\", line "
+			throw new BuildException("XML Parser Fatal Error in file \"" + this.file.getAbsolutePath() + "\", line "
 					+ e.getLineNumber() + ":\n" + e.getMessage(), e);
 		}
 

@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: XXsltTest.java
- *
+ * 
  * Copyright (C) 2010 Martin Bluemel
- *
+ * 
  * Creation Date: 10/29/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -47,8 +47,7 @@ public final class XXsltTest {
 		File infile = new File(testDir, "testInput.xml");
 		File outfile = new File(testDir, "testXsltmergeResult.txt");
 		ant.xxslt(style, infile, outfile, params, new MergeProperties(), true);
-		MergeSectionsTest.assertTextFilesEquals(outfile, new File(testDir,
-				"testXsltmergeResultExpected.txt"));
+		MergeSectionsTest.assertTextFilesEquals(outfile, new File(testDir, "testXsltmergeResultExpected.txt"));
 		ant.delete(outfile);
 	}
 
@@ -69,14 +68,11 @@ public final class XXsltTest {
 			File testDir = new File("testdata/test5");
 			File style = new File(testDir, "testStyle.xsl");
 			File infile = new File(testDir, "testInput.xml");
-			File inoutfileSrc = new File(testDir,
-					"testXsltmergeResultIOSrc.txt");
+			File inoutfileSrc = new File(testDir, "testXsltmergeResultIOSrc.txt");
 			inoutfile = new File(testDir, "testXsltmergeResultIO.txt");
 			ant.copy(inoutfileSrc, inoutfile);
-			ant.xxslt(style, infile, inoutfile, params, new MergeProperties(),
-					false);
-			MergeSectionsTest.assertTextFilesEquals(inoutfile, new File(
-					testDir, "testXsltmergeResultExpected.txt"));
+			ant.xxslt(style, infile, inoutfile, params, new MergeProperties(), false);
+			MergeSectionsTest.assertTextFilesEquals(inoutfile, new File(testDir, "testXsltmergeResultExpected.txt"));
 		} finally {
 			if (inoutfile != null && inoutfile.exists()) {
 				Assert.assertTrue(inoutfile.delete());
@@ -102,15 +98,12 @@ public final class XXsltTest {
 			File testDir = new File("testdata/test6");
 			File style = new File(testDir, "testStyle.xsl");
 			File infile = new File(testDir, "testInput.xml");
-			File inoutfileSrc = new File(testDir,
-					"testXsltmergeResultIOSrc.txt");
+			File inoutfileSrc = new File(testDir, "testXsltmergeResultIOSrc.txt");
 			inoutfile = new File(testDir, "testXsltmergeResultIO.txt");
 			ant.copy(inoutfileSrc, inoutfile);
-			MergeProperties mergeProps = new MergeProperties("'",
-					"BEGIN code section", "END code section", null, null);
+			MergeProperties mergeProps = new MergeProperties("'", "BEGIN code section", "END code section", null, null);
 			ant.xxslt(style, infile, inoutfile, params, mergeProps, false);
-			MergeSectionsTest.assertTextFilesEquals(inoutfile, new File(
-					testDir, "testXsltmergeResultExpected.txt"));
+			MergeSectionsTest.assertTextFilesEquals(inoutfile, new File(testDir, "testXsltmergeResultExpected.txt"));
 		} finally {
 			if (inoutfile != null && inoutfile.exists()) {
 				inoutfile.delete();

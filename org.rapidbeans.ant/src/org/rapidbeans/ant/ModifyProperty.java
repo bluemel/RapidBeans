@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: ModifyProperty.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 09/05/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -59,11 +59,9 @@ public final class ModifyProperty extends Task {
 			if (mode.equals("increment")) {
 				final String oldVal = props.getProperty(this.name);
 				if (oldVal == null) {
-					throw new BuildException("property \"" + this.name
-							+ "\" not found");
+					throw new BuildException("property \"" + this.name + "\" not found");
 				}
-				props.setProperty(this.name,
-						Integer.toString((Integer.parseInt(oldVal) + 1)));
+				props.setProperty(this.name, Integer.toString((Integer.parseInt(oldVal) + 1)));
 			} else {
 				throw new BuildException("unsupported \"" + this.mode + "\"");
 			}
