@@ -26,8 +26,7 @@ public class PropertyQuantityTest extends TestCase {
 		PropertyQuantity prop = this
 				.createQuantityProperty("<property name=\"test\" quantity=\"org.rapidbeans.domain.math.Time\""
 						+ " default=\"2 h\"/>");
-		assertEquals(new Time(new BigDecimal(2), UnitTime.h),
-				(RapidQuantity) prop.getValue());
+		assertEquals(new Time(new BigDecimal(2), UnitTime.h), (RapidQuantity) prop.getValue());
 	}
 
 	/**
@@ -132,9 +131,8 @@ public class PropertyQuantityTest extends TestCase {
 	public void testConvertQuantity() {
 		PropertyQuantity prop = this
 				.createQuantityProperty("<property name=\"test\" quantity=\"org.rapidbeans.domain.finance.Money\"/>");
-		assertEquals(new Money(new BigDecimal("1222333444.555666"),
-				Currency.euro), prop.convertValue(new Money(
-				"1222333444.555666 euro")));
+		assertEquals(new Money(new BigDecimal("1222333444.555666"), Currency.euro),
+				prop.convertValue(new Money("1222333444.555666 euro")));
 	}
 
 	/**
@@ -143,8 +141,8 @@ public class PropertyQuantityTest extends TestCase {
 	public void testConvertString() {
 		PropertyQuantity prop = this
 				.createQuantityProperty("<property name=\"test\" quantity=\"org.rapidbeans.domain.finance.Money\"/>");
-		assertEquals(new Money(new BigDecimal("7771222333444.555666"),
-				Currency.euro), prop.convertValue("7771222333444.555666 euro"));
+		assertEquals(new Money(new BigDecimal("7771222333444.555666"), Currency.euro),
+				prop.convertValue("7771222333444.555666 euro"));
 	}
 
 	/**
@@ -155,10 +153,8 @@ public class PropertyQuantityTest extends TestCase {
 	 * @return a new Choice property.
 	 */
 	private PropertyQuantity createQuantityProperty(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyQuantity type = new TypePropertyQuantity(
-				new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyQuantity type = new TypePropertyQuantity(new XmlNode[] { propertyNode }, null);
 		return new PropertyQuantity(type, null);
 	}
 }

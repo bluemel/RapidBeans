@@ -158,8 +158,7 @@ public class IdKeyprops extends Id {
 			}
 		}
 		if (i < 1) {
-			throw new RapidBeansRuntimeException("bean type \""
-					+ this.bean.getType().getName()
+			throw new RapidBeansRuntimeException("bean type \"" + this.bean.getType().getName()
 					+ "\" has no key property defined");
 		}
 	}

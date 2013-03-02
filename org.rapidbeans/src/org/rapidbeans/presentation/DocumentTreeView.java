@@ -38,8 +38,7 @@ import org.rapidbeans.presentation.swing.DocumentTreeViewSwing;
  * 
  * @author Martin Bluemel
  */
-public abstract class DocumentTreeView implements View, DocumentChangeListener,
-		SettingsChangedListener {
+public abstract class DocumentTreeView implements View, DocumentChangeListener, SettingsChangedListener {
 
 	/**
 	 * the document viewed.
@@ -90,8 +89,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 	 * @param filter
 	 *            the filter
 	 */
-	protected DocumentTreeView(final Application client, final Document doc,
-			final Filter filter) {
+	protected DocumentTreeView(final Application client, final Document doc, final Filter filter) {
 		this.document = doc;
 		this.filter = filter;
 		final SettingsAll settingsAll = client.getSettings();
@@ -192,8 +190,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 	 * 
 	 * @return the instance
 	 */
-	public static DocumentTreeView createInstance(final Application client,
-			final Document document, final Filter filter) {
+	public static DocumentTreeView createInstance(final Application client, final Document document, final Filter filter) {
 		DocumentTreeView treeView = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
@@ -203,8 +200,8 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 
 		return treeView;
@@ -250,8 +247,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 	 * @param suppress
 	 *            suppress or not.
 	 */
-	protected synchronized void suppressSelectionChangeHandling(
-			final boolean suppress) {
+	protected synchronized void suppressSelectionChangeHandling(final boolean suppress) {
 		if (suppress) {
 			this.supressSelectionChangedHandling++;
 		} else {
@@ -274,8 +270,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 	 * 
 	 * @return the bean editor created
 	 */
-	public EditorBean createBean(final Object key,
-			final PropertyCollection colProp) {
+	public EditorBean createBean(final Object key, final PropertyCollection colProp) {
 		if (getSupressSelectionChangedHandling()) {
 			return null;
 		}
@@ -316,8 +311,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 		// filter beans and the associated keys
 		int j = 0;
 		for (int i = 0; i < selObjs.length; i++) {
-			if (selObjs[i] instanceof RapidBean
-					|| selObjs[i] instanceof DocumentTreeNodeBeanLink) {
+			if (selObjs[i] instanceof RapidBean || selObjs[i] instanceof DocumentTreeNodeBeanLink) {
 				j++;
 			}
 		}
@@ -330,8 +324,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 				ba[j++] = (RapidBean) selObjs[i];
 			} else if (selObjs[i] instanceof DocumentTreeNodeBeanLink) {
 				bKeys[j] = this.getOriginalForLink(keys[j]);
-				ba[j++] = ((DocumentTreeNodeBeanLink) selObjs[i])
-						.getLinkedBean();
+				ba[j++] = ((DocumentTreeNodeBeanLink) selObjs[i]).getLinkedBean();
 			}
 		}
 
@@ -390,8 +383,7 @@ public abstract class DocumentTreeView implements View, DocumentChangeListener,
 		if (prop.getClass() != SettingsBasicGuiPropTreeViewShowBeanLinks.class) {
 			return;
 		}
-		boolean newShowLinks = ((SettingsBasicGuiPropTreeViewShowBeanLinks) prop)
-				.getValueBoolean();
+		boolean newShowLinks = ((SettingsBasicGuiPropTreeViewShowBeanLinks) prop).getValueBoolean();
 		this.setShowBeanLinks(newShowLinks);
 	}
 

@@ -107,8 +107,7 @@ public class TypePropertyString extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyString(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyString(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("String", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@default");
@@ -151,13 +150,11 @@ public class TypePropertyString extends TypeProperty {
 				final List<String> l = StringHelper.split(s, ",");
 				final int len = l.size();
 				if (len < 2) {
-					throw new RapidBeansRuntimeException(
-							"invalid escape definition \"" + s + "\"");
+					throw new RapidBeansRuntimeException("invalid escape definition \"" + s + "\"");
 				}
 				if (len % 2 != 0) {
-					throw new RapidBeansRuntimeException(
-							"invalid escape definition: "
-									+ "odd number of mappings \"" + s + "\"");
+					throw new RapidBeansRuntimeException("invalid escape definition: " + "odd number of mappings \""
+							+ s + "\"");
 				}
 				for (int i = 0; i < len; i++) {
 					l.set(i, StringHelper.unescape(l.get(i)));
@@ -175,8 +172,7 @@ public class TypePropertyString extends TypeProperty {
 	 * @param propNode
 	 *            the XML property description node
 	 */
-	protected void evalXmlBinding(final TypeRapidBean beantype,
-			final XmlNode propNode) {
+	protected void evalXmlBinding(final TypeRapidBean beantype, final XmlNode propNode) {
 		if (this.multiline && this.escapeMap == DEFAULT_ESCAPE_MAP) {
 			if (this.getXmlBindingType() == PropertyXmlBindingType.element) {
 				this.escapeMap = null;
@@ -193,9 +189,8 @@ public class TypePropertyString extends TypeProperty {
 
 	private EscapeMap escapeMap = null;
 
-	private static final EscapeMap DEFAULT_ESCAPE_MAP = new EscapeMap(
-			new String[] { "\n", "\\n", "\t", "\\t", "\r", "\\r", "\b", "\\b",
-					"\\", "\\\\" });
+	private static final EscapeMap DEFAULT_ESCAPE_MAP = new EscapeMap(new String[] { "\n", "\\n", "\t", "\\t", "\r",
+			"\\r", "\b", "\\b", "\\", "\\\\" });
 
 	/**
 	 * @return the escape map

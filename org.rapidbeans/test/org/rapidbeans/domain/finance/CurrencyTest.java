@@ -47,21 +47,17 @@ public final class CurrencyTest extends TestCase {
 		java.util.Currency cur = java.util.Currency.getInstance(Locale.GERMANY);
 		assertEquals("EUR", cur.getCurrencyCode());
 		// "\u20AC" is the Unicode for the Euro symbol '€'
-		assertTrue(cur.getSymbol().equals("\u20AC")
-				|| cur.getSymbol().equals("EUR"));
+		assertTrue(cur.getSymbol().equals("\u20AC") || cur.getSymbol().equals("EUR"));
 
 		final HashMap<String, java.util.Currency> currencyMap = new HashMap<String, java.util.Currency>();
 		for (String isoLanguage : Locale.getISOLanguages()) {
 			for (String isoCountry : Locale.getISOCountries()) {
 				final Locale locale = new Locale(isoLanguage, isoCountry);
 				if (locale != null) {
-					final java.util.Currency currency = java.util.Currency
-							.getInstance(locale);
+					final java.util.Currency currency = java.util.Currency.getInstance(locale);
 					if (currency != null) {
-						if (!currencyMap
-								.containsKey(currency.getCurrencyCode())) {
-							currencyMap.put(currency.getCurrencyCode(),
-									currency);
+						if (!currencyMap.containsKey(currency.getCurrencyCode())) {
+							currencyMap.put(currency.getCurrencyCode(), currency);
 						}
 					}
 				}

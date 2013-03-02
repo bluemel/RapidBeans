@@ -41,8 +41,7 @@ public class TypePropertyUrl extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyUrl(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyUrl(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("Url", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@default");

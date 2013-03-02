@@ -80,18 +80,15 @@ public class NumberFormat {
 	 * The output is always language independent.
 	 */
 	public static String normalize(String sIn) throws UtilException {
-		return normalize(sIn, CHECK_MODE_DECIMAL, PATTERN_SEPARATOR_CHAR,
-				PATTERN_DECIMAL_CHAR);
+		return normalize(sIn, CHECK_MODE_DECIMAL, PATTERN_SEPARATOR_CHAR, PATTERN_DECIMAL_CHAR);
 	}
 
-	public static String normalize(String sIn, int checkMode)
+	public static String normalize(String sIn, int checkMode) throws UtilException {
+		return normalize(sIn, checkMode, PATTERN_SEPARATOR_CHAR, PATTERN_DECIMAL_CHAR);
+	}
+
+	public static String normalize(String sIn, int checkMode, char separatorChar, char decimalChar)
 			throws UtilException {
-		return normalize(sIn, checkMode, PATTERN_SEPARATOR_CHAR,
-				PATTERN_DECIMAL_CHAR);
-	}
-
-	public static String normalize(String sIn, int checkMode,
-			char separatorChar, char decimalChar) throws UtilException {
 		int len = sIn.length();
 		char c;
 		StringBuffer buf = new StringBuffer();
@@ -226,10 +223,8 @@ public class NumberFormat {
 		return ret;
 	}
 
-	public static String format(double d, String numberFormatString,
-			char separatorChar, char decimalChar) {
-		return format(new Double(d).toString(), numberFormatString,
-				separatorChar, decimalChar);
+	public static String format(double d, String numberFormatString, char separatorChar, char decimalChar) {
+		return format(new Double(d).toString(), numberFormatString, separatorChar, decimalChar);
 	}
 
 	/**
@@ -244,10 +239,8 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final BigDecimal d,
-			final RapidBeansLocale locale, final String numberFormatString) {
-		return format(d.toString(), numberFormatString,
-				locale.getStringGui("number.format.char.separator").charAt(0),
+	public static String format(final BigDecimal d, final RapidBeansLocale locale, final String numberFormatString) {
+		return format(d.toString(), numberFormatString, locale.getStringGui("number.format.char.separator").charAt(0),
 				locale.getStringGui("number.format.char.decimal").charAt(0));
 	}
 
@@ -263,11 +256,9 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final int i, final RapidBeansLocale locale,
-			final String numberFormatString) {
-		return format(Integer.toString(i), numberFormatString, locale
-				.getStringGui("number.format.char.separator").charAt(0), locale
-				.getStringGui("number.format.char.decimal").charAt(0));
+	public static String format(final int i, final RapidBeansLocale locale, final String numberFormatString) {
+		return format(Integer.toString(i), numberFormatString, locale.getStringGui("number.format.char.separator")
+				.charAt(0), locale.getStringGui("number.format.char.decimal").charAt(0));
 	}
 
 	/**
@@ -283,11 +274,10 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final long l, final RapidBeansLocale locale,
-			final String numberFormatString) {
-		return format(Long.toString(l), numberFormatString, locale
-				.getStringGui("number.format.char.separator").charAt(0), locale
-				.getStringGui("number.format.char.decimal").charAt(0));
+	public static String format(final long l, final RapidBeansLocale locale, final String numberFormatString) {
+		return format(Long.toString(l), numberFormatString,
+				locale.getStringGui("number.format.char.separator").charAt(0),
+				locale.getStringGui("number.format.char.decimal").charAt(0));
 	}
 
 	/**
@@ -302,11 +292,9 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(String sIn, String numberFormatString,
-			char separatorChar, char decimalChar) {
+	public static String format(String sIn, String numberFormatString, char separatorChar, char decimalChar) {
 		if (numberFormatString == null || numberFormatString.equals("")) {
-			throw new UtilException(
-					"Illegal argument numberFormatString is empty");
+			throw new UtilException("Illegal argument numberFormatString is empty");
 		}
 
 		// create a buffer for the resulting String an initially fill it
@@ -324,8 +312,7 @@ public class NumberFormat {
 		}
 		final int lenBuf = numberFormatString.length();
 		boolean decimalFoundFormat = false;
-		int posDecimalCharFormat = numberFormatString
-				.indexOf(PATTERN_DECIMAL_CHAR);
+		int posDecimalCharFormat = numberFormatString.indexOf(PATTERN_DECIMAL_CHAR);
 		if (posDecimalCharFormat == -1) {
 			posFormatStart = lenBuf - 1;
 		} else {
@@ -360,8 +347,7 @@ public class NumberFormat {
 			} else if (cf == PATTERN_SEPARATOR_CHAR) {
 				buf.setCharAt(posFormat, separatorChar);
 			} else {
-				throw new UtilException("unexpected char'" + cf + "' at pos "
-						+ posFormat);
+				throw new UtilException("unexpected char'" + cf + "' at pos " + posFormat);
 			}
 			posFormat--;
 		}
@@ -389,8 +375,7 @@ public class NumberFormat {
 				} else if (cf == PATTERN_SEPARATOR_CHAR) {
 					buf.setCharAt(posFormat, separatorChar);
 				} else {
-					throw new UtilException("unexpected char'" + cf
-							+ "' at pos " + posFormat);
+					throw new UtilException("unexpected char'" + cf + "' at pos " + posFormat);
 				}
 				posFormat++;
 			}

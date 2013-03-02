@@ -66,8 +66,7 @@ public class PropValueNullException extends RapidBeansRuntimeException {
 	 * @param exception
 	 *            the nested exception
 	 */
-	public PropValueNullException(final String message,
-			final Throwable exception) {
+	public PropValueNullException(final String message, final Throwable exception) {
 		super(message, exception);
 	}
 }

@@ -64,8 +64,7 @@ public final class ModelListChoiceWithout extends DefaultListModel {
 	 * @param doc
 	 *            the document
 	 */
-	public ModelListChoiceWithout(final PropertyChoice prop,
-			final TypePropertyChoice type) {
+	public ModelListChoiceWithout(final PropertyChoice prop, final TypePropertyChoice type) {
 		this.choiceProp = prop;
 		this.choicePropType = type;
 		updateList();
@@ -99,15 +98,12 @@ public final class ModelListChoiceWithout extends DefaultListModel {
 	 * update the listAllEnums.
 	 */
 	protected void updateList() {
-		final ReadonlyListCollection<RapidEnum> allEnums = new ReadonlyListCollection<RapidEnum>(
-				this.choicePropType.getEnumType().getElements(),
-				this.choicePropType);
+		final ReadonlyListCollection<RapidEnum> allEnums = new ReadonlyListCollection<RapidEnum>(this.choicePropType
+				.getEnumType().getElements(), this.choicePropType);
 		this.listAllEnums = new ArrayList<RapidEnum>();
-		final ReadonlyListCollection<?> currentPropValue = this.choiceProp
-				.getValue();
+		final ReadonlyListCollection<?> currentPropValue = this.choiceProp.getValue();
 		for (RapidEnum singleEnum : allEnums) {
-			if (currentPropValue == null
-					|| (!currentPropValue.contains(singleEnum))) {
+			if (currentPropValue == null || (!currentPropValue.contains(singleEnum))) {
 				this.listAllEnums.add(singleEnum);
 			}
 		}

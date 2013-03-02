@@ -37,8 +37,7 @@ public class PropertyMapTest extends TestCase {
 	 */
 	public void testDefaultNullAndGetValue() {
 		this.createTestBean();
-		PropertyMap prop = createMapProperty("<property name=\"test\""
-				+ " targettype=\"TestBean\"" + " />");
+		PropertyMap prop = createMapProperty("<property name=\"test\"" + " targettype=\"TestBean\"" + " />");
 		assertNull(prop.getValue());
 	}
 
@@ -48,8 +47,8 @@ public class PropertyMapTest extends TestCase {
 	 */
 	public void testDefaultEmpty() {
 		this.createTestBean();
-		PropertyMap prop = this.createMapProperty("<property name=\"test\""
-				+ " targettype=\"TestBean\"" + " default=\"\"/>");
+		PropertyMap prop = this.createMapProperty("<property name=\"test\"" + " targettype=\"TestBean\""
+				+ " default=\"\"/>");
 		Map<String, Link> map = prop.getValue();
 		assertEquals(0, map.size());
 	}
@@ -72,8 +71,7 @@ public class PropertyMapTest extends TestCase {
 	 */
 	public void testSetValueSingleBean() {
 		RapidBean bean = this.createTestBean();
-		PropertyMap prop = this.createMapProperty("<property name=\"test\""
-				+ " targettype=\"TestBean\"" + " />");
+		PropertyMap prop = this.createMapProperty("<property name=\"test\"" + " targettype=\"TestBean\"" + " />");
 		prop.setValue(new LinkWithKey("bean1", bean));
 		Map<String, Link> map = prop.getValue();
 		assertEquals(1, map.size());
@@ -91,8 +89,7 @@ public class PropertyMapTest extends TestCase {
 	public void testSetValueMultipleBeans() {
 		RapidBean bean1 = this.createTestBean("Bl�mel", "Martin", "19641014");
 		RapidBean bean2 = this.createTestBean("Bl�mel", "Ulrike", "19620802");
-		PropertyMap prop = this.createMapProperty("<property name=\"test\""
-				+ " targettype=\"TestBean\"" + " />");
+		PropertyMap prop = this.createMapProperty("<property name=\"test\"" + " targettype=\"TestBean\"" + " />");
 		Map<String, Link> newMap = new HashMap<String, Link>();
 		newMap.put("bean1", bean1);
 		newMap.put("bean2", bean2);
@@ -122,8 +119,7 @@ public class PropertyMapTest extends TestCase {
 	 */
 	public void testAddLinkWithInverseNormalCollection() {
 
-		TypeRapidBean.forName("org.rapidbeans.test.codegen.Address")
-				.setIdGenerator(new IdGeneratorNumeric());
+		TypeRapidBean.forName("org.rapidbeans.test.codegen.Address").setIdGenerator(new IdGeneratorNumeric());
 		// create 1 Address and 2 Persons
 		PersonMap personMap = new PersonMap();
 		Person martin = new Person("\"Martin\" \"Bl�mel\" \"19641014\"");
@@ -686,16 +682,12 @@ public class PropertyMapTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBean(final String name, final String prename,
-			final String dateofbirth) {
-		String descr = "<beantype name=\"TestBean\" idtype=\"keyprops\">"
-				+ "<property name=\"name\" key=\"true\"/>"
+	private GenericBean createTestBean(final String name, final String prename, final String dateofbirth) {
+		String descr = "<beantype name=\"TestBean\" idtype=\"keyprops\">" + "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"
-				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
-				+ "</beantype>";
+				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>" + "</beantype>";
 		GenericBean bean = null;
-		TypeRapidBean testBeanType = (TypeRapidBean) RapidBeansTypeLoader
-				.getInstance().lookupType("TestBean");
+		TypeRapidBean testBeanType = (TypeRapidBean) RapidBeansTypeLoader.getInstance().lookupType("TestBean");
 		if (testBeanType == null) {
 			bean = TestHelper.createGenericBeanInstance(descr);
 			RapidBeansTypeLoader.getInstance().registerType(bean.getType());
@@ -717,10 +709,8 @@ public class PropertyMapTest extends TestCase {
 	 * @return a new Collection property.
 	 */
 	private PropertyMap createMapProperty(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyMap type = new TypePropertyMap(
-				new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyMap type = new TypePropertyMap(new XmlNode[] { propertyNode }, null);
 		return new PropertyMap(type, null);
 	}
 

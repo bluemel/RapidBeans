@@ -52,8 +52,7 @@ public class FileChooserSwing extends FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public File chooseFileDialog(final String title,
-			final FileChooserType dialogType, final String approveButtonText,
+	public File chooseFileDialog(final String title, final FileChooserType dialogType, final String approveButtonText,
 			final File dir, final String filterText, final String filterSuffix) {
 		JFileChooser chooser = new JFileChooser(dir);
 		chooser.setDialogTitle(title);
@@ -64,16 +63,15 @@ public class FileChooserSwing extends FileChooser {
 		int returnVal = -1;
 		switch (dialogType) {
 		case open:
-			returnVal = chooser.showOpenDialog((JFrame) ApplicationManager
-					.getApplication().getMainwindow().getWidget());
+			returnVal = chooser
+					.showOpenDialog((JFrame) ApplicationManager.getApplication().getMainwindow().getWidget());
 			break;
 		case save:
-			returnVal = chooser.showSaveDialog((JFrame) ApplicationManager
-					.getApplication().getMainwindow().getWidget());
+			returnVal = chooser
+					.showSaveDialog((JFrame) ApplicationManager.getApplication().getMainwindow().getWidget());
 			break;
 		default:
-			returnVal = chooser.showDialog((JFrame) ApplicationManager
-					.getApplication().getMainwindow().getWidget(),
+			returnVal = chooser.showDialog((JFrame) ApplicationManager.getApplication().getMainwindow().getWidget(),
 					approveButtonText);
 			break;
 		}

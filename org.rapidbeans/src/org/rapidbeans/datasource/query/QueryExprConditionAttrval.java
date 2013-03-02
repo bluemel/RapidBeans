@@ -116,8 +116,8 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 * @param argParent
 	 *            the parent regular expression
 	 */
-	public QueryExprConditionAttrval(final String argAttrName,
-			final int argCompOperator, final QueryExpression argParent) {
+	public QueryExprConditionAttrval(final String argAttrName, final int argCompOperator,
+			final QueryExpression argParent) {
 		this.attrName = argAttrName;
 		if (this.attrName.equals("id")) {
 			this.isId = true;
@@ -131,8 +131,7 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 *            the child expression to add.
 	 */
 	protected void addChildExpression(final QueryExpression expr) {
-		throw new QueryException(
-				"tried to add child expression to attribute value condition expression");
+		throw new QueryException("tried to add child expression to attribute value condition expression");
 	}
 
 	/**
@@ -140,8 +139,7 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 *            the child expession to remove.
 	 */
 	public void removeChildExpression(final QueryExpression expr) {
-		throw new QueryException(
-				"tried to remove child expression from attribute value condition expression");
+		throw new QueryException("tried to remove child expression from attribute value condition expression");
 	}
 
 	/**
@@ -179,8 +177,7 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public List<RapidBean> eval(final Container db,
-			final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
 		ArrayList<RapidBean> resultSet = new ArrayList<RapidBean>();
 		RapidBean bo;
 		Property bop = null;
@@ -199,12 +196,10 @@ class QueryExprConditionAttrval extends QueryExpression {
 			} else {
 				curBop = curBo.getProperty(this.attrName);
 				if (bop == null) {
-					bo = RapidBeanImplStrict.createInstance(curBo.getType()
-							.getName());
+					bo = RapidBeanImplStrict.createInstance(curBo.getType().getName());
 					bop = bo.getProperty(this.attrName);
 					if (bop == null) {
-						throw new QueryException("Property \"" + this.attrName
-								+ "\" not found for type \""
+						throw new QueryException("Property \"" + this.attrName + "\" not found for type \""
 								+ bo.getType().getName() + "\"");
 					}
 					if (bop instanceof PropertyAssociationend) {
@@ -223,11 +218,9 @@ class QueryExprConditionAttrval extends QueryExpression {
 
 			if (this.compOperator == OPERATOR_COMP_MATCH) {
 				if (this.isId) {
-					curMatch = this.attrRegExpPattern.matcher(curId.toString())
-							.matches();
+					curMatch = this.attrRegExpPattern.matcher(curId.toString()).matches();
 				} else {
-					curMatch = this.attrRegExpPattern
-							.matcher(curBop.toString()).matches();
+					curMatch = this.attrRegExpPattern.matcher(curBop.toString()).matches();
 				}
 			} else {
 				if (this.isId) {
@@ -284,8 +277,7 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 * @return the child expressions.
 	 */
 	protected List<QueryExpression> getChildExpressions() {
-		throw new QueryException("attribute value condition expressions"
-				+ " do not have a child expressions");
+		throw new QueryException("attribute value condition expressions" + " do not have a child expressions");
 	}
 
 	/**

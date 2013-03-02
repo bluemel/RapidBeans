@@ -63,8 +63,7 @@ public final class MainWindowSwing extends MainWindow {
 	/**
 	 * background color for selected items.
 	 */
-	public static final Color COLOR_SELECTED_BACKGROUND = new JList()
-			.getSelectionBackground();
+	public static final Color COLOR_SELECTED_BACKGROUND = new JList().getSelectionBackground();
 
 	/**
 	 * the frame instance.
@@ -131,8 +130,7 @@ public final class MainWindowSwing extends MainWindow {
 		if (widget instanceof JInternalFrame) {
 			JInternalFrame iframe = (JInternalFrame) widget;
 			try {
-				switch (client.getSettings().getBasic().getGui()
-						.getDocViewOpenWindowBehaviour()) {
+				switch (client.getSettings().getBasic().getGui().getDocViewOpenWindowBehaviour()) {
 				case maximized:
 					iframe.setMaximum(true);
 					break;
@@ -200,15 +198,13 @@ public final class MainWindowSwing extends MainWindow {
 			return null;
 		}
 		for (Component comp : this.desktopPane.getComponents()) {
-			if (comp instanceof JInternalFrame
-					&& this.desktopPane.getComponentZOrder(comp) == 0) {
+			if (comp instanceof JInternalFrame && this.desktopPane.getComponentZOrder(comp) == 0) {
 				topFrame = (JInternalFrame) comp;
 				break;
 			}
 		}
 		if (topFrame != null) {
-			activeDocumentView = (DocumentView) ApplicationManager
-					.getApplication().getViewByWidget(topFrame);
+			activeDocumentView = (DocumentView) ApplicationManager.getApplication().getViewByWidget(topFrame);
 		}
 		return activeDocumentView;
 	}
@@ -245,16 +241,14 @@ public final class MainWindowSwing extends MainWindow {
 	 * @param mainWindowConfig
 	 *            the configuration
 	 */
-	public MainWindowSwing(final Application client,
-			final ConfigMainWindow mainWindowConfig) {
+	public MainWindowSwing(final Application client, final ConfigMainWindow mainWindowConfig) {
 		super(client, mainWindowConfig);
 
 		this.frame = new JFrame();
 		if (mainWindowConfig == null) {
 			this.frame.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		} else {
-			this.frame.setSize(mainWindowConfig.getWidth(),
-					mainWindowConfig.getHeight());
+			this.frame.setSize(mainWindowConfig.getWidth(), mainWindowConfig.getHeight());
 		}
 		this.frame.setTitle(getWindowTitle(client));
 		final Image image = getIconManager().getImage("mainwindow.icon");
@@ -275,19 +269,16 @@ public final class MainWindowSwing extends MainWindow {
 		});
 
 		if (this.getMenubar() != null) {
-			final JMenuBar menuBar = (JMenuBar) ((MenubarSwing) this
-					.getMenubar()).getWidget();
+			final JMenuBar menuBar = (JMenuBar) ((MenubarSwing) this.getMenubar()).getWidget();
 			this.frame.setJMenuBar(menuBar);
 		}
 
 		if (this.getToolbars().size() > 1) {
 			this.toolbarPanelNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
-			this.frame.getContentPane().add(this.toolbarPanelNorth,
-					BorderLayout.NORTH);
+			this.frame.getContentPane().add(this.toolbarPanelNorth, BorderLayout.NORTH);
 		}
 		for (final Toolbar toolbar : this.getToolbars()) {
-			final JToolBar toolBar = (JToolBar) ((ToolbarSwing) toolbar)
-					.getWidget();
+			final JToolBar toolBar = (JToolBar) ((ToolbarSwing) toolbar).getWidget();
 			if (this.getToolbars().size() > 1) {
 				this.toolbarPanelNorth.add(toolBar);
 			} else {
@@ -299,8 +290,7 @@ public final class MainWindowSwing extends MainWindow {
 		this.desktopPane.setLayout(null);
 		this.frame.getContentPane().add(this.desktopPane, BorderLayout.CENTER);
 
-		this.frame.getContentPane().add((JPanel) this.getFooter().getWidget(),
-				BorderLayout.SOUTH);
+		this.frame.getContentPane().add((JPanel) this.getFooter().getWidget(), BorderLayout.SOUTH);
 	}
 
 	private IconManagerSwing iconManager = null;
@@ -310,8 +300,7 @@ public final class MainWindowSwing extends MainWindow {
 	 */
 	@Override
 	public int getViewZOrder(final View view) {
-		return this.desktopPane.getComponentZOrder((JComponent) view
-				.getWidget());
+		return this.desktopPane.getComponentZOrder((JComponent) view.getWidget());
 	}
 
 	@Override
@@ -348,14 +337,12 @@ public final class MainWindowSwing extends MainWindow {
 	public void restoreUiState(final UiState uiState) {
 		final MainWindowState mainWinState = uiState.getMainWindow();
 		if (mainWinState != null) {
-			this.frame.setBounds(mainWinState.getLocationX(),
-					mainWinState.getLocationY(), mainWinState.getWidth(),
+			this.frame.setBounds(mainWinState.getLocationX(), mainWinState.getLocationY(), mainWinState.getWidth(),
 					mainWinState.getHeight());
 		}
 	}
 
-	private final static Cursor waitCursor = Cursor
-			.getPredefinedCursor(Cursor.WAIT_CURSOR);
+	private final static Cursor waitCursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 
 	private final static Cursor defaultCursor = Cursor.getDefaultCursor();
 
@@ -376,14 +363,12 @@ public final class MainWindowSwing extends MainWindow {
 			cursor = waitCursor;
 			break;
 		default:
-			throw new RapidBeansRuntimeException("invalid cursor style "
-					+ style.toString());
+			throw new RapidBeansRuntimeException("invalid cursor style " + style.toString());
 		}
 		setComponentCursor(this.frame, cursor);
 	}
 
-	private void setComponentCursor(final Component component,
-			final Cursor cursor) {
+	private void setComponentCursor(final Component component, final Cursor cursor) {
 		component.setCursor(cursor);
 		if (component instanceof Container) {
 			final Container cont = (Container) component;

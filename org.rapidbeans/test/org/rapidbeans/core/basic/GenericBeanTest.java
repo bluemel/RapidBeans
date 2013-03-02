@@ -45,11 +45,9 @@ public class GenericBeanTest extends TestCase {
 	 * Test of createInstance(XmlNode).
 	 */
 	public void testCreateInstanceDescrPropsList() {
-		String descr = "<beantype name=\"TestBean\">"
-				+ "<property name=\"xxx\" key=\"true\"/>"
+		String descr = "<beantype name=\"TestBean\">" + "<property name=\"xxx\" key=\"true\"/>"
 				+ "<property name=\"yyy\" type=\"integer\" default=\"85737\"/>"
-				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>"
-				+ "</beantype>";
+				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>" + "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		assertEquals(3, bean.getPropertyList().size());
 	}
@@ -58,11 +56,9 @@ public class GenericBeanTest extends TestCase {
 	 * Test of createInstance(XmlNode).
 	 */
 	public void testCreateInstanceDescrPropsDefault() {
-		String descr = "<beantype name=\"TestBean\">"
-				+ "<property name=\"xxx\" key=\"true\"/>"
+		String descr = "<beantype name=\"TestBean\">" + "<property name=\"xxx\" key=\"true\"/>"
 				+ "<property name=\"yyy\" type=\"integer\" default=\"85737\"/>"
-				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>"
-				+ "</beantype>";
+				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>" + "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		assertEquals(85737, bean.getProperty("yyy").getValue());
 	}
@@ -71,26 +67,21 @@ public class GenericBeanTest extends TestCase {
 	 * Test of createInstance(XmlNode).
 	 */
 	public void testCreateInstanceDescrPropsSetValueOk() {
-		String descr = "<beantype name=\"TestBean\">"
-				+ "<property name=\"xxx\" key=\"true\"/>"
+		String descr = "<beantype name=\"TestBean\">" + "<property name=\"xxx\" key=\"true\"/>"
 				+ "<property name=\"yyy\" type=\"integer\" default=\"85737\"/>"
-				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>"
-				+ "</beantype>";
+				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>" + "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		bean.setPropValue("zzz", "martin.bluemel@web.de");
-		assertEquals("martin.bluemel@web.de", bean.getProperty("zzz")
-				.getValue());
+		assertEquals("martin.bluemel@web.de", bean.getProperty("zzz").getValue());
 	}
 
 	/**
 	 * Test of createInstance(XmlNode).
 	 */
 	public void testCreateInstanceDescrPropsSetValueWrong() {
-		String descr = "<beantype name=\"TestBean\">"
-				+ "<property name=\"xxx\" key=\"true\"/>"
+		String descr = "<beantype name=\"TestBean\">" + "<property name=\"xxx\" key=\"true\"/>"
 				+ "<property name=\"yyy\" type=\"integer\" default=\"85737\"/>"
-				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>"
-				+ "</beantype>";
+				+ "<property name=\"zzz\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>" + "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		try {
 			bean.setPropValue("zzz", "abc");
@@ -108,24 +99,18 @@ public class GenericBeanTest extends TestCase {
 	 * the bean's type is registered a the bean type loader.
 	 */
 	public void testCreateInstanceFromModels() {
-		GenericBean bean1 = (GenericBean) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.test.TestBeanGen");
-		assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType()
-				.getName());
-		GenericBean bean2 = (GenericBean) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.test.TestBeanGen");
-		assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType()
-				.getName());
+		GenericBean bean1 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType().getName());
+		GenericBean bean2 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType().getName());
 		// approve that the type instance is registered just once
 		assertSame(bean1.getType(), bean2.getType());
 	}
 
 	@SuppressWarnings("unchecked")
 	public void testDefaultValue() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.test.TestBeanGen");
-		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex"))
-				.get(0);
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
 		assertSame(Sex.male, defaultSex);
 	}
 
@@ -133,8 +118,7 @@ public class GenericBeanTest extends TestCase {
 	public void testOverriding() {
 		GenericBean bean = (GenericBean) RapidBeanImplStrict
 				.createInstance("org.rapidbeans.test.TestBeanExtended1aGen");
-		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex"))
-				.get(0);
+		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
 		assertSame(Sex.female, defaultSex);
 	}
 }

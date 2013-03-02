@@ -20,10 +20,8 @@ public class GenericEnumTest extends TestCase {
 	 */
 	public void testCreateInstanceDescr() {
 		try {
-			String descr = "<enumtype name=\"Season\">"
-					+ "<enum name=\"spring\"/>" + "<enum name=\"summer\"/>"
-					+ "<enum name=\"autumn\"/>" + "<enum name=\"winter\"/>"
-					+ "</enumtype>";
+			String descr = "<enumtype name=\"Season\">" + "<enum name=\"spring\"/>" + "<enum name=\"summer\"/>"
+					+ "<enum name=\"autumn\"/>" + "<enum name=\"winter\"/>" + "</enumtype>";
 			TypeRapidEnum enumtype = TypeRapidEnum.createInstance(descr);
 			assertEquals("Season", enumtype.getName());
 			assertEquals("spring", enumtype.elementOf("spring").name());

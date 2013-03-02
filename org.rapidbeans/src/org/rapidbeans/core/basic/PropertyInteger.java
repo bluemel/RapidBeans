@@ -135,12 +135,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 *            <b>String:</b> the integer as decimal string<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (Number) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (Number) newValue;
+			}
+		});
 	}
 
 	/**
@@ -180,56 +179,46 @@ public final class PropertyInteger extends PropertyNumber {
 			return null;
 		}
 		// check against max boundary
-		final Number maxValue = ((TypePropertyInteger) this.getType())
-				.getMaxValue();
+		final Number maxValue = ((TypePropertyInteger) this.getType()).getMaxValue();
 		if (maxValue != null) {
 			boolean exceeded = false;
 			if (newNumberValue instanceof BigInteger) {
-				exceeded = ((BigInteger) newNumberValue)
-						.compareTo((BigInteger) maxValue) > 0;
+				exceeded = ((BigInteger) newNumberValue).compareTo((BigInteger) maxValue) > 0;
 			} else if (newNumberValue instanceof Long) {
 				exceeded = ((Long) newNumberValue).compareTo((Long) maxValue) > 0;
 			} else if (newNumberValue instanceof Integer) {
-				exceeded = ((Integer) newNumberValue)
-						.compareTo((Integer) maxValue) > 0;
+				exceeded = ((Integer) newNumberValue).compareTo((Integer) maxValue) > 0;
 			} else if (newNumberValue instanceof Short) {
 				exceeded = ((Short) newNumberValue).compareTo((Short) maxValue) > 0;
 			} else if (newNumberValue instanceof Byte) {
 				exceeded = ((Byte) newNumberValue).compareTo((Byte) maxValue) > 0;
 			}
 			if (exceeded) {
-				throw new ValidationException("invalid.prop.integer.maxval",
-						this, "invalid integer \"" + newNumberValue.toString()
-								+ "\" greater than maximal value \""
-								+ maxValue.toString() + "\".", new Object[] {
-								newNumberValue, maxValue });
+				throw new ValidationException("invalid.prop.integer.maxval", this, "invalid integer \""
+						+ newNumberValue.toString() + "\" greater than maximal value \"" + maxValue.toString() + "\".",
+						new Object[] { newNumberValue, maxValue });
 			}
 		}
 
 		// check against min boundary
-		final Number minValue = ((TypePropertyInteger) this.getType())
-				.getMinValue();
+		final Number minValue = ((TypePropertyInteger) this.getType()).getMinValue();
 		if (minValue != null) {
 			boolean exceeded = false;
 			if (newNumberValue instanceof BigInteger) {
-				exceeded = ((BigInteger) newNumberValue)
-						.compareTo((BigInteger) minValue) < 0;
+				exceeded = ((BigInteger) newNumberValue).compareTo((BigInteger) minValue) < 0;
 			} else if (newNumberValue instanceof Long) {
 				exceeded = ((Long) newNumberValue).compareTo((Long) minValue) < 0;
 			} else if (newNumberValue instanceof Integer) {
-				exceeded = ((Integer) newNumberValue)
-						.compareTo((Integer) minValue) < 0;
+				exceeded = ((Integer) newNumberValue).compareTo((Integer) minValue) < 0;
 			} else if (newNumberValue instanceof Short) {
 				exceeded = ((Short) newNumberValue).compareTo((Short) minValue) < 0;
 			} else if (newNumberValue instanceof Byte) {
 				exceeded = ((Byte) newNumberValue).compareTo((Byte) minValue) < 0;
 			}
 			if (exceeded) {
-				throw new ValidationException("invalid.prop.integer.minval",
-						this, "invalid integer \"" + newNumberValue.toString()
-								+ "\" lower than minimal value \""
-								+ minValue.toString() + "\".", new Object[] {
-								newNumberValue, minValue });
+				throw new ValidationException("invalid.prop.integer.minval", this, "invalid integer \""
+						+ newNumberValue.toString() + "\" lower than minimal value \"" + minValue.toString() + "\".",
+						new Object[] { newNumberValue, minValue });
 			}
 		}
 		return newNumberValue;

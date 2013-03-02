@@ -139,16 +139,11 @@ public class HistoryListTest extends TestCase {
 		assertEquals("test2.xml", new File(iter.next().getFile()).getName());
 		assertEquals("test1.xml", new File(iter.next().getFile()).getName());
 		assertFalse(iter.hasNext());
-		assertEquals("test5.xml",
-				new File(historyList.get(0).getFile()).getName());
-		assertEquals("test4.xml",
-				new File(historyList.get(1).getFile()).getName());
-		assertEquals("test3.xml",
-				new File(historyList.get(2).getFile()).getName());
-		assertEquals("test2.xml",
-				new File(historyList.get(3).getFile()).getName());
-		assertEquals("test1.xml",
-				new File(historyList.get(4).getFile()).getName());
+		assertEquals("test5.xml", new File(historyList.get(0).getFile()).getName());
+		assertEquals("test4.xml", new File(historyList.get(1).getFile()).getName());
+		assertEquals("test3.xml", new File(historyList.get(2).getFile()).getName());
+		assertEquals("test2.xml", new File(historyList.get(3).getFile()).getName());
+		assertEquals("test1.xml", new File(historyList.get(4).getFile()).getName());
 		try {
 			historyList.get(5);
 			fail();

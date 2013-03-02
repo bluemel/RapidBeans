@@ -21,12 +21,10 @@ package org.rapidbeans.core.basic;
  * @author Martin Bluemel
  * 
  *         <P>
- *         A frozen bean link (<B>LinkFrozen</B> just repesents an id to another
- *         bean in the form of a string.<br>
+ *         A frozen bean link (<B>LinkFrozen</B> just repesents an id to another bean in the form of a string.<br>
  *         </P>
  *         <P>
- *         It once can be resolved and from this moment is change to a concrete
- *         bean reference.
+ *         It once can be resolved and from this moment is change to a concrete bean reference.
  *         </P>
  */
 public class LinkFrozen implements Link, Cloneable, Comparable<LinkFrozen> {

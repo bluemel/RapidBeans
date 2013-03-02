@@ -58,8 +58,7 @@ public class EditorPropertyCheckboxSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyCheckboxSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyCheckboxSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();

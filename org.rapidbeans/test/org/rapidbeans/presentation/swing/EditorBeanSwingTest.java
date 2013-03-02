@@ -38,8 +38,7 @@ public class EditorBeanSwingTest extends TestCase {
 	 *             test
 	 */
 	public void testEditButtonTexts() throws InterruptedException {
-		DocumentTreeViewSwing docTreeView = PresentationSwingTestHelper
-				.createTestTreeView();
+		DocumentTreeViewSwing docTreeView = PresentationSwingTestHelper.createTestTreeView();
 		JTree tree = docTreeView.getTree();
 		try {
 			// expand "trainers" branch in the tree
@@ -50,14 +49,11 @@ public class EditorBeanSwingTest extends TestCase {
 			Object[] keys = { path };
 			RapidBean bean = (RapidBean) path.getLastPathComponent();
 			Object[] selObjs = { bean };
-			assertEquals("trainers",
-					PresentationSwingTestHelper.getColPropName(tree, 1));
+			assertEquals("trainers", PresentationSwingTestHelper.getColPropName(tree, 1));
 			assertEquals("Bl�mel", bean.getProperty("lastname").getValue());
 			docTreeView.editBeans(keys, selObjs);
-			DocumentView docView = PresentationSwingTestHelper
-					.getTestDocumentView();
-			EditorBeanSwing editor = (EditorBeanSwing) docView.getEditor(bean,
-					false);
+			DocumentView docView = PresentationSwingTestHelper.getTestDocumentView();
+			EditorBeanSwing editor = (EditorBeanSwing) docView.getEditor(bean, false);
 			assertSame(bean, editor.getBean());
 			List<EditorProperty> propEditors = editor.getPropEditors();
 			assertEquals(5, propEditors.size());
@@ -73,10 +69,8 @@ public class EditorBeanSwingTest extends TestCase {
 			assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
 			// type an invalid email
-			EditorPropertyTextSwing propEditor = (EditorPropertyTextSwing) propEditors
-					.get(3);
-			assertEquals("email", propEditor.getProperty().getType()
-					.getPropName());
+			EditorPropertyTextSwing propEditor = (EditorPropertyTextSwing) propEditors.get(3);
+			assertEquals("email", propEditor.getProperty().getType().getPropName());
 			((JTextField) propEditor.getWidget()).setText("X");
 			propEditor.fireInputFieldChanged();
 
@@ -509,8 +503,7 @@ public class EditorBeanSwingTest extends TestCase {
 	public void setUp() {
 		PresentationSwingTestHelper.createCertificate("XXX");
 		PresentationSwingTestHelper.createTrainer("Uga", "Aga", true, true);
-		PresentationSwingTestHelper.createTrainingDate("xxx", "monday",
-				"12:30", "13:30", null);
+		PresentationSwingTestHelper.createTrainingDate("xxx", "monday", "12:30", "13:30", null);
 	}
 
 	/**

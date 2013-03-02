@@ -54,8 +54,8 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public ValidationInstanceAssocTwiceException(final String sig,
-			final Object source, final Link link, final String message) {
+	public ValidationInstanceAssocTwiceException(final String sig, final Object source, final Link link,
+			final String message) {
 		super(sig, source, message);
 		this.link = link;
 	}
@@ -76,9 +76,8 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationInstanceAssocTwiceException(final String sig,
-			final Object source, final Link link, final String message,
-			final Throwable cause) {
+	public ValidationInstanceAssocTwiceException(final String sig, final Object source, final Link link,
+			final String message, final Throwable cause) {
 		super(sig, source, message, cause);
 		this.link = link;
 	}
@@ -99,9 +98,8 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationInstanceAssocTwiceException(final String sig,
-			final Object source, final Link link, final String message,
-			final Object[] messArgs) {
+	public ValidationInstanceAssocTwiceException(final String sig, final Object source, final Link link,
+			final String message, final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 		this.link = link;
 	}

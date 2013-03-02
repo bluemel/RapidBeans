@@ -28,11 +28,9 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValue() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\" default=\"2147483647\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\" default=\"2147483647\"/>");
 		assertEquals(Integer.MAX_VALUE, prop.getValue());
-		prop = this
-				.createIntegerProperty("<property name=\"test\" size=\"byte01\" default=\"127\"/>");
+		prop = this.createIntegerProperty("<property name=\"test\" size=\"byte01\" default=\"127\"/>");
 		assertEquals(Byte.MAX_VALUE, prop.getValue());
 	}
 
@@ -40,8 +38,7 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValueNull() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 	}
 
@@ -70,8 +67,7 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToString() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\" default=\"-123456789\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\" default=\"-123456789\"/>");
 		assertEquals("-123456789", prop.toString());
 	}
 
@@ -79,8 +75,7 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for toString() with undefined property value.
 	 */
 	public void testToStringNull() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertEquals(null, prop.toString());
 	}
 
@@ -88,8 +83,7 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValue() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(new Integer(-2147483648));
 		assertEquals(Integer.MIN_VALUE, prop.getValue());
@@ -99,8 +93,7 @@ public class PropIntegerTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValueInt() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(2147483647);
 		assertEquals(Integer.MAX_VALUE, prop.getValue());
@@ -114,16 +107,14 @@ public class PropIntegerTest extends TestCase {
 				.createIntegerPropertyFlexible("<property name=\"test\" type=\"integer\" size=\"unlimited\"/>");
 		assertNull(prop.getValue());
 		prop.setValue("123456789012345678901234567890");
-		assertEquals(new BigInteger("123456789012345678901234567890"),
-				prop.getValue());
+		assertEquals(new BigInteger("123456789012345678901234567890"), prop.getValue());
 	}
 
 	/**
 	 * test of method convertValue(): happy day.
 	 */
 	public void testConvertInteger() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertEquals(123, prop.convertValue(new Integer("123")));
 	}
 
@@ -131,8 +122,7 @@ public class PropIntegerTest extends TestCase {
 	 * test of method convertValue() long happy.
 	 */
 	public void testConvertLongToIntOk() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertEquals(-1234567, prop.convertValue(new Long(-1234567)));
 	}
 
@@ -140,8 +130,7 @@ public class PropIntegerTest extends TestCase {
 	 * test of method convertValue() long happy.
 	 */
 	public void testConvertLongToIntTooLarge() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		try {
 			prop.convertValue(new Long(new Long(Integer.MAX_VALUE) + 1));
 			fail("expected ValidationException");
@@ -189,8 +178,7 @@ public class PropIntegerTest extends TestCase {
 	 * test of method convertValue(): wrong class.
 	 */
 	public void testConvertInvalid() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		try {
 			prop.convertValue(new Double(123.0));
 			fail("expected validation exception");
@@ -203,9 +191,8 @@ public class PropIntegerTest extends TestCase {
 	 * Happy day test for validation.
 	 */
 	public void testValidateOk() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\""
-						+ " minval=\"-300000\" maxval=\"300000\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\""
+				+ " minval=\"-300000\" maxval=\"300000\"/>");
 		prop.validate(0);
 		prop.validate(1);
 		prop.validate(100000);
@@ -217,9 +204,8 @@ public class PropIntegerTest extends TestCase {
 	 * Test for validation of an Integer that undergoes minimal value.
 	 */
 	public void testValidateTooSmall() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\""
-						+ " minval=\"-300000\" maxval=\"300000\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\""
+				+ " minval=\"-300000\" maxval=\"300000\"/>");
 		try {
 			prop.validate(300001);
 			fail("expected validation exception");
@@ -232,9 +218,8 @@ public class PropIntegerTest extends TestCase {
 	 * Test for validation of a String that exceeds maxlen.
 	 */
 	public void testValidateTooGreat() {
-		PropertyInteger prop = this
-				.createIntegerProperty("<property name=\"test\""
-						+ " minval=\"0\" maxval=\"300000\"/>");
+		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\""
+				+ " minval=\"0\" maxval=\"300000\"/>");
 		try {
 			prop.validate(1000000);
 			fail("expected validation exception");
@@ -260,10 +245,8 @@ public class PropIntegerTest extends TestCase {
 	 * @return a new Integer Property instance.
 	 */
 	private PropertyInteger createIntegerProperty(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyInteger type = new TypePropertyInteger(
-				new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyInteger type = new TypePropertyInteger(new XmlNode[] { propertyNode }, null);
 		return new PropertyInteger(type, null);
 	}
 
@@ -275,10 +258,9 @@ public class PropIntegerTest extends TestCase {
 	 * @return a new Integer Property instance.
 	 */
 	private PropertyInteger createIntegerPropertyFlexible(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyInteger type = (TypePropertyInteger) TypeProperty
-				.createInstance(new XmlNode[] { propertyNode }[0], null, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyInteger type = (TypePropertyInteger) TypeProperty.createInstance(new XmlNode[] { propertyNode }[0],
+				null, null);
 		return new PropertyInteger(type, null);
 	}
 }

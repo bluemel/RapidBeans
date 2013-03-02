@@ -45,8 +45,7 @@ import org.rapidbeans.core.util.StringHelper;
  */
 public abstract class RapidBeanImplParent implements RapidBean, Link {
 
-	private static final Logger log = Logger
-			.getLogger(RapidBeanImplParent.class.getName());
+	private static final Logger log = Logger.getLogger(RapidBeanImplParent.class.getName());
 
 	/**
 	 * @return the bean's type instance
@@ -176,10 +175,8 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	public PropertyCollection getParentProperty() {
 		PropertyCollection parentCompColProp = null;
 		if (this.parent != null) {
-			for (PropertyCollection compColProp : this.parent
-					.getColPropertiesComposition()) {
-				final Collection<?> col = (Collection<?>) compColProp
-						.getValue();
+			for (PropertyCollection compColProp : this.parent.getColPropertiesComposition()) {
+				final Collection<?> col = (Collection<?>) compColProp.getValue();
 				if (col != null && col.contains(this)) {
 					parentCompColProp = compColProp;
 					break;
@@ -203,10 +200,9 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 			// change a component's parent
 			final PropertyCollection parentColProp = this.getParentProperty();
 			parentColProp.removeLink(this, false, true, false);
-			if (ClassHelper.classOf(this.parent.getClass(),
-					newParent.getClass())) {
-				PropertyCollection newParentColProp = (PropertyCollection) newParent
-						.getProperty(parentColProp.getName());
+			if (ClassHelper.classOf(this.parent.getClass(), newParent.getClass())) {
+				PropertyCollection newParentColProp = (PropertyCollection) newParent.getProperty(parentColProp
+						.getName());
 				newParentColProp.addLink(this, false, false, false);
 			}
 		}
@@ -223,8 +219,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	private void resetId(final RapidBean newParentBean) {
 		if (this.id instanceof IdKeypropswithparentscope) {
 			boolean changeids = true;
-			Boolean doNotChange = (Boolean) ThreadLocalProperties
-					.get("bean.setparentbean.donotchangeids");
+			Boolean doNotChange = (Boolean) ThreadLocalProperties.get("bean.setparentbean.donotchangeids");
 			if (doNotChange != null) {
 				changeids = !doNotChange.booleanValue();
 			}
@@ -291,14 +286,10 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 				TypePropertyCollection inverseColPropType;
 				Collection<RapidBeanImplParent> inverseCol;
 				boolean removed = false;
-				for (PropertyCollection inverseColProp : this.parent
-						.getColPropertiesComposition()) {
-					inverseColPropType = (TypePropertyCollection) inverseColProp
-							.getType();
-					inverseCol = (Collection<RapidBeanImplParent>) inverseColProp
-							.getValue();
-					if (TypeRapidBean.isSameOrSubtype(
-							inverseColPropType.getTargetType(), this.getType())
+				for (PropertyCollection inverseColProp : this.parent.getColPropertiesComposition()) {
+					inverseColPropType = (TypePropertyCollection) inverseColProp.getType();
+					inverseCol = (Collection<RapidBeanImplParent>) inverseColProp.getValue();
+					if (TypeRapidBean.isSameOrSubtype(inverseColPropType.getTargetType(), this.getType())
 							&& inverseCol.contains(this)) {
 						inverseColProp.removeLink(this);
 						removed = true;
@@ -306,9 +297,8 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 					}
 				}
 				if (!removed) {
-					throw new RapidBeansRuntimeException(
-							"Removing a bean out of a container by"
-									+ " breaking the collection link from it's parent bean failed.");
+					throw new RapidBeansRuntimeException("Removing a bean out of a container by"
+							+ " breaking the collection link from it's parent bean failed.");
 				}
 			}
 
@@ -374,15 +364,13 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 			if (this.id == null) {
 				this.getId();
 				if (this.id == null) {
-					throw new RapidBeansRuntimeException(
-							"could not determine id");
+					throw new RapidBeansRuntimeException("could not determine id");
 				}
 			}
 			if (bean.id == null) {
 				bean.getId();
 				if (bean.id == null) {
-					throw new RapidBeansRuntimeException(
-							"could not determine id");
+					throw new RapidBeansRuntimeException("could not determine id");
 				}
 			}
 
@@ -401,8 +389,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 					} else {
 						for (int i = 0; i < propTypes.length; i++) {
 							final String propname = propTypes[i].getPropName();
-							compare = this.getProperty(propname).compareTo(
-									bean.getProperty(propname));
+							compare = this.getProperty(propname).compareTo(bean.getProperty(propname));
 							if (compare != 0) {
 								break;
 							}
@@ -419,9 +406,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 			compare = this.getIdString().compareTo(link.getIdString());
 		} else {
 			if (link != null) {
-				throw new RapidBeansRuntimeException(
-						"cannot compare a bean with "
-								+ link.getClass().getName());
+				throw new RapidBeansRuntimeException("cannot compare a bean with " + link.getClass().getName());
 			} else {
 				throw new RapidBeansRuntimeException("cannot compare with null");
 			}
@@ -473,8 +458,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 				} else {
 					for (int i = 0; i < propTypes.length; i++) {
 						final String propname = propTypes[i].getPropName();
-						compare = this.getProperty(propname).compareTo(
-								bean.getProperty(propname));
+						compare = this.getProperty(propname).compareTo(bean.getProperty(propname));
 						if (compare != 0) {
 							break;
 						}
@@ -495,8 +479,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 			LinkFrozen link = (LinkFrozen) o;
 			compare = this.getIdString().compareTo(link.getIdString());
 		} else {
-			throw new RapidBeansRuntimeException("cannot compare a bean with "
-					+ o.getClass().getName());
+			throw new RapidBeansRuntimeException("cannot compare a bean with " + o.getClass().getName());
 		}
 
 		if (compare > 1) {
@@ -537,10 +520,8 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 		}
 		if (this.id.getClass() == bean.id.getClass()) {
 			if (this.id instanceof IdKeyprops) {
-				final Property[] thisIdKeyprops = ((IdKeyprops) this.id)
-						.getKeyprops();
-				final Property[] beanIdKeyprops = ((IdKeyprops) bean.id)
-						.getKeyprops();
+				final Property[] thisIdKeyprops = ((IdKeyprops) this.id).getKeyprops();
+				final Property[] beanIdKeyprops = ((IdKeyprops) bean.id).getKeyprops();
 				if (thisIdKeyprops.length != beanIdKeyprops.length) {
 					return false;
 				}
@@ -569,14 +550,12 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	 * @return if sorting can be accomplished according to the given property
 	 *         types
 	 */
-	private boolean sameSortingProptypes(RapidBeanImplParent bean,
-			TypeProperty[] propTypes) {
+	private boolean sameSortingProptypes(RapidBeanImplParent bean, TypeProperty[] propTypes) {
 		final TypeRapidBean thisType = this.getType();
 		final TypeRapidBean beanType = bean.getType();
 		for (final TypeProperty propType : propTypes) {
 			final String propname = propType.getPropName();
-			final TypeProperty thisProptype = thisType
-					.getPropertyType(propname);
+			final TypeProperty thisProptype = thisType.getPropertyType(propname);
 			if (thisProptype == null) {
 				return false;
 			}
@@ -586,14 +565,12 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 		}
 		for (final TypeProperty propType : propTypes) {
 			final String propname = propType.getPropName();
-			final TypeProperty thisProptype = thisType
-					.getPropertyType(propname);
+			final TypeProperty thisProptype = thisType.getPropertyType(propname);
 			if (thisProptype == null) {
 				return false;
 			}
 			final String thisPropClass = thisProptype.getClass().getName();
-			final TypeProperty beanProptype = beanType
-					.getPropertyType(propname);
+			final TypeProperty beanProptype = beanType.getPropertyType(propname);
 			if (beanProptype == null) {
 				return false;
 			}
@@ -716,8 +693,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 		if (sGuiType.equals(sGuiId)) {
 			return sGuiId;
 		} else {
-			if (this.getType().getIdtype() == IdType.transientid
-					&& sGuiId.equals(this.getIdString())) {
+			if (this.getType().getIdtype() == IdType.transientid && sGuiId.equals(this.getIdString())) {
 				return sGuiType;
 			} else {
 				return sGuiType + ": " + sGuiId;
@@ -747,8 +723,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 		String uistring = null;
 		if (uistring == null) {
 			try {
-				final String key = "bean."
-						+ this.getType().getName().toLowerCase() + ".id";
+				final String key = "bean." + this.getType().getName().toLowerCase() + ".id";
 				uistring = locale.getStringGui(key);
 				uistring = expandPropertyValues(uistring, locale);
 			} catch (MissingResourceException e) {
@@ -774,8 +749,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	 *            the locale
 	 * @return the expanded string
 	 */
-	public String expandPropertyValues(final String pattern,
-			final RapidBeansLocale locale) {
+	public String expandPropertyValues(final String pattern, final RapidBeansLocale locale) {
 		char c;
 		int len = pattern.length();
 		int state = 0;
@@ -866,16 +840,14 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 					method = null;
 					try {
 						if (prop != null) {
-							method = prop.getClass().getMethod(methodname,
-									parameterTypes);
+							method = prop.getClass().getMethod(methodname, parameterTypes);
 						}
 					} catch (NoSuchMethodException e) {
 						throw new RapidBeansRuntimeException(e);
 					}
 					if (prop != null && method != null) {
 						try {
-							s = (String) method.invoke(prop,
-									parameters.toArray());
+							s = (String) method.invoke(prop, parameters.toArray());
 						} catch (IllegalArgumentException e) {
 							throw new RapidBeansRuntimeException(e);
 						} catch (IllegalAccessException e) {
@@ -902,13 +874,12 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 				}
 				break;
 			default:
-				throw new UtilException("expandBeanPropertyValues(\"" + pattern
-						+ "\") failed\n" + "wrong state " + state);
+				throw new UtilException("expandBeanPropertyValues(\"" + pattern + "\") failed\n" + "wrong state "
+						+ state);
 			}
 		}
 		if (state == 1) {
-			throw new UtilException("expandBeanPropertyValues(\"" + pattern
-					+ "\") failed\n" + "missing closing }");
+			throw new UtilException("expandBeanPropertyValues(\"" + pattern + "\") failed\n" + "missing closing }");
 		}
 		return bufExpanded.toString();
 	}
@@ -949,8 +920,7 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 					if (prop instanceof PropertyCollection) {
 						Collection<?> col = (Collection<?>) prop.getValue();
 						if (col != null) {
-							linkedBean = (RapidBeanImplParent) col.iterator()
-									.next();
+							linkedBean = (RapidBeanImplParent) col.iterator().next();
 						} else {
 							break;
 						}
@@ -968,23 +938,18 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	 */
 	@SuppressWarnings("unchecked")
 	public void trace() {
-		log.info("BIZ BEAN: " + this.getType().getNameShort() + "::"
-				+ this.getIdString());
+		log.info("BIZ BEAN: " + this.getType().getNameShort() + "::" + this.getIdString());
 		for (PropertyCollection prop : this.getColProperties()) {
 			if (prop.getValue() != null) {
 				for (final Link link : (Collection<Link>) prop.getValue()) {
 					if (link instanceof RapidBeanImplParent) {
-						if (((TypePropertyCollection) prop.getType())
-								.isComposition()) {
+						if (((TypePropertyCollection) prop.getType()).isComposition()) {
 							((RapidBeanImplParent) link).trace();
 						} else {
-							log.info("BEAN LINK: "
-									+ ((RapidBeanImplParent) link)
-											.getIdString());
+							log.info("BEAN LINK: " + ((RapidBeanImplParent) link).getIdString());
 						}
 					} else {
-						log.info("FROZEN LINK: "
-								+ ((LinkFrozen) link).getIdString());
+						log.info("FROZEN LINK: " + ((LinkFrozen) link).getIdString());
 					}
 				}
 			}

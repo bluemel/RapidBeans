@@ -133,8 +133,7 @@ public class DialogPwdChangeSwing extends DialogPwdChange {
 					buttonPressedOk();
 				}
 			});
-			this.buttonCancel
-					.setText(loc.getStringGui("commongui.text.cancel"));
+			this.buttonCancel.setText(loc.getStringGui("commongui.text.cancel"));
 			this.buttonCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					buttonPressedCancel();
@@ -147,53 +146,30 @@ public class DialogPwdChangeSwing extends DialogPwdChange {
 				}
 			});
 			final JPanel tfPanel = new JPanel(new GridBagLayout());
-			tfPanel.add(
-					new JLabel(loc.getStringGui("dialog.pwdchange.pwdold")),
-					new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.pwdOld,
-					new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0,
-							GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
-									5), 0, 0));
-			tfPanel.add(
-					new JLabel(loc.getStringGui("dialog.pwdchange.pwdnew1")),
-					new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.pwdNew1,
-					new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0,
-							GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
-									5), 0, 0));
-			tfPanel.add(
-					new JLabel(loc.getStringGui("dialog.pwdchange.pwdnew2")),
-					new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.pwdNew2,
-					new GridBagConstraints(1, 2, 2, 1, 1.0, 0.0,
-							GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
-									5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.pwdchange.pwdold")), new GridBagConstraints(0, 0, 1, 1,
+					0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.pwdOld, new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.pwdchange.pwdnew1")), new GridBagConstraints(0, 1, 1, 1,
+					0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.pwdNew1, new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.pwdchange.pwdnew2")), new GridBagConstraints(0, 2, 1, 1,
+					0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.pwdNew2, new GridBagConstraints(1, 2, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 			dialogWidget.getContentPane().add(tfPanel, BorderLayout.CENTER);
 			final JPanel btPanel = new JPanel(new GridBagLayout());
-			btPanel.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1, 1.0,
-					1.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-					new Insets(5, 5, 5, 5), 0, 0));
-			btPanel.add(this.buttonCancel, new GridBagConstraints(1, 0, 1, 1,
-					1.0, 1.0, GridBagConstraints.CENTER,
+			btPanel.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			btPanel.add(this.buttonCancel, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 			dialogWidget.getContentPane().add(btPanel, BorderLayout.SOUTH);
-			this.setTitle(loc.getStringGui("dialog.login.title") + ": "
-					+ loc.getStringGui("mainwindow.title"));
+			this.setTitle(loc.getStringGui("dialog.login.title") + ": " + loc.getStringGui("mainwindow.title"));
 			dialogWidget.setTitle(this.getTitle());
-			final Dimension screenSize = Toolkit.getDefaultToolkit()
-					.getScreenSize();
+			final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			dialogWidget.setSize(450, 170);
-			dialogWidget.setLocation(
-					(screenSize.width - dialogWidget.getWidth()) / 2,
+			dialogWidget.setLocation((screenSize.width - dialogWidget.getWidth()) / 2,
 					(screenSize.height - dialogWidget.getHeight()) / 2);
 		} finally {
 			ThreadLocalEventLock.release();

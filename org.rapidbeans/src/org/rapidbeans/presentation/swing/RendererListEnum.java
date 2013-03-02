@@ -57,8 +57,7 @@ public class RendererListEnum implements ListCellRenderer {
 	 * @param loc
 	 *            the locale
 	 */
-	public RendererListEnum(final RapidBeansLocale loc,
-			final EditorProperty propertyEditor) {
+	public RendererListEnum(final RapidBeansLocale loc, final EditorProperty propertyEditor) {
 		this.propEd = propertyEditor;
 		this.locale = loc;
 	}
@@ -77,25 +76,19 @@ public class RendererListEnum implements ListCellRenderer {
 	 * 
 	 * @return the redered component
 	 * 
-	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
-	 *      java.lang.Object, int, boolean, boolean)
+	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)
 	 */
-	public Component getListCellRendererComponent(final JList list,
-			final Object value, final int index, final boolean isSelected,
-			final boolean cellHasFocus) {
+	public Component getListCellRendererComponent(final JList list, final Object value, final int index,
+			final boolean isSelected, final boolean cellHasFocus) {
 		JLabel label = new JLabel();
 		if (value != null) {
 			final RapidEnum bbEnum = (RapidEnum) value;
 			String text = null;
-			if (propEd.getConfig() != null
-					&& propEd.getConfig().getDetail() != null) {
+			if (propEd.getConfig() != null && propEd.getConfig().getDetail() != null) {
 				String key = null;
 				try {
 					final Method method = bbEnum.getClass().getMethod(
-							"get"
-									+ StringHelper.upperFirstCharacter(propEd
-											.getConfig().getDetail()),
-							new Class[0]);
+							"get" + StringHelper.upperFirstCharacter(propEd.getConfig().getDetail()), new Class[0]);
 					key = (String) method.invoke(bbEnum, new Object[0]);
 				} catch (SecurityException e) {
 					throw new RapidBeansRuntimeException(e);

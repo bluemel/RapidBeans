@@ -77,8 +77,7 @@ public class TypePropertyFile extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyFile(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyFile(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("File", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@default");

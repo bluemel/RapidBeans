@@ -35,8 +35,7 @@ public final class TestSuiteRuntimePerf {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for org.rapidbeans.test");
-		TestSuiteHelper.fill(suite, new File("testperf"), ".*RuntimePerfTest",
-				null, null, null);
+		TestSuiteHelper.fill(suite, new File("testperf"), ".*RuntimePerfTest", null, null, null);
 		return suite;
 	}
 }

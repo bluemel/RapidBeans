@@ -59,9 +59,8 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyRadiobuttonSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
-			final Property propBak) {
+	public EditorPropertyRadiobuttonSwing(final Application client, final EditorBean bizBeanEditor,
+			final Property prop, final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
 		this.radioButton.addItemListener(new ItemListener() {
@@ -83,8 +82,7 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 		try {
 			this.setUIEventLock();
 			if (this.getProperty() instanceof PropertyBoolean) {
-				this.radioButton.setSelected(((Boolean) this.getProperty()
-						.getValue()).booleanValue());
+				this.radioButton.setSelected(((Boolean) this.getProperty().getValue()).booleanValue());
 			} else {
 				this.radioButton.setText(this.getProperty().toString());
 			}

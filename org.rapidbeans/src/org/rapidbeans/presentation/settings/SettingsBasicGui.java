@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: SettingsBasicGui.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.SettingsBasicGui
  * 
- * model:    model/org/rapidbeans/presentation/settings/SettingsBasicGui.xml
+ * model: model/org/rapidbeans/presentation/settings/SettingsBasicGui.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.settings;
@@ -25,8 +25,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * Rapid Bean class: SettingsBasicGui. Partially generated Java class !!!Do only
  * edit manually in marked sections!!!
  **/
-public class SettingsBasicGui extends
-		org.rapidbeans.presentation.settings.Settings {
+public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Settings {
 	// BEGIN manual code section
 	// SettingsBasicGui.classBody
 	// END manual code section
@@ -105,8 +104,7 @@ public class SettingsBasicGui extends
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(SettingsBasicGui.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(SettingsBasicGui.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -128,18 +126,15 @@ public class SettingsBasicGui extends
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory" + "\" \""
+							+ link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"openDocumentHistory");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("openDocumentHistory");
 		}
 	}
 
@@ -159,17 +154,14 @@ public class SettingsBasicGui extends
 	 */
 	public org.rapidbeans.presentation.OpenWindowBehaviour getDocViewOpenWindowBehaviour() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.docViewOpenWindowBehaviour
-					.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.docViewOpenWindowBehaviour.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.OpenWindowBehaviour) enumList
-						.get(0);
+				return (org.rapidbeans.presentation.OpenWindowBehaviour) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"docViewOpenWindowBehaviour");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("docViewOpenWindowBehaviour");
 		}
 	}
 
@@ -179,8 +171,7 @@ public class SettingsBasicGui extends
 	 * @param argValue
 	 *            value of Property 'docViewOpenWindowBehaviour' to set
 	 */
-	public void setDocViewOpenWindowBehaviour(
-			final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
+	public void setDocViewOpenWindowBehaviour(final org.rapidbeans.presentation.OpenWindowBehaviour argValue) {
 		java.util.List<org.rapidbeans.presentation.OpenWindowBehaviour> list = new java.util.ArrayList<org.rapidbeans.presentation.OpenWindowBehaviour>();
 		list.add(argValue);
 		this.docViewOpenWindowBehaviour.setValue(list);
@@ -191,17 +182,14 @@ public class SettingsBasicGui extends
 	 */
 	public org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour getCreateNewBeansEditorApplyBehaviour() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.createNewBeansEditorApplyBehaviour
-					.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.createNewBeansEditorApplyBehaviour.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour) enumList
-						.get(0);
+				return (org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"createNewBeansEditorApplyBehaviour");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("createNewBeansEditorApplyBehaviour");
 		}
 	}
 
@@ -223,11 +211,9 @@ public class SettingsBasicGui extends
 	 */
 	public boolean getTreeViewShowBeanLinks() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.treeViewShowBeanLinks)
-					.getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.treeViewShowBeanLinks).getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"treeViewShowBeanLinks");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("treeViewShowBeanLinks");
 		}
 	}
 

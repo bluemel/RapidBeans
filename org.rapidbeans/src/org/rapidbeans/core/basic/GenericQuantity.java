@@ -51,8 +51,7 @@ public class GenericQuantity extends RapidQuantity {
 	public GenericQuantity(final TypeRapidQuantity qtype) {
 		super();
 		if (qtype == null) {
-			throw new IllegalArgumentException(
-					"Can't create a generic quantity without type");
+			throw new IllegalArgumentException("Can't create a generic quantity without type");
 		}
 		this.type = qtype;
 	}
@@ -67,8 +66,7 @@ public class GenericQuantity extends RapidQuantity {
 	public GenericQuantity(final TypeRapidQuantity qtype, final String value) {
 		super(qtype, value);
 		if (qtype == null) {
-			throw new IllegalArgumentException(
-					"Can't create a generic quantity without type");
+			throw new IllegalArgumentException("Can't create a generic quantity without type");
 		}
 		this.type = qtype;
 	}
@@ -80,8 +78,7 @@ public class GenericQuantity extends RapidQuantity {
 	 *            the quantity type
 	 * @param value
 	 */
-	public GenericQuantity(final TypeRapidQuantity qtype,
-			final BigDecimal argMagnitude, final RapidEnum argUnit) {
+	public GenericQuantity(final TypeRapidQuantity qtype, final BigDecimal argMagnitude, final RapidEnum argUnit) {
 		super(argMagnitude, argUnit);
 		this.type = qtype;
 	}

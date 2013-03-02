@@ -80,8 +80,7 @@ public final class RapidBeansTypeLoader {
 	 * @param typeName
 	 *            the RapidBean type name
 	 */
-	public void addXmlRootElementBinding(final String elementName,
-			final String typeName) {
+	public void addXmlRootElementBinding(final String elementName, final String typeName) {
 		this.addXmlRootElementBinding(elementName, typeName, false);
 	}
 
@@ -96,12 +95,10 @@ public final class RapidBeansTypeLoader {
 	 *            if overriding the bind is allowed or not Handle overriding
 	 *            with care
 	 */
-	public void addXmlRootElementBinding(final String elementName,
-			final String typeName, final boolean override) {
+	public void addXmlRootElementBinding(final String elementName, final String typeName, final boolean override) {
 		if ((!override) && this.xmlRootElementMap.get(elementName) != null) {
-			throw new RapidBeansRuntimeException("An XML root element binding"
-					+ " for XML element name \"" + elementName
-					+ "\" has already been defined.");
+			throw new RapidBeansRuntimeException("An XML root element binding" + " for XML element name \""
+					+ elementName + "\" has already been defined.");
 		}
 		final TypeRapidBean type = TypeRapidBean.forName(typeName);
 		this.xmlRootElementMap.put(elementName, type);
@@ -121,8 +118,7 @@ public final class RapidBeansTypeLoader {
 	 * 
 	 * @return the stream
 	 */
-	protected static InputStream findDeclaration(final String typename,
-			final String suffix) {
+	protected static InputStream findDeclaration(final String typename, final String suffix) {
 		InputStream is = null;
 		String typeInfoDescrFileName = null;
 		try {
@@ -131,11 +127,9 @@ public final class RapidBeansTypeLoader {
 			// also in an Applet environment
 			final Class<?> typeclass = Class.forName(typename);
 			if (suffix == null) {
-				typeInfoDescrFileName = StringHelper.splitLast(typename, ".")
-						+ ".xml";
+				typeInfoDescrFileName = StringHelper.splitLast(typename, ".") + ".xml";
 			} else {
-				typeInfoDescrFileName = StringHelper.splitLast(typename, ".")
-						+ suffix + ".xml";
+				typeInfoDescrFileName = StringHelper.splitLast(typename, ".") + suffix + ".xml";
 			}
 			is = typeclass.getResourceAsStream(typeInfoDescrFileName);
 		} catch (ClassNotFoundException e) {
@@ -145,8 +139,7 @@ public final class RapidBeansTypeLoader {
 			if (suffix == null) {
 				typeInfoDescrFileName = typename.replace('.', '/') + ".xml";
 			} else {
-				typeInfoDescrFileName = typename.replace('.', '/') + suffix
-						+ ".xml";
+				typeInfoDescrFileName = typename.replace('.', '/') + suffix + ".xml";
 			}
 			is = ClassLoader.getSystemResourceAsStream(typeInfoDescrFileName);
 		}
@@ -163,8 +156,7 @@ public final class RapidBeansTypeLoader {
 	 */
 	public void registerType(final RapidBeansType type) {
 		if (this.typeMap.get(type.getName()) != null) {
-			throw new RapidBeansRuntimeException("bean type \""
-					+ type.getName() + "\" already registered");
+			throw new RapidBeansRuntimeException("bean type \"" + type.getName() + "\" already registered");
 		}
 		this.typeMap.put(type.getName(), type);
 	}
@@ -177,8 +169,7 @@ public final class RapidBeansTypeLoader {
 	 * @param type
 	 *            the type to register
 	 */
-	public void registerTypeIfNotRegistered(final String typename,
-			final RapidBeansType type) {
+	public void registerTypeIfNotRegistered(final String typename, final RapidBeansType type) {
 		if (this.typeMap.get(typename) != null) {
 			return;
 		}
@@ -194,8 +185,7 @@ public final class RapidBeansTypeLoader {
 	 */
 	public void unregisterType(final String typename) {
 		if (this.typeMap.get(typename) == null) {
-			throw new RapidBeansRuntimeException("bean type \"" + typename
-					+ "\" not registered");
+			throw new RapidBeansRuntimeException("bean type \"" + typename + "\" not registered");
 		}
 		this.typeMap.remove(typename);
 	}
@@ -227,14 +217,11 @@ public final class RapidBeansTypeLoader {
 	 * 
 	 * @return the loaded type
 	 */
-	protected RapidBeansType loadType(final Class<?> typeclass,
-			final String typename) {
+	protected RapidBeansType loadType(final Class<?> typeclass, final String typename) {
 
-		if (typeclass != TypeRapidEnum.class
-				&& typeclass != TypeRapidQuantity.class
+		if (typeclass != TypeRapidEnum.class && typeclass != TypeRapidQuantity.class
 				&& typeclass != TypeRapidBean.class) {
-			throw new RapidBeansRuntimeException("RapidBeansType class \""
-					+ typeclass.getName() + "\" not supported.");
+			throw new RapidBeansRuntimeException("RapidBeansType class \"" + typeclass.getName() + "\" not supported.");
 		}
 
 		RapidBeansType type = this.typeMap.get(typename);
@@ -257,29 +244,23 @@ public final class RapidBeansTypeLoader {
 
 			if (type == null) {
 				if (typeclass == TypeRapidBean.class) {
-					type = new TypeRapidBean(clazz,
-							RapidBeansType.loadDescription(typename),
-							RapidBeansType.loadDescriptionXmlBinding(typename),
-							true);
+					type = new TypeRapidBean(clazz, RapidBeansType.loadDescription(typename),
+							RapidBeansType.loadDescriptionXmlBinding(typename), true);
 				} else if (typeclass == TypeRapidEnum.class) {
 					type = new TypeRapidEnum(typename);
 					this.registerType(type);
 				} else if (typeclass == TypeRapidQuantity.class) {
-					type = TypeRapidQuantity.createInstance(RapidBeansType
-							.loadDescription(typename));
+					type = TypeRapidQuantity.createInstance(RapidBeansType.loadDescription(typename));
 				}
 			}
 
 			if (type == null) {
 				if (typeclass == TypeRapidEnum.class) {
-					throw new TypeNotFoundException("Enum type \"" + typename
-							+ "\"");
+					throw new TypeNotFoundException("Enum type \"" + typename + "\"");
 				} else if (typeclass == TypeRapidQuantity.class) {
-					throw new TypeNotFoundException("Quantity type \""
-							+ typename + "\"");
+					throw new TypeNotFoundException("Quantity type \"" + typename + "\"");
 				} else if (typeclass == TypeRapidBean.class) {
-					throw new TypeNotFoundException("Bean type \"" + typename
-							+ "\"");
+					throw new TypeNotFoundException("Bean type \"" + typename + "\"");
 				}
 			}
 		} // if (type == null)
@@ -325,8 +306,7 @@ public final class RapidBeansTypeLoader {
 		if (singleInstance != null) {
 			for (final Object o : singleInstance.xmlRootElementMap.keySet()) {
 				final String elementName = (String) o;
-				final TypeRapidBean beantype = singleInstance.xmlRootElementMap
-						.get(elementName);
+				final TypeRapidBean beantype = singleInstance.xmlRootElementMap.get(elementName);
 				if (beantype.getImplementingClass() == null) {
 					elementNames.add(elementName);
 				}

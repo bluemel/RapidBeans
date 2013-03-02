@@ -82,8 +82,8 @@ public final class IdMap {
 		}
 		String id = bean.getId().toString();
 		if (this.findBean(typename, id) != null) {
-			throw new DatasourceException("Failed to insert bean \"" + typename
-					+ "::" + id + "\" into pool.\n" + "It is already in there.");
+			throw new DatasourceException("Failed to insert bean \"" + typename + "::" + id + "\" into pool.\n"
+					+ "It is already in there.");
 		}
 		submap.put(id, bean);
 	}
@@ -96,18 +96,16 @@ public final class IdMap {
 	 */
 	public void delete(final RapidBean bean) {
 		String typename = bean.getType().getName();
-		TreeMap<String, RapidBean> map = this.idmap.get(bean.getType()
-				.getName());
+		TreeMap<String, RapidBean> map = this.idmap.get(bean.getType().getName());
 		if (map == null) {
-			throw new DatasourceException("Failed to delete bean of \""
-					+ typename + "\" out of pool.\n"
+			throw new DatasourceException("Failed to delete bean of \"" + typename + "\" out of pool.\n"
 					+ "No bean of this type is in there.");
 		}
 		String id = bean.getId().toString();
 		RapidBean pooledBean = (RapidBean) map.get(id);
 		if (pooledBean == null) {
-			throw new DatasourceException("Failed to insert bean \"" + id
-					+ "\" out of pool.\n" + "No bean of this type is in there.");
+			throw new DatasourceException("Failed to insert bean \"" + id + "\" out of pool.\n"
+					+ "No bean of this type is in there.");
 		}
 		map.remove(id);
 		if (map.size() == 0) {
@@ -150,8 +148,7 @@ public final class IdMap {
 			foundBean = map.get(id.toString());
 		}
 		if (foundBean == null) {
-			final Collection<TypeRapidBean> subtypes = TypeRapidBean.forName(
-					typename).getSubtypes();
+			final Collection<TypeRapidBean> subtypes = TypeRapidBean.forName(typename).getSubtypes();
 			for (TypeRapidBean subtype : subtypes) {
 				map = this.idmap.get(subtype.getName());
 				if (map != null) {

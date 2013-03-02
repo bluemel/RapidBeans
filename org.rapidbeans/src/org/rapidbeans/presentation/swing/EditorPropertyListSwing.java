@@ -52,8 +52,7 @@ import org.rapidbeans.presentation.config.ConfigPropEditorBean;
  * 
  * @author Martin Bluemel
  */
-public class EditorPropertyListSwing extends EditorPropertySwing implements
-		EditorBeanListener {
+public class EditorPropertyListSwing extends EditorPropertySwing implements EditorBeanListener {
 
 	/**
 	 * Provide only valid association partners in the Out list.
@@ -132,13 +131,11 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyListSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyListSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		if (this.getConfig() != null) {
-			final String sProvideOnlyValid = this.getConfig().getArgumentValue(
-					"restrictchoicetovalid");
+			final String sProvideOnlyValid = this.getConfig().getArgumentValue("restrictchoicetovalid");
 			if (sProvideOnlyValid != null) {
 				if (Boolean.parseBoolean(sProvideOnlyValid)) {
 					this.provideOnlyValidInOut = true;
@@ -153,19 +150,15 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 		this.listPanel.setLayout(this.listPanelLayout);
 		if (prop instanceof PropertyChoice) {
 			this.list.setModel(new ModelListChoice((PropertyChoice) prop));
-			this.list.setCellRenderer(new RendererListEnum(client
-					.getCurrentLocale(), this));
+			this.list.setCellRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
-			this.list.setModel(new ModelListCollection(
-					(PropertyCollection) this.getProperty(), this
-							.getBeanEditor().getDocumentView().getDocument()));
-			this.list.setCellRenderer(new RendererListCollection(bizBeanEditor
-					.getDocumentView().getDocument(), this.getLocale()));
+			this.list.setModel(new ModelListCollection((PropertyCollection) this.getProperty(), this.getBeanEditor()
+					.getDocumentView().getDocument()));
+			this.list.setCellRenderer(new RendererListCollection(bizBeanEditor.getDocumentView().getDocument(), this
+					.getLocale()));
 		} else {
-			throw new RapidBeansRuntimeException("Class \""
-					+ EditorPropertyListSwing.class
-					+ "\" does not support properties of class \""
-					+ prop.getClass().getName() + "\".");
+			throw new RapidBeansRuntimeException("Class \"" + EditorPropertyListSwing.class
+					+ "\" does not support properties of class \"" + prop.getClass().getName() + "\".");
 		}
 
 		final int elCount = this.list.getModel().getSize();
@@ -192,18 +185,14 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 		});
 
 		this.scrollPane.getViewport().add(this.list);
-		this.listPanel.add(this.scrollPane, new GridBagConstraints(0, 0, 1, 1,
-				1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.listPanel.add(this.editButton, new GridBagConstraints(1, 0, 1, 1,
-				0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				new Insets(0, 5, 0, 0), 0, 0));
+		this.listPanel.add(this.scrollPane, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		this.listPanel.add(this.editButton, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(0, 5, 0, 0), 0, 0));
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())
-				|| (prop.getType().isKeyCandidate() && (!this.getBeanEditor()
-						.isInNewMode()))) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())
+				|| (prop.getType().isKeyCandidate() && (!this.getBeanEditor().isInNewMode()))) {
 			this.listPanel.setEnabled(false);
 			this.editButton.setEnabled(false);
 		}
@@ -216,10 +205,8 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 	 */
 	public EditorPropertyList2Swing openListEditor() {
 		if (this.listEditor == null) {
-			this.listEditor = new EditorPropertyList2Swing(this.getBeanEditor()
-					.getDocumentView().getClient(), this.getBeanEditor(),
-					this.getProperty(), this.getPropertyBak(), this,
-					this.provideOnlyValidInOut);
+			this.listEditor = new EditorPropertyList2Swing(this.getBeanEditor().getDocumentView().getClient(),
+					this.getBeanEditor(), this.getProperty(), this.getPropertyBak(), this, this.provideOnlyValidInOut);
 		} else {
 			JDialog f = (JDialog) this.listEditor.getWidget();
 			f.setVisible(true);
@@ -235,17 +222,12 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 			this.setUIEventLock();
 			if (this.list.getModel() instanceof ModelListCollection) {
 				((ModelListCollection) this.list.getModel())
-						.fireColPropChanged((PropertyCollection) this
-								.getProperty());
+						.fireColPropChanged((PropertyCollection) this.getProperty());
 			} else if (this.list.getModel() instanceof ModelListChoice) {
-				((ModelListChoice) this.list.getModel())
-						.fireChoicePropChanged((PropertyChoice) this
-								.getProperty());
+				((ModelListChoice) this.list.getModel()).fireChoicePropChanged((PropertyChoice) this.getProperty());
 			} else {
-				throw new RapidBeansRuntimeException(
-						"Unknown list model class \""
-								+ this.list.getModel().getClass().getName()
-								+ "\"");
+				throw new RapidBeansRuntimeException("Unknown list model class \""
+						+ this.list.getModel().getClass().getName() + "\"");
 			}
 			this.list.repaint();
 			if (this.listEditor != null) {
@@ -330,11 +312,9 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements
 		super.beanRemoved(e);
 		if (this.getProperty().getValue() != null) {
 			if (this.list.getModel() instanceof ModelListCollection) {
-				((ModelListCollection) this.list.getModel()).fireBeanRemoved(e
-						.getBean());
+				((ModelListCollection) this.list.getModel()).fireBeanRemoved(e.getBean());
 			} else if (this.list.getModel() instanceof ModelListChoice) {
-				((ModelListChoice) this.list.getModel()).fireBeanRemoved(e
-						.getBean());
+				((ModelListChoice) this.list.getModel()).fireBeanRemoved(e.getBean());
 			}
 		}
 		if (this.listEditor != null) {

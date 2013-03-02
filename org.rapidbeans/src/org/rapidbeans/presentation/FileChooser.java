@@ -47,12 +47,10 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public static File chooseFile(final String title,
-			final FileChooserType dialogType, final File dir,
+	public static File chooseFile(final String title, final FileChooserType dialogType, final File dir,
 			final String filterText, final String filterSuffix) {
 		FileChooser loadDialog = createInstance();
-		return loadDialog.chooseFileDialog(title, dialogType, null, dir,
-				filterText, filterSuffix);
+		return loadDialog.chooseFileDialog(title, dialogType, null, dir, filterText, filterSuffix);
 	}
 
 	/**
@@ -74,12 +72,10 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public static File chooseFile(final String title,
-			final FileChooserType dialogType, final String approveButtonText,
+	public static File chooseFile(final String title, final FileChooserType dialogType, final String approveButtonText,
 			final File dir, final String filterText, final String filterSuffix) {
 		FileChooser loadDialog = createInstance();
-		return loadDialog.chooseFileDialog(title, dialogType,
-				approveButtonText, dir, filterText, filterSuffix);
+		return loadDialog.chooseFileDialog(title, dialogType, approveButtonText, dir, filterText, filterSuffix);
 	}
 
 	/**
@@ -102,33 +98,23 @@ public abstract class FileChooser {
 		FileChooser dialog = null;
 		String guiclassname = null;
 		try {
-			final String guitype = ApplicationManager.getApplication()
-					.getConfiguration().getGuitype().toString();
-			final String guitypeUpperFirstChar = StringHelper
-					.upperFirstCharacter(guitype);
-			guiclassname = "org.rapidbeans.presentation." + guitype
-					+ ".FileChooser" + guitypeUpperFirstChar;
+			final String guitype = ApplicationManager.getApplication().getConfiguration().getGuitype().toString();
+			final String guitypeUpperFirstChar = StringHelper.upperFirstCharacter(guitype);
+			guiclassname = "org.rapidbeans.presentation." + guitype + ".FileChooser" + guitypeUpperFirstChar;
 			final Class<?> guiclass = Class.forName(guiclassname);
-			Constructor<?> constructor = guiclass
-					.getConstructor(CONSTRUCTOR_PARAM_TYPES);
-			dialog = (FileChooser) constructor
-					.newInstance(CONSTRUCTOR_PARAM_ARGS);
+			Constructor<?> constructor = guiclass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
+			dialog = (FileChooser) constructor.newInstance(CONSTRUCTOR_PARAM_ARGS);
 		} catch (NoSuchMethodException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException(
-					"DocumentLaodDialog GUI specific sublclass not found"
-							+ ": " + guiclassname);
+			throw new RapidBeansRuntimeException("DocumentLaodDialog GUI specific sublclass not found" + ": "
+					+ guiclassname);
 		}
 		return dialog;
 	}
@@ -152,7 +138,6 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public abstract File chooseFileDialog(String title,
-			FileChooserType dialogType, String approveButtonText, File dir,
+	public abstract File chooseFileDialog(String title, FileChooserType dialogType, String approveButtonText, File dir,
 			String filterText, String filterSuffix);
 }

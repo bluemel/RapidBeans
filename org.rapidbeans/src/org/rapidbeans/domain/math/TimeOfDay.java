@@ -56,17 +56,15 @@ public final class TimeOfDay extends Time {
 		case s:
 			break;
 		default:
-			throw new ValidationException("invalid.prop.timeofday.unit", this,
-					"Invalid unit for TimeOfDay."
-							+ "\nOnly hours, minutes or seconds are accepted");
+			throw new ValidationException("invalid.prop.timeofday.unit", this, "Invalid unit for TimeOfDay."
+					+ "\nOnly hours, minutes or seconds are accepted");
 		}
 	}
 
 	/**
 	 * the quantity's type (class variable).
 	 */
-	private static TypeRapidQuantity type = TypeRapidQuantity
-			.createInstance(TimeOfDay.class);
+	private static TypeRapidQuantity type = TypeRapidQuantity.createInstance(TimeOfDay.class);
 
 	/**
 	 * @return the quantity's type
@@ -114,8 +112,7 @@ public final class TimeOfDay extends Time {
 			}
 			return sHours + ":" + sMinutes + ":" + sSeconds;
 		default:
-			throw new RapidBeansRuntimeException("Invalid Unit "
-					+ this.getUnit().toString() + " for TimeOfDay");
+			throw new RapidBeansRuntimeException("Invalid Unit " + this.getUnit().toString() + " for TimeOfDay");
 		}
 	}
 
@@ -131,23 +128,20 @@ public final class TimeOfDay extends Time {
 		if (token.matches("[0-9]?[0-9]")) {
 			magnitude = new BigDecimal(Integer.parseInt(token));
 		} else if (token.matches("[0-9][0-9]:[0-9][0-9]")) {
-			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 2))
-					* 60 + Integer.parseInt(token.substring(3, 5)));
+			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 2)) * 60
+					+ Integer.parseInt(token.substring(3, 5)));
 		} else if (token.matches("[0-9]:[0-9][0-9]")) {
-			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 1))
-					* 60 + Integer.parseInt(token.substring(2, 4)));
+			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 1)) * 60
+					+ Integer.parseInt(token.substring(2, 4)));
 		} else if (token.matches("[0-9][0-9]:[0-9][0-9]:[0-9][0-9]")) {
-			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 2))
-					* 3600 + Integer.parseInt(token.substring(3, 5)) * 60
-					+ Integer.parseInt(token.substring(6, 8)));
+			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 2)) * 3600
+					+ Integer.parseInt(token.substring(3, 5)) * 60 + Integer.parseInt(token.substring(6, 8)));
 		} else if (token.matches("[0-9]:[0-9][0-9]:[0-9][0-9]")) {
-			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 1))
-					* 3600 + Integer.parseInt(token.substring(2, 4)) * 60
-					+ Integer.parseInt(token.substring(5, 7)));
+			magnitude = new BigDecimal(Integer.parseInt(token.substring(0, 1)) * 3600
+					+ Integer.parseInt(token.substring(2, 4)) * 60 + Integer.parseInt(token.substring(5, 7)));
 		} else {
-			throw new ValidationException("invalid.prop.timeofday.magnitude",
-					this, "Invalid magnitude string for TimeOfDay: \"" + token
-							+ "\"");
+			throw new ValidationException("invalid.prop.timeofday.magnitude", this,
+					"Invalid magnitude string for TimeOfDay: \"" + token + "\"");
 		}
 		return magnitude;
 	}
@@ -168,9 +162,8 @@ public final class TimeOfDay extends Time {
 		} else if (token.matches("[0-9]?[0-9]:[0-9][0-9]:[0-9][0-9]")) {
 			unit = UnitTime.s;
 		} else {
-			throw new ValidationException("invalid.prop.timeofday.parse.unit",
-					this, "Invalid unit for TimeOfDay."
-							+ "\nOnly hours or minutes are accepted");
+			throw new ValidationException("invalid.prop.timeofday.parse.unit", this, "Invalid unit for TimeOfDay."
+					+ "\nOnly hours or minutes are accepted");
 		}
 		return unit;
 	}

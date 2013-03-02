@@ -54,7 +54,6 @@ public class ActionHandlerActionListener implements ActionListener {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public final void actionPerformed(final ActionEvent e) {
-		ApplicationManager.getApplication().getActionManager()
-				.execute(this.action);
+		ApplicationManager.getApplication().getActionManager().execute(this.action);
 	}
 }

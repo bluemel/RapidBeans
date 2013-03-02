@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: MenuItem.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuItem
  * 
- * model:    model/org/rapidbeans/presentation/MenuItem.xml
+ * model: model/org/rapidbeans/presentation/MenuItem.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation;
@@ -51,8 +51,8 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 * 
 	 * @return the instaance
 	 */
-	public static final MenuItem createInstance(final ConfigMenuItem config,
-			final Application client, final String resourcePath) {
+	public static final MenuItem createInstance(final ConfigMenuItem config, final Application client,
+			final String resourcePath) {
 		MenuItem menuItem = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
@@ -62,8 +62,8 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 			// mainWindow = new BBMainWindowEclispercp-swt();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 		return menuItem;
 	}
@@ -76,15 +76,13 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuItem(final Application client,
-			final ConfigMenuItem menuItemConfig, final String resourcePath) {
+	public MenuItem(final Application client, final ConfigMenuItem menuItemConfig, final String resourcePath) {
 		this.setName(menuItemConfig.getName());
 
 		Action configAction = menuItemConfig.getAction();
 		if (configAction != null && configAction.getParentBean() != null
 				&& configAction.getParentBean() instanceof ConfigMenuItem) {
-			((ConfigMenuItem) configAction.getParentBean())
-					.setChildaction(null);
+			((ConfigMenuItem) configAction.getParentBean()).setChildaction(null);
 		}
 		if (configAction != null && configAction.getParentBean() != null
 				&& configAction.getParentBean() instanceof ConfigApplication) {
@@ -99,8 +97,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 		Enabler configEnabler = menuItemConfig.getEnabler();
 		if (configEnabler != null && configEnabler.getParentBean() != null) {
 			if (configEnabler.getParentBean() instanceof ConfigMenuItem) {
-				((ConfigMenuItem) configEnabler.getParentBean())
-						.setEnabler(null);
+				((ConfigMenuItem) configEnabler.getParentBean()).setEnabler(null);
 			}
 		}
 		if (configEnabler != null && configEnabler.getParentBean() != null
@@ -131,10 +128,8 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.action = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("action");
-		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("enabler");
+		this.action = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("action");
+		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("enabler");
 	}
 
 	/**
@@ -176,8 +171,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(MenuItem.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(MenuItem.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -199,17 +193,14 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.service.Action" + "\" \""
-							+ link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \"" + "org.rapidbeans.service.Action"
+							+ "\" \"" + link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.service.Action) col.iterator()
-							.next();
+					return (org.rapidbeans.service.Action) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"action");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("action");
 		}
 	}
 
@@ -237,16 +228,13 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
 					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.presentation.enabler.Enabler"
-							+ "\" \"" + link.getIdString() + "\"");
+							+ "org.rapidbeans.presentation.enabler.Enabler" + "\" \"" + link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.presentation.enabler.Enabler) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.enabler.Enabler) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"enabler");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("enabler");
 		}
 	}
 
@@ -256,8 +244,7 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
-	public void setEnabler(
-			final org.rapidbeans.presentation.enabler.Enabler argValue) {
+	public void setEnabler(final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

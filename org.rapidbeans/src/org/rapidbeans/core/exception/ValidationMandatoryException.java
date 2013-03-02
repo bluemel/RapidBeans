@@ -38,8 +38,7 @@ public class ValidationMandatoryException extends ValidationException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public ValidationMandatoryException(final String sig, final Object source,
-			final String message) {
+	public ValidationMandatoryException(final String sig, final Object source, final String message) {
 		super(sig, source, message);
 	}
 
@@ -56,8 +55,8 @@ public class ValidationMandatoryException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationMandatoryException(final String sig, final Object source,
-			final String message, final Throwable cause) {
+	public ValidationMandatoryException(final String sig, final Object source, final String message,
+			final Throwable cause) {
 		super(sig, source, message, cause);
 	}
 
@@ -74,8 +73,8 @@ public class ValidationMandatoryException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationMandatoryException(final String sig, final Object source,
-			final String message, final Object[] messArgs) {
+	public ValidationMandatoryException(final String sig, final Object source, final String message,
+			final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 	}
 }

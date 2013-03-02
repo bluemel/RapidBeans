@@ -67,13 +67,11 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyComboboxSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyComboboxSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
-		if (prop.getType().isKeyCandidate()
-				&& (!this.getBeanEditor().isInNewMode())) {
+		if (prop.getType().isKeyCandidate() && (!this.getBeanEditor().isInNewMode())) {
 			// unfortunately a combo box still can be edited
 			// although editable is set to false.
 			// this.comboBox.setEditable(false);
@@ -86,21 +84,16 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 			this.comboBox.setBackground(COLOR_MANDATORY);
 		}
 		if (prop instanceof PropertyChoice) {
-			this.comboBox.setModel(new ModelComboBoxEnum(
-					(TypePropertyChoice) prop.getType()));
-			this.comboBox.setRenderer(new RendererListEnum(client
-					.getCurrentLocale(), this));
+			this.comboBox.setModel(new ModelComboBoxEnum((TypePropertyChoice) prop.getType()));
+			this.comboBox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
-			this.comboBox.setModel(new ModelComboBoxCollection(
-					(PropertyCollection) this.getProperty(), this
-							.getBeanEditor().getDocumentView().getDocument()));
-			this.comboBox.setRenderer(new RendererListCollection(this
-					.getBeanEditor().getDocumentView().getDocument(), client
-					.getCurrentLocale()));
+			this.comboBox.setModel(new ModelComboBoxCollection((PropertyCollection) this.getProperty(), this
+					.getBeanEditor().getDocumentView().getDocument()));
+			this.comboBox.setRenderer(new RendererListCollection(this.getBeanEditor().getDocumentView().getDocument(),
+					client.getCurrentLocale()));
 		} else {
-			throw new RapidBeansRuntimeException(
-					"EditorPropertyComboboxSwing does not support properties of class \""
-							+ prop.getType().getProptype().name() + "\"\n" + "");
+			throw new RapidBeansRuntimeException("EditorPropertyComboboxSwing does not support properties of class \""
+					+ prop.getType().getProptype().name() + "\"\n" + "");
 		}
 		this.comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(final ItemEvent e) {
@@ -142,13 +135,11 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		final Object selectedItem = this.comboBox.getSelectedItem();
 		final TypeProperty proptype = this.getProperty().getType();
 		if (proptype instanceof TypePropertyCollection) {
-			this.comboBox.setModel(new ModelComboBoxCollection(
-					(PropertyCollection) this.getProperty(), this
-							.getBeanEditor().getDocumentView().getDocument()));
+			this.comboBox.setModel(new ModelComboBoxCollection((PropertyCollection) this.getProperty(), this
+					.getBeanEditor().getDocumentView().getDocument()));
 		}
 		if (proptype instanceof TypePropertyChoice) {
-			this.comboBox.setModel(new ModelComboBoxEnum(
-					(TypePropertyChoice) this.getProperty().getType()));
+			this.comboBox.setModel(new ModelComboBoxEnum((TypePropertyChoice) this.getProperty().getType()));
 		}
 		if (selectedItem != null) {
 			this.comboBox.setSelectedItem(selectedItem);

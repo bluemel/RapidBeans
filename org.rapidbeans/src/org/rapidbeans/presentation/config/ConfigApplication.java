@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: ConfigApplication.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigApplication
  * 
- * model:    model/org/rapidbeans/presentation/config/ConfigApplication.xml
+ * model: model/org/rapidbeans/presentation/config/ConfigApplication.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
@@ -68,8 +68,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		}
 		final TypeRapidBean rootBeanType = doc.getRoot().getType();
 		for (ConfigDocument conf : docconfs) {
-			if (TypeRapidBean.isSameOrSubtype(
-					TypeRapidBean.forName(conf.getRootclass()), rootBeanType)) {
+			if (TypeRapidBean.isSameOrSubtype(TypeRapidBean.forName(conf.getRootclass()), rootBeanType)) {
 				return conf;
 			}
 		}
@@ -85,8 +84,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @return the configuration of the document with the given name or null if
 	 *         not found
 	 */
-	public final ConfigView getConfigView(final String docconfname,
-			final String viewconfname) {
+	public final ConfigView getConfigView(final String docconfname, final String viewconfname) {
 		final ConfigDocument docconf = this.getConfigDocument(docconfname);
 		if (docconf == null) {
 			return null;
@@ -175,36 +173,21 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("name");
-		this.rootpackage = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("rootpackage");
-		this.applicationclass = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("applicationclass");
-		this.guitype = (org.rapidbeans.core.basic.PropertyChoice) this
-				.getProperty("guitype");
-		this.defaultlocale = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("defaultlocale");
-		this.defaultcharset = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("defaultcharset");
-		this.locales = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("locales");
-		this.branding = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("branding");
-		this.beaneditors = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("beaneditors");
-		this.documents = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("documents");
-		this.actions = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("actions");
-		this.mainwindow = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("mainwindow");
-		this.authorization = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("authorization");
-		this.currency = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("currency");
-		this.xmlbinding = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("xmlbinding");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
+		this.rootpackage = (org.rapidbeans.core.basic.PropertyString) this.getProperty("rootpackage");
+		this.applicationclass = (org.rapidbeans.core.basic.PropertyString) this.getProperty("applicationclass");
+		this.guitype = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("guitype");
+		this.defaultlocale = (org.rapidbeans.core.basic.PropertyString) this.getProperty("defaultlocale");
+		this.defaultcharset = (org.rapidbeans.core.basic.PropertyString) this.getProperty("defaultcharset");
+		this.locales = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("locales");
+		this.branding = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("branding");
+		this.beaneditors = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("beaneditors");
+		this.documents = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("documents");
+		this.actions = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("actions");
+		this.mainwindow = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("mainwindow");
+		this.authorization = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("authorization");
+		this.currency = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("currency");
+		this.xmlbinding = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("xmlbinding");
 	}
 
 	/**
@@ -246,8 +229,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(ConfigApplication.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigApplication.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -263,8 +245,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
 		}
 	}
 
@@ -285,8 +266,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		try {
 			return (String) this.rootpackage.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"rootpackage");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("rootpackage");
 		}
 	}
 
@@ -307,8 +287,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		try {
 			return (String) this.applicationclass.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"applicationclass");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("applicationclass");
 		}
 	}
 
@@ -327,17 +306,14 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 */
 	public org.rapidbeans.presentation.config.ApplicationGuiType getGuitype() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.guitype
-					.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.guitype.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.config.ApplicationGuiType) enumList
-						.get(0);
+				return (org.rapidbeans.presentation.config.ApplicationGuiType) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"guitype");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("guitype");
 		}
 	}
 
@@ -347,8 +323,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'guitype' to set
 	 */
-	public void setGuitype(
-			final org.rapidbeans.presentation.config.ApplicationGuiType argValue) {
+	public void setGuitype(final org.rapidbeans.presentation.config.ApplicationGuiType argValue) {
 		java.util.List<org.rapidbeans.presentation.config.ApplicationGuiType> list = new java.util.ArrayList<org.rapidbeans.presentation.config.ApplicationGuiType>();
 		list.add(argValue);
 		this.guitype.setValue(list);
@@ -361,8 +336,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		try {
 			return (String) this.defaultlocale.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"defaultlocale");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("defaultlocale");
 		}
 	}
 
@@ -383,8 +357,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 		try {
 			return (String) this.defaultcharset.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"defaultcharset");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("defaultcharset");
 		}
 	}
 
@@ -407,8 +380,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigLocale>) this.locales
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"locales");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("locales");
 		}
 	}
 
@@ -418,8 +390,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'locales' to set
 	 */
-	public void setLocales(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigLocale> argValue) {
+	public void setLocales(final java.util.Collection<org.rapidbeans.presentation.config.ConfigLocale> argValue) {
 		this.locales.setValue(argValue);
 	}
 
@@ -429,10 +400,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void addLocale(
-			final org.rapidbeans.presentation.config.ConfigLocale bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.locales)
-				.addLink(bean);
+	public void addLocale(final org.rapidbeans.presentation.config.ConfigLocale bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.locales).addLink(bean);
 	}
 
 	/**
@@ -441,10 +410,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removeLocale(
-			final org.rapidbeans.presentation.config.ConfigLocale bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.locales)
-				.removeLink(bean);
+	public void removeLocale(final org.rapidbeans.presentation.config.ConfigLocale bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.locales).removeLink(bean);
 	}
 
 	/**
@@ -460,18 +427,14 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.config.ConfigBranding"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.config.ConfigBranding" + "\" \"" + link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.presentation.config.ConfigBranding) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.config.ConfigBranding) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"branding");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("branding");
 		}
 	}
 
@@ -481,8 +444,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'branding' to set
 	 */
-	public void setBranding(
-			final org.rapidbeans.presentation.config.ConfigBranding argValue) {
+	public void setBranding(final org.rapidbeans.presentation.config.ConfigBranding argValue) {
 		this.branding.setValue(argValue);
 	}
 
@@ -495,8 +457,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigEditorBean>) this.beaneditors
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"beaneditors");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("beaneditors");
 		}
 	}
 
@@ -506,8 +467,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'beaneditors' to set
 	 */
-	public void setBeaneditors(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigEditorBean> argValue) {
+	public void setBeaneditors(final java.util.Collection<org.rapidbeans.presentation.config.ConfigEditorBean> argValue) {
 		this.beaneditors.setValue(argValue);
 	}
 
@@ -517,10 +477,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void addBeaneditor(
-			final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors)
-				.addLink(bean);
+	public void addBeaneditor(final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors).addLink(bean);
 	}
 
 	/**
@@ -529,10 +487,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removeBeaneditor(
-			final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors)
-				.removeLink(bean);
+	public void removeBeaneditor(final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors).removeLink(bean);
 	}
 
 	/**
@@ -544,8 +500,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigDocument>) this.documents
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"documents");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("documents");
 		}
 	}
 
@@ -555,8 +510,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'documents' to set
 	 */
-	public void setDocuments(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigDocument> argValue) {
+	public void setDocuments(final java.util.Collection<org.rapidbeans.presentation.config.ConfigDocument> argValue) {
 		this.documents.setValue(argValue);
 	}
 
@@ -566,10 +520,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void addDocument(
-			final org.rapidbeans.presentation.config.ConfigDocument bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.documents)
-				.addLink(bean);
+	public void addDocument(final org.rapidbeans.presentation.config.ConfigDocument bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.documents).addLink(bean);
 	}
 
 	/**
@@ -578,10 +530,8 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removeDocument(
-			final org.rapidbeans.presentation.config.ConfigDocument bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.documents)
-				.removeLink(bean);
+	public void removeDocument(final org.rapidbeans.presentation.config.ConfigDocument bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.documents).removeLink(bean);
 	}
 
 	/**
@@ -593,8 +543,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.actions
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"actions");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("actions");
 		}
 	}
 
@@ -604,8 +553,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'actions' to set
 	 */
-	public void setActions(
-			final java.util.Collection<org.rapidbeans.service.Action> argValue) {
+	public void setActions(final java.util.Collection<org.rapidbeans.service.Action> argValue) {
 		this.actions.setValue(argValue);
 	}
 
@@ -616,8 +564,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 *            the bean to add
 	 */
 	public void addAction(final org.rapidbeans.service.Action bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.actions)
-				.addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.actions).addLink(bean);
 	}
 
 	/**
@@ -627,8 +574,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 *            the bean to add
 	 */
 	public void removeAction(final org.rapidbeans.service.Action bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.actions)
-				.removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.actions).removeLink(bean);
 	}
 
 	/**
@@ -644,18 +590,15 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.config.ConfigMainWindow"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.config.ConfigMainWindow" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
-					return (org.rapidbeans.presentation.config.ConfigMainWindow) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.config.ConfigMainWindow) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"mainwindow");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("mainwindow");
 		}
 	}
 
@@ -665,8 +608,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'mainwindow' to set
 	 */
-	public void setMainwindow(
-			final org.rapidbeans.presentation.config.ConfigMainWindow argValue) {
+	public void setMainwindow(final org.rapidbeans.presentation.config.ConfigMainWindow argValue) {
 		this.mainwindow.setValue(argValue);
 	}
 
@@ -683,18 +625,15 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.config.ConfigAuthorization"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.config.ConfigAuthorization" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
-					return (org.rapidbeans.presentation.config.ConfigAuthorization) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.config.ConfigAuthorization) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"authorization");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("authorization");
 		}
 	}
 
@@ -704,8 +643,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'authorization' to set
 	 */
-	public void setAuthorization(
-			final org.rapidbeans.presentation.config.ConfigAuthorization argValue) {
+	public void setAuthorization(final org.rapidbeans.presentation.config.ConfigAuthorization argValue) {
 		this.authorization.setValue(argValue);
 	}
 
@@ -722,18 +660,14 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.config.ConfigCurrency"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.config.ConfigCurrency" + "\" \"" + link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.presentation.config.ConfigCurrency) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.config.ConfigCurrency) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"currency");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("currency");
 		}
 	}
 
@@ -743,8 +677,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'currency' to set
 	 */
-	public void setCurrency(
-			final org.rapidbeans.presentation.config.ConfigCurrency argValue) {
+	public void setCurrency(final org.rapidbeans.presentation.config.ConfigCurrency argValue) {
 		this.currency.setValue(argValue);
 	}
 
@@ -761,18 +694,15 @@ public class ConfigApplication extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.config.ConfigXmlBinding"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.config.ConfigXmlBinding" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
-					return (org.rapidbeans.presentation.config.ConfigXmlBinding) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.config.ConfigXmlBinding) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"xmlbinding");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("xmlbinding");
 		}
 	}
 
@@ -782,8 +712,7 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'xmlbinding' to set
 	 */
-	public void setXmlbinding(
-			final org.rapidbeans.presentation.config.ConfigXmlBinding argValue) {
+	public void setXmlbinding(final org.rapidbeans.presentation.config.ConfigXmlBinding argValue) {
 		this.xmlbinding.setValue(argValue);
 	}
 }

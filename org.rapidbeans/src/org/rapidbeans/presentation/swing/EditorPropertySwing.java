@@ -68,8 +68,7 @@ public abstract class EditorPropertySwing extends EditorProperty {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertySwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		this.label.setText(this.getLabelText(bizBeanEditor, prop));
@@ -108,8 +107,7 @@ public abstract class EditorPropertySwing extends EditorProperty {
 			} catch (ValidationException ev) {
 				infieldValueNull = false;
 			}
-			if ((this.getProperty().getType().isKeyCandidate() || this
-					.getProperty().getType().getMandatory())
+			if ((this.getProperty().getType().isKeyCandidate() || this.getProperty().getType().getMandatory())
 					&& infieldValueNull) {
 				if (this.background != null) {
 					restoreNormalBackground();
@@ -118,8 +116,7 @@ public abstract class EditorPropertySwing extends EditorProperty {
 				if (this.background == null) {
 					if (!this.hasPotentiallyValidInputField(e)) {
 						this.background = widget.getBackground();
-						final Application client = ApplicationManager
-								.getApplication();
+						final Application client = ApplicationManager.getApplication();
 						// this makes property editors testable without having
 						// a client (application).
 						if (client != null) {
@@ -182,8 +179,7 @@ public abstract class EditorPropertySwing extends EditorProperty {
 	 * 
 	 * @return the label text
 	 */
-	public String getLabelText(final EditorBean bizBeanEditor,
-			final Property prop) {
+	public String getLabelText(final EditorBean bizBeanEditor, final Property prop) {
 		String text = null;
 		if (text == null) {
 			text = prop.getNameGui(this.getLocale());

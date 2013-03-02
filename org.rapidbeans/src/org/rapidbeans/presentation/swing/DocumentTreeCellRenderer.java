@@ -66,8 +66,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 * @param loc
 	 *            the locale
 	 */
-	public DocumentTreeCellRenderer(final Document doc,
-			final RapidBeansLocale loc) {
+	public DocumentTreeCellRenderer(final Document doc, final RapidBeansLocale loc) {
 		this.document = doc;
 		this.locale = loc;
 		if (this.locale == null) {
@@ -100,22 +99,18 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 * 
 	 * @return the tree cell renderer component
 	 */
-	public Component getTreeCellRendererComponent(final JTree tree,
-			final Object value, final boolean isSelected,
-			final boolean expanded, final boolean leaf, final int row,
-			final boolean hasGotFocus) {
+	public Component getTreeCellRendererComponent(final JTree tree, final Object value, final boolean isSelected,
+			final boolean expanded, final boolean leaf, final int row, final boolean hasGotFocus) {
 		String text = null;
 		ImageIcon icon = null;
-		DocumentTreeCellRenderer comp = (DocumentTreeCellRenderer) super
-				.getTreeCellRendererComponent(tree, value, isSelected,
-						expanded, leaf, row, hasGotFocus);
+		DocumentTreeCellRenderer comp = (DocumentTreeCellRenderer) super.getTreeCellRendererComponent(tree, value,
+				isSelected, expanded, leaf, row, hasGotFocus);
 		if (value instanceof RapidBean) {
 			text = findText((RapidBean) value);
 			icon = findIcon((RapidBean) value, false);
 		} else if (value instanceof DocumentTreeNodeBeanLink) {
 			text = findText(((DocumentTreeNodeBeanLink) value).getLinkedBean());
-			icon = findIcon(((DocumentTreeNodeBeanLink) value).getLinkedBean(),
-					true);
+			icon = findIcon(((DocumentTreeNodeBeanLink) value).getLinkedBean(), true);
 		} else if (value instanceof DocumentTreeNodePropCol) {
 			text = findText((DocumentTreeNodePropCol) value);
 			icon = findIcon((DocumentTreeNodePropCol) value);
@@ -140,10 +135,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// e. g.
 		// treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
 		try {
-			if (bean.getContainer() != null
-					&& bean.getContainer() instanceof Document) {
-				final String path = ((Document) bean.getContainer()).getPath(
-						bean, '.');
+			if (bean.getContainer() != null && bean.getContainer() instanceof Document) {
+				final String path = ((Document) bean.getContainer()).getPath(bean, '.');
 				final String pattern = "treeview.beanlabel." + path;
 				final String s = this.locale.getStringGui(pattern);
 				text = bean.expandPropertyValues(s, this.locale);
@@ -158,12 +151,9 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
 		if (text == null) {
 			try {
-				if (bean.getContainer() != null
-						&& bean.getContainer() instanceof Document) {
+				if (bean.getContainer() != null && bean.getContainer() instanceof Document) {
 					final List<String> sa = StringHelper.split(
-							"treeview.beanlabel."
-									+ ((Document) bean.getContainer()).getPath(
-											bean, '.'), ".");
+							"treeview.beanlabel." + ((Document) bean.getContainer()).getPath(bean, '.'), ".");
 					if (sa.size() > 3) {
 						final String docname = sa.get(2);
 						final int docnamepos = docname.indexOf('_');
@@ -174,17 +164,14 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 									sb.append('.');
 								}
 								if (i == 2) {
-									sb.append(docname.substring(0,
-											docnamepos + 1));
+									sb.append(docname.substring(0, docnamepos + 1));
 									sb.append('*');
 								} else {
 									sb.append(sa.get(i));
 								}
 							}
 							final String pattern = sb.toString();
-							text = bean.expandPropertyValues(
-									this.locale.getStringGui(pattern),
-									this.locale);
+							text = bean.expandPropertyValues(this.locale.getStringGui(pattern), this.locale);
 						}
 					}
 				}
@@ -218,8 +205,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// document
 		// "document.<document config name>.treeview.<property name>.label"
 		try {
-			text = this.locale.getStringGui("document."
-					+ this.document.getConfigNameOrName() + ".treeview."
+			text = this.locale.getStringGui("document." + this.document.getConfigNameOrName() + ".treeview."
 					+ colNode.getColProp().getType().getPropName() + ".label");
 		} catch (MissingResourceException e) {
 			text = null;
@@ -232,8 +218,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 			TypeRapidBean type = colNode.getColProp().getBean().getType();
 			while (text == null && type != null) {
 				try {
-					final String key = "bean." + type.getName().toLowerCase()
-							+ ".prop."
+					final String key = "bean." + type.getName().toLowerCase() + ".prop."
 							+ colNode.getColProp().getType().getPropName();
 					text = this.locale.getStringGui(key);
 				} catch (MissingResourceException e) {
@@ -248,16 +233,12 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// target type or one of it's parent types
 		// "bean.<lowercased target typename>(.plural)" or
 		// "bean.<lowercased target typename>" in case of maxmult == 1
-		if (text == null
-				&& colNode.getColProp().getType() instanceof TypePropertyCollection) {
-			final TypePropertyCollection colPropType = (TypePropertyCollection) colNode
-					.getColProp().getType();
+		if (text == null && colNode.getColProp().getType() instanceof TypePropertyCollection) {
+			final TypePropertyCollection colPropType = (TypePropertyCollection) colNode.getColProp().getType();
 			TypeRapidBean type = colPropType.getTargetType();
 			while (text == null && type != null) {
 				try {
-					text = type.toStringGui(this.locale,
-							(colPropType.getMaxmult() != 1),
-							colPropType.getPropName());
+					text = type.toStringGui(this.locale, (colPropType.getMaxmult() != 1), colPropType.getPropName());
 					String key = "bean." + type.getName().toLowerCase();
 					if (colPropType.getMaxmult() != 1) {
 						key += ".plural";
@@ -266,8 +247,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 				} catch (MissingResourceException e) {
 					if (colPropType.getMaxmult() != 1) {
 						try {
-							final String key1 = "bean."
-									+ type.getName().toLowerCase();
+							final String key1 = "bean." + type.getName().toLowerCase();
 							text = locale.getStringGui(key1);
 							text += "s";
 						} catch (MissingResourceException e1) {
@@ -303,17 +283,14 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 		ImageIcon icon = null;
 
-		if (ApplicationManager.getApplication() != null
-				&& ApplicationManager.getApplication().getMainwindow() != null
-				&& ((MainWindowSwing) ApplicationManager.getApplication()
-						.getMainwindow()).getIconManager() != null) {
-			icon = ((MainWindowSwing) ApplicationManager.getApplication()
-					.getMainwindow()).getIconManager().getIcon(bean.getType());
+		if (ApplicationManager.getApplication() != null && ApplicationManager.getApplication().getMainwindow() != null
+				&& ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager() != null) {
+			icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager().getIcon(
+					bean.getType());
 		}
 
 		if (icon == null) {
-			if (bean.getContainer() != null
-					&& bean == ((Document) bean.getContainer()).getRoot()) {
+			if (bean.getContainer() != null && bean == ((Document) bean.getContainer()).getRoot()) {
 				icon = getIconBeanRoot();
 			} else if (link) {
 				icon = getIconBeanLink();
@@ -337,8 +314,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 */
 	private ImageIcon findIcon(final DocumentTreeNodePropCol colNode) {
 		ImageIcon icon = null;
-		if (((TypePropertyCollection) colNode.getColProp().getType())
-				.isComposition()) {
+		if (((TypePropertyCollection) colNode.getColProp().getType()).isComposition()) {
 			icon = getIconColPropComposition();
 		} else {
 			icon = getIconColPropLink();
@@ -350,8 +326,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private static ImageIcon getIconBeanRoot() {
 		if (iconBeanRoot == null) {
-			iconBeanRoot = new ImageIcon(
-					Application.class.getResource("pictures/root.gif"));
+			iconBeanRoot = new ImageIcon(Application.class.getResource("pictures/root.gif"));
 		}
 		return iconBeanRoot;
 	}
@@ -360,8 +335,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private static ImageIcon getIconBeanLink() {
 		if (iconBeanLink == null) {
-			iconBeanLink = new ImageIcon(
-					Application.class.getResource("pictures/beanlink.gif"));
+			iconBeanLink = new ImageIcon(Application.class.getResource("pictures/beanlink.gif"));
 		}
 		return iconBeanLink;
 	}
@@ -370,8 +344,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private static ImageIcon getIconBean() {
 		if (iconBean == null) {
-			iconBean = new ImageIcon(
-					Application.class.getResource("pictures/bean.gif"));
+			iconBean = new ImageIcon(Application.class.getResource("pictures/bean.gif"));
 		}
 		return iconBean;
 	}
@@ -380,8 +353,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private static ImageIcon getIconColPropComposition() {
 		if (iconColPropComposition == null) {
-			iconColPropComposition = new ImageIcon(
-					Application.class.getResource("pictures/property.gif"));
+			iconColPropComposition = new ImageIcon(Application.class.getResource("pictures/property.gif"));
 		}
 		return iconColPropComposition;
 	}
@@ -390,8 +362,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 	private static ImageIcon getIconColPropLink() {
 		if (iconColPropLink == null) {
-			iconColPropLink = new ImageIcon(
-					Application.class.getResource("pictures/propertyLink.gif"));
+			iconColPropLink = new ImageIcon(Application.class.getResource("pictures/propertyLink.gif"));
 		}
 		return iconColPropLink;
 	}

@@ -59,12 +59,10 @@ public final class TimeOfDayTest extends TestCase {
 	 */
 	public void testTimeOfDaySeconds() {
 		TimeOfDay time = new TimeOfDay("23:02:09");
-		assertEquals(new BigDecimal(23 * 3600 + 2 * 60 + 9),
-				time.getMagnitude());
+		assertEquals(new BigDecimal(23 * 3600 + 2 * 60 + 9), time.getMagnitude());
 		assertSame(UnitTime.s, time.getUnit());
 		time = new TimeOfDay("9:58:12");
-		assertEquals(new BigDecimal(9 * 3600 + 58 * 60 + 12),
-				time.getMagnitude());
+		assertEquals(new BigDecimal(9 * 3600 + 58 * 60 + 12), time.getMagnitude());
 		assertSame(UnitTime.s, time.getUnit());
 	}
 

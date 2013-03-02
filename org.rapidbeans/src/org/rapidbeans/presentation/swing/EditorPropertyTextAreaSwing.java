@@ -67,8 +67,7 @@ public class EditorPropertyTextAreaSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyTextAreaSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyTextAreaSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
@@ -105,13 +104,11 @@ public class EditorPropertyTextAreaSwing extends EditorPropertySwing {
 		try {
 			this.setUIEventLock();
 			if (this.getProperty() instanceof PropertyCollection) {
-				final Collection<?> col = (Collection<?>) this.getProperty()
-						.getValue();
+				final Collection<?> col = (Collection<?>) this.getProperty().getValue();
 				if (col == null) {
 					this.text.setText("");
 				} else {
-					final TypePropertyCollection colType = (TypePropertyCollection) this
-							.getProperty().getType();
+					final TypePropertyCollection colType = (TypePropertyCollection) this.getProperty().getType();
 					if (colType.getMaxmult() == 1) {
 						RapidBean bean = (RapidBean) col.iterator().next();
 						if (bean == null) {
@@ -136,8 +133,7 @@ public class EditorPropertyTextAreaSwing extends EditorPropertySwing {
 		String ifValue = this.text.getText();
 		if (ifValue.equals("")) {
 			TypeProperty type = this.getProperty().getType();
-			if ((type instanceof TypePropertyString)
-					&& ((TypePropertyString) type).getEmptyValid()) {
+			if ((type instanceof TypePropertyString) && ((TypePropertyString) type).getEmptyValid()) {
 				ifValue = this.text.getText();
 			} else {
 				ifValue = null;

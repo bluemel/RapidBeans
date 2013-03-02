@@ -148,8 +148,7 @@ public abstract class MainWindow {
 	 * 
 	 * @return the instance
 	 */
-	public static MainWindow createInstance(final Application client,
-			final ConfigMainWindow mainWindowConfig) {
+	public static MainWindow createInstance(final Application client, final ConfigMainWindow mainWindowConfig) {
 		MainWindow mainWindow = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
@@ -159,8 +158,8 @@ public abstract class MainWindow {
 			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 		return mainWindow;
 	}
@@ -173,8 +172,7 @@ public abstract class MainWindow {
 	 * @param mainWindowConfig
 	 *            the configuration
 	 */
-	public MainWindow(final Application client,
-			final ConfigMainWindow mainWindowConfig) {
+	public MainWindow(final Application client, final ConfigMainWindow mainWindowConfig) {
 		client.setMainwindow(this);
 		if (mainWindowConfig == null) {
 			this.setName("mainwindow");
@@ -183,13 +181,11 @@ public abstract class MainWindow {
 			final String resourcePathToolbar = this.getName() + ".toolbar";
 			if (mainWindowConfig.getToolbars() != null) {
 				for (final ConfigToolbar conf : mainWindowConfig.getToolbars()) {
-					this.addToolbar(Toolbar.createInstance(client, this, conf,
-							resourcePathToolbar));
+					this.addToolbar(Toolbar.createInstance(client, this, conf, resourcePathToolbar));
 				}
 			}
 			if (mainWindowConfig.getMenubar() != null) {
-				this.setMenubar(Menubar.createInstance(client,
-						mainWindowConfig.getMenubar(), this.getName()));
+				this.setMenubar(Menubar.createInstance(client, mainWindowConfig.getMenubar(), this.getName()));
 			}
 		}
 		this.footer = Footer.createInstance(client, mainWindowConfig);

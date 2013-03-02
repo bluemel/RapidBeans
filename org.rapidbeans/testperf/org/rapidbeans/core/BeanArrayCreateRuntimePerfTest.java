@@ -28,8 +28,7 @@ public final class BeanArrayCreateRuntimePerfTest extends TestCase {
 		if (!this.isWarmedUp) {
 			System.out.println("[BeanArrayCreateRuntimePerfTest] warm up...");
 			for (int i = 0; i < 100000; i++) {
-				RapidBeanImplStrict
-						.createInstance("org.rapidbeans.presentation.MenuItem");
+				RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
 			}
 			this.isWarmedUp = true;
 		}
@@ -48,23 +47,19 @@ public final class BeanArrayCreateRuntimePerfTest extends TestCase {
 		final long timeStart = System.currentTimeMillis();
 
 		// set up a first array
-		System.out.println("[BeanArrayCreateRuntimePerfTest]"
-				+ " setting up bean array...");
+		System.out.println("[BeanArrayCreateRuntimePerfTest]" + " setting up bean array...");
 		// give message a chance to be printed on console before load starts
 		Thread.sleep(100);
 		RapidBean[] beans1 = new RapidBean[count];
 		for (int i = 0; i < count; i++) {
-			beans1[i] = RapidBeanImplStrict
-					.createInstance("org.rapidbeans.presentation.MenuItem");
+			beans1[i] = RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
 		}
 
 		// check runtime
 		final long time = System.currentTimeMillis() - timeStart;
-		assertTrue("creation of " + count + " MenuItem beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BeanArrayCreateRuntimePerfTest]"
-				+ "   creation of " + count + " MenuItem beans took " + time
-				+ " ms");
+		assertTrue("creation of " + count + " MenuItem beans took longer than " + timeExpectedMax + " ms: " + time
+				+ " ms", time <= timeExpectedMax);
+		System.out.println("[BeanArrayCreateRuntimePerfTest]" + "   creation of " + count + " MenuItem beans took "
+				+ time + " ms");
 	}
 }

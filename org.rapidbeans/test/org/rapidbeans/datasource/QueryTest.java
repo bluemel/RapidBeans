@@ -46,23 +46,18 @@ public class QueryTest extends TestCase {
 
 	public void setUp() {
 		if (testdoc01 == null) {
-			testdoc01 = new Document("testdoc01", new File(
-					"../org.rapidbeans/testdata/deserialization"
-							+ "/AppGenericStyle.xml"));
+			testdoc01 = new Document("testdoc01", new File("../org.rapidbeans/testdata/deserialization"
+					+ "/AppGenericStyle.xml"));
 		}
 		if (testdoc02 == null) {
 			TestHelperTypeLoader.clearBeanTypesGeneric();
-			TypeRapidBean
-					.forName("org.rapidbeans.test.addressbook5.AddressbookInDb");
-			if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding(
-					"addressbookdb") == null) {
-				RapidBeansTypeLoader.getInstance().addXmlRootElementBinding(
-						"addressbookdb",
+			TypeRapidBean.forName("org.rapidbeans.test.addressbook5.AddressbookInDb");
+			if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("addressbookdb") == null) {
+				RapidBeansTypeLoader.getInstance().addXmlRootElementBinding("addressbookdb",
 						"org.rapidbeans.test.addressbook5.AddressbookDb");
 			}
-			testdoc02 = new Document("testdoc02", new File(
-					"../org.rapidbeans/testdata/addressbook5"
-							+ "/adrbookdb.xml"));
+			testdoc02 = new Document("testdoc02",
+					new File("../org.rapidbeans/testdata/addressbook5" + "/adrbookdb.xml"));
 		}
 	}
 
@@ -85,8 +80,7 @@ public class QueryTest extends TestCase {
 	 */
 	public void testFindByQueryStringAttrSimple() {
 		Document doc = createTestDocument(false);
-		Collection<RapidBean> resultSet = doc
-				.findBeansByQuery("Trainer[leader = false]");
+		Collection<RapidBean> resultSet = doc.findBeansByQuery("Trainer[leader = false]");
 		assertEquals(3, resultSet.size());
 		Iterator<RapidBean> iter = resultSet.iterator();
 		assertEquals("Bl�mel_Ulrike", iter.next().getIdString());
@@ -103,9 +97,7 @@ public class QueryTest extends TestCase {
 	 * comparison on the "frozen" string value.
 	 */
 	public void testFindByQueryAssocEndSingle() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "owner = 'user1']");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb[" + "owner = 'user1']");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
@@ -114,8 +106,7 @@ public class QueryTest extends TestCase {
 	 */
 	public void testFindByQueryStringAttrSimpleId() {
 		Document doc = createTestDocument(false);
-		Collection<RapidBean> resultSet = doc
-				.findBeansByQuery("Trainer[id = 'Bl�mel_Ulrike']");
+		Collection<RapidBean> resultSet = doc.findBeansByQuery("Trainer[id = 'Bl�mel_Ulrike']");
 		assertEquals(1, resultSet.size());
 		Iterator<RapidBean> iter = resultSet.iterator();
 		assertEquals("Bl�mel_Ulrike", iter.next().getIdString());
@@ -139,19 +130,17 @@ public class QueryTest extends TestCase {
 	 */
 	public void testFindByQueryStringAttrAssoc() {
 		Document doc = createTestDocument(false);
-		Collection<RapidBean> resultSetAll = doc
-				.findBeansByQuery("TrainingDate");
+		Collection<RapidBean> resultSetAll = doc.findBeansByQuery("TrainingDate");
 		assertEquals(3, resultSetAll.size());
-		Collection<RapidBean> resultSet = doc
-				.findBeansByQuery("TrainingDate[defaulttrainer[lastname = 'Dahlheimer']]");
+		Collection<RapidBean> resultSet = doc.findBeansByQuery("TrainingDate[defaulttrainer[lastname = 'Dahlheimer']]");
 		assertEquals(2, resultSet.size());
 		Iterator<RapidBean> iter = resultSet.iterator();
 		GenericBean date = (GenericBean) iter.next();
 		assertEquals("Aikido Adults II", date.getIdString());
 		date = (GenericBean) iter.next();
 		assertEquals("Aikido Children", date.getIdString());
-		GenericBean trainer = (GenericBean) ((Collection<?>) date.getProperty(
-				"defaulttrainer").getValue()).iterator().next();
+		GenericBean trainer = (GenericBean) ((Collection<?>) date.getProperty("defaulttrainer").getValue()).iterator()
+				.next();
 		assertEquals("Dahlheimer", trainer.getProperty("lastname").getValue());
 	}
 
@@ -160,39 +149,33 @@ public class QueryTest extends TestCase {
 	 */
 	public void testFindByQueryStringAttrAssocEndNoCompId() {
 		Document doc = createTestDocument(false);
-		Collection<RapidBean> resultSet = doc
-				.findBeansByQuery("TrainingDate[defaulttrainer[id = 'Dahlheimer_Berit']]");
+		Collection<RapidBean> resultSet = doc.findBeansByQuery("TrainingDate[defaulttrainer[id = 'Dahlheimer_Berit']]");
 		assertEquals(2, resultSet.size());
 		Iterator<RapidBean> iter = resultSet.iterator();
 		GenericBean date = (GenericBean) iter.next();
 		assertEquals("Aikido Adults II", date.getIdString());
 		date = (GenericBean) iter.next();
 		assertEquals("Aikido Children", date.getIdString());
-		GenericBean trainer = (GenericBean) ((Collection<?>) date.getProperty(
-				"defaulttrainer").getValue()).iterator().next();
+		GenericBean trainer = (GenericBean) ((Collection<?>) date.getProperty("defaulttrainer").getValue()).iterator()
+				.next();
 		assertEquals("Dahlheimer", trainer.getProperty("lastname").getValue());
 	}
 
 	public void testFindByQueryStringAttrAssocEndNoCompOtherProp() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "owner[accountname = 'user1']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb["
+				+ "owner[accountname = 'user1']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
 	public void testFindByQueryStringAttrAssocEndCompId() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "name = 'Address Book 1'"
-						+ " & persons[id='41bb6f77-d599-4368-b2d6-b385ff342625']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb[" + "name = 'Address Book 1'"
+				+ " & persons[id='41bb6f77-d599-4368-b2d6-b385ff342625']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
 	public void testFindByQueryStringAttrAssocEndCompOtherProp() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "name = 'Address Book 1'"
-						+ " & persons[lastname='Ehlert']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb[" + "name = 'Address Book 1'"
+				+ " & persons[lastname='Ehlert']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
@@ -330,10 +313,8 @@ public class QueryTest extends TestCase {
 	public void testFindByQueryStringTypeSortedCollectionClass() {
 		Document doc = createTestDocument(false);
 		GenericBean bean = (GenericBean) doc.getRoot();
-		PropertyCollection colProp = (PropertyCollection) bean
-				.getProperty("trainers");
-		TypePropertyCollection colPropType = (TypePropertyCollection) colProp
-				.getType();
+		PropertyCollection colProp = (PropertyCollection) bean.getProperty("trainers");
+		TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 		assertEquals(LinkedHashSet.class, colPropType.getCollectionClass());
 		Collection<RapidBean> resultSet = doc.findBeansByQuery("/trainers");
 		assertEquals(4, resultSet.size());
@@ -354,8 +335,7 @@ public class QueryTest extends TestCase {
 	 * 
 	 * @return the test document
 	 */
-	private static Document createTestDocument(
-			final boolean certificatesMandatory) {
+	private static Document createTestDocument(final boolean certificatesMandatory) {
 
 		// set up certificates
 		Collection<RapidBean> certs = new ArrayList<RapidBean>();
@@ -365,29 +345,22 @@ public class QueryTest extends TestCase {
 		// set up the trainers
 		// don't do this in perfect alphabetical order
 		Collection<RapidBean> trainers = new ArrayList<RapidBean>();
-		GenericBean trainer3 = createTrainer("Dahlheimer", "Berit", false,
-				certificatesMandatory);
+		GenericBean trainer3 = createTrainer("Dahlheimer", "Berit", false, certificatesMandatory);
 		trainers.add(trainer3);
-		GenericBean trainer4 = createTrainer("Dautovic", "Damir", false,
-				certificatesMandatory);
+		GenericBean trainer4 = createTrainer("Dautovic", "Damir", false, certificatesMandatory);
 		trainers.add(trainer4);
-		GenericBean trainer1 = createTrainer("Bl�mel", "Martin", true,
-				certificatesMandatory);
+		GenericBean trainer1 = createTrainer("Bl�mel", "Martin", true, certificatesMandatory);
 		trainers.add(trainer1);
-		GenericBean trainer2 = createTrainer("Bl�mel", "Ulrike", false,
-				certificatesMandatory);
+		GenericBean trainer2 = createTrainer("Bl�mel", "Ulrike", false, certificatesMandatory);
 		trainers.add(trainer2);
 
 		// set up the training dates
 		Collection<RapidBean> trdates = new ArrayList<RapidBean>();
-		GenericBean trdateMo = createTrainingDate("Aikido Adults I", "monday",
-				"19:30", "21:30", trainer2);
+		GenericBean trdateMo = createTrainingDate("Aikido Adults I", "monday", "19:30", "21:30", trainer2);
 		trdates.add(trdateMo);
-		GenericBean trdateTu = createTrainingDate("Aikido Children", "tuesday",
-				"18:00", "19:30", trainer3);
+		GenericBean trdateTu = createTrainingDate("Aikido Children", "tuesday", "18:00", "19:30", trainer3);
 		trdates.add(trdateTu);
-		GenericBean trdateTh = createTrainingDate("Aikido Adults II",
-				"thursday", "19:00", "21:30", trainer3);
+		GenericBean trdateTh = createTrainingDate("Aikido Adults II", "thursday", "19:00", "21:30", trainer3);
 		trdates.add(trdateTh);
 
 		// set up the billing period document
@@ -409,8 +382,7 @@ public class QueryTest extends TestCase {
 	 *            the end date
 	 * @return the test bean
 	 */
-	private static GenericBean createBillingPeriod(final String dateBegin,
-			final String dateEnd) {
+	private static GenericBean createBillingPeriod(final String dateBegin, final String dateEnd) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("BillingPeriod") == null) {
 			String descr = "<beantype name=\"BillingPeriod\" idtype=\"keyprops\">"
 					+ "<property name=\"from\" type=\"date\" key=\"true\"/>"
@@ -418,16 +390,13 @@ public class QueryTest extends TestCase {
 					+ "<property name=\"trainers\" type=\"collection\""
 					+ " composition=\"true\" targettype=\"Trainer\"/>"
 					+ "<property name=\"trainingdates\" type=\"collection\""
-					+ " composition=\"true\" targettype=\"TrainingDate\"/>"
-					+ "/>"
+					+ " composition=\"true\" targettype=\"TrainingDate\"/>" + "/>"
 					+ "<property name=\"certificates\" type=\"collection\""
-					+ " composition=\"true\" targettype=\"Certificate\"/>"
-					+ "/>" + "</beantype>";
+					+ " composition=\"true\" targettype=\"Certificate\"/>" + "/>" + "</beantype>";
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("BillingPeriod");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
 		bean.setPropValue("from", dateBegin);
 		bean.setPropValue("to", dateEnd);
 		return bean;
@@ -447,27 +416,22 @@ public class QueryTest extends TestCase {
 	 * 
 	 * @return the test bean
 	 */
-	private static GenericBean createTrainer(final String lastname,
-			final String firstname, final boolean leader,
+	private static GenericBean createTrainer(final String lastname, final String firstname, final boolean leader,
 			final boolean mandatory) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Trainer") == null) {
 			String descr = "<beantype name=\"Trainer\" idtype=\"keyprops\">"
 					+ "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
 					+ "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
-					+ "<property name=\"leader\" type=\"boolean\""
-					+ " mandatory=\"true\" default=\"false\"" + "/>"
+					+ "<property name=\"leader\" type=\"boolean\"" + " mandatory=\"true\" default=\"false\"" + "/>"
 					+ "<property name=\"certificates\" type=\"collection\"";
 			if (mandatory) {
 				descr += "    mandatory=\"true\" default=\"\"";
 			}
 			descr += "    targettype=\"Certificate\"" + "/>" + "</beantype>";
-			XmlNode xmlNode = XmlNode
-					.getDocumentTopLevel(new ByteArrayInputStream(descr
-							.getBytes()));
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("Trainer");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
 		bean.setPropValue("lastname", lastname);
 		bean.setPropValue("firstname", firstname);
 		bean.setPropValue("leader", new Boolean(leader));
@@ -485,15 +449,11 @@ public class QueryTest extends TestCase {
 	private static GenericBean createCertificate(final String name) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Certificate") == null) {
 			String descr = "<beantype name=\"Certificate\" idtype=\"keyprops\">"
-					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
-					+ "/>" + "</beantype>";
-			XmlNode xmlNode = XmlNode
-					.getDocumentTopLevel(new ByteArrayInputStream(descr
-							.getBytes()));
+					+ "<property name=\"name\" type=\"string\" key=\"true\"/>" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("Certificate");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
 		bean.setPropValue("name", name);
 		return bean;
 	}
@@ -513,9 +473,8 @@ public class QueryTest extends TestCase {
 	 *            the default trainer
 	 * @return the generic training date bean
 	 */
-	private static GenericBean createTrainingDate(final String name,
-			final String dayofweek, final String tstart, final String tend,
-			final GenericBean defaulttrainer) {
+	private static GenericBean createTrainingDate(final String name, final String dayofweek, final String tstart,
+			final String tend, final GenericBean defaulttrainer) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TrainingDate") == null) {
 			String descr = "<beantype name=\"TrainingDate\" idtype=\"keyprops\">"
 					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
@@ -525,16 +484,12 @@ public class QueryTest extends TestCase {
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
 					+ "<property name=\"timeend\" type=\"quantity\""
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
-					+ "<property name=\"defaulttrainer\" type=\"collection\""
-					+ " targettype=\"Trainer\""
+					+ "<property name=\"defaulttrainer\" type=\"collection\"" + " targettype=\"Trainer\""
 					+ " minmult=\"1\" maxmult=\"1\"/>" + "</beantype>";
-			XmlNode xmlNode = XmlNode
-					.getDocumentTopLevel(new ByteArrayInputStream(descr
-							.getBytes()));
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("TrainingDate");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
 		bean.setPropValue("name", name);
 		bean.setPropValue("dayofweek", dayofweek);
 		bean.setPropValue("timestart", tstart);
@@ -565,8 +520,7 @@ public class QueryTest extends TestCase {
 	 * @throws IOException
 	 */
 	public void testPathQuery1stLevelSingle() throws IOException {
-		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01
-				.findBeanByQuery("/mainwindow");
+		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01.findBeanByQuery("/mainwindow");
 		assertEquals("mainwindow", cfgMw.getName());
 	}
 
@@ -576,8 +530,7 @@ public class QueryTest extends TestCase {
 	 * @throws IOException
 	 */
 	public void testPathQuery2ndLevelWithConditionTrue() throws IOException {
-		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01
-				.findBeanByQuery("/mainwindow[name = 'mainwindow']");
+		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01.findBeanByQuery("/mainwindow[name = 'mainwindow']");
 		assertEquals("mainwindow", cfgMw.getName());
 	}
 
@@ -585,8 +538,7 @@ public class QueryTest extends TestCase {
 	 * Test path query for a single 2nd level object with false condition
 	 */
 	public void testPathQuery1ndLevelWithConditionFalse() throws IOException {
-		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01
-				.findBeanByQuery("/mainwindow[name = 'xxx']");
+		ConfigMainWindow cfgMw = (ConfigMainWindow) testdoc01.findBeanByQuery("/mainwindow[name = 'xxx']");
 		assertNull(cfgMw);
 	}
 
@@ -594,8 +546,7 @@ public class QueryTest extends TestCase {
 	 * Test
 	 */
 	public void testPathQuery3rdLevelWithCondition() throws IOException {
-		ConfigSubmenu sm = (ConfigSubmenu) testdoc01
-				.findBeanByQuery("/mainwindow/menubar/menus[name = 'file']");
+		ConfigSubmenu sm = (ConfigSubmenu) testdoc01.findBeanByQuery("/mainwindow/menubar/menus[name = 'file']");
 		assertEquals("file", sm.getName());
 	}
 
@@ -616,8 +567,7 @@ public class QueryTest extends TestCase {
 		// Klaus fragen
 		// List<ConfigSubmenu> sms = (List<ConfigSubmenu>) doc.findBeansByQuery(
 		// "/mainwindow/menubar/menus/menuentrys/menuentrys");
-		List<RapidBean> mes = testdoc01
-				.findBeansByQuery("/mainwindow/menubar/menus/menuentrys/menuentrys/menuentrys");
+		List<RapidBean> mes = testdoc01.findBeansByQuery("/mainwindow/menubar/menus/menuentrys/menuentrys/menuentrys");
 		assertEquals(2, mes.size());
 		assertEquals("test221", ((ConfigMenuItem) mes.get(0)).getName());
 		assertEquals("test222", ((ConfigMenuItem) mes.get(1)).getName());

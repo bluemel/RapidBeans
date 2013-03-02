@@ -88,12 +88,11 @@ public class PropertyQuantity extends Property {
 	 *            &lt;enum&gt;<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (RapidQuantity) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (RapidQuantity) newValue;
+			}
+		});
 	}
 
 	/**
@@ -120,9 +119,8 @@ public class PropertyQuantity extends Property {
 			quantity = (RapidQuantity) argValue;
 		} else if (argValue instanceof String) {
 			try {
-				quantity = RapidQuantity
-						.createInstance(((TypePropertyQuantity) this.getType())
-								.getQuantitytype().getName(), (String) argValue);
+				quantity = RapidQuantity.createInstance(((TypePropertyQuantity) this.getType()).getQuantitytype()
+						.getName(), (String) argValue);
 			} catch (RapidBeansRuntimeException e) {
 				Throwable t1 = e.getCause();
 				if (t1 != null && t1 instanceof InvocationTargetException) {
@@ -133,12 +131,8 @@ public class PropertyQuantity extends Property {
 				}
 			}
 		} else {
-			throw new ValidationException(
-					"invalid.prop.quantity.type",
-					this,
-					"invalid data type \""
-							+ argValue.getClass().getName()
-							+ "\".\nOnly \"PropertyQuantity\" and \"String\" are valid types.");
+			throw new ValidationException("invalid.prop.quantity.type", this, "invalid data type \""
+					+ argValue.getClass().getName() + "\".\nOnly \"PropertyQuantity\" and \"String\" are valid types.");
 		}
 
 		return quantity;
@@ -159,8 +153,7 @@ public class PropertyQuantity extends Property {
 	 */
 	public RapidQuantity validate(final Object quantityValue) {
 
-		final RapidQuantity quantity = (RapidQuantity) super
-				.validate(quantityValue);
+		final RapidQuantity quantity = (RapidQuantity) super.validate(quantityValue);
 		if (!ThreadLocalValidationSettings.getValidation()) {
 			return quantity;
 		}
@@ -168,44 +161,31 @@ public class PropertyQuantity extends Property {
 			return null;
 		}
 
-		final TypePropertyQuantity quantPropType = (TypePropertyQuantity) this
-				.getType();
+		final TypePropertyQuantity quantPropType = (TypePropertyQuantity) this.getType();
 		// check RapidQuantity Type
 		if (quantity.getType() != quantPropType.getQuantitytype()) {
-			final String[] sa = { quantity.getType().getName(),
-					quantity.toString(),
+			final String[] sa = { quantity.getType().getName(), quantity.toString(),
 					quantPropType.getQuantitytype().getName() };
-			throw new ValidationException("invalid.prop.quantity.quantitytype",
-					this, "Wrong type \"" + quantity.getType().getName()
-							+ "\" for new quantity \"" + quantity.toString()
-							+ "\"\n" + "Expected quantity type \""
-							+ quantPropType.getQuantitytype().getName() + "\"",
-					sa);
+			throw new ValidationException("invalid.prop.quantity.quantitytype", this, "Wrong type \""
+					+ quantity.getType().getName() + "\" for new quantity \"" + quantity.toString() + "\"\n"
+					+ "Expected quantity type \"" + quantPropType.getQuantitytype().getName() + "\"", sa);
 		}
 
 		// check maximal value
 		if (quantPropType.getMaxVal() != null) {
-			final String[] sa = { quantity.toString(),
-					quantPropType.getMaxVal().toString() };
+			final String[] sa = { quantity.toString(), quantPropType.getMaxVal().toString() };
 			if (quantity.compareTo(quantPropType.getMaxVal()) == 1) {
-				throw new ValidationException("invalid.prop.quantity.greater",
-						this, "invalid quantity \"" + quantity
-								+ " greater than maximal value \""
-								+ quantPropType.getMaxVal().toString() + "\".",
-						sa);
+				throw new ValidationException("invalid.prop.quantity.greater", this, "invalid quantity \"" + quantity
+						+ " greater than maximal value \"" + quantPropType.getMaxVal().toString() + "\".", sa);
 			}
 		}
 
 		// check minimal value
 		if (quantPropType.getMinVal() != null) {
-			final String[] sa = { quantity.toString(),
-					quantPropType.getMinVal().toString() };
+			final String[] sa = { quantity.toString(), quantPropType.getMinVal().toString() };
 			if (quantity.compareTo(quantPropType.getMinVal()) == -1) {
-				throw new ValidationException("invalid.prop.quantity.greater",
-						this, "invalid quantity \"" + quantity
-								+ " lower than minimal value \""
-								+ quantPropType.getMinVal().toString() + "\".",
-						sa);
+				throw new ValidationException("invalid.prop.quantity.greater", this, "invalid quantity \"" + quantity
+						+ " lower than minimal value \"" + quantPropType.getMinVal().toString() + "\".", sa);
 			}
 		}
 		return quantity;

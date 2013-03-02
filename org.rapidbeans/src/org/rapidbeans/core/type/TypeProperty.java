@@ -184,10 +184,8 @@ public abstract class TypeProperty {
 			return false;
 		}
 		final TypeProperty otherPropType = (TypeProperty) other;
-		final String thisSignature = this.parentBeanType.getName() + "."
-				+ this.propName;
-		final String otherSignature = otherPropType.parentBeanType.getName()
-				+ "." + otherPropType.propName;
+		final String thisSignature = this.parentBeanType.getName() + "." + this.propName;
+		final String otherSignature = otherPropType.parentBeanType.getName() + "." + otherPropType.propName;
 		return thisSignature.equals(otherSignature);
 	}
 
@@ -247,16 +245,14 @@ public abstract class TypeProperty {
 	 * @return the new property type instance
 	 */
 	@SuppressWarnings("unchecked")
-	public static TypeProperty createInstance(final XmlNode propertyNode,
-			final XmlNode propertyNodeXmlBinding,
+	public static TypeProperty createInstance(final XmlNode propertyNode, final XmlNode propertyNodeXmlBinding,
 			final TypeRapidBean bizBeanType) {
 		TypeProperty type = null;
 
 		String propTypename = propertyNode.getAttributeValue("@type", "string");
 		switch (propTypename.charAt(0)) {
 		case 'a':
-			if (propTypename.equals("association")
-					|| propTypename.equals("associationend")) {
+			if (propTypename.equals("association") || propTypename.equals("associationend")) {
 				propTypename = "collection";
 			}
 			break;
@@ -275,39 +271,28 @@ public abstract class TypeProperty {
 		if (proptype == PropertyType.bool) {
 			classname = "org.rapidbeans.core.type.TypePropertyBoolean";
 		} else {
-			classname = "org.rapidbeans.core.type.TypeProperty"
-					+ StringHelper.upperFirstCharacter(proptype.name());
+			classname = "org.rapidbeans.core.type.TypeProperty" + StringHelper.upperFirstCharacter(proptype.name());
 		}
 		Class<?> clazz;
 		try {
 			clazz = Class.forName(classname);
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException("class " + classname
-					+ " not found", e);
+			throw new RapidBeansRuntimeException("class " + classname + " not found", e);
 		}
 		try {
 			Constructor<TypeProperty> constr = (Constructor<TypeProperty>) clazz
 					.getConstructor(BBPROPTYPE_CONSTRUCTOR_TYPES);
-			Object[] oa = {
-					new XmlNode[] { propertyNode, propertyNodeXmlBinding },
-					bizBeanType };
+			Object[] oa = { new XmlNode[] { propertyNode, propertyNodeXmlBinding }, bizBeanType };
 			type = (TypeProperty) constr.newInstance(oa);
 		} catch (NoSuchMethodException e) {
-			throw new RapidBeansRuntimeException(
-					"failed to initialize BBProp of Class \"" + clazz.getName()
-							+ "\".\n" + "Constructor (XmlNode) not found.");
+			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
+					+ "Constructor (XmlNode) not found.");
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(
-					"failed to initialize BBProp of Class \""
-							+ clazz.getName()
-							+ "\".\n"
-							+ "IllegalAccessException while calling the constructor.");
+			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
+					+ "IllegalAccessException while calling the constructor.");
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException(
-					"failed to initialize BBProp of Class \""
-							+ clazz.getName()
-							+ "\".\n"
-							+ "InstatiationException while calling the constructor.");
+			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
+					+ "InstatiationException while calling the constructor.");
 		} catch (InvocationTargetException e) {
 			Throwable t = e.getTargetException();
 			if (t instanceof ExceptionInInitializerError) {
@@ -316,11 +301,9 @@ public abstract class TypeProperty {
 			if (t instanceof RuntimeException) {
 				throw ((RuntimeException) t);
 			}
-			throw new RapidBeansRuntimeException(
-					"failed to initialize BBProp of Class \"" + clazz.getName()
-							+ "\".\n" + "InvocationTargetException caused by "
-							+ t.getClass().getName() + " \"" + t.getMessage()
-							+ "\"" + " while calling the constructor.");
+			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
+					+ "InvocationTargetException caused by " + t.getClass().getName() + " \"" + t.getMessage() + "\""
+					+ " while calling the constructor.");
 		}
 		return type;
 	}
@@ -328,8 +311,7 @@ public abstract class TypeProperty {
 	/**
 	 * constant for constructor arguments of class TypeProperty.
 	 */
-	private static final Class<?>[] BBPROPTYPE_CONSTRUCTOR_TYPES = {
-			XmlNode[].class, TypeRapidBean.class };
+	private static final Class<?>[] BBPROPTYPE_CONSTRUCTOR_TYPES = { XmlNode[].class, TypeRapidBean.class };
 
 	/**
 	 * constructor.
@@ -341,23 +323,20 @@ public abstract class TypeProperty {
 	 * @param parentType
 	 *            the parent bean type
 	 */
-	protected TypeProperty(final String typeId, final XmlNode[] propertyNodes,
-			final TypeRapidBean parentType) {
+	protected TypeProperty(final String typeId, final XmlNode[] propertyNodes, final TypeRapidBean parentType) {
 
 		final XmlNode propertyNode = propertyNodes[0];
 
 		this.propName = propertyNode.getAttributeValue("@name");
 		if (this.propName == null) {
-			throw new RapidBeansRuntimeException(
-					"Property defined without name");
+			throw new RapidBeansRuntimeException("Property defined without name");
 		}
 		this.parentBeanType = parentType;
 
 		String s = propertyNode.getAttributeValue("@depends");
 		if (s != null) {
 			for (final String sdep : StringHelper.split(s, ",")) {
-				this.dependentFromProps.add(this.getParentBeanType()
-						.getPropertyType(sdep));
+				this.dependentFromProps.add(this.getParentBeanType().getPropertyType(sdep));
 			}
 			if (this.dependentFromProps.size() > 0) {
 				this.transientProp = true;
@@ -375,8 +354,7 @@ public abstract class TypeProperty {
 		} else {
 			classname = s;
 			if (!s.contains(".") && this.getParentBeanType() != null) {
-				final String packageName = this.getParentBeanType()
-						.getPackageName();
+				final String packageName = this.getParentBeanType().getPackageName();
 				if (packageName != null) {
 					classname = packageName + "." + s;
 				}
@@ -385,8 +363,7 @@ public abstract class TypeProperty {
 		try {
 			this.propClass = Class.forName(classname);
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException("class \"" + classname
-					+ "\"not found");
+			throw new RapidBeansRuntimeException("class \"" + classname + "\"not found");
 		}
 
 		s = propertyNode.getAttributeValue("@key");
@@ -431,32 +408,27 @@ public abstract class TypeProperty {
 	 *            the XML Node with the binding description
 	 */
 	private void evalXmlBinding(final XmlNode propertyNodeXmlBinding) {
-		final String s = propertyNodeXmlBinding
-				.getAttributeValue("@bindingtype");
+		final String s = propertyNodeXmlBinding.getAttributeValue("@bindingtype");
 		if (s != null) {
 			this.xmlBindingType = PropertyXmlBindingType.valueOf(s);
 		}
-		final Collection<XmlNode> subnodes = propertyNodeXmlBinding
-				.getSubnodes("beantype");
+		final Collection<XmlNode> subnodes = propertyNodeXmlBinding.getSubnodes("beantype");
 		if (subnodes == null) {
 			return;
 		}
 		for (final XmlNode currentNode : subnodes) {
 			final String typename = currentNode.getAttributeValue("@name");
 			if (typename == null || typename.length() == 0) {
-				throw new RapidBeansRuntimeException(
-						"wrong XML binding, beantype name missing");
+				throw new RapidBeansRuntimeException("wrong XML binding, beantype name missing");
 			}
 			TypeRapidBean type = null;
 			try {
 				type = TypeRapidBean.forName(typename);
 			} catch (TypeNotFoundException e) {
-				throw new RapidBeansRuntimeException(
-						"Invalid XML binding, beantype name \"" + typename
-								+ "\" unknown", e);
+				throw new RapidBeansRuntimeException("Invalid XML binding, beantype name \"" + typename + "\" unknown",
+						e);
 			}
-			final String xmlelement = currentNode
-					.getAttributeValue("@xmlelement");
+			final String xmlelement = currentNode.getAttributeValue("@xmlelement");
 			if (this.xmlBindTypeToXml == null) {
 				this.xmlBindTypeToXml = new HashMap<TypeRapidBean, String>();
 				this.xmlBindXmlToType = new HashMap<String, TypeRapidBean>();
@@ -466,8 +438,7 @@ public abstract class TypeProperty {
 		}
 	}
 
-	protected void evalXmlBinding(final TypeRapidBean beantype,
-			final XmlNode propNode) {
+	protected void evalXmlBinding(final TypeRapidBean beantype, final XmlNode propNode) {
 	}
 
 	/**
@@ -486,12 +457,10 @@ public abstract class TypeProperty {
 	protected void throwModelValidationException(final String message) {
 		String completeMessage;
 		if (this.getParentBeanType() != null) {
-			completeMessage = "Error in specification of bean type" + "\""
-					+ this.getParentBeanType().getName() + "\", property "
-					+ "\"" + this.getPropName() + ":\n" + message;
+			completeMessage = "Error in specification of bean type" + "\"" + this.getParentBeanType().getName()
+					+ "\", property " + "\"" + this.getPropName() + ":\n" + message;
 		} else {
-			completeMessage = "Error in specification of property " + "\""
-					+ this.getPropName() + ":\n" + message;
+			completeMessage = "Error in specification of property " + "\"" + this.getPropName() + ":\n" + message;
 		}
 		throw new ModelValidationException(completeMessage);
 	}

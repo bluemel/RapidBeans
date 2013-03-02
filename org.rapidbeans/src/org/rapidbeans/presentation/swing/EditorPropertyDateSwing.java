@@ -71,17 +71,14 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyDateSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyDateSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
 		if (!(prop instanceof PropertyDate)) {
-			throw new RapidBeansRuntimeException(
-					"invalid propperty for a date editor");
+			throw new RapidBeansRuntimeException("invalid propperty for a date editor");
 		}
-		if (prop.getType().isKeyCandidate()
-				&& (!this.getBeanEditor().isInNewMode())) {
+		if (prop.getType().isKeyCandidate() && (!this.getBeanEditor().isInNewMode())) {
 			this.text.setEditable(false);
 		}
 		this.text.addKeyListener(new KeyListener() {
@@ -144,8 +141,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_ENTER:
 		case KeyEvent.VK_DOWN:
-			getBeanEditor().rotateFocus(getProperty(),
-					EditorBean.DIRECTION_DOWN);
+			getBeanEditor().rotateFocus(getProperty(), EditorBean.DIRECTION_DOWN);
 			break;
 		case KeyEvent.VK_UP:
 			getBeanEditor().rotateFocus(getProperty(), EditorBean.DIRECTION_UP);
@@ -158,13 +154,10 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 	public void handleFocusLost() {
 		final Date dateOld = ((PropertyDate) getProperty()).getValue();
 		final Date dateNew = (Date) getInputFieldValue();
-		if ((dateOld == null && dateNew != null)
-				|| (dateOld != null && dateNew == null)
-				&& (dateOld != null && dateNew != null && !dateOld
-						.equals(dateNew))) {
+		if ((dateOld == null && dateNew != null) || (dateOld != null && dateNew == null)
+				&& (dateOld != null && dateNew != null && !dateOld.equals(dateNew))) {
 			fireInputFieldChanged();
-		} else if (dateOld != null && dateNew != null
-				&& dateOld.equals(dateNew)
+		} else if (dateOld != null && dateNew != null && dateOld.equals(dateNew)
 				&& !this.text.equals(getInputFieldValueString())) {
 			updateUI();
 		}
@@ -183,8 +176,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 			final Object value = this.getProperty().getValue();
 			String newText = "";
 			if (value != null) {
-				newText = DateFormat.getDateInstance(DateFormat.MEDIUM,
-						this.getLocale().getLocale()).format(value);
+				newText = DateFormat.getDateInstance(DateFormat.MEDIUM, this.getLocale().getLocale()).format(value);
 			}
 			if (!this.text.getText().equals(newText)) {
 				this.text.setText(newText);
@@ -205,16 +197,11 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 				ifValue = readDate();
 			} else {
 				try {
-					ifValue = DateFormat.getDateInstance(DateFormat.MEDIUM,
-							this.getLocale().getLocale()).parse(s);
+					ifValue = DateFormat.getDateInstance(DateFormat.MEDIUM, this.getLocale().getLocale()).parse(s);
 				} catch (ParseException e) {
-					throw new ValidationException(SIG_DATE_INVALID_FORMAT,
-							this, "invalid localized medium date string \""
-									+ s
-									+ "\""
-									+ " for locale "
-									+ this.getLocale().getLocale()
-											.getDisplayName());
+					throw new ValidationException(SIG_DATE_INVALID_FORMAT, this,
+							"invalid localized medium date string \"" + s + "\"" + " for locale "
+									+ this.getLocale().getLocale().getDisplayName());
 				}
 			}
 		}
@@ -232,9 +219,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 		this.inputFieldValueCompleted = false;
 		ParsedDate pd = this.parseLocalDate(true);
 		this.inputFieldValueCompleted = pd.isCompleted();
-		return pd
-				.toDate(((TypePropertyDate) ((PropertyDate) this.getProperty())
-						.getType()).getPrecision());
+		return pd.toDate(((TypePropertyDate) ((PropertyDate) this.getProperty()).getType()).getPrecision());
 	}
 
 	/**
@@ -400,10 +385,8 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					this.completed = true;
 				}
 			} catch (NumberFormatException e) {
-				throw new ValidationException(SIG_DATE_INVALID_DAY, this,
-						"Invalid day in localized date string \"" + this.sDate
-								+ "\"" + " for locale "
-								+ this.locale.getDisplayName());
+				throw new ValidationException(SIG_DATE_INVALID_DAY, this, "Invalid day in localized date string \""
+						+ this.sDate + "\"" + " for locale " + this.locale.getDisplayName());
 			}
 		}
 
@@ -419,10 +402,8 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					this.completed = true;
 				}
 			} catch (NumberFormatException e) {
-				throw new ValidationException(SIG_DATE_INVALID_MONTH, this,
-						"Invalid month in localized date string \""
-								+ this.sDate + "\"" + " for locale "
-								+ this.locale.getDisplayName());
+				throw new ValidationException(SIG_DATE_INVALID_MONTH, this, "Invalid month in localized date string \""
+						+ this.sDate + "\"" + " for locale " + this.locale.getDisplayName());
 			}
 		}
 
@@ -444,28 +425,23 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 				if (this.year >= 0 && this.year <= 19) {
 					this.year += 2000;
 					this.syear = Integer.toString(this.year);
-					this.sDate = this.sday + '.' + this.smonth + "."
-							+ this.syear;
+					this.sDate = this.sday + '.' + this.smonth + "." + this.syear;
 				} else if (this.year >= 20 && this.year <= 99) {
 					this.year += 1900;
 					this.syear = Integer.toString(this.year);
-					this.sDate = this.sday + '.' + this.smonth + "."
-							+ this.syear;
+					this.sDate = this.sday + '.' + this.smonth + "." + this.syear;
 				} else if (this.year >= 100 && this.year <= 999) {
 					if (this.syear.length() == 3) {
 						this.syear = '0' + this.syear;
-						this.sDate = this.sday + '.' + this.smonth + "."
-								+ this.syear;
+						this.sDate = this.sday + '.' + this.smonth + "." + this.syear;
 					}
 				}
 				if (s.length() < 4) {
 					this.completed = true;
 				}
 			} catch (NumberFormatException e) {
-				throw new ValidationException(SIG_DATE_INVALID_YEAR, this,
-						"Invalid year in localized date string \"" + this.sDate
-								+ "\"" + " for locale "
-								+ this.locale.getDisplayName());
+				throw new ValidationException(SIG_DATE_INVALID_YEAR, this, "Invalid year in localized date string \""
+						+ this.sDate + "\"" + " for locale " + this.locale.getDisplayName());
 			}
 		}
 
@@ -479,15 +455,12 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 		 */
 		public Date toDate(final PrecisionDate precision) {
 			if (!this.ok) {
-				throw new ValidationException(SIG_DATE_INVALID_FORMAT, this,
-						"invalid localized medium date string \"" + this.sDate
-								+ "\" for locale "
-								+ this.locale.getDisplayName());
+				throw new ValidationException(SIG_DATE_INVALID_FORMAT, this, "invalid localized medium date string \""
+						+ this.sDate + "\" for locale " + this.locale.getDisplayName());
 			}
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.set(this.year, this.month - 1, this.day);
-			return new Date(PropertyDate.cutPrecisionLong(
-					cal.getTimeInMillis(), precision));
+			return new Date(PropertyDate.cutPrecisionLong(cal.getTimeInMillis(), precision));
 		}
 
 		/**
@@ -499,9 +472,8 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 		public void validate(final boolean completenessRequired) {
 			if (completenessRequired) {
 				if (this.syear == null) {
-					throw new ValidationException(SIG_DATE_INVALID_ICOMPLETE,
-							this, "Incomplete localized medium date string \""
-									+ this.sDate + "\"" + " for locale "
+					throw new ValidationException(SIG_DATE_INVALID_ICOMPLETE, this,
+							"Incomplete localized medium date string \"" + this.sDate + "\"" + " for locale "
 									+ this.locale.getDisplayName());
 				}
 			}
@@ -510,27 +482,20 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 				if (this.smonth != null) {
 					if (this.syear != null) { // (1,1,1)
 						if (this.year < 0 || this.year > 9999) {
-							throw new ValidationException(
-									SIG_DATE_INVALID_YEAR, this,
-									"Invalid year in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_YEAR, this,
+									"Invalid year in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 						if (this.month == 2 && this.day == 29) {
-							DateFormat df = DateFormat.getDateInstance(
-									DateFormat.MEDIUM, this.locale);
+							DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, this.locale);
 							GregorianCalendar cal = new GregorianCalendar();
 							cal.set(this.year, this.month - 1, this.day);
 							String normFormat = df.format(cal.getTime());
 
 							if (!(normFormat.equals(sDate))) {
-								throw new ValidationException(
-										SIG_DATE_INVALID_DAY, this,
-										"Invalid day february 29th in localized date string \""
-												+ this.sDate + "\""
-												+ " for locale "
-												+ this.locale.getDisplayName());
+								throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+										"Invalid day february 29th in localized date string \"" + this.sDate + "\""
+												+ " for locale " + this.locale.getDisplayName());
 							}
 						}
 					}
@@ -538,28 +503,20 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					if (this.month == 0) {
 						if (this.smonth.length() == 1) {
 							if (completenessRequired) {
-								throw new ValidationException(
-										SIG_DATE_INVALID_MONTH, this,
-										"Invalid month localized date string \""
-												+ this.sDate + "\""
-												+ " for locale "
+								throw new ValidationException(SIG_DATE_INVALID_MONTH, this,
+										"Invalid month localized date string \"" + this.sDate + "\"" + " for locale "
 												+ this.locale.getDisplayName());
 
 							}
 						} else {
-							throw new ValidationException(
-									SIG_DATE_INVALID_MONTH, this,
-									"Invalid month in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_MONTH, this,
+									"Invalid month in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 					}
 					if (this.month < 0 || this.month > 12) {
-						throw new ValidationException(SIG_DATE_INVALID_MONTH,
-								this,
-								"Invalid month in localized date string \""
-										+ this.sDate + "\"" + " for locale "
+						throw new ValidationException(SIG_DATE_INVALID_MONTH, this,
+								"Invalid month in localized date string \"" + this.sDate + "\"" + " for locale "
 										+ this.locale.getDisplayName());
 					}
 					switch (this.month) {
@@ -571,11 +528,8 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					case 10:
 					case 12:
 						if (this.day < 1 || this.day > 31) {
-							throw new ValidationException(SIG_DATE_INVALID_DAY,
-									this,
-									"Invalid day in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+									"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 						break;
@@ -584,21 +538,15 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					case 9:
 					case 11:
 						if (this.day < 1 || this.day > 30) {
-							throw new ValidationException(SIG_DATE_INVALID_DAY,
-									this,
-									"Invalid day in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+									"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 						break;
 					case 2:
 						if (this.day < 1 || this.day > 29) {
-							throw new ValidationException(SIG_DATE_INVALID_DAY,
-									this,
-									"Invalid day in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+									"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 						break;
@@ -609,26 +557,19 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					if (this.day == 0) {
 						if (this.sday.length() == 1) {
 							if (completenessRequired) {
-								throw new ValidationException(
-										SIG_DATE_INVALID_DAY, this,
-										"Invalid day in localized date string \""
-												+ this.sDate + "\""
-												+ " for locale "
+								throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+										"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 												+ this.locale.getDisplayName());
 							}
 						} else {
-							throw new ValidationException(SIG_DATE_INVALID_DAY,
-									this,
-									"Invalid day in localized date string \""
-											+ this.sDate + "\""
-											+ " for locale "
+							throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+									"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 											+ this.locale.getDisplayName());
 						}
 					}
 					if (this.day < 0 || this.day > 31) {
-						throw new ValidationException(SIG_DATE_INVALID_DAY,
-								this, "Invalid day in localized date string \""
-										+ this.sDate + "\"" + " for locale "
+						throw new ValidationException(SIG_DATE_INVALID_DAY, this,
+								"Invalid day in localized date string \"" + this.sDate + "\"" + " for locale "
 										+ this.locale.getDisplayName());
 					}
 				}
@@ -647,8 +588,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 	 *         least get after appending additional characters.
 	 */
 	private ParsedDate parseLocalDate(final boolean completenessRequired) {
-		ParsedDate date = new ParsedDate(this.text.getText(), this.getLocale()
-				.getLocale());
+		ParsedDate date = new ParsedDate(this.text.getText(), this.getLocale().getLocale());
 		if (this.getLocale().getName().equals("de")) {
 			String s = this.text.getText();
 			int len = s.length();
@@ -663,19 +603,13 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 				case 1:
 				case 2:
 					if (c >= '0' && c <= '9') {
-						if (((state == 2) && (i >= (j + 1) && i <= (j + 4)))
-								|| ((state == 0) && (i >= 0 && i <= 1))
+						if (((state == 2) && (i >= (j + 1) && i <= (j + 4))) || ((state == 0) && (i >= 0 && i <= 1))
 								|| ((state == 1) && (i >= (j + 1) && i <= (j + 2)))) {
 							sb.append(c);
 						} else {
-							throw new ValidationException(
-									SIG_DATE_INVALID_FORMAT, this,
-									"invalid localized medium date string \""
-											+ s
-											+ "\""
-											+ " for locale "
-											+ this.getLocale().getLocale()
-													.getDisplayName());
+							throw new ValidationException(SIG_DATE_INVALID_FORMAT, this,
+									"invalid localized medium date string \"" + s + "\"" + " for locale "
+											+ this.getLocale().getLocale().getDisplayName());
 						}
 					} else if ((state == 0 || state == 1) && (c == '.')) {
 						j = i;
@@ -687,24 +621,18 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 							date.setMonth(sb.toString());
 							break;
 						default:
-							throw new RapidBeansRuntimeException(
-									"Error during parsing a date");
+							throw new RapidBeansRuntimeException("Error during parsing a date");
 						}
 						sb.setLength(0);
 						state++;
 					} else {
-						throw new ValidationException(SIG_DATE_INVALID_FORMAT,
-								this, "invalid localized medium date string \""
-										+ s
-										+ "\""
-										+ " for locale "
-										+ this.getLocale().getLocale()
-												.getDisplayName());
+						throw new ValidationException(SIG_DATE_INVALID_FORMAT, this,
+								"invalid localized medium date string \"" + s + "\"" + " for locale "
+										+ this.getLocale().getLocale().getDisplayName());
 					}
 					break;
 				default:
-					throw new RapidBeansRuntimeException("unexcpected state "
-							+ state);
+					throw new RapidBeansRuntimeException("unexcpected state " + state);
 				}
 			}
 			if (sb.length() > 0) {
@@ -719,8 +647,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 					date.setYear(sb.toString());
 					break;
 				default:
-					throw new RapidBeansRuntimeException(
-							"Error during parsing a date");
+					throw new RapidBeansRuntimeException("Error during parsing a date");
 				}
 			}
 

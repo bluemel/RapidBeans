@@ -27,8 +27,7 @@ public final class RapidBeansTypeLoaderTest extends TestCase {
 	public void testGetMetainfoFromEnumTypeNameGenerated() {
 		// every concrete enum class is loaded automatically when its metainfo
 		// is retrieved by enum type name which is the class name
-		TypeRapidEnum metainfSex = TypeRapidEnum
-				.forName("org.rapidbeans.domain.org.Sex");
+		TypeRapidEnum metainfSex = TypeRapidEnum.forName("org.rapidbeans.domain.org.Sex");
 		assertNotNull(metainfSex);
 		// assert that the right enum elements are loaded
 		List<RapidEnum> enumSexElements = metainfSex.getElements();

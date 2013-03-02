@@ -66,8 +66,7 @@ public final class ApplicationLnfTypeSwing extends GenericEnum {
 	 * @return the enumeration element
 	 */
 	public static ApplicationLnfTypeSwing getInstance(final String lnfName) {
-		return (ApplicationLnfTypeSwing) GenericEnum.valueOf(
-				ApplicationLnfTypeSwing.class.getName(), lnfName);
+		return (ApplicationLnfTypeSwing) GenericEnum.valueOf(ApplicationLnfTypeSwing.class.getName(), lnfName);
 	}
 
 	/**
@@ -134,10 +133,8 @@ public final class ApplicationLnfTypeSwing extends GenericEnum {
 		int order = 0;
 		elements.add(new ApplicationLnfTypeSwing("system", order++));
 		Class<?> lafClass;
-		for (UIManager.LookAndFeelInfo info : UIManager
-				.getInstalledLookAndFeels()) {
-			final ApplicationLnfTypeSwing laf = new ApplicationLnfTypeSwing(
-					info.getName().toLowerCase(), order++);
+		for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			final ApplicationLnfTypeSwing laf = new ApplicationLnfTypeSwing(info.getName().toLowerCase(), order++);
 			try {
 				lafClass = Class.forName(info.getClassName());
 			} catch (ClassNotFoundException e) {

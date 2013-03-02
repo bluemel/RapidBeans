@@ -45,8 +45,7 @@ public class MenuSeparatorSwing extends MenuSeparator {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuSeparatorSwing(final ConfigMenuSeparator config,
-			final Application client, final String resourcePath) {
+	public MenuSeparatorSwing(final ConfigMenuSeparator config, final Application client, final String resourcePath) {
 		super(client, config, resourcePath);
 	}
 }

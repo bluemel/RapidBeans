@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: RapidBeansLocale.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.core.common.RapidBeansLocale
  * 
- * model:    model/org/rapidbeans/core/common/RapidBeansLocale.xml
+ * model: model/org/rapidbeans/core/common/RapidBeansLocale.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.core.common;
@@ -33,8 +33,7 @@ import org.rapidbeans.presentation.Application;
 public class RapidBeansLocale extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// RapidBeansLocale.classBody
-	private static final Logger log = Logger.getLogger(RapidBeansLocale.class
-			.getName());
+	private static final Logger log = Logger.getLogger(RapidBeansLocale.class.getName());
 
 	/**
 	 * the associated Java Locale instance.
@@ -151,8 +150,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the localized string
 	 */
-	public final String getStringMessage(final String key, final String arg1,
-			final String arg2) {
+	public final String getStringMessage(final String key, final String arg1, final String arg2) {
 		String s = null;
 		try {
 			s = this.textsMessages.getString(key);
@@ -179,8 +177,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the localized string
 	 */
-	public final String getStringMessage(final String key, final String arg1,
-			final String arg2, final String arg3) {
+	public final String getStringMessage(final String key, final String arg1, final String arg2, final String arg3) {
 		String s = null;
 		try {
 			s = this.textsMessages.getString(key);
@@ -230,8 +227,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the resource bundle
 	 */
-	private ResourceBundle initResourceBundle(final String s,
-			final String textsName) {
+	private ResourceBundle initResourceBundle(final String s, final String textsName) {
 		String baseName = s + ".lang." + this.getName() + "." + textsName;
 		ResourceBundle bundle = null;
 		try {
@@ -264,8 +260,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return zzz
 	 */
-	private ResourceBundle initResourceBundle(final Application client,
-			final String textsName) {
+	private ResourceBundle initResourceBundle(final Application client, final String textsName) {
 		return this.initResourceBundle(client.getRootpackage(), textsName);
 	}
 
@@ -280,8 +275,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
 	}
 
 	/**
@@ -323,8 +317,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(RapidBeansLocale.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(RapidBeansLocale.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -340,8 +333,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
 		}
 	}
 

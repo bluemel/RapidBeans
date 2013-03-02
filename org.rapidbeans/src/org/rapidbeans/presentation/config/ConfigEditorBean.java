@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: ConfigEditorBean.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigEditorBean
  * 
- * model:    model/org/rapidbeans/presentation/config/ConfigEditorBean.xml
+ * model: model/org/rapidbeans/presentation/config/ConfigEditorBean.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
@@ -66,12 +66,9 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.beantype = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("beantype");
-		this.editorclass = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("editorclass");
-		this.propertycfgs = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("propertycfgs");
+		this.beantype = (org.rapidbeans.core.basic.PropertyString) this.getProperty("beantype");
+		this.editorclass = (org.rapidbeans.core.basic.PropertyString) this.getProperty("editorclass");
+		this.propertycfgs = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("propertycfgs");
 	}
 
 	/**
@@ -113,8 +110,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(ConfigEditorBean.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigEditorBean.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -130,8 +126,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 		try {
 			return (String) this.beantype.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"beantype");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("beantype");
 		}
 	}
 
@@ -152,8 +147,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 		try {
 			return (String) this.editorclass.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"editorclass");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("editorclass");
 		}
 	}
 
@@ -176,8 +170,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigPropEditorBean>) this.propertycfgs
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"propertycfgs");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("propertycfgs");
 		}
 	}
 
@@ -198,10 +191,8 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void addPropertycfg(
-			final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs)
-				.addLink(bean);
+	public void addPropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).addLink(bean);
 	}
 
 	/**
@@ -210,9 +201,7 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removePropertycfg(
-			final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs)
-				.removeLink(bean);
+	public void removePropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).removeLink(bean);
 	}
 }

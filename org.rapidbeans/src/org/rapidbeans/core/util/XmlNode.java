@@ -91,9 +91,8 @@ public class XmlNode {
 	public XmlNode getFirstSubnode(final String pattern) {
 		Collection<XmlNode> subnodes = this.getSubnodes(pattern);
 		if (subnodes.size() == 0) {
-			throw new UtilException("XML Util Error: could not find subnode \""
-					+ pattern + "\" of node \"" + this.node.getNodeName()
-					+ "\"");
+			throw new UtilException("XML Util Error: could not find subnode \"" + pattern + "\" of node \""
+					+ this.node.getNodeName() + "\"");
 		}
 		return subnodes.iterator().next();
 	}
@@ -132,8 +131,7 @@ public class XmlNode {
 		final int subnodesCount = subnodes.getLength();
 		final List<XmlNode> foundNodes = new ArrayList<XmlNode>();
 		for (int i = 0; i < subnodesCount; i++) {
-			if (firstPatternToken == null
-					|| subnodes.item(i).getNodeName().equals(firstPatternToken)) {
+			if (firstPatternToken == null || subnodes.item(i).getNodeName().equals(firstPatternToken)) {
 				foundNodes.add(new XmlNode(subnodes.item(i)));
 			}
 		}
@@ -188,11 +186,9 @@ public class XmlNode {
 	 *            the default value in case the attribute is not found
 	 * @return the found attribute's value or a default value if not found
 	 */
-	public String getAttributeValue(final String pattern,
-			final String defaultValue) {
+	public String getAttributeValue(final String pattern, final String defaultValue) {
 		String ret = defaultValue;
-		final String firstPatternToken = new StringTokenizer(pattern, "/")
-				.nextToken();
+		final String firstPatternToken = new StringTokenizer(pattern, "/").nextToken();
 		if (firstPatternToken.startsWith("@")) {
 			String attrName = firstPatternToken.substring(1);
 			final NamedNodeMap attrs = this.node.getAttributes();
@@ -217,15 +213,12 @@ public class XmlNode {
 	 */
 	public static XmlNodeTopLevel getDocumentTopLevel(final URL url) {
 		if (url.getProtocol().equals("file")) {
-			return getDocumentTopLevel(new File(url.getFile().replaceAll("%20",
-					" ")));
-		} else if (url.getProtocol().equals("ftp")
-				|| url.getProtocol().equals("http")
+			return getDocumentTopLevel(new File(url.getFile().replaceAll("%20", " ")));
+		} else if (url.getProtocol().equals("ftp") || url.getProtocol().equals("http")
 				|| url.toString().startsWith("jar:http:")) {
 			return getDocumentTopLevelConnection(url);
 		} else {
-			throw new RapidBeansRuntimeException("Unsupported protocol \""
-					+ url.getProtocol());
+			throw new RapidBeansRuntimeException("Unsupported protocol \"" + url.getProtocol());
 		}
 	}
 
@@ -269,13 +262,11 @@ public class XmlNode {
 			URLConnection urlc = url.openConnection();
 			is = urlc.getInputStream();
 			if (is == null) {
-				throw new UtilException("URL \"" + url.toString()
-						+ "\" not found");
+				throw new UtilException("URL \"" + url.toString() + "\" not found");
 			}
 			return getDocumentTopLevel(is);
 		} catch (IOException e) {
-			throw new UtilException("Problems opening a connection for URL \""
-					+ url.toString() + "\"", e);
+			throw new UtilException("Problems opening a connection for URL \"" + url.toString() + "\"", e);
 		} finally {
 			if (is != null) {
 				try {
@@ -307,11 +298,9 @@ public class XmlNode {
 	 * 
 	 * @return the top level node
 	 */
-	public static XmlNodeTopLevel getDocumentTopLevel(
-			final InputStream inputStream) {
+	public static XmlNodeTopLevel getDocumentTopLevel(final InputStream inputStream) {
 		try {
-			final DocumentBuilderFactory dbf = DocumentBuilderFactory
-					.newInstance();
+			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware(true);
 			// dbf.setValidating(true);
 			dbf.setValidating(false);
@@ -341,8 +330,7 @@ public class XmlNode {
 				}
 			}
 			if (topLevelNode == null) {
-				throw new RapidBeansRuntimeException(
-						"No top level element found.");
+				throw new RapidBeansRuntimeException("No top level element found.");
 			}
 			return new XmlNodeTopLevel(topLevelNode, doc.getXmlEncoding());
 		} catch (ParserConfigurationException e) {

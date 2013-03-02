@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: Settings.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.Settings
  * 
- * model:    model/org/rapidbeans/presentation/settings/Settings.xml
+ * model: model/org/rapidbeans/presentation/settings/Settings.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.settings;
@@ -58,8 +58,7 @@ public class Settings extends RapidBeanImplStrict {
 			}
 		}
 		while (parentColProp != null) {
-			parentSettingNamesBackward.add(parentColProp.getType()
-					.getPropName());
+			parentSettingNamesBackward.add(parentColProp.getType().getPropName());
 			parentColProp = parentColProp.getBean().getParentProperty();
 		}
 		ArrayList<String> parentSettingNames = new ArrayList<String>();
@@ -123,8 +122,7 @@ public class Settings extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(Settings.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(Settings.class);
 
 	/**
 	 * @return the Biz Bean's type

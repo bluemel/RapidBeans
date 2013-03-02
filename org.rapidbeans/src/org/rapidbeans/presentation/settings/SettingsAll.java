@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: SettingsAll.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.SettingsAll
  * 
- * model:    model/org/rapidbeans/presentation/settings/SettingsAll.xml
+ * model: model/org/rapidbeans/presentation/settings/SettingsAll.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.settings;
@@ -42,8 +42,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 */
 	private void init() {
 		if (ApplicationManager.getApplication() != null
-				&& ApplicationManager.getApplication().getConfiguration()
-						.getAuthorization() != null) {
+				&& ApplicationManager.getApplication().getConfiguration().getAuthorization() != null) {
 			this.setAuthn(new SettingsAuthn());
 		}
 	}
@@ -71,10 +70,8 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 */
 	public static String getDirname() {
 		if (ApplicationManager.getApplication() != null) {
-			return System.getProperty("user.home")
-					+ "/."
-					+ ApplicationManager.getApplication().getConfiguration()
-							.getName().toLowerCase();
+			return System.getProperty("user.home") + "/."
+					+ ApplicationManager.getApplication().getConfiguration().getName().toLowerCase();
 		} else {
 			return System.getProperty("user.home");
 		}
@@ -91,10 +88,8 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 		final File settingsFile = new File(getFilename());
 		if (!settingsFile.getParentFile().exists()) {
 			if (!settingsFile.getParentFile().mkdir()) {
-				throw new RapidBeansRuntimeException(
-						"problems to create settings folder \""
-								+ settingsFile.getParentFile()
-										.getAbsolutePath() + "\" ");
+				throw new RapidBeansRuntimeException("problems to create settings folder \""
+						+ settingsFile.getParentFile().getAbsolutePath() + "\" ");
 			}
 		}
 		final SettingsAll settings = createSettingsInstance();
@@ -120,8 +115,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 			Class<?> clazz = null;
 			if (app.getRootpackage() != null) {
 				try {
-					clazz = Class.forName(app.getRootpackage()
-							+ ".presentation." + "Settings");
+					clazz = Class.forName(app.getRootpackage() + ".presentation." + "Settings");
 				} catch (ClassNotFoundException e) {
 					clazz = null;
 				}
@@ -162,10 +156,8 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.basic = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("basic");
-		this.authn = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("authn");
+		this.basic = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("basic");
+		this.authn = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("authn");
 	}
 
 	/**
@@ -210,8 +202,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(SettingsAll.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(SettingsAll.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -233,18 +224,15 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.settings.SettingsBasic"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.settings.SettingsBasic" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
-					return (org.rapidbeans.presentation.settings.SettingsBasic) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.settings.SettingsBasic) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"basic");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("basic");
 		}
 	}
 
@@ -254,8 +242,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 * @param argValue
 	 *            value of Property 'basic' to set
 	 */
-	public void setBasic(
-			final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
+	public void setBasic(final org.rapidbeans.presentation.settings.SettingsBasic argValue) {
 		this.basic.setValue(argValue);
 	}
 
@@ -272,18 +259,15 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException(
-							"unresolved link to \""
-									+ "org.rapidbeans.presentation.settings.SettingsAuthn"
-									+ "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.presentation.settings.SettingsAuthn" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
-					return (org.rapidbeans.presentation.settings.SettingsAuthn) col
-							.iterator().next();
+					return (org.rapidbeans.presentation.settings.SettingsAuthn) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"authn");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("authn");
 		}
 	}
 
@@ -293,8 +277,7 @@ public class SettingsAll extends org.rapidbeans.presentation.settings.Settings {
 	 * @param argValue
 	 *            value of Property 'authn' to set
 	 */
-	public void setAuthn(
-			final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
+	public void setAuthn(final org.rapidbeans.presentation.settings.SettingsAuthn argValue) {
 		this.authn.setValue(argValue);
 	}
 }

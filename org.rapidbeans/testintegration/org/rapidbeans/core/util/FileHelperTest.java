@@ -15,10 +15,8 @@ public class FileHelperTest {
 			FileHelper.deleteDeep(new File("copytest"), true);
 		}
 		try {
-			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-					"copytest"));
-			Assert.assertTrue(new File(
-					"copytest/config/subfolder/Application.xml").exists());
+			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+			Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
 			Assert.assertTrue(new File("copytest/config/Client.xml").exists());
 		} finally {
 			if ((new File("copytest")).exists()) {
@@ -29,15 +27,10 @@ public class FileHelperTest {
 
 	@Test
 	public final void testCopyDeepFileFileUnforced() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"));
-		long modifDate = new File("copytest/config/subfolder/Application.xml")
-				.lastModified();
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"), false);
-		Assert.assertEquals(new File(
-				"copytest/config/subfolder/Application.xml").lastModified(),
-				modifDate);
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+		long modifDate = new File("copytest/config/subfolder/Application.xml").lastModified();
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"), false);
+		Assert.assertEquals(new File("copytest/config/subfolder/Application.xml").lastModified(), modifDate);
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
@@ -46,39 +39,30 @@ public class FileHelperTest {
 		if (new File("copytest").exists()) {
 			FileHelper.deleteDeep(new File("copytest"));
 		}
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"));
-		long modifDate = new File("copytest/config/subfolder/Application.xml")
-				.lastModified();
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+		long modifDate = new File("copytest/config/subfolder/Application.xml").lastModified();
 		// on my OpenSUSE on a VirtualBox the modification date seems to have
 		// seconds precision only
 		// That's why we have to spend one second of idle time here
 		Thread.sleep(1100);
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"), true);
-		long newModifDate = new File(
-				"copytest/config/subfolder/Application.xml").lastModified();
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"), true);
+		long newModifDate = new File("copytest/config/subfolder/Application.xml").lastModified();
 		Assert.assertTrue(newModifDate > modifDate);
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
 	public final void testCopyDeepExcludeSvnDirs() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"), false, true);
-		Assert.assertTrue(new File("copytest/config/subfolder/Application.xml")
-				.exists());
-		Assert.assertFalse(new File(
-				"copytest/config/subfolder/.svn/text-base/Application.xml.svn-base")
-				.exists());
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"), false, true);
+		Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
+		Assert.assertFalse(new File("copytest/config/subfolder/.svn/text-base/Application.xml.svn-base").exists());
 		Assert.assertTrue(new File("copytest/config/Client.xml").exists());
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
 	public final void testCopyFileNormal() {
-		File src = new File(
-				"testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml");
+		File src = new File("testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml");
 		File tgt = new File("testdata/testfile.txt");
 		if (tgt.exists()) {
 			Assert.assertTrue(tgt.delete());
@@ -98,8 +82,7 @@ public class FileHelperTest {
 
 	@Test
 	public final void testCopyFileFileFileBoolean() throws InterruptedException {
-		File src = new File(
-				"testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml");
+		File src = new File("testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml");
 		File tgt = new File("testdata/testfile.txt");
 		FileHelper.copyFile(src, tgt);
 		Assert.assertTrue(FileHelper.filesEqual(src, tgt, true, false));
@@ -120,35 +103,28 @@ public class FileHelperTest {
 
 	@Test
 	public final void testDeleteDeepFile() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest"));
-		Assert.assertTrue(new File("copytest/config/subfolder/Application.xml")
-				.exists());
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+		Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
 		Assert.assertTrue(new File("copytest/config/Client.xml").exists());
 		FileHelper.deleteDeep(new File("copytest"));
-		Assert.assertFalse(new File("copytest/config/subfolder/Application.xml")
-				.exists());
+		Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
 		Assert.assertFalse(new File("copytest/config/Client.xml").exists());
 	}
 
 	@Test
 	public final void testDeleteDeepFileUnforced() {
 		try {
-			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-					"copytest"));
-			Assert.assertTrue(new File(
-					"copytest/config/subfolder/Application.xml").exists());
+			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+			Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
 			Assert.assertTrue(new File("copytest/config/Client.xml").exists());
-			Assert.assertTrue(new File("copytest/config/Client.xml")
-					.setReadOnly());
+			Assert.assertTrue(new File("copytest/config/Client.xml").setReadOnly());
 			try {
 				FileHelper.deleteDeep(new File("copytest"), false);
 				Assert.fail("expected UtilException");
 			} catch (UtilException e) {
 				Assert.assertTrue(true);
 			}
-			Assert.assertFalse(new File(
-					"copytest/config/subfolder/Application.xml").exists());
+			Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
 			Assert.assertTrue(new File("copytest/config/Client.xml").exists());
 		} finally {
 			if (new File("copytest").exists()) {
@@ -160,16 +136,12 @@ public class FileHelperTest {
 	@Test
 	public final void testDeleteDeepFileForced() {
 		try {
-			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-					"copytest"));
-			Assert.assertTrue(new File(
-					"copytest/config/subfolder/Application.xml").exists());
+			FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest"));
+			Assert.assertTrue(new File("copytest/config/subfolder/Application.xml").exists());
 			Assert.assertTrue(new File("copytest/config/Client.xml").exists());
-			Assert.assertTrue(new File("copytest/config/Client.xml")
-					.setReadOnly());
+			Assert.assertTrue(new File("copytest/config/Client.xml").setReadOnly());
 			FileHelper.deleteDeep(new File("copytest"), true);
-			Assert.assertFalse(new File(
-					"copytest/config/subfolder/Application.xml").exists());
+			Assert.assertFalse(new File("copytest/config/subfolder/Application.xml").exists());
 			Assert.assertFalse(new File("copytest/config/Client.xml").exists());
 			Assert.assertFalse(new File("copytest").exists());
 		} finally {
@@ -181,72 +153,51 @@ public class FileHelperTest {
 
 	@Test
 	public final void testDirsEqualFileString() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest/rapidclubadmin"));
-		Assert.assertTrue(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin"));
+		Assert.assertTrue(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
 	public final void testDirsEqualFileStringFileMissing() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest/rapidclubadmin/"));
-		Assert.assertTrue(new File(
-				"copytest/rapidclubadmin/config/subfolder/Application.xml")
-				.delete());
-		Assert.assertFalse(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin/"));
+		Assert.assertTrue(new File("copytest/rapidclubadmin/config/subfolder/Application.xml").delete());
+		Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
-	public final void testDirsEqualFileStringFileDifferentLength()
-			throws IOException {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest/rapidclubadmin/"));
-		FileHelper.append(new File(
-				"copytest/rapidclubadmin/config/subfolder/Application.xml"),
-				"\nTest");
-		Assert.assertFalse(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
+	public final void testDirsEqualFileStringFileDifferentLength() throws IOException {
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin/"));
+		FileHelper.append(new File("copytest/rapidclubadmin/config/subfolder/Application.xml"), "\nTest");
+		Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
-	public final void testDirsEqualFileStringFileDifferentChar()
-			throws IOException {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest/rapidclubadmin/"));
-		File file = new File(
-				"copytest/rapidclubadmin/config/subfolder/Application.xml");
+	public final void testDirsEqualFileStringFileDifferentChar() throws IOException {
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin/"));
+		File file = new File("copytest/rapidclubadmin/config/subfolder/Application.xml");
 		FileHelper.changeCharAt(file, 10, '0');
-		Assert.assertFalse(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
+		Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
 	public final void testDirsEqualDepthLimited() {
-		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File(
-				"copytest/rapidclubadmin"));
-		FileHelper.deleteDeep(new File(
-				"copytest/rapidclubadmin/config/subfolder"));
-		Assert.assertFalse(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
-		Assert.assertFalse(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"),
+		FileHelper.copyDeep(new File("testdata/rapidclubadmin"), new File("copytest/rapidclubadmin"));
+		FileHelper.deleteDeep(new File("copytest/rapidclubadmin/config/subfolder"));
+		Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"), "copytest/rapidclubadmin"));
+		Assert.assertFalse(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"),
 				new File("copytest/rapidclubadmin"), 2, false));
-		Assert.assertTrue(FileHelper.dirsEqual(new File(
-				"testdata/rapidclubadmin"),
+		Assert.assertTrue(FileHelper.dirsEqual(new File("testdata/rapidclubadmin"),
 				new File("copytest/rapidclubadmin"), 1, false));
 		FileHelper.deleteDeep(new File("copytest"));
 	}
 
 	@Test
 	public final void testFilesEqualFile() {
-		File src = new File(
-				"testdata/rapidclubadmin/config/subfolder/Application.xml");
+		File src = new File("testdata/rapidclubadmin/config/subfolder/Application.xml");
 		File testdir = new File("testdata/test");
 		try {
 			Assert.assertTrue(testdir.mkdir());
@@ -278,8 +229,7 @@ public class FileHelperTest {
 
 	@Test
 	public final void testFilesEqualFileFileBooleanBoolean() {
-		File src = new File(
-				"testdata/rapidclubadmin/config/subfolder/Application.xml");
+		File src = new File("testdata/rapidclubadmin/config/subfolder/Application.xml");
 		File testdir = new File("testdata/test");
 		try {
 			Assert.assertTrue(testdir.mkdir());
@@ -299,32 +249,25 @@ public class FileHelperTest {
 	@Test
 	public final void testListFilesFilterSubdirs() {
 		File testfolder = new File("testdata/rapidclubadmin/config");
-		Assert.assertEquals(6,
-				FileHelper.listFilesExcludeFilter(testfolder, "\\.*").length);
-		Assert.assertEquals(1,
-				FileHelper.listFilesExcludeFilter(testfolder, "*.xml").length);
-		Assert.assertEquals(0,
-				FileHelper.listFilesExcludeFilter(testfolder, "*").length);
-		Assert.assertEquals(6,
-				FileHelper.listFilesExcludeFilter(testfolder, "xxx").length);
+		Assert.assertEquals(6, FileHelper.listFilesExcludeFilter(testfolder, "\\.*").length);
+		Assert.assertEquals(1, FileHelper.listFilesExcludeFilter(testfolder, "*.xml").length);
+		Assert.assertEquals(0, FileHelper.listFilesExcludeFilter(testfolder, "*").length);
+		Assert.assertEquals(6, FileHelper.listFilesExcludeFilter(testfolder, "xxx").length);
 	}
 
 	@Test
 	public final void testBasenameFile() {
-		Assert.assertEquals("myfile",
-				FileHelper.basename(new File("D:/xxx/yyy/myfile.txt")));
+		Assert.assertEquals("myfile", FileHelper.basename(new File("D:/xxx/yyy/myfile.txt")));
 	}
 
 	@Test
 	public final void testBasenameFileWithoutExtension() {
-		Assert.assertEquals("myfile",
-				FileHelper.basename(new File("D:/xxx/yyy/myfile")));
+		Assert.assertEquals("myfile", FileHelper.basename(new File("D:/xxx/yyy/myfile")));
 	}
 
 	@Test
 	public final void testBasenameString() {
-		Assert.assertEquals("myfile",
-				FileHelper.basename("D:/xxx/yyy/myfile.txt"));
+		Assert.assertEquals("myfile", FileHelper.basename("D:/xxx/yyy/myfile.txt"));
 	}
 
 	@Test
@@ -334,14 +277,12 @@ public class FileHelperTest {
 
 	@Test
 	public final void testExtensionFile() {
-		Assert.assertEquals("txt",
-				FileHelper.extension(new File("D:\\xxx\\yyy\\myfile.txt")));
+		Assert.assertEquals("txt", FileHelper.extension(new File("D:\\xxx\\yyy\\myfile.txt")));
 	}
 
 	@Test
 	public final void testExtensionString() {
-		Assert.assertEquals("txt",
-				FileHelper.extension("D:\\xxx\\yyy\\myfile.txt"));
+		Assert.assertEquals("txt", FileHelper.extension("D:\\xxx\\yyy\\myfile.txt"));
 	}
 
 	/**
@@ -351,8 +292,7 @@ public class FileHelperTest {
 	public void testBackupFile() {
 		File file = new File("testdata/testsettings.xml");
 		File backupFile = FileHelper.backup(file);
-		Assert.assertTrue(backupFile.getName().matches(
-				"testsettings_.*.xml.bak"));
+		Assert.assertTrue(backupFile.getName().matches("testsettings_.*.xml.bak"));
 		Assert.assertTrue(backupFile.exists());
 		backupFile.delete();
 	}

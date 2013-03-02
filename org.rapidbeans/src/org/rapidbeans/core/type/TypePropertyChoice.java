@@ -77,19 +77,15 @@ public final class TypePropertyChoice extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyChoice(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyChoice(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		super("Choice", xmlNodes, parentBeanType);
 
 		String enumTypeName = xmlNodes[0].getAttributeValue("@enum");
 		if (enumTypeName == null || enumTypeName.equals("")) {
-			throw new RapidBeansRuntimeException(
-					"no enum specified for Choice Property "
-							+ this.getPropName());
+			throw new RapidBeansRuntimeException("no enum specified for Choice Property " + this.getPropName());
 		}
 		if (!enumTypeName.contains(".") && this.getParentBeanType() != null) {
-			final String packageName = this.getParentBeanType()
-					.getPackageName();
+			final String packageName = this.getParentBeanType().getPackageName();
 			if (packageName != null) {
 				enumTypeName = packageName + "." + enumTypeName;
 			}

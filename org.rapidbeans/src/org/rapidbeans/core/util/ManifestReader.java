@@ -49,11 +49,8 @@ public final class ManifestReader {
 	public static Manifest readManifestFromJarOfClass(final Class<?> clazz) {
 		final String className = clazz.getSimpleName();
 		final String classFileName = className + ".class";
-		final String classFilePath = clazz.getPackage().toString()
-				.replace('.', '/')
-				+ "/" + className;
-		final String pathToThisClass = clazz.getResource(classFileName)
-				.toString();
+		final String classFilePath = clazz.getPackage().toString().replace('.', '/') + "/" + className;
+		final String pathToThisClass = clazz.getResource(classFileName).toString();
 		final String pathToManifest = pathToThisClass.toString().substring(0,
 				pathToThisClass.length() + 2 - ("/" + classFilePath).length())
 				+ "/META-INF/MANIFEST.MF";

@@ -53,8 +53,7 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyInteger(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyInteger(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		super("Integer", xmlNodes, parentBeanType);
 
 		final String sizeString = xmlNodes[0].getAttributeValue("@size");
@@ -76,8 +75,7 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 			this.setMinValue(constructNumber(minValueString));
 		}
 
-		final String defaultValueString = xmlNodes[0]
-				.getAttributeValue("@default");
+		final String defaultValueString = xmlNodes[0].getAttributeValue("@default");
 		if (defaultValueString != null) {
 			final Number defaultValue = convertValue(null, defaultValueString);
 			this.setDefaultValue(defaultValue);
@@ -104,8 +102,7 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 		case unlimited:
 			return BigInteger.class;
 		default:
-			throw new RapidBeansRuntimeException("Unknown integer size \""
-					+ size.toString() + "\"");
+			throw new RapidBeansRuntimeException("Unknown integer size \"" + size.toString() + "\"");
 		}
 	}
 
@@ -120,29 +117,21 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 		none, tooLargeByte, tooSmallByte, tooLargeShort, tooSmallShort, tooLargeInteger, tooSmallInteger, tooLargeLong, tooSmallLong,
 	}
 
-	private static final BigInteger bigIntLongMaxValue = new BigInteger(
-			new Long(Long.MAX_VALUE).toString());
+	private static final BigInteger bigIntLongMaxValue = new BigInteger(new Long(Long.MAX_VALUE).toString());
 
-	private static final BigInteger bigIntLongMinValue = new BigInteger(
-			new Long(Long.MIN_VALUE).toString());
+	private static final BigInteger bigIntLongMinValue = new BigInteger(new Long(Long.MIN_VALUE).toString());
 
-	private static final BigInteger bigIntIntegerMaxValue = new BigInteger(
-			new Integer(Integer.MAX_VALUE).toString());
+	private static final BigInteger bigIntIntegerMaxValue = new BigInteger(new Integer(Integer.MAX_VALUE).toString());
 
-	private static final BigInteger bigIntIntegerMinValue = new BigInteger(
-			new Integer(Integer.MIN_VALUE).toString());
+	private static final BigInteger bigIntIntegerMinValue = new BigInteger(new Integer(Integer.MIN_VALUE).toString());
 
-	private static final BigInteger bigIntShortMaxValue = new BigInteger(
-			new Short(Short.MAX_VALUE).toString());
+	private static final BigInteger bigIntShortMaxValue = new BigInteger(new Short(Short.MAX_VALUE).toString());
 
-	private static final BigInteger bigIntShortMinValue = new BigInteger(
-			new Short(Short.MIN_VALUE).toString());
+	private static final BigInteger bigIntShortMinValue = new BigInteger(new Short(Short.MIN_VALUE).toString());
 
-	private static final BigInteger bigIntByteMaxValue = new BigInteger(
-			new Byte(Byte.MAX_VALUE).toString());
+	private static final BigInteger bigIntByteMaxValue = new BigInteger(new Byte(Byte.MAX_VALUE).toString());
 
-	private static final BigInteger bigIntByteMinValue = new BigInteger(
-			new Byte(Byte.MIN_VALUE).toString());
+	private static final BigInteger bigIntByteMinValue = new BigInteger(new Byte(Byte.MIN_VALUE).toString());
 
 	/**
 	 * converter.
@@ -157,8 +146,7 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 	 * 
 	 * @return the converted value
 	 */
-	public Number convertValue(final PropertyInteger prop,
-			final Object integerValue) {
+	public Number convertValue(final PropertyInteger prop, final Object integerValue) {
 		Number i = null;
 		final Class<?> numberClass = this.getNumberClass();
 		ConvertErrorType error = ConvertErrorType.none;
@@ -308,117 +296,85 @@ public final class TypePropertyInteger extends TypePropertyNumber {
 						sIntegerValue = sIntegerValue.substring(1);
 						negative = true;
 					}
-					if (sIntegerValue.length() > 0
-							&& StringHelper.isDigitsOnly(sIntegerValue)
-							&& (!ClassHelper.classOf(BigInteger.class,
-									numberClass))) {
+					if (sIntegerValue.length() > 0 && StringHelper.isDigitsOnly(sIntegerValue)
+							&& (!ClassHelper.classOf(BigInteger.class, numberClass))) {
 						if (negative) {
 							if (ClassHelper.classOf(Long.class, numberClass)) {
 								error = ConvertErrorType.tooSmallLong;
-							} else if (ClassHelper.classOf(Integer.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Integer.class, numberClass)) {
 								error = ConvertErrorType.tooSmallInteger;
-							} else if (ClassHelper.classOf(Short.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Short.class, numberClass)) {
 								error = ConvertErrorType.tooSmallShort;
-							} else if (ClassHelper.classOf(Byte.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Byte.class, numberClass)) {
 								error = ConvertErrorType.tooSmallByte;
 							}
 						} else {
 							if (ClassHelper.classOf(Long.class, numberClass)) {
 								error = ConvertErrorType.tooLargeLong;
-							} else if (ClassHelper.classOf(Integer.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Integer.class, numberClass)) {
 								error = ConvertErrorType.tooLargeInteger;
-							} else if (ClassHelper.classOf(Short.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Short.class, numberClass)) {
 								error = ConvertErrorType.tooLargeShort;
-							} else if (ClassHelper.classOf(Byte.class,
-									numberClass)) {
+							} else if (ClassHelper.classOf(Byte.class, numberClass)) {
 								error = ConvertErrorType.tooLargeByte;
 							}
 						}
 					} else {
-						throw new ValidationException(
-								"invalid.prop.integer.nonumber", prop, "\""
-										+ (String) integerValue
-										+ "\" is no valid number.",
-								new Object[] { integerValue });
+						throw new ValidationException("invalid.prop.integer.nonumber", prop, "\""
+								+ (String) integerValue + "\" is no valid number.", new Object[] { integerValue });
 					}
 				}
 			} else {
-				throw new ValidationException(
-						"invalid.prop.integer.type",
-						prop,
-						"invalid data type \""
-								+ integerValue.getClass().getName()
-								+ "\".\nOnly \"Integer\" and \"String\" are valid types.");
+				throw new ValidationException("invalid.prop.integer.type", prop, "invalid data type \""
+						+ integerValue.getClass().getName() + "\".\nOnly \"Integer\" and \"String\" are valid types.");
 			}
 		}
 
 		switch (error) {
 		case tooLargeLong:
-			throw new ValidationException("invalid.prop.integer.int.large",
-					prop, integerValue.toString()
-							+ " is too large for a Java Long.\n"
-							+ "The largest possible Long value is "
-							+ new Long(Long.MAX_VALUE).toString() + ".",
+			throw new ValidationException("invalid.prop.integer.int.large", prop, integerValue.toString()
+					+ " is too large for a Java Long.\n" + "The largest possible Long value is "
+					+ new Long(Long.MAX_VALUE).toString() + ".",
 					new Object[] { integerValue.toString(), Long.MAX_VALUE });
 		case tooSmallLong:
-			throw new ValidationException("invalid.prop.integer.int.small",
-					prop, integerValue.toString()
-							+ " is too small for a Java Long.\n"
-							+ "The smallest possible Long value is "
-							+ new Long(Long.MIN_VALUE).toString() + ".",
+			throw new ValidationException("invalid.prop.integer.int.small", prop, integerValue.toString()
+					+ " is too small for a Java Long.\n" + "The smallest possible Long value is "
+					+ new Long(Long.MIN_VALUE).toString() + ".",
 					new Object[] { integerValue.toString(), Long.MIN_VALUE });
 		case tooLargeInteger:
-			throw new ValidationException("invalid.prop.integer.int.large",
-					prop, integerValue.toString()
-							+ " is too large for a Java Integer.\n"
-							+ "The largest possible Java Integer value is "
-							+ new Integer(Integer.MAX_VALUE).toString() + ".",
-					new Object[] { integerValue.toString(), Integer.MAX_VALUE });
+			throw new ValidationException("invalid.prop.integer.int.large", prop, integerValue.toString()
+					+ " is too large for a Java Integer.\n" + "The largest possible Java Integer value is "
+					+ new Integer(Integer.MAX_VALUE).toString() + ".", new Object[] { integerValue.toString(),
+					Integer.MAX_VALUE });
 		case tooSmallInteger:
-			throw new ValidationException("invalid.prop.integer.int.small",
-					prop, integerValue.toString()
-							+ " is too small for a Java Integer.\n"
-							+ "The smallest possible Java Integer value is "
-							+ new Integer(Integer.MIN_VALUE).toString() + ".",
-					new Object[] { integerValue.toString(), Integer.MIN_VALUE });
+			throw new ValidationException("invalid.prop.integer.int.small", prop, integerValue.toString()
+					+ " is too small for a Java Integer.\n" + "The smallest possible Java Integer value is "
+					+ new Integer(Integer.MIN_VALUE).toString() + ".", new Object[] { integerValue.toString(),
+					Integer.MIN_VALUE });
 		case tooLargeShort:
-			throw new ValidationException("invalid.prop.integer.int.large",
-					prop, integerValue.toString()
-							+ " is too large for a Java Short.\n"
-							+ "The largest possible Java Short value is "
-							+ new Short(Short.MAX_VALUE).toString() + ".",
-					new Object[] { integerValue.toString(), Short.MAX_VALUE });
+			throw new ValidationException("invalid.prop.integer.int.large", prop, integerValue.toString()
+					+ " is too large for a Java Short.\n" + "The largest possible Java Short value is "
+					+ new Short(Short.MAX_VALUE).toString() + ".", new Object[] { integerValue.toString(),
+					Short.MAX_VALUE });
 		case tooSmallShort:
-			throw new ValidationException("invalid.prop.integer.int.small",
-					prop, integerValue.toString()
-							+ " is too small for a Java Short.\n"
-							+ "The smallest possible Java Short value is "
-							+ new Short(Short.MIN_VALUE).toString() + ".",
-					new Object[] { integerValue.toString(), Short.MIN_VALUE });
+			throw new ValidationException("invalid.prop.integer.int.small", prop, integerValue.toString()
+					+ " is too small for a Java Short.\n" + "The smallest possible Java Short value is "
+					+ new Short(Short.MIN_VALUE).toString() + ".", new Object[] { integerValue.toString(),
+					Short.MIN_VALUE });
 		case tooLargeByte:
-			throw new ValidationException("invalid.prop.integer.int.large",
-					prop, integerValue.toString()
-							+ " is too large for a Java Byte\n"
-							+ "The largest possible Java Byte value is "
-							+ new Byte(Byte.MAX_VALUE).toString() + ".",
+			throw new ValidationException("invalid.prop.integer.int.large", prop, integerValue.toString()
+					+ " is too large for a Java Byte\n" + "The largest possible Java Byte value is "
+					+ new Byte(Byte.MAX_VALUE).toString() + ".",
 					new Object[] { integerValue.toString(), Byte.MAX_VALUE });
 		case tooSmallByte:
-			throw new ValidationException("invalid.prop.integer.int.small",
-					prop, integerValue.toString()
-							+ " is too small for a Java Byte\n"
-							+ "The smallest possible Java Byte value is "
-							+ new Byte(Byte.MIN_VALUE).toString() + ".",
+			throw new ValidationException("invalid.prop.integer.int.small", prop, integerValue.toString()
+					+ " is too small for a Java Byte\n" + "The smallest possible Java Byte value is "
+					+ new Byte(Byte.MIN_VALUE).toString() + ".",
 					new Object[] { integerValue.toString(), Byte.MIN_VALUE });
 		case none:
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unexpected errorType \""
-					+ error.name() + "\"");
+			throw new RapidBeansRuntimeException("Unexpected errorType \"" + error.name() + "\"");
 		}
 		return i;
 	}

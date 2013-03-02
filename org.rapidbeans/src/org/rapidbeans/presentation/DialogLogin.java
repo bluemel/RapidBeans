@@ -38,8 +38,7 @@ import org.rapidbeans.security.User;
  */
 public abstract class DialogLogin {
 
-	private static final Logger log = Logger.getLogger(DialogLogin.class
-			.getName());
+	private static final Logger log = Logger.getLogger(DialogLogin.class.getName());
 
 	/**
 	 * the dialog's title
@@ -86,8 +85,7 @@ public abstract class DialogLogin {
 	 * 
 	 * @return the authenticated user.
 	 */
-	protected static RapidBean login(final int maxtries,
-			final DialogLogin dialog) {
+	protected static RapidBean login(final int maxtries, final DialogLogin dialog) {
 		final Application client = ApplicationManager.getApplication();
 		final SettingsAll settings = client.getSettings();
 		SettingsAuthn settingsAuthn = null;
@@ -97,17 +95,14 @@ public abstract class DialogLogin {
 		LoginDialogResult result = null;
 		for (int tryno = maxtries; tryno > 0; tryno--) {
 			result = dialog.tryLogin(tryno);
-			if (result == LoginDialogResult.ok
-					|| result == LoginDialogResult.cancelled
-					|| (result == LoginDialogResult.nopwd && dialog.user
-							.getPropValue("pwd") == null)) {
+			if (result == LoginDialogResult.ok || result == LoginDialogResult.cancelled
+					|| (result == LoginDialogResult.nopwd && dialog.user.getPropValue("pwd") == null)) {
 				break;
 			}
 		}
 		dialog.dispose();
 		if (result == LoginDialogResult.ok
-				|| (result == LoginDialogResult.nopwd && dialog.user
-						.getPropValue("pwd") == null)) {
+				|| (result == LoginDialogResult.nopwd && dialog.user.getPropValue("pwd") == null)) {
 			if (settings != null) {
 				if (settingsAuthn == null) {
 					settingsAuthn = new SettingsAuthn();
@@ -179,8 +174,7 @@ public abstract class DialogLogin {
 	private static DialogLogin createDialog() {
 		DialogLogin dialog = null;
 		final Application client = ApplicationManager.getApplication();
-		final ApplicationGuiType guitype = client.getConfiguration()
-				.getGuitype();
+		final ApplicationGuiType guitype = client.getConfiguration().getGuitype();
 		boolean savecred = false;
 		boolean encryptcred = false;
 		final SettingsAll settings = client.getSettings();
@@ -207,8 +201,7 @@ public abstract class DialogLogin {
 			dialog = new DialogLoginSwing(savecred, encryptcred);
 			break;
 		default:
-			throw new RapidBeansRuntimeException("gui type \"" + guitype.name()
-					+ "\" not supported");
+			throw new RapidBeansRuntimeException("gui type \"" + guitype.name() + "\" not supported");
 		}
 		if (settingsAuthn != null && settingsAuthn.getCred() != null) {
 			dialog.setLoginname(getStoredLogname(settingsAuthn));
@@ -233,17 +226,14 @@ public abstract class DialogLogin {
 			result = LoginDialogResult.cancelled;
 		}
 		final String loginnameGiven = getLoginname();
-		if (result == null
-				&& (loginnameGiven == null || loginnameGiven.equals(""))) {
+		if (result == null && (loginnameGiven == null || loginnameGiven.equals(""))) {
 			result = LoginDialogResult.nouser;
 		}
 		if (result == null) {
 			if (client.getAuthnDoc() == null) {
-				throw new RapidBeansRuntimeException(
-						"No authentication document specified");
+				throw new RapidBeansRuntimeException("No authentication document specified");
 			}
-			this.user = client.getAuthnDoc().findBean(
-					"org.rapidbeans.security.User", loginnameGiven);
+			this.user = client.getAuthnDoc().findBean("org.rapidbeans.security.User", loginnameGiven);
 		}
 		if (result == null && this.user == null) {
 			result = LoginDialogResult.unkownuser;
@@ -257,8 +247,7 @@ public abstract class DialogLogin {
 				if (client.getConfiguration().getAuthorization() == null) {
 					log.warning("client.getConfiguration().getAuthorization() == null");
 				} else {
-					final String pwdHashAlg = client.getConfiguration()
-							.getAuthorization().getPwdhashalgorithm();
+					final String pwdHashAlg = client.getConfiguration().getAuthorization().getPwdhashalgorithm();
 					if (pwdHashAlg != null) {
 						pwdHashed = User.hashPwd(pwdGiven, pwdHashAlg);
 					} else {
@@ -267,8 +256,7 @@ public abstract class DialogLogin {
 				}
 			}
 		}
-		if (result == null && (pwdHashed == null || pwdHashed.equals(""))
-				&& user.getPropValue("pwd") != null) {
+		if (result == null && (pwdHashed == null || pwdHashed.equals("")) && user.getPropValue("pwd") != null) {
 			result = LoginDialogResult.nopwd;
 		}
 		if (result == null) {
@@ -281,8 +269,7 @@ public abstract class DialogLogin {
 				result = LoginDialogResult.ok;
 			}
 		}
-		if (result != LoginDialogResult.nopwd
-				|| user.getPropValue("pwd") != null) {
+		if (result != LoginDialogResult.nopwd || user.getPropValue("pwd") != null) {
 			this.evalResult(result, tryno);
 		}
 		return result;
@@ -305,22 +292,16 @@ public abstract class DialogLogin {
 		case ok:
 			break;
 		case cancelled:
-			client.messageInfo(locale.getStringMessage("login.cancelled"),
-					this.getTitle());
+			client.messageInfo(locale.getStringMessage("login.cancelled"), this.getTitle());
 			break;
 		default:
 			if (tryno > 2) {
-				client.messageError(
-						locale.getStringMessage("login.failed",
-								Integer.toString(tryno - 1)), this.getTitle());
+				client.messageError(locale.getStringMessage("login.failed", Integer.toString(tryno - 1)),
+						this.getTitle());
 			} else if (tryno == 2) {
-				client.messageError(
-						locale.getStringMessage("login.failed.uno"),
-						this.getTitle());
+				client.messageError(locale.getStringMessage("login.failed.uno"), this.getTitle());
 			} else {
-				client.messageError(
-						locale.getStringMessage("login.failed.shut"),
-						this.getTitle());
+				client.messageError(locale.getStringMessage("login.failed.shut"), this.getTitle());
 			}
 			break;
 		}

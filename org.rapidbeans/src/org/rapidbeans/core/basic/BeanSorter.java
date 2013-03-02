@@ -108,8 +108,7 @@ public class BeanSorter {
 
 		// sort that collection
 		// set the property sort order thread local
-		set(this.propertySortOrder
-				.toArray(new TypeProperty[this.propertySortOrder.size()]));
+		set(this.propertySortOrder.toArray(new TypeProperty[this.propertySortOrder.size()]));
 		SortedSet<RapidBean> sortedBeans = new TreeSet<RapidBean>();
 		for (RapidBean bean : beans) {
 			sortedBeans.add(bean);

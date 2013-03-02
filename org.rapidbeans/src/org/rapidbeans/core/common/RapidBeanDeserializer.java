@@ -166,16 +166,14 @@ public final class RapidBeanDeserializer {
 	 * 
 	 * @return the bean
 	 */
-	public RapidBean loadBean(final TypeRapidBean rbType,
-			final XmlNodeTopLevel bizBeanNode) {
+	public RapidBean loadBean(final TypeRapidBean rbType, final XmlNodeTopLevel bizBeanNode) {
 		this.encoding = bizBeanNode.getEncoding();
 		TypeRapidBean rootBeanType = rbType;
 		final String rootNodeName = bizBeanNode.getName();
 		if (rootBeanType == null) {
 			// if the type is not given as argument
 			// try to find a type via an XML root element binding
-			rootBeanType = RapidBeansTypeLoader.getInstance()
-					.getXmlRootElementBinding(rootNodeName);
+			rootBeanType = RapidBeansTypeLoader.getInstance().getXmlRootElementBinding(rootNodeName);
 		}
 		if (rootBeanType == null) {
 			// next try is to read the root element's rb:type attribute if set
@@ -199,14 +197,12 @@ public final class RapidBeanDeserializer {
 		return bean;
 	}
 
-	private String extractTypenameFromNamespacedRootElement(
-			final XmlNode rootBeanNode) {
+	private String extractTypenameFromNamespacedRootElement(final XmlNode rootBeanNode) {
 		final String rootNodeName = rootBeanNode.getName();
 		String typename = null;
 		if (!rootNodeName.contains(":")) {
 			throw new RapidBeansRuntimeException("can't determine typename."
-					+ " Neither root element attribute \"rb:type\""
-					+ " nor a namespace scoped root element is defined");
+					+ " Neither root element attribute \"rb:type\"" + " nor a namespace scoped root element is defined");
 		}
 		final StringTokenizer st = new StringTokenizer(rootNodeName, ":");
 		st.nextToken();
@@ -214,8 +210,7 @@ public final class RapidBeanDeserializer {
 		final String rootNodeNsVal = rootBeanNode.getNamespaceURI();
 		if (rootNodeNsVal == null) {
 			throw new RapidBeansRuntimeException("can't determine typename."
-					+ " Neither root element attribute \"rb:type\""
-					+ " nor a namespace URI is defined");
+					+ " Neither root element attribute \"rb:type\"" + " nor a namespace URI is defined");
 		}
 		typename = mapNamespaceToPackage(rootNodeNsVal);
 		typename += "." + StringHelper.upperFirstCharacter(rootNodePureName);
@@ -272,8 +267,7 @@ public final class RapidBeanDeserializer {
 	 * @param node
 	 *            the XML DOM node
 	 */
-	private void loadBeanNode(final int depth, final RapidBean bean,
-			final XmlNode node) {
+	private void loadBeanNode(final int depth, final RapidBean bean, final XmlNode node) {
 		// load XML attribute into bean properties
 		Property prop;
 		for (XmlAttribute attr : node.getAttributes()) {
@@ -327,8 +321,7 @@ public final class RapidBeanDeserializer {
 					}
 				} else {
 					colPropName = colProp.getType().getPropName();
-					if ((lastColPropName == null)
-							|| (!lastColPropName.equals(colPropName))) {
+					if ((lastColPropName == null) || (!lastColPropName.equals(colPropName))) {
 						if (colProp.getValue() != null) {
 							colProp.setValue(null);
 						}
@@ -352,13 +345,11 @@ public final class RapidBeanDeserializer {
 	 * @param colProp
 	 *            the collection property for this sub node
 	 */
-	private void loadBeanSubnode(final int depth, final RapidBean bean,
-			final XmlNode subnode, final PropertyCollection colProp) {
-		final TypeRapidBean colPropTargetType = determineColPropTargetType(
-				subnode, colProp);
+	private void loadBeanSubnode(final int depth, final RapidBean bean, final XmlNode subnode,
+			final PropertyCollection colProp) {
+		final TypeRapidBean colPropTargetType = determineColPropTargetType(subnode, colProp);
 		try {
-			final RapidBean subnodeBean = RapidBeanImplStrict
-					.createInstance(colPropTargetType.getName());
+			final RapidBean subnodeBean = RapidBeanImplStrict.createInstance(colPropTargetType.getName());
 			loadBeanNode(depth + 1, subnodeBean, subnode);
 			colProp.addLink(subnodeBean);
 			if (subnodeBean.getType().getIdtype() == IdType.keypropswithparentscope
@@ -370,9 +361,8 @@ public final class RapidBeanDeserializer {
 			}
 		} catch (RapidBeansRuntimeException e) {
 			if (e.getCause() instanceof InstantiationException) {
-				throw new RapidBeansRuntimeException(
-						"Cannot instantiate bean type \""
-								+ colPropTargetType.getName() + "\"", e);
+				throw new RapidBeansRuntimeException("Cannot instantiate bean type \"" + colPropTargetType.getName()
+						+ "\"", e);
 			} else {
 				throw e;
 			}
@@ -391,8 +381,7 @@ public final class RapidBeanDeserializer {
 	 * 
 	 * @return the collection property
 	 */
-	private PropertyCollection determineCollectionProperty(
-			final RapidBean bean, final String subnodeName) {
+	private PropertyCollection determineCollectionProperty(final RapidBean bean, final String subnodeName) {
 
 		String subnodeNameAlt = null;
 		PropertyCollection colProp = null;
@@ -414,8 +403,7 @@ public final class RapidBeanDeserializer {
 
 		if (colProp == null) {
 			try {
-				colProp = (PropertyCollection) bean.getProperty(bean.getType()
-						.mapXmlElementToPropName(subnodeName));
+				colProp = (PropertyCollection) bean.getProperty(bean.getType().mapXmlElementToPropName(subnodeName));
 			} catch (ClassCastException e) {
 				colProp = null;
 			}
@@ -438,11 +426,9 @@ public final class RapidBeanDeserializer {
 	 * 
 	 * @return the determined target type.
 	 */
-	private TypeRapidBean determineColPropTargetType(final XmlNode subnode,
-			final PropertyCollection colProp) {
+	private TypeRapidBean determineColPropTargetType(final XmlNode subnode, final PropertyCollection colProp) {
 		TypeRapidBean subnodeType = null;
-		final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
-				.getType();
+		final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 
 		// take the 'rb:type' attribute as target type name if given
 		final String subnodeTypeName = subnode.getAttributeValue("@rb:type");
@@ -462,16 +448,10 @@ public final class RapidBeanDeserializer {
 		}
 
 		if (subnodeType != null) {
-			if (!TypeRapidBean.isSameOrSubtype(colPropType.getTargetType(),
-					subnodeType)) {
-				throw new RapidBeansRuntimeException(
-						"Error while deserializing file " + this.url.toString()
-								+ ":\n" + "Subnode type \""
-								+ subnodeType.getName()
-								+ "\" is not a subtype of target type \""
-								+ colPropType.getTargetType().getName()
-								+ "\" of property \"" + subnode.getName()
-								+ "\"");
+			if (!TypeRapidBean.isSameOrSubtype(colPropType.getTargetType(), subnodeType)) {
+				throw new RapidBeansRuntimeException("Error while deserializing file " + this.url.toString() + ":\n"
+						+ "Subnode type \"" + subnodeType.getName() + "\" is not a subtype of target type \""
+						+ colPropType.getTargetType().getName() + "\" of property \"" + subnode.getName() + "\"");
 			}
 		}
 

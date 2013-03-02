@@ -34,8 +34,7 @@ import org.rapidbeans.core.exception.RapidBeansRuntimeException;
  */
 public final class TypeRapidQuantityConversionTable {
 
-	private static final Logger log = Logger
-			.getLogger(TypeRapidQuantityConversionTable.class.getName());
+	private static final Logger log = Logger.getLogger(TypeRapidQuantityConversionTable.class.getName());
 
 	/**
 	 * the "normal" unit with conversion factor 1
@@ -73,8 +72,7 @@ public final class TypeRapidQuantityConversionTable {
 	 *            factors:<br/>
 	 *            1) XML: 2) Proprietary:
 	 */
-	public TypeRapidQuantityConversionTable(final TypeRapidEnum argUnitType,
-			final String argDescr) {
+	public TypeRapidQuantityConversionTable(final TypeRapidEnum argUnitType, final String argDescr) {
 		log.fine("parsing \"" + argDescr + "\"");
 		List<RapidEnum> enums = argUnitType.getElements();
 		this.units = new RapidEnum[enums.size()];
@@ -137,26 +135,16 @@ public final class TypeRapidQuantityConversionTable {
 				// divide instead of always multiplying later
 				// this avoids numerical failure
 				// factor = BigDecimal.ONE.divide(factor);
-				this.conversionFactorTableReciprocalFlag[this.units.length][unit
-						.ordinal()] = true;
+				this.conversionFactorTableReciprocalFlag[this.units.length][unit.ordinal()] = true;
 			} else {
-				this.conversionFactorTableReciprocalFlag[this.units.length][unit
-						.ordinal()] = false;
+				this.conversionFactorTableReciprocalFlag[this.units.length][unit.ordinal()] = false;
 			}
 
 			// enter normal conversion
 			this.conversionFactorTable[this.units.length][unit.ordinal()] = factor;
-			log.fine("Normal Factor[" + unit + "," + this.units.length + ","
-					+ unit.ordinal() + "] = " + factor);
-			log.fine("      recip = ["
-					+ unit
-					+ ","
-					+ this.units.length
-					+ ","
-					+ unit.ordinal()
-					+ "] = "
-					+ this.conversionFactorTableReciprocalFlag[this.units.length][unit
-							.ordinal()]);
+			log.fine("Normal Factor[" + unit + "," + this.units.length + "," + unit.ordinal() + "] = " + factor);
+			log.fine("      recip = [" + unit + "," + this.units.length + "," + unit.ordinal() + "] = "
+					+ this.conversionFactorTableReciprocalFlag[this.units.length][unit.ordinal()]);
 
 			if (this.normUnit == null && factor.equals(BigDecimal.ONE)) {
 				this.normUnit = unit;
@@ -176,19 +164,15 @@ public final class TypeRapidQuantityConversionTable {
 					if ((!r1) && (!r2)) {
 						switch (f1.compareTo(f2)) {
 						case 1:
-							this.conversionFactorTable[j][i] = f1.divide(f2,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f1.divide(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = true;
-							this.conversionFactorTable[i][j] = f1.divide(f2,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f1.divide(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 							break;
 						case -1:
-							this.conversionFactorTable[j][i] = f2.divide(f1,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f2.divide(f1, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = false;
-							this.conversionFactorTable[i][j] = f2.divide(f1,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f2.divide(f1, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = true;
 							break;
 						case 0:
@@ -198,9 +182,8 @@ public final class TypeRapidQuantityConversionTable {
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 							break;
 						default:
-							throw new RapidBeansRuntimeException(
-									"compare unexpectedly deliverd value "
-											+ f1.compareTo(f2));
+							throw new RapidBeansRuntimeException("compare unexpectedly deliverd value "
+									+ f1.compareTo(f2));
 						}
 					} else if ((!r1) && r2) {
 						if (f1.equals(BigDecimal.ONE.divide(f2))) {
@@ -209,11 +192,9 @@ public final class TypeRapidQuantityConversionTable {
 							this.conversionFactorTable[i][j] = BigDecimal.ONE;
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 						} else {
-							this.conversionFactorTable[j][i] = f1.multiply(f2,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f1.multiply(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = true;
-							this.conversionFactorTable[i][j] = f1.multiply(f2,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f1.multiply(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 						}
 					} else if (r1 && (!r2)) {
@@ -223,29 +204,23 @@ public final class TypeRapidQuantityConversionTable {
 							this.conversionFactorTable[i][j] = BigDecimal.ONE;
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 						} else {
-							this.conversionFactorTable[j][i] = f1.multiply(f2,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f1.multiply(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = false;
-							this.conversionFactorTable[i][j] = f1.multiply(f2,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f1.multiply(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = true;
 						}
 					} else { // (r1 && r2)
 						switch (f1.compareTo(f2)) {
 						case 1:
-							this.conversionFactorTable[j][i] = f1.divide(f2,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f1.divide(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = false;
-							this.conversionFactorTable[i][j] = f1.divide(f2,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f1.divide(f2, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = true;
 							break;
 						case -1:
-							this.conversionFactorTable[j][i] = f2.divide(f1,
-									this.mathContext);
+							this.conversionFactorTable[j][i] = f2.divide(f1, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[j][i] = true;
-							this.conversionFactorTable[i][j] = f2.divide(f1,
-									this.mathContext);
+							this.conversionFactorTable[i][j] = f2.divide(f1, this.mathContext);
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 							break;
 						case 0:
@@ -255,9 +230,8 @@ public final class TypeRapidQuantityConversionTable {
 							this.conversionFactorTableReciprocalFlag[i][j] = false;
 							break;
 						default:
-							throw new RapidBeansRuntimeException(
-									"compare unexpectedly deliverd value "
-											+ f1.compareTo(f2));
+							throw new RapidBeansRuntimeException("compare unexpectedly deliverd value "
+									+ f1.compareTo(f2));
 						}
 					}
 				} else {
@@ -265,20 +239,17 @@ public final class TypeRapidQuantityConversionTable {
 					this.conversionFactorTable[j][i] = null;
 				}
 
-				if (log.getLevel() == Level.FINE
-						|| log.getLevel() == Level.FINEST) {
+				if (log.getLevel() == Level.FINE || log.getLevel() == Level.FINEST) {
 					String sRecip = "*";
 					if (this.conversionFactorTableReciprocalFlag[i][j]) {
 						sRecip = "/";
 					}
-					log.fine("factor [" + i + "][" + j + "] = " + sRecip
-							+ this.conversionFactorTable[j][i]);
+					log.fine("factor [" + i + "][" + j + "] = " + sRecip + this.conversionFactorTable[j][i]);
 					sRecip = "*";
 					if (this.conversionFactorTableReciprocalFlag[j][i]) {
 						sRecip = "/";
 					}
-					log.fine("factor [" + j + "][" + i + "] = " + sRecip
-							+ this.conversionFactorTable[i][j]);
+					log.fine("factor [" + j + "][" + i + "] = " + sRecip + this.conversionFactorTable[i][j]);
 				}
 			}
 		}
@@ -293,8 +264,7 @@ public final class TypeRapidQuantityConversionTable {
 	 *            the target unit of the conversion
 	 * @return the conversion factor
 	 */
-	public BigDecimal getConversionFactor(final RapidEnum fromUnit,
-			final RapidEnum toUnit) {
+	public BigDecimal getConversionFactor(final RapidEnum fromUnit, final RapidEnum toUnit) {
 		return this.conversionFactorTable[fromUnit.ordinal()][toUnit.ordinal()];
 	}
 
@@ -307,28 +277,22 @@ public final class TypeRapidQuantityConversionTable {
 	 *            the target unit of the conversion
 	 * @return if the conversion factor is a reciprocal value
 	 */
-	public boolean getConversionFactorReciprocalFlag(final RapidEnum fromUnit,
-			final RapidEnum toUnit) {
-		return this.conversionFactorTableReciprocalFlag[fromUnit.ordinal()][toUnit
-				.ordinal()];
+	public boolean getConversionFactorReciprocalFlag(final RapidEnum fromUnit, final RapidEnum toUnit) {
+		return this.conversionFactorTableReciprocalFlag[fromUnit.ordinal()][toUnit.ordinal()];
 	}
 
-	public void setConversionFactor(final RapidEnum fromUnit,
-			final RapidEnum toUnit, final BigDecimal factor) {
+	public void setConversionFactor(final RapidEnum fromUnit, final RapidEnum toUnit, final BigDecimal factor) {
 		this.conversionFactorTable[fromUnit.ordinal()][toUnit.ordinal()] = factor;
-		this.conversionFactorTableReciprocalFlag[fromUnit.ordinal()][toUnit
-				.ordinal()] = false;
+		this.conversionFactorTableReciprocalFlag[fromUnit.ordinal()][toUnit.ordinal()] = false;
 		this.conversionFactorTable[toUnit.ordinal()][fromUnit.ordinal()] = factor;
-		this.conversionFactorTableReciprocalFlag[toUnit.ordinal()][fromUnit
-				.ordinal()] = true;
+		this.conversionFactorTableReciprocalFlag[toUnit.ordinal()][fromUnit.ordinal()] = true;
 	}
 
 	/**
 	 * for tracing and testing purposes.
 	 */
 	protected void dump() {
-		System.out.print("unitenum name=\"" + this.units[0].getType().getName()
-				+ "\"<");
+		System.out.print("unitenum name=\"" + this.units[0].getType().getName() + "\"<");
 		int i, j;
 		for (i = 0; i < this.units.length; i++) {
 			if (i == 0) {

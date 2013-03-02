@@ -56,8 +56,7 @@ public final class TestSuiteMemoryPerf {
 				classnames.add(classname);
 			}
 		}
-		TestSuiteHelper.fill(suite, new File("testperf"), ".*MemoryPerfTest",
-				null, classnames, null);
+		TestSuiteHelper.fill(suite, new File("testperf"), ".*MemoryPerfTest", null, classnames, null);
 		return suite;
 	}
 }

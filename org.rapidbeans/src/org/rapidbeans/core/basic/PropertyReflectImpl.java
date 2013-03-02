@@ -39,8 +39,7 @@ public class PropertyReflectImpl extends Property {
 	 * @param parentBean
 	 *            the parent bean
 	 */
-	public PropertyReflectImpl(final TypeProperty type,
-			final RapidBean parentBean) {
+	public PropertyReflectImpl(final TypeProperty type, final RapidBean parentBean) {
 		super(type, parentBean);
 	}
 
@@ -52,8 +51,7 @@ public class PropertyReflectImpl extends Property {
 	public Object getValue() {
 		Object ret = null;
 		final Class<?> clazz = getBean().getType().getImplementingClass();
-		final String getterMethodName = "get"
-				+ StringHelper.upperFirstCharacter(getName());
+		final String getterMethodName = "get" + StringHelper.upperFirstCharacter(getName());
 		try {
 			final Method method = clazz.getMethod(getterMethodName);
 			ret = method.invoke(getBean());

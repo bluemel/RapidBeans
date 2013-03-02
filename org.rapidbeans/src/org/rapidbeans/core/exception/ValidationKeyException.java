@@ -38,8 +38,7 @@ public class ValidationKeyException extends ValidationMandatoryException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public ValidationKeyException(final String sig, final Object source,
-			final String message) {
+	public ValidationKeyException(final String sig, final Object source, final String message) {
 		super(sig, source, message);
 	}
 
@@ -56,8 +55,7 @@ public class ValidationKeyException extends ValidationMandatoryException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationKeyException(final String sig, final Object source,
-			final String message, final Throwable cause) {
+	public ValidationKeyException(final String sig, final Object source, final String message, final Throwable cause) {
 		super(sig, source, message, cause);
 	}
 
@@ -74,8 +72,7 @@ public class ValidationKeyException extends ValidationMandatoryException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationKeyException(final String sig, final Object source,
-			final String message, final Object[] messArgs) {
+	public ValidationKeyException(final String sig, final Object source, final String message, final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 	}
 }

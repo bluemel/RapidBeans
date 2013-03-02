@@ -63,8 +63,7 @@ public class PropertyBoolean extends Property {
 	 */
 	public boolean getValueBoolean() {
 		if (this.value == null) {
-			throw new RapidBeansRuntimeException(
-					"value for property not defined");
+			throw new RapidBeansRuntimeException("value for property not defined");
 		}
 		return this.value;
 	}
@@ -92,12 +91,11 @@ public class PropertyBoolean extends Property {
 	 *            <b>String:</b> the boolean as string { 'false' | 'true' }<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (Boolean) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (Boolean) newValue;
+			}
+		});
 	}
 
 	/**
@@ -106,14 +104,12 @@ public class PropertyBoolean extends Property {
 	 * @param booleanValue
 	 *            the object to convert. It must be an instance of the following
 	 *            classes: <il> <li><b>Boolean:</b> the boolean value itself<br/>
-	 *            </li> <li><b>String:</b> the boolean as string { 'false' |
-	 *            'true' }</li> </il>
+	 *            </li> <li><b>String:</b> the boolean as string { 'false' | 'true' }</li> </il>
 	 * 
 	 * @return the converted value
 	 */
 	public Boolean convertValue(final Object booleanValue) {
-		return ((TypePropertyBoolean) this.getType())
-				.convertValue(booleanValue);
+		return ((TypePropertyBoolean) this.getType()).convertValue(booleanValue);
 	}
 
 	/**

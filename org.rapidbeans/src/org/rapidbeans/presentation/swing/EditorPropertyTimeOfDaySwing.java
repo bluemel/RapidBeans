@@ -96,8 +96,7 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyTimeOfDaySwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyTimeOfDaySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		Component[] comps = { this.textHours, this.textMinutes };
@@ -105,12 +104,10 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 		super.initColors();
 
 		if (!(prop instanceof PropertyQuantity)) {
-			throw new RapidBeansRuntimeException(
-					"invalid propperty for a quantity editor");
+			throw new RapidBeansRuntimeException("invalid propperty for a quantity editor");
 		}
 		if (!(prop.getValue() instanceof TimeOfDay)) {
-			throw new RapidBeansRuntimeException(
-					"invalid propperty value for a TimeOfDay editor");
+			throw new RapidBeansRuntimeException("invalid propperty value for a TimeOfDay editor");
 		}
 
 		if (prop.getType().isKeyCandidate()) {
@@ -145,15 +142,12 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 		});
 
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.textHours, new GridBagConstraints(0, 0, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.labelColon, new GridBagConstraints(1, 0, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.textMinutes, new GridBagConstraints(2, 0, 1, 1,
-				0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.textHours, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.labelColon, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.textMinutes, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
 		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
@@ -173,8 +167,7 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 				this.textHours.setText("");
 			} else {
 				this.textHours.setText(Integer.toString(value.getHours()));
-				this.textMinutes.setText(normalizeMinutesString(Integer
-						.toString(value.getMinutes())));
+				this.textMinutes.setText(normalizeMinutesString(Integer.toString(value.getMinutes())));
 			}
 		} finally {
 			this.releaseUIEventLock();
@@ -188,9 +181,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 		RapidQuantity ifValue = null;
 		String s = this.textHours.getText();
 		if (s.trim().length() > 0) {
-			ifValue = RapidQuantity.createInstance(((TypePropertyQuantity) this
-					.getProperty().getType()).getQuantitytype().getName(),
-					getInputFieldValueString());
+			ifValue = RapidQuantity.createInstance(((TypePropertyQuantity) this.getProperty().getType())
+					.getQuantitytype().getName(), getInputFieldValueString());
 		}
 		return ifValue;
 	}
@@ -303,10 +295,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @param completenessRequired
 	 *            if the inpput fiels must be completeS
 	 */
-	private ParsedNumber parseLocalNumberHours(
-			final boolean completenessRequired) {
-		ParsedNumber number = new ParsedNumber(this.textHours.getText(), this
-				.getLocale().getLocale());
+	private ParsedNumber parseLocalNumberHours(final boolean completenessRequired) {
+		ParsedNumber number = new ParsedNumber(this.textHours.getText(), this.getLocale().getLocale());
 		return number;
 	}
 
@@ -319,10 +309,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @param completenessRequired
 	 *            if the inpput fiels must be completeS
 	 */
-	private ParsedNumber parseLocalNumberMinutes(
-			final boolean completenessRequired) {
-		ParsedNumber number = new ParsedNumber(this.textMinutes.getText(), this
-				.getLocale().getLocale());
+	private ParsedNumber parseLocalNumberMinutes(final boolean completenessRequired) {
+		ParsedNumber number = new ParsedNumber(this.textMinutes.getText(), this.getLocale().getLocale());
 		return number;
 	}
 
@@ -330,8 +318,7 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @return the input field value as string.
 	 */
 	public String getInputFieldValueString() {
-		return new TimeOfDay(this.textHours.getText() + ':'
-				+ normalizeMinutesString(this.textMinutes.getText()))
+		return new TimeOfDay(this.textHours.getText() + ':' + normalizeMinutesString(this.textMinutes.getText()))
 				.toString();
 	}
 

@@ -83,8 +83,7 @@ public final class ModelListCollectionAllWithout extends DefaultListModel {
 	 *            the document
 	 */
 	@SuppressWarnings("unchecked")
-	public ModelListCollectionAllWithout(final PropertyCollection prop,
-			final TypeRapidBean type, final Document doc,
+	public ModelListCollectionAllWithout(final PropertyCollection prop, final TypeRapidBean type, final Document doc,
 			final boolean showOnlyValid) {
 		this.colProp = prop;
 		this.typename = type.getName();
@@ -179,9 +178,7 @@ public final class ModelListCollectionAllWithout extends DefaultListModel {
 	public void fireColPropChanged(final PropertyCollection prop) {
 		if (prop.getValue() != null
 				&& this.listAllBeans != null
-				&& (this.listProp == null || (!this.listProp
-						.isSameCollection((Collection<RapidBean>) prop
-								.getValue())))) {
+				&& (this.listProp == null || (!this.listProp.isSameCollection((Collection<RapidBean>) prop.getValue())))) {
 			this.listProp = (ReadonlyListCollection<RapidBean>) prop.getValue();
 			this.updateList();
 			this.fireContentsChanged(this, 0, this.listAllBeans.size());

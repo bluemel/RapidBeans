@@ -40,8 +40,7 @@ import org.rapidbeans.core.util.StringHelper;
  * 
  * @author Martin Bluemel
  */
-public abstract class RapidQuantity implements Cloneable,
-		Comparable<RapidQuantity> {
+public abstract class RapidQuantity implements Cloneable, Comparable<RapidQuantity> {
 
 	/**
 	 * the magnitude.
@@ -113,8 +112,7 @@ public abstract class RapidQuantity implements Cloneable,
 	 * @return the new quantity instance
 	 */
 	@SuppressWarnings("unchecked")
-	public static final RapidQuantity createInstance(final String typename,
-			final String val) {
+	public static final RapidQuantity createInstance(final String typename, final String val) {
 		RapidQuantity quantity = null;
 		final TypeRapidQuantity type = TypeRapidQuantity.forName(typename);
 		final Class<?> clazz = type.getImplementingClass();
@@ -126,33 +124,24 @@ public abstract class RapidQuantity implements Cloneable,
 				initargs[0] = val;
 				quantity = (RapidQuantity) constr.newInstance(initargs);
 			} catch (NoSuchMethodException e) {
-				throw new RapidBeansRuntimeException("RapidQuantity class \""
-						+ clazz.getName()
+				throw new RapidBeansRuntimeException("RapidQuantity class \"" + clazz.getName()
 						+ "\" does not have a constructor with String", e);
 			} catch (IllegalArgumentException e) {
-				throw new RapidBeansRuntimeException(
-						"IllegalArgumentException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ typename + "\"", e);
+				throw new RapidBeansRuntimeException("IllegalArgumentException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ typename + "\"", e);
 			} catch (InstantiationException e) {
-				throw new RapidBeansRuntimeException(
-						"InstantiationException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ typename + "\"", e);
+				throw new RapidBeansRuntimeException("InstantiationException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ typename + "\"", e);
 			} catch (IllegalAccessException e) {
-				throw new RapidBeansRuntimeException(
-						"IllegalAccessException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ typename + "\"", e);
+				throw new RapidBeansRuntimeException("IllegalAccessException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ typename + "\"", e);
 			} catch (InvocationTargetException e) {
-				throw new RapidBeansRuntimeException(
-						"InvocationTargetException while trying"
-								+ " to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ typename + "\"", e);
+				throw new RapidBeansRuntimeException("InvocationTargetException while trying"
+						+ " to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ typename + "\"", e);
 			}
 		} else {
 			quantity = new GenericQuantity(type, val);
@@ -163,8 +152,7 @@ public abstract class RapidQuantity implements Cloneable,
 	/**
 	 * parameter types for constructor RapidQuantity(String).
 	 */
-	private static final Class<?>[] CONSTR_PARAMTYPES_MAG_UNIT = {
-			BigDecimal.class, RapidEnum.class };
+	private static final Class<?>[] CONSTR_PARAMTYPES_MAG_UNIT = { BigDecimal.class, RapidEnum.class };
 
 	/**
 	 * Factory method for a RapidQuantity.
@@ -177,8 +165,7 @@ public abstract class RapidQuantity implements Cloneable,
 	 * @return the new quantity instance
 	 */
 	@SuppressWarnings("unchecked")
-	public static final RapidQuantity createInstance(
-			final TypeRapidQuantity type, final BigDecimal magnitude,
+	public static final RapidQuantity createInstance(final TypeRapidQuantity type, final BigDecimal magnitude,
 			final RapidEnum unit) {
 		RapidQuantity quantity = null;
 		final Class<?> clazz = type.getImplementingClass();
@@ -191,35 +178,24 @@ public abstract class RapidQuantity implements Cloneable,
 				initargs[1] = unit;
 				quantity = (RapidQuantity) constr.newInstance(initargs);
 			} catch (NoSuchMethodException e) {
-				throw new RapidBeansRuntimeException(
-						"RapidQuantity class \""
-								+ clazz.getName()
-								+ "\" does not have a constructor with BigDecimal and RapidEnum",
-						e);
+				throw new RapidBeansRuntimeException("RapidQuantity class \"" + clazz.getName()
+						+ "\" does not have a constructor with BigDecimal and RapidEnum", e);
 			} catch (IllegalArgumentException e) {
-				throw new RapidBeansRuntimeException(
-						"IllegalArgumentException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ type.getName() + "\"", e);
+				throw new RapidBeansRuntimeException("IllegalArgumentException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ type.getName() + "\"", e);
 			} catch (InstantiationException e) {
-				throw new RapidBeansRuntimeException(
-						"InstantiationException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ type.getName() + "\"", e);
+				throw new RapidBeansRuntimeException("InstantiationException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ type.getName() + "\"", e);
 			} catch (IllegalAccessException e) {
-				throw new RapidBeansRuntimeException(
-						"IllegalAccessException while trying"
-								+ "to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ type.getName() + "\"", e);
+				throw new RapidBeansRuntimeException("IllegalAccessException while trying"
+						+ "to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ type.getName() + "\"", e);
 			} catch (InvocationTargetException e) {
-				throw new RapidBeansRuntimeException(
-						"InvocationTargetException while trying"
-								+ " to create instance for quantity class \""
-								+ clazz.getName() + "\", quantity type \""
-								+ type.getName() + "\"", e);
+				throw new RapidBeansRuntimeException("InvocationTargetException while trying"
+						+ " to create instance for quantity class \"" + clazz.getName() + "\", quantity type \""
+						+ type.getName() + "\"", e);
 			}
 		} else {
 			quantity = new GenericQuantity(type, magnitude, unit);
@@ -256,8 +232,7 @@ public abstract class RapidQuantity implements Cloneable,
 	 * @param description
 	 *            the enum's string representation.
 	 */
-	protected RapidQuantity(final TypeRapidQuantity type,
-			final String description) {
+	protected RapidQuantity(final TypeRapidQuantity type, final String description) {
 		TypeRapidQuantity tp = type;
 		if (tp == null) {
 			tp = this.getType();
@@ -266,9 +241,8 @@ public abstract class RapidQuantity implements Cloneable,
 		switch (tokenizedDescr.size()) {
 		case 0:
 			Object[] oa1 = { description };
-			throw new ValidationException("invalid.quantity.empty", this,
-					"Invalid empty quantity description \"" + description
-							+ "\"", oa1);
+			throw new ValidationException("invalid.quantity.empty", this, "Invalid empty quantity description \""
+					+ description + "\"", oa1);
 		case 1:
 			this.magnitude = parseMagnitudeOneToken(description);
 			this.unit = parseUnitOneToken(description);
@@ -277,29 +251,22 @@ public abstract class RapidQuantity implements Cloneable,
 			try {
 				this.magnitude = new BigDecimal(tokenizedDescr.get(0));
 			} catch (NumberFormatException e) {
-				throw new ValidationException("invalid.quantity.magnitude",
-						this, "RapidQuantity with invalid magnitude \""
-								+ tokenizedDescr.get(0) + "\"", new Object[] {
+				throw new ValidationException("invalid.quantity.magnitude", this,
+						"RapidQuantity with invalid magnitude \"" + tokenizedDescr.get(0) + "\"", new Object[] {
 								description, tokenizedDescr.get(0) });
 			}
 			try {
 				this.unit = tp.getUnitInfo().elementOf(tokenizedDescr.get(1));
 			} catch (EnumException e) {
-				String validEnums = TypeRapidEnum.format(tp.getUnitInfo()
-						.getElements());
-				throw new ValidationException("invalid.quantity.unit", this,
-						"RapidQuantity with invalid unit \""
-								+ tokenizedDescr.get(1) + "\"",
-						new Object[] { description, tokenizedDescr.get(1),
-								validEnums });
+				String validEnums = TypeRapidEnum.format(tp.getUnitInfo().getElements());
+				throw new ValidationException("invalid.quantity.unit", this, "RapidQuantity with invalid unit \""
+						+ tokenizedDescr.get(1) + "\"", new Object[] { description, tokenizedDescr.get(1), validEnums });
 			}
 			break;
 		default:
 			Object[] oa3 = { description };
-			throw new ValidationException(
-					"invalid.quantity.format.threeormore", this,
-					"Invalid quantity description \"" + description
-							+ "\" with more than two tokens.\n"
+			throw new ValidationException("invalid.quantity.format.threeormore", this,
+					"Invalid quantity description \"" + description + "\" with more than two tokens.\n"
 							+ "Need two tokens: <magnitude> <unit>", oa3);
 		}
 	}
@@ -312,8 +279,7 @@ public abstract class RapidQuantity implements Cloneable,
 	 * @param argUnit
 	 *            the unit
 	 */
-	protected RapidQuantity(final BigDecimal argMagnitude,
-			final RapidEnum argUnit) {
+	protected RapidQuantity(final BigDecimal argMagnitude, final RapidEnum argUnit) {
 		this.magnitude = argMagnitude;
 		this.unit = argUnit;
 	}
@@ -351,14 +317,13 @@ public abstract class RapidQuantity implements Cloneable,
 	 * 
 	 * @return the localized string
 	 */
-	public String toStringGui(final RapidBeansLocale locale,
-			final int minimumFractionDigits, final int maximumFractionDigits) {
+	public String toStringGui(final RapidBeansLocale locale, final int minimumFractionDigits,
+			final int maximumFractionDigits) {
 		// later on we can construct here with a locale
 		NumberFormat ft = NumberFormat.getInstance();
 		ft.setMinimumFractionDigits(minimumFractionDigits);
 		ft.setMaximumFractionDigits(minimumFractionDigits);
-		return ft.format(this.getMagnitude()) + " "
-				+ this.getUnit().toStringGui(locale);
+		return ft.format(this.getMagnitude()) + " " + this.getUnit().toStringGui(locale);
 	}
 
 	/**
@@ -378,9 +343,8 @@ public abstract class RapidQuantity implements Cloneable,
 		}
 		RapidQuantity quant = (RapidQuantity) o;
 
-		return (this.getUnit() == quant.getUnit() && ((this.getMagnitude() == null && quant
-				.getMagnitude() == null) || (this.getMagnitude() != null
-				&& quant.getMagnitude() != null && this.getMagnitude().equals(
+		return (this.getUnit() == quant.getUnit() && ((this.getMagnitude() == null && quant.getMagnitude() == null) || (this
+				.getMagnitude() != null && quant.getMagnitude() != null && this.getMagnitude().equals(
 				quant.getMagnitude()))));
 	}
 
@@ -401,11 +365,8 @@ public abstract class RapidQuantity implements Cloneable,
 	public int compareTo(final RapidQuantity quant) {
 		int comp = 0;
 		if (this.getType() != quant.getType()) {
-			throw new UtilException(
-					"Cannot compare a RapidQuantity against a \""
-							+ quant.getClass().getName()
-							+ "\".\n"
-							+ "only quantities of same type can be compared against each other.");
+			throw new UtilException("Cannot compare a RapidQuantity against a \"" + quant.getClass().getName()
+					+ "\".\n" + "only quantities of same type can be compared against each other.");
 		}
 		if (this.getUnit() == quant.getUnit()) {
 			comp = this.getMagnitude().compareTo(quant.getMagnitude());
@@ -439,34 +400,25 @@ public abstract class RapidQuantity implements Cloneable,
 			throw new UtilException(e.getMessage());
 		}
 		if (this.getUnit() != conversionUnit) {
-			final BigDecimal conversionFactor = this.getType()
-					.getConversionTable()
+			final BigDecimal conversionFactor = this.getType().getConversionTable()
 					.getConversionFactor(this.unit, conversionUnit);
 			if (conversionFactor == null) {
-				throw new QuantityConversionNotSupportedException(
-						"conversion of quantity class \""
-								+ this.getClass().getName() + "\" from Unit \""
-								+ this.unit + "\" to Unit \"" + conversionUnit
-								+ "\" is not supported.");
+				throw new QuantityConversionNotSupportedException("conversion of quantity class \""
+						+ this.getClass().getName() + "\" from Unit \"" + this.unit + "\" to Unit \"" + conversionUnit
+						+ "\" is not supported.");
 			}
-			final boolean conversionFactorReciprocal = this
-					.getType()
-					.getConversionTable()
-					.getConversionFactorReciprocalFlag(this.unit,
-							conversionUnit);
+			final boolean conversionFactorReciprocal = this.getType().getConversionTable()
+					.getConversionFactorReciprocalFlag(this.unit, conversionUnit);
 			if (conversionFactorReciprocal) {
 				try {
-					converted.magnitude = (BigDecimal) this.magnitude
-							.divide(conversionFactor);
+					converted.magnitude = (BigDecimal) this.magnitude.divide(conversionFactor);
 				} catch (ArithmeticException e) {
 					double dMagnitude = this.magnitude.doubleValue();
 					double dConversionFactor = conversionFactor.doubleValue();
-					converted.magnitude = new BigDecimal(dMagnitude
-							/ dConversionFactor);
+					converted.magnitude = new BigDecimal(dMagnitude / dConversionFactor);
 				}
 			} else {
-				converted.magnitude = (BigDecimal) this.magnitude
-						.multiply(conversionFactor);
+				converted.magnitude = (BigDecimal) this.magnitude.multiply(conversionFactor);
 			}
 			converted.unit = conversionUnit;
 		}
@@ -484,10 +436,8 @@ public abstract class RapidQuantity implements Cloneable,
 	 */
 	public BigDecimal parseMagnitudeOneToken(final String token) {
 		Object[] oa = { token };
-		throw new ValidationException("invalid.quantity.format.one", this,
-				"Invalid quantity description \"" + token
-						+ "\" with only one token.\n"
-						+ "Need two tokens: <magnitude> <unit>", oa);
+		throw new ValidationException("invalid.quantity.format.one", this, "Invalid quantity description \"" + token
+				+ "\" with only one token.\n" + "Need two tokens: <magnitude> <unit>", oa);
 	}
 
 	/**
@@ -501,10 +451,8 @@ public abstract class RapidQuantity implements Cloneable,
 	 */
 	public RapidEnum parseUnitOneToken(final String token) {
 		Object[] oa = { token };
-		throw new ValidationException("invalid.quantity.format.one", this,
-				"Invalid quantity description \"" + token
-						+ "\" with only one token.\n"
-						+ "Need two tokens: <magnitude> <unit>", oa);
+		throw new ValidationException("invalid.quantity.format.one", this, "Invalid quantity description \"" + token
+				+ "\" with only one token.\n" + "Need two tokens: <magnitude> <unit>", oa);
 	}
 
 	/**
@@ -531,8 +479,7 @@ public abstract class RapidQuantity implements Cloneable,
 		if (this.unit != sd.getUnit()) {
 			sd = sd.convert(this.getUnit());
 		}
-		return RapidQuantity.createInstance(this.getType(), this.getMagnitude()
-				.add(sd.getMagnitude()), this.unit);
+		return RapidQuantity.createInstance(this.getType(), this.getMagnitude().add(sd.getMagnitude()), this.unit);
 	}
 
 	/**
@@ -551,13 +498,11 @@ public abstract class RapidQuantity implements Cloneable,
 		}
 		RapidQuantity result = null;
 		try {
-			result = RapidQuantity.createInstance(this.getType(), this
-					.getMagnitude().divide(div.getMagnitude()), this.unit);
+			result = RapidQuantity.createInstance(this.getType(), this.getMagnitude().divide(div.getMagnitude()),
+					this.unit);
 		} catch (ArithmeticException e) {
-			double d = this.getMagnitude().doubleValue()
-					/ div.getMagnitude().doubleValue();
-			result = RapidQuantity.createInstance(this.getType(),
-					new BigDecimal(d), this.unit);
+			double d = this.getMagnitude().doubleValue() / div.getMagnitude().doubleValue();
+			result = RapidQuantity.createInstance(this.getType(), new BigDecimal(d), this.unit);
 		}
 		return result;
 	}
@@ -572,8 +517,7 @@ public abstract class RapidQuantity implements Cloneable,
 	 */
 	public RapidQuantity round(final int fraction, RoundingMode roundingMode) {
 		if (this.magnitude == null) {
-			throw new IllegalArgumentException(
-					"can not round a quantity with null magnitude");
+			throw new IllegalArgumentException("can not round a quantity with null magnitude");
 		}
 		int precision = 3;
 		double mag = this.magnitude.doubleValue();
@@ -582,8 +526,7 @@ public abstract class RapidQuantity implements Cloneable,
 			precision++;
 		}
 		RapidQuantity rounded = RapidQuantity.createInstance(this.getType(),
-				this.magnitude.round(new MathContext(precision, roundingMode)),
-				this.getUnit());
+				this.magnitude.round(new MathContext(precision, roundingMode)), this.getUnit());
 		return rounded;
 	}
 }

@@ -22,25 +22,20 @@ public class GenericQuantityTest extends TestCase {
 	 */
 	public void testCreateInstanceDescrGeneric() {
 		try {
-			String descr = "<enumtype name=\"UnitVolt\">"
-					+ "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
+			String descr = "<enumtype name=\"UnitVolt\">" + "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
 					+ "<enum name=\"mV\"/>" + "</enumtype>";
 			TypeRapidEnum enumtype = TypeRapidEnum.createInstance(descr);
 			assertEquals("UnitVolt", enumtype.getName());
 			assertEquals("V", enumtype.elementOf("V").name());
 
-			descr = "<quantitytype name=\"Voltage\""
-					+ " unitenum=\"UnitVolt\">"
-					+ "<unit name=\"kV\" factor=\"1E3\"/>"
-					+ "<unit name=\"V\" factor=\"1\"/>"
-					+ "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
+			descr = "<quantitytype name=\"Voltage\"" + " unitenum=\"UnitVolt\">" + "<unit name=\"kV\" factor=\"1E3\"/>"
+					+ "<unit name=\"V\" factor=\"1\"/>" + "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
 			TypeRapidQuantity.createInstance(descr);
 			RapidQuantity.createInstance("Voltage", "1.5 V");
 		} finally {
 			TestHelperTypeLoader.clearBeanTypesGeneric();
 			assertNull(RapidBeansTypeLoader.getInstance().lookupType("Voltage"));
-			assertNull(RapidBeansTypeLoader.getInstance()
-					.lookupType("UnitVolt"));
+			assertNull(RapidBeansTypeLoader.getInstance().lookupType("UnitVolt"));
 		}
 	}
 
@@ -50,42 +45,32 @@ public class GenericQuantityTest extends TestCase {
 	 */
 	public void testCreateInstanceDescrGenericBeanWithQuant() {
 		try {
-			String descr = "<enumtype name=\"UnitVolt\">"
-					+ "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
+			String descr = "<enumtype name=\"UnitVolt\">" + "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
 					+ "<enum name=\"mV\"/>" + "</enumtype>";
 			TypeRapidEnum enumtype = TypeRapidEnum.createInstance(descr);
 			assertEquals("UnitVolt", enumtype.getName());
 			assertEquals("V", enumtype.elementOf("V").name());
 
-			descr = "<quantitytype name=\"Voltage\""
-					+ " unitenum=\"UnitVolt\">"
-					+ "<unit name=\"kV\" factor=\"1E3\"/>"
-					+ "<unit name=\"V\" factor=\"1\"/>"
-					+ "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
-			TypeRapidQuantity quantitytype = TypeRapidQuantity
-					.createInstance(descr);
+			descr = "<quantitytype name=\"Voltage\"" + " unitenum=\"UnitVolt\">" + "<unit name=\"kV\" factor=\"1E3\"/>"
+					+ "<unit name=\"V\" factor=\"1\"/>" + "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
+			TypeRapidQuantity quantitytype = TypeRapidQuantity.createInstance(descr);
 			assertEquals("Voltage", quantitytype.getName());
 
-			descr = "<beantype name=\"TestBean\">"
-					+ "<property name=\"name\" default=\"xxx\"/>"
+			descr = "<beantype name=\"TestBean\">" + "<property name=\"name\" default=\"xxx\"/>"
 					+ "<property name=\"tension\" type=\"quantity\" quantity=\"Voltage\" default=\"100000 V\"/>"
 					+ "</beantype>";
-			TypeRapidBean beantype = new TypeRapidBean(null,
-					XmlNode.getDocumentTopLevel(descr), null, true);
+			TypeRapidBean beantype = new TypeRapidBean(null, XmlNode.getDocumentTopLevel(descr), null, true);
 			assertEquals("TestBean", beantype.getName());
 
 			RapidBean bean = RapidBeanImplStrict.createInstance(beantype);
 			PropertyString propName = (PropertyString) bean.getProperty("name");
 			assertEquals("xxx", propName.getValue());
-			PropertyQuantity propTension = (PropertyQuantity) bean
-					.getProperty("tension");
-			assertEquals(GenericQuantity.createInstance("Voltage", "100000 V"),
-					propTension.getValue());
+			PropertyQuantity propTension = (PropertyQuantity) bean.getProperty("tension");
+			assertEquals(GenericQuantity.createInstance("Voltage", "100000 V"), propTension.getValue());
 		} finally {
 			TestHelperTypeLoader.clearBeanTypesGeneric();
 			assertNull(RapidBeansTypeLoader.getInstance().lookupType("Voltage"));
-			assertNull(RapidBeansTypeLoader.getInstance()
-					.lookupType("UnitVolt"));
+			assertNull(RapidBeansTypeLoader.getInstance().lookupType("UnitVolt"));
 		}
 	}
 }

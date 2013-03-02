@@ -277,11 +277,9 @@ public class PropertyChoiceTest extends TestCase {
 	 */
 	public void testImmutabilityGet() throws java.text.ParseException {
 
-		PropertyChoice prop = this
-				.createChoiceProperty("<property name=\"test\""
-						+ " enum=\"org.rapidbeans.domain.org.Country\""
-						+ " multiple=\"true\""
-						+ " default=\"germany,austria\"/>");
+		PropertyChoice prop = this.createChoiceProperty("<property name=\"test\""
+				+ " enum=\"org.rapidbeans.domain.org.Country\"" + " multiple=\"true\""
+				+ " default=\"germany,austria\"/>");
 
 		// originally prop1 has the default value
 		assertEquals(2, prop.getValue().size());
@@ -312,10 +310,8 @@ public class PropertyChoiceTest extends TestCase {
 	 */
 	public void testImmutabilitySet() throws java.text.ParseException {
 
-		PropertyChoice prop = this
-				.createChoiceProperty("<property name=\"test\""
-						+ " enum=\"org.rapidbeans.domain.org.Country\""
-						+ " multiple=\"true\"/>");
+		PropertyChoice prop = this.createChoiceProperty("<property name=\"test\""
+				+ " enum=\"org.rapidbeans.domain.org.Country\"" + " multiple=\"true\"/>");
 
 		List<Country> choice2 = new ArrayList<Country>();
 		choice2.add(Country.austria);
@@ -343,10 +339,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * @return a new Choice property.
 	 */
 	private PropertyChoice createChoiceProperty(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyChoice type = new TypePropertyChoice(
-				new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyChoice type = new TypePropertyChoice(new XmlNode[] { propertyNode }, null);
 		return new PropertyChoice(type, null);
 	}
 }

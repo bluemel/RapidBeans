@@ -148,13 +148,11 @@ public class DialogLoginSwing extends DialogLogin {
 	 * @param encryptCredent
 	 *            if credentials should be encrypted or not
 	 */
-	public DialogLoginSwing(final boolean saveCredent,
-			final boolean encryptCredent) {
+	public DialogLoginSwing(final boolean saveCredent, final boolean encryptCredent) {
 		ThreadLocalEventLock.set(null);
 		final Application client = ApplicationManager.getApplication();
 		try {
-			final Image image = new IconManagerSwing()
-					.getImage("mainwindow.icon");
+			final Image image = new IconManagerSwing().getImage("mainwindow.icon");
 			if (image != null) {
 				this.dialogWidget.setIconImage(image);
 			}
@@ -185,8 +183,7 @@ public class DialogLoginSwing extends DialogLogin {
 					buttonPressedOk();
 				}
 			});
-			this.buttonCancel
-					.setText(loc.getStringGui("commongui.text.cancel"));
+			this.buttonCancel.setText(loc.getStringGui("commongui.text.cancel"));
 			this.buttonCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					buttonPressedCancel();
@@ -199,52 +196,34 @@ public class DialogLoginSwing extends DialogLogin {
 				}
 			});
 			final JPanel tfPanel = new JPanel(new GridBagLayout());
-			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.logname")),
-					new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.log, new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.password")),
-					new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.pwd, new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.savecred")),
-					new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.savecred, new GridBagConstraints(1, 2, 1, 1, 1.0,
-					0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-					new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(
-					new JLabel(loc.getStringGui("dialog.login.encryptcred")),
-					new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
-							GridBagConstraints.WEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
-			tfPanel.add(this.encryptcred, new GridBagConstraints(1, 3, 1, 1,
-					1.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-					new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.logname")), new GridBagConstraints(0, 0, 1, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.log, new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.password")), new GridBagConstraints(0, 1, 1, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.pwd, new GridBagConstraints(1, 1, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.savecred")), new GridBagConstraints(0, 2, 2, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.savecred, new GridBagConstraints(1, 2, 1, 1, 1.0, 0.0, GridBagConstraints.EAST,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(new JLabel(loc.getStringGui("dialog.login.encryptcred")), new GridBagConstraints(0, 3, 2, 1,
+					0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			tfPanel.add(this.encryptcred, new GridBagConstraints(1, 3, 1, 1, 1.0, 0.0, GridBagConstraints.EAST,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 			dialogWidget.getContentPane().add(tfPanel, BorderLayout.CENTER);
 			final JPanel btPanel = new JPanel(new GridBagLayout());
-			btPanel.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1, 1.0,
-					1.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-					new Insets(5, 5, 5, 5), 0, 0));
-			btPanel.add(this.buttonCancel, new GridBagConstraints(1, 0, 1, 1,
-					1.0, 1.0, GridBagConstraints.CENTER,
+			btPanel.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+			btPanel.add(this.buttonCancel, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 					GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 			dialogWidget.getContentPane().add(btPanel, BorderLayout.SOUTH);
-			this.setTitle(loc.getStringGui("dialog.login.title") + ": "
-					+ loc.getStringGui("mainwindow.title"));
+			this.setTitle(loc.getStringGui("dialog.login.title") + ": " + loc.getStringGui("mainwindow.title"));
 			dialogWidget.setTitle(this.getTitle());
-			final Dimension screenSize = Toolkit.getDefaultToolkit()
-					.getScreenSize();
+			final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			dialogWidget.setSize(450, 200);
-			dialogWidget.setLocation(
-					(screenSize.width - dialogWidget.getWidth()) / 2,
+			dialogWidget.setLocation((screenSize.width - dialogWidget.getWidth()) / 2,
 					(screenSize.height - dialogWidget.getHeight()) / 2);
 		} finally {
 			ThreadLocalEventLock.release();
@@ -337,10 +316,8 @@ public class DialogLoginSwing extends DialogLogin {
 			if (!getEncryptcred()) {
 				final Application client = ApplicationManager.getApplication();
 				final RapidBeansLocale loc = client.getCurrentLocale();
-				if (!client
-						.messageYesNo(
-								loc.getStringMessage("login.confirm.savecredwoencryption"),
-								loc.getStringMessage("login.confirm.savecredwoencryption.title"))) {
+				if (!client.messageYesNo(loc.getStringMessage("login.confirm.savecredwoencryption"),
+						loc.getStringMessage("login.confirm.savecredwoencryption.title"))) {
 					this.encryptcred.setSelected(true);
 				}
 			}

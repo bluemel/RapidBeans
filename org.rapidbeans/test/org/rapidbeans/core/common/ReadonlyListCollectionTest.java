@@ -23,8 +23,7 @@ import org.rapidbeans.test.codegen.Person;
 public class ReadonlyListCollectionTest extends TestCase {
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray()}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray()}.
 	 */
 	public void testToArray() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -35,9 +34,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])} .
 	 */
 	public void testToArrayObjectArray() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -48,9 +45,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])} .
 	 */
 	public void testToArrayObjectArrayWrongType() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -62,8 +57,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#get(int)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#get(int)}.
 	 */
 	public void testGetList() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -71,8 +65,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#get(int)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#get(int)}.
 	 */
 	public void testGetListSet() {
 		ReadonlyListCollection<Person> persons = createPersonROCollectionSet();
@@ -80,9 +73,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)} .
 	 */
 	public void testIndexOf() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -92,9 +83,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)} .
 	 */
 	public void testIndexOfSet() {
 		ReadonlyListCollection<Person> persons = createPersonROCollectionSet();
@@ -104,9 +93,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)} .
 	 */
 	public void testLastIndexOf() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -116,9 +103,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)}
-	 * .
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)} .
 	 */
 	public void testLastIndexOfSet() {
 		ReadonlyListCollection<Person> persons = createPersonROCollectionSet();
@@ -129,34 +114,25 @@ public class ReadonlyListCollectionTest extends TestCase {
 
 	private ReadonlyListCollection<Person> createPersonROCollection() {
 		Address adr = new Address();
-		adr.addInhabitant(new Person(new String[] { "Bluemel", "Martin",
-				"19641014" }));
-		adr.addInhabitant(new Person(new String[] { "Bluemel", "Ulrike",
-				"19620802" }));
-		adr.addInhabitant(new Person(new String[] { "Bluemel", "Daniela",
-				"19991212" }));
-		adr.addInhabitant(new Person(new String[] { "Bluemel", "Melanie",
-				"20020831" }));
+		adr.addInhabitant(new Person(new String[] { "Bluemel", "Martin", "19641014" }));
+		adr.addInhabitant(new Person(new String[] { "Bluemel", "Ulrike", "19620802" }));
+		adr.addInhabitant(new Person(new String[] { "Bluemel", "Daniela", "19991212" }));
+		adr.addInhabitant(new Person(new String[] { "Bluemel", "Melanie", "20020831" }));
 		return (ReadonlyListCollection<Person>) adr.getInhabitants();
 	}
 
 	private ReadonlyListCollection<Person> createPersonROCollectionSet() {
 		Address adr = new Address();
 		Property prop = adr.getProperty("inhabitants");
-		TypePropertyCollection proptype = (TypePropertyCollection) prop
-				.getType();
+		TypePropertyCollection proptype = (TypePropertyCollection) prop.getType();
 		Class<?> prevClass = proptype.getCollectionClass();
 		assertSame(LinkedHashSet.class, prevClass);
 		try {
 			proptype.setCollectionClass(HashSet.class);
-			adr.addInhabitant(new Person(new String[] { "Bluemel", "Martin",
-					"19641014" }));
-			adr.addInhabitant(new Person(new String[] { "Bluemel", "Ulrike",
-					"19620802" }));
-			adr.addInhabitant(new Person(new String[] { "Bluemel", "Daniela",
-					"19991212" }));
-			adr.addInhabitant(new Person(new String[] { "Bluemel", "Melanie",
-					"20020831" }));
+			adr.addInhabitant(new Person(new String[] { "Bluemel", "Martin", "19641014" }));
+			adr.addInhabitant(new Person(new String[] { "Bluemel", "Ulrike", "19620802" }));
+			adr.addInhabitant(new Person(new String[] { "Bluemel", "Daniela", "19991212" }));
+			adr.addInhabitant(new Person(new String[] { "Bluemel", "Melanie", "20020831" }));
 			return (ReadonlyListCollection<Person>) adr.getInhabitants();
 		} finally {
 			proptype.setCollectionClass(prevClass);

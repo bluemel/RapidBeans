@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: ConfigView.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigView
  * 
- * model:    model/org/rapidbeans/presentation/config/ConfigView.xml
+ * model: model/org/rapidbeans/presentation/config/ConfigView.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
@@ -32,8 +32,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * @return the complete name <b>&lt;parent doc name>.&lt;view name></b>
 	 */
 	public String getNameComplete() {
-		return ((ConfigDocument) this.getParentBean()).getName() + "."
-				+ this.getName();
+		return ((ConfigDocument) this.getParentBean()).getName() + "." + this.getName();
 	}
 
 	// END manual code section
@@ -57,12 +56,9 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("name");
-		this.persistencestrategy = (org.rapidbeans.core.basic.PropertyChoice) this
-				.getProperty("persistencestrategy");
-		this.viewclass = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("viewclass");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
+		this.persistencestrategy = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("persistencestrategy");
+		this.viewclass = (org.rapidbeans.core.basic.PropertyString) this.getProperty("viewclass");
 	}
 
 	/**
@@ -104,8 +100,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(ConfigView.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigView.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -121,8 +116,7 @@ public class ConfigView extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
 		}
 	}
 
@@ -141,17 +135,14 @@ public class ConfigView extends RapidBeanImplStrict {
 	 */
 	public org.rapidbeans.presentation.config.ConfigPropPersistencestrategy getPersistencestrategy() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.persistencestrategy
-					.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.persistencestrategy.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.config.ConfigPropPersistencestrategy) enumList
-						.get(0);
+				return (org.rapidbeans.presentation.config.ConfigPropPersistencestrategy) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"persistencestrategy");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("persistencestrategy");
 		}
 	}
 
@@ -161,8 +152,7 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'persistencestrategy' to set
 	 */
-	public void setPersistencestrategy(
-			final org.rapidbeans.presentation.config.ConfigPropPersistencestrategy argValue) {
+	public void setPersistencestrategy(final org.rapidbeans.presentation.config.ConfigPropPersistencestrategy argValue) {
 		java.util.List<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy> list = new java.util.ArrayList<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy>();
 		list.add(argValue);
 		this.persistencestrategy.setValue(list);
@@ -175,8 +165,7 @@ public class ConfigView extends RapidBeanImplStrict {
 		try {
 			return (String) this.viewclass.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"viewclass");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("viewclass");
 		}
 	}
 

@@ -40,12 +40,10 @@ public final class TypePropertyBoolean extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyBoolean(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyBoolean(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		super("Boolean", xmlNodes, parentBeanType);
 
-		final String defaultValueString = xmlNodes[0]
-				.getAttributeValue("@default");
+		final String defaultValueString = xmlNodes[0].getAttributeValue("@default");
 		if (defaultValueString != null) {
 			validateBooleanString(defaultValueString);
 			this.setDefaultValue(Boolean.parseBoolean(defaultValueString));
@@ -60,14 +58,8 @@ public final class TypePropertyBoolean extends TypeProperty {
 	 */
 	public void validateBooleanString(final String sBool) {
 		if (!sBool.equalsIgnoreCase("false") && !sBool.equalsIgnoreCase("true")) {
-			throw new ValidationException(
-					"invalid.prop.boolean.string",
-					this,
-					"Property \""
-							+ this.getPropName()
-							+ "\": invalid string \""
-							+ sBool
-							+ "\".\nOnly \"false\" and \"true\" are valid values.");
+			throw new ValidationException("invalid.prop.boolean.string", this, "Property \"" + this.getPropName()
+					+ "\": invalid string \"" + sBool + "\".\nOnly \"false\" and \"true\" are valid values.");
 		}
 	}
 
@@ -100,16 +92,9 @@ public final class TypePropertyBoolean extends TypeProperty {
 			this.validateBooleanString(s);
 			booleanValue = Boolean.parseBoolean(s);
 		} else {
-			throw new ValidationException(
-					"invalid.prop.boolean.type",
-					this,
-					"Property \""
-							+ this.getPropName()
-							+ "\": "
-							+ "invalid data type \""
-							+ newValue.getClass().getName()
-							+ "\" for a boolean property.\n"
-							+ "Only \"Boolean\" or \"String\" are valid data types.");
+			throw new ValidationException("invalid.prop.boolean.type", this, "Property \"" + this.getPropName()
+					+ "\": " + "invalid data type \"" + newValue.getClass().getName() + "\" for a boolean property.\n"
+					+ "Only \"Boolean\" or \"String\" are valid data types.");
 		}
 		return booleanValue;
 	}

@@ -141,12 +141,8 @@ public final class ModelListCollection extends DefaultListModel {
 		if (prop.getValue() == null) {
 			this.list = null;
 		} else {
-			if (this.list == null
-					|| (!this.list
-							.isSameCollection((Collection<RapidBean>) prop
-									.getValue()))) {
-				this.list = new ReadonlyListCollection<RapidBean>(
-						(Collection<RapidBean>) prop.getValue(),
+			if (this.list == null || (!this.list.isSameCollection((Collection<RapidBean>) prop.getValue()))) {
+				this.list = new ReadonlyListCollection<RapidBean>((Collection<RapidBean>) prop.getValue(),
 						(TypePropertyCollection) prop.getType());
 			}
 			this.fireContentsChanged(this, 0, this.list.size());

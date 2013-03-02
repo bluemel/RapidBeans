@@ -67,8 +67,7 @@ public class QueryExprConditionType extends QueryExpression {
 	 */
 	public void removeChildExpression(final QueryExpression expr) {
 		if (expr != this.childExpression) {
-			throw new QueryException(
-					"tried to remove non existing child expression");
+			throw new QueryException("tried to remove non existing child expression");
 		}
 		this.childExpression = null;
 	}
@@ -103,8 +102,7 @@ public class QueryExprConditionType extends QueryExpression {
 	 * 
 	 * @return a Collection with all found beans (result set)
 	 */
-	public List<RapidBean> eval(final Container db,
-			final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
 		List<RapidBean> bbAll = db.findBeansByType(this.typename);
 		if (this.childExpression == null) {
 			return bbAll;

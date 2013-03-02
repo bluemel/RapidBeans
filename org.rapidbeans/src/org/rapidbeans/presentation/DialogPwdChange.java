@@ -98,21 +98,17 @@ public abstract class DialogPwdChange {
 			if (!dialogCancelled) {
 				String oldPwd = dialog.getPwdOld();
 				if (oldPwd != null && (!oldPwd.endsWith(""))) {
-					final String pwdOld = User.hashPwd(oldPwd, client
-							.getConfiguration().getAuthorization()
+					final String pwdOld = User.hashPwd(oldPwd, client.getConfiguration().getAuthorization()
 							.getPwdhashalgorithm());
-					if (!((pwdOld.equals(user.getPropValue("pwd"))) || (pwdOld
-							.equals("") && user.getPropValue("pwd") == null))) {
-						client.messageError(
-								loc.getStringMessage("pwdchange.wrong.pwd.old"),
+					if (!((pwdOld.equals(user.getPropValue("pwd"))) || (pwdOld.equals("") && user.getPropValue("pwd") == null))) {
+						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.old"),
 								loc.getStringMessage("pwdchange.wrong.title"));
 					}
 				} else {
 					final String pwdNew1 = dialog.getPwdNew1();
 					final String pwdNew2 = dialog.getPwdNew2();
 					if (!(pwdNew1.equals(pwdNew2))) {
-						client.messageError(
-								loc.getStringMessage("pwdchange.wrong.pwd.new"),
+						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.new"),
 								loc.getStringMessage("pwdchange.wrong.title"));
 					} else {
 						try {
@@ -122,8 +118,7 @@ public abstract class DialogPwdChange {
 							if (pwdNew1.equals("")) {
 								User.setPwdSecS(user, null, null);
 							} else {
-								User.setPwdSecS(user, pwdNew1, client
-										.getConfiguration().getAuthorization()
+								User.setPwdSecS(user, pwdNew1, client.getConfiguration().getAuthorization()
 										.getPwdhashalgorithm());
 							}
 						} finally {
@@ -147,15 +142,13 @@ public abstract class DialogPwdChange {
 	private static DialogPwdChange createDialog(final RapidBean user) {
 		DialogPwdChange dialog = null;
 		final Application client = ApplicationManager.getApplication();
-		final ApplicationGuiType guitype = client.getConfiguration()
-				.getGuitype();
+		final ApplicationGuiType guitype = client.getConfiguration().getGuitype();
 		switch (guitype) {
 		case swing:
 			dialog = new DialogPwdChangeSwing(user);
 			break;
 		default:
-			throw new RapidBeansRuntimeException("gui type \"" + guitype.name()
-					+ "\" not supported");
+			throw new RapidBeansRuntimeException("gui type \"" + guitype.name() + "\" not supported");
 		}
 		return dialog;
 	}

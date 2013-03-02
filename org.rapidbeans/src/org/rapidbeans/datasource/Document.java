@@ -224,8 +224,7 @@ public class Document extends ContainerImpl {
 	public static String mapToDocname(final File docfile) {
 		String docname = null;
 		try {
-			docname = new File(docfile.getCanonicalPath()).toURI().toURL()
-					.toString();
+			docname = new File(docfile.getCanonicalPath()).toURI().toURL().toString();
 		} catch (MalformedURLException e) {
 			throw new RapidBeansRuntimeException(e);
 		} catch (IOException e) {
@@ -292,8 +291,7 @@ public class Document extends ContainerImpl {
 	 * @param docfile
 	 *            the XML file
 	 */
-	public Document(final String docname, final TypeRapidBean rbType,
-			final File docfile) {
+	public Document(final String docname, final TypeRapidBean rbType, final File docfile) {
 		try {
 			this.name = docname;
 			this.url = RapidBeanDeserializer.urlFromFile(docfile);
@@ -303,9 +301,8 @@ public class Document extends ContainerImpl {
 			this.init();
 			this.validate();
 		} catch (RapidBeansRuntimeException e) {
-			throw new RapidBeansRuntimeException(
-					"Error while deserializing document from file \""
-							+ docfile.getAbsolutePath() + "\"", e);
+			throw new RapidBeansRuntimeException("Error while deserializing document from file \""
+					+ docfile.getAbsolutePath() + "\"", e);
 		}
 	}
 
@@ -350,8 +347,7 @@ public class Document extends ContainerImpl {
 	 * @param docfile
 	 *            the XML file
 	 */
-	public Document(final String docname, final TypeRapidBean rbType,
-			final URL docurl) {
+	public Document(final String docname, final TypeRapidBean rbType, final URL docurl) {
 		try {
 			this.name = docname;
 			this.url = docurl;
@@ -360,9 +356,8 @@ public class Document extends ContainerImpl {
 			this.encoding = deser.getEncoding();
 			init();
 		} catch (RapidBeansRuntimeException e) {
-			throw new RapidBeansRuntimeException(
-					"Error while deserializing document from file \""
-							+ docurl.toString() + "\"", e);
+			throw new RapidBeansRuntimeException("Error while deserializing document from file \"" + docurl.toString()
+					+ "\"", e);
 		}
 	}
 
@@ -378,8 +373,7 @@ public class Document extends ContainerImpl {
 	 * @param is
 	 *            input stream
 	 */
-	public Document(final String docname, final TypeRapidBean rbType,
-			final URL docurl, final InputStream is) {
+	public Document(final String docname, final TypeRapidBean rbType, final URL docurl, final InputStream is) {
 		try {
 			this.name = docname;
 			this.url = docurl;
@@ -388,9 +382,8 @@ public class Document extends ContainerImpl {
 			this.encoding = deser.getEncoding();
 			init();
 		} catch (RapidBeansRuntimeException e) {
-			throw new RapidBeansRuntimeException(
-					"Error while deserializing document from file \""
-							+ docurl.toString() + "\"", e);
+			throw new RapidBeansRuntimeException("Error while deserializing document from file \"" + docurl.toString()
+					+ "\"", e);
 		}
 	}
 
@@ -427,8 +420,7 @@ public class Document extends ContainerImpl {
 	 */
 	private void init() {
 		this.idmap = new IdMap();
-		final DocumentTreeVisitor visitor = new DocumentTreeVisitorInitIdMap(
-				this, this.idmap);
+		final DocumentTreeVisitor visitor = new DocumentTreeVisitorInitIdMap(this, this.idmap);
 		this.traverseDocumentTree(0, visitor, this.root);
 		this.resolveFrozenLinks();
 		this.changed = false;
@@ -438,8 +430,7 @@ public class Document extends ContainerImpl {
 	 * Resolve all the document's frozen links.
 	 */
 	public void resolveFrozenLinks() {
-		DocumentTreeVisitor visitor = new DocumentTreeVisitorResolveFrozenLinks(
-				this.idmap);
+		DocumentTreeVisitor visitor = new DocumentTreeVisitorResolveFrozenLinks(this.idmap);
 		this.traverseDocumentTree(0, visitor, this.root);
 	}
 
@@ -477,15 +468,12 @@ public class Document extends ContainerImpl {
 	 * 
 	 * @param forceEncoding
 	 * <br/>
-	 *            <li>true: the given encoding will be preferred if not null</li>
-	 *            <li>false: the original encoding will be preferred if not null
-	 *            </li>
+	 *            <li>true: the given encoding will be preferred if not null</li> <li>false: the original encoding will be preferred if not null</li>
 	 * @param useUrl
 	 *            the URL to use for writing. If it is null the file's URL will
 	 *            be automatically used.
 	 */
-	public void save(final String useEncoding, final boolean forceEncoding,
-			final URL useUrl) {
+	public void save(final String useEncoding, final boolean forceEncoding, final URL useUrl) {
 		String writeEncoding = null;
 		if (forceEncoding) {
 			writeEncoding = useEncoding;
@@ -502,11 +490,9 @@ public class Document extends ContainerImpl {
 			writeEncoding = DEFAULT_CHARSET;
 		}
 		if (useUrl == null) {
-			(new RapidBeanSerializer()).saveBean(this.root, this.url,
-					writeEncoding);
+			(new RapidBeanSerializer()).saveBean(this.root, this.url, writeEncoding);
 		} else {
-			(new RapidBeanSerializer()).saveBean(this.root, useUrl,
-					writeEncoding);
+			(new RapidBeanSerializer()).saveBean(this.root, useUrl, writeEncoding);
 		}
 		this.fireDocumentSaved();
 	}
@@ -521,12 +507,9 @@ public class Document extends ContainerImpl {
 	 * 
 	 * @param forceEncoding
 	 * <br/>
-	 *            <li>true: the given encoding will be preferred if not null</li>
-	 *            <li>false: the original encoding will be preferred if not null
-	 *            </li>
+	 *            <li>true: the given encoding will be preferred if not null</li> <li>false: the original encoding will be preferred if not null</li>
 	 */
-	public String toXmlString(final String useEncoding,
-			final boolean forceEncoding) {
+	public String toXmlString(final String useEncoding, final boolean forceEncoding) {
 		String writeEncoding = null;
 		if (forceEncoding) {
 			writeEncoding = useEncoding;
@@ -565,19 +548,13 @@ public class Document extends ContainerImpl {
 	 *            beans into a document. Instead insert them implicitly by
 	 *            adding the to a parent bean. If you anyway try to insert
 	 *            explicitly the document tries to find an appropriate location
-	 *            according to the following strategy. <li>Find all composition
-	 *            collection properties that have the type of the bean to insert
-	 *            as target type.</li> <li>If there is exactly one add the bean
-	 *            there. Otherwise throw an appropriate exception.</li>
+	 *            according to the following strategy. <li>Find all composition collection properties that have the type of the bean to insert as target type.</li> <li>If there is exactly one add the bean there. Otherwise throw an appropriate exception.</li>
 	 */
 	public void insert(final RapidBean bean, final boolean implicitly) {
 		if (this.idmap.findBean(bean.getType().getName(), bean.getIdString()) != null) {
-			throw new BeanDuplicateException("messagedialog.create.duplicate",
-					bean, "Bean \"" + bean.toString()
-							+ "\" already exists in document \""
-							+ this.getName() + "\"",
-					new Object[] { bean.toStringGui(ApplicationManager
-							.getApplication().getCurrentLocale()) });
+			throw new BeanDuplicateException("messagedialog.create.duplicate", bean, "Bean \"" + bean.toString()
+					+ "\" already exists in document \"" + this.getName() + "\"",
+					new Object[] { bean.toStringGui(ApplicationManager.getApplication().getCurrentLocale()) });
 		}
 		this.fireBeanAddPre(bean);
 		this.idmap.insert(bean);
@@ -593,8 +570,7 @@ public class Document extends ContainerImpl {
 	 */
 	public void delete(final RapidBean bean) {
 		if (this.idmap.findBean(bean.getType().getName(), bean.getIdString()) == null) {
-			throw new BeanNotFoundException(bean.getType().getName() + ":"
-					+ bean.getIdString());
+			throw new BeanNotFoundException(bean.getType().getName() + ":" + bean.getIdString());
 		}
 		if (bean.getBeanState() != RapidBeanState.deleting) {
 			this.fireBeanRemovePre(bean);
@@ -627,8 +603,7 @@ public class Document extends ContainerImpl {
 	 * @param listener
 	 *            the listener to unregister
 	 */
-	public void removeDocumentChangeListener(
-			final DocumentChangeListener listener) {
+	public void removeDocumentChangeListener(final DocumentChangeListener listener) {
 		this.listeners.remove(listener);
 	}
 
@@ -866,8 +841,7 @@ public class Document extends ContainerImpl {
 		ArrayList<Property> al = new ArrayList<Property>();
 		while (o != null) {
 			if (o instanceof RapidBean) {
-				PropertyCollection parentProp = ((RapidBean) o)
-						.getParentProperty();
+				PropertyCollection parentProp = ((RapidBean) o).getParentProperty();
 				if (parentProp == null) {
 					o = null;
 				} else {
@@ -876,9 +850,8 @@ public class Document extends ContainerImpl {
 			} else if (o instanceof PropertyCollection) {
 				o = ((PropertyCollection) o).getBean();
 			} else {
-				throw new RapidBeansRuntimeException(
-						"Unexpected parent class \"" + o.getClass().getName()
-								+ "\"for bean tree model");
+				throw new RapidBeansRuntimeException("Unexpected parent class \"" + o.getClass().getName()
+						+ "\"for bean tree model");
 			}
 			if (o != null && o instanceof Property) {
 				al.add((Property) o);
@@ -919,8 +892,7 @@ public class Document extends ContainerImpl {
 	 * 
 	 * @author Martin Bluemel
 	 */
-	private final class DocumentTreeVisitorInitIdMap implements
-			DocumentTreeVisitor {
+	private final class DocumentTreeVisitorInitIdMap implements DocumentTreeVisitor {
 
 		/**
 		 * the document itself.
@@ -940,8 +912,7 @@ public class Document extends ContainerImpl {
 		 * @param pool
 		 *            the pool
 		 */
-		public DocumentTreeVisitorInitIdMap(final Document document,
-				final IdMap pool) {
+		public DocumentTreeVisitorInitIdMap(final Document document, final IdMap pool) {
 			this.visitorDocument = document;
 			this.vistorIdmap = pool;
 		}
@@ -965,8 +936,7 @@ public class Document extends ContainerImpl {
 	 * 
 	 * @author Martin Bluemel
 	 */
-	private final class DocumentTreeVisitorResolveFrozenLinks implements
-			DocumentTreeVisitor {
+	private final class DocumentTreeVisitorResolveFrozenLinks implements DocumentTreeVisitor {
 
 		/**
 		 * the document's identity map.
@@ -1014,65 +984,43 @@ public class Document extends ContainerImpl {
 						ignoreAssocTwiceException = true;
 					}
 					if (colPropType.getInverse() != null) {
-						inverseColPropType = (TypePropertyCollection) colPropType
-								.getTargetType().getPropertyType(
-										colPropType.getInverse());
+						inverseColPropType = (TypePropertyCollection) colPropType.getTargetType().getPropertyType(
+								colPropType.getInverse());
 						if (inverseColPropType != null) {
 							if (colclass == null) {
-								colclass = TypePropertyCollection
-										.getDefaultCollectionClass();
+								colclass = TypePropertyCollection.getDefaultCollectionClass();
 							}
-							inverseColclass = inverseColPropType
-									.getCollectionClass();
+							inverseColclass = inverseColPropType.getCollectionClass();
 							if (inverseColclass == null) {
-								inverseColclass = TypePropertyCollection
-										.getDefaultCollectionClass();
+								inverseColclass = TypePropertyCollection.getDefaultCollectionClass();
 							}
-							if (!ClassHelper
-									.classOf(Set.class, inverseColclass)
-									|| !ClassHelper.classOf(Set.class,
-											colPropType.getCollectionClass())) {
+							if (!ClassHelper.classOf(Set.class, inverseColclass)
+									|| !ClassHelper.classOf(Set.class, colPropType.getCollectionClass())) {
 								suppressMultipleLinksToSameInstance = true;
 							}
 						}
 					}
 					if (!colPropType.isComposition()) {
-						colPropTargetTypename = colPropType.getTargetType()
-								.getName();
+						colPropTargetTypename = colPropType.getTargetType().getName();
 						col = (Collection<Link>) colProp.getValue();
 						if (col != null) {
-							Collection<Link> newCol = colProp
-									.createNewCollection();
+							Collection<Link> newCol = colProp.createNewCollection();
 							RapidBean targetBean;
 							for (Link link : col) {
 								if (link instanceof LinkFrozen) {
-									targetBean = this.vistorIdmap.findBean(
-											colPropTargetTypename,
-											link.getIdString());
+									targetBean = this.vistorIdmap.findBean(colPropTargetTypename, link.getIdString());
 									if (targetBean == null) {
-										throw new ValidationException(
-												"invalid.reference", bean,
-												"could not resolve reference from bean:\n"
-														+ "\""
-														+ bean.getType()
-																.getName()
-														+ "::"
-														+ bean.getIdString()
-														+ "\"\n"
-														+ "property: \""
-														+ prop.getName()
-														+ "\"\n" + "to bean \""
-														+ colPropTargetTypename
-														+ "::"
-														+ link.getIdString()
-														+ "\"");
+										throw new ValidationException("invalid.reference", bean,
+												"could not resolve reference from bean:\n" + "\""
+														+ bean.getType().getName() + "::" + bean.getIdString() + "\"\n"
+														+ "property: \"" + prop.getName() + "\"\n" + "to bean \""
+														+ colPropTargetTypename + "::" + link.getIdString() + "\"");
 									}
 								} else {
 									targetBean = (RapidBean) link;
 								}
 
-								if (!suppressMultipleLinksToSameInstance
-										|| !newCol.contains(targetBean)) {
+								if (!suppressMultipleLinksToSameInstance || !newCol.contains(targetBean)) {
 									newCol.add(targetBean);
 								}
 							}
@@ -1101,8 +1049,7 @@ public class Document extends ContainerImpl {
 	 *            the current tree node
 	 */
 	@SuppressWarnings("unchecked")
-	private void traverseDocumentTree(final int depth,
-			final DocumentTreeVisitor visitor, final RapidBean bean) {
+	private void traverseDocumentTree(final int depth, final DocumentTreeVisitor visitor, final RapidBean bean) {
 		visitor.processBean(depth, bean);
 		PropertyCollection colProp;
 		TypePropertyCollection colPropType;
@@ -1115,8 +1062,7 @@ public class Document extends ContainerImpl {
 					col = (Collection<RapidBean>) colProp.getValue();
 					if (col != null) {
 						for (RapidBean sonBean : col) {
-							this.traverseDocumentTree(depth + 1, visitor,
-									sonBean);
+							this.traverseDocumentTree(depth + 1, visitor, sonBean);
 						}
 					}
 				}

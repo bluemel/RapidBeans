@@ -34,8 +34,7 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 		try {
 			return;
 		} finally {
-			TypePropertyCollection
-					.setDefaultCollectionClass(TypePropertyCollection.DEFAULT_COLLECTION_CLASS_DEFAULT);
+			TypePropertyCollection.setDefaultCollectionClass(TypePropertyCollection.DEFAULT_COLLECTION_CLASS_DEFAULT);
 		}
 	}
 
@@ -55,8 +54,7 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 		}
 
 		// add the first set of beans to a document
-		System.out.println("[BBDocumentMemoryPerfTest]"
-				+ " adding the first set of " + count
+		System.out.println("[BBDocumentMemoryPerfTest]" + " adding the first set of " + count
 				+ " beans to a document...");
 		Thread.sleep(100);
 		AddressBook root = new AddressBook();
@@ -68,13 +66,11 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 		Runtime.getRuntime().gc();
 		Thread.sleep(100);
 		final long freeBytesBefore = Runtime.getRuntime().freeMemory();
-		System.out.println("[BBDocumentMemoryPerfTest]" + " free Bytes: "
-				+ freeBytesBefore);
+		System.out.println("[BBDocumentMemoryPerfTest]" + " free Bytes: " + freeBytesBefore);
 		for (int i = 0; i < count; i++) {
 			bean = BBDocumentIORuntimePerfTest.generatePerson();
 			root.addPerson(bean);
-			assertSame(bean,
-					doc.findBean(bean.getType().getName(), bean.getIdString()));
+			assertSame(bean, doc.findBean(bean.getType().getName(), bean.getIdString()));
 			// store the bean for deletion
 			array[i] = bean;
 			pCurrent = (int) ((((double) i / count)) * 100);
@@ -87,20 +83,15 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 		System.out.println();
 		Runtime.getRuntime().gc();
 		Thread.sleep(100);
-		final long consumedBytes = freeBytesBefore
-				- Runtime.getRuntime().freeMemory();
-		System.out.println("[BBDocumentMemoryPerfTest]" + " free Bytes: "
-				+ Runtime.getRuntime().freeMemory());
-		System.out.println("[BBDocumentMemoryPerfTest]" + " consumed "
-				+ consumedBytes + " Bytes totally.");
+		final long consumedBytes = freeBytesBefore - Runtime.getRuntime().freeMemory();
+		System.out.println("[BBDocumentMemoryPerfTest]" + " free Bytes: " + Runtime.getRuntime().freeMemory());
+		System.out.println("[BBDocumentMemoryPerfTest]" + " consumed " + consumedBytes + " Bytes totally.");
 		final long bytesPerBean = consumedBytes / count;
-		System.out.println("[BBDocumentMemoryPerfTest]" + " consumed "
-				+ bytesPerBean + " Bytes per bean.");
+		System.out.println("[BBDocumentMemoryPerfTest]" + " consumed " + bytesPerBean + " Bytes per bean.");
 
 		// add the second set of beans to a document
 		// and expect an OutOfMemoryProblem
-		System.out.println("[BBDocumentMemoryPerfTest]"
-				+ " adding a 2nd set of " + count
+		System.out.println("[BBDocumentMemoryPerfTest]" + " adding a 2nd set of " + count
 				+ " beans to the document without deleting a bean...");
 		Thread.sleep(100);
 		p = 0;
@@ -108,10 +99,7 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 			for (int i = 0; i < count; i++) {
 				bean = BBDocumentIORuntimePerfTest.generatePerson();
 				root.addPerson(bean);
-				assertSame(
-						bean,
-						doc.findBean(bean.getType().getName(),
-								bean.getIdString()));
+				assertSame(bean, doc.findBean(bean.getType().getName(), bean.getIdString()));
 				pCurrent = (int) ((((double) i / count)) * 100);
 				if (pCurrent > (p + 1)) {
 					System.out.print(".");
@@ -122,28 +110,21 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 			fail("expected RapidBeansRuntimeException or OutOfMemoryError");
 		} catch (RapidBeansRuntimeException e) {
 			final Throwable e1 = e.getCause();
-			assertTrue(
-					"caught BBRuntimeException with cause different from InvocationTargetException"
-							+ e1.getClass().getName() + ": " + e1.getMessage(),
-					e1 instanceof InvocationTargetException);
+			assertTrue("caught BBRuntimeException with cause different from InvocationTargetException"
+					+ e1.getClass().getName() + ": " + e1.getMessage(), e1 instanceof InvocationTargetException);
 			final Throwable e2 = e1.getCause();
-			assertTrue(
-					"caught InvocationTargetException with nested exception different from OutOfMemoryError: "
-							+ e2.getClass().getName() + ": " + e2.getMessage(),
-					e2 instanceof OutOfMemoryError);
-			System.out
-					.println("[BBDocumentMemoryPerfTest] got an InvocationTargetException"
-							+ " caused by an OutOfMemoryError as expected");
+			assertTrue("caught InvocationTargetException with nested exception different from OutOfMemoryError: "
+					+ e2.getClass().getName() + ": " + e2.getMessage(), e2 instanceof OutOfMemoryError);
+			System.out.println("[BBDocumentMemoryPerfTest] got an InvocationTargetException"
+					+ " caused by an OutOfMemoryError as expected");
 		} catch (OutOfMemoryError e) {
 			System.out.println();
-			System.out
-					.println("[BBDocumentMemoryPerfTest] got an OutOfMemoryError as expected");
+			System.out.println("[BBDocumentMemoryPerfTest] got an OutOfMemoryError as expected");
 		}
 
 		// delete count beans and try again
 		array2 = null;
-		System.out
-				.println("[BBDocumentMemoryPerfTest] deleting the first set of beans from the document...");
+		System.out.println("[BBDocumentMemoryPerfTest] deleting the first set of beans from the document...");
 		Thread.sleep(100);
 		p = 0;
 		for (int i = 0; i < count; i++) {
@@ -160,16 +141,14 @@ public final class BBDocumentMemoryPerfTest extends TestCase {
 		System.out.println();
 
 		// add a third set of beans to a document
-		System.out.println("[BBDocumentMemoryPerfTest]"
-				+ " adding again the 2nd set of " + count
+		System.out.println("[BBDocumentMemoryPerfTest]" + " adding again the 2nd set of " + count
 				+ " beans to the document...");
 		Thread.sleep(100);
 		p = 0;
 		for (int i = 0; i < count; i++) {
 			bean = BBDocumentIORuntimePerfTest.generatePerson();
 			root.addPerson(bean);
-			assertSame(bean,
-					doc.findBean(bean.getType().getName(), bean.getIdString()));
+			assertSame(bean, doc.findBean(bean.getType().getName(), bean.getIdString()));
 			pCurrent = (int) ((((double) i / count)) * 100);
 			if (pCurrent > (p + 1)) {
 				System.out.print(".");

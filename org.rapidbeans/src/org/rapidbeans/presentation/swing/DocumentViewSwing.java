@@ -101,18 +101,14 @@ public class DocumentViewSwing extends DocumentView {
 	 * @param filter
 	 *            the filter
 	 */
-	public DocumentViewSwing(final Application client, final Document doc,
-			final String docconfname, final String viewconfname,
-			final Filter filter) {
+	public DocumentViewSwing(final Application client, final Document doc, final String docconfname,
+			final String viewconfname, final Filter filter) {
 		super(client, doc, docconfname, viewconfname, filter);
 
 		ImageIcon icon = null;
-		if (ApplicationManager.getApplication() != null
-				&& ApplicationManager.getApplication().getMainwindow() != null
-				&& ((MainWindowSwing) ApplicationManager.getApplication()
-						.getMainwindow()).getIconManager() != null) {
-			icon = ((MainWindowSwing) ApplicationManager.getApplication()
-					.getMainwindow()).getIconManager().getIcon(
+		if (ApplicationManager.getApplication() != null && ApplicationManager.getApplication().getMainwindow() != null
+				&& ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager() != null) {
+			icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager().getIcon(
 					doc.getRoot().getType());
 		}
 		if (icon != null) {
@@ -136,10 +132,8 @@ public class DocumentViewSwing extends DocumentView {
 			this.frame.setVisible(true);
 		}
 		this.markAsChanged(doc.getChanged());
-		Dimension mainFrameSize = ((JFrame) this.getClient().getMainwindow()
-				.getWidget()).getSize();
-		this.frame.setSize(new Dimension(mainFrameSize.width - 10,
-				mainFrameSize.height - 50));
+		Dimension mainFrameSize = ((JFrame) this.getClient().getMainwindow().getWidget()).getSize();
+		this.frame.setSize(new Dimension(mainFrameSize.width - 10, mainFrameSize.height - 50));
 		this.frame.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
 		this.frame.addInternalFrameListener(new InternalFrameListener() {
 
@@ -170,8 +164,7 @@ public class DocumentViewSwing extends DocumentView {
 			}
 		});
 
-		this.splitPane.add((Component) this.getTreeView().getWidget(),
-				JSplitPane.LEFT);
+		this.splitPane.add((Component) this.getTreeView().getWidget(), JSplitPane.LEFT);
 		this.splitPane.add(this.editorPane, JSplitPane.RIGHT);
 		this.frame.add(this.splitPane, BorderLayout.CENTER);
 	}
@@ -192,14 +185,12 @@ public class DocumentViewSwing extends DocumentView {
 			editor = this.getEditor(beans[i], false);
 			if (editor == null) {
 				editor = super.addBeanEditor(beans[i], null, keys[i], false);
-				this.editorKeyMap.put((JPanel) editor.getWidget(), beans[i]
-						.getType().getName() + "::" + beans[i].getIdString());
+				this.editorKeyMap.put((JPanel) editor.getWidget(),
+						beans[i].getType().getName() + "::" + beans[i].getIdString());
 				final String tabTitle = editor.getTitle();
-				final ImageIcon icon = ((MainWindowSwing) ApplicationManager
-						.getApplication().getMainwindow()).getIconManager()
-						.getIcon(beans[i].getType());
-				this.editorPane.addTab(tabTitle, icon,
-						(JPanel) editor.getWidget());
+				final ImageIcon icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow())
+						.getIconManager().getIcon(beans[i].getType());
+				this.editorPane.addTab(tabTitle, icon, (JPanel) editor.getWidget());
 			}
 		}
 		this.editorPane.setSelectedComponent((Component) editor.getWidget());
@@ -211,8 +202,7 @@ public class DocumentViewSwing extends DocumentView {
 	 */
 	protected void updateTitle() {
 		final String oldTitle = this.frame.getTitle();
-		if (oldTitle != null && oldTitle.length() > 0
-				&& oldTitle.charAt(0) == '*') {
+		if (oldTitle != null && oldTitle.length() > 0 && oldTitle.charAt(0) == '*') {
 			this.frame.setTitle("*" + this.getTitle());
 		} else {
 			this.frame.setTitle(this.getTitle());
@@ -229,17 +219,15 @@ public class DocumentViewSwing extends DocumentView {
 	 * 
 	 * @return the bean editor just created
 	 */
-	public EditorBean createBean(final Object key,
-			final PropertyCollection parentBeanColProp) {
+	public EditorBean createBean(final Object key, final PropertyCollection parentBeanColProp) {
 		final boolean docChangedBefore = getDocument().getChanged();
-		RapidBean newBean = RapidBeanImplStrict
-				.createInstance(((TypePropertyCollection) parentBeanColProp
-						.getType()).getTargetType().getName());
+		RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) parentBeanColProp.getType())
+				.getTargetType().getName());
 		EditorBean editor = this.getEditor(newBean, true);
 		if (editor == null) {
 			editor = super.addBeanEditor(newBean, parentBeanColProp, key, true);
-			this.editorKeyMap.put((JPanel) editor.getWidget(), newBean
-					.getType().getName() + "::" + newBean.getIdString());
+			this.editorKeyMap.put((JPanel) editor.getWidget(),
+					newBean.getType().getName() + "::" + newBean.getIdString());
 			this.editorPane.add(editor.getTitle(), (JPanel) editor.getWidget());
 		}
 		this.editorPane.setSelectedComponent((Component) editor.getWidget());
@@ -270,8 +258,7 @@ public class DocumentViewSwing extends DocumentView {
 		if (selIndex == -1) {
 			return null;
 		} else {
-			return this.editorKeyMap.get((JPanel) this.editorPane
-					.getComponentAt(selIndex));
+			return this.editorKeyMap.get((JPanel) this.editorPane.getComponentAt(selIndex));
 		}
 	}
 

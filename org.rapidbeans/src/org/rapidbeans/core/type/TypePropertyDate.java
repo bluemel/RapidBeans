@@ -58,8 +58,7 @@ public class TypePropertyDate extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyDate(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyDate(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("Date", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@default");
@@ -69,8 +68,7 @@ public class TypePropertyDate extends TypeProperty {
 
 		s = propertyNodes[0].getAttributeValue("@precision");
 		if (s != null) {
-			this.precision = (PrecisionDate) PrecisionDate.day.getType()
-					.elementOf(s);
+			this.precision = (PrecisionDate) PrecisionDate.day.getType().elementOf(s);
 		}
 
 		s = propertyNodes[0].getAttributeValue("@maxval");

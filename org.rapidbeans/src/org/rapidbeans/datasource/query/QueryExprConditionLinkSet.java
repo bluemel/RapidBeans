@@ -74,8 +74,7 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 */
 	public void removeChildExpression(final QueryExpression expr) {
 		if (expr != this.childExpression) {
-			throw new QueryException(
-					"tried to remove non existing child expression");
+			throw new QueryException("tried to remove non existing child expression");
 		}
 		this.childExpression = null;
 	}
@@ -97,8 +96,7 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 * @param parent
 	 *            the parent expression
 	 */
-	protected QueryExprConditionLinkSet(final String colPropName,
-			final int mult, final QueryExpression parent) {
+	protected QueryExprConditionLinkSet(final String colPropName, final int mult, final QueryExpression parent) {
 		this.linkname = colPropName;
 		this.multiplicity = mult;
 		this.becomeChildFrom(parent);
@@ -115,8 +113,7 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 * @return the set with found objects
 	 */
 	@SuppressWarnings("unchecked")
-	public List<RapidBean> eval(final Container db,
-			final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
 		ArrayList<RapidBean> resultSet = new ArrayList<RapidBean>();
 		List<RapidBean> resultSetLinkTargets = null;
 		String linkTypename = null;
@@ -137,24 +134,20 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 				parentBeanList.add(curLinkTargetBean);
 				// check the target bean against the child expressions
 				if (this.childExpression != null) {
-					resultSetLinkTargets = this.childExpression.eval(db,
-							parentBeanList);
+					resultSetLinkTargets = this.childExpression.eval(db, parentBeanList);
 					if (resultSetLinkTargets.contains(curLinkTargetBean)) {
 						resultSet.add(curBean);
 					}
 				}
 			} else {
-				curColProp = (PropertyCollection) curBean
-						.getProperty(this.linkname);
+				curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
 				if (curColProp == null) {
-					throw new QueryException("No collection property \""
-							+ this.linkname + "\" found for type \""
+					throw new QueryException("No collection property \"" + this.linkname + "\" found for type \""
 							+ curBean.getType().getName() + "\"");
 				}
 
 				if (linkTypename == null) {
-					linkTypename = ((TypePropertyCollection) curColProp
-							.getType()).getTargetType().getName();
+					linkTypename = ((TypePropertyCollection) curColProp.getType()).getTargetType().getName();
 				}
 
 				// check if there are linked beans for the specified
@@ -171,15 +164,12 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 						if (curLink instanceof RapidBean) {
 							curLinkTargetBean = (RapidBean) curLink;
 						} else {
-							curLinkTargetBean = db.findBean(linkTypename,
-									curLink.getIdString());
+							curLinkTargetBean = db.findBean(linkTypename, curLink.getIdString());
 						}
 						// check the target bean against the child expressions
 						if (this.childExpression != null) {
-							resultSetLinkTargets = this.childExpression.eval(
-									db, db.findBeansByType(linkTypename));
-							if (resultSetLinkTargets
-									.contains(curLinkTargetBean)) {
+							resultSetLinkTargets = this.childExpression.eval(db, db.findBeansByType(linkTypename));
+							if (resultSetLinkTargets.contains(curLinkTargetBean)) {
 								match = true;
 								break;
 							}

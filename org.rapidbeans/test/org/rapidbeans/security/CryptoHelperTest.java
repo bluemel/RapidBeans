@@ -32,29 +32,21 @@ public class CryptoHelperTest {
 
 	@Test
 	public void testDecryptString() {
-		Assert.assertEquals("", CryptoHelper
-				.decrypt("12345678911234567892123456789312345678941"));
+		Assert.assertEquals("", CryptoHelper.decrypt("12345678911234567892123456789312345678941"));
 	}
 
 	@Test
 	public void testEncryptDecryptString() {
 		String senc = CryptoHelper.encrypt("ThisWorksFine4Me", "Flaschenbier");
-		Assert.assertEquals(
-				"JG1DAcYIdn/v4D9Pwuwns0wRFZVvMv4Oz1O+lR+phIssA1WU8Tr5+A==",
-				senc);
-		Assert.assertEquals("ThisWorksFine4Me",
-				CryptoHelper.decrypt(senc, "Flaschenbier"));
-		Assert.assertEquals("1234",
-				CryptoHelper.decrypt(CryptoHelper.encrypt("1234")));
-		Assert.assertTrue(CryptoHelper.decrypt(CryptoHelper.encrypt("123"))
-				.equals("123") == false);
-		Assert.assertTrue(CryptoHelper.decrypt(CryptoHelper.encrypt(""))
-				.equals("") == false);
+		Assert.assertEquals("JG1DAcYIdn/v4D9Pwuwns0wRFZVvMv4Oz1O+lR+phIssA1WU8Tr5+A==", senc);
+		Assert.assertEquals("ThisWorksFine4Me", CryptoHelper.decrypt(senc, "Flaschenbier"));
+		Assert.assertEquals("1234", CryptoHelper.decrypt(CryptoHelper.encrypt("1234")));
+		Assert.assertTrue(CryptoHelper.decrypt(CryptoHelper.encrypt("123")).equals("123") == false);
+		Assert.assertTrue(CryptoHelper.decrypt(CryptoHelper.encrypt("")).equals("") == false);
 	}
 
 	@Test
-	public void testEncryptDecryptStringWrongKeyPhrase() throws IOException,
-			GeneralSecurityException {
+	public void testEncryptDecryptStringWrongKeyPhrase() throws IOException, GeneralSecurityException {
 		String s = "ThisWorksFine4Me";
 		String senc = CryptoHelper.encrypt(s, "Flaschenbier");
 		Assert.assertFalse(s.equals(CryptoHelper.decrypt(senc, "XXX")));
@@ -65,12 +57,10 @@ public class CryptoHelperTest {
 		String s = "ThisWorksFine4Me";
 		String senc = CryptoHelper.encrypt(s, "Flaschenbier");
 		File testfile = new File("testdata/cryptoTest.txt");
-		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(
-				testfile), "UTF-8");
+		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(testfile), "UTF-8");
 		out.write(senc);
 		out.close();
-		InputStreamReader in = new InputStreamReader(new FileInputStream(
-				testfile), "UTF-8");
+		InputStreamReader in = new InputStreamReader(new FileInputStream(testfile), "UTF-8");
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		int c;
 		while ((c = in.read()) != -1) {

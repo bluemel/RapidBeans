@@ -92,8 +92,7 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyCheckboxesSwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyCheckboxesSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
@@ -104,11 +103,9 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 		}
 		this.checkboxPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		if (prop instanceof PropertyChoice) {
-			final TypePropertyChoice choiceProptype = (TypePropertyChoice) prop
-					.getType();
+			final TypePropertyChoice choiceProptype = (TypePropertyChoice) prop.getType();
 			JCheckBox curCheckBox;
-			for (RapidEnum enumElem : choiceProptype.getEnumType()
-					.getElements()) {
+			for (RapidEnum enumElem : choiceProptype.getEnumType().getElements()) {
 				curCheckBox = new JCheckBox(enumElem.name());
 				if (this.getProperty().getType().getMandatory()) {
 					curCheckBox.setBackground(COLOR_MANDATORY);
@@ -123,10 +120,8 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 		} else if (prop instanceof PropertyCollection) {
 			updateCheckboxes();
 		} else {
-			throw new RapidBeansRuntimeException("Class \""
-					+ EditorPropertyCheckboxesSwing.class
-					+ "\" does not support properties of class \""
-					+ prop.getClass().getName() + "\".");
+			throw new RapidBeansRuntimeException("Class \"" + EditorPropertyCheckboxesSwing.class
+					+ "\" does not support properties of class \"" + prop.getClass().getName() + "\".");
 		}
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
@@ -141,10 +136,8 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 	private void updateCheckboxes() {
 		final Property prop = this.getProperty();
 		final EditorBean bizBeanEditor = this.getBeanEditor();
-		final TypePropertyCollection colPropType = (TypePropertyCollection) prop
-				.getType();
-		final List<RapidBean> allTargetBeans = bizBeanEditor.getDocumentView()
-				.getDocument()
+		final TypePropertyCollection colPropType = (TypePropertyCollection) prop.getType();
+		final List<RapidBean> allTargetBeans = bizBeanEditor.getDocumentView().getDocument()
 				.findBeansByType(colPropType.getTargetType().getName());
 		JCheckBox curCheckBox;
 		for (Component comp : this.checkboxPanel.getComponents()) {
@@ -180,13 +173,11 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 			} else {
 				ArrayList<String> keys = new ArrayList<String>();
 				if (this.getProperty() instanceof PropertyChoice) {
-					for (RapidEnum enumElem : (List<GenericEnum>) this
-							.getProperty().getValue()) {
+					for (RapidEnum enumElem : (List<GenericEnum>) this.getProperty().getValue()) {
 						keys.add(enumElem.name());
 					}
 				} else if (this.getProperty() instanceof PropertyCollection) {
-					for (Link link : (Collection<Link>) this.getProperty()
-							.getValue()) {
+					for (Link link : (Collection<Link>) this.getProperty().getValue()) {
 						keys.add(link.getIdString());
 					}
 				}
@@ -208,8 +199,7 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 		Object value = null;
 		if (this.getProperty() instanceof PropertyChoice) {
 			ArrayList<RapidEnum> enumList = new ArrayList<RapidEnum>();
-			TypeRapidEnum enumtype = ((TypePropertyChoice) this.getProperty()
-					.getType()).getEnumType();
+			TypeRapidEnum enumtype = ((TypePropertyChoice) this.getProperty().getType()).getEnumType();
 			for (JCheckBox curCheckBox : this.checkboxes.values()) {
 				if (curCheckBox.isSelected()) {
 					enumList.add(enumtype.elementOf(curCheckBox.getText()));
@@ -219,12 +209,10 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 		} else if (this.getProperty() instanceof PropertyCollection) {
 			ArrayList<RapidBean> beanList = new ArrayList<RapidBean>();
 			Document doc = this.getBeanEditor().getDocumentView().getDocument();
-			String targetTypename = ((TypePropertyCollection) this
-					.getProperty().getType()).getTargetType().getName();
+			String targetTypename = ((TypePropertyCollection) this.getProperty().getType()).getTargetType().getName();
 			for (JCheckBox curCheckBox : this.checkboxes.values()) {
 				if (curCheckBox.isSelected()) {
-					beanList.add(doc.findBean(targetTypename,
-							curCheckBox.getText()));
+					beanList.add(doc.findBean(targetTypename, curCheckBox.getText()));
 				}
 			}
 			value = beanList;

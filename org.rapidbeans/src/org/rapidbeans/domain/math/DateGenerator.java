@@ -56,8 +56,7 @@ public class DateGenerator {
 		if (from.getTime() > to.getTime()) {
 			throw new IllegalArgumentException("from date greater than to date");
 		}
-		Date fromExact = new Date(PropertyDate.cutPrecisionLong(from.getTime(),
-				PrecisionDate.day));
+		Date fromExact = new Date(PropertyDate.cutPrecisionLong(from.getTime(), PrecisionDate.day));
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.setTime(fromExact);
 		while (calendar.getTime().getTime() < to.getTime()) {

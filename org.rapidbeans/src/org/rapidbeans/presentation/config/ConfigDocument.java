@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: ConfigDocument.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigDocument
  * 
- * model:    model/org/rapidbeans/presentation/config/ConfigDocument.xml
+ * model: model/org/rapidbeans/presentation/config/ConfigDocument.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
@@ -90,20 +90,15 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("name");
-		this.rootclass = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("rootclass");
-		this.defaultview = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("defaultview");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
+		this.rootclass = (org.rapidbeans.core.basic.PropertyString) this.getProperty("rootclass");
+		this.defaultview = (org.rapidbeans.core.basic.PropertyString) this.getProperty("defaultview");
 		this.readaccessrolesrequired = (org.rapidbeans.core.basic.PropertyChoice) this
 				.getProperty("readaccessrolesrequired");
 		this.writeaccessrolesrequired = (org.rapidbeans.core.basic.PropertyChoice) this
 				.getProperty("writeaccessrolesrequired");
-		this.views = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("views");
-		this.filterrules = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("filterrules");
+		this.views = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("views");
+		this.filterrules = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("filterrules");
 	}
 
 	/**
@@ -145,8 +140,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(ConfigDocument.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigDocument.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -162,8 +156,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
 		}
 	}
 
@@ -184,8 +177,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 		try {
 			return (String) this.rootclass.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"rootclass");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("rootclass");
 		}
 	}
 
@@ -206,8 +198,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 		try {
 			return (String) this.defaultview.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"defaultview");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("defaultview");
 		}
 	}
 
@@ -227,11 +218,9 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public java.util.List<org.rapidbeans.core.basic.RapidEnum> getReadaccessrolesrequired() {
 		try {
-			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.readaccessrolesrequired
-					.getValue();
+			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.readaccessrolesrequired.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"readaccessrolesrequired");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("readaccessrolesrequired");
 		}
 	}
 
@@ -241,8 +230,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'readaccessrolesrequired' to set
 	 */
-	public void setReadaccessrolesrequired(
-			final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setReadaccessrolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.readaccessrolesrequired.setValue(argValue);
 	}
 
@@ -252,11 +240,9 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public java.util.List<org.rapidbeans.core.basic.RapidEnum> getWriteaccessrolesrequired() {
 		try {
-			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.writeaccessrolesrequired
-					.getValue();
+			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.writeaccessrolesrequired.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"writeaccessrolesrequired");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("writeaccessrolesrequired");
 		}
 	}
 
@@ -266,8 +252,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'writeaccessrolesrequired' to set
 	 */
-	public void setWriteaccessrolesrequired(
-			final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setWriteaccessrolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.writeaccessrolesrequired.setValue(argValue);
 	}
 
@@ -280,8 +265,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigView>) this.views
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"views");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("views");
 		}
 	}
 
@@ -291,8 +275,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'views' to set
 	 */
-	public void setViews(
-			final java.util.Collection<org.rapidbeans.presentation.config.ConfigView> argValue) {
+	public void setViews(final java.util.Collection<org.rapidbeans.presentation.config.ConfigView> argValue) {
 		this.views.setValue(argValue);
 	}
 
@@ -303,8 +286,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 *            the bean to add
 	 */
 	public void addView(final org.rapidbeans.presentation.config.ConfigView bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.views)
-				.addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.views).addLink(bean);
 	}
 
 	/**
@@ -313,10 +295,8 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removeView(
-			final org.rapidbeans.presentation.config.ConfigView bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.views)
-				.removeLink(bean);
+	public void removeView(final org.rapidbeans.presentation.config.ConfigView bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.views).removeLink(bean);
 	}
 
 	/**
@@ -328,8 +308,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased>) this.filterrules
 					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"filterrules");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("filterrules");
 		}
 	}
 
@@ -350,10 +329,8 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void addFilterrule(
-			final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules)
-				.addLink(bean);
+	public void addFilterrule(final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules).addLink(bean);
 	}
 
 	/**
@@ -362,9 +339,7 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	 * @param bean
 	 *            the bean to add
 	 */
-	public void removeFilterrule(
-			final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules)
-				.removeLink(bean);
+	public void removeFilterrule(final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules).removeLink(bean);
 	}
 }

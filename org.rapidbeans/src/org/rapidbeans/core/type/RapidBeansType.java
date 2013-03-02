@@ -67,8 +67,7 @@ public abstract class RapidBeansType {
 	 * @return the package name
 	 */
 	public String getPackageName() {
-		if (this.packageName == null && this.name != null
-				&& this.name.contains(".")) {
+		if (this.packageName == null && this.name != null && this.name.contains(".")) {
 			this.packageName = StringHelper.splitBeforeLast(this.name, ".");
 		}
 		return this.packageName;
@@ -147,14 +146,11 @@ public abstract class RapidBeansType {
 	 * @return the description
 	 */
 	protected static XmlNode loadDescription(final String typename) {
-		final InputStream typeDescrStream = RapidBeansTypeLoader
-				.findDeclaration(typename, null);
+		final InputStream typeDescrStream = RapidBeansTypeLoader.findDeclaration(typename, null);
 		if (typeDescrStream == null) {
-			throw new TypeNotFoundException("description for type \""
-					+ typename + "\"");
+			throw new TypeNotFoundException("description for type \"" + typename + "\"");
 		}
-		final XmlNode typeDescrBaseNode = XmlNode
-				.getDocumentTopLevel(typeDescrStream);
+		final XmlNode typeDescrBaseNode = XmlNode.getDocumentTopLevel(typeDescrStream);
 		return typeDescrBaseNode;
 	}
 
@@ -168,8 +164,7 @@ public abstract class RapidBeansType {
 	 */
 	protected static XmlNode loadDescriptionXmlBinding(final String typename) {
 		XmlNode typeDescrBaseNode = null;
-		final InputStream typeDescrStream = RapidBeansTypeLoader
-				.findDeclaration(typename, "_xmlbind");
+		final InputStream typeDescrStream = RapidBeansTypeLoader.findDeclaration(typename, "_xmlbind");
 		if (typeDescrStream != null) {
 			typeDescrBaseNode = XmlNode.getDocumentTopLevel(typeDescrStream);
 		}

@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: MenuToolbars.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuToolbars
  * 
- * model:    model/org/rapidbeans/presentation/MenuToolbars.xml
+ * model: model/org/rapidbeans/presentation/MenuToolbars.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation;
@@ -46,8 +46,7 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 	 * 
 	 * @return the instance
 	 */
-	public static final MenuToolbars createInstance(
-			final ConfigMenuToolbars config, final Application client,
+	public static final MenuToolbars createInstance(final ConfigMenuToolbars config, final Application client,
 			final String resourcePath) {
 		MenuToolbars menuToolbars = null;
 		switch (client.getConfiguration().getGuitype()) {
@@ -58,8 +57,8 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 			// mainWindow = new BBMainWindowEclispercp-swt();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 		return menuToolbars;
 	}
@@ -74,8 +73,7 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuToolbars(final Application app, final ConfigMenuToolbars config,
-			final String resourcePath) {
+	public MenuToolbars(final Application app, final ConfigMenuToolbars config, final String resourcePath) {
 		super();
 		// this.config = config;
 	}
@@ -128,8 +126,7 @@ public class MenuToolbars extends org.rapidbeans.presentation.MenuEntry {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(MenuToolbars.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(MenuToolbars.class);
 
 	/**
 	 * @return the Biz Bean's type

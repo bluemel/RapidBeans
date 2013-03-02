@@ -68,16 +68,16 @@ public abstract class ExceptionMessageDialog {
 	 * 
 	 * @return the instance
 	 */
-	public static ExceptionMessageDialog createInstance(final Application app,
-			final Throwable throwable, final String title) {
+	public static ExceptionMessageDialog createInstance(final Application app, final Throwable throwable,
+			final String title) {
 		ExceptionMessageDialog dialog = null;
 		switch (app.getConfiguration().getGuitype()) {
 		case swing:
 			dialog = new ExceptionMessageDialogSwing(throwable, title);
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ app.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + app.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 		return dialog;
 	}

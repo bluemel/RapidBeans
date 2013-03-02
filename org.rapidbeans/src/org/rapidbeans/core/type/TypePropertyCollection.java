@@ -197,8 +197,7 @@ public class TypePropertyCollection extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyCollection(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyCollection(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		this(xmlNodes, parentBeanType, "Collection", null, null);
 	}
 
@@ -210,8 +209,7 @@ public class TypePropertyCollection extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyCollection(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType,
+	public TypePropertyCollection(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType,
 			final String specificTypeNamePart) {
 		this(xmlNodes, parentBeanType, specificTypeNamePart, null, null);
 	}
@@ -229,32 +227,27 @@ public class TypePropertyCollection extends TypeProperty {
 	 *            sep
 	 * @param escape
 	 */
-	public TypePropertyCollection(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType,
-			final String specificTypeNamePart, final String separator,
-			final String escape) {
+	public TypePropertyCollection(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType,
+			final String specificTypeNamePart, final String separator, final String escape) {
 		super(specificTypeNamePart, xmlNodes, parentBeanType);
 		super.parseDefaultValue(xmlNodes[0]);
 
 		String targetTypeName = xmlNodes[0].getAttributeValue("@targettype");
 		if (targetTypeName == null || targetTypeName.equals("")) {
-			throwModelValidationException("no targettype specified for Collection Property "
-					+ this.getPropName());
+			throwModelValidationException("no targettype specified for Collection Property " + this.getPropName());
 		}
 		if (!targetTypeName.contains(".") && this.getParentBeanType() != null) {
-			final String packageName = this.getParentBeanType()
-					.getPackageName();
+			final String packageName = this.getParentBeanType().getPackageName();
 			if (packageName != null) {
 				targetTypeName = packageName + "." + targetTypeName;
 			}
 		}
-		this.targetType = (TypeRapidBean) RapidBeansTypeLoader.getInstance()
-				.loadType(TypeRapidBean.class, targetTypeName);
+		this.targetType = (TypeRapidBean) RapidBeansTypeLoader.getInstance().loadType(TypeRapidBean.class,
+				targetTypeName);
 
 		this.inverse = xmlNodes[0].getAttributeValue("@inverse");
 
-		this.composition = Boolean.parseBoolean(xmlNodes[0].getAttributeValue(
-				"@composition", "false"));
+		this.composition = Boolean.parseBoolean(xmlNodes[0].getAttributeValue("@composition", "false"));
 
 		String sMult = xmlNodes[0].getAttributeValue("@minmult");
 		if (sMult != null) {
@@ -286,19 +279,14 @@ public class TypePropertyCollection extends TypeProperty {
 		if (sSorting != null) {
 			final int iColon = sSorting.indexOf(':');
 			if (iColon != -1) {
-				this.sorting = SortingType.valueOf(sSorting
-						.substring(0, iColon));
+				this.sorting = SortingType.valueOf(sSorting.substring(0, iColon));
 				final ArrayList<TypeProperty> sortingPtypes = new ArrayList<TypeProperty>();
-				for (String propname : StringHelper.split(
-						sSorting.substring(iColon + 1), ",")) {
+				for (String propname : StringHelper.split(sSorting.substring(iColon + 1), ",")) {
 					propname = propname.trim();
-					final TypeProperty proptype = this.targetType
-							.getPropertyType(propname);
+					final TypeProperty proptype = this.targetType.getPropertyType(propname);
 					if (proptype == null) {
-						throwModelValidationException("Invalid ordering property \""
-								+ propname
-								+ "\" specified for target type "
-								+ "\"" + this.targetType.getName() + "\"\n");
+						throwModelValidationException("Invalid ordering property \"" + propname
+								+ "\" specified for target type " + "\"" + this.targetType.getName() + "\"\n");
 					}
 					sortingPtypes.add(proptype);
 				}
@@ -316,8 +304,7 @@ public class TypePropertyCollection extends TypeProperty {
 		}
 
 		if (this.maxmult == 1 && this.sorting != null) {
-			throwModelValidationException("Defining sorting for maximal"
-					+ " multiplicity 1 is useless");
+			throwModelValidationException("Defining sorting for maximal" + " multiplicity 1 is useless");
 		}
 
 		// the default collection class if
@@ -350,26 +337,20 @@ public class TypePropertyCollection extends TypeProperty {
 			}
 		}
 
-		final String collectionClassname = xmlNodes[0]
-				.getAttributeValue("@collectionclass");
+		final String collectionClassname = xmlNodes[0].getAttributeValue("@collectionclass");
 		if (collectionClassname != null && !collectionClassname.equals("")) {
 			try {
 				this.collectionClass = Class.forName(collectionClassname);
-				if (!ClassHelper
-						.classOf(Collection.class, this.collectionClass)) {
-					throwModelValidationException("Invalid collectionclass: Class \""
-							+ collectionClassname + " is not a Collection.");
+				if (!ClassHelper.classOf(Collection.class, this.collectionClass)) {
+					throwModelValidationException("Invalid collectionclass: Class \"" + collectionClassname
+							+ " is not a Collection.");
 				}
-				this.collectionClassConstructor = this.collectionClass
-						.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
+				this.collectionClassConstructor = this.collectionClass.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
 			} catch (ClassNotFoundException e) {
-				throwModelValidationException("Collection class \""
-						+ collectionClassname + " not found.");
+				throwModelValidationException("Collection class \"" + collectionClassname + " not found.");
 			} catch (NoSuchMethodException e) {
-				throwModelValidationException("invalid collection class \""
-						+ collectionClassname + "\" configured for collection"
-						+ " properties.\n"
-						+ "No empty default constructor found");
+				throwModelValidationException("invalid collection class \"" + collectionClassname
+						+ "\" configured for collection" + " properties.\n" + "No empty default constructor found");
 			}
 		}
 
@@ -380,16 +361,13 @@ public class TypePropertyCollection extends TypeProperty {
 
 		if (separator != null) {
 			if (separator.length() != 1) {
-				throw new IllegalArgumentException(
-						"Illegal separator XML binding option \"" + separator
-								+ "\"");
+				throw new IllegalArgumentException("Illegal separator XML binding option \"" + separator + "\"");
 			}
 			this.charSeparator = separator.charAt(0);
 		}
 		if (escape != null) {
 			if (escape.length() != 1) {
-				throw new IllegalArgumentException(
-						"Illegal escape XML binding option \"" + escape + "\"");
+				throw new IllegalArgumentException("Illegal escape XML binding option \"" + escape + "\"");
 			}
 			this.charEscape = escape.charAt(0);
 		}
@@ -510,27 +488,20 @@ public class TypePropertyCollection extends TypeProperty {
 	 * @param propNode
 	 *            the XML property description node
 	 */
-	protected void evalXmlBinding(final TypeRapidBean beantype,
-			final XmlNode propNode) {
+	protected void evalXmlBinding(final TypeRapidBean beantype, final XmlNode propNode) {
 		final String separator = propNode.getAttributeValue("@separator");
 		if (separator != null) {
 			if (separator.length() != 1) {
-				throw new RapidBeansRuntimeException(
-						"Invalid XML Binding for type \"" + beantype.getName()
-								+ "\":\n" + "Property \"" + getPropName()
-								+ ", illegal separator character \""
-								+ separator + "\"");
+				throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + beantype.getName() + "\":\n"
+						+ "Property \"" + getPropName() + ", illegal separator character \"" + separator + "\"");
 			}
 			setCharSeparator(separator.charAt(0));
 		}
 		final String escape = propNode.getAttributeValue("@escape");
 		if (escape != null) {
 			if (escape.length() != 1) {
-				throw new RapidBeansRuntimeException(
-						"Invalid XML Binding for type \"" + beantype.getName()
-								+ "\":\n" + "Property \"" + getPropName()
-								+ ", illegal escape character \"" + escape
-								+ "\"");
+				throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + beantype.getName() + "\":\n"
+						+ "Property \"" + getPropName() + ", illegal escape character \"" + escape + "\"");
 			}
 			setCharEscape(escape.charAt(0));
 		}

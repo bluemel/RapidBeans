@@ -44,7 +44,6 @@ public final class SettingsTest extends TestCase {
 		SettingsBasic basic = settings.getBasic();
 		assertNull(basic.getFolderdoc());
 		SettingsBasicGui gui = basic.getGui();
-		assertSame(OpenWindowBehaviour.maximized,
-				gui.getDocViewOpenWindowBehaviour());
+		assertSame(OpenWindowBehaviour.maximized, gui.getDocViewOpenWindowBehaviour());
 	}
 }

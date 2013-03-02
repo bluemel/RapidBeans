@@ -42,8 +42,7 @@ import org.rapidbeans.core.type.TypePropertyCollection;
  * @author Martin Bluemel
  */
 @SuppressWarnings("unchecked")
-public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
-		implements PropertyChangeListener {
+public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T> implements PropertyChangeListener {
 
 	/**
 	 * cached array.
@@ -71,16 +70,13 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	 * @param col
 	 *            the collection to encapsulate.
 	 */
-	public ReadonlyListCollectionCached(final PropertyCollection prop,
-			final Collection<T> col) {
+	public ReadonlyListCollectionCached(final PropertyCollection prop, final Collection<T> col) {
 		super(col, prop.getType());
 		if (col instanceof ReadonlyListCollectionCached) {
-			this.setCollection(((ReadonlyListCollectionCached<T>) col)
-					.getCollection());
+			this.setCollection(((ReadonlyListCollectionCached<T>) col).getCollection());
 		}
 		this.property = prop;
-		Class<?> colClass = ((TypePropertyCollection) prop.getType())
-				.getCollectionClass();
+		Class<?> colClass = ((TypePropertyCollection) prop.getType()).getCollectionClass();
 		if (colClass != null) {
 			if (colClass == TreeSet.class) {
 				this.propertyIsSorted = true;

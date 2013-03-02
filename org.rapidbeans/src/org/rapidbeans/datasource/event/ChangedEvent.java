@@ -59,8 +59,7 @@ public class ChangedEvent {
 	 * @param changedPropertyEvents
 	 *            the properties changed
 	 */
-	public ChangedEvent(final RapidBean rbean,
-			final PropertyChangeEvent[] changedPropertyEvents) {
+	public ChangedEvent(final RapidBean rbean, final PropertyChangeEvent[] changedPropertyEvents) {
 		this.bean = rbean;
 		this.propertyEvents = changedPropertyEvents;
 	}

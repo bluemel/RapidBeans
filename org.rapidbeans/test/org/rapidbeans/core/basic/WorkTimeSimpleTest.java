@@ -20,31 +20,28 @@ public class WorkTimeSimpleTest {
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFDATE = DateFormat.getDateInstance(
-			DateFormat.MEDIUM, Locale.GERMAN);
+	static final DateFormat DFDATE = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
 
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFTIME = DateFormat.getDateTimeInstance(
-			DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
+	static final DateFormat DFTIME = DateFormat
+			.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
 
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(
-			DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
+	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.LONG,
+			Locale.GERMAN);
 
 	/**
 	 * Constructor test: the constructor initializes all date attribute to empty
 	 * (null).
 	 */
 	@Test
-	public void testWorkTime() throws SecurityException, NoSuchFieldException,
-			ParseException {
+	public void testWorkTime() throws SecurityException, NoSuchFieldException, ParseException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
-		Assert.assertEquals(DFTIME.parse("14.10.1964 00:01:00"),
-				worktime.getFrom());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 00:01:00"), worktime.getFrom());
 		Assert.assertEquals(null, worktime.getTo());
 		Assert.assertEquals(null, worktime.getTime());
 	}
@@ -53,17 +50,13 @@ public class WorkTimeSimpleTest {
 	 * setting from should always adapt day.
 	 */
 	@Test
-	public void testSetFrom() throws ParseException, SecurityException,
-			NoSuchMethodException, IllegalArgumentException,
-			IllegalAccessException, InvocationTargetException {
+	public void testSetFrom() throws ParseException, SecurityException, NoSuchMethodException,
+			IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		WorkTimeSimple worktime = new WorkTimeSimple();
 		worktime.setFrom(DFTIME.parse("14.10.1964 04:30:00"));
-		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"),
-				worktime.getFrom());
-		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"),
-				worktime.getPropValue("from"));
-		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime
-				.getProperty("from").getValue());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getFrom());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getPropValue("from"));
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getProperty("from").getValue());
 	}
 
 	/**
@@ -74,12 +67,10 @@ public class WorkTimeSimpleTest {
 		WorkTimeSimple worktime = new WorkTimeSimple();
 		Assert.assertNull(worktime.getTime());
 		worktime.setFrom(DFTIME.parse("14.10.1964 04:30:00"));
-		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"),
-				worktime.getFrom());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 04:30:00"), worktime.getFrom());
 		Assert.assertNull(worktime.getTime());
 		worktime.setTo(DFTIME.parse("14.10.1964 05:31:00"));
-		Assert.assertEquals(DFTIME.parse("14.10.1964 05:31:00"),
-				worktime.getTo());
+		Assert.assertEquals(DFTIME.parse("14.10.1964 05:31:00"), worktime.getTo());
 		Assert.assertEquals(61, ((Time) worktime.getTime()).getMagnitudeLong());
 	}
 

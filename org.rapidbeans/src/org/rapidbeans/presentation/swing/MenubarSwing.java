@@ -52,8 +52,7 @@ public class MenubarSwing extends Menubar {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenubarSwing(final Application client,
-			final ConfigMenubar menubarConfig, final String resourcePath) {
+	public MenubarSwing(final Application client, final ConfigMenubar menubarConfig, final String resourcePath) {
 		super(client, menubarConfig, resourcePath);
 		for (Submenu submenu : this.getMenus()) {
 			if (submenu.getMenuentrys().size() > 0) {

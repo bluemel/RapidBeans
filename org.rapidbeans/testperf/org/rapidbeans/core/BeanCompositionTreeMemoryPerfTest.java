@@ -28,61 +28,47 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		final int count = 400000;
 
 		// set up a first composite tree
-		System.out
-				.println("[BeanCompositionTreeMemoryTest] setting up 1st composite tree...");
+		System.out.println("[BeanCompositionTreeMemoryTest] setting up 1st composite tree...");
 		Thread.sleep(100);
-		Submenu menu1 = (Submenu) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.presentation.Submenu");
+		Submenu menu1 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
 		createSubmenus(menu1, count);
 
 		// set up a second composite tree without releasing the first one
 		// => out of memory
-		System.out
-				.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree\n"
-						+ "[BeanCompositionTreeMemoryTest]   without releasing the 1st one...");
+		System.out.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree\n"
+				+ "[BeanCompositionTreeMemoryTest]   without releasing the 1st one...");
 		Thread.sleep(100);
-		Submenu menu2 = (Submenu) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.presentation.Submenu");
+		Submenu menu2 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
 		try {
 			createSubmenus(menu2, count);
 			fail("expected OutOfMemoryError");
 		} catch (RapidBeansRuntimeException e) {
 			final Throwable e1 = e.getCause();
-			assertTrue(
-					"caught BBRuntimeException with cause different from InvocationTargetException"
-							+ e1.getClass().getName() + ": " + e1.getMessage(),
-					e1 instanceof InvocationTargetException);
+			assertTrue("caught BBRuntimeException with cause different from InvocationTargetException"
+					+ e1.getClass().getName() + ": " + e1.getMessage(), e1 instanceof InvocationTargetException);
 			final Throwable e2 = e1.getCause();
-			assertTrue(
-					"caught InvocationTargetException with nested exception different from OutOfMemoryError: "
-							+ e2.getClass().getName() + ": " + e2.getMessage(),
-					e2 instanceof OutOfMemoryError);
-			System.out
-					.println("[BeanCompositionTreeMemoryTest] got an InvocationTargetException"
-							+ " caused by an OutOfMemoryError as expected");
+			assertTrue("caught InvocationTargetException with nested exception different from OutOfMemoryError: "
+					+ e2.getClass().getName() + ": " + e2.getMessage(), e2 instanceof OutOfMemoryError);
+			System.out.println("[BeanCompositionTreeMemoryTest] got an InvocationTargetException"
+					+ " caused by an OutOfMemoryError as expected");
 		} catch (Throwable t) {
-			assertTrue("caught throwable different from OutOfMemoryError: "
-					+ t.getClass().getName() + ": " + t.getMessage(),
-					t instanceof OutOfMemoryError);
-			System.out
-					.println("[BeanCompositionTreeMemoryTest] got an OutOfMemoryError as expected");
+			assertTrue(
+					"caught throwable different from OutOfMemoryError: " + t.getClass().getName() + ": "
+							+ t.getMessage(), t instanceof OutOfMemoryError);
+			System.out.println("[BeanCompositionTreeMemoryTest] got an OutOfMemoryError as expected");
 		}
 
 		// release the first composite tree
 		// a set up the secon one again => success
-		System.out
-				.println("[BeanCompositionTreeMemoryTest] releasing reference to 1st composite tree root");
+		System.out.println("[BeanCompositionTreeMemoryTest] releasing reference to 1st composite tree root");
 		menu1 = null;
 
-		System.out
-				.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree again...");
+		System.out.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree again...");
 		Thread.sleep(100);
-		menu2 = (Submenu) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.presentation.Submenu");
+		menu2 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
 		createSubmenus(menu2, count);
 
-		System.out
-				.println("[BeanCompositionTreeMemoryTest] finished: garbage collection succeded");
+		System.out.println("[BeanCompositionTreeMemoryTest] finished: garbage collection succeded");
 	}
 
 	/**
@@ -94,12 +80,10 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 	 *            the counter
 	 */
 	private void createSubmenus(final Submenu menu, final long count) {
-		PropertyCollection propCol = (PropertyCollection) menu
-				.getProperty("menuentrys");
+		PropertyCollection propCol = (PropertyCollection) menu.getProperty("menuentrys");
 		MenuItem item;
 		for (int i = 1; i < count; i++) {
-			item = (MenuItem) RapidBeanImplStrict
-					.createInstance("org.rapidbeans.presentation.MenuItem");
+			item = (MenuItem) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
 			propCol.addLink(item);
 		}
 	}

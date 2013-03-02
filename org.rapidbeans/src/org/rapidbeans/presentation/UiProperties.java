@@ -67,12 +67,10 @@ public class UiProperties {
 		this.guiProps = new Properties();
 		InputStream is = null;
 		try {
-			String path = app.getRootpackage().replace('.', '/')
-					+ "/presentation/gui.properties";
+			String path = app.getRootpackage().replace('.', '/') + "/presentation/gui.properties";
 			is = ClassLoader.getSystemResourceAsStream(path);
 			if (is == null) {
-				is = app.getClass().getResourceAsStream(
-						"presentation/gui.properties");
+				is = app.getClass().getResourceAsStream("presentation/gui.properties");
 			}
 			if (is == null) {
 				is = app.getClass().getResourceAsStream("gui.properties");

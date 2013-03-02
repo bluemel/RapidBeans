@@ -118,16 +118,14 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyQuantitySwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyQuantitySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		this.panel = new BBEditorPropertyQuantitySwingPanel(this);
 		super.initColors();
 
 		if (!(prop instanceof PropertyQuantity)) {
-			throw new RapidBeansRuntimeException(
-					"invalid propperty for a quantity editor");
+			throw new RapidBeansRuntimeException("invalid propperty for a quantity editor");
 		}
 		if (prop.getType().isKeyCandidate()) {
 			if (this.getBeanEditor().getParentBean() == null) {
@@ -148,10 +146,8 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 			}
 		});
 
-		this.combobox.setModel(new ModelComboBoxEnum(
-				(TypePropertyQuantity) prop.getType()));
-		this.combobox.setRenderer(new RendererListEnum(client
-				.getCurrentLocale(), this));
+		this.combobox.setModel(new ModelComboBoxEnum((TypePropertyQuantity) prop.getType()));
+		this.combobox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		this.combobox.addItemListener(new ItemListener() {
 			public void itemStateChanged(final ItemEvent e) {
 				convertToNewUnit();
@@ -160,12 +156,10 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 		});
 
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.text, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 0, 5, 5), 0, 0));
-		this.panel.add(this.combobox, new GridBagConstraints(1, 0, 1, 1, 0.0,
-				0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.text, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 0, 5, 5), 0, 0));
+		this.panel.add(this.combobox, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
 		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
@@ -198,12 +192,10 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	public void updateUI() {
 		try {
 			this.setUIEventLock();
-			final RapidQuantity value = (RapidQuantity) this.getProperty()
-					.getValue();
+			final RapidQuantity value = (RapidQuantity) this.getProperty().getValue();
 			if (value == null) {
 				this.text.setText("");
-				this.combobox.setSelectedItem(((TypePropertyQuantity) (this
-						.getProperty().getType())).getDefaultUnit());
+				this.combobox.setSelectedItem(((TypePropertyQuantity) (this.getProperty().getType())).getDefaultUnit());
 			} else {
 				if (value.getMagnitude() == null) {
 					this.text.setText("");
@@ -211,8 +203,8 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 					this.text.setText(value.getMagnitude().toString());
 				}
 				if (value.getUnit() == null) {
-					this.combobox.setSelectedItem(((TypePropertyQuantity) (this
-							.getProperty().getType())).getDefaultUnit());
+					this.combobox.setSelectedItem(((TypePropertyQuantity) (this.getProperty().getType()))
+							.getDefaultUnit());
 				} else {
 					this.combobox.setSelectedItem(value.getUnit());
 				}
@@ -232,15 +224,14 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 		RapidQuantity ifValue = null;
 		if (this.text.getText().trim().length() > 0) {
 			if (this.combobox.getSelectedItem() == null) {
-				throw new ValidationException("invalid.quantity.unit.missing",
-						ifValue, "no unit specified for quantity");
+				throw new ValidationException("invalid.quantity.unit.missing", ifValue,
+						"no unit specified for quantity");
 			}
 			try {
-				final String qtypename = ((TypePropertyQuantity) this
-						.getProperty().getType()).getQuantitytype().getName();
+				final String qtypename = ((TypePropertyQuantity) this.getProperty().getType()).getQuantitytype()
+						.getName();
 				final String ifValueString = getInputFieldValueString();
-				ifValue = RapidQuantity
-						.createInstance(qtypename, ifValueString);
+				ifValue = RapidQuantity.createInstance(qtypename, ifValueString);
 			} catch (RapidBeansRuntimeException e) {
 				final Throwable c1 = e.getCause();
 				if (c1 == null) {
@@ -314,21 +305,18 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	 * pre select an appropriate unit
 	 */
 	protected void preSelectUnit() {
-		final TypePropertyQuantity proptype = (TypePropertyQuantity) this
-				.getProperty().getType();
+		final TypePropertyQuantity proptype = (TypePropertyQuantity) this.getProperty().getType();
 		if (proptype.getDefaultUnit() != null) {
 			// select the property's default unit
 			this.combobox.setSelectedItem(proptype.getDefaultUnit());
 		} else {
-			final TypeRapidQuantityConversionTable ct = proptype
-					.getQuantitytype().getConversionTable();
+			final TypeRapidQuantityConversionTable ct = proptype.getQuantitytype().getConversionTable();
 			if (ct.getNormUnit() != null) {
 				// select the quantity's norm unit
 				this.combobox.setSelectedItem(ct.getNormUnit());
 			} else {
 				// select the quantity's first unit
-				final TypeRapidEnum et = proptype.getQuantitytype()
-						.getUnitInfo();
+				final TypeRapidEnum et = proptype.getQuantitytype().getUnitInfo();
 				this.combobox.setSelectedItem(et.elementOf(0));
 			}
 		}
@@ -364,10 +352,8 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 				try {
 					new BigDecimal(s);
 				} catch (NumberFormatException e) {
-					throw new ValidationException(
-							"invalid.quantity.magnitude.only", s, "\"" + s
-									+ "\" is not a valid number.",
-							new Object[] { s });
+					throw new ValidationException("invalid.quantity.magnitude.only", s, "\"" + s
+							+ "\" is not a valid number.", new Object[] { s });
 				}
 			}
 		}
@@ -412,8 +398,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	 *            if the input fields must be completeS
 	 */
 	private ParsedNumber parseLocalNumber(final boolean completenessRequired) {
-		ParsedNumber number = new ParsedNumber(this.text.getText(), this
-				.getLocale().getLocale());
+		ParsedNumber number = new ParsedNumber(this.text.getText(), this.getLocale().getLocale());
 		return number;
 	}
 
@@ -421,8 +406,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	 * @return the input field value as string.
 	 */
 	public String getInputFieldValueString() {
-		return this.text.getText().trim() + ' '
-				+ this.combobox.getSelectedItem();
+		return this.text.getText().trim() + ' ' + this.combobox.getSelectedItem();
 	}
 
 	/**
@@ -470,8 +454,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 		 * @param parent
 		 *            the parent editor
 		 */
-		public BBEditorPropertyQuantitySwingPanel(
-				final EditorPropertyQuantitySwing parent) {
+		public BBEditorPropertyQuantitySwingPanel(final EditorPropertyQuantitySwing parent) {
 			super();
 			this.parentEditor = parent;
 		}

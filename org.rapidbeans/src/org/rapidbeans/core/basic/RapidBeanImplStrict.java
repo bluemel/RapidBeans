@@ -141,8 +141,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	 * @param type
 	 *            the type
 	 */
-	protected RapidBeanImplStrict(final String initvals,
-			final TypeRapidBean type) {
+	protected RapidBeanImplStrict(final String initvals, final TypeRapidBean type) {
 		this(StringHelper.splitQuoted(initvals), type);
 	}
 
@@ -164,8 +163,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	 * @param argType
 	 *            possibility to give the type in advance
 	 */
-	protected RapidBeanImplStrict(final String[] initvals,
-			final TypeRapidBean argType) {
+	protected RapidBeanImplStrict(final String[] initvals, final TypeRapidBean argType) {
 		final RapidBeanState stateBefore = getBeanState();
 		try {
 			setBeanState(RapidBeanState.initializing);
@@ -200,17 +198,13 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 			// automatically create child instances for composite children bean
 			// classes
 			// with minimal multiplicity defined
-			for (final PropertyCollection colProp : this
-					.getColPropertiesComposition()) {
-				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
-						.getType();
+			for (final PropertyCollection colProp : this.getColPropertiesComposition()) {
+				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 				final int minmult = colPropType.getMinmult();
 				if (minmult > 0) {
-					final TypeRapidBean targetType = colPropType
-							.getTargetType();
+					final TypeRapidBean targetType = colPropType.getTargetType();
 					for (int j = 0; j < minmult; j++) {
-						colProp.addLink(RapidBeanImplStrict
-								.createInstance(targetType));
+						colProp.addLink(RapidBeanImplStrict.createInstance(targetType));
 					}
 				}
 			}
@@ -240,8 +234,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	public void initPropmap() {
 		this.propmap = new HashMap<String, Property>();
 		for (int i = 0; i < this.properties.length; i++) {
-			this.propmap.put(this.properties[i].getType().getPropName(),
-					this.properties[i]);
+			this.propmap.put(this.properties[i].getType().getPropName(), this.properties[i]);
 		}
 	}
 
@@ -267,8 +260,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	public final List<PropertyCollection> getColProperties() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (int i = 0; i < this.properties.length; i++) {
-			if (ClassHelper.classOf(TypePropertyCollection.class,
-					this.properties[i].getType().getClass())) {
+			if (ClassHelper.classOf(TypePropertyCollection.class, this.properties[i].getType().getClass())) {
 				colproplist.add((PropertyCollection) this.properties[i]);
 			}
 		}
@@ -281,10 +273,8 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	public final List<PropertyCollection> getColPropertiesComposition() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (int i = 0; i < this.properties.length; i++) {
-			if (ClassHelper.classOf(TypePropertyCollection.class,
-					this.properties[i].getType().getClass())
-					&& ((TypePropertyCollection) this.properties[i].getType())
-							.isComposition()) {
+			if (ClassHelper.classOf(TypePropertyCollection.class, this.properties[i].getType().getClass())
+					&& ((TypePropertyCollection) this.properties[i].getType()).isComposition()) {
 				colproplist.add((PropertyCollection) this.properties[i]);
 			}
 		}
@@ -318,9 +308,8 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 		}
 		Property prop = this.propmap.get(name);
 		if (prop == null) {
-			throw new ValidationException("invalid.prop.name", this,
-					"unknown property \"" + name + "\" for bean type \""
-							+ this.getType().getName() + "\".");
+			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
+					+ "\" for bean type \"" + this.getType().getName() + "\".");
 		}
 		return prop.getValue();
 	}
@@ -340,9 +329,8 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 		}
 		Property prop = this.propmap.get(name);
 		if (prop == null) {
-			throw new ValidationException("invalid.prop.name", this,
-					"unknown property \"" + name + "\" for bean type \""
-							+ this.getType().getName() + "\".");
+			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
+					+ "\" for bean type \"" + this.getType().getName() + "\".");
 		}
 		prop.setValue(value);
 	}
@@ -351,8 +339,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	 * @return a clone of this bean.
 	 */
 	public RapidBean clone() {
-		RapidBeanImplStrict bClone = RapidBeanImplStrict.createInstance(this
-				.getType());
+		RapidBeanImplStrict bClone = RapidBeanImplStrict.createInstance(this.getType());
 		for (int i = 0; i < this.properties.length; i++) {
 			bClone.properties[i] = this.properties[i].clone(bClone);
 		}
@@ -377,8 +364,7 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 		}
 		bClone.setContainer(cloneContainer);
 		for (int i = 0; i < this.properties.length; i++) {
-			this.properties[i].cloneValue(bClone.getPropertyList().get(i),
-					cloneContainer);
+			this.properties[i].cloneValue(bClone.getPropertyList().get(i), cloneContainer);
 		}
 		return bClone;
 	}
@@ -391,15 +377,13 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 	 * 
 	 * @return the cloned property
 	 */
-	public static Property cloneProperty(final Property property,
-			final RapidBean parentBean) {
+	public static Property cloneProperty(final Property property, final RapidBean parentBean) {
 		Property pClone = null;
 		try {
 			pClone = Property.createInstance(property.getType(), parentBean);
 			ThreadLocalValidationSettings.validationOff();
 			if (property instanceof PropertyCollection) {
-				((PropertyCollection) pClone).setValue(property.getValue(),
-						false, true);
+				((PropertyCollection) pClone).setValue(property.getValue(), false, true);
 			} else {
 				if (!property.isDependent()) {
 					pClone.setValue(property.getValue());

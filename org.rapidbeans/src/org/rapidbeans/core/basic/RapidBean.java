@@ -290,8 +290,7 @@ public interface RapidBean extends Cloneable, Comparable<Link>, Link {
 	 *            the locale
 	 * @return the expanded string
 	 */
-	String expandPropertyValues(final String pattern,
-			final RapidBeansLocale locale);
+	String expandPropertyValues(final String pattern, final RapidBeansLocale locale);
 
 	/**
 	 * lazy initialization of the propmap.

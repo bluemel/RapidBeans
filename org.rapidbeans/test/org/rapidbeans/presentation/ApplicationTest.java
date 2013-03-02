@@ -53,34 +53,29 @@ public final class ApplicationTest extends TestCase {
 		ConfigApplication config = new ConfigApplication();
 		app.setConfiguration(config);
 		assertEquals("Application", app.getConfiguration().getName());
-		assertEquals(ApplicationGuiType.swing, app.getConfiguration()
-				.getGuitype());
+		assertEquals(ApplicationGuiType.swing, app.getConfiguration().getGuitype());
 	}
 
 	/**
 	 * Test load an Application configuration.
 	 */
 	public void testLoadInstance() {
-		ApplicationManager
-				.start(null,
-						"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
-						new TestClient() {
-							@Override
-							public Properties getOptions() {
-								return new Properties();
-							}
+		ApplicationManager.start(null, "../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
+				new TestClient() {
+					@Override
+					public Properties getOptions() {
+						return new Properties();
+					}
 
-							public boolean getTestMode() {
-								return true;
-							}
-						});
+					public boolean getTestMode() {
+						return true;
+					}
+				});
 		TestClient app = (TestClient) ApplicationManager.getApplication();
 		assertEquals("Test", app.getConfiguration().getName());
-		assertSame(ApplicationGuiType.swing, app.getConfiguration()
-				.getGuitype());
+		assertSame(ApplicationGuiType.swing, app.getConfiguration().getGuitype());
 		assertSame(ApplicationLnfTypeSwing.getInstance("metal"),
-				((ConfigApplicationSwing) app.getConfiguration())
-						.getLookandfeel());
+				((ConfigApplicationSwing) app.getConfiguration()).getLookandfeel());
 
 		Collection<RapidBeansLocale> locales = app.getLocales();
 		assertEquals(1, locales.size());
@@ -88,8 +83,7 @@ public final class ApplicationTest extends TestCase {
 		RapidBeansLocale locale = iter1.next();
 		assertEquals("en", locale.getName());
 		assertEquals(Locale.ENGLISH, locale.getLocale());
-		assertEquals("File",
-				locale.getStringGui("mainwindow.menubar.file.label"));
+		assertEquals("File", locale.getStringGui("mainwindow.menubar.file.label"));
 
 		assertEquals("en", app.getCurrentLocale().getName());
 
@@ -161,19 +155,12 @@ public final class ApplicationTest extends TestCase {
 		try {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
-			Document doc1 = new Document(
-					TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File(
-							"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
-			assertTrue(doc1
-					.getName()
-					.endsWith(
-							"/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			DocumentView view1 = client.openDocumentView(doc1, null, null);
-			Document doc2 = new Document(
-					TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File(
-							"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			DocumentView view2 = client.openDocumentView(doc2, null, null);
 			assertSame(view1, view2);
 		} finally {
@@ -188,23 +175,14 @@ public final class ApplicationTest extends TestCase {
 		try {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
-			Document doc1 = new Document(
-					TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File(
-							"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
-			assertTrue(doc1
-					.getName()
-					.endsWith(
-							"/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			client.openDocumentView(doc1, null, null);
-			Document doc2 = new Document(
-					TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File(
-							"../org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
-			assertTrue(doc2
-					.getName()
-					.endsWith(
-							"/org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
+			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
+			assertTrue(doc2.getName().endsWith(
+					"/org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
 			client.openDocumentView(doc2, null, null);
 		} finally {
 			PresentationSwingTestHelper.releaseTestClient();

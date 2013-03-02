@@ -67,8 +67,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param col
 	 *            the collection to encapsulate.
 	 */
-	public ReadonlyListCollection(final Collection<T> col,
-			final TypeProperty propertyType) {
+	public ReadonlyListCollection(final Collection<T> col, final TypeProperty propertyType) {
 		this.proptype = propertyType;
 		if (col instanceof ReadonlyListCollection) {
 			this.collection = ((ReadonlyListCollection<T>) col).collection;
@@ -309,11 +308,9 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 */
 	public ListIterator<T> listIterator() {
 		if (this.collection instanceof List<?>) {
-			return new ReadonlyIteratorCollection<T>(
-					((List<T>) this.collection).listIterator());
+			return new ReadonlyIteratorCollection<T>(((List<T>) this.collection).listIterator());
 		} else {
-			return new ReadonlyIteratorCollection<T>(new ArrayList<T>(
-					this.collection).listIterator());
+			return new ReadonlyIteratorCollection<T>(new ArrayList<T>(this.collection).listIterator());
 		}
 	}
 
@@ -325,11 +322,9 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 */
 	public ListIterator<T> listIterator(final int index) {
 		if (this.collection instanceof List<?>) {
-			return new ReadonlyIteratorCollection<T>(
-					((List<T>) this.collection).listIterator(index));
+			return new ReadonlyIteratorCollection<T>(((List<T>) this.collection).listIterator(index));
 		} else {
-			return new ReadonlyIteratorCollection<T>(this.toArrayList()
-					.listIterator(index));
+			return new ReadonlyIteratorCollection<T>(this.toArrayList().listIterator(index));
 		}
 	}
 
@@ -342,12 +337,9 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 */
 	public List<T> subList(final int fromIndex, final int toIndex) {
 		if (this.collection instanceof List<?>) {
-			return new ReadonlyListCollection<T>(
-					((List<T>) this.collection).subList(fromIndex, toIndex),
-					this.proptype);
+			return new ReadonlyListCollection<T>(((List<T>) this.collection).subList(fromIndex, toIndex), this.proptype);
 		} else {
-			return new ReadonlyListCollection<T>(this.toArrayList().subList(
-					fromIndex, toIndex), this.proptype);
+			return new ReadonlyListCollection<T>(this.toArrayList().subList(fromIndex, toIndex), this.proptype);
 		}
 	}
 

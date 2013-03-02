@@ -46,14 +46,12 @@ public final class TaskGenDtdTest {
 
 	@Test
 	public void testGenerateDTD() throws IOException {
-		TypeRapidBean roottype = TypeRapidBean
-				.forName("org.rapidbeans.ant.test.Project");
+		TypeRapidBean roottype = TypeRapidBean.forName("org.rapidbeans.ant.test.Project");
 		File outfile = new File("testdata/sdk/out.dtd");
 		final FileWriter writer = new FileWriter(outfile);
 		TaskGenDtd.generateDTD(roottype, writer, null);
 		writer.close();
-		Assert.assertTrue(FileHelper.filesEqual(new File(
-				"testdata/sdk/outref.dtd"), outfile, true, true));
+		Assert.assertTrue(FileHelper.filesEqual(new File("testdata/sdk/outref.dtd"), outfile, true, true));
 		outfile.delete();
 	}
 }

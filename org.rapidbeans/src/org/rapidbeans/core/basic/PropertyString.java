@@ -80,8 +80,7 @@ public class PropertyString extends Property {
 		if (this.value == null) {
 			return null;
 		}
-		final EscapeMap escapeMap = ((TypePropertyString) this.getType())
-				.getEscapeMap();
+		final EscapeMap escapeMap = ((TypePropertyString) this.getType()).getEscapeMap();
 		if (escapeMap != null) {
 			return StringHelper.escape(this.value, escapeMap);
 		} else {
@@ -98,12 +97,11 @@ public class PropertyString extends Property {
 	 *            <b>String:</b> the String<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (String) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (String) newValue;
+			}
+		});
 	}
 
 	/**
@@ -124,8 +122,7 @@ public class PropertyString extends Property {
 		}
 		String s = null;
 		if (argValue instanceof String) {
-			final EscapeMap escMap = ((TypePropertyString) this.getType())
-					.getEscapeMap();
+			final EscapeMap escMap = ((TypePropertyString) this.getType()).getEscapeMap();
 			if (escMap == null) {
 				s = (String) argValue;
 			} else {
@@ -133,8 +130,7 @@ public class PropertyString extends Property {
 			}
 		} else {
 			throw new ValidationException("invalid.prop.string.type", this,
-					"Tried to convert value from a data type \""
-							+ argValue.getClass().getName()
+					"Tried to convert value from a data type \"" + argValue.getClass().getName()
 							+ "\" different to String.");
 		}
 		return s;
@@ -161,8 +157,7 @@ public class PropertyString extends Property {
 		}
 		final TypePropertyString type = (TypePropertyString) this.getType();
 		if ((!type.getEmptyValid()) && newStringValue.equals("")) {
-			throw new ValidationException("invalid.prop.string.empty", this,
-					"invalid empty value");
+			throw new ValidationException("invalid.prop.string.empty", this, "invalid empty value");
 		}
 
 		if ((!type.getEmptyValid()) || (!newStringValue.equals(""))) {
@@ -170,24 +165,16 @@ public class PropertyString extends Property {
 			// check against max length
 			final int maxLength = type.getMaxLength();
 
-			if ((maxLength != TypePropertyString.LENGTH_UNLIMITED)
-					&& (newStringValue.length() > maxLength)) {
+			if ((maxLength != TypePropertyString.LENGTH_UNLIMITED) && (newStringValue.length() > maxLength)) {
 				if (this.getBean() != null) {
-					throw new ValidationException("invalid.prop.string.maxlen",
-							this, "Bean \""
-									+ this.getBean().getType().getName() + "::"
-									+ this.getBean().toString() + ", "
-									+ "Property \""
-									+ this.getType().getPropName() + "\": "
-									+ "value longer than max length "
-									+ maxLength, new String[] { newStringValue,
-									Integer.toString(maxLength) });
+					throw new ValidationException("invalid.prop.string.maxlen", this, "Bean \""
+							+ this.getBean().getType().getName() + "::" + this.getBean().toString() + ", "
+							+ "Property \"" + this.getType().getPropName() + "\": " + "value longer than max length "
+							+ maxLength, new String[] { newStringValue, Integer.toString(maxLength) });
 				} else {
-					throw new ValidationException("invalid.prop.string.maxlen",
-							this, "Property \"" + this.getType().getPropName()
-									+ "\": " + "value longer than max length "
-									+ maxLength, new String[] { newStringValue,
-									Integer.toString(maxLength) });
+					throw new ValidationException("invalid.prop.string.maxlen", this, "Property \""
+							+ this.getType().getPropName() + "\": " + "value longer than max length " + maxLength,
+							new String[] { newStringValue, Integer.toString(maxLength) });
 				}
 			}
 
@@ -195,29 +182,24 @@ public class PropertyString extends Property {
 			final int minLength = type.getMinLength();
 
 			if ((minLength > 0) && (newStringValue.length() < minLength)) {
-				throw new ValidationException("invalid.prop.string.minlen",
-						this, "new value shorter than" + " minimal length "
-								+ minLength, new String[] { newStringValue,
-								Integer.toString(minLength) });
+				throw new ValidationException("invalid.prop.string.minlen", this, "new value shorter than"
+						+ " minimal length " + minLength, new String[] { newStringValue, Integer.toString(minLength) });
 			}
 
 			// check multiple lines
 			if (!type.getMultiline() && newStringValue.contains("\n")) {
-				throw new ValidationException("invalid.prop.string.multiline",
-						this,
-						"String with line break is invalid since property \""
-								+ this.getName() + "\" is not multi lined.");
+				throw new ValidationException("invalid.prop.string.multiline", this,
+						"String with line break is invalid since property \"" + this.getName()
+								+ "\" is not multi lined.");
 			}
 
 			// check against pattern
 			final Pattern pattern = type.getPattern();
 
-			if ((pattern != null) && (newStringValue != null)
-					&& !pattern.matcher(newStringValue).matches()) {
+			if ((pattern != null) && (newStringValue != null) && !pattern.matcher(newStringValue).matches()) {
 				final Object[] oa = { newValue, pattern.toString() };
-				throw new ValidationException("invalid.prop.string.pattern",
-						this, "value does not match pattern \""
-								+ pattern.pattern() + "\".", oa);
+				throw new ValidationException("invalid.prop.string.pattern", this, "value does not match pattern \""
+						+ pattern.pattern() + "\".", oa);
 			}
 		}
 		return newStringValue;

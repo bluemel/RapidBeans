@@ -70,8 +70,7 @@ public final class StringHelper {
 
 	private static final char[] WHITESPACE_CHARACTERS = { ' ', '\n', '\t' };
 
-	private static final String WHITESPACE_CHARACTER_STRING = new String(
-			WHITESPACE_CHARACTERS);
+	private static final String WHITESPACE_CHARACTER_STRING = new String(WHITESPACE_CHARACTERS);
 
 	/**
 	 * Check if the given string contains only digits or not.
@@ -165,8 +164,7 @@ public final class StringHelper {
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string, final char trimChar,
-			final StripMode mode) {
+	public static String strip(final String string, final char trimChar, final StripMode mode) {
 		return strip(string, new char[] { trimChar }, mode);
 	}
 
@@ -188,23 +186,19 @@ public final class StringHelper {
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string, final char[] trimChars,
-			final StripMode mode) {
+	public static String strip(final String string, final char[] trimChars, final StripMode mode) {
 		final int len = string.length();
 		int firstNonStrippedIndex = 0;
 		int lastNonStrippedIndex = len;
 		if (mode == StripMode.both || mode == StripMode.leading) {
 			firstNonStrippedIndex = -1;
-			while (firstNonStrippedIndex < len
-					&& charMatches(trimChars,
-							string.charAt(++firstNonStrippedIndex)))
+			while (firstNonStrippedIndex < len && charMatches(trimChars, string.charAt(++firstNonStrippedIndex)))
 				;
 		}
 		if (mode == StripMode.both || mode == StripMode.trailing) {
 			lastNonStrippedIndex = len;
 			while (lastNonStrippedIndex >= firstNonStrippedIndex
-					&& charMatches(trimChars,
-							string.charAt(--lastNonStrippedIndex)))
+					&& charMatches(trimChars, string.charAt(--lastNonStrippedIndex)))
 				;
 			lastNonStrippedIndex++;
 		}
@@ -243,8 +237,7 @@ public final class StringHelper {
 	 * 
 	 * @return the string filled up to the specified length
 	 */
-	public static String fillUp(final String string, final int length,
-			final char fillChar, final FillMode mode) {
+	public static String fillUp(final String string, final int length, final char fillChar, final FillMode mode) {
 		final int charsToFillCount = length - string.length();
 		if (charsToFillCount <= 0) {
 			return string;
@@ -260,8 +253,7 @@ public final class StringHelper {
 		return buf.toString();
 	}
 
-	private static char[] newCharArray(final int charsToFillCount,
-			final char fillChar) {
+	private static char[] newCharArray(final int charsToFillCount, final char fillChar) {
 		final char[] ca = new char[charsToFillCount];
 		Arrays.fill(ca, fillChar);
 		return ca;
@@ -294,11 +286,9 @@ public final class StringHelper {
 	 * 
 	 * @return a list containing all tokens
 	 */
-	public static List<String> split(final String string,
-			final String delimChars) {
+	public static List<String> split(final String string, final String delimChars) {
 		final ArrayList<String> list = new ArrayList<String>();
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		while (tokenizer.hasMoreTokens()) {
 			list.add(tokenizer.nextToken());
 		}
@@ -330,8 +320,7 @@ public final class StringHelper {
 	 * @return the first token or null if no token has been found
 	 */
 	public static String splitFirst(final String string, final String delimChars) {
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		if (tokenizer.hasMoreTokens()) {
 			return tokenizer.nextToken();
 		} else {
@@ -365,8 +354,7 @@ public final class StringHelper {
 	 */
 	public static String splitLast(final String string, final String delimChars) {
 		String lastToken = null;
-		final StringTokenizer tokenizer = new StringTokenizer(string,
-				delimChars);
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
 		while (tokenizer.hasMoreTokens()) {
 			lastToken = tokenizer.nextToken(delimChars);
 		}
@@ -385,8 +373,7 @@ public final class StringHelper {
 	 * 
 	 * @return all tokens besides the last or null if no token has been found
 	 */
-	public static String splitBeforeLast(final String string,
-			final String delimChars) {
+	public static String splitBeforeLast(final String string, final String delimChars) {
 		final char[] delimCa = delimChars.toCharArray();
 		final int len = string.length();
 		int state = 0;
@@ -532,8 +519,7 @@ public final class StringHelper {
 			list.add(buffer.toString());
 			break;
 		case 2:
-			throw new UtilException("Missing qouote at the end of string\""
-					+ string + "\"");
+			throw new UtilException("Missing qouote at the end of string\"" + string + "\"");
 		}
 
 		return list.toArray(EMPTY_STRING_ARRAY);
@@ -688,8 +674,7 @@ public final class StringHelper {
 			list.add(new SplitToken(false, buffer.toString()));
 			break;
 		case 2:
-			throw new UtilException("Missing qouote at the end of string @"
-					+ string + "@");
+			throw new UtilException("Missing qouote at the end of string @" + string + "@");
 		}
 
 		return list;
@@ -745,8 +730,7 @@ public final class StringHelper {
 			list.add(buffer.toString());
 			break;
 		case 2:
-			throw new UtilException(
-					"Missing character after escape character '" + esc + "'");
+			throw new UtilException("Missing character after escape character '" + esc + "'");
 		}
 
 		return list;
@@ -851,15 +835,13 @@ public final class StringHelper {
 	 * 
 	 * @return the escaped string
 	 */
-	private static void escape(final String in, final StringBuffer out,
-			final Map<String, String> escMap) {
+	private static void escape(final String in, final StringBuffer out, final Map<String, String> escMap) {
 		final int len = in.length();
 		for (int i = 0; i < len; i++) {
 			boolean replaced = false;
 			for (final String sequenceToReplace : escMap.keySet()) {
 				if ((i + sequenceToReplace.length()) <= len
-						&& in.substring(i, i + sequenceToReplace.length())
-								.equals(sequenceToReplace)) {
+						&& in.substring(i, i + sequenceToReplace.length()).equals(sequenceToReplace)) {
 					out.append(escMap.get(sequenceToReplace));
 					i += sequenceToReplace.length() - 1;
 					replaced = true;
@@ -923,8 +905,7 @@ public final class StringHelper {
 	 *            - TRIM_MODE_BOTH, TRIM_MODE_LEADING or TRIM_MODE_TRAILING
 	 * @return - trimmed string
 	 */
-	public static String trim(final String sIn, final char[] trimChars,
-			final TrimMode mode) {
+	public static String trim(final String sIn, final char[] trimChars, final TrimMode mode) {
 		String s = sIn;
 		int len = sIn.length();
 		int posStart = 0;
@@ -989,8 +970,7 @@ public final class StringHelper {
 					state = 0;
 					break;
 				default:
-					throw new RapidBeansRuntimeException(
-							"Unknown escape squence '\\" + c + "'");
+					throw new RapidBeansRuntimeException("Unknown escape squence '\\" + c + "'");
 				}
 				break;
 			}

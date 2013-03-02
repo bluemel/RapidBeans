@@ -119,8 +119,7 @@ public final class TypePropertyMap extends TypePropertyCollection {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyMap(final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyMap(final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		super(xmlNodes, parentBeanType, "Map");
 		super.parseDefaultValue(xmlNodes[0]);
 
@@ -129,21 +128,15 @@ public final class TypePropertyMap extends TypePropertyCollection {
 			try {
 				this.mapClass = Class.forName(mapClassname);
 				if (!ClassHelper.classOf(Collection.class, this.mapClass)) {
-					throw new RapidBeansRuntimeException(
-							"Invalid collectionclass: Class \"" + mapClassname
-									+ " is not a Collection.");
+					throw new RapidBeansRuntimeException("Invalid collectionclass: Class \"" + mapClassname
+							+ " is not a Collection.");
 				}
-				this.mapClassConstructor = this.mapClass
-						.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
+				this.mapClassConstructor = this.mapClass.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
 			} catch (ClassNotFoundException e) {
-				throw new RapidBeansRuntimeException("Collection class \""
-						+ mapClassname + " not found.");
+				throw new RapidBeansRuntimeException("Collection class \"" + mapClassname + " not found.");
 			} catch (NoSuchMethodException e) {
-				throw new RapidBeansRuntimeException(
-						"invalid collection class \"" + mapClassname
-								+ "\" configured for collection"
-								+ " properties.\n"
-								+ "No empty default constructor found", e);
+				throw new RapidBeansRuntimeException("invalid collection class \"" + mapClassname
+						+ "\" configured for collection" + " properties.\n" + "No empty default constructor found", e);
 			}
 		}
 	}

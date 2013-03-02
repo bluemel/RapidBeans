@@ -22,13 +22,11 @@ public final class TypeRapidQuantityTest extends TestCase {
 	 * test the for name generated (type safe).
 	 */
 	public void testForNameGenerated() {
-		TypeRapidQuantity type = TypeRapidQuantity
-				.forName("org.rapidbeans.domain.math.Length");
+		TypeRapidQuantity type = TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length");
 		assertNotNull(type);
 		assertEquals("org.rapidbeans.domain.math.Length", type.getName());
 		assertSame(Length.class, type.getImplementingClass());
-		TypeRapidQuantity type1 = TypeRapidQuantity
-				.forName("org.rapidbeans.domain.math.Length");
+		TypeRapidQuantity type1 = TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length");
 		assertSame(type, type1);
 	}
 
@@ -38,18 +36,14 @@ public final class TypeRapidQuantityTest extends TestCase {
 	 */
 	public void testCreateInstanceDescrGeneric() {
 		try {
-			String descr = "<enumtype name=\"UnitVolt\">"
-					+ "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
+			String descr = "<enumtype name=\"UnitVolt\">" + "<enum name=\"kV\"/>" + "<enum name=\"V\"/>"
 					+ "<enum name=\"mV\"/>" + "</enumtype>";
 			TypeRapidEnum enumtype = TypeRapidEnum.createInstance(descr);
 			assertEquals("UnitVolt", enumtype.getName());
 			assertEquals("V", enumtype.elementOf("V").name());
 
-			descr = "<quantitytype name=\"Voltage\""
-					+ " unitenum=\"UnitVolt\">"
-					+ "<unit name=\"kV\" factor=\"1E3\"/>"
-					+ "<unit name=\"V\" factor=\"1\"/>"
-					+ "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
+			descr = "<quantitytype name=\"Voltage\"" + " unitenum=\"UnitVolt\">" + "<unit name=\"kV\" factor=\"1E3\"/>"
+					+ "<unit name=\"V\" factor=\"1\"/>" + "<unit name=\"mV\" factor=\"1E-3\"/>" + "</quantitytype>";
 			TypeRapidQuantity type = TypeRapidQuantity.createInstance(descr);
 			assertEquals("Voltage", type.getName());
 			assertEquals("Voltage", type.getNameShort());

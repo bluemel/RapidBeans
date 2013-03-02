@@ -72,8 +72,7 @@ public class PropertyChoice extends Property {
 			return null;
 		} else {
 			// we encapsulate the collection to keep the property immutable
-			return new ReadonlyListCollection<RapidEnum>(this.value,
-					this.getType());
+			return new ReadonlyListCollection<RapidEnum>(this.value, this.getType());
 		}
 	}
 
@@ -118,13 +117,12 @@ public class PropertyChoice extends Property {
 	 *            <b>String[]:</b> a string array of enum element names
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					@SuppressWarnings("unchecked")
-					public void setValue(final Object newValue) {
-						value = (ArrayList<RapidEnum>) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			@SuppressWarnings("unchecked")
+			public void setValue(final Object newValue) {
+				value = (ArrayList<RapidEnum>) newValue;
+			}
+		});
 	}
 
 	/**
@@ -133,11 +131,7 @@ public class PropertyChoice extends Property {
 	 * @param choiceValue
 	 *            the value to convert<br/>
 	 *            Must be an instance of the following classes: <li>
-	 *            <b>Collection&lt;RapidEnum&gt;:</b> any collection of enum
-	 *            elements</li> <li><b>RapidEnum:</b> a single enum element</li>
-	 *            <li><b>String:</b> a comma separated list of enum element
-	 *            names</li> <li><b>String[]:</b> a string array of enum element
-	 *            names</li>
+	 *            <b>Collection&lt;RapidEnum&gt;:</b> any collection of enum elements</li> <li><b>RapidEnum:</b> a single enum element</li> <li><b>String:</b> a comma separated list of enum element names</li> <li><b>String[]:</b> a string array of enum element names</li>
 	 * 
 	 * @return an ArrayList of enum elements
 	 */
@@ -157,26 +151,19 @@ public class PropertyChoice extends Property {
 				choice = new ArrayList<RapidEnum>();
 				choice.add((RapidEnum) choiceValue);
 			} else if (choiceValue instanceof String) {
-				choice = ((TypePropertyChoice) this.getType()).getEnumType()
-						.parse((String) choiceValue);
+				choice = ((TypePropertyChoice) this.getType()).getEnumType().parse((String) choiceValue);
 			} else if (choiceValue instanceof String[]) {
 				final String[] sa = (String[]) choiceValue;
 				choice = new ArrayList<RapidEnum>();
-				TypeRapidEnum enumType = ((TypePropertyChoice) this.getType())
-						.getEnumType();
+				TypeRapidEnum enumType = ((TypePropertyChoice) this.getType()).getEnumType();
 				for (int i = 0; i < sa.length; i++) {
 					choice.add(enumType.elementOf(sa[i]));
 				}
 			} else {
-				throw new ValidationException(
-						"invalid.prop.choice.type",
-						this,
-						"Choice property \""
-								+ this.getType().getPropName()
-								+ "\": "
-								+ " invalid data type "
-								+ choiceValue.getClass().getName()
-								+ ".\nOnly \"RapidEnum[]\", or \"String[]\", or \"String\" are valid data types.");
+				throw new ValidationException("invalid.prop.choice.type", this, "Choice property \""
+						+ this.getType().getPropName() + "\": " + " invalid data type "
+						+ choiceValue.getClass().getName()
+						+ ".\nOnly \"RapidEnum[]\", or \"String[]\", or \"String\" are valid data types.");
 			}
 		}
 
@@ -200,8 +187,7 @@ public class PropertyChoice extends Property {
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<RapidEnum> validate(final Object newValue) {
-		final ArrayList<RapidEnum> newChoiceValue = (ArrayList<RapidEnum>) super
-				.validate(newValue);
+		final ArrayList<RapidEnum> newChoiceValue = (ArrayList<RapidEnum>) super.validate(newValue);
 		if (!ThreadLocalValidationSettings.getValidation()) {
 			return newChoiceValue;
 		}
@@ -211,14 +197,9 @@ public class PropertyChoice extends Property {
 		final TypePropertyChoice type = (TypePropertyChoice) this.getType();
 		final int size = newChoiceValue.size();
 		if (!type.getMultiple() && newChoiceValue.size() > 1) {
-			throw new ValidationException(
-					"invalid.prop.choice.more",
-					this,
-					"Property \""
-							+ this.getType().getPropName()
-							+ "\": "
-							+ " invalid multiple choice."
-							+ "\nMore than one item chosen in a non multiple choice");
+			throw new ValidationException("invalid.prop.choice.more", this, "Property \""
+					+ this.getType().getPropName() + "\": " + " invalid multiple choice."
+					+ "\nMore than one item chosen in a non multiple choice");
 		}
 		if (newChoiceValue != null) {
 			int j;
@@ -227,29 +208,14 @@ public class PropertyChoice extends Property {
 					for (j = i + 1; j < size; j++) {
 						if (newChoiceValue.get(i) == newChoiceValue.get(j)) {
 							if (this.getBean() != null) {
-								throw new ValidationException(
-										"invalid.prop.choice.duplicate",
-										this,
-										"Bean \""
-												+ this.getBean().getType()
-														.getName()
-												+ "::"
-												+ this.getBean().toString()
-												+ ", "
-												+ "Property \""
-												+ this.getType().getPropName()
-												+ "\": "
-												+ " invalid duplicate choice."
-												+ "\nOne item was chosen more than once.");
+								throw new ValidationException("invalid.prop.choice.duplicate", this, "Bean \""
+										+ this.getBean().getType().getName() + "::" + this.getBean().toString() + ", "
+										+ "Property \"" + this.getType().getPropName() + "\": "
+										+ " invalid duplicate choice." + "\nOne item was chosen more than once.");
 							} else {
-								throw new ValidationException(
-										"invalid.prop.choice.duplicate",
-										this,
-										"Property \""
-												+ this.getType().getPropName()
-												+ "\": "
-												+ " invalid duplicate choice."
-												+ "\nOne item was chosen more than once.");
+								throw new ValidationException("invalid.prop.choice.duplicate", this, "Property \""
+										+ this.getType().getPropName() + "\": " + " invalid duplicate choice."
+										+ "\nOne item was chosen more than once.");
 							}
 						}
 					}

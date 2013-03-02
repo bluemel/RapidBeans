@@ -136,8 +136,7 @@ public class EditorBeanSwing extends EditorBean {
 	 *            Bean is to be created Is null if an existing bean is simply
 	 *            edited
 	 */
-	public EditorBeanSwing(final Application client,
-			final DocumentView docView, final RapidBean bizBean,
+	public EditorBeanSwing(final Application client, final DocumentView docView, final RapidBean bizBean,
 			final PropertyCollection newBeanParentColProp) {
 		super(client, docView, bizBean, newBeanParentColProp);
 		int i = 0;
@@ -145,69 +144,52 @@ public class EditorBeanSwing extends EditorBean {
 		this.panelProps.setLayout(new GridBagLayout());
 		boolean editorWithYExtension = false;
 		for (EditorProperty propEditor : this.getPropEditors()) {
-			this.panelProps.add((Component) propEditor.getLabelWidget(),
-					new GridBagConstraints(0, i, 1, 1, 0.0, 0.0,
-							GridBagConstraints.NORTHWEST,
-							GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
-							0));
+			this.panelProps.add((Component) propEditor.getLabelWidget(), new GridBagConstraints(0, i, 1, 1, 0.0, 0.0,
+					GridBagConstraints.NORTHWEST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 			if (propEditor instanceof EditorPropertyListSwing) {
 				editorWithYExtension = true;
-				this.panelProps.add((Component) propEditor.getWidget(),
-						new GridBagConstraints(1, i++, 1, 1, 1.0, 1.0,
-								GridBagConstraints.NORTHWEST,
-								GridBagConstraints.BOTH,
-								new Insets(5, 5, 5, 5), 0, 0));
+				this.panelProps.add((Component) propEditor.getWidget(), new GridBagConstraints(1, i++, 1, 1, 1.0, 1.0,
+						GridBagConstraints.NORTHWEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 			} else {
-				this.panelProps.add((Component) propEditor.getWidget(),
-						new GridBagConstraints(1, i++, 1, 1, 1.0, 0.0,
-								GridBagConstraints.NORTHWEST,
-								GridBagConstraints.HORIZONTAL, new Insets(5, 5,
-										5, 5), 0, 0));
+				this.panelProps.add((Component) propEditor.getWidget(), new GridBagConstraints(1, i++, 1, 1, 1.0, 0.0,
+						GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 			}
 		}
 		this.panelButtons.setLayout(new GridBagLayout());
-		this.buttonOk.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.ok"));
+		this.buttonOk.setText(client.getCurrentLocale().getStringGui("commongui.text.ok"));
 		this.buttonOk.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				handleActionOk();
 			}
 		});
 		this.buttonOk.setEnabled(false);
-		this.buttonApply.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.apply"));
+		this.buttonApply.setText(client.getCurrentLocale().getStringGui("commongui.text.apply"));
 		this.buttonApply.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				handleActionApply();
 			}
 		});
 		this.buttonApply.setEnabled(false);
-		this.buttonClose.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.close"));
+		this.buttonClose.setText(client.getCurrentLocale().getStringGui("commongui.text.close"));
 		this.buttonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				handleActionClose();
 			}
 		});
-		this.panelButtons.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1,
-				1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		this.panelButtons.add(this.buttonApply, new GridBagConstraints(1, 0, 1,
-				1, 1.0, 0.0, GridBagConstraints.CENTER,
+		this.panelButtons.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
-		this.panelButtons.add(this.buttonClose, new GridBagConstraints(2, 0, 1,
-				1, 1.0, 0.0, GridBagConstraints.CENTER,
+		this.panelButtons.add(this.buttonApply, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		this.panelButtons.add(this.buttonClose, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		final JPanel p = new JPanel();
 		p.setLayout(new GridBagLayout());
 		if (editorWithYExtension) {
-			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-					GridBagConstraints.NORTH, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));
+			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.NORTH,
+					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		} else {
-			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-					GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.NORTH,
+					GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		}
 		this.scrollPane.getViewport().add(p);
 		this.panel.add(this.scrollPane, BorderLayout.CENTER);
@@ -258,8 +240,7 @@ public class EditorBeanSwing extends EditorBean {
 	public void validateAndUpdateButtons(final EditorProperty propEditor) {
 		try {
 			ThreadLocalValidationSettings.readonlyOff();
-			super.validateInputAndUpdateBean(false, false, false, true,
-					propEditor);
+			super.validateInputAndUpdateBean(false, false, false, true, propEditor);
 			updateButtons(true);
 		} catch (ValidationException e) {
 			updateButtons(false);
@@ -279,29 +260,22 @@ public class EditorBeanSwing extends EditorBean {
 			if (super.isAnyInputFieldChanged()) {
 				this.buttonOk.setEnabled(true);
 				this.buttonApply.setEnabled(true);
-				this.buttonApply.setText(this.getLocale().getStringGui(
-						"commongui.text.apply"));
-				this.buttonClose.setText(this.getLocale().getStringGui(
-						"commongui.text.cancel"));
+				this.buttonApply.setText(this.getLocale().getStringGui("commongui.text.apply"));
+				this.buttonClose.setText(this.getLocale().getStringGui("commongui.text.cancel"));
 			} else {
 				this.buttonOk.setEnabled(false);
 				this.buttonApply.setEnabled(false);
-				this.buttonApply.setText(this.getLocale().getStringGui(
-						"commongui.text.apply"));
-				this.buttonClose.setText(this.getLocale().getStringGui(
-						"commongui.text.close"));
+				this.buttonApply.setText(this.getLocale().getStringGui("commongui.text.apply"));
+				this.buttonClose.setText(this.getLocale().getStringGui("commongui.text.close"));
 			}
 		} else { // invalid
 			this.buttonOk.setEnabled(false);
 			this.buttonApply.setEnabled(true);
-			this.buttonApply.setText(this.getLocale().getStringGui(
-					"commongui.text.check"));
+			this.buttonApply.setText(this.getLocale().getStringGui("commongui.text.check"));
 			if (super.isAnyInputFieldChanged()) {
-				this.buttonClose.setText(this.getLocale().getStringGui(
-						"commongui.text.cancel"));
+				this.buttonClose.setText(this.getLocale().getStringGui("commongui.text.cancel"));
 			} else {
-				this.buttonClose.setText(this.getLocale().getStringGui(
-						"commongui.text.close"));
+				this.buttonClose.setText(this.getLocale().getStringGui("commongui.text.close"));
 			}
 		}
 		// } else {

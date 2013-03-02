@@ -96,8 +96,7 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 				if (this.parentBeans[i] == oId.parentBeans[i]) {
 					continue;
 				}
-				comp = this.parentBeans[i].getId().compareTo(
-						oId.parentBeans[i].getId());
+				comp = this.parentBeans[i].getId().compareTo(oId.parentBeans[i].getId());
 				if (comp != 0) {
 					break;
 				}
@@ -121,8 +120,7 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 		for (int i = start; i < this.parentBeans.length; i++) {
 			switch (this.parentBeans[i].getType().getIdtype()) {
 			case keypropswithparentscope:
-				sb.append(((IdKeypropswithparentscope) this.parentBeans[i]
-						.getId()).getIdStringKeyprops());
+				sb.append(((IdKeypropswithparentscope) this.parentBeans[i].getId()).getIdStringKeyprops());
 				break;
 			default:
 				sb.append(this.parentBeans[i].getIdString());
@@ -142,10 +140,8 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 	private int getStartIndex() {
 		int start = 0;
 		if (this.getBean().getType().getIdtypeParentScopeDepth() > 0
-				&& this.parentBeans.length
-						- this.getBean().getType().getIdtypeParentScopeDepth() > 0) {
-			start = this.parentBeans.length
-					- this.getBean().getType().getIdtypeParentScopeDepth();
+				&& this.parentBeans.length - this.getBean().getType().getIdtypeParentScopeDepth() > 0) {
+			start = this.parentBeans.length - this.getBean().getType().getIdtypeParentScopeDepth();
 		}
 		return start;
 	}

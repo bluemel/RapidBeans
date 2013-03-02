@@ -32,8 +32,7 @@ public class DialogLoginTest {
 	public void tearDown() {
 		ApplicationManager.resetApplication();
 		// reset testsettings.xml
-		FileHelper.copyFile(new File("testdata/testsettings_backup.xml"),
-				new File("testdata/testsettings.xml"), true);
+		FileHelper.copyFile(new File("testdata/testsettings_backup.xml"), new File("testdata/testsettings.xml"), true);
 	}
 
 	/**
@@ -93,8 +92,7 @@ public class DialogLoginTest {
 		ApplicationManager.start(client);
 		String[][] loginData = { { "herbert", "" }, };
 		LoginDialogMock dialogMock = new LoginDialogMock(loginData, true);
-		User herbert = (User) client.getAuthnDoc().findBean(
-				"org.rapidbeans.security.User", "herbert");
+		User herbert = (User) client.getAuthnDoc().findBean("org.rapidbeans.security.User", "herbert");
 		herbert.setPwdSec(null, null);
 		RapidBean user = DialogLogin.login(1, dialogMock);
 		Assert.assertEquals("herbert", user.getPropValue("accountname"));
@@ -128,9 +126,8 @@ public class DialogLoginTest {
 	public void testLoginFailed5() {
 		ApplicationMock client = new ApplicationMock(null);
 		ApplicationManager.start(client);
-		String[][] loginData = { { "herbert", "xxx" }, { "herbert", "xxx" },
-				{ "herbert", "xxx" }, { "herbert", "xxx" },
-				{ "herbert", "xxx" }, { "herbert", "s2sh!4all" } };
+		String[][] loginData = { { "herbert", "xxx" }, { "herbert", "xxx" }, { "herbert", "xxx" },
+				{ "herbert", "xxx" }, { "herbert", "xxx" }, { "herbert", "s2sh!4all" } };
 		LoginDialogMock dialogMock = new LoginDialogMock(loginData, true);
 		RapidBean user = DialogLogin.login(5, dialogMock);
 		Assert.assertNull(user);
@@ -151,9 +148,8 @@ public class DialogLoginTest {
 	public void testLoginSuccessWithLastOf5Tries() {
 		ApplicationMock client = new ApplicationMock(null);
 		ApplicationManager.start(client);
-		String[][] loginData = { { "herbert", "xxx" }, { "herbert", "xxx" },
-				{ "herbert", "xxx" }, { "herbert", "xxx" },
-				{ "herbert", "s2sh!4all" }, };
+		String[][] loginData = { { "herbert", "xxx" }, { "herbert", "xxx" }, { "herbert", "xxx" },
+				{ "herbert", "xxx" }, { "herbert", "s2sh!4all" }, };
 		LoginDialogMock dialogMock = new LoginDialogMock(loginData, true);
 		RapidBean user = DialogLogin.login(5, dialogMock);
 		Assert.assertEquals("herbert", user.getPropValue("accountname"));
@@ -172,8 +168,7 @@ public class DialogLoginTest {
 
 		public ApplicationMock(final String pwdHalg) {
 			this.pwdHashAlg = pwdHalg;
-			this.setSettingsDoc(new Document(new File(
-					"testdata/testsettings.xml")));
+			this.setSettingsDoc(new Document(new File("testdata/testsettings.xml")));
 		}
 
 		@Override

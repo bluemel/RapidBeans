@@ -28,8 +28,7 @@ public class ClosingPeriodPropFrom extends PropertyDate {
 	 * @param parentBean
 	 *            the parent bean
 	 */
-	public ClosingPeriodPropFrom(final TypeProperty type,
-			final RapidBean parentBean) {
+	public ClosingPeriodPropFrom(final TypeProperty type, final RapidBean parentBean) {
 		super(type, parentBean);
 	}
 
@@ -53,12 +52,9 @@ public class ClosingPeriodPropFrom extends PropertyDate {
 		}
 		if (toTime != null) {
 			if (date.getTime() > toTime.getTime()) {
-				throw new ValidationException(
-						"invalid.prop.closingperiod.from.greater.to", this,
-						"invalid value \"" + date.toString()
-								+ "\" for property \"from\""
-								+ " greater than property \"to\" = \""
-								+ toTime.toString() + "\"");
+				throw new ValidationException("invalid.prop.closingperiod.from.greater.to", this, "invalid value \""
+						+ date.toString() + "\" for property \"from\"" + " greater than property \"to\" = \""
+						+ toTime.toString() + "\"");
 			}
 		}
 		return date;

@@ -78,8 +78,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 		RapidBeanImplSimple bean = null;
 		Class<?> clazz = type.getImplementingClass();
 		if (clazz == null) {
-			throw new RapidBeansRuntimeException(
-					"RapidBeans simple implementations need a conrete class.");
+			throw new RapidBeansRuntimeException("RapidBeans simple implementations need a conrete class.");
 		} else {
 			try {
 				Constructor<RapidBeanImplSimple> constr = (Constructor<RapidBeanImplSimple>) clazz
@@ -139,8 +138,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * @param type
 	 *            the type
 	 */
-	protected RapidBeanImplSimple(final String initvals,
-			final TypeRapidBean type) {
+	protected RapidBeanImplSimple(final String initvals, final TypeRapidBean type) {
 		this(StringHelper.splitQuoted(initvals), type);
 	}
 
@@ -162,8 +160,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * @param argType
 	 *            possibility to give the type in advance
 	 */
-	protected RapidBeanImplSimple(final String[] initvals,
-			final TypeRapidBean argType) {
+	protected RapidBeanImplSimple(final String[] initvals, final TypeRapidBean argType) {
 		final RapidBeanState stateBefore = getBeanState();
 		try {
 			setBeanState(RapidBeanState.initializing);
@@ -171,17 +168,13 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 			// automatically create child instances for composite children bean
 			// classes
 			// with minimal multiplicity defined
-			for (final PropertyCollection colProp : this
-					.getColPropertiesComposition()) {
-				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
-						.getType();
+			for (final PropertyCollection colProp : this.getColPropertiesComposition()) {
+				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 				final int minmult = colPropType.getMinmult();
 				if (minmult > 0) {
-					final TypeRapidBean targetType = colPropType
-							.getTargetType();
+					final TypeRapidBean targetType = colPropType.getTargetType();
 					for (int j = 0; j < minmult; j++) {
-						colProp.addLink(RapidBeanImplSimple
-								.createInstance(targetType));
+						colProp.addLink(RapidBeanImplSimple.createInstance(targetType));
 					}
 				}
 			}
@@ -226,8 +219,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (TypeProperty proptype : getType().getPropertyTypes()) {
 			if (proptype instanceof TypePropertyCollection) {
-				colproplist.add((PropertyCollection) Property.createInstance(
-						proptype, this));
+				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
 			}
 		}
 		return colproplist;
@@ -239,10 +231,8 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	public final List<PropertyCollection> getColPropertiesComposition() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (TypeProperty proptype : getType().getPropertyTypes()) {
-			if (proptype instanceof TypePropertyCollection
-					&& ((TypePropertyCollection) proptype).isComposition()) {
-				colproplist.add((PropertyCollection) Property.createInstance(
-						proptype, this));
+			if (proptype instanceof TypePropertyCollection && ((TypePropertyCollection) proptype).isComposition()) {
+				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
 			}
 		}
 		return colproplist;
@@ -269,8 +259,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	public final Object getPropValue(final String name) {
 		Object value = null;
 		try {
-			final Method getter = this.getClass().getMethod(
-					"get" + StringHelper.upperFirstCharacter(name));
+			final Method getter = this.getClass().getMethod("get" + StringHelper.upperFirstCharacter(name));
 			value = getter.invoke(this);
 		} catch (NoSuchMethodException e) {
 			throw new RapidBeansRuntimeException(e);
@@ -295,14 +284,12 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 */
 	public final void setPropValue(final String name, final Object value) {
 		try {
-			final Method setter = this.getClass().getMethod(
-					"set" + StringHelper.upperFirstCharacter(name),
+			final Method setter = this.getClass().getMethod("set" + StringHelper.upperFirstCharacter(name),
 					getType().getPropertyType(name).getValuetype());
 			setter.invoke(this, value);
 		} catch (NoSuchMethodException e) {
-			throw new ValidationException("invalid.prop.name", this,
-					"unknown property \"" + name + "\" for bean type \""
-							+ this.getType().getName() + "\".");
+			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
+					+ "\" for bean type \"" + this.getType().getName() + "\".");
 		} catch (IllegalArgumentException e) {
 			throw new RapidBeansRuntimeException(e);
 		} catch (IllegalAccessException e) {
@@ -316,11 +303,9 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * @return a clone of this bean.
 	 */
 	public RapidBean clone() {
-		RapidBeanImplSimple bClone = RapidBeanImplSimple.createInstance(this
-				.getType());
+		RapidBeanImplSimple bClone = RapidBeanImplSimple.createInstance(this.getType());
 		for (int i = 0; i < getPropertyList().size(); i++) {
-			bClone.getPropertyList().get(i)
-					.setValue(getPropertyList().get(i).clone(bClone));
+			bClone.getPropertyList().get(i).setValue(getPropertyList().get(i).clone(bClone));
 		}
 		bClone.initPropmap();
 		bClone.initProperties();
@@ -343,8 +328,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 		}
 		bClone.setContainer(cloneContainer);
 		for (int i = 0; i < getPropertyList().size(); i++) {
-			getPropertyList().get(i).cloneValue(
-					bClone.getPropertyList().get(i), cloneContainer);
+			getPropertyList().get(i).cloneValue(bClone.getPropertyList().get(i), cloneContainer);
 		}
 		return bClone;
 	}
@@ -357,15 +341,13 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * 
 	 * @return the cloned property
 	 */
-	public static Property cloneProperty(final Property property,
-			final RapidBean parentBean) {
+	public static Property cloneProperty(final Property property, final RapidBean parentBean) {
 		Property pClone = null;
 		try {
 			pClone = Property.createInstance(property.getType(), parentBean);
 			ThreadLocalValidationSettings.validationOff();
 			if (property instanceof PropertyCollection) {
-				((PropertyCollection) pClone).setValue(property.getValue(),
-						false, true);
+				((PropertyCollection) pClone).setValue(property.getValue(), false, true);
 			} else {
 				if (!property.isDependent()) {
 					pClone.setValue(property.getValue());

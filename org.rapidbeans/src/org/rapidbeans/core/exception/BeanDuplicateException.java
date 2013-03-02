@@ -42,8 +42,7 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public BeanDuplicateException(final String sig, final RapidBean source,
-			final String message) {
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message) {
 		super(sig, source, message);
 	}
 
@@ -61,8 +60,7 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public BeanDuplicateException(final String sig, final RapidBean source,
-			final String message, final Throwable cause) {
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message, final Throwable cause) {
 		super(sig, source, message, cause);
 	}
 
@@ -80,8 +78,8 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public BeanDuplicateException(final String sig, final RapidBean source,
-			final String message, final Object[] messArgs) {
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message,
+			final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 	}
 }

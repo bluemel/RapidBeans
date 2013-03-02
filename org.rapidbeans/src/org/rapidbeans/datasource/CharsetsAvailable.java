@@ -83,8 +83,7 @@ public final class CharsetsAvailable extends GenericEnum {
 	 * @return the enumeration element
 	 */
 	public static CharsetsAvailable getInstance(final String charsetName) {
-		return (CharsetsAvailable) GenericEnum.valueOf(
-				CharsetsAvailable.class.getName(), charsetName);
+		return (CharsetsAvailable) GenericEnum.valueOf(CharsetsAvailable.class.getName(), charsetName);
 	}
 
 	/**

@@ -56,8 +56,7 @@ import org.rapidbeans.presentation.swing.EditorBeanSwing;
  * 
  * @author Martin Bluemel
  */
-public abstract class EditorBean implements View, EditorPropertyListener,
-		DocumentChangeListener {
+public abstract class EditorBean implements View, EditorPropertyListener, DocumentChangeListener {
 
 	/**
 	 * @return the view's widget
@@ -70,12 +69,10 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	public String getTitle() {
 		String idstring = null;
 		if (bean.getContainer() == null) {
-			idstring = this.locale.getStringGui("commongui.text.new") + " "
-					+ bean.toStringGuiType(this.locale);
+			idstring = this.locale.getStringGui("commongui.text.new") + " " + bean.toStringGuiType(this.locale);
 		} else {
 			try {
-				final String key = "editor."
-						+ bean.getType().getName().toLowerCase() + ".title";
+				final String key = "editor." + bean.getType().getName().toLowerCase() + ".title";
 				final String pattern = this.locale.getStringGui(key);
 				idstring = bean.expandPropertyValues(pattern, this.getLocale());
 				idstring = bean.toStringGuiType(this.locale) + ": " + idstring;
@@ -176,10 +173,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 
 	private List<EditorProperty> getPropEditorsSorted() {
 		final List<EditorProperty> propEditorsSorted = new ArrayList<EditorProperty>();
-		for (final TypeProperty proptype : this.bean.getType()
-				.getPropertyTypes()) {
-			final EditorProperty propEditor = this.getPropEditor(proptype
-					.getPropName());
+		for (final TypeProperty proptype : this.bean.getType().getPropertyTypes()) {
+			final EditorProperty propEditor = this.getPropEditor(proptype.getPropName());
 			if (propEditor != null) {
 				propEditorsSorted.add(propEditor);
 			}
@@ -189,10 +184,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 
 	private List<Property> getPropEditorsKeyprops() {
 		final List<Property> editorsKeyprops = new ArrayList<Property>();
-		for (final Property prop : ((IdKeyprops) this.bean.getId())
-				.getKeyprops()) {
-			final EditorProperty propEditor = this
-					.getPropEditor(prop.getName());
+		for (final Property prop : ((IdKeyprops) this.bean.getId()).getKeyprops()) {
+			final EditorProperty propEditor = this.getPropEditor(prop.getName());
 			if (propEditor != null) {
 				editorsKeyprops.add(prop);
 			}
@@ -229,11 +222,9 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 * @param propBackup
 	 *            the backup property used instead of a transaction
 	 */
-	private EditorProperty addPropertyEditor(final Application client,
-			final RapidBean bbean, final Property property,
+	private EditorProperty addPropertyEditor(final Application client, final RapidBean bbean, final Property property,
 			final Property propBackup) {
-		EditorProperty propEditor = EditorProperty.createInstance(client, this,
-				property, propBackup);
+		EditorProperty propEditor = EditorProperty.createInstance(client, this, property, propBackup);
 		propEditor.addPropertyEditorListener(this);
 		this.propEditors.add(propEditor);
 		this.propEdMap.put(property.getType().getPropName(), propEditor);
@@ -343,15 +334,13 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 *            Bean is to be created Is null if an existing bean is simply
 	 *            edited
 	 */
-	protected EditorBean(final Application client, final DocumentView docView,
-			final RapidBean bizBean,
+	protected EditorBean(final Application client, final DocumentView docView, final RapidBean bizBean,
 			final PropertyCollection newBeanParentColProp) {
 		try {
 			this.setEventLock();
 			this.documentView = docView;
 			this.bean = bizBean;
-			this.configuration = client
-					.getConfigBeanEditor(this.bean.getType());
+			this.configuration = client.getConfigBeanEditor(this.bean.getType());
 			if (newBeanParentColProp != null) {
 				this.parentBeanColProp = newBeanParentColProp;
 				this.parentBean = newBeanParentColProp.getBean();
@@ -359,10 +348,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			this.locale = client.getCurrentLocale();
 			this.bakbean = bizBean.clone();
 			if (this.configuration != null) {
-				for (final ConfigPropEditorBean cfgprop : this.configuration
-						.getPropertycfgs()) {
-					final Property prop = this.bean.getProperty(cfgprop
-							.getName());
+				for (final ConfigPropEditorBean cfgprop : this.configuration.getPropertycfgs()) {
+					final Property prop = this.bean.getProperty(cfgprop.getName());
 					if (prop == null) {
 						String validTypes = "";
 						int i = 0;
@@ -373,11 +360,9 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 							validTypes += "\"" + prop1.getName() + "\"";
 							i++;
 						}
-						throw new RapidBeansRuntimeException(
-								"Invalid property \"" + cfgprop.getName()
-										+ "\"" + " configured for class \""
-										+ bean.getType().getName() + "\"\n"
-										+ "Valid types are: " + validTypes);
+						throw new RapidBeansRuntimeException("Invalid property \"" + cfgprop.getName() + "\""
+								+ " configured for class \"" + bean.getType().getName() + "\"\n" + "Valid types are: "
+								+ validTypes);
 					}
 					addPropertyEditor(client, bizBean, prop);
 				}
@@ -406,22 +391,18 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 * @param prop
 	 *            the property edited
 	 */
-	private EditorProperty addPropertyEditor(final Application client,
-			final RapidBean bean, final Property prop) {
+	private EditorProperty addPropertyEditor(final Application client, final RapidBean bean, final Property prop) {
 		EditorProperty propEditor = null;
 		if (prop == null) {
 			throw new IllegalArgumentException("prop is unspecified (null)");
 		}
 		if (prop instanceof PropertyCollection) {
-			final TypePropertyCollection colPropType = (TypePropertyCollection) prop
-					.getType();
+			final TypePropertyCollection colPropType = (TypePropertyCollection) prop.getType();
 			if (!colPropType.isComposition()) {
 				final Filter filter = this.documentView.getBeanFilter();
-				if (filter == null
-						|| filter.applies(colPropType.getTargetType())) {
+				if (filter == null || filter.applies(colPropType.getTargetType())) {
 					propEditor = this.addPropertyEditor(client, bean, prop,
-							this.bakbean.getProperty(prop.getType()
-									.getPropName()));
+							this.bakbean.getProperty(prop.getType().getPropName()));
 				}
 			}
 		} else {
@@ -434,9 +415,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	/**
 	 * constructor arguments.
 	 */
-	private static final Class<?>[] BIZBEAN_EDITOR_CONSTR_ARGTYPES = {
-			Application.class, DocumentView.class, RapidBean.class,
-			PropertyCollection.class };
+	private static final Class<?>[] BIZBEAN_EDITOR_CONSTR_ARGTYPES = { Application.class, DocumentView.class,
+			RapidBean.class, PropertyCollection.class };
 
 	/**
 	 * create a new editor.
@@ -454,14 +434,12 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 * 
 	 * @return the editor object
 	 */
-	public static EditorBean createInstance(final Application client,
-			final DocumentView docView, final RapidBean bizBean,
-			final PropertyCollection newBeanParent) {
+	public static EditorBean createInstance(final Application client, final DocumentView docView,
+			final RapidBean bizBean, final PropertyCollection newBeanParent) {
 
 		EditorBean editor = null;
 
-		final ConfigEditorBean cfg = client.getConfigBeanEditor(bizBean
-				.getType());
+		final ConfigEditorBean cfg = client.getConfigBeanEditor(bizBean.getType());
 		if (cfg != null) {
 			final String editorclassname = cfg.getEditorclass();
 			if (editorclassname != null) {
@@ -474,20 +452,16 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 
 				Constructor<?> constr = null;
 				try {
-					constr = editorclass
-							.getConstructor(BIZBEAN_EDITOR_CONSTR_ARGTYPES);
+					constr = editorclass.getConstructor(BIZBEAN_EDITOR_CONSTR_ARGTYPES);
 				} catch (SecurityException e) {
 					throw new RapidBeansRuntimeException(e);
 				} catch (NoSuchMethodException e) {
-					throw new RapidBeansRuntimeException(
-							"No constructor with aruments classes:\n"
-									+ "Application, DocumentView, bean, PropertyCollection) found.",
-							e);
+					throw new RapidBeansRuntimeException("No constructor with aruments classes:\n"
+							+ "Application, DocumentView, bean, PropertyCollection) found.", e);
 				}
 
 				if (constr != null) {
-					final Object[] oa = { client, docView, bizBean,
-							newBeanParent };
+					final Object[] oa = { client, docView, bizBean, newBeanParent };
 					try {
 						editor = (EditorBean) constr.newInstance(oa);
 					} catch (IllegalArgumentException e) {
@@ -506,8 +480,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 		if (editor == null) {
 			switch (client.getConfiguration().getGuitype()) {
 			case swing:
-				editor = new EditorBeanSwing(client, docView, bizBean,
-						newBeanParent);
+				editor = new EditorBeanSwing(client, docView, bizBean, newBeanParent);
 				break;
 			case eclipsercp:
 				// mainWindow = new BBMainWindowEclispercp();
@@ -589,8 +562,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 		this.addBeanIfNew(false);
 		if (this.documentView.getPersistencestrategy() == ConfigPropPersistencestrategy.oncloseeditor) {
 			if (ApplicationManager.getApplication() != null) {
-				ApplicationManager.getApplication().save(
-						this.documentView.getDocument());
+				ApplicationManager.getApplication().save(this.documentView.getDocument());
 			} else {
 				this.documentView.getDocument().save();
 			}
@@ -626,8 +598,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 		}
 		if (anyInputFieldChanged) {
 			if (isInNewMode()) {
-				if (this.isBeanAdded() && this.bean != null
-						&& this.bean.getParentProperty() != null) {
+				if (this.isBeanAdded() && this.bean != null && this.bean.getParentProperty() != null) {
 					this.bean.getParentProperty().removeLink(this.bean);
 					this.setBeanAdded(false);
 				}
@@ -658,25 +629,21 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 
 		switch (this.createApplyMode) {
 		case resetall:
-			this.bean = RapidBeanImplStrict.createInstance(this.bean.getType()
-					.getName());
+			this.bean = RapidBeanImplStrict.createInstance(this.bean.getType().getName());
 			break;
 		case resetnothing:
 		case resetkey:
-			final RapidBean newBean = RapidBeanImplStrict
-					.createInstance(this.bean.getType().getName());
+			final RapidBean newBean = RapidBeanImplStrict.createInstance(this.bean.getType().getName());
 			for (Property prop : newBean.getPropertyList()) {
 				if (!prop.getType().isKeyCandidate()
 						|| this.createApplyMode == CreateNewBeansEditorApplyBehaviour.resetnothing) {
 					try {
 						ThreadLocalValidationSettings.validationOff();
 						if (prop instanceof PropertyCollection) {
-							((PropertyCollection) prop).setValue(this.bean
-									.getProperty(prop.getType().getPropName())
+							((PropertyCollection) prop).setValue(this.bean.getProperty(prop.getType().getPropName())
 									.getValue(), false, true);
 						} else {
-							prop.setValue(this.bean.getProperty(
-									prop.getType().getPropName()).getValue());
+							prop.setValue(this.bean.getProperty(prop.getType().getPropName()).getValue());
 						}
 					} finally {
 						ThreadLocalValidationSettings.remove();
@@ -686,8 +653,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			this.bean = newBean;
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Invalid createApplyMode "
-					+ this.createApplyMode + " for bean editor.");
+			throw new RapidBeansRuntimeException("Invalid createApplyMode " + this.createApplyMode
+					+ " for bean editor.");
 		}
 
 		// register all property editors as listeners for the new bean
@@ -744,11 +711,9 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 *            determines if the UI will be updated or not e. g. for
 	 *            normalization
 	 */
-	protected void validateInputAndUpdateBean(final boolean showDialog,
-			final boolean linkBack, final boolean updateUI) {
+	protected void validateInputAndUpdateBean(final boolean showDialog, final boolean linkBack, final boolean updateUI) {
 		for (EditorProperty ped : this.getPropEditors()) {
-			this.validateInputAndUpdateBean(showDialog, linkBack, updateUI,
-					true, ped);
+			this.validateInputAndUpdateBean(showDialog, linkBack, updateUI, true, ped);
 		}
 	}
 
@@ -767,13 +732,10 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 *            the changed property editor. This is null if an OK button has
 	 *            been pressed.
 	 */
-	protected void validateInputAndUpdateBean(final boolean showDialog,
-			final boolean linkBack, final boolean updateUI,
-			final boolean checkDocAlreadyContainsBean,
-			final EditorProperty propEditorChanged) {
+	protected void validateInputAndUpdateBean(final boolean showDialog, final boolean linkBack, final boolean updateUI,
+			final boolean checkDocAlreadyContainsBean, final EditorProperty propEditorChanged) {
 		EditorProperty propEditor = null;
-		final boolean docChangedBefore = this.getDocumentView().getDocument()
-				.getChanged();
+		final boolean docChangedBefore = this.getDocumentView().getDocument().getChanged();
 		try {
 			this.setEventLock();
 
@@ -784,17 +746,11 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			if (idtypeKeyprops) {
 				final List<Property> keyprops = this.getPropEditorsKeyprops();
 				keypropsSize = keyprops.size();
-				if (propEditorChanged != null
-						&& propEditorChanged.getProperty().getType()
-								.isKeyCandidate()) {
+				if (propEditorChanged != null && propEditorChanged.getProperty().getType().isKeyCandidate()) {
 					if (checkDocAlreadyContainsBean) {
-						if (this.getDocumentView().getDocument()
-								.contains(this.getBean())) {
-							throw new ValidationException(
-									"invalid.prop.key.already.in.document",
-									this, "Changed key property \""
-											+ propEditorChanged.getProperty()
-													.getName());
+						if (this.getDocumentView().getDocument().contains(this.getBean())) {
+							throw new ValidationException("invalid.prop.key.already.in.document", this,
+									"Changed key property \"" + propEditorChanged.getProperty().getName());
 						}
 					}
 				}
@@ -811,19 +767,14 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 				if (currentPropEditor == propEditorChanged) {
 					currentPropEditor.validateInputField();
 				}
-				propName = currentPropEditor.getProperty().getType()
-						.getPropName();
+				propName = currentPropEditor.getProperty().getType().getPropName();
 				prop = this.bean.getProperty(propName);
 
 				if (prop instanceof PropertyCollection) {
 					if (linkBack) {
-						((PropertyCollection) prop).setValue(
-								currentPropEditor.getInputFieldValue(), true,
-								false);
+						((PropertyCollection) prop).setValue(currentPropEditor.getInputFieldValue(), true, false);
 					} else {
-						((PropertyCollection) prop).setValue(
-								currentPropEditor.getInputFieldValue(), false,
-								false);
+						((PropertyCollection) prop).setValue(currentPropEditor.getInputFieldValue(), false, false);
 					}
 				} else {
 					if (!(prop.isDependent() || prop.getReadonly())) {
@@ -850,17 +801,11 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			throw e;
 		} catch (ValidationException e) {
 			if (showDialog && !this.getDocumentView().getClient().getTestMode()) {
-				this.documentView
-						.getClient()
-						.messageError(
-								this.locale.getStringGui("messagedialog.input.field")
-										+ " \""
-										+ propEditor.getProperty().getNameGui(
-												this.locale)
-										+ "\":\n"
-										+ e.getLocalizedMessage(this.locale),
-								this.locale
-										.getStringGui("messagedialog.title.input.wrong"));
+				this.documentView.getClient().messageError(
+						this.locale.getStringGui("messagedialog.input.field") + " \""
+								+ propEditor.getProperty().getNameGui(this.locale) + "\":\n"
+								+ e.getLocalizedMessage(this.locale),
+						this.locale.getStringGui("messagedialog.title.input.wrong"));
 				propEditor.setFocus();
 			}
 			throw e;
@@ -905,8 +850,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 				for (int i = 0; i < 2; i++) {
 					try {
 						ThreadLocalValidationSettings.validationOff();
-						this.parentBeanColProp.removeLink(this.bean, true,
-								true, false);
+						this.parentBeanColProp.removeLink(this.bean, true, true, false);
 						break;
 					} catch (BeanNotFoundException e) {
 						if (i == 0) {
@@ -938,12 +882,9 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			this.getDocumentView()
 					.getClient()
 					.messageError(
-							this.getLocale().getStringMessage(
-									"messagedialog.create.duplicate",
-									this.getBean()
-											.toStringGui(this.getLocale())),
-							this.getLocale().getStringGui(
-									"messagedialog.title.create.duplicate"));
+							this.getLocale().getStringMessage("messagedialog.create.duplicate",
+									this.getBean().toStringGui(this.getLocale())),
+							this.getLocale().getStringGui("messagedialog.title.create.duplicate"));
 		}
 	}
 
@@ -952,8 +893,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	 */
 	private void updatePropEditors() {
 		for (EditorProperty propEditor : this.propEditors) {
-			propEditor.setProperty(this.bean.getProperty(propEditor
-					.getProperty().getType().getPropName()));
+			propEditor.setProperty(this.bean.getProperty(propEditor.getProperty().getType().getPropName()));
 		}
 	}
 
@@ -1039,10 +979,8 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			return;
 		}
 
-		final EditorProperty sourcePropEditor = ThreadLocalEventLock
-				.getSourcePropEditor();
-		if (sourcePropEditor != null
-				&& sourcePropEditor.getBeanEditor() == this) {
+		final EditorProperty sourcePropEditor = ThreadLocalEventLock.getSourcePropEditor();
+		if (sourcePropEditor != null && sourcePropEditor.getBeanEditor() == this) {
 			return;
 		}
 
@@ -1117,8 +1055,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 			if (ApplicationManager.getApplication().getTestMode()) {
 				close = true;
 			} else {
-				close = ApplicationManager.getApplication().messageYesNo(
-						"Close that Editor?", "bean removed");
+				close = ApplicationManager.getApplication().messageYesNo("Close that Editor?", "bean removed");
 			}
 			if (close) {
 				this.fireEditorClosed();
@@ -1198,11 +1135,9 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 	private void resetBackupBean() {
 		this.bakbean = bean.clone();
 		for (Property bakprop : this.bakbean.getPropertyList()) {
-			if (!(bakprop instanceof PropertyCollection && ((TypePropertyCollection) bakprop
-					.getType()).isComposition())
+			if (!(bakprop instanceof PropertyCollection && ((TypePropertyCollection) bakprop.getType()).isComposition())
 					&& (this.propEdMap.get(bakprop.getType().getPropName()) != null)) {
-				this.propEdMap.get(bakprop.getType().getPropName())
-						.setPropertyBak(bakprop);
+				this.propEdMap.get(bakprop.getType().getPropName()).setPropertyBak(bakprop);
 			}
 		}
 	}
@@ -1229,18 +1164,13 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 				}
 				break;
 			default:
-				final String msg = this.locale.getStringMessage(
-						"messagedialog.beaneditor.close", this.getTitle());
+				final String msg = this.locale.getStringMessage("messagedialog.beaneditor.close", this.getTitle());
 				MessageDialogResponse response = null;
 				if (ApplicationManager.getApplication().getTestMode()) {
 					response = MessageDialogResponse.yes;
 				} else {
-					response = this.documentView
-							.getClient()
-							.messageYesNoCancel(
-									msg,
-									this.locale
-											.getStringMessage("messagedialog.beaneditor.close.title"));
+					response = this.documentView.getClient().messageYesNoCancel(msg,
+							this.locale.getStringMessage("messagedialog.beaneditor.close.title"));
 				}
 				switch (response) {
 				case yes:
@@ -1265,8 +1195,7 @@ public abstract class EditorBean implements View, EditorPropertyListener,
 
 	public static int DIRECTION_DOWN = 1;
 
-	public abstract void rotateFocus(final Property property,
-			final int direction);
+	public abstract void rotateFocus(final Property property, final int direction);
 
 	public EditorProperty getNextEditor(final Property property) {
 		final EditorProperty currentPed = getPropEditor(property.getName());

@@ -43,8 +43,7 @@ public class EditorPropertyMoneySwing extends EditorPropertyQuantitySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyMoneySwing(final Application client,
-			final EditorBean bizBeanEditor, final Property prop,
+	public EditorPropertyMoneySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
 			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		final ConfigPropEditorBean cfg = getConfig();
@@ -62,8 +61,7 @@ public class EditorPropertyMoneySwing extends EditorPropertyQuantitySwing {
 		if (this.getWidgetComboBox().getSelectedItem() == null) {
 			final Application client = ApplicationManager.getApplication();
 			if (client.getConfiguration().getCurrency() != null) {
-				final Currency defaultCurrency = client.getConfiguration()
-						.getCurrency().getDefaultcurrency();
+				final Currency defaultCurrency = client.getConfiguration().getCurrency().getDefaultcurrency();
 				if (defaultCurrency != null) {
 					this.getWidgetComboBox().setSelectedItem(defaultCurrency);
 				}

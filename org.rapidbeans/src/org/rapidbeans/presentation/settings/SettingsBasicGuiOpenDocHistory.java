@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: SettingsBasicGuiOpenDocHistory.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory
  * 
- * model:    model/org/rapidbeans/presentation/settings/SettingsBasicGuiOpenDocHistory.xml
+ * model: model/org/rapidbeans/presentation/settings/SettingsBasicGuiOpenDocHistory.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.settings;
@@ -28,8 +28,7 @@ import org.rapidbeans.presentation.config.ConfigMenuHistoryOpenDocument;
  * Rapid Bean class: SettingsBasicGuiOpenDocHistory. Partially generated Java
  * class !!!Do only edit manually in marked sections!!!
  **/
-public class SettingsBasicGuiOpenDocHistory extends
-		org.rapidbeans.presentation.settings.Settings {
+public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.settings.Settings {
 	// BEGIN manual code section
 	// SettingsBasicGuiOpenDocHistory.classBody
 	/**
@@ -52,22 +51,19 @@ public class SettingsBasicGuiOpenDocHistory extends
 				if (app.getConfiguration() != null) {
 					if (app.getConfiguration().getMainwindow() != null) {
 						if (app.getConfiguration().getMainwindow().getMenubar() != null) {
-							config = app.getConfiguration().getMainwindow()
-									.getMenubar()
+							config = app.getConfiguration().getMainwindow().getMenubar()
 									.findFirstMenuHistoryOpenDocument();
 						}
 					}
 				}
 				if (app.getMainwindow() != null) {
 					if (app.getMainwindow().getMenubar() != null) {
-						histMenu = app.getMainwindow().getMenubar()
-								.findFirstMenuHistoryOpenDocument();
+						histMenu = app.getMainwindow().getMenubar().findFirstMenuHistoryOpenDocument();
 					}
 				}
 			}
 			if (event.getProperty() == this.factorySettings) {
-				if (((Boolean) event.getOldValue()) == false
-						&& ((Boolean) event.getNewValue()) == true
+				if (((Boolean) event.getOldValue()) == false && ((Boolean) event.getNewValue()) == true
 						&& config != null) {
 					setOn(true);
 					setMaxNumberOfEntries(config.getMaxnumberofentries());
@@ -121,17 +117,14 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 * 
 	 * @return if the settings equal the original configuration
 	 */
-	private boolean hasFactorySettings(
-			final ConfigMenuHistoryOpenDocument config) {
+	private boolean hasFactorySettings(final ConfigMenuHistoryOpenDocument config) {
 		if (config == null) {
 			return true;
 		}
 		if (config.getEntryshortage() == this.getEntryShortage()
-				&& config.getMaxnumberofentries() == this
-						.getMaxNumberOfEntries()
+				&& config.getMaxnumberofentries() == this.getMaxNumberOfEntries()
 				&& config.getPresentation() == this.getPresentation()
-				&& config.getProtocolfilter().equals(this.getProtocolFilter())
-				&& this.getOn()) {
+				&& config.getProtocolfilter().equals(this.getProtocolFilter()) && this.getOn()) {
 			return true;
 		} else {
 			return false;
@@ -175,18 +168,12 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.on = (org.rapidbeans.core.basic.PropertyBoolean) this
-				.getProperty("on");
-		this.presentation = (org.rapidbeans.core.basic.PropertyChoice) this
-				.getProperty("presentation");
-		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean) this
-				.getProperty("entryShortage");
-		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("protocolFilter");
-		this.maxNumberOfEntries = (org.rapidbeans.core.basic.PropertyInteger) this
-				.getProperty("maxNumberOfEntries");
-		this.factorySettings = (org.rapidbeans.core.basic.PropertyBoolean) this
-				.getProperty("factorySettings");
+		this.on = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("on");
+		this.presentation = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("presentation");
+		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("entryShortage");
+		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString) this.getProperty("protocolFilter");
+		this.maxNumberOfEntries = (org.rapidbeans.core.basic.PropertyInteger) this.getProperty("maxNumberOfEntries");
+		this.factorySettings = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("factorySettings");
 	}
 
 	/**
@@ -228,8 +215,7 @@ public class SettingsBasicGuiOpenDocHistory extends
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(SettingsBasicGuiOpenDocHistory.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(SettingsBasicGuiOpenDocHistory.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -243,11 +229,9 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public boolean getOn() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on)
-					.getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on).getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"on");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("on");
 		}
 	}
 
@@ -266,17 +250,14 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode getPresentation() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.presentation
-					.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.presentation.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList
-						.get(0);
+				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"presentation");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("presentation");
 		}
 	}
 
@@ -286,8 +267,7 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 * @param argValue
 	 *            value of Property 'presentation' to set
 	 */
-	public void setPresentation(
-			final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
+	public void setPresentation(final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
 		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list = new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
 		list.add(argValue);
 		this.presentation.setValue(list);
@@ -298,11 +278,9 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public boolean getEntryShortage() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage)
-					.getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage).getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"entryShortage");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("entryShortage");
 		}
 	}
 
@@ -323,8 +301,7 @@ public class SettingsBasicGuiOpenDocHistory extends
 		try {
 			return (String) this.protocolFilter.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"protocolFilter");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("protocolFilter");
 		}
 	}
 
@@ -343,11 +320,9 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public int getMaxNumberOfEntries() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyInteger) this.maxNumberOfEntries)
-					.getValueInt();
+			return ((org.rapidbeans.core.basic.PropertyInteger) this.maxNumberOfEntries).getValueInt();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"maxNumberOfEntries");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("maxNumberOfEntries");
 		}
 	}
 
@@ -366,11 +341,9 @@ public class SettingsBasicGuiOpenDocHistory extends
 	 */
 	public boolean getFactorySettings() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.factorySettings)
-					.getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.factorySettings).getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"factorySettings");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("factorySettings");
 		}
 	}
 

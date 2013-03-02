@@ -34,8 +34,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * test the completion of german date input.
 	 */
 	public void testInputfieldCompletionGerman() {
-		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM,
-				Locale.GERMAN);
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
 		EditorPropertyDateSwing proped = createTestPropEdDateGerman();
 		assertCompletion("02.02.2002", "02.02.2002", proped, df);
 		assertCompletion("2.2.2", "02.02.2002", proped, df);
@@ -97,8 +96,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 */
 	public void testHasPotentiallyValidInputFieldGerman() {
 		EditorPropertyDateSwing proped = createTestPropEdDateGerman();
-		ValidationException ex = new ValidationException(
-				"invalid.prop.date.string.local.incomplete", proped, "yyy");
+		ValidationException ex = new ValidationException("invalid.prop.date.string.local.incomplete", proped, "yyy");
 		assertPotentialOkDate("", true, proped, ex);
 		assertPotentialOkDate("1", true, proped, ex);
 		assertPotentialOkDate("31", true, proped, ex);
@@ -148,9 +146,8 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * @param df
 	 *            the date formatter
 	 */
-	private void assertCompletion(final String uncompleteDate,
-			final String completedDate, final EditorPropertyDateSwing proped,
-			final DateFormat df) {
+	private void assertCompletion(final String uncompleteDate, final String completedDate,
+			final EditorPropertyDateSwing proped, final DateFormat df) {
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText(uncompleteDate);
 		assertEquals(completedDate, df.format(proped.getInputFieldValue()));
@@ -168,8 +165,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * @param proped
 	 *            the property date editor
 	 */
-	private void assertValidTyping(final String input,
-			final boolean shouldBePotentiallyValid,
+	private void assertValidTyping(final String input, final boolean shouldBePotentiallyValid,
 			final boolean shouldBeValid, final EditorPropertyDateSwing proped) {
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText(input);
@@ -201,8 +197,8 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * @param ex
 	 *            the exception
 	 */
-	private void assertPotentialOkDate(final String s, final boolean ok,
-			final EditorPropertyDateSwing proped, final ValidationException ex) {
+	private void assertPotentialOkDate(final String s, final boolean ok, final EditorPropertyDateSwing proped,
+			final ValidationException ex) {
 		((JTextField) proped.getWidget()).setText(s);
 		assertEquals(ok, proped.hasPotentiallyValidInputField(ex));
 	}
@@ -220,8 +216,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
 		client.setCurrentLocale(locale);
 		RapidBean testBean = createTestBean1();
 		PropertyDate prop = (PropertyDate) testBean.getProperty("date");
-		EditorPropertyDateSwing proped = new EditorPropertyDateSwing(client,
-				null, prop, prop.clone(testBean));
+		EditorPropertyDateSwing proped = new EditorPropertyDateSwing(client, null, prop, prop.clone(testBean));
 		return proped;
 	}
 
@@ -232,15 +227,11 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 */
 	private static GenericBean createTestBean1() {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TestBean1") == null) {
-			String descr = "<beantype name=\"TestBean1\">"
-					+ "<property name=\"date\" type=\"date\"/>" + "</beantype>";
-			XmlNode xmlNode = XmlNode
-					.getDocumentTopLevel(new ByteArrayInputStream(descr
-							.getBytes()));
+			String descr = "<beantype name=\"TestBean1\">" + "<property name=\"date\" type=\"date\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("TestBean1");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
 		return bean;
 	}
 

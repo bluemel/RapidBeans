@@ -58,11 +58,9 @@ public final class TypeRapidEnumTest extends TestCase {
 	 * Test find an RapidEnum type by its name.
 	 */
 	public void testForName() {
-		TypeRapidEnum currencyType = TypeRapidEnum
-				.forName("org.rapidbeans.domain.finance.Currency");
+		TypeRapidEnum currencyType = TypeRapidEnum.forName("org.rapidbeans.domain.finance.Currency");
 		assertNotNull(currencyType);
-		assertEquals("org.rapidbeans.domain.finance.Currency",
-				currencyType.getName());
+		assertEquals("org.rapidbeans.domain.finance.Currency", currencyType.getName());
 		assertSame(Currency.euro, currencyType.elementOf("euro"));
 	}
 
@@ -82,8 +80,7 @@ public final class TypeRapidEnumTest extends TestCase {
 	 * retrieve an RapidEnum element by it's index.
 	 */
 	public void testElementOfInt() {
-		TypeRapidEnum currencyType = TypeRapidEnum
-				.forName("org.rapidbeans.domain.finance.Currency");
+		TypeRapidEnum currencyType = TypeRapidEnum.forName("org.rapidbeans.domain.finance.Currency");
 		RapidEnum currencyDollar = currencyType.elementOf(0);
 		assertEquals("dollar", currencyDollar.name());
 	}
@@ -97,8 +94,7 @@ public final class TypeRapidEnumTest extends TestCase {
 	 * retrieve an RapidEnum element by it's index out of bounds.
 	 */
 	public void testElementOfIntOutOfBounds() {
-		TypeRapidEnum currencyType = TypeRapidEnum
-				.forName("org.rapidbeans.domain.finance.Currency");
+		TypeRapidEnum currencyType = TypeRapidEnum.forName("org.rapidbeans.domain.finance.Currency");
 		try {
 			currencyType.elementOf(INT_10);
 		} catch (IndexOutOfBoundsException e) {
@@ -111,8 +107,7 @@ public final class TypeRapidEnumTest extends TestCase {
 	 * retrieve an RapidEnum element by it's name.
 	 */
 	public void testElementOfString() {
-		TypeRapidEnum currencyType = TypeRapidEnum
-				.forName("org.rapidbeans.domain.finance.Currency");
+		TypeRapidEnum currencyType = TypeRapidEnum.forName("org.rapidbeans.domain.finance.Currency");
 		RapidEnum currencyEuro = currencyType.elementOf("euro");
 		assertEquals("euro", currencyEuro.name());
 	}
@@ -121,8 +116,7 @@ public final class TypeRapidEnumTest extends TestCase {
 	 * retrieve an RapidEnum element by an undefined name.
 	 */
 	public void testElementOfStringUnknown() {
-		TypeRapidEnum currencyType = TypeRapidEnum
-				.forName("org.rapidbeans.domain.finance.Currency");
+		TypeRapidEnum currencyType = TypeRapidEnum.forName("org.rapidbeans.domain.finance.Currency");
 		try {
 			currencyType.elementOf("xxx");
 		} catch (EnumException e) {

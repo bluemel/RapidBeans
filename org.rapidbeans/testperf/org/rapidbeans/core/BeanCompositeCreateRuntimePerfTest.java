@@ -29,11 +29,9 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	public void setUp() throws InterruptedException {
 		// warm up
 		if (!this.isWarmedUp) {
-			System.out
-					.println("[BeanCompositeCreateRuntimePerfTest] warm up...");
+			System.out.println("[BeanCompositeCreateRuntimePerfTest] warm up...");
 			Thread.sleep(100);
-			Submenu menu0 = (Submenu) RapidBeanImplStrict
-					.createInstance("org.rapidbeans.presentation.Submenu");
+			Submenu menu0 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
 			createSubmenus(menu0, 100000);
 			this.isWarmedUp = true;
 		}
@@ -48,12 +46,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
 	 */
-	public void testBeanCompositeTreeHeapDefaultClass()
-			throws InterruptedException {
+	public void testBeanCompositeTreeHeapDefaultClass() throws InterruptedException {
 		final int count = 100000;
 		long timeExpectedMax = 2500;
-		System.out
-				.println("[BeanCompositeCreateRuntimePerfTest] starting test with default class...");
+		System.out.println("[BeanCompositeCreateRuntimePerfTest] starting test with default class...");
 		testBeanCompositeTreeHeap(count, timeExpectedMax);
 	}
 
@@ -69,8 +65,7 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	public void testBeanCompositeTreeHeapArayList() throws InterruptedException {
 		final int count = 100000;
 		long timeExpectedMax = 2600;
-		System.out
-				.println("[BeanCompositeCreateRuntimePerfTest] starting test with ArrayList class...");
+		System.out.println("[BeanCompositeCreateRuntimePerfTest] starting test with ArrayList class...");
 		testBeanCompositeTreeHeap(count, timeExpectedMax);
 	}
 
@@ -85,25 +80,20 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
 	 */
-	private void testBeanCompositeTreeHeap(final int count,
-			final long timeExpectedMax) throws InterruptedException {
+	private void testBeanCompositeTreeHeap(final int count, final long timeExpectedMax) throws InterruptedException {
 
 		// set up a first composite tree
-		System.out.println("[BeanCompositeCreateRuntimePerfTest]"
-				+ " setting up the composite tree...");
+		System.out.println("[BeanCompositeCreateRuntimePerfTest]" + " setting up the composite tree...");
 		final long timeStart = System.currentTimeMillis();
 		Thread.sleep(100);
-		Submenu menu1 = (Submenu) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.presentation.Submenu");
+		Submenu menu1 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
 		createSubmenus(menu1, count);
 
 		// check runtime
 		final long time = System.currentTimeMillis() - timeStart;
-		assertTrue("[BeanCompositeCreateRuntimePerfTest] creation of " + count
-				+ " Sumbmenu beans took longer than " + timeExpectedMax
-				+ " ms: " + time + " ms", time <= timeExpectedMax);
-		System.out.println("[BeanCompositeCreateRuntimePerfTest]"
-				+ "   creation of " + count
+		assertTrue("[BeanCompositeCreateRuntimePerfTest] creation of " + count + " Sumbmenu beans took longer than "
+				+ timeExpectedMax + " ms: " + time + " ms", time <= timeExpectedMax);
+		System.out.println("[BeanCompositeCreateRuntimePerfTest]" + "   creation of " + count
 				+ " Sumbmenu beans (composite) took " + time + " ms");
 	}
 
@@ -116,12 +106,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	 *            the counter
 	 */
 	private void createSubmenus(final Submenu menu, final long count) {
-		PropertyCollection propCol = (PropertyCollection) menu
-				.getProperty("menuentrys");
+		PropertyCollection propCol = (PropertyCollection) menu.getProperty("menuentrys");
 		MenuItem item;
 		for (int i = 1; i < count; i++) {
-			item = (MenuItem) RapidBeanImplStrict
-					.createInstance("org.rapidbeans.presentation.MenuItem");
+			item = (MenuItem) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
 			propCol.addLink(item);
 		}
 	}

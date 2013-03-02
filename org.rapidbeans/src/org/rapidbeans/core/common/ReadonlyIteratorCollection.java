@@ -64,8 +64,7 @@ public final class ReadonlyIteratorCollection<T> implements ListIterator<T> {
 		if (this.iterator instanceof ListIterator<?>) {
 			return ((ListIterator<T>) this.iterator).hasPrevious();
 		}
-		throw new RapidBeansRuntimeException(
-				"iterator is required to be a ListIterator");
+		throw new RapidBeansRuntimeException("iterator is required to be a ListIterator");
 	}
 
 	/**
@@ -75,8 +74,7 @@ public final class ReadonlyIteratorCollection<T> implements ListIterator<T> {
 		if (this.iterator instanceof ListIterator<?>) {
 			return ((ListIterator<T>) this.iterator).previous();
 		}
-		throw new RapidBeansRuntimeException(
-				"iterator is required to be a ListIterator");
+		throw new RapidBeansRuntimeException("iterator is required to be a ListIterator");
 	}
 
 	/**
@@ -86,8 +84,7 @@ public final class ReadonlyIteratorCollection<T> implements ListIterator<T> {
 		if (this.iterator instanceof ListIterator<?>) {
 			return ((ListIterator<T>) this.iterator).nextIndex();
 		}
-		throw new RapidBeansRuntimeException(
-				"iterator is required to be a ListIterator");
+		throw new RapidBeansRuntimeException("iterator is required to be a ListIterator");
 	}
 
 	/**
@@ -97,8 +94,7 @@ public final class ReadonlyIteratorCollection<T> implements ListIterator<T> {
 		if (this.iterator instanceof ListIterator<?>) {
 			return ((ListIterator<T>) this.iterator).previousIndex();
 		}
-		throw new RapidBeansRuntimeException(
-				"iterator is required to be a ListIterator");
+		throw new RapidBeansRuntimeException("iterator is required to be a ListIterator");
 	}
 
 	/**

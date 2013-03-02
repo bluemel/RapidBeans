@@ -37,8 +37,7 @@ public class MessageDialogSwing extends MessageDialog {
 	 * @see org.rapidbeans.presentation.MessageDialog#messageError(java.lang.String)
 	 */
 	public final void messageError(final String message, final String title) {
-		JOptionPane.showMessageDialog(null, message, title,
-				JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
 	}
 
 	/**
@@ -49,8 +48,7 @@ public class MessageDialogSwing extends MessageDialog {
 	 * @see org.rapidbeans.presentation.MessageDialog#messageInfo(java.lang.String)
 	 */
 	public final void messageInfo(final String message, final String title) {
-		JOptionPane.showMessageDialog(null, message, title,
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/**
@@ -62,8 +60,7 @@ public class MessageDialogSwing extends MessageDialog {
 	 * @return true if yes, fals if no
 	 */
 	public final boolean messageYesNo(final String message, final String title) {
-		final int confirm = JOptionPane.showConfirmDialog(null, message, title,
-				JOptionPane.YES_NO_OPTION);
+		final int confirm = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
 		switch (confirm) {
 		case JOptionPane.YES_OPTION:
 			return true;
@@ -80,10 +77,8 @@ public class MessageDialogSwing extends MessageDialog {
 	 * @see org.rapidbeans.presentation.MessageDialog#messageInfo(java.lang.String)
 	 * @return true if yes, fals if no
 	 */
-	public final MessageDialogResponse messageYesNoCancel(final String message,
-			final String title) {
-		final int confirm = JOptionPane.showConfirmDialog(null, message, title,
-				JOptionPane.YES_NO_CANCEL_OPTION);
+	public final MessageDialogResponse messageYesNoCancel(final String message, final String title) {
+		final int confirm = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_CANCEL_OPTION);
 		switch (confirm) {
 		case JOptionPane.YES_OPTION:
 			return MessageDialogResponse.yes;

@@ -80,12 +80,11 @@ public class PropertyVersion extends Property {
 	 *            <b>String:</b> the String<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (Version) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (Version) newValue;
+			}
+		});
 	}
 
 	/**
@@ -111,10 +110,8 @@ public class PropertyVersion extends Property {
 		} else if (argValue instanceof Version) {
 			version = (Version) argValue;
 		} else {
-			throw new ValidationException("invalid.prop.url.type", this,
-					"Tried to convert value from a data type \""
-							+ argValue.getClass().getName()
-							+ "\" different to Version and String.");
+			throw new ValidationException("invalid.prop.url.type", this, "Tried to convert value from a data type \""
+					+ argValue.getClass().getName() + "\" different to Version and String.");
 		}
 		return version;
 	}

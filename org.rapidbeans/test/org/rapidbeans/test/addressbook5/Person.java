@@ -1,13 +1,13 @@
 /*
  * Partially generated code file: Person.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.test.addressbook5.Person
  * 
- * model:    testmodel/org/rapidbeans/test/addressbook5/Person.xml
+ * model: testmodel/org/rapidbeans/test/addressbook5/Person.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.test.addressbook5;
@@ -79,22 +79,14 @@ public class Person extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.lastname = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("lastname");
-		this.firstname = (org.rapidbeans.core.basic.PropertyString) this
-				.getProperty("firstname");
-		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate) this
-				.getProperty("dateofbirth");
-		this.shoesize = (org.rapidbeans.core.basic.PropertyInteger) this
-				.getProperty("shoesize");
-		this.sex = (org.rapidbeans.core.basic.PropertyChoice) this
-				.getProperty("sex");
-		this.height = (org.rapidbeans.core.basic.PropertyQuantity) this
-				.getProperty("height");
-		this.groups = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("groups");
-		this.user = (org.rapidbeans.core.basic.PropertyAssociationend) this
-				.getProperty("user");
+		this.lastname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("lastname");
+		this.firstname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("firstname");
+		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate) this.getProperty("dateofbirth");
+		this.shoesize = (org.rapidbeans.core.basic.PropertyInteger) this.getProperty("shoesize");
+		this.sex = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("sex");
+		this.height = (org.rapidbeans.core.basic.PropertyQuantity) this.getProperty("height");
+		this.groups = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("groups");
+		this.user = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("user");
 	}
 
 	/**
@@ -136,8 +128,7 @@ public class Person extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean
-			.createInstance(Person.class);
+	private static TypeRapidBean type = TypeRapidBean.createInstance(Person.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -153,8 +144,7 @@ public class Person extends RapidBeanImplStrict {
 		try {
 			return (String) this.lastname.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"lastname");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("lastname");
 		}
 	}
 
@@ -175,8 +165,7 @@ public class Person extends RapidBeanImplStrict {
 		try {
 			return (String) this.firstname.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"firstname");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("firstname");
 		}
 	}
 
@@ -197,8 +186,7 @@ public class Person extends RapidBeanImplStrict {
 		try {
 			return (java.util.Date) this.dateofbirth.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"dateofbirth");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("dateofbirth");
 		}
 	}
 
@@ -217,11 +205,9 @@ public class Person extends RapidBeanImplStrict {
 	 */
 	public int getShoesize() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyInteger) this.shoesize)
-					.getValueInt();
+			return ((org.rapidbeans.core.basic.PropertyInteger) this.shoesize).getValueInt();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"shoesize");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("shoesize");
 		}
 	}
 
@@ -243,8 +229,7 @@ public class Person extends RapidBeanImplStrict {
 		try {
 			return (java.util.List<Sex>) this.sex.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"sex");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("sex");
 		}
 	}
 
@@ -265,8 +250,7 @@ public class Person extends RapidBeanImplStrict {
 		try {
 			return (Length) this.height.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"height");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("height");
 		}
 	}
 
@@ -286,11 +270,9 @@ public class Person extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<Group> getGroups() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<Group>) this.groups
-					.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<Group>) this.groups.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"groups");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("groups");
 		}
 	}
 
@@ -311,8 +293,7 @@ public class Person extends RapidBeanImplStrict {
 	 *            the bean to add
 	 */
 	public void addGroup(final Group bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.groups)
-				.addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.groups).addLink(bean);
 	}
 
 	/**
@@ -322,8 +303,7 @@ public class Person extends RapidBeanImplStrict {
 	 *            the bean to add
 	 */
 	public void removeGroup(final Group bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.groups)
-				.removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.groups).removeLink(bean);
 	}
 
 	/**
@@ -339,15 +319,14 @@ public class Person extends RapidBeanImplStrict {
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException("unresolved link to \""
-							+ "User" + "\" \"" + link.getIdString() + "\"");
+					throw new UnresolvedLinkException("unresolved link to \"" + "User" + "\" \"" + link.getIdString()
+							+ "\"");
 				} else {
 					return (User) col.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException(
-					"user");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("user");
 		}
 	}
 

@@ -51,27 +51,20 @@ public final class DocumentController {
 	public static void open(final String docconfname, final String viewconfname) {
 		final Application app = ApplicationManager.getApplication();
 		final RapidBeansLocale locale = app.getCurrentLocale();
-		final File docFile = FileChooser.chooseFile(
-				locale.getStringGui("commongui.text.open"),
-				FileChooserType.open, app.getSettings().getBasic()
-						.getFolderdoc(),
-				locale.getStringGui("commongui.text.document"), "xml");
+		final File docFile = FileChooser.chooseFile(locale.getStringGui("commongui.text.open"), FileChooserType.open,
+				app.getSettings().getBasic().getFolderdoc(), locale.getStringGui("commongui.text.document"), "xml");
 		if (docFile != null) {
 			final Document doc = new Document(docFile);
 			try {
 				app.openDocumentView(doc, docconfname, viewconfname);
-				app.getSettings().getBasic()
-						.setFolderdoc(docFile.getParentFile());
+				app.getSettings().getBasic().setFolderdoc(docFile.getParentFile());
 				app.getSettingsDoc().save();
 				app.addDocumentOpenedToHistory(doc);
 			} catch (AuthorizationException e) {
 				app.messageError(
-						app.getCurrentLocale().getStringMessage(
-								"authorization.denied.document",
-								app.getAuthenticatedUser()
-										.getProperty("accountname").toString()),
-						app.getCurrentLocale().getStringMessage(
-								"authorization.denied.title"));
+						app.getCurrentLocale().getStringMessage("authorization.denied.document",
+								app.getAuthenticatedUser().getProperty("accountname").toString()), app
+								.getCurrentLocale().getStringMessage("authorization.denied.title"));
 			}
 		}
 	}
@@ -92,10 +85,8 @@ public final class DocumentController {
 	public static void save(final Document document) {
 		final Application app = ApplicationManager.getApplication();
 		if (document != null && document.getChanged()) {
-			final String defaultEncoding = app.getSettings().getBasic()
-					.getDefaultencoding().name();
-			final boolean forceEncoding = (app.getSettings().getBasic()
-					.getDefaultencodingusage() == DefaultEncodingUsage.write);
+			final String defaultEncoding = app.getSettings().getBasic().getDefaultencoding().name();
+			final boolean forceEncoding = (app.getSettings().getBasic().getDefaultencodingusage() == DefaultEncodingUsage.write);
 			document.save(defaultEncoding, forceEncoding, null);
 		}
 	}
@@ -118,20 +109,14 @@ public final class DocumentController {
 		final Application app = ApplicationManager.getApplication();
 		final SettingsAll settings = app.getSettings();
 		final RapidBeansLocale locale = app.getCurrentLocale();
-		final File docFile = FileChooser.chooseFile(
-				locale.getStringGui("commongui.text.saveas"),
-				FileChooserType.save, settings.getBasic().getFolderdoc(),
-				locale.getStringGui("commongui.text.document"), "xml");
+		final File docFile = FileChooser.chooseFile(locale.getStringGui("commongui.text.saveas"), FileChooserType.save,
+				settings.getBasic().getFolderdoc(), locale.getStringGui("commongui.text.document"), "xml");
 		if (docFile != null) {
 			if (document != null) {
 				boolean save = true;
 				if (docFile.exists()) {
-					save = app
-							.messageYesNo(
-									locale.getStringGui("messagedialog.title.saveas.overwrite"),
-									locale.getStringMessage(
-											"messagedialog.saveas.overwrite",
-											docFile.getAbsolutePath()));
+					save = app.messageYesNo(locale.getStringGui("messagedialog.title.saveas.overwrite"),
+							locale.getStringMessage("messagedialog.saveas.overwrite", docFile.getAbsolutePath()));
 				}
 				if (save) {
 					try {
@@ -139,13 +124,10 @@ public final class DocumentController {
 					} catch (MalformedURLException e) {
 						throw new RapidBeansRuntimeException(e);
 					}
-					final String defaultEncoding = app.getSettings().getBasic()
-							.getDefaultencoding().name();
-					final boolean forceEncoding = (app.getSettings().getBasic()
-							.getDefaultencodingusage() == DefaultEncodingUsage.write);
+					final String defaultEncoding = app.getSettings().getBasic().getDefaultencoding().name();
+					final boolean forceEncoding = (app.getSettings().getBasic().getDefaultencodingusage() == DefaultEncodingUsage.write);
 					document.save(defaultEncoding, forceEncoding, null);
-					app.getSettings().getBasic()
-							.setFolderdoc(docFile.getParentFile());
+					app.getSettings().getBasic().setFolderdoc(docFile.getParentFile());
 					app.getSettingsDoc().save();
 				}
 			}

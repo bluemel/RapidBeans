@@ -70,8 +70,7 @@ public class PropertyMap extends PropertyAssociationend {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Link> createNewMap() {
-		final Class<?> mapClass = ((TypePropertyMap) this.getType())
-				.getMapClass();
+		final Class<?> mapClass = ((TypePropertyMap) this.getType()).getMapClass();
 
 		// construct standard collection
 		if (mapClass == HashMap.class) {
@@ -83,17 +82,14 @@ public class PropertyMap extends PropertyAssociationend {
 		// use reflective creation for special collection classes
 		Map<String, Link> newMap = null;
 		try {
-			newMap = (Map<String, Link>) ((TypePropertyMap) this.getType())
-					.getMapClassConstructor().newInstance(MAP_CONSTR_ARGS);
+			newMap = (Map<String, Link>) ((TypePropertyMap) this.getType()).getMapClassConstructor().newInstance(
+					MAP_CONSTR_ARGS);
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
-					+ e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		}
 		return newMap;
 	}
@@ -124,8 +120,7 @@ public class PropertyMap extends PropertyAssociationend {
 		if (this.value == null) {
 			return null;
 		} else {
-			return (ReadonlyListCollection<Link>) new ReadonlyListCollection<Link>(
-					this.value.values(),
+			return (ReadonlyListCollection<Link>) new ReadonlyListCollection<Link>(this.value.values(),
 					(TypePropertyCollection) this.getType());
 		}
 	}
@@ -155,20 +150,18 @@ public class PropertyMap extends PropertyAssociationend {
 	 *            should be allowed. Be very careful to set this argument to
 	 *            false.
 	 */
-	public void setValue(final Object col, final boolean validate,
-			final boolean touchInverseLinks,
+	public void setValue(final Object col, final boolean validate, final boolean touchInverseLinks,
 			final boolean checkContainerLinksToExternalObjects) {
 		final Map<String, Link> newValue = convertValue(col);
 		if (validate) {
 			validate(newValue);
 		}
-		super.setValueWithEvents(this.getValue(), newValue,
-				new PropertyValueSetter() {
-					@SuppressWarnings("unchecked")
-					public void setValue(Object newValue) {
-						value = (Map<String, Link>) newValue;
-					}
-				});
+		super.setValueWithEvents(this.getValue(), newValue, new PropertyValueSetter() {
+			@SuppressWarnings("unchecked")
+			public void setValue(Object newValue) {
+				value = (Map<String, Link>) newValue;
+			}
+		});
 		// if (this.value != null) {
 		// for (Link curLink : this.value.values()) {
 		// if (touchInverseLinks && curLink instanceof RapidBean) {
@@ -239,8 +232,7 @@ public class PropertyMap extends PropertyAssociationend {
 				newMapValue = (Map<String, Link>) newValue;
 			} else if (newValue instanceof LinkWithKey) {
 				newMapValue = createNewMap();
-				newMapValue.put(((LinkWithKey) newValue).getKey(),
-						((LinkWithKey) newValue).getLink());
+				newMapValue.put(((LinkWithKey) newValue).getKey(), ((LinkWithKey) newValue).getLink());
 			} else if (newValue instanceof String) {
 				newMapValue = createNewMap();
 				final String newValueString = (String) newValue;

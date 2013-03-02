@@ -82,12 +82,11 @@ public class PropertyUrl extends Property {
 	 *            <b>String:</b> the String<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue,
-				new PropertyValueSetter() {
-					public void setValue(final Object newValue) {
-						value = (URL) newValue;
-					}
-				});
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				value = (URL) newValue;
+			}
+		});
 	}
 
 	/**
@@ -112,18 +111,14 @@ public class PropertyUrl extends Property {
 			try {
 				url = new URL((String) argValue);
 			} catch (MalformedURLException e) {
-				throw new ValidationException("invalid.prop.url.malformed",
-						this,
-						"Tried to convert URL value from an invalid or malformed string \""
-								+ argValue + "\".");
+				throw new ValidationException("invalid.prop.url.malformed", this,
+						"Tried to convert URL value from an invalid or malformed string \"" + argValue + "\".");
 			}
 		} else if (argValue instanceof URL) {
 			url = (URL) argValue;
 		} else {
-			throw new ValidationException("invalid.prop.url.type", this,
-					"Tried to convert value from a data type \""
-							+ argValue.getClass().getName()
-							+ "\" different to URL and String.");
+			throw new ValidationException("invalid.prop.url.type", this, "Tried to convert value from a data type \""
+					+ argValue.getClass().getName() + "\" different to URL and String.");
 		}
 		return url;
 	}

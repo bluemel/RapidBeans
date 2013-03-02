@@ -35,10 +35,8 @@ public abstract class ContainerImpl implements Container {
 	 *            adding them to a parent bean. If you anyway try to insert
 	 *            explicitly the document tries to find an appropriate location
 	 *            according to the following strategy. <li>
-	 *            Find all composition collection properties that have the type
-	 *            of the bean to insert as target type.</li><li>
-	 *            If there is exactly one add the bean there. Otherwise throw an
-	 *            appropriate exception.</li>
+	 *            Find all composition collection properties that have the type of the bean to insert as target type.</li><li>
+	 *            If there is exactly one add the bean there. Otherwise throw an appropriate exception.</li>
 	 */
 	public abstract void insert(final RapidBean bean, final boolean implicitly);
 }

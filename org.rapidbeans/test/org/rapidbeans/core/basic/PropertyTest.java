@@ -26,9 +26,8 @@ public class PropertyTest extends TestCase {
 	 * Test method for default and getValue().
 	 */
 	public void testGetBean() {
-		PropertyString prop = this
-				.createStringProperty("<property name=\"test\" type=\"string\""
-						+ " default=\"test1\"" + "/>");
+		PropertyString prop = this.createStringProperty("<property name=\"test\" type=\"string\""
+				+ " default=\"test1\"" + "/>");
 		assertEquals("test1", prop.getValue());
 		assertNull(prop.getBean());
 	}
@@ -38,10 +37,8 @@ public class PropertyTest extends TestCase {
 	 * a default value !!!
 	 */
 	public void testValidateMandatory() {
-		PropertyString prop = this
-				.createStringProperty("<property name=\"test\" type=\"string\""
-						+ " mandatory=\"true\" emptyvalid=\"true\""
-						+ " default=\"\"/>");
+		PropertyString prop = this.createStringProperty("<property name=\"test\" type=\"string\""
+				+ " mandatory=\"true\" emptyvalid=\"true\"" + " default=\"\"/>");
 		assertEquals(true, prop.getType().getMandatory());
 		try {
 			prop.setValue(null);
@@ -59,10 +56,8 @@ public class PropertyTest extends TestCase {
 	 * @return a new string property.
 	 */
 	private PropertyString createStringProperty(final String descr) {
-		XmlNode propertyNode = XmlNode
-				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyString type = new TypePropertyString(
-				new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyString type = new TypePropertyString(new XmlNode[] { propertyNode }, null);
 		return new PropertyString(type, null);
 	}
 }
