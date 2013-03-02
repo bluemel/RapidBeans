@@ -23,7 +23,5 @@ package org.rapidbeans.core.util;
  * @author Martin Bluemel
  */
 public enum TrimMode {
-	leading,
-	trailing,
-	both
+	leading, trailing, both
 }

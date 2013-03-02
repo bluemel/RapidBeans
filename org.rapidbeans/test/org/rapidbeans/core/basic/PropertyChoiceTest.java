@@ -23,8 +23,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValue() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\""
 						+ " default=\"female\"/>");
 		assertEquals(1, prop.getValue().size());
 		assertSame(Sex.female, prop.getValue().get(0));
@@ -34,8 +34,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValueMultipleOne() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\" default=\"germany,austria\"/>");
 		assertEquals(2, prop.getValue().size());
 		assertSame(Country.germany, prop.getValue().get(0));
@@ -46,8 +46,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValueMultipleMore() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\" default=\"germany,austria,finnland\"/>");
 		assertEquals(3, prop.getValue().size());
 		assertSame(Country.germany, prop.getValue().get(0));
@@ -59,8 +59,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for no default value.
 	 */
 	public void testDefaultAndGetValueNull() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\"/>");
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\"/>");
 		assertNull(prop.getValue());
 	}
 
@@ -69,9 +69,8 @@ public class PropertyChoiceTest extends TestCase {
 	 */
 	public void testDefaultValueInvalid() {
 		try {
-			this.createChoiceProperty(
-					"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
-							+ " multiple=\"false\" default=\"germany,austria\"/>");
+			this.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+					+ " multiple=\"false\" default=\"germany,austria\"/>");
 			fail("expected ValidationException");
 		} catch (ValidationException e) {
 			assertTrue(true);
@@ -82,19 +81,19 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValue() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\"/>");
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\"/>");
 		prop.setValue(Sex.female);
 		assertSame(Sex.female, prop.getValue().get(0));
 	}
 
 	/**
-	 * Test method for no default value and setValue(Object)
-	 * with a multiple choice and one single enum.
+	 * Test method for no default value and setValue(Object) with a multiple
+	 * choice and one single enum.
 	 */
 	public void testSetValueMultipleOne() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(Country.austria);
@@ -102,12 +101,12 @@ public class PropertyChoiceTest extends TestCase {
 	}
 
 	/**
-	 * Test method for no default value and setValue(Object)
-	 * with a multple choice and one single enum.
+	 * Test method for no default value and setValue(Object) with a multple
+	 * choice and one single enum.
 	 */
 	public void testSetValueMultipleMore() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		assertNull(prop.getValue());
 		List<Country> list = new ArrayList<Country>();
@@ -127,8 +126,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToString() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Sex\""
 						+ " default=\"female\"/>");
 		assertNotNull(prop.getValue());
 		assertEquals("female", prop.toString());
@@ -138,19 +137,20 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test method for toString with multple choice and one item chosen.
 	 */
 	public void testToStringMultipleOne() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\" default=\"germany\"/>");
 		assertEquals(1, prop.getValue().size());
 		assertSame("germany", prop.toString());
 	}
 
 	/**
-	 * Test method for toString with multple choice and more than one item chosen.
+	 * Test method for toString with multple choice and more than one item
+	 * chosen.
 	 */
 	public void testToStringMultipleMore() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\" default=\"germany,austria,finnland\"/>");
 		assertEquals("germany,austria,finnland", prop.toString());
 	}
@@ -159,8 +159,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Happy day test for validation.
 	 */
 	public void testValidateOk() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.england);
@@ -175,8 +175,8 @@ public class PropertyChoiceTest extends TestCase {
 	 */
 	public void testValidateMultipleChoiceInSingleChoice() {
 		// multiple defaults to "false"
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\"/>");
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.england);
 		list.add(Country.austria);
@@ -191,8 +191,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * Test for validation one entry more than once.
 	 */
 	public void testValidateOneEntryMoreThanOnce() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.england);
@@ -211,8 +211,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * test of method convertValue(): happy day.
 	 */
 	public void testConvertListOfBBEnum() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list1 = new ArrayList<Country>();
 		list1.add(Country.england);
@@ -231,8 +231,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * test of method convertValue(): happy day.
 	 */
 	public void testConvertSingleBBEnum() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.finnland);
@@ -243,8 +243,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * test of method convertValue(): happy day with String.
 	 */
 	public void testConvertString() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.finnland);
@@ -257,8 +257,8 @@ public class PropertyChoiceTest extends TestCase {
 	 * test of method convertValue(): happy day with String.
 	 */
 	public void testConvertStringArray() {
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\" enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 		List<Country> list = new ArrayList<Country>();
 		list.add(Country.finnland);
@@ -269,16 +269,16 @@ public class PropertyChoiceTest extends TestCase {
 	}
 
 	/**
-	 * test immutability.
-	 * proove that our PropertyChoice is immutable after getValue
+	 * test immutability. proove that our PropertyChoice is immutable after
+	 * getValue
 	 * 
 	 * @throws java.text.ParseException
 	 *             if parsing fails
 	 */
 	public void testImmutabilityGet() throws java.text.ParseException {
 
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\""
 						+ " enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\""
 						+ " default=\"germany,austria\"/>");
@@ -304,16 +304,16 @@ public class PropertyChoiceTest extends TestCase {
 	}
 
 	/**
-	 * test immutability.
-	 * proove that our PropertyDate is immutable after setValue.
+	 * test immutability. proove that our PropertyDate is immutable after
+	 * setValue.
 	 * 
 	 * @throws java.text.ParseException
 	 *             if parsing fails
 	 */
 	public void testImmutabilitySet() throws java.text.ParseException {
 
-		PropertyChoice prop = this.createChoiceProperty(
-				"<property name=\"test\""
+		PropertyChoice prop = this
+				.createChoiceProperty("<property name=\"test\""
 						+ " enum=\"org.rapidbeans.domain.org.Country\""
 						+ " multiple=\"true\"/>");
 
@@ -343,9 +343,10 @@ public class PropertyChoiceTest extends TestCase {
 	 * @return a new Choice property.
 	 */
 	private PropertyChoice createChoiceProperty(final String descr) {
-		XmlNode propertyNode = XmlNode.getDocumentTopLevel(
-				new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyChoice type = new TypePropertyChoice(new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode
+				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyChoice type = new TypePropertyChoice(
+				new XmlNode[] { propertyNode }, null);
 		return new PropertyChoice(type, null);
 	}
 }

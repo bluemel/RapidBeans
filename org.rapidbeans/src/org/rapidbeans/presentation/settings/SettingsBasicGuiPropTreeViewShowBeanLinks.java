@@ -37,7 +37,8 @@ public class SettingsBasicGuiPropTreeViewShowBeanLinks extends PropertyBoolean {
 	 * @param parentBean
 	 *            the parent bean
 	 */
-	public SettingsBasicGuiPropTreeViewShowBeanLinks(final TypeProperty type, final RapidBean parentBean) {
+	public SettingsBasicGuiPropTreeViewShowBeanLinks(final TypeProperty type,
+			final RapidBean parentBean) {
 		super(type, parentBean);
 	}
 

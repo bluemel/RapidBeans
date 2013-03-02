@@ -34,17 +34,14 @@ import org.rapidbeans.core.util.StringHelper;
 /**
  * The "simple" bean implementation of the RapidBeans framework.
  * 
- * no extra property instance per attribute
- * + rather memory friendly
- * + easier to debug
- * - not perfectly save against illegal modifications
- * properties are partially not immutable
- * setting properties to illegal values is easier than with the strict beans
+ * no extra property instance per attribute + rather memory friendly + easier to
+ * debug - not perfectly save against illegal modifications properties are
+ * partially not immutable setting properties to illegal values is easier than
+ * with the strict beans
  * 
  * @author Martin Bluemel
  */
-public abstract class RapidBeanImplSimple
-		extends RapidBeanImplParent {
+public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 
 	/**
 	 * empty string array.
@@ -171,15 +168,20 @@ public abstract class RapidBeanImplSimple
 		try {
 			setBeanState(RapidBeanState.initializing);
 
-			// automatically create child instances for composite children bean classes
+			// automatically create child instances for composite children bean
+			// classes
 			// with minimal multiplicity defined
-			for (final PropertyCollection colProp : this.getColPropertiesComposition()) {
-				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
+			for (final PropertyCollection colProp : this
+					.getColPropertiesComposition()) {
+				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
+						.getType();
 				final int minmult = colPropType.getMinmult();
 				if (minmult > 0) {
-					final TypeRapidBean targetType = colPropType.getTargetType();
+					final TypeRapidBean targetType = colPropType
+							.getTargetType();
 					for (int j = 0; j < minmult; j++) {
-						colProp.addLink(RapidBeanImplSimple.createInstance(targetType));
+						colProp.addLink(RapidBeanImplSimple
+								.createInstance(targetType));
 					}
 				}
 			}
@@ -191,8 +193,8 @@ public abstract class RapidBeanImplSimple
 		}
 	}
 
-	//	private static final Logger log = Logger
-	//			.getLogger(RapidBeanImplSimple.class.getName());
+	// private static final Logger log = Logger
+	// .getLogger(RapidBeanImplSimple.class.getName());
 
 	/**
 	 * lazy initialization of the propmap.
@@ -223,9 +225,9 @@ public abstract class RapidBeanImplSimple
 	public final List<PropertyCollection> getColProperties() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (TypeProperty proptype : getType().getPropertyTypes()) {
-			if (proptype instanceof TypePropertyCollection)
-			{
-				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
+			if (proptype instanceof TypePropertyCollection) {
+				colproplist.add((PropertyCollection) Property.createInstance(
+						proptype, this));
 			}
 		}
 		return colproplist;
@@ -238,9 +240,9 @@ public abstract class RapidBeanImplSimple
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (TypeProperty proptype : getType().getPropertyTypes()) {
 			if (proptype instanceof TypePropertyCollection
-					&& ((TypePropertyCollection) proptype).isComposition())
-			{
-				colproplist.add((PropertyCollection) Property.createInstance(proptype, this));
+					&& ((TypePropertyCollection) proptype).isComposition()) {
+				colproplist.add((PropertyCollection) Property.createInstance(
+						proptype, this));
 			}
 		}
 		return colproplist;
@@ -267,7 +269,8 @@ public abstract class RapidBeanImplSimple
 	public final Object getPropValue(final String name) {
 		Object value = null;
 		try {
-			final Method getter = this.getClass().getMethod("get" + StringHelper.upperFirstCharacter(name));
+			final Method getter = this.getClass().getMethod(
+					"get" + StringHelper.upperFirstCharacter(name));
 			value = getter.invoke(this);
 		} catch (NoSuchMethodException e) {
 			throw new RapidBeansRuntimeException(e);
@@ -313,9 +316,11 @@ public abstract class RapidBeanImplSimple
 	 * @return a clone of this bean.
 	 */
 	public RapidBean clone() {
-		RapidBeanImplSimple bClone = RapidBeanImplSimple.createInstance(this.getType());
+		RapidBeanImplSimple bClone = RapidBeanImplSimple.createInstance(this
+				.getType());
 		for (int i = 0; i < getPropertyList().size(); i++) {
-			bClone.getPropertyList().get(i).setValue(getPropertyList().get(i).clone(bClone));
+			bClone.getPropertyList().get(i)
+					.setValue(getPropertyList().get(i).clone(bClone));
 		}
 		bClone.initPropmap();
 		bClone.initProperties();
@@ -338,7 +343,8 @@ public abstract class RapidBeanImplSimple
 		}
 		bClone.setContainer(cloneContainer);
 		for (int i = 0; i < getPropertyList().size(); i++) {
-			getPropertyList().get(i).cloneValue(bClone.getPropertyList().get(i), cloneContainer);
+			getPropertyList().get(i).cloneValue(
+					bClone.getPropertyList().get(i), cloneContainer);
 		}
 		return bClone;
 	}

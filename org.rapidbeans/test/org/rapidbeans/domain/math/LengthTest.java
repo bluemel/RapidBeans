@@ -25,7 +25,8 @@ public final class LengthTest extends TestCase {
 	 */
 	public void testLengthString() {
 		Length len = new Length("11 m");
-		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"),
+		assertSame(
+				TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"),
 				len.getType());
 		assertSame(Length.class, len.getType().getImplementingClass());
 		assertEquals(new BigDecimal("11"), len.getMagnitude());
@@ -37,7 +38,8 @@ public final class LengthTest extends TestCase {
 	 */
 	public void testLengthMagUnit() {
 		Length len = new Length(new BigDecimal("123"), UnitLength.pm);
-		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"),
+		assertSame(
+				TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"),
 				len.getType());
 		assertSame(Length.class, len.getType().getImplementingClass());
 		assertEquals(new BigDecimal("123"), len.getMagnitude());

@@ -79,10 +79,8 @@ public class MenuToolbarsSwing extends MenuToolbars {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuToolbarsSwing(
-			final ConfigMenuToolbars config,
-			final Application client,
-			final String resourcePath) {
+	public MenuToolbarsSwing(final ConfigMenuToolbars config,
+			final Application client, final String resourcePath) {
 		super(client, config, resourcePath);
 		this.mainWindow = client.getMainwindow();
 		switch (this.mainWindow.getToolbars().size()) {
@@ -90,12 +88,14 @@ public class MenuToolbarsSwing extends MenuToolbars {
 			throw new AssertionError("no toolbars cofigured");
 		case 1:
 			this.singleToolbarMenuItem = new JCheckBoxMenuItem();
-			this.toolbarMap.put(this.singleToolbarMenuItem, this.mainWindow.getToolbars().get(0));
-			this.singleToolbarMenuItem.setSelected(this.mainWindow.getToolbars().get(0).getOn());
-			this.singleToolbarMenuItem.setVisible(this.mainWindow.getToolbars().get(0).getOn());
-			this.singleToolbarMenuItem.setText(
-					this.mainWindow.getToolbars().get(0).getTextLocalized(
-							client, resourcePath));
+			this.toolbarMap.put(this.singleToolbarMenuItem, this.mainWindow
+					.getToolbars().get(0));
+			this.singleToolbarMenuItem.setSelected(this.mainWindow
+					.getToolbars().get(0).getOn());
+			this.singleToolbarMenuItem.setVisible(this.mainWindow.getToolbars()
+					.get(0).getOn());
+			this.singleToolbarMenuItem.setText(this.mainWindow.getToolbars()
+					.get(0).getTextLocalized(client, resourcePath));
 			this.singleToolbarMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					menuItemSelectionToggled(e);
@@ -122,7 +122,8 @@ public class MenuToolbarsSwing extends MenuToolbars {
 	 *            the application
 	 * @param resourcePath
 	 */
-	private void initToolbarsSubmenu(final Application client, final String resourcePath) {
+	private void initToolbarsSubmenu(final Application client,
+			final String resourcePath) {
 		if (this.getName() == null || this.getName().length() == 0) {
 			this.setName("toolbars");
 		}
@@ -131,7 +132,8 @@ public class MenuToolbarsSwing extends MenuToolbars {
 		final RapidBeansLocale locale = client.getCurrentLocale();
 		if (locale != null) {
 			try {
-				final String key = resourcePath + "." + this.getName() + ".label";
+				final String key = resourcePath + "." + this.getName()
+						+ ".label";
 				menuText = locale.getStringGui(key);
 			} catch (MissingResourceException e) {
 				menuText = null;
@@ -157,8 +159,10 @@ public class MenuToolbarsSwing extends MenuToolbars {
 			this.toolbarMap.put(menuItem, toolbar);
 			menuItem.setSelected(toolbar.getOn());
 			menuItem.setVisible(toolbar.getOn());
-			final String toolbarResourcePath = resourcePath + ".toolbars." + toolbar.getName();
-			menuItem.setText(toolbar.getTextLocalized(client, toolbarResourcePath));
+			final String toolbarResourcePath = resourcePath + ".toolbars."
+					+ toolbar.getName();
+			menuItem.setText(toolbar.getTextLocalized(client,
+					toolbarResourcePath));
 			menuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					menuItemSelectionToggled(e);

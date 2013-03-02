@@ -139,8 +139,7 @@ public class IdKeyprops extends Id {
 	}
 
 	/**
-	 * lazy initialize the Keyprops.
-	 * Used during initialization.
+	 * lazy initialize the Keyprops. Used during initialization.
 	 */
 	protected void initKeyprops() {
 		final StringBuffer sb = new StringBuffer();

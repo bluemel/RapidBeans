@@ -29,10 +29,9 @@ import org.rapidbeans.core.type.TypeRapidQuantity;
 public class GenericQuantity extends RapidQuantity {
 
 	/**
-	 * The Rapid Bean type instance.
-	 * Since we have no class we can't make it a static
-	 * member of the class. So every instance has to have
-	 * a reference to it's type.
+	 * The Rapid Bean type instance. Since we have no class we can't make it a
+	 * static member of the class. So every instance has to have a reference to
+	 * it's type.
 	 */
 	private TypeRapidQuantity type = null;
 
@@ -52,7 +51,8 @@ public class GenericQuantity extends RapidQuantity {
 	public GenericQuantity(final TypeRapidQuantity qtype) {
 		super();
 		if (qtype == null) {
-			throw new IllegalArgumentException("Can't create a generic quantity without type");
+			throw new IllegalArgumentException(
+					"Can't create a generic quantity without type");
 		}
 		this.type = qtype;
 	}
@@ -67,7 +67,8 @@ public class GenericQuantity extends RapidQuantity {
 	public GenericQuantity(final TypeRapidQuantity qtype, final String value) {
 		super(qtype, value);
 		if (qtype == null) {
-			throw new IllegalArgumentException("Can't create a generic quantity without type");
+			throw new IllegalArgumentException(
+					"Can't create a generic quantity without type");
 		}
 		this.type = qtype;
 	}

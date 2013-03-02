@@ -15,7 +15,8 @@ public class IdNumericTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToString() {
-		GenericBean bean = this.createTestBeanNumeric("Meyer", "Michael", "19651020");
+		GenericBean bean = this.createTestBeanNumeric("Meyer", "Michael",
+				"19651020");
 		bean.getType().setIdGenerator(new IdGeneratorNumeric());
 		String sNum1 = new IdNumeric(bean, null).toString();
 		assertEquals("1", sNum1);
@@ -27,7 +28,8 @@ public class IdNumericTest extends TestCase {
 	 * Test method for IdNumeric.BBIdNumeric(String).
 	 */
 	public void testBBIdNumericString() {
-		GenericBean bean = this.createTestBeanNumeric("Meyer", "Michael", "19651020");
+		GenericBean bean = this.createTestBeanNumeric("Meyer", "Michael",
+				"19651020");
 		bean.getType().setIdGenerator(new IdGeneratorNumeric());
 		IdNumeric idNumeric = new IdNumeric(bean, "1234");
 		assertEquals("1234", idNumeric.toString());

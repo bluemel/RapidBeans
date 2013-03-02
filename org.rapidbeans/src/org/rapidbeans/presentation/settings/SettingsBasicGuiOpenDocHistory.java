@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation.settings;
 
-
-
 // BEGIN manual code section
 // SettingsBasicGuiOpenDocHistory.import
 import org.rapidbeans.core.event.PropertyChangeEvent;
@@ -27,16 +25,16 @@ import org.rapidbeans.presentation.config.ConfigMenuHistoryOpenDocument;
 // END manual code section
 
 /**
- * Rapid Bean class: SettingsBasicGuiOpenDocHistory.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: SettingsBasicGuiOpenDocHistory. Partially generated Java
+ * class !!!Do only edit manually in marked sections!!!
  **/
-public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.settings.Settings {
+public class SettingsBasicGuiOpenDocHistory extends
+		org.rapidbeans.presentation.settings.Settings {
 	// BEGIN manual code section
 	// SettingsBasicGuiOpenDocHistory.classBody
 	/**
-	 * Data binding (one way) and factory settings.
-	 * Intercepts any property changes.
+	 * Data binding (one way) and factory settings. Intercepts any property
+	 * changes.
 	 * 
 	 * @param event
 	 *            the PropertyChangeEvent to fire
@@ -54,14 +52,16 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 				if (app.getConfiguration() != null) {
 					if (app.getConfiguration().getMainwindow() != null) {
 						if (app.getConfiguration().getMainwindow().getMenubar() != null) {
-							config = app.getConfiguration().getMainwindow().getMenubar()
+							config = app.getConfiguration().getMainwindow()
+									.getMenubar()
 									.findFirstMenuHistoryOpenDocument();
 						}
 					}
 				}
 				if (app.getMainwindow() != null) {
 					if (app.getMainwindow().getMenubar() != null) {
-						histMenu = app.getMainwindow().getMenubar().findFirstMenuHistoryOpenDocument();
+						histMenu = app.getMainwindow().getMenubar()
+								.findFirstMenuHistoryOpenDocument();
 					}
 				}
 			}
@@ -98,8 +98,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 						histMenu.setProtocolFilter(getProtocolFilter());
 					}
 				}
-				if (this.factorySettings != null
-						&& this.getContainer() != null) {
+				if (this.factorySettings != null && this.getContainer() != null) {
 					setFactorySettings(hasFactorySettings(config));
 				}
 				if (histMenu != null) {
@@ -128,7 +127,8 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 			return true;
 		}
 		if (config.getEntryshortage() == this.getEntryShortage()
-				&& config.getMaxnumberofentries() == this.getMaxNumberOfEntries()
+				&& config.getMaxnumberofentries() == this
+						.getMaxNumberOfEntries()
 				&& config.getPresentation() == this.getPresentation()
 				&& config.getProtocolfilter().equals(this.getProtocolFilter())
 				&& this.getOn()) {
@@ -175,18 +175,18 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.on = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("on");
-		this.presentation = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("presentation");
-		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("entryShortage");
-		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("protocolFilter");
-		this.maxNumberOfEntries = (org.rapidbeans.core.basic.PropertyInteger)
-			this.getProperty("maxNumberOfEntries");
-		this.factorySettings = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("factorySettings");
+		this.on = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("on");
+		this.presentation = (org.rapidbeans.core.basic.PropertyChoice) this
+				.getProperty("presentation");
+		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("entryShortage");
+		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("protocolFilter");
+		this.maxNumberOfEntries = (org.rapidbeans.core.basic.PropertyInteger) this
+				.getProperty("maxNumberOfEntries");
+		this.factorySettings = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("factorySettings");
 	}
 
 	/**
@@ -201,6 +201,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -213,6 +214,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -226,7 +228,8 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(SettingsBasicGuiOpenDocHistory.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(SettingsBasicGuiOpenDocHistory.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -240,14 +243,17 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public boolean getOn() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("on");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"on");
 		}
 	}
 
 	/**
 	 * setter for Property 'on'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'on' to set
 	 */
@@ -260,25 +266,29 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode getPresentation() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.presentation.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.presentation
+					.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList.get(0);
+				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList
+						.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("presentation");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"presentation");
 		}
 	}
 
 	/**
 	 * setter for Property 'presentation'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'presentation' to set
 	 */
-	public void setPresentation(final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
-		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list =
-			new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
+	public void setPresentation(
+			final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
+		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list = new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
 		list.add(argValue);
 		this.presentation.setValue(list);
 	}
@@ -288,14 +298,17 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public boolean getEntryShortage() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("entryShortage");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"entryShortage");
 		}
 	}
 
 	/**
 	 * setter for Property 'entryShortage'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'entryShortage' to set
 	 */
@@ -310,12 +323,14 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 		try {
 			return (String) this.protocolFilter.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("protocolFilter");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"protocolFilter");
 		}
 	}
 
 	/**
 	 * setter for Property 'protocolFilter'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'protocolFilter' to set
 	 */
@@ -328,14 +343,17 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public int getMaxNumberOfEntries() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyInteger) this.maxNumberOfEntries).getValueInt();
+			return ((org.rapidbeans.core.basic.PropertyInteger) this.maxNumberOfEntries)
+					.getValueInt();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("maxNumberOfEntries");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"maxNumberOfEntries");
 		}
 	}
 
 	/**
 	 * setter for Property 'maxNumberOfEntries'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'maxNumberOfEntries' to set
 	 */
@@ -348,14 +366,17 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 */
 	public boolean getFactorySettings() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.factorySettings).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.factorySettings)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("factorySettings");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"factorySettings");
 		}
 	}
 
 	/**
 	 * setter for Property 'factorySettings'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'factorySettings' to set
 	 */

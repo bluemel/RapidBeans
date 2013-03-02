@@ -30,7 +30,8 @@ public class IdTransientidTest extends TestCase {
 	 */
 	public void testBBIdUidString() {
 		IdUuid idUid = new IdUuid(null, "353f0fe0-04e8-11da-9131-0002a5d5c51b");
-		assertEquals(null, "353f0fe0-04e8-11da-9131-0002a5d5c51b", idUid.toString());
+		assertEquals(null, "353f0fe0-04e8-11da-9131-0002a5d5c51b",
+				idUid.toString());
 	}
 
 	/**
@@ -44,8 +45,8 @@ public class IdTransientidTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBean(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBean(final String name, final String prename,
+			final String dateofbirth) {
 		String descr = "<beantype name=\"TestBean\">"
 				+ "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"

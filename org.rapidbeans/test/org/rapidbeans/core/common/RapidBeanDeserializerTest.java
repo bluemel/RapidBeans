@@ -31,93 +31,122 @@ import org.rapidbeans.test.codegen.Person;
 public class RapidBeanDeserializerTest extends TestCase {
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for
+	 * {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}
+	 * . (type = null).
 	 * 
 	 * @throws IOException
 	 */
 	public void testLoadBeanGenericStyle() throws IOException {
-		File file1 = new File("../org.rapidbeans/testdata/deserialization/AppGenericStyle.xml");
+		File file1 = new File(
+				"../org.rapidbeans/testdata/deserialization/AppGenericStyle.xml");
 		Document doc = new Document("testdoc", file1);
 		ConfigApplication cfg = (ConfigApplication) doc.getRoot();
-		assertEquals("org.rapidbeans.presentation.TestClient", cfg.getApplicationclass());
+		assertEquals("org.rapidbeans.presentation.TestClient",
+				cfg.getApplicationclass());
 		assertNotNull((ConfigMainWindow) doc.findBeanByQuery("/mainwindow"));
-		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
-		assertEquals("test",
-				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		assertNotNull((ConfigMenubar) doc
+				.findBeanByQuery("/mainwindow/menubar"));
+		assertEquals(
+				"test",
+				((ConfigSubmenu) doc
+						.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']"))
+						.getName());
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for
+	 * {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}
+	 * . (type = null).
 	 * 
 	 * @throws IOException
 	 */
 	public void testLoadBeanConcreteStyle() throws IOException {
-		Document doc = new Document("testdoc",
+		Document doc = new Document(
+				"testdoc",
 				TypeRapidBean.forName(ConfigApplication.class.getName()),
-				new File("../org.rapidbeans/testdata/deserialization/AppConcreteStyle.xml"));
+				new File(
+						"../org.rapidbeans/testdata/deserialization/AppConcreteStyle.xml"));
 		ConfigApplication cfg = (ConfigApplication) doc.getRoot();
-		assertEquals("org.rapidbeans.presentation.TestClient", cfg.getApplicationclass());
+		assertEquals("org.rapidbeans.presentation.TestClient",
+				cfg.getApplicationclass());
 		assertNotNull((ConfigMainWindow) doc.findBeanByQuery("/mainwindow"));
-		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
-		assertEquals("test",
-				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		assertNotNull((ConfigMenubar) doc
+				.findBeanByQuery("/mainwindow/menubar"));
+		assertEquals(
+				"test",
+				((ConfigSubmenu) doc
+						.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']"))
+						.getName());
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for
+	 * {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}
+	 * . (type = null).
 	 * 
 	 * @throws IOException
 	 */
 	public void testLoadAppNamespaceStyle() throws IOException {
-		File file1 = new File("../org.rapidbeans/testdata/deserialization/AppNamespaceStyle.xml");
+		File file1 = new File(
+				"../org.rapidbeans/testdata/deserialization/AppNamespaceStyle.xml");
 		Document doc = new Document("testdoc", file1);
 		ConfigApplication cfg = (ConfigApplication) doc.getRoot();
-		assertEquals("org.rapidbeans.presentation.TestClient", cfg.getApplicationclass());
+		assertEquals("org.rapidbeans.presentation.TestClient",
+				cfg.getApplicationclass());
 		assertNotNull((ConfigMainWindow) doc.findBeanByQuery("/mainwindow"));
-		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
-		assertEquals("test",
-				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		assertNotNull((ConfigMenubar) doc
+				.findBeanByQuery("/mainwindow/menubar"));
+		assertEquals(
+				"test",
+				((ConfigSubmenu) doc
+						.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']"))
+						.getName());
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
-	public void testDeserializeStringMultilineAttribute() throws MalformedURLException {
+	public void testDeserializeStringMultilineAttribute()
+			throws MalformedURLException {
 		File testfile = new File("testdata/serialization/testSerMultiAttr.xml");
 		Document doc = new Document(testfile);
-		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person", "Bluemel_Martin_19641014");
+		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person",
+				"Bluemel_Martin_19641014");
 		assertEquals("xxx\nyyy", p1.getComment());
 	}
 
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
-	public void testSerializeStringMultilineElement() throws MalformedURLException {
+	public void testSerializeStringMultilineElement()
+			throws MalformedURLException {
 		File testfile = new File("testdata/serialization/testSerMultiElem.xml");
 		Document doc = new Document(testfile);
-		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person", "Bluemel_Martin_19641014");
+		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person",
+				"Bluemel_Martin_19641014");
 		assertEquals("xxx\nyyy", p1.getComment2());
 	}
 
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
-	public void testSerializeStringMultilineElementWithDefinedMapping() throws MalformedURLException {
-		File testfile = new File("testdata/serialization/testSerMultiElemDefinedMapping.xml");
+	public void testSerializeStringMultilineElementWithDefinedMapping()
+			throws MalformedURLException {
+		File testfile = new File(
+				"testdata/serialization/testSerMultiElemDefinedMapping.xml");
 		Document doc = new Document(testfile);
-		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person", "Bluemel_Martin_19641014");
+		Person p1 = (Person) doc.findBean("org.rapidbeans.test.codegen.Person",
+				"Bluemel_Martin_19641014");
 		assertEquals("xxx\nyyy", p1.getComment3());
 	}
 }

@@ -33,24 +33,21 @@ import org.rapidbeans.security.User;
 public abstract class DialogPwdChange {
 
 	/**
-	 * Converts the pwd entered into a string and erases the
-	 * pwd input field.
+	 * Converts the pwd entered into a string and erases the pwd input field.
 	 * 
 	 * @return the pwd entered
 	 */
 	protected abstract String getPwdOld();
 
 	/**
-	 * Converts the pwd entered into a string and erases the
-	 * pwd input field.
+	 * Converts the pwd entered into a string and erases the pwd input field.
 	 * 
 	 * @return the pwd entered
 	 */
 	protected abstract String getPwdNew1();
 
 	/**
-	 * Converts the pwd entered into a string and erases the
-	 * pwd input field.
+	 * Converts the pwd entered into a string and erases the pwd input field.
 	 * 
 	 * @return the pwd entered
 	 */
@@ -101,18 +98,21 @@ public abstract class DialogPwdChange {
 			if (!dialogCancelled) {
 				String oldPwd = dialog.getPwdOld();
 				if (oldPwd != null && (!oldPwd.endsWith(""))) {
-					final String pwdOld = User.hashPwd(oldPwd,
-							client.getConfiguration().getAuthorization().getPwdhashalgorithm());
-					if (!((pwdOld.equals(user.getPropValue("pwd")))
-					|| (pwdOld.equals("") && user.getPropValue("pwd") == null))) {
-						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.old"),
+					final String pwdOld = User.hashPwd(oldPwd, client
+							.getConfiguration().getAuthorization()
+							.getPwdhashalgorithm());
+					if (!((pwdOld.equals(user.getPropValue("pwd"))) || (pwdOld
+							.equals("") && user.getPropValue("pwd") == null))) {
+						client.messageError(
+								loc.getStringMessage("pwdchange.wrong.pwd.old"),
 								loc.getStringMessage("pwdchange.wrong.title"));
 					}
 				} else {
 					final String pwdNew1 = dialog.getPwdNew1();
 					final String pwdNew2 = dialog.getPwdNew2();
 					if (!(pwdNew1.equals(pwdNew2))) {
-						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.new"),
+						client.messageError(
+								loc.getStringMessage("pwdchange.wrong.pwd.new"),
 								loc.getStringMessage("pwdchange.wrong.title"));
 					} else {
 						try {
@@ -122,8 +122,9 @@ public abstract class DialogPwdChange {
 							if (pwdNew1.equals("")) {
 								User.setPwdSecS(user, null, null);
 							} else {
-								User.setPwdSecS(user, pwdNew1,
-										client.getConfiguration().getAuthorization().getPwdhashalgorithm());
+								User.setPwdSecS(user, pwdNew1, client
+										.getConfiguration().getAuthorization()
+										.getPwdhashalgorithm());
 							}
 						} finally {
 							editor.getBeanEditor().setModifies(false);
@@ -138,22 +139,23 @@ public abstract class DialogPwdChange {
 	}
 
 	/**
-	 * factory method to create the login dialog appropriate for the
-	 * GUI toolkit chosen.
+	 * factory method to create the login dialog appropriate for the GUI toolkit
+	 * chosen.
 	 * 
 	 * @return the login dialog created
 	 */
 	private static DialogPwdChange createDialog(final RapidBean user) {
 		DialogPwdChange dialog = null;
 		final Application client = ApplicationManager.getApplication();
-		final ApplicationGuiType guitype = client.getConfiguration().getGuitype();
+		final ApplicationGuiType guitype = client.getConfiguration()
+				.getGuitype();
 		switch (guitype) {
 		case swing:
 			dialog = new DialogPwdChangeSwing(user);
 			break;
 		default:
-			throw new RapidBeansRuntimeException("gui type \""
-					+ guitype.name() + "\" not supported");
+			throw new RapidBeansRuntimeException("gui type \"" + guitype.name()
+					+ "\" not supported");
 		}
 		return dialog;
 	}
@@ -161,9 +163,8 @@ public abstract class DialogPwdChange {
 	/**
 	 * this GUI toolkit specific method pops up a password change dialog.
 	 * 
-	 * @return if the dialog has been finished with OK (true)
-	 *         or Cancel (false), Closing the dialog is interpreted
-	 *         as Cancel.
+	 * @return if the dialog has been finished with OK (true) or Cancel (false),
+	 *         Closing the dialog is interpreted as Cancel.
 	 */
 	protected abstract boolean show();
 

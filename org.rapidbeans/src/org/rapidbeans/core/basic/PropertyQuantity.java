@@ -36,9 +36,8 @@ import org.rapidbeans.core.type.TypePropertyQuantity;
 public class PropertyQuantity extends Property {
 
 	/**
-	 * the encapsulated RapidQuantity value.
-	 * !!! do not initialize here because the superclass does it
-	 * with the property type's default value
+	 * the encapsulated RapidQuantity value. !!! do not initialize here because
+	 * the superclass does it with the property type's default value
 	 */
 	private RapidQuantity value;
 
@@ -67,8 +66,8 @@ public class PropertyQuantity extends Property {
 	 * String value getter.
 	 * 
 	 * @return the String representation of the Property's value.<br/>
-	 *         For a RapidQuantity this is a combination of a decimal number and an
-	 *         RapidEnum name.
+	 *         For a RapidQuantity this is a combination of a decimal number and
+	 *         an RapidEnum name.
 	 */
 	public String toString() {
 		if (this.value == null) {
@@ -85,25 +84,27 @@ public class PropertyQuantity extends Property {
 	 *            the new value for this property.<br/>
 	 *            Must be an instance of the following classes:<br/>
 	 *            <b>RapidQuantity:</b> the quantity<br/>
-	 *            <b>String:</b> the quantity as String: &lt;number&gt; &lt;enum&gt;<br/>
+	 *            <b>String:</b> the quantity as String: &lt;number&gt;
+	 *            &lt;enum&gt;<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-			public void setValue(final Object newValue) {
-				value = (RapidQuantity) newValue;
-			}
-		});
+		super.setValueWithEvents(this.value, newValue,
+				new PropertyValueSetter() {
+					public void setValue(final Object newValue) {
+						value = (RapidQuantity) newValue;
+					}
+				});
 	}
 
 	/**
-	 * converts different classes to the Property's internal
-	 * value class.<br/>
+	 * converts different classes to the Property's internal value class.<br/>
 	 * 
 	 * @param argValue
 	 *            the value to convert<br/>
 	 *            Must be an instance of the following classes:<br/>
 	 *            <b>RapidQuantity:</b> the quantity<br/>
-	 *            <b>String:</b> the quantity as String: &lt;number&gt; &lt;enum&gt;<br/>
+	 *            <b>String:</b> the quantity as String: &lt;number&gt;
+	 *            &lt;enum&gt;<br/>
 	 * 
 	 * @return a RapidQuantity
 	 */
@@ -119,9 +120,9 @@ public class PropertyQuantity extends Property {
 			quantity = (RapidQuantity) argValue;
 		} else if (argValue instanceof String) {
 			try {
-				quantity = RapidQuantity.createInstance(
-						((TypePropertyQuantity) this.getType()).getQuantitytype().getName(),
-						(String) argValue);
+				quantity = RapidQuantity
+						.createInstance(((TypePropertyQuantity) this.getType())
+								.getQuantitytype().getName(), (String) argValue);
 			} catch (RapidBeansRuntimeException e) {
 				Throwable t1 = e.getCause();
 				if (t1 != null && t1 instanceof InvocationTargetException) {
@@ -132,9 +133,11 @@ public class PropertyQuantity extends Property {
 				}
 			}
 		} else {
-			throw new ValidationException("invalid.prop.quantity.type",
+			throw new ValidationException(
+					"invalid.prop.quantity.type",
 					this,
-					"invalid data type \"" + argValue.getClass().getName()
+					"invalid data type \""
+							+ argValue.getClass().getName()
 							+ "\".\nOnly \"PropertyQuantity\" and \"String\" are valid types.");
 		}
 
@@ -148,14 +151,16 @@ public class PropertyQuantity extends Property {
 	 *            the value to validate<br/>
 	 *            Must be an instance of the following classes:<br/>
 	 *            <b>RapidQuantity:</b> the quantity<br/>
-	 *            <b>String:</b> the quantity as String: &lt;number&gt; &lt;enum&gt;<br/>
+	 *            <b>String:</b> the quantity as String: &lt;number&gt;
+	 *            &lt;enum&gt;<br/>
 	 * 
 	 * @return the converted value which is the internal representation or if a
 	 *         primitive type the corresponding value object
 	 */
 	public RapidQuantity validate(final Object quantityValue) {
 
-		final RapidQuantity quantity = (RapidQuantity) super.validate(quantityValue);
+		final RapidQuantity quantity = (RapidQuantity) super
+				.validate(quantityValue);
 		if (!ThreadLocalValidationSettings.getValidation()) {
 			return quantity;
 		}
@@ -163,37 +168,44 @@ public class PropertyQuantity extends Property {
 			return null;
 		}
 
-		final TypePropertyQuantity quantPropType = (TypePropertyQuantity) this.getType();
+		final TypePropertyQuantity quantPropType = (TypePropertyQuantity) this
+				.getType();
 		// check RapidQuantity Type
 		if (quantity.getType() != quantPropType.getQuantitytype()) {
-			final String[] sa = { quantity.getType().getName(), quantity.toString(),
+			final String[] sa = { quantity.getType().getName(),
+					quantity.toString(),
 					quantPropType.getQuantitytype().getName() };
 			throw new ValidationException("invalid.prop.quantity.quantitytype",
-					this,
-					"Wrong type \"" + quantity.getType().getName()
-							+ "\" for new quantity \"" + quantity.toString() + "\"\n"
-							+ "Expected quantity type \"" + quantPropType.getQuantitytype().getName() + "\"", sa);
+					this, "Wrong type \"" + quantity.getType().getName()
+							+ "\" for new quantity \"" + quantity.toString()
+							+ "\"\n" + "Expected quantity type \""
+							+ quantPropType.getQuantitytype().getName() + "\"",
+					sa);
 		}
 
 		// check maximal value
 		if (quantPropType.getMaxVal() != null) {
-			final String[] sa = { quantity.toString(), quantPropType.getMaxVal().toString() };
+			final String[] sa = { quantity.toString(),
+					quantPropType.getMaxVal().toString() };
 			if (quantity.compareTo(quantPropType.getMaxVal()) == 1) {
 				throw new ValidationException("invalid.prop.quantity.greater",
-						this,
-						"invalid quantity \"" + quantity + " greater than maximal value \""
-								+ quantPropType.getMaxVal().toString() + "\".", sa);
+						this, "invalid quantity \"" + quantity
+								+ " greater than maximal value \""
+								+ quantPropType.getMaxVal().toString() + "\".",
+						sa);
 			}
 		}
 
 		// check minimal value
 		if (quantPropType.getMinVal() != null) {
-			final String[] sa = { quantity.toString(), quantPropType.getMinVal().toString() };
+			final String[] sa = { quantity.toString(),
+					quantPropType.getMinVal().toString() };
 			if (quantity.compareTo(quantPropType.getMinVal()) == -1) {
 				throw new ValidationException("invalid.prop.quantity.greater",
-						this,
-						"invalid quantity \"" + quantity + " lower than minimal value \""
-								+ quantPropType.getMinVal().toString() + "\".", sa);
+						this, "invalid quantity \"" + quantity
+								+ " lower than minimal value \""
+								+ quantPropType.getMinVal().toString() + "\".",
+						sa);
 			}
 		}
 		return quantity;

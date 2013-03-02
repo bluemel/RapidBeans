@@ -20,8 +20,8 @@ package org.rapidbeans.presentation.swing;
 import org.rapidbeans.core.basic.PropertyCollection;
 
 /**
- * A wrapper class for PropertyCollection to avoid side
- * effects during rendering a Swing Tree.
+ * A wrapper class for PropertyCollection to avoid side effects during rendering
+ * a Swing Tree.
  * 
  * @author Martin Bluemel
  */

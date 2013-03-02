@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation.settings;
 
-
-
 // BEGIN manual code section
 // Settings.import
 import java.util.ArrayList;
@@ -25,9 +23,8 @@ import org.rapidbeans.core.type.TypeRapidBean;
 // END manual code section
 
 /**
- * Rapid Bean class: Settings.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: Settings. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class Settings extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -61,7 +58,8 @@ public class Settings extends RapidBeanImplStrict {
 			}
 		}
 		while (parentColProp != null) {
-			parentSettingNamesBackward.add(parentColProp.getType().getPropName());
+			parentSettingNamesBackward.add(parentColProp.getType()
+					.getPropName());
 			parentColProp = parentColProp.getBean().getParentProperty();
 		}
 		ArrayList<String> parentSettingNames = new ArrayList<String>();
@@ -98,6 +96,7 @@ public class Settings extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -110,6 +109,7 @@ public class Settings extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -123,7 +123,8 @@ public class Settings extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(Settings.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(Settings.class);
 
 	/**
 	 * @return the Biz Bean's type

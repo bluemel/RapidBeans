@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation;
 
-
-
 // BEGIN manual code section
 // MenuSeparator.import
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
@@ -24,9 +22,8 @@ import org.rapidbeans.presentation.swing.MenuSeparatorSwing;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuSeparator.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: MenuSeparator. Partially generated Java class !!!Do only
+ * edit manually in marked sections!!!
  **/
 public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 	// BEGIN manual code section
@@ -41,15 +38,16 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 	 * 
 	 * @return the instaance
 	 */
-	public static final MenuSeparator createInstance(final ConfigMenuSeparator config,
-			final Application client, final String resourcePath) {
+	public static final MenuSeparator createInstance(
+			final ConfigMenuSeparator config, final Application client,
+			final String resourcePath) {
 		MenuSeparator menuSeparator = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
 			menuSeparator = new MenuSeparatorSwing(config, client, resourcePath);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp-swt();
+			// mainWindow = new BBMainWindowEclispercp-swt();
 			break;
 		default:
 			throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -92,6 +90,7 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -104,6 +103,7 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -117,7 +117,8 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(MenuSeparator.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(MenuSeparator.class);
 
 	/**
 	 * @return the Biz Bean's type

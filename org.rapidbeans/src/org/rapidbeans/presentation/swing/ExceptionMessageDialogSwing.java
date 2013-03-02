@@ -33,7 +33,8 @@ import org.rapidbeans.presentation.ExceptionMessageDialog;
  */
 public class ExceptionMessageDialogSwing extends ExceptionMessageDialog {
 
-	private JDialog dialog = new JDialog((JFrame) ApplicationManager.getApplication().getMainwindow().getWidget());
+	private JDialog dialog = new JDialog((JFrame) ApplicationManager
+			.getApplication().getMainwindow().getWidget());
 
 	private JScrollPane scrollPane = new JScrollPane();
 
@@ -47,7 +48,8 @@ public class ExceptionMessageDialogSwing extends ExceptionMessageDialog {
 	 * @param title
 	 *            the dialog title
 	 */
-	public ExceptionMessageDialogSwing(final Throwable throwable, final String title) {
+	public ExceptionMessageDialogSwing(final Throwable throwable,
+			final String title) {
 		super(throwable, title);
 		this.dialog.setTitle(title);
 		this.dialog.setSize(600, 400);

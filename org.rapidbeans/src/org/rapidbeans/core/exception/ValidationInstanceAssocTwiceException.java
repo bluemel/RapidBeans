@@ -61,7 +61,8 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	}
 
 	/**
-	 * Constructor for ValidationInstanceAssocTwiceException with message and cause.
+	 * Constructor for ValidationInstanceAssocTwiceException with message and
+	 * cause.
 	 * 
 	 * @param sig
 	 *            a unique signature for a localized exception message.<br/>
@@ -75,16 +76,16 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationInstanceAssocTwiceException(
-			final String sig, final Object source,
-			final Link link,
-			final String message, final Throwable cause) {
+	public ValidationInstanceAssocTwiceException(final String sig,
+			final Object source, final Link link, final String message,
+			final Throwable cause) {
 		super(sig, source, message, cause);
 		this.link = link;
 	}
 
 	/**
-	 * Constructor for ValidationInstanceAssocTwiceException with message and arguments.
+	 * Constructor for ValidationInstanceAssocTwiceException with message and
+	 * arguments.
 	 * 
 	 * @param sig
 	 *            a unique signature for a localized exception message.<br/>
@@ -98,9 +99,9 @@ public class ValidationInstanceAssocTwiceException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationInstanceAssocTwiceException(
-			final String sig, final Object source, final Link link,
-			final String message, final Object[] messArgs) {
+	public ValidationInstanceAssocTwiceException(final String sig,
+			final Object source, final Link link, final String message,
+			final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 		this.link = link;
 	}

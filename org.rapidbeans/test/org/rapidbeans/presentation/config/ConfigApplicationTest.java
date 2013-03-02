@@ -25,16 +25,18 @@ public class ConfigApplicationTest extends TestCase {
 	 * load a test configuration.
 	 */
 	public void testLoadConfiguration() {
-		Document doc = new Document(
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/Client.xml"));
+		Document doc = new Document(new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Client.xml"));
 		ConfigApplication configRoot = (ConfigApplication) doc.getRoot();
 		ConfigDocument doccfg = configRoot.getDocuments().iterator().next();
 		assertEquals("billingperiod", doccfg.getName());
 		ConfigView stdViewcfg = doccfg.getViews().iterator().next();
 		assertEquals("trainings", stdViewcfg.getName());
-		List<ConfigEditorBean> edCfgs = (List<ConfigEditorBean>) configRoot.getBeaneditors();
+		List<ConfigEditorBean> edCfgs = (List<ConfigEditorBean>) configRoot
+				.getBeaneditors();
 		ConfigEditorBean edTrainer = edCfgs.get(4);
 		assertNull(edTrainer.getEditorclass());
-		assertEquals("org.rapidbeans.clubadmin.domain.Trainer", edTrainer.getBeantype());
+		assertEquals("org.rapidbeans.clubadmin.domain.Trainer",
+				edTrainer.getBeantype());
 	}
 }

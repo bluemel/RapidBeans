@@ -69,7 +69,8 @@ public class TypePropertyDate extends TypeProperty {
 
 		s = propertyNodes[0].getAttributeValue("@precision");
 		if (s != null) {
-			this.precision = (PrecisionDate) PrecisionDate.day.getType().elementOf(s);
+			this.precision = (PrecisionDate) PrecisionDate.day.getType()
+					.elementOf(s);
 		}
 
 		s = propertyNodes[0].getAttributeValue("@maxval");

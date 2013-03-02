@@ -27,9 +27,9 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 
 /**
- * This exception uses a signature to be localized via resource bundles.
- * In addition you can add an array of argument objects which can be used
- * to add details to the message.
+ * This exception uses a signature to be localized via resource bundles. In
+ * addition you can add an array of argument objects which can be used to add
+ * details to the message.
  * 
  * @author Martin Bluemel
  */
@@ -71,8 +71,7 @@ public class LocalizedException extends RapidBeansRuntimeException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public LocalizedException(final String sig,
-			final String message) {
+	public LocalizedException(final String sig, final String message) {
 		super(message);
 		this.signature = sig;
 	}
@@ -107,8 +106,8 @@ public class LocalizedException extends RapidBeansRuntimeException {
 	 * @param cause
 	 *            a throwable to nest
 	 */
-	public LocalizedException(final String sig,
-			final String message, final Throwable cause) {
+	public LocalizedException(final String sig, final String message,
+			final Throwable cause) {
 		super(message, cause);
 		this.signature = sig;
 	}
@@ -124,8 +123,8 @@ public class LocalizedException extends RapidBeansRuntimeException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public LocalizedException(final String sig,
-			final String message, final Object[] messArgs) {
+	public LocalizedException(final String sig, final String message,
+			final Object[] messArgs) {
 		super(message);
 		this.signature = sig;
 		this.messageArgs = messArgs;
@@ -202,9 +201,11 @@ public class LocalizedException extends RapidBeansRuntimeException {
 					Object[] oa = new Object[this.messageArgs.length];
 					for (int i = 0; i < this.messageArgs.length; i++) {
 						if (this.messageArgs[i] instanceof RapidBean) {
-							oa[i] = ((RapidBean) this.messageArgs[i]).toStringGuiId(locale);
+							oa[i] = ((RapidBean) this.messageArgs[i])
+									.toStringGuiId(locale);
 						} else if (this.messageArgs[i] instanceof Property) {
-							oa[i] = ((Property) this.messageArgs[i]).toStringGui(locale);
+							oa[i] = ((Property) this.messageArgs[i])
+									.toStringGui(locale);
 						} else {
 							oa[i] = this.messageArgs[i];
 						}

@@ -57,8 +57,8 @@ import org.rapidbeans.security.User;
  * 
  * @author Martin Bluemel
  */
-public abstract class EditorProperty
-		implements View, DocumentChangeListener, PropertyChangeListener {
+public abstract class EditorProperty implements View, DocumentChangeListener,
+		PropertyChangeListener {
 
 	/**
 	 * The null behavior.
@@ -137,8 +137,8 @@ public abstract class EditorProperty
 	}
 
 	/**
-	 * the editor's UI event lock to avoid input event feedback
-	 * during updating the UI accoring to a bean's contents.
+	 * the editor's UI event lock to avoid input event feedback during updating
+	 * the UI accoring to a bean's contents.
 	 */
 	private int uiEventLock = 0;
 
@@ -166,9 +166,9 @@ public abstract class EditorProperty
 	}
 
 	/**
-	 * the editor's specific UI update lock to avoid unwanted presentation
-	 * of normalized forms before having completed the input (usually used
-	 * text editors).
+	 * the editor's specific UI update lock to avoid unwanted presentation of
+	 * normalized forms before having completed the input (usually used text
+	 * editors).
 	 */
 	private int uiUpdateLock = 0;
 
@@ -221,8 +221,7 @@ public abstract class EditorProperty
 	/**
 	 * the listeners.
 	 */
-	private List<EditorPropertyListener> listeners =
-			new ArrayList<EditorPropertyListener>();
+	private List<EditorPropertyListener> listeners = new ArrayList<EditorPropertyListener>();
 
 	/**
 	 * @param listener
@@ -236,7 +235,8 @@ public abstract class EditorProperty
 	 * @param listener
 	 *            the listener to remove.
 	 */
-	public void removePropertyEditorListener(final EditorPropertyListener listener) {
+	public void removePropertyEditorListener(
+			final EditorPropertyListener listener) {
 		this.listeners.remove(listener);
 	}
 
@@ -339,7 +339,8 @@ public abstract class EditorProperty
 								equals = false;
 								break;
 							} else {
-								final Object o2 = oldValueCol.get(oldValueCol.indexOf(o1));
+								final Object o2 = oldValueCol.get(oldValueCol
+										.indexOf(o1));
 								if (o1 == null && o2 == null) {
 									// equals stays true, do nothing
 								} else if (o1 == null || o2 == null
@@ -354,11 +355,13 @@ public abstract class EditorProperty
 						&& newValue instanceof Collection<?>) {
 					final Collection<?> newValueCol = (Collection<?>) newValue;
 					if (newValueCol.size() != 1) {
-						throw new RapidBeansRuntimeException("Can't compare a bean with a"
-								+ " Collection with size != 1 (size == "
-								+ newValueCol.size() + ")");
+						throw new RapidBeansRuntimeException(
+								"Can't compare a bean with a"
+										+ " Collection with size != 1 (size == "
+										+ newValueCol.size() + ")");
 					}
-					final RapidBean newBean = (RapidBean) newValueCol.iterator().next();
+					final RapidBean newBean = (RapidBean) newValueCol
+							.iterator().next();
 					equals = oldValue.equals(newBean);
 				} else if (oldValue instanceof Collection<?>
 						&& newValue instanceof RapidBean) {
@@ -368,7 +371,8 @@ public abstract class EditorProperty
 								+ " Collection with size != 1 (size == "
 								+ oldValueCol.size() + ") with a bean");
 					}
-					final RapidBean oldBean = (RapidBean) oldValueCol.iterator().next();
+					final RapidBean oldBean = (RapidBean) oldValueCol
+							.iterator().next();
 					equals = oldBean.equals(newValue);
 				} else {
 					equals = newValue.equals(oldValue);
@@ -398,15 +402,13 @@ public abstract class EditorProperty
 	/**
 	 * validate an input field.
 	 * 
-	 * @return if the string in the input field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the input field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param ex
 	 *            the validation exception
 	 */
-	protected boolean hasPotentiallyValidInputField(
-			final ValidationException ex) {
+	protected boolean hasPotentiallyValidInputField(final ValidationException ex) {
 		return false;
 	}
 
@@ -420,8 +422,7 @@ public abstract class EditorProperty
 	 * @param prop
 	 *            the bean property to edit
 	 * @param bakProp
-	 *            the bean backup property
-	 *            used instead of a transaction
+	 *            the bean backup property used instead of a transaction
 	 * 
 	 * @return the editor object
 	 */
@@ -430,7 +431,7 @@ public abstract class EditorProperty
 			final Property bakProp) {
 		EditorProperty editor = null;
 		final PropertyType proptype = prop.getType().getProptype();
-		//        String proptypename = proptype.name();
+		// String proptypename = proptype.name();
 		String widgetname = null;
 		String classname = null;
 
@@ -439,11 +440,11 @@ public abstract class EditorProperty
 
 		if (editorConfig != null) {
 
-			final ConfigPropEditorBean propEditorConfig =
-					editorConfig.getPropertycfg(prop.getType().getPropName());
+			final ConfigPropEditorBean propEditorConfig = editorConfig
+					.getPropertycfg(prop.getType().getPropName());
 			if (propEditorConfig != null) {
-				final ConfigPropEditor propEditorConfigEditor =
-						propEditorConfig.getEditor();
+				final ConfigPropEditor propEditorConfigEditor = propEditorConfig
+						.getEditor();
 				if (propEditorConfigEditor != null) {
 					// 1st try: editorclass
 					if (propEditorConfigEditor.getEditorclass() != null) {
@@ -451,20 +452,24 @@ public abstract class EditorProperty
 					} else if (propEditorConfigEditor.getBasepackage() != null
 							&& propEditorConfigEditor.getClassnamepart() != null) {
 						classname = propEditorConfigEditor.getBasepackage()
-								+ "." + client.getConfiguration().getGuitype().name()
+								+ "."
+								+ client.getConfiguration().getGuitype().name()
 								+ ".EditorProperty"
 								+ propEditorConfigEditor.getClassnamepart()
-								+ StringHelper.upperFirstCharacter(client.getConfiguration().getGuitype().name());
+								+ StringHelper
+										.upperFirstCharacter(client
+												.getConfiguration()
+												.getGuitype().name());
 					}
 				}
 			}
 		}
 
 		if (classname == null) {
-			if ((prop.getBean() instanceof User
-					|| TypeRapidBean.isSameOrSubtype(
-					TypeRapidBean.forName("org.rapidbeans.security.User"),
-					prop.getBean().getType()))
+			if ((prop.getBean() instanceof User || TypeRapidBean
+					.isSameOrSubtype(TypeRapidBean
+							.forName("org.rapidbeans.security.User"), prop
+							.getBean().getType()))
 					&& prop instanceof PropertyString
 					&& prop.getType().getPropName().equals("pwd")) {
 				classname = "org.rapidbeans.presentation.swing.EditorPropertyPwd";
@@ -488,7 +493,8 @@ public abstract class EditorProperty
 				widgetname = "Date";
 				break;
 			case collection:
-				final TypePropertyCollection colProptype = (TypePropertyCollection) prop.getType();
+				final TypePropertyCollection colProptype = (TypePropertyCollection) prop
+						.getType();
 				if (colProptype.getMaxmult() == 1) {
 					widgetname = "Combobox";
 				} else {
@@ -496,8 +502,10 @@ public abstract class EditorProperty
 				}
 				break;
 			case quantity:
-				final TypePropertyQuantity qProptype = (TypePropertyQuantity) prop.getType();
-				if ((Currency.dollar).getType() == qProptype.getQuantitytype().getUnitInfo()) {
+				final TypePropertyQuantity qProptype = (TypePropertyQuantity) prop
+						.getType();
+				if ((Currency.dollar).getType() == qProptype.getQuantitytype()
+						.getUnitInfo()) {
 					widgetname = "Money";
 				} else {
 					widgetname = "Quantity";
@@ -507,7 +515,8 @@ public abstract class EditorProperty
 				widgetname = "File";
 				break;
 			case string:
-				final TypePropertyString sProptype = (TypePropertyString) prop.getType();
+				final TypePropertyString sProptype = (TypePropertyString) prop
+						.getType();
 				if (sProptype.getMultiline()) {
 					widgetname = "TextArea";
 				} else {
@@ -522,7 +531,8 @@ public abstract class EditorProperty
 					+ client.getConfiguration().getGuitype().name()
 					+ ".EditorProperty"
 					+ widgetname
-					+ StringHelper.upperFirstCharacter(client.getConfiguration().getGuitype().name());
+					+ StringHelper.upperFirstCharacter(client
+							.getConfiguration().getGuitype().name());
 		}
 
 		// instantiate the property editor
@@ -530,21 +540,31 @@ public abstract class EditorProperty
 		try {
 			clazz = Class.forName(classname);
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException("class " + classname + " not found", e);
+			throw new RapidBeansRuntimeException("class " + classname
+					+ " not found", e);
 		}
 		try {
-			Constructor<?> constr = clazz.getConstructor(BBEDITORPROP_CONSTRUCTOR_TYPES);
+			Constructor<?> constr = clazz
+					.getConstructor(BBEDITORPROP_CONSTRUCTOR_TYPES);
 			Object[] oa = { client, bizBeanEditor, prop, bakProp };
 			editor = (EditorProperty) constr.newInstance(oa);
 		} catch (NoSuchMethodException e) {
-			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \""
-					+ clazz.getName() + "\".\n" + "Constructor (Application, Property) not found.");
+			throw new RapidBeansRuntimeException(
+					"failed to initialize BBProp of Class \"" + clazz.getName()
+							+ "\".\n"
+							+ "Constructor (Application, Property) not found.");
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
-					+ "IllegalAccessException while calling the constructor.");
+			throw new RapidBeansRuntimeException(
+					"failed to initialize BBProp of Class \""
+							+ clazz.getName()
+							+ "\".\n"
+							+ "IllegalAccessException while calling the constructor.");
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException("failed to initialize BBProp of Class \"" + clazz.getName() + "\".\n"
-					+ "InstatiationException while calling the constructor.");
+			throw new RapidBeansRuntimeException(
+					"failed to initialize BBProp of Class \""
+							+ clazz.getName()
+							+ "\".\n"
+							+ "InstatiationException while calling the constructor.");
 		} catch (InvocationTargetException e) {
 			Throwable t = e.getTargetException();
 			if (t instanceof ExceptionInInitializerError) {
@@ -554,8 +574,10 @@ public abstract class EditorProperty
 				throw ((RuntimeException) t);
 			}
 			throw new RapidBeansRuntimeException(
-					"failed to initialize EditorProperty of Class \"" + clazz.getName() + "\".\n"
-							+ "InvocationTargetException caused by " + t.getClass().getName() + " \"" + t.getMessage()
+					"failed to initialize EditorProperty of Class \""
+							+ clazz.getName() + "\".\n"
+							+ "InvocationTargetException caused by "
+							+ t.getClass().getName() + " \"" + t.getMessage()
 							+ "\"" + " while calling the constructor.");
 		}
 
@@ -568,28 +590,29 @@ public abstract class EditorProperty
 	 * @param prop
 	 *            the bean property to edit
 	 * @param bakProp
-	 *            the backup property used instead of
-	 *            a transaction
+	 *            the backup property used instead of a transaction
 	 * @param beanEditor
 	 *            the parent bean editor
 	 * @param client
 	 *            the client
 	 */
 	protected EditorProperty(final Application client,
-			final EditorBean beanEditor,
-			final Property prop, final Property bakProp) {
+			final EditorBean beanEditor, final Property prop,
+			final Property bakProp) {
 		this.beanEditor = beanEditor;
 		this.property = prop;
 		this.propertyBak = bakProp;
 		this.locale = client.getCurrentLocale();
 		if (this.beanEditor != null) {
-			final ConfigEditorBean editorConfig = this.beanEditor.getConfiguration();
+			final ConfigEditorBean editorConfig = this.beanEditor
+					.getConfiguration();
 			if (editorConfig != null) {
-				final ConfigPropEditorBean propEditorConfig =
-						editorConfig.getPropertycfg(prop.getType().getPropName());
+				final ConfigPropEditorBean propEditorConfig = editorConfig
+						.getPropertycfg(prop.getType().getPropName());
 				if (propEditorConfig != null) {
 					if (propEditorConfig.getNullbehaviour() != null) {
-						this.nullBehaviour = propEditorConfig.getNullbehaviour();
+						this.nullBehaviour = propEditorConfig
+								.getNullbehaviour();
 					}
 				}
 			}
@@ -639,11 +662,7 @@ public abstract class EditorProperty
 	 * constant for constructor arguments of class TypeProperty.
 	 */
 	private static final Class<?>[] BBEDITORPROP_CONSTRUCTOR_TYPES = {
-			Application.class,
-			EditorBean.class,
-			Property.class,
-			Property.class
-	};
+			Application.class, EditorBean.class, Property.class, Property.class };
 
 	/**
 	 * close the bean property editor.

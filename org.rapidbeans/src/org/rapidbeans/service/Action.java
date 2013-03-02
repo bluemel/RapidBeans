@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.service;
 
-
-
 // BEGIN manual code section
 // Action.import
 import java.lang.reflect.Constructor;
@@ -33,9 +31,8 @@ import org.rapidbeans.presentation.ApplicationManager;
 // END manual code section
 
 /**
- * Rapid Bean class: Action.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: Action. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class Action extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -46,8 +43,8 @@ public class Action extends RapidBeanImplStrict {
 	 * @param name
 	 *            the argument name
 	 * 
-	 * @return the value of the action argument with the given name
-	 *         or null if not found
+	 * @return the value of the action argument with the given name or null if
+	 *         not found
 	 */
 	public String getArgumentValue(final String name) {
 		final Collection<ActionArgument> aarguments = this.getArguments();
@@ -69,8 +66,8 @@ public class Action extends RapidBeanImplStrict {
 	 * @param defaultval
 	 *            the default value if the argument is not defined
 	 * 
-	 * @return the value of the action argument with the given name
-	 *         or the given default if not found
+	 * @return the value of the action argument with the given name or the given
+	 *         default if not found
 	 */
 	public String getArgumentValue(final String name, final String defaultval) {
 		final String argval = this.getArgumentValue(name);
@@ -86,7 +83,8 @@ public class Action extends RapidBeanImplStrict {
 	 */
 	public void execute() {
 		final Application app = ApplicationManager.getApplication();
-		app.messageInfo(app.getCurrentLocale().getStringMessage("action.notyetimpl", this.getClassname()));
+		app.messageInfo(app.getCurrentLocale().getStringMessage(
+				"action.notyetimpl", this.getClassname()));
 	}
 
 	/**
@@ -109,8 +107,8 @@ public class Action extends RapidBeanImplStrict {
 		// construct action via reflection
 		try {
 			final Class<?> actionClass = Class.forName(this.getClassname());
-			Constructor<?> constructor =
-					actionClass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
+			Constructor<?> constructor = actionClass
+					.getConstructor(CONSTRUCTOR_PARAM_TYPES);
 			action = (Action) constructor.newInstance(CONSTRUCTOR_PARAMS);
 			if (this.getArguments() != null) {
 				for (final ActionArgument aa : this.getArguments()) {
@@ -122,15 +120,20 @@ public class Action extends RapidBeanImplStrict {
 			}
 			action.setRolesrequired(this.getRolesrequired());
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException("Action class not found: " + this.getClassname(), e);
+			throw new RapidBeansRuntimeException("Action class not found: "
+					+ this.getClassname(), e);
 		} catch (NoSuchMethodException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
+					+ e.getMessage());
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
+					+ e.getMessage());
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
+					+ e.getMessage());
 		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
+			throw new RapidBeansRuntimeException(e.getClass().getName() + ": "
+					+ e.getMessage());
 		}
 		action.setClassname(this.getClassname());
 		action.setWaitcursor(this.getWaitcursor());
@@ -143,8 +146,9 @@ public class Action extends RapidBeanImplStrict {
 		final Application app = ApplicationManager.getApplication();
 		String message = null;
 		try {
-			message = app.getCurrentLocale().getStringGui("action."
-					+ getClassname() + ".message." + getState().name());
+			message = app.getCurrentLocale().getStringGui(
+					"action." + getClassname() + ".message."
+							+ getState().name());
 		} catch (MissingResourceException me) {
 			message = null;
 		}
@@ -202,22 +206,22 @@ public class Action extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.classname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("classname");
-		this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("arguments");
-		this.state = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("state");
-		this.waitcursor = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("waitcursor");
-		this.background = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("background");
-		this.progressbar = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("progressbar");
-		this.rolesrequired = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("rolesrequired");
-		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("enabler");
+		this.classname = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("classname");
+		this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend) this
+				.getProperty("arguments");
+		this.state = (org.rapidbeans.core.basic.PropertyChoice) this
+				.getProperty("state");
+		this.waitcursor = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("waitcursor");
+		this.background = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("background");
+		this.progressbar = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("progressbar");
+		this.rolesrequired = (org.rapidbeans.core.basic.PropertyChoice) this
+				.getProperty("rolesrequired");
+		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend) this
+				.getProperty("enabler");
 	}
 
 	/**
@@ -235,6 +239,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -247,6 +252,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -260,7 +266,8 @@ public class Action extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(Action.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(Action.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -276,12 +283,14 @@ public class Action extends RapidBeanImplStrict {
 		try {
 			return (String) this.classname.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("classname");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"classname");
 		}
 	}
 
 	/**
 	 * setter for Property 'classname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
@@ -295,34 +304,45 @@ public class Action extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument> getArguments() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument>)
-			this.arguments.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument>) this.arguments
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("arguments");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"arguments");
 		}
 	}
 
 	/**
 	 * setter for Property 'arguments'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'arguments' to set
 	 */
-	public void setArguments(final java.util.Collection<org.rapidbeans.service.ActionArgument> argValue) {
+	public void setArguments(
+			final java.util.Collection<org.rapidbeans.service.ActionArgument> argValue) {
 		this.arguments.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addArgument(final org.rapidbeans.service.ActionArgument bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.arguments)
+				.addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void removeArgument(final org.rapidbeans.service.ActionArgument bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.arguments)
+				.removeLink(bean);
 	}
 
 	/**
@@ -330,25 +350,27 @@ public class Action extends RapidBeanImplStrict {
 	 */
 	public org.rapidbeans.service.ActionState getState() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.state.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.state
+					.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
 				return (org.rapidbeans.service.ActionState) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("state");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"state");
 		}
 	}
 
 	/**
 	 * setter for Property 'state'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'state' to set
 	 */
 	public void setState(final org.rapidbeans.service.ActionState argValue) {
-		java.util.List<org.rapidbeans.service.ActionState> list =
-			new java.util.ArrayList<org.rapidbeans.service.ActionState>();
+		java.util.List<org.rapidbeans.service.ActionState> list = new java.util.ArrayList<org.rapidbeans.service.ActionState>();
 		list.add(argValue);
 		this.state.setValue(list);
 	}
@@ -358,14 +380,17 @@ public class Action extends RapidBeanImplStrict {
 	 */
 	public boolean getWaitcursor() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.waitcursor).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.waitcursor)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("waitcursor");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"waitcursor");
 		}
 	}
 
 	/**
 	 * setter for Property 'waitcursor'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'waitcursor' to set
 	 */
@@ -378,14 +403,17 @@ public class Action extends RapidBeanImplStrict {
 	 */
 	public boolean getBackground() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.background).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.background)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("background");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"background");
 		}
 	}
 
 	/**
 	 * setter for Property 'background'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'background' to set
 	 */
@@ -398,14 +426,17 @@ public class Action extends RapidBeanImplStrict {
 	 */
 	public boolean getProgressbar() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.progressbar).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.progressbar)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("progressbar");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"progressbar");
 		}
 	}
 
 	/**
 	 * setter for Property 'progressbar'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'progressbar' to set
 	 */
@@ -419,18 +450,22 @@ public class Action extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public java.util.List<org.rapidbeans.core.basic.RapidEnum> getRolesrequired() {
 		try {
-			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.rolesrequired.getValue();
+			return (java.util.List<org.rapidbeans.core.basic.RapidEnum>) this.rolesrequired
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("rolesrequired");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"rolesrequired");
 		}
 	}
 
 	/**
 	 * setter for Property 'rolesrequired'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'rolesrequired' to set
 	 */
-	public void setRolesrequired(final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
+	public void setRolesrequired(
+			final java.util.List<org.rapidbeans.core.basic.RapidEnum> argValue) {
 		this.rolesrequired.setValue(argValue);
 	}
 
@@ -440,8 +475,8 @@ public class Action extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
-				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
+					.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
@@ -451,20 +486,24 @@ public class Action extends RapidBeanImplStrict {
 							+ "org.rapidbeans.presentation.enabler.Enabler"
 							+ "\" \"" + link.getIdString() + "\"");
 				} else {
-					return (org.rapidbeans.presentation.enabler.Enabler) col.iterator().next();
+					return (org.rapidbeans.presentation.enabler.Enabler) col
+							.iterator().next();
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("enabler");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"enabler");
 		}
 	}
 
 	/**
 	 * setter for Property 'enabler'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */
-	public void setEnabler(final org.rapidbeans.presentation.enabler.Enabler argValue) {
+	public void setEnabler(
+			final org.rapidbeans.presentation.enabler.Enabler argValue) {
 		this.enabler.setValue(argValue);
 	}
 }

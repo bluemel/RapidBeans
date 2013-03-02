@@ -92,11 +92,12 @@ public class EditorPropertyPwd extends EditorPropertySwing {
 	 *            the client
 	 */
 	public EditorPropertyPwd(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+			final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		if (!(prop instanceof PropertyString)) {
-			throw new RapidBeansRuntimeException("invalid property for pwd editor");
+			throw new RapidBeansRuntimeException(
+					"invalid property for pwd editor");
 		}
 		super.initColors();
 		this.button.setText(client.getCurrentLocale().getStringGui(
@@ -122,24 +123,17 @@ public class EditorPropertyPwd extends EditorPropertySwing {
 			}
 		});
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.state, new GridBagConstraints(
-				0, 0, 1, 1, 1.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL,
+		this.panel.add(this.state, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.button, new GridBagConstraints(
-				1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.NONE,
+		this.panel.add(this.button, new GridBagConstraints(1, 0, 1, 1, 0.0,
+				0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
 				new Insets(0, 5, 0, 0), 0, 0));
-		this.panel.add(this.buttonReset, new GridBagConstraints(
-				2, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.NONE,
+		this.panel.add(this.buttonReset, new GridBagConstraints(2, 0, 1, 1,
+				0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
 				new Insets(0, 5, 0, 0), 0, 0));
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.panel.setEnabled(false);
 		}
 		this.updateUI();
@@ -154,12 +148,20 @@ public class EditorPropertyPwd extends EditorPropertySwing {
 			final RapidBeansLocale loc = client.getCurrentLocale();
 			this.setUIEventLock();
 			if (this.getProperty().getValue() == null) {
-				this.state.setText(loc.getStringGui("editor.org.rapidbeans.security.user.pwd.state.unset"));
-				this.button.setText(loc.getStringGui("editor.org.rapidbeans.security.user.pwd.button.set"));
+				this.state
+						.setText(loc
+								.getStringGui("editor.org.rapidbeans.security.user.pwd.state.unset"));
+				this.button
+						.setText(loc
+								.getStringGui("editor.org.rapidbeans.security.user.pwd.button.set"));
 				this.buttonReset.setEnabled(false);
 			} else {
-				this.state.setText(loc.getStringGui("editor.org.rapidbeans.security.user.pwd.state.set"));
-				this.button.setText(loc.getStringGui("editor.org.rapidbeans.security.user.pwd.button.change"));
+				this.state
+						.setText(loc
+								.getStringGui("editor.org.rapidbeans.security.user.pwd.state.set"));
+				this.button
+						.setText(loc
+								.getStringGui("editor.org.rapidbeans.security.user.pwd.button.change"));
 				this.buttonReset.setEnabled(true);
 			}
 		} finally {

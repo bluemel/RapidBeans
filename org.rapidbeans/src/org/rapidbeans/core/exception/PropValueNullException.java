@@ -18,10 +18,9 @@
 package org.rapidbeans.core.exception;
 
 /**
- * Especially for primitive value type properties that are
- * not defined (null semantics). If you use a getter that directly
- * returns the primitive value and the property is null this
- * exception will be thrown.
+ * Especially for primitive value type properties that are not defined (null
+ * semantics). If you use a getter that directly returns the primitive value and
+ * the property is null this exception will be thrown.
  * 
  * @author Martin Bluemel
  */
@@ -67,7 +66,8 @@ public class PropValueNullException extends RapidBeansRuntimeException {
 	 * @param exception
 	 *            the nested exception
 	 */
-	public PropValueNullException(final String message, final Throwable exception) {
+	public PropValueNullException(final String message,
+			final Throwable exception) {
 		super(message, exception);
 	}
 }

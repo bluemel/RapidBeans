@@ -35,8 +35,8 @@ public class WorkTimeTest extends TestCase {
 			DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
 
 	/**
-	 * Constructor test:
-	 * the constructor initializes all date attribute to empty (null).
+	 * Constructor test: the constructor initializes all date attribute to empty
+	 * (null).
 	 */
 	public void testWorkTime() {
 		WorkTime worktime = new WorkTime();

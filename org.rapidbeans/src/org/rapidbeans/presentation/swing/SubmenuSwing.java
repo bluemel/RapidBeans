@@ -59,14 +59,14 @@ public class SubmenuSwing extends Submenu {
 	 *            the resource path
 	 */
 	public SubmenuSwing(final ConfigSubmenu submenuConfig,
-			final Application client,
-			final String resourcePath) {
+			final Application client, final String resourcePath) {
 		super(client, submenuConfig, resourcePath);
 		String menuText = null;
 		final RapidBeansLocale locale = client.getCurrentLocale();
 		if (locale != null) {
 			try {
-				menuText = locale.getStringGui(resourcePath + "." + this.getName() + ".label");
+				menuText = locale.getStringGui(resourcePath + "."
+						+ this.getName() + ".label");
 			} catch (MissingResourceException e) {
 				menuText = this.getName();
 			}

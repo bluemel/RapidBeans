@@ -18,8 +18,8 @@
 package org.rapidbeans.core.basic;
 
 /**
- * A Link is the super type for either a bean's id string (frozen link)
- * or a concrete bean (reference).
+ * A Link is the super type for either a bean's id string (frozen link) or a
+ * concrete bean (reference).
  * 
  * @author Martin Bluemel
  */

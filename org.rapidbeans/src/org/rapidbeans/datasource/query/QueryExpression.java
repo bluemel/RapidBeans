@@ -42,8 +42,8 @@ abstract class QueryExpression {
 	}
 
 	/**
-	 * break up the parent expsession link.
-	 * Used to avoid cyclic dependencies after parsing.
+	 * break up the parent expsession link. Used to avoid cyclic dependencies
+	 * after parsing.
 	 */
 	public void releaseParentExpression() {
 		this.parentExpression = null;
@@ -75,7 +75,8 @@ abstract class QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public abstract List<RapidBean> eval(Container db, List<RapidBean> selectionIn);
+	public abstract List<RapidBean> eval(Container db,
+			List<RapidBean> selectionIn);
 
 	/**
 	 * adds a child expression to the query expression.
@@ -83,7 +84,8 @@ abstract class QueryExpression {
 	 * @param childExpression
 	 *            the child expression to add.
 	 */
-	protected abstract void addChildExpression(final QueryExpression childExpression);
+	protected abstract void addChildExpression(
+			final QueryExpression childExpression);
 
 	/**
 	 * remove a child expression to the query expression.
@@ -91,7 +93,8 @@ abstract class QueryExpression {
 	 * @param childExpression
 	 *            the child expression to remove.
 	 */
-	protected abstract void removeChildExpression(QueryExpression childExpression);
+	protected abstract void removeChildExpression(
+			QueryExpression childExpression);
 
 	/**
 	 * @return the child expressions
@@ -124,7 +127,8 @@ abstract class QueryExpression {
 			final String spIndentIn) {
 
 		final StringBuffer s = new StringBuffer(sIn);
-		final String sAdd = this.getClass().getName() + ": " + this.getDumpString();
+		final String sAdd = this.getClass().getName() + ": "
+				+ this.getDumpString();
 		String spIndent = spIndentIn;
 		switch (ipDepth) {
 		case 0:
@@ -159,14 +163,17 @@ abstract class QueryExpression {
 			for (int i = 0; i < size; i++) {
 				child = (QueryExpression) childs.get(i);
 				if (i < size - 1) {
-					sRet = child.dump(sRet, ipDepth + 1, bpIsLast, false, spIndent);
+					sRet = child.dump(sRet, ipDepth + 1, bpIsLast, false,
+							spIndent);
 				} else {
-					sRet = child.dump(sRet, ipDepth + 1, bpIsLast, true, spIndent);
+					sRet = child.dump(sRet, ipDepth + 1, bpIsLast, true,
+							spIndent);
 				}
 			}
 		} catch (QueryException e) {
-			if (!e.getMessage().startsWith("attribute value condition"
-					+ " expressions do not have a child expressions")) {
+			if (!e.getMessage().startsWith(
+					"attribute value condition"
+							+ " expressions do not have a child expressions")) {
 				throw e;
 			}
 		}

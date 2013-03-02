@@ -56,22 +56,22 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.surname = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("surname");
-		this.prename = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("prename");
-		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate)
-				this.getProperty("dateofbirth");
-		this.city = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("city");
-		this.zipcode = (org.rapidbeans.core.basic.PropertyInteger)
-				this.getProperty("zipcode");
-		this.email = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("email");
-		this.sex = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("sex");
-		this.children = (org.rapidbeans.core.basic.PropertyCollection)
-				this.getProperty("children");
+		this.surname = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("surname");
+		this.prename = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("prename");
+		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate) this
+				.getProperty("dateofbirth");
+		this.city = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("city");
+		this.zipcode = (org.rapidbeans.core.basic.PropertyInteger) this
+				.getProperty("zipcode");
+		this.email = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("email");
+		this.sex = (org.rapidbeans.core.basic.PropertyChoice) this
+				.getProperty("sex");
+		this.children = (org.rapidbeans.core.basic.PropertyCollection) this
+				.getProperty("children");
 	}
 
 	/**
@@ -106,7 +106,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	/**
 	 * the Biz Bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(TestBeanTransient.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(TestBeanTransient.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -122,7 +123,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 		try {
 			return (String) this.surname.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("surname");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"surname");
 		}
 	}
 
@@ -132,8 +134,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'surname' to set
 	 */
-	public final void setSurname(
-			final String argValue) {
+	public final void setSurname(final String argValue) {
 		this.surname.setValue(argValue);
 	}
 
@@ -144,7 +145,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 		try {
 			return (String) this.prename.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("prename");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"prename");
 		}
 	}
 
@@ -154,8 +156,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'prename' to set
 	 */
-	public final void setPrename(
-			final String argValue) {
+	public final void setPrename(final String argValue) {
 		this.prename.setValue(argValue);
 	}
 
@@ -166,7 +167,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 		try {
 			return (java.util.Date) this.dateofbirth.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("dateofbirth");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"dateofbirth");
 		}
 	}
 
@@ -176,8 +178,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'dateofbirth' to set
 	 */
-	public final void setDateofbirth(
-			final java.util.Date argValue) {
+	public final void setDateofbirth(final java.util.Date argValue) {
 		this.dateofbirth.setValue(argValue);
 	}
 
@@ -188,7 +189,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 		try {
 			return (String) this.city.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("city");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"city");
 		}
 	}
 
@@ -198,8 +200,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'city' to set
 	 */
-	public final void setCity(
-			final String argValue) {
+	public final void setCity(final String argValue) {
 		this.city.setValue(argValue);
 	}
 
@@ -208,9 +209,11 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 */
 	public final int getZipcode() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyInteger) this.zipcode).getValueInt();
+			return ((org.rapidbeans.core.basic.PropertyInteger) this.zipcode)
+					.getValueInt();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("zipcode");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"zipcode");
 		}
 	}
 
@@ -220,8 +223,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'zipcode' to set
 	 */
-	public final void setZipcode(
-			final int argValue) {
+	public final void setZipcode(final int argValue) {
 		this.zipcode.setValue(new Integer(argValue));
 	}
 
@@ -232,7 +234,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 		try {
 			return (String) this.email.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("email");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"email");
 		}
 	}
 
@@ -242,8 +245,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'email' to set
 	 */
-	public final void setEmail(
-			final String argValue) {
+	public final void setEmail(final String argValue) {
 		this.email.setValue(argValue);
 	}
 
@@ -252,14 +254,16 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 */
 	public final org.rapidbeans.domain.org.Sex getSex() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.sex.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.sex
+					.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
 				return (org.rapidbeans.domain.org.Sex) enumList.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("sex");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"sex");
 		}
 	}
 
@@ -269,10 +273,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'sex' to set
 	 */
-	public final void setSex(
-			final org.rapidbeans.domain.org.Sex argValue) {
-		java.util.List<org.rapidbeans.domain.org.Sex> list =
-				new java.util.ArrayList<org.rapidbeans.domain.org.Sex>();
+	public final void setSex(final org.rapidbeans.domain.org.Sex argValue) {
+		java.util.List<org.rapidbeans.domain.org.Sex> list = new java.util.ArrayList<org.rapidbeans.domain.org.Sex>();
 		list.add(argValue);
 		this.sex.setValue(list);
 	}
@@ -283,9 +285,11 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public final java.util.Collection<org.rapidbeans.test.TestBean> getChildren() {
 		try {
-			return (java.util.Collection<org.rapidbeans.test.TestBean>) this.children.getValue();
+			return (java.util.Collection<org.rapidbeans.test.TestBean>) this.children
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("children");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"children");
 		}
 	}
 
@@ -307,7 +311,8 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 *            bean to add
 	 */
 	public final void addChildre(final org.rapidbeans.test.TestBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.children).addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.children)
+				.addLink(bean);
 	}
 
 	/**
@@ -317,6 +322,7 @@ public class TestBeanTransient extends RapidBeanImplStrict {
 	 *            bean to add
 	 */
 	public final void removeChildre(final org.rapidbeans.test.TestBean bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.children).removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.children)
+				.removeLink(bean);
 	}
 }

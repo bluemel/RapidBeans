@@ -45,8 +45,7 @@ public final class TypePropertyMap extends TypePropertyCollection {
 	}
 
 	/**
-	 * the default for the default.
-	 * HashMap is suitable in most cases.
+	 * the default for the default. HashMap is suitable in most cases.
 	 */
 	public static final Class<?> DEFAULT_MAP_CLASS_DEFAULT = HashMap.class;
 
@@ -56,8 +55,7 @@ public final class TypePropertyMap extends TypePropertyCollection {
 	private static Class<?> defaultMapClass = DEFAULT_MAP_CLASS_DEFAULT;
 
 	/**
-	 * set the default map class.
-	 * !!! caution: handle with care.
+	 * set the default map class. !!! caution: handle with care.
 	 * 
 	 * @param defMapClass
 	 *            the default map class
@@ -74,8 +72,8 @@ public final class TypePropertyMap extends TypePropertyCollection {
 	}
 
 	/**
-	 * the map class used for implementing this association role.
-	 * The default is a HashMap
+	 * the map class used for implementing this association role. The default is
+	 * a HashMap
 	 */
 	private Class<?> mapClass = defaultMapClass;
 
@@ -131,19 +129,21 @@ public final class TypePropertyMap extends TypePropertyCollection {
 			try {
 				this.mapClass = Class.forName(mapClassname);
 				if (!ClassHelper.classOf(Collection.class, this.mapClass)) {
-					throw new RapidBeansRuntimeException("Invalid collectionclass: Class \""
-							+ mapClassname + " is not a Collection.");
+					throw new RapidBeansRuntimeException(
+							"Invalid collectionclass: Class \"" + mapClassname
+									+ " is not a Collection.");
 				}
-				this.mapClassConstructor =
-						this.mapClass.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
+				this.mapClassConstructor = this.mapClass
+						.getConstructor(COLLECTION_CONSTR_PARAMTYPES);
 			} catch (ClassNotFoundException e) {
 				throw new RapidBeansRuntimeException("Collection class \""
 						+ mapClassname + " not found.");
 			} catch (NoSuchMethodException e) {
-				throw new RapidBeansRuntimeException("invalid collection class \""
-						+ mapClassname + "\" configured for collection"
-						+ " properties.\n"
-						+ "No empty default constructor found", e);
+				throw new RapidBeansRuntimeException(
+						"invalid collection class \"" + mapClassname
+								+ "\" configured for collection"
+								+ " properties.\n"
+								+ "No empty default constructor found", e);
 			}
 		}
 	}

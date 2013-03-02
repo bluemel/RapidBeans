@@ -62,7 +62,8 @@ public class RapidBeansRuntimeException extends RuntimeException {
 	 * @param exception
 	 *            the exception to nest
 	 */
-	public RapidBeansRuntimeException(final String message, final Throwable exception) {
+	public RapidBeansRuntimeException(final String message,
+			final Throwable exception) {
 		super(message, exception);
 	}
 }

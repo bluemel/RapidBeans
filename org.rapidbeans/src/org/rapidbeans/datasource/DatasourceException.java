@@ -56,7 +56,8 @@ public class DatasourceException extends RapidBeansRuntimeException {
 	 * @param nestedException
 	 *            the exception to nest
 	 */
-	public DatasourceException(final String message, final Throwable nestedException) {
+	public DatasourceException(final String message,
+			final Throwable nestedException) {
 		super(message, nestedException);
 	}
 

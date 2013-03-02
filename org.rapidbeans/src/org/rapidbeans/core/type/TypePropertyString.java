@@ -193,14 +193,9 @@ public class TypePropertyString extends TypeProperty {
 
 	private EscapeMap escapeMap = null;
 
-	private static final EscapeMap DEFAULT_ESCAPE_MAP =
-			new EscapeMap(new String[] {
-					"\n", "\\n",
-					"\t", "\\t",
-					"\r", "\\r",
-					"\b", "\\b",
-					"\\", "\\\\"
-			});
+	private static final EscapeMap DEFAULT_ESCAPE_MAP = new EscapeMap(
+			new String[] { "\n", "\\n", "\t", "\\t", "\r", "\\r", "\b", "\\b",
+					"\\", "\\\\" });
 
 	/**
 	 * @return the escape map

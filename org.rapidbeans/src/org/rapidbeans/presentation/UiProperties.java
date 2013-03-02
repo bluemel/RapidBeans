@@ -71,7 +71,8 @@ public class UiProperties {
 					+ "/presentation/gui.properties";
 			is = ClassLoader.getSystemResourceAsStream(path);
 			if (is == null) {
-				is = app.getClass().getResourceAsStream("presentation/gui.properties");
+				is = app.getClass().getResourceAsStream(
+						"presentation/gui.properties");
 			}
 			if (is == null) {
 				is = app.getClass().getResourceAsStream("gui.properties");

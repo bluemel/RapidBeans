@@ -21,8 +21,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Implements version arithmetics by simply splitting a version
- * string into components using a given delimiter.
+ * Implements version arithmetics by simply splitting a version string into
+ * components using a given delimiter.
  * 
  * @author Martin Bluemel
  */
@@ -66,24 +66,22 @@ public class Version {
 	 * Construct a version out of a version string.
 	 * 
 	 * @param versionString
-	 *            - the version string.
-	 *            '.' is assumed to be the separator character.
+	 *            - the version string. '.' is assumed to be the separator
+	 *            character.
 	 */
 	public Version(final String versionString) {
 		this(versionString, ".");
 	}
 
 	/**
-	 * Construct a version out of a version string
-	 * and one single delimiter
+	 * Construct a version out of a version string and one single delimiter
 	 * 
 	 * @param versionString
 	 *            the version string
 	 * @param separatorChars
 	 *            the separator character or characters to use
 	 */
-	protected Version(final String versionString,
-			final String separatorChars) {
+	protected Version(final String versionString, final String separatorChars) {
 		this.string = versionString;
 		this.components = StringHelper.split(versionString, separatorChars);
 	}
@@ -97,8 +95,7 @@ public class Version {
 			return false;
 		}
 		for (int i = 0; i < this.components.size(); i++) {
-			if (!this.components.get(i).equals(
-					v.components.get(i))) {
+			if (!this.components.get(i).equals(v.components.get(i))) {
 				return false;
 			}
 		}
@@ -152,7 +149,8 @@ public class Version {
 				}
 			} else if (componentNumThis == null && componentNumThat == null) {
 				// if both components are no numbers compare them alphabetical
-				final int c = componentStringThis.compareTo(componentStringThat);
+				final int c = componentStringThis
+						.compareTo(componentStringThat);
 				if (c > 0) {
 					return 1;
 				}

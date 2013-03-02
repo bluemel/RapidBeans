@@ -59,8 +59,8 @@ public final class TaskGenDtd extends Task {
 	 * not regarding modification dates.
 	 * 
 	 * @param argForce
-	 *            determines if the generation should be performed
-	 *            not regarding modification dates
+	 *            determines if the generation should be performed not regarding
+	 *            modification dates
 	 */
 	public void setForce(final boolean argForce) {
 		this.force = argForce;
@@ -102,8 +102,8 @@ public final class TaskGenDtd extends Task {
 	private String modelroot = null;
 
 	/**
-	 * Determine the input model root directory (folder).
-	 * The model files are only used for modification date check.
+	 * Determine the input model root directory (folder). The model files are
+	 * only used for modification date check.
 	 * 
 	 * @param modelroot
 	 *            the model root directory (folder).
@@ -126,7 +126,8 @@ public final class TaskGenDtd extends Task {
 		final TypeRapidBean rootType = TypeRapidBean.forName(this.type);
 
 		if (this.dtd == null) {
-			throw new BuildException("No DTD file defined. Please define value for attribute \"dtd\".");
+			throw new BuildException(
+					"No DTD file defined. Please define value for attribute \"dtd\".");
 		}
 		if (!this.dtd.getParentFile().exists()) {
 			if (!this.dtd.getParentFile().mkdirs()) {
@@ -136,22 +137,25 @@ public final class TaskGenDtd extends Task {
 		}
 
 		if (this.modelroot == null) {
-			getProject().log("     [gendtd]   no modelroot defined, force = true",
+			getProject().log(
+					"     [gendtd]   no modelroot defined, force = true",
 					Project.MSG_VERBOSE);
 			force = true;
 		}
 
 		final File modelrootDir = new File(this.modelroot);
-		getProject().log("     [gendtd]   modelroot: "
-				+ this.modelroot, Project.MSG_DEBUG);
-		getProject().log("     [gendtd]   modelroot path: "
-				+ modelrootDir.getPath(), Project.MSG_DEBUG);
-		getProject().log("     [gendtd]   modelroot absolute path: "
-				+ modelrootDir.getAbsolutePath(), Project.MSG_DEBUG);
+		getProject().log("     [gendtd]   modelroot: " + this.modelroot,
+				Project.MSG_DEBUG);
+		getProject().log(
+				"     [gendtd]   modelroot path: " + modelrootDir.getPath(),
+				Project.MSG_DEBUG);
+		getProject().log(
+				"     [gendtd]   modelroot absolute path: "
+						+ modelrootDir.getAbsolutePath(), Project.MSG_DEBUG);
 
 		if (!modelrootDir.exists()) {
-			throw new BuildException("Model root directory \""
-					+ this.modelroot + "\" not found");
+			throw new BuildException("Model root directory \"" + this.modelroot
+					+ "\" not found");
 		}
 		if (!modelrootDir.isDirectory()) {
 			throw new BuildException("Invalid model root directory. File \""
@@ -160,21 +164,19 @@ public final class TaskGenDtd extends Task {
 
 		long dirLatestModified = 0;
 		if (!this.force) {
-			dirLatestModified = getLatestModificationDirDate(
-					modelrootDir, rootType, 0);
+			dirLatestModified = getLatestModificationDirDate(modelrootDir,
+					rootType, 0);
 		}
 
-		if (!this.dtd.exists()
-				|| this.force
+		if (!this.dtd.exists() || this.force
 				|| dirLatestModified > this.dtd.lastModified()) {
 			this.getProject().log(
-					"     [gendtd] Processing bean type "
-							+ this.type
-							+ " to " + this.dtd.getAbsolutePath(),
-					Project.MSG_INFO);
+					"     [gendtd] Processing bean type " + this.type + " to "
+							+ this.dtd.getAbsolutePath(), Project.MSG_INFO);
 			OutputStreamWriter writer = null;
 			try {
-				writer = new OutputStreamWriter(new FileOutputStream(this.dtd), "UTF-8");
+				writer = new OutputStreamWriter(new FileOutputStream(this.dtd),
+						"UTF-8");
 				generateDTD(rootType, writer, this.getProject());
 			} catch (IOException e) {
 				throw new BuildException(e);
@@ -213,18 +215,16 @@ public final class TaskGenDtd extends Task {
 	 * @param xmlname
 	 *            the XML name
 	 * @param alreadydefined
-	 *            the map storing XML element / type combinations
-	 *            already described so far.
+	 *            the map storing XML element / type combinations already
+	 *            described so far.
 	 * @param writer
 	 *            the writer
 	 * @param project
 	 *            the ant project
 	 */
 	private static void generateDTD(final TypeRapidBean type,
-			final String xmlname,
-			final Map<String, Object> alreadydefined,
-			final Writer writer,
-			final Project project) {
+			final String xmlname, final Map<String, Object> alreadydefined,
+			final Writer writer, final Project project) {
 
 		try {
 			// write element name
@@ -232,8 +232,9 @@ public final class TaskGenDtd extends Task {
 			if (elementname == null) {
 				elementname = type.getXmlRootElement();
 				if (elementname == null) {
-					throw new BuildException("No XML root element definition for bean type \""
-							+ type.getName() + "\"");
+					throw new BuildException(
+							"No XML root element definition for bean type \""
+									+ type.getName() + "\"");
 				}
 			}
 
@@ -241,8 +242,8 @@ public final class TaskGenDtd extends Task {
 			alreadydefined.put(elementname, type);
 
 			// write sub element list
-			final List<TypePropertyCollection> colProptypes =
-					type.getColPropertyTypes();
+			final List<TypePropertyCollection> colProptypes = type
+					.getColPropertyTypes();
 			int proptypesWithElementXmlBindingCount = 0;
 			for (final TypeProperty proptype : type.getPropertyTypes()) {
 				if (proptype.getXmlBindingType() == PropertyXmlBindingType.element) {
@@ -261,8 +262,10 @@ public final class TaskGenDtd extends Task {
 					}
 				}
 				for (final TypePropertyCollection colPropType : colProptypes) {
-					if (colPropType.isComposition() && (!colPropType.isTransient())) {
-						for (final String subelementname : getSubelementNames(colPropType, type)) {
+					if (colPropType.isComposition()
+							&& (!colPropType.isTransient())) {
+						for (final String subelementname : getSubelementNames(
+								colPropType, type)) {
 							writer.write(" | ");
 							writer.write(subelementname);
 						}
@@ -281,7 +284,8 @@ public final class TaskGenDtd extends Task {
 						continue;
 					}
 					if ((!(proptype instanceof TypePropertyCollection))
-							|| (!((TypePropertyCollection) proptype).isComposition())) {
+							|| (!((TypePropertyCollection) proptype)
+									.isComposition())) {
 						attrcount++;
 					}
 				}
@@ -296,7 +300,8 @@ public final class TaskGenDtd extends Task {
 						continue;
 					}
 					if (proptype instanceof TypePropertyBoolean) {
-						writer.write("\t" + proptype.getPropName() + " (false | true)");
+						writer.write("\t" + proptype.getPropName()
+								+ " (false | true)");
 						if (proptype.getMandatory()) {
 							writer.write(" #REQUIRED");
 						} else {
@@ -304,13 +309,14 @@ public final class TaskGenDtd extends Task {
 						}
 						writer.write(LF);
 					} else if ((!(proptype instanceof TypePropertyCollection))
-							|| (!((TypePropertyCollection) proptype).isComposition())) {
+							|| (!((TypePropertyCollection) proptype)
+									.isComposition())) {
 						writer.write("\t" + proptype.getPropName() + " ");
 						if (proptype instanceof TypePropertyChoice) {
 							writer.write("(");
 							int i = 0;
-							for (final RapidEnum emumElement : ((TypePropertyChoice) proptype).getEnumType()
-									.getElements()) {
+							for (final RapidEnum emumElement : ((TypePropertyChoice) proptype)
+									.getEnumType().getElements()) {
 								if (i > 0) {
 									writer.write(" | ");
 								}
@@ -345,43 +351,57 @@ public final class TaskGenDtd extends Task {
 						writer.write(LF);
 						writer.write(LF);
 					}
-					//                    } else if (alreadydefined.get(proptype.getPropName()) != proptype) {
-					//                        if (alreadydefined.get(proptype.getPropName()) instanceof TypeRapidBean) {
-					//                            throw new BuildException("XML Element \"" + proptype.getPropName()
-					//                                    + "\" already used for bean type \"" + proptype.getName() + "\"");
-					//                        } else {
-					//                            throw new BuildException("XML Element \"" + proptype.getPropName()
-					//                                    + "\" already used for property type \"" + proptype.getPropName() + "\"");
-					//                        }
-					//                    }
+					// } else if (alreadydefined.get(proptype.getPropName()) !=
+					// proptype) {
+					// if (alreadydefined.get(proptype.getPropName()) instanceof
+					// TypeRapidBean) {
+					// throw new BuildException("XML Element \"" +
+					// proptype.getPropName()
+					// + "\" already used for bean type \"" + proptype.getName()
+					// + "\"");
+					// } else {
+					// throw new BuildException("XML Element \"" +
+					// proptype.getPropName()
+					// + "\" already used for property type \"" +
+					// proptype.getPropName() + "\"");
+					// }
+					// }
 				}
 			}
 
 			// recurse over composition associated types
 			for (final TypePropertyCollection colPropType : colProptypes) {
-				if (!colPropType.isComposition()
-						|| colPropType.isTransient()) {
+				if (!colPropType.isComposition() || colPropType.isTransient()) {
 					continue;
 				}
-				for (final String subelementname : getSubelementNames(colPropType, type)) {
+				for (final String subelementname : getSubelementNames(
+						colPropType, type)) {
 					TypeRapidBean targetType = colPropType.getTargetType();
 					if (type.getXmlElementsTypeMap() != null
 							&& type.getXmlElementsTypeMap().get(subelementname) != null) {
-						targetType = type.getXmlElementsTypeMap().get(subelementname);
+						targetType = type.getXmlElementsTypeMap().get(
+								subelementname);
 					}
 					if (alreadydefined.get(subelementname) == null) {
-						generateDTD(targetType, subelementname, alreadydefined, writer, project);
+						generateDTD(targetType, subelementname, alreadydefined,
+								writer, project);
 					} else if (alreadydefined.get(subelementname) != targetType) {
 						if (alreadydefined.get(subelementname) instanceof TypeRapidBean) {
-							throw new BuildException("XML Element \"" + subelementname
-									+ "\" already used for bean type \""
-									+ ((TypeRapidBean) alreadydefined.get(subelementname)).getName()
-									+ "\"");
+							throw new BuildException(
+									"XML Element \""
+											+ subelementname
+											+ "\" already used for bean type \""
+											+ ((TypeRapidBean) alreadydefined
+													.get(subelementname))
+													.getName() + "\"");
 						} else {
-							throw new BuildException("XML Element \"" + subelementname
-									+ "\" already used for property type \""
-									+ ((TypeProperty) alreadydefined.get(subelementname)).getPropName()
-									+ "\"");
+							throw new BuildException(
+									"XML Element \""
+											+ subelementname
+											+ "\" already used for property type \""
+											+ ((TypeProperty) alreadydefined
+													.get(subelementname))
+													.getPropName() + "\"");
 						}
 					}
 				}
@@ -395,11 +415,12 @@ public final class TaskGenDtd extends Task {
 	 * @param colPropType
 	 * @return
 	 */
-	private static List<String> getSubelementNames(final TypePropertyCollection colPropType,
-			final TypeRapidBean type) {
+	private static List<String> getSubelementNames(
+			final TypePropertyCollection colPropType, final TypeRapidBean type) {
 		final List<String> subelementNames = new ArrayList<String>();
 		if (type.getXmlElements() != null && type.getXmlElements().size() > 0) {
-			for (final Entry<String, TypeProperty> entry : type.getXmlElements().entrySet()) {
+			for (final Entry<String, TypeProperty> entry : type
+					.getXmlElements().entrySet()) {
 				if (colPropType == entry.getValue()) {
 					subelementNames.add(entry.getKey());
 				}
@@ -407,9 +428,9 @@ public final class TaskGenDtd extends Task {
 		}
 		if (subelementNames.size() == 0) {
 			String subelementName = colPropType.getPropName();
-			if (colPropType.getMaxmult() != 1
-					|| subelementName.endsWith("s")) {
-				subelementName = subelementName.substring(0, subelementName.length() - 1);
+			if (colPropType.getMaxmult() != 1 || subelementName.endsWith("s")) {
+				subelementName = subelementName.substring(0,
+						subelementName.length() - 1);
 			}
 			subelementNames.add(subelementName);
 		}
@@ -417,13 +438,12 @@ public final class TaskGenDtd extends Task {
 	}
 
 	/**
-	 * iterates recursively over a complete directory tree
-	 * and determines the newest (latest) modification date
-	 * of all the directories contained in the file system
-	 * hierarchy.
+	 * iterates recursively over a complete directory tree and determines the
+	 * newest (latest) modification date of all the directories contained in the
+	 * file system hierarchy.
 	 */
-	protected static long getLatestModificationDirDate(
-			final File dir, final TypeRapidBean type, final long latest) {
+	protected static long getLatestModificationDirDate(final File dir,
+			final TypeRapidBean type, final long latest) {
 		long lastModified = latest;
 		final File typefile = new File(dir, type.getName().replace('.', '/'));
 		if (typefile.lastModified() > lastModified) {
@@ -431,16 +451,18 @@ public final class TaskGenDtd extends Task {
 		}
 
 		// recurse over composition associated types
-		for (final TypePropertyCollection colPropType : type.getColPropertyTypes()) {
-			if (!colPropType.isComposition()
-					|| colPropType.isTransient()) {
+		for (final TypePropertyCollection colPropType : type
+				.getColPropertyTypes()) {
+			if (!colPropType.isComposition() || colPropType.isTransient()) {
 				continue;
 			}
-			for (final String subelementname : getSubelementNames(colPropType, type)) {
+			for (final String subelementname : getSubelementNames(colPropType,
+					type)) {
 				if (type.getXmlElementsTypeMap() != null
 						&& type.getXmlElementsTypeMap().get(subelementname) != null) {
-					lastModified = getLatestModificationDirDate(dir,
-							type.getXmlElementsTypeMap().get(subelementname), lastModified);
+					lastModified = getLatestModificationDirDate(dir, type
+							.getXmlElementsTypeMap().get(subelementname),
+							lastModified);
 				} else if (!(colPropType.getTargetType().equals(type))) {
 					lastModified = getLatestModificationDirDate(dir,
 							colPropType.getTargetType(), lastModified);

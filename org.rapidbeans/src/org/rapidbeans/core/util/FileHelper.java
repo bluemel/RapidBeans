@@ -42,8 +42,8 @@ import org.rapidbeans.core.exception.UtilException;
  */
 public final class FileHelper {
 
-	private static final Logger log = Logger.getLogger(
-			FileHelper.class.getName());
+	private static final Logger log = Logger.getLogger(FileHelper.class
+			.getName());
 
 	/**
 	 * copies directory trees.
@@ -87,10 +87,12 @@ public final class FileHelper {
 	public static void copyDeep(final File src, final File tgt,
 			final boolean force, final boolean excludeSvnDirs) {
 		if (!src.exists()) {
-			throw new UtilException("source folder \"" + src.getAbsolutePath() + "\" not found.");
+			throw new UtilException("source folder \"" + src.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (!src.isDirectory()) {
-			throw new UtilException("source file \"" + src.getAbsolutePath() + "\" isn't a folder.");
+			throw new UtilException("source file \"" + src.getAbsolutePath()
+					+ "\" isn't a folder.");
 		}
 		if (!tgt.exists()) {
 			if (!tgt.mkdirs()) {
@@ -99,14 +101,16 @@ public final class FileHelper {
 			}
 		}
 		if (!tgt.isDirectory()) {
-			throw new UtilException("target file \"" + tgt.getAbsolutePath() + "\" isn't a folder.");
+			throw new UtilException("target file \"" + tgt.getAbsolutePath()
+					+ "\" isn't a folder.");
 		}
 		File[] subfiles = src.listFiles();
 		File subtgt;
 		for (int i = 0; i < subfiles.length; i++) {
 			subtgt = new File(tgt, subfiles[i].getName());
 			if (subfiles[i].isDirectory()) {
-				if ((!excludeSvnDirs) || (!subfiles[i].getName().equals(".svn"))) {
+				if ((!excludeSvnDirs)
+						|| (!subfiles[i].getName().equals(".svn"))) {
 					copyDeep(subfiles[i], subtgt, force, excludeSvnDirs);
 				}
 			} else {
@@ -147,13 +151,16 @@ public final class FileHelper {
 	 * @param force
 	 *            forces copy regardless of modification dates
 	 */
-	public static void copyFile(final File src, final File tgt, final boolean force) {
+	public static void copyFile(final File src, final File tgt,
+			final boolean force) {
 		if (!src.exists()) {
-			throw new UtilException("source file \"" + src.getAbsolutePath() + "\" not found.");
+			throw new UtilException("source file \"" + src.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (tgt.exists()) {
 			if (!tgt.canWrite()) {
-				throw new UtilException("target file \"" + tgt.getAbsolutePath() + "\" is not writable.");
+				throw new UtilException("target file \""
+						+ tgt.getAbsolutePath() + "\" is not writable.");
 			}
 		}
 
@@ -173,7 +180,8 @@ public final class FileHelper {
 				is.close();
 				os.close();
 			} catch (InterruptedException e) {
-				throw new UtilException("InterruptedException: " + e.getMessage());
+				throw new UtilException("InterruptedException: "
+						+ e.getMessage());
 			} catch (FileNotFoundException e) {
 				throw new UtilException("FileNotFound: " + e.getMessage());
 			} catch (IOException e) {
@@ -208,11 +216,13 @@ public final class FileHelper {
 					deleteDeep(file, force);
 				}
 				if (!del.delete()) {
-					throw new UtilException("Could not delete directory \"" + del.getAbsolutePath() + "\"");
+					throw new UtilException("Could not delete directory \""
+							+ del.getAbsolutePath() + "\"");
 				}
 			} else {
 				if (!del.delete()) {
-					throw new UtilException("Could not delete file \"" + del.getAbsolutePath() + "\"");
+					throw new UtilException("Could not delete file \""
+							+ del.getAbsolutePath() + "\"");
 				}
 			}
 		}
@@ -226,35 +236,36 @@ public final class FileHelper {
 	 * @param sdir2
 	 *            the path to the second directory
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
 	public static boolean dirsEqual(final File dir1, final String sdir2) {
 		return dirsEqual(dir1, new File(sdir2), -1, false);
 	}
 
 	/**
-	 * Compares all files in a directory tree but exclude
-	 * directories that start with dot.
+	 * Compares all files in a directory tree but exclude directories that start
+	 * with dot.
 	 * 
 	 * @param dir1
 	 *            the first directory
 	 * @param sdir2
 	 *            the path to the second directory
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
-	public static boolean dirsEqualExcludeDotDirs(final File dir1, final String sdir2) {
+	public static boolean dirsEqualExcludeDotDirs(final File dir1,
+			final String sdir2) {
 		return dirsEqual(dir1, new File(sdir2), -1, true);
 	}
 
 	/**
-	 * Compares all files in a directory tree in a configurable manner.
-	 * - you can configure the depth of the compare
-	 * - you can configure if sub directories that start with . should
-	 * be excluded from the comparison. This is useful for instance
-	 * if the test data is version controlled with Subversion.
+	 * Compares all files in a directory tree in a configurable manner. - you
+	 * can configure the depth of the compare - you can configure if sub
+	 * directories that start with . should be excluded from the comparison.
+	 * This is useful for instance if the test data is version controlled with
+	 * Subversion.
 	 * 
 	 * directories that start with dot.
 	 * 
@@ -263,31 +274,35 @@ public final class FileHelper {
 	 * @param dir2
 	 *            the second directory
 	 * @param depth
-	 *            the depth of comparison in the directory tree.
-	 *            To specify infinite depth just set this parameter
-	 *            to a negative number e. g. -1.
+	 *            the depth of comparison in the directory tree. To specify
+	 *            infinite depth just set this parameter to a negative number e.
+	 *            g. -1.
 	 * @param excludedotdirs
-	 *            if true sub directories that start with . are
-	 *            excluded from comparison.
+	 *            if true sub directories that start with . are excluded from
+	 *            comparison.
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
 	public static boolean dirsEqual(final File dir1, final File dir2,
 			final int depth, final boolean excludedotdirs) {
 		boolean equals = true;
 
 		if (!dir1.exists()) {
-			throw new UtilException("folder \"" + dir1.getAbsolutePath() + "\" not found.");
+			throw new UtilException("folder \"" + dir1.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (!dir1.isDirectory()) {
-			throw new UtilException("folder \"" + dir1.getAbsolutePath() + "\" is not a directory.");
+			throw new UtilException("folder \"" + dir1.getAbsolutePath()
+					+ "\" is not a directory.");
 		}
 		if (!dir2.exists()) {
-			throw new UtilException("folder \"" + dir2.getAbsolutePath() + "\" not found.");
+			throw new UtilException("folder \"" + dir2.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (!dir2.isDirectory()) {
-			throw new UtilException("folder \"" + dir2.getAbsolutePath() + "\" is not a directory.");
+			throw new UtilException("folder \"" + dir2.getAbsolutePath()
+					+ "\" is not a directory.");
 		}
 
 		if (!dir1.getName().equals(dir2.getName())) {
@@ -319,9 +334,11 @@ public final class FileHelper {
 			for (int i = 0; i < subfiles1.length && equals; i++) {
 				if (subfiles1[i].isDirectory()) {
 					if (depth < 0) {
-						equals = dirsEqual(subfiles1[i], subfiles2[i], depth, excludedotdirs);
+						equals = dirsEqual(subfiles1[i], subfiles2[i], depth,
+								excludedotdirs);
 					} else if (depth > 1) {
-						equals = dirsEqual(subfiles1[i], subfiles2[i], depth - 1, excludedotdirs);
+						equals = dirsEqual(subfiles1[i], subfiles2[i],
+								depth - 1, excludedotdirs);
 					}
 				} else {
 					equals = filesEqual(subfiles1[i], subfiles2[i]);
@@ -357,25 +374,27 @@ public final class FileHelper {
 	 * @param differentNamesAllowed
 	 *            if different file names are allowed
 	 * @param compareLineByLine
-	 *            for text files only. You'll get the
-	 *            line where the first difference occurs in the error message
+	 *            for text files only. You'll get the line where the first
+	 *            difference occurs in the error message
 	 * 
 	 * @return true if the files' content is equal,<br/>
 	 *         false if there are differences
 	 */
 	public static boolean filesEqual(final File file1, final File file2,
-			final boolean differentNamesAllowed,
-			final boolean compareLineByLine) {
+			final boolean differentNamesAllowed, final boolean compareLineByLine) {
 		boolean equals = true;
 
 		if (!file1.exists()) {
-			throw new UtilException("file \"" + file1.getAbsolutePath() + "\" not found.");
+			throw new UtilException("file \"" + file1.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (!file2.exists()) {
-			throw new UtilException("file \"" + file2.getAbsolutePath() + "\" not found.");
+			throw new UtilException("file \"" + file2.getAbsolutePath()
+					+ "\" not found.");
 		}
 		if (!file1.isFile()) {
-			throw new UtilException("file \"" + file1.getAbsolutePath() + "\" not a normal file.");
+			throw new UtilException("file \"" + file1.getAbsolutePath()
+					+ "\" not a normal file.");
 		}
 		if (!file2.isFile()) {
 			return false;
@@ -396,10 +415,10 @@ public final class FileHelper {
 		LineNumberReader r2 = null;
 		try {
 			if (compareLineByLine) {
-				r1 = new LineNumberReader(
-						new InputStreamReader(new FileInputStream(file1)));
-				r2 = new LineNumberReader(
-						new InputStreamReader(new FileInputStream(file2)));
+				r1 = new LineNumberReader(new InputStreamReader(
+						new FileInputStream(file1)));
+				r2 = new LineNumberReader(new InputStreamReader(
+						new FileInputStream(file2)));
 
 				String l1 = r1.readLine();
 				String l2 = r2.readLine();
@@ -408,17 +427,19 @@ public final class FileHelper {
 						log.fine("files have different number of lines:");
 						log.fine("- file 1: " + file1.getAbsolutePath());
 						log.fine("- file 2: " + file2.getAbsolutePath());
-						log.fine(" line " + r1.getLineNumber() + " of file 1 not"
-								+ " found in file 2");
+						log.fine(" line " + r1.getLineNumber()
+								+ " of file 1 not" + " found in file 2");
 						equals = false;
 						break;
 					}
 					if (!l1.equals(l2)) {
 						log.fine("files differ:");
 						log.fine("- file 1: " + file1.getAbsolutePath());
-						log.fine("  line " + r1.getLineNumber() + ": \"" + l1 + "\"");
+						log.fine("  line " + r1.getLineNumber() + ": \"" + l1
+								+ "\"");
 						log.fine("- file 2: " + file2.getAbsolutePath());
-						log.fine("  line " + r2.getLineNumber() + ": \"" + l2 + "\"");
+						log.fine("  line " + r2.getLineNumber() + ": \"" + l2
+								+ "\"");
 						equals = false;
 						break;
 					}
@@ -481,17 +502,19 @@ public final class FileHelper {
 	}
 
 	/**
-	 * List all files in a directory except the files with names matching
-	 * the given pattern.
+	 * List all files in a directory except the files with names matching the
+	 * given pattern.
 	 * 
 	 * @param dir
 	 *            the directory to list
 	 * @param filter
 	 *            the filter pattern for filenames to exclude
 	 * 
-	 * @return the found files and sub directories except the ones matching the pattern
+	 * @return the found files and sub directories except the ones matching the
+	 *         pattern
 	 */
-	public static File[] listFilesExcludeFilter(final File dir, final String filter) {
+	public static File[] listFilesExcludeFilter(final File dir,
+			final String filter) {
 		ArrayList<File> l = new ArrayList<File>();
 		File[] files = dir.listFiles();
 		File[] excludedFiles = dir.listFiles(new FileFilterRegExp(filter));
@@ -511,8 +534,7 @@ public final class FileHelper {
 	 * @param filename
 	 *            the file name to search for
 	 * 
-	 * @return true if the file has been found or
-	 *         null if no file has been found
+	 * @return true if the file has been found or null if no file has been found
 	 */
 	public static boolean containsFileWithName(final File[] array,
 			final String filename) {
@@ -525,10 +547,8 @@ public final class FileHelper {
 	}
 
 	/**
-	 * Creates a directory / folder according to the
-	 * given file handle.
-	 * Parent directories / folders will also be created
-	 * if necessary.
+	 * Creates a directory / folder according to the given file handle. Parent
+	 * directories / folders will also be created if necessary.
 	 * 
 	 * @param dir
 	 *            specifies the directory / folder to be created.
@@ -567,11 +587,13 @@ public final class FileHelper {
 	public static File backup(final File file, final String extension) {
 		if (file.isDirectory()) {
 			throw new RapidBeansRuntimeException("Can not backup directory \""
-					+ file.getAbsolutePath() + "\". Only flat files can be backed up.");
+					+ file.getAbsolutePath()
+					+ "\". Only flat files can be backed up.");
 		}
 		if (!file.exists()) {
-			throw new RapidBeansRuntimeException("Can not backup non existing file \""
-					+ file.getAbsolutePath() + "\".");
+			throw new RapidBeansRuntimeException(
+					"Can not backup non existing file \""
+							+ file.getAbsolutePath() + "\".");
 		}
 		String backupFileName = tmpFilename(file);
 		if (extension != null) {
@@ -587,7 +609,8 @@ public final class FileHelper {
 	}
 
 	public static String tmpFilename(final String filename) {
-		return basename(filename) + "_" + backupDateString() + "." + extension(filename);
+		return basename(filename) + "_" + backupDateString() + "."
+				+ extension(filename);
 	}
 
 	public static String backupDateString() {
@@ -599,7 +622,8 @@ public final class FileHelper {
 	}
 
 	public static String basename(final String filename) {
-		return StringHelper.splitBeforeLast(StringHelper.splitLast(filename, "/\\"), ".");
+		return StringHelper.splitBeforeLast(
+				StringHelper.splitLast(filename, "/\\"), ".");
 	}
 
 	public static String extension(final File file) {
@@ -607,7 +631,8 @@ public final class FileHelper {
 	}
 
 	public static String extension(final String filename) {
-		return StringHelper.splitLast(StringHelper.splitLast(filename, "/\\"), ".");
+		return StringHelper.splitLast(StringHelper.splitLast(filename, "/\\"),
+				".");
 	}
 
 	/**
@@ -648,7 +673,8 @@ public final class FileHelper {
 		FileOutputStream os = null;
 		try {
 			is = new FileInputStream(file);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(
+					(int) file.length());
 			int c;
 			while ((c = is.read()) != -1) {
 				bos.write(c);
@@ -682,15 +708,18 @@ public final class FileHelper {
 	 * @param path
 	 *            the path to shorten
 	 * @param maxStart
-	 *            the maximal start string length (except we have one single start path component;
+	 *            the maximal start string length (except we have one single
+	 *            start path component;
 	 * @param shortcutSign
 	 *            the shortcut sign
 	 * @param maxEnd
-	 *            the maximal end string length (except we have one single start path component;
+	 *            the maximal end string length (except we have one single start
+	 *            path component;
 	 * 
 	 * @return the shortened string
 	 */
-	public static String shortenPathCenter(final String string, final int maxStart, String shortcutSign, int maxEnd) {
+	public static String shortenPathCenter(final String string,
+			final int maxStart, String shortcutSign, int maxEnd) {
 		if (string.length() <= maxStart + maxEnd) {
 			return string;
 		}
@@ -702,7 +731,8 @@ public final class FileHelper {
 		} else {
 			return string;
 		}
-		final List<String> pathComponents = StringHelper.split(string, separator);
+		final List<String> pathComponents = StringHelper.split(string,
+				separator);
 		final StringBuffer buf = new StringBuffer();
 		int index = 0;
 		while (buf.length() < maxStart && index < pathComponents.size()) {

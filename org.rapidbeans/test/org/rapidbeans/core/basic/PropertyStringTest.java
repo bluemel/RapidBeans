@@ -26,10 +26,9 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for default and getValue().
 	 */
 	public void testDefaultAndGetValue() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"test1\""
-						+ "/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"test1\"" + "/>");
 		assertEquals("test1", prop.getValue());
 	}
 
@@ -37,8 +36,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for default and getValue().
 	 */
 	public void testDefaultAndGetValueNull() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\"/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\"/>");
 		assertNull(prop.getValue());
 	}
 
@@ -47,10 +46,8 @@ public class PropertyStringTest extends TestCase {
 	 */
 	public void testDefaultValueInvalid() {
 		try {
-			this.createStringProperty(
-					"<property name=\"test\" type=\"string\""
-							+ " maxlen=\"1\" default=\"xx\""
-							+ "/>");
+			this.createStringProperty("<property name=\"test\" type=\"string\""
+					+ " maxlen=\"1\" default=\"xx\"" + "/>");
 			fail("expected ValidationException");
 		} catch (ValidationException e) {
 			assertTrue(true);
@@ -61,10 +58,9 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToString() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"test3\""
-						+ "/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"test3\"" + "/>");
 		assertEquals("test3", prop.toString());
 	}
 
@@ -72,8 +68,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToStringNull() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\"/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\"/>");
 		assertNull(prop.toString());
 	}
 
@@ -81,8 +77,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValue() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ "/>");
 		assertNull(prop.getValue());
 		prop.setValue("test2");
@@ -93,8 +89,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValueNull() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ " default=\"xxx\"/>");
 		assertEquals("xxx", prop.getValue());
 		prop.setValue(null);
@@ -105,8 +101,8 @@ public class PropertyStringTest extends TestCase {
 	 * test of method convertValue(): happy day.
 	 */
 	public void testConvertString() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ "/>");
 		assertEquals("Asdf", prop.convertValue("Asdf"));
 	}
@@ -115,8 +111,8 @@ public class PropertyStringTest extends TestCase {
 	 * test of method convertValue(): invalid class.
 	 */
 	public void testConvertInvalid() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ "/>");
 		try {
 			prop.convertValue(new Integer("123"));
@@ -133,8 +129,8 @@ public class PropertyStringTest extends TestCase {
 	 * Happy day test for validation.
 	 */
 	public void testValidateOk() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ " minlen=\"6\" maxlen=\"30\" pattern=\".*@.*\""
 						+ "/>");
 		prop.validate("martin.bluemel@web.de");
@@ -144,8 +140,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test for validation of a String that is empty.
 	 */
 	public void testValidateEmpty() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\"/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\"/>");
 		try {
 			prop.validate("");
 			fail("expected validation exception");
@@ -155,12 +151,12 @@ public class PropertyStringTest extends TestCase {
 	}
 
 	/**
-	 * Test for validation of a String that is empty
-	 * if this is explicitly allowed.
+	 * Test for validation of a String that is empty if this is explicitly
+	 * allowed.
 	 */
 	public void testValidateEmptyOk() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\" emptyvalid=\"true\"/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\" emptyvalid=\"true\"/>");
 		prop.validate("");
 	}
 
@@ -168,8 +164,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test for validation of a String that undergoes minlen.
 	 */
 	public void testValidateTooShort() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ " minlen=\"6\" maxlen=\"30\" pattern=\".*@.*\""
 						+ "/>");
 		try {
@@ -184,8 +180,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test for validation of a String that exceeds maxlen.
 	 */
 	public void testValidateTooLong() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ " minlen=\"6\" maxlen=\"30\" pattern=\".*@.*\""
 						+ "/>");
 		try {
@@ -200,8 +196,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test for validation of a String that exceeds maxlen.
 	 */
 	public void testValidateWrongPattern() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ " minlen=\"6\" maxlen=\"30\" pattern=\".*@.*\""
 						+ "/>");
 		try {
@@ -216,14 +212,12 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for compareTo(Object).
 	 */
 	public void testCompareToEquals() {
-		PropertyString prop1 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"test3\""
-						+ "/>");
-		PropertyString prop2 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"test3\""
-						+ "/>");
+		PropertyString prop1 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"test3\"" + "/>");
+		PropertyString prop2 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"test3\"" + "/>");
 		assertEquals(0, prop1.compareTo(prop2));
 	}
 
@@ -231,14 +225,12 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for compareTo(Object).
 	 */
 	public void testCompareToGreater() {
-		PropertyString prop1 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"abc\""
-						+ "/>");
-		PropertyString prop2 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"xyz\""
-						+ "/>");
+		PropertyString prop1 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"abc\"" + "/>");
+		PropertyString prop2 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"xyz\"" + "/>");
 		assertEquals(-23, "abc".compareTo("xyz"));
 		assertEquals(-23, prop1.compareTo(prop2));
 	}
@@ -247,14 +239,12 @@ public class PropertyStringTest extends TestCase {
 	 * Test method for compareTo(Object).
 	 */
 	public void testCompareToLess() {
-		PropertyString prop1 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"xyz\""
-						+ "/>");
-		PropertyString prop2 = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " default=\"abc\""
-						+ "/>");
+		PropertyString prop1 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"xyz\"" + "/>");
+		PropertyString prop2 = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " default=\"abc\"" + "/>");
 		assertEquals(23, "xyz".compareTo("abc"));
 		assertEquals(23, prop1.compareTo(prop2));
 	}
@@ -263,10 +253,9 @@ public class PropertyStringTest extends TestCase {
 	 * Test writing a multi lined string.
 	 */
 	public void testMultiLine() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " multiline=\"true\""
-						+ "/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " multiline=\"true\"" + "/>");
 		prop.setValue("aaa\nbbb");
 		assertEquals("aaa\nbbb", prop.getValue());
 	}
@@ -275,8 +264,8 @@ public class PropertyStringTest extends TestCase {
 	 * Test writing a multi lined string to a single lined string property
 	 */
 	public void testMultiLineInvalid() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
 						+ "/>");
 		try {
 			prop.setValue("aaa\nbbb");
@@ -290,10 +279,9 @@ public class PropertyStringTest extends TestCase {
 	 * Test writing a multi lined string.
 	 */
 	public void testMultiLineEscaping() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						+ " multiline=\"true\""
-						+ "/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+						+ " multiline=\"true\"" + "/>");
 		prop.setValue("aaa\nbbb");
 		assertEquals("aaa\\nbbb", prop.toString());
 	}
@@ -302,11 +290,10 @@ public class PropertyStringTest extends TestCase {
 	 * Test writing a string with tab character.
 	 */
 	public void testEscapingTab() {
-		PropertyString prop = this.createStringProperty(
-				"<property name=\"test\" type=\"string\""
-						// multiline="true" activates the default escape map
-						+ " multiline=\"true\""
-						+ "/>");
+		PropertyString prop = this
+				.createStringProperty("<property name=\"test\" type=\"string\""
+				// multiline="true" activates the default escape map
+						+ " multiline=\"true\"" + "/>");
 		prop.setValue("aaa\tbbb");
 		assertEquals("aaa\\tbbb", prop.toString());
 	}
@@ -319,9 +306,10 @@ public class PropertyStringTest extends TestCase {
 	 * @return a new string property.
 	 */
 	private PropertyString createStringProperty(final String descr) {
-		XmlNode propertyNode = XmlNode.getDocumentTopLevel(
-				new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyString type = new TypePropertyString(new XmlNode[] { propertyNode }, null);
+		XmlNode propertyNode = XmlNode
+				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyString type = new TypePropertyString(
+				new XmlNode[] { propertyNode }, null);
 		return new PropertyString(type, null);
 	}
 }

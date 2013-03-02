@@ -201,7 +201,8 @@ public class ReadonlyListArray<T> implements List<T> {
 	 * 
 	 * @param o
 	 *            the object reference tha specifies the element to search for
-	 * @return the last index of the element with the given reference or -1 if not found
+	 * @return the last index of the element with the given reference or -1 if
+	 *         not found
 	 */
 	public int indexOf(final Object o) {
 		int index = -1;
@@ -219,7 +220,8 @@ public class ReadonlyListArray<T> implements List<T> {
 	 * 
 	 * @param o
 	 *            the object reference tha specifies the element to search for
-	 * @return the last index of the element with the given reference or -1 if not found
+	 * @return the last index of the element with the given reference or -1 if
+	 *         not found
 	 */
 	public int lastIndexOf(final Object o) {
 		int index = -1;

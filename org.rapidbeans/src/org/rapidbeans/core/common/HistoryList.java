@@ -46,8 +46,8 @@ public class HistoryList<T> {
 	 */
 	public void setMax(final int newmax) {
 		if (max < 0) {
-			throw new IllegalArgumentException("Negative max = " + Integer.toString(max)
-					+ " does not make any sense");
+			throw new IllegalArgumentException("Negative max = "
+					+ Integer.toString(max) + " does not make any sense");
 		}
 		for (int i = this.list.size() - 1; i >= newmax; i--) {
 			this.list.remove(i);
@@ -68,8 +68,8 @@ public class HistoryList<T> {
 	 */
 	public HistoryList(final int max) {
 		if (max < 0) {
-			throw new IllegalArgumentException("Negative max = " + Integer.toString(max)
-					+ " does not make any sense");
+			throw new IllegalArgumentException("Negative max = "
+					+ Integer.toString(max) + " does not make any sense");
 		}
 		this.max = max;
 	}

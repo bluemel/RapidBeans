@@ -31,8 +31,7 @@ import org.rapidbeans.core.util.Version;
 public class PropertyVersion extends Property {
 
 	/**
-	 * the property's URL value.
-	 * !!! do not initialize here because the
+	 * the property's URL value. !!! do not initialize here because the
 	 * superclass does it with the property type's default value
 	 */
 	private Version value;
@@ -81,18 +80,18 @@ public class PropertyVersion extends Property {
 	 *            <b>String:</b> the String<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-			public void setValue(final Object newValue) {
-				value = (Version) newValue;
-			}
-		});
+		super.setValueWithEvents(this.value, newValue,
+				new PropertyValueSetter() {
+					public void setValue(final Object newValue) {
+						value = (Version) newValue;
+					}
+				});
 	}
 
 	/**
-	 * converts different classes to the Property's internal
-	 * value class.<br/>
-	 * For a URL property this means just verifying that the given
-	 * object is a non malformed URL.
+	 * converts different classes to the Property's internal value class.<br/>
+	 * For a URL property this means just verifying that the given object is a
+	 * non malformed URL.
 	 * 
 	 * @param argValue
 	 *            the value to convert<br/>
@@ -112,9 +111,10 @@ public class PropertyVersion extends Property {
 		} else if (argValue instanceof Version) {
 			version = (Version) argValue;
 		} else {
-			throw new ValidationException("invalid.prop.url.type",
-					this, "Tried to convert value from a data type \""
-							+ argValue.getClass().getName() + "\" different to Version and String.");
+			throw new ValidationException("invalid.prop.url.type", this,
+					"Tried to convert value from a data type \""
+							+ argValue.getClass().getName()
+							+ "\" different to Version and String.");
 		}
 		return version;
 	}

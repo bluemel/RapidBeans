@@ -71,20 +71,24 @@ public class IdKeypropsTest extends TestCase {
 			book.addPerson(p3);
 			book.addPerson(p2);
 			book.addPerson(p1);
-			ReadonlyListCollection<Person> list = (ReadonlyListCollection<Person>) book.getPersons();
+			ReadonlyListCollection<Person> list = (ReadonlyListCollection<Person>) book
+					.getPersons();
 			assertSame(p3, list.get(0));
 			assertSame(p2, list.get(1));
 			assertSame(p1, list.get(2));
 		} finally {
-			RapidBeansTypeLoader.getInstance().unregisterType(new AddressBook().getType().getName());
-			RapidBeansTypeLoader.getInstance().unregisterType(new Person().getType().getName());
+			RapidBeansTypeLoader.getInstance().unregisterType(
+					new AddressBook().getType().getName());
+			RapidBeansTypeLoader.getInstance().unregisterType(
+					new Person().getType().getName());
 		}
 	}
 
 	public void testSortingReal() {
 		try {
 			AddressBook book = new AddressBook();
-			TypePropertyCollection colproptype = (TypePropertyCollection) book.getProperty("persons").getType();
+			TypePropertyCollection colproptype = (TypePropertyCollection) book
+					.getProperty("persons").getType();
 			colproptype.setCollectionClass(TreeSet.class);
 			Person p1 = new Person("a");
 			Person p2 = new Person("b");
@@ -92,7 +96,8 @@ public class IdKeypropsTest extends TestCase {
 			book.addPerson(p3);
 			book.addPerson(p1);
 			book.addPerson(p2);
-			ReadonlyListCollection<Person> list = (ReadonlyListCollection<Person>) book.getPersons();
+			ReadonlyListCollection<Person> list = (ReadonlyListCollection<Person>) book
+					.getPersons();
 			assertSame(p1, list.get(0));
 			assertSame(p2, list.get(1));
 			assertSame(p3, list.get(2));
@@ -100,10 +105,12 @@ public class IdKeypropsTest extends TestCase {
 			TypeRapidBean abType = new AddressBook().getType();
 			TypeRapidBean pType = new Person().getType();
 			if (RapidBeansTypeLoader.getInstance().lookupType(abType.getName()) != null) {
-				RapidBeansTypeLoader.getInstance().unregisterType(abType.getName());
+				RapidBeansTypeLoader.getInstance().unregisterType(
+						abType.getName());
 			}
 			if (RapidBeansTypeLoader.getInstance().lookupType(abType.getName()) != null) {
-				RapidBeansTypeLoader.getInstance().unregisterType(pType.getName());
+				RapidBeansTypeLoader.getInstance().unregisterType(
+						pType.getName());
 			}
 		}
 	}
@@ -119,8 +126,8 @@ public class IdKeypropsTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBean(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBean(final String name, final String prename,
+			final String dateofbirth) {
 		String descr = "<beantype name=\"TestBean\">"
 				+ "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"

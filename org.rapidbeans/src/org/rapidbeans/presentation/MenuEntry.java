@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation;
 
-
-
 // BEGIN manual code section
 // MenuEntry.import
 import java.util.MissingResourceException;
@@ -32,16 +30,15 @@ import org.rapidbeans.presentation.config.ConfigSubmenu;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuEntry.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: MenuEntry. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public abstract class MenuEntry extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// MenuEntry.classBody
 	/**
-	 * This implementation avoids some syntax errors that would occur
-	 * using an abstract method here.
+	 * This implementation avoids some syntax errors that would occur using an
+	 * abstract method here.
 	 * 
 	 * @return the widget.
 	 */
@@ -50,8 +47,8 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * create a MenuEntry of a special type out of a configuration
-	 * which is the this object itself.
+	 * create a MenuEntry of a special type out of a configuration which is the
+	 * this object itself.
 	 * 
 	 * @param client
 	 *            the parent client
@@ -64,19 +61,24 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 			final Application client, final String resourcePath) {
 		MenuEntry newEntry = null;
 		if (cfg instanceof ConfigSubmenu) {
-			newEntry = Submenu.createInstance((ConfigSubmenu) cfg, client, resourcePath);
+			newEntry = Submenu.createInstance((ConfigSubmenu) cfg, client,
+					resourcePath);
 		} else if (cfg instanceof ConfigMenuItem) {
-			newEntry = MenuItem.createInstance((ConfigMenuItem) cfg, client, resourcePath);
+			newEntry = MenuItem.createInstance((ConfigMenuItem) cfg, client,
+					resourcePath);
 		} else if (cfg instanceof ConfigMenuSeparator) {
-			newEntry = MenuSeparator.createInstance((ConfigMenuSeparator) cfg, client, resourcePath);
+			newEntry = MenuSeparator.createInstance((ConfigMenuSeparator) cfg,
+					client, resourcePath);
 		} else if (cfg instanceof ConfigMenuHistoryOpenDocument) {
-			newEntry = MenuHistoryOpenDocument
-					.createInstance((ConfigMenuHistoryOpenDocument) cfg, client, resourcePath);
+			newEntry = MenuHistoryOpenDocument.createInstance(
+					(ConfigMenuHistoryOpenDocument) cfg, client, resourcePath);
 		} else if (cfg instanceof ConfigMenuToolbars) {
-			newEntry = MenuToolbars.createInstance((ConfigMenuToolbars) cfg, client, resourcePath);
+			newEntry = MenuToolbars.createInstance((ConfigMenuToolbars) cfg,
+					client, resourcePath);
 		} else {
-			throw new RapidBeansRuntimeException("unexpected config object class: "
-					+ cfg.getClass().getName());
+			throw new RapidBeansRuntimeException(
+					"unexpected config object class: "
+							+ cfg.getClass().getName());
 		}
 		return newEntry;
 	}
@@ -86,14 +88,16 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 		final RapidBeansLocale locale = app.getCurrentLocale();
 		if (locale != null) {
 			try {
-				menuText = locale.getStringGui(resourcePath + "." + this.getName() + ".label");
+				menuText = locale.getStringGui(resourcePath + "."
+						+ this.getName() + ".label");
 			} catch (MissingResourceException e) {
 				menuText = null;
 			}
 		}
 		if (menuText == null) {
 			try {
-				menuText = locale.getStringGui("commongui.text." + this.getName());
+				menuText = locale.getStringGui("commongui.text."
+						+ this.getName());
 			} catch (MissingResourceException e) {
 				menuText = null;
 			}
@@ -115,8 +119,8 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("name");
 	}
 
 	/**
@@ -131,6 +135,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -143,6 +148,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -157,7 +163,8 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	 * the bean's type (class variable).
 	 */
 	@SuppressWarnings("unused")
-	private static TypeRapidBean type = TypeRapidBean.createInstance(MenuEntry.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(MenuEntry.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -171,12 +178,14 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"name");
 		}
 	}
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */

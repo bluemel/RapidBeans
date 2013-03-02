@@ -116,8 +116,8 @@ public abstract class RapidBeansType {
 	}
 
 	/**
-	 * the (generated) class implementing the type.
-	 * Is null in case of generic types.
+	 * the (generated) class implementing the type. Is null in case of generic
+	 * types.
 	 */
 	private Class<?> implementingClass = null;
 
@@ -146,14 +146,15 @@ public abstract class RapidBeansType {
 	 * 
 	 * @return the description
 	 */
-	protected static XmlNode loadDescription(
-			final String typename) {
-		final InputStream typeDescrStream = RapidBeansTypeLoader.findDeclaration(typename, null);
+	protected static XmlNode loadDescription(final String typename) {
+		final InputStream typeDescrStream = RapidBeansTypeLoader
+				.findDeclaration(typename, null);
 		if (typeDescrStream == null) {
-			throw new TypeNotFoundException(
-					"description for type \"" + typename + "\"");
+			throw new TypeNotFoundException("description for type \""
+					+ typename + "\"");
 		}
-		final XmlNode typeDescrBaseNode = XmlNode.getDocumentTopLevel(typeDescrStream);
+		final XmlNode typeDescrBaseNode = XmlNode
+				.getDocumentTopLevel(typeDescrStream);
 		return typeDescrBaseNode;
 	}
 
@@ -165,10 +166,10 @@ public abstract class RapidBeansType {
 	 * 
 	 * @return the description
 	 */
-	protected static XmlNode loadDescriptionXmlBinding(
-			final String typename) {
+	protected static XmlNode loadDescriptionXmlBinding(final String typename) {
 		XmlNode typeDescrBaseNode = null;
-		final InputStream typeDescrStream = RapidBeansTypeLoader.findDeclaration(typename, "_xmlbind");
+		final InputStream typeDescrStream = RapidBeansTypeLoader
+				.findDeclaration(typename, "_xmlbind");
 		if (typeDescrStream != null) {
 			typeDescrBaseNode = XmlNode.getDocumentTopLevel(typeDescrStream);
 		}

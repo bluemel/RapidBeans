@@ -41,10 +41,12 @@ public class ActionDocumentNew extends Action {
 		}
 		final List<String> sa = StringHelper.split(rootClassName, ".");
 		final String shortRootClassName = sa.get(sa.size() - 1).toLowerCase();
-		final String docconfname = this.getArgumentValue("docconfname", shortRootClassName);
-		final String viewconfname = this.getArgumentValue("viewconfname", "standard");
+		final String docconfname = this.getArgumentValue("docconfname",
+				shortRootClassName);
+		final String viewconfname = this.getArgumentValue("viewconfname",
+				"standard");
 		ApplicationManager.getApplication().openNewDocumentView(
-				shortRootClassName + "_new", rootClassName,
-				docconfname, viewconfname);
+				shortRootClassName + "_new", rootClassName, docconfname,
+				viewconfname);
 	}
 }

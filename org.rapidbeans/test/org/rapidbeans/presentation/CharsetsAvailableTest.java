@@ -12,8 +12,8 @@ import junit.framework.TestCase;
 import org.rapidbeans.datasource.CharsetsAvailable;
 
 /**
- * Test written after having problems with this generic enum after
- * having re desigend it.
+ * Test written after having problems with this generic enum after having re
+ * desigend it.
  * 
  * @author Martin Bluemel
  */
@@ -23,15 +23,12 @@ public class CharsetsAvailableTest extends TestCase {
 	 * test get a specific character set.
 	 */
 	public void testGetInstance() {
-		CharsetsAvailable iso = (CharsetsAvailable)
-				CharsetsAvailable.getInstance("ISO-8859-1");
+		CharsetsAvailable iso = (CharsetsAvailable) CharsetsAvailable
+				.getInstance("ISO-8859-1");
 		assertEquals("ISO-8859-1", iso.name());
-		assertTrue("unexpected ordinal "
-				+ Integer.toString(iso.ordinal())
-				+ " for character set \""
-				+ iso.name() + "\".",
-				iso.ordinal() == 53
-						|| iso.ordinal() == 54
+		assertTrue("unexpected ordinal " + Integer.toString(iso.ordinal())
+				+ " for character set \"" + iso.name() + "\".",
+				iso.ordinal() == 53 || iso.ordinal() == 54
 						|| iso.ordinal() == 55);
 		// JDK 1.5: 53, JDK 1.6: 54, JDK 1.6 Linux: 55
 	}

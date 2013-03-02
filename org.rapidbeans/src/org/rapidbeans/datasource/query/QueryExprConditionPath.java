@@ -33,12 +33,11 @@ import org.rapidbeans.datasource.DatasourceException;
 import org.rapidbeans.datasource.Document;
 
 /**
- * Type expression for bean queries.
- * The top level expression that selects a set of beans specified by
- * a path.<br/>
+ * Type expression for bean queries. The top level expression that selects a set
+ * of beans specified by a path.<br/>
  * "/" specifies the top level or root entity<br/>
- * "/&lt;prop 1>/&lt;prop 2>/..." specifies a set of entities while
- * prop n is the name of a collection property<br/>
+ * "/&lt;prop 1>/&lt;prop 2>/..." specifies a set of entities while prop n is
+ * the name of a collection property<br/>
  * 
  * @author Martin Bluemel
  */
@@ -136,8 +135,9 @@ class QueryExprConditionPath extends QueryExpression {
 	public List<RapidBean> eval(final Container db,
 			final List<RapidBean> resultSetIn) {
 		if (!this.absolutePath) {
-			throw new DatasourceException("Path queries currently have to be absolute"
-					+ " (to begin with '/')");
+			throw new DatasourceException(
+					"Path queries currently have to be absolute"
+							+ " (to begin with '/')");
 		}
 		if (!(db instanceof Document)) {
 			throw new DatasourceException(
@@ -160,12 +160,14 @@ class QueryExprConditionPath extends QueryExpression {
 				if (prop != null) {
 					propFound = true;
 					if (!(prop instanceof PropertyCollection)) {
-						throw new DatasourceException(
-								"Error in path query \"" + this.getPathQueryString() + "\":\n"
-										+ "Property \"" + pathComponent + "\" of type \""
-										+ bean.getType().getName() + "\" is no collection property");
+						throw new DatasourceException("Error in path query \""
+								+ this.getPathQueryString() + "\":\n"
+								+ "Property \"" + pathComponent
+								+ "\" of type \"" + bean.getType().getName()
+								+ "\" is no collection property");
 					}
-					col = (Collection<RapidBean>) bean.getProperty(pathComponent).getValue();
+					col = (Collection<RapidBean>) bean.getProperty(
+							pathComponent).getValue();
 					for (RapidBean nextBean : col) {
 						curBeans.add(nextBean);
 					}
@@ -184,18 +186,20 @@ class QueryExprConditionPath extends QueryExpression {
 				switch (beanTypesSearched.size()) {
 				case 0:
 					throw new DatasourceException(
-							"Unexpected error in path query \"" + this.getPathQueryString() + "\":\n"
+							"Unexpected error in path query \""
+									+ this.getPathQueryString() + "\":\n"
 									+ "No bean has beans searched at all.");
 				case 1:
-					throw new DatasourceException(
-							"Error in path query \"" + this.getPathQueryString() + "\":\n"
-									+ "Property \"" + pathComponent + "\" not found in beans of type: "
-									+ sb.toString());
+					throw new DatasourceException("Error in path query \""
+							+ this.getPathQueryString() + "\":\n"
+							+ "Property \"" + pathComponent
+							+ "\" not found in beans of type: " + sb.toString());
 				default:
-					throw new DatasourceException(
-							"Error in path query \"" + this.getPathQueryString() + "\":\n"
-									+ "Property \"" + pathComponent + "\" not found in beans of types: "
-									+ sb.toString());
+					throw new DatasourceException("Error in path query \""
+							+ this.getPathQueryString() + "\":\n"
+							+ "Property \"" + pathComponent
+							+ "\" not found in beans of types: "
+							+ sb.toString());
 				}
 			}
 			curBeansParents.clear();

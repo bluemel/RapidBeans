@@ -22,8 +22,8 @@ import org.w3c.dom.Node;
 /**
  * @author Martin Bluemel
  * 
- *         Utility class for primitive XML parsing using
- *         good old JAXP DOM parser technology.
+ *         Utility class for primitive XML parsing using good old JAXP DOM
+ *         parser technology.
  */
 public class XmlNodeTopLevel extends XmlNode {
 

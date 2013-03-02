@@ -39,7 +39,8 @@ public class PropertyReflectImpl extends Property {
 	 * @param parentBean
 	 *            the parent bean
 	 */
-	public PropertyReflectImpl(final TypeProperty type, final RapidBean parentBean) {
+	public PropertyReflectImpl(final TypeProperty type,
+			final RapidBean parentBean) {
 		super(type, parentBean);
 	}
 
@@ -91,10 +92,9 @@ public class PropertyReflectImpl extends Property {
 	}
 
 	/**
-	 * converts different classes to the Property's internal
-	 * value class.<br/>
-	 * For a String property this means just verifying that the given
-	 * object is a String.
+	 * converts different classes to the Property's internal value class.<br/>
+	 * For a String property this means just verifying that the given object is
+	 * a String.
 	 * 
 	 * @param argValue
 	 *            the value to convert<br/>

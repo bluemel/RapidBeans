@@ -84,7 +84,8 @@ public final class ModelListCollectionAllWithout extends DefaultListModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public ModelListCollectionAllWithout(final PropertyCollection prop,
-			final TypeRapidBean type, final Document doc, final boolean showOnlyValid) {
+			final TypeRapidBean type, final Document doc,
+			final boolean showOnlyValid) {
 		this.colProp = prop;
 		this.typename = type.getName();
 		this.document = doc;
@@ -121,8 +122,7 @@ public final class ModelListCollectionAllWithout extends DefaultListModel {
 	 * update the listAllBeans.
 	 */
 	protected void updateList() {
-		List<RapidBean> allBeans =
-				this.document.findBeansByType(this.typename);
+		List<RapidBean> allBeans = this.document.findBeansByType(this.typename);
 		if (this.listProp == null) {
 			this.listAllBeans = allBeans;
 		} else {
@@ -177,9 +177,11 @@ public final class ModelListCollectionAllWithout extends DefaultListModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public void fireColPropChanged(final PropertyCollection prop) {
-		if (prop.getValue() != null && this.listAllBeans != null
-				&& (this.listProp == null
-				|| (!this.listProp.isSameCollection((Collection<RapidBean>) prop.getValue())))) {
+		if (prop.getValue() != null
+				&& this.listAllBeans != null
+				&& (this.listProp == null || (!this.listProp
+						.isSameCollection((Collection<RapidBean>) prop
+								.getValue())))) {
 			this.listProp = (ReadonlyListCollection<RapidBean>) prop.getValue();
 			this.updateList();
 			this.fireContentsChanged(this, 0, this.listAllBeans.size());

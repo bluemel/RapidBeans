@@ -37,12 +37,10 @@ public final class FileFilterRegExp implements FileFilter {
 	 * Construct a a file filter using a regular expression.
 	 * 
 	 * @param pattern
-	 *            the regular expression to match.
-	 *            Basically this is a Java regular expression but
-	 *            to be more compatible with usual file regular expressions
-	 *            '*' is translated to '.*'.
-	 *            So for example you just have to write
-	 *            *.xml instead of .*.xml.
+	 *            the regular expression to match. Basically this is a Java
+	 *            regular expression but to be more compatible with usual file
+	 *            regular expressions '*' is translated to '.*'. So for example
+	 *            you just have to write *.xml instead of .*.xml.
 	 * 
 	 */
 	public FileFilterRegExp(final String pattern) {

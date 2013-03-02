@@ -96,7 +96,8 @@ public abstract class Footer {
 	public void showMessage(final Action action) {
 		final String message = action.getMessage();
 		if (message != null) {
-			if (getPresentationMode().ordinal() > FooterPresentationMode.onmessagespecific.ordinal()) {
+			if (getPresentationMode().ordinal() > FooterPresentationMode.onmessagespecific
+					.ordinal()) {
 				setVisible(true);
 			}
 			showMessage(message);

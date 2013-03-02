@@ -51,7 +51,8 @@ public class BusinessLogicException extends LocalizedException {
 	 * @param args
 	 *            arguments
 	 */
-	public BusinessLogicException(final String sig, final String message, final Object[] args) {
+	public BusinessLogicException(final String sig, final String message,
+			final Object[] args) {
 		super(sig, message, args);
 	}
 }

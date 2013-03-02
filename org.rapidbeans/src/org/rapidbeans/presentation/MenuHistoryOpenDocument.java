@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation;
 
-
-
 // BEGIN manual code section
 // MenuHistoryOpenDocument.import
 import org.rapidbeans.core.common.HistoryList;
@@ -29,11 +27,11 @@ import org.rapidbeans.presentation.swing.MenuHistoryOpenDocumentSwing;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuHistoryOpenDocument.
- * Partially generated Java class
+ * Rapid Bean class: MenuHistoryOpenDocument. Partially generated Java class
  * !!!Do only edit manually in marked sections!!!
  **/
-public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEntry {
+public class MenuHistoryOpenDocument extends
+		org.rapidbeans.presentation.MenuEntry {
 	// BEGIN manual code section
 	// MenuHistoryOpenDocument.classBody
 
@@ -67,10 +65,11 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 		MenuHistoryOpenDocument menuHistory = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
-			menuHistory = new MenuHistoryOpenDocumentSwing(config, client, resourcePath);
+			menuHistory = new MenuHistoryOpenDocumentSwing(config, client,
+					resourcePath);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp-swt();
+			// mainWindow = new BBMainWindowEclispercp-swt();
 			break;
 		default:
 			throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -97,8 +96,10 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 		if (app.getSettings() != null
 				&& app.getSettings().getBasic() != null
 				&& app.getSettings().getBasic().getGui() != null
-				&& app.getSettings().getBasic().getGui().getOpenDocumentHistory() != null) {
-			settings = app.getSettings().getBasic().getGui().getOpenDocumentHistory();
+				&& app.getSettings().getBasic().getGui()
+						.getOpenDocumentHistory() != null) {
+			settings = app.getSettings().getBasic().getGui()
+					.getOpenDocumentHistory();
 		}
 		if (settings != null) {
 			setOn(settings.getOn());
@@ -124,13 +125,17 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 			if (app.getSettings() != null
 					&& app.getSettings().getBasic() != null
 					&& app.getSettings().getBasic().getGui() != null
-					&& app.getSettings().getBasic().getGui().getOpenDocumentHistory() != null) {
-				settings = app.getSettings().getBasic().getGui().getOpenDocumentHistory();
+					&& app.getSettings().getBasic().getGui()
+							.getOpenDocumentHistory() != null) {
+				settings = app.getSettings().getBasic().getGui()
+						.getOpenDocumentHistory();
 			}
 			if (settings != null) {
-				app.getHistoryDocumentOpen().setMax(settings.getMaxNumberOfEntries());
+				app.getHistoryDocumentOpen().setMax(
+						settings.getMaxNumberOfEntries());
 			} else {
-				app.getHistoryDocumentOpen().setMax(this.config.getMaxnumberofentries());
+				app.getHistoryDocumentOpen().setMax(
+						this.config.getMaxnumberofentries());
 			}
 		}
 	}
@@ -139,8 +144,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * Action handler for selected history menu item
 	 * 
 	 * @param selectedMenuItemIndex
-	 *            the index of the history menu item
-	 *            that has been selected
+	 *            the index of the history menu item that has been selected
 	 */
 	protected void histMenuItemSelected(final int selectedMenuItemIndex) {
 		final Application app = ApplicationManager.getApplication();
@@ -161,7 +165,8 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 			if (url.startsWith(getProtocolFilter() + ":")) {
 				url = url.substring(getProtocolFilter().length() + 1);
 			}
-			if (getProtocolFilter().equals("file") && PlatformHelper.getOsName().contains("Windows")
+			if (getProtocolFilter().equals("file")
+					&& PlatformHelper.getOsName().contains("Windows")
 					&& url.startsWith("/")) {
 				url = url.substring(1);
 			}
@@ -210,14 +215,14 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.on = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("on");
-		this.presentation = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("presentation");
-		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("entryShortage");
-		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("protocolFilter");
+		this.on = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("on");
+		this.presentation = (org.rapidbeans.core.basic.PropertyChoice) this
+				.getProperty("presentation");
+		this.entryShortage = (org.rapidbeans.core.basic.PropertyBoolean) this
+				.getProperty("entryShortage");
+		this.protocolFilter = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("protocolFilter");
 	}
 
 	/**
@@ -232,6 +237,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -244,6 +250,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -257,7 +264,8 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(MenuHistoryOpenDocument.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(MenuHistoryOpenDocument.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -271,14 +279,17 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 */
 	public boolean getOn() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.on)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("on");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"on");
 		}
 	}
 
 	/**
 	 * setter for Property 'on'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'on' to set
 	 */
@@ -291,25 +302,29 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 */
 	public org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode getPresentation() {
 		try {
-			java.util.List<?> enumList = (java.util.List<?>) this.presentation.getValue();
+			java.util.List<?> enumList = (java.util.List<?>) this.presentation
+					.getValue();
 			if (enumList == null || enumList.size() == 0) {
 				return null;
 			} else {
-				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList.get(0);
+				return (org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode) enumList
+						.get(0);
 			}
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("presentation");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"presentation");
 		}
 	}
 
 	/**
 	 * setter for Property 'presentation'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'presentation' to set
 	 */
-	public void setPresentation(final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
-		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list =
-			new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
+	public void setPresentation(
+			final org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode argValue) {
+		java.util.List<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode> list = new java.util.ArrayList<org.rapidbeans.presentation.MenuHistoryOpenDocumentPresentationMode>();
 		list.add(argValue);
 		this.presentation.setValue(list);
 	}
@@ -319,14 +334,17 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 */
 	public boolean getEntryShortage() {
 		try {
-			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage).getValueBoolean();
+			return ((org.rapidbeans.core.basic.PropertyBoolean) this.entryShortage)
+					.getValueBoolean();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("entryShortage");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"entryShortage");
 		}
 	}
 
 	/**
 	 * setter for Property 'entryShortage'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'entryShortage' to set
 	 */
@@ -341,12 +359,14 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 		try {
 			return (String) this.protocolFilter.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("protocolFilter");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"protocolFilter");
 		}
 	}
 
 	/**
 	 * setter for Property 'protocolFilter'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'protocolFilter' to set
 	 */

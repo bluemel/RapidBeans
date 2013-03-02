@@ -29,8 +29,8 @@ import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.common.RapidBeansLocale;
 
 /**
- * The cell renderer for bean collection.
- * Takes a string defined in the locale's resource bundle.<br/>
+ * The cell renderer for bean collection. Takes a string defined in the locale's
+ * resource bundle.<br/>
  * The key is <b>"enum.&lt;enum type short name&gt;.&lt;enum name&gt;"</b>
  * 
  * @author Martin Bluemel
@@ -55,7 +55,8 @@ public class RendererListCollection implements ListCellRenderer {
 	 * @param loc
 	 *            the locale
 	 */
-	public RendererListCollection(final Container doc, final RapidBeansLocale loc) {
+	public RendererListCollection(final Container doc,
+			final RapidBeansLocale loc) {
 		this.document = doc;
 		this.locale = loc;
 	}
@@ -74,10 +75,12 @@ public class RendererListCollection implements ListCellRenderer {
 	 * 
 	 * @return the redered component
 	 * 
-	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList, java.lang.Object, int, boolean, boolean)
+	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
+	 *      java.lang.Object, int, boolean, boolean)
 	 */
-	public Component getListCellRendererComponent(final JList list, final Object value,
-			final int index, final boolean isSelected, final boolean cellHasFocus) {
+	public Component getListCellRendererComponent(final JList list,
+			final Object value, final int index, final boolean isSelected,
+			final boolean cellHasFocus) {
 		JLabel label = new JLabel();
 		if (value == null) {
 			label.setText("-");
@@ -106,8 +109,7 @@ public class RendererListCollection implements ListCellRenderer {
 		try {
 			pattern = this.locale.getStringGui("document."
 					+ this.document.getConfigNameOrName() + ".treeview."
-					+ bean.getType().getNameShort().toLowerCase()
-					+ ".id");
+					+ bean.getType().getNameShort().toLowerCase() + ".id");
 			idstring = bean.expandPropertyValues(pattern, this.locale);
 		} catch (MissingResourceException e) {
 			idstring = null;

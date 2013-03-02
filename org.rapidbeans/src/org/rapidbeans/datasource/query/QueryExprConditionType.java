@@ -24,9 +24,9 @@ import org.rapidbeans.core.basic.Container;
 import org.rapidbeans.core.basic.RapidBean;
 
 /**
- * Type expression for bean queries.
- * The top level expression that mainly focuses on bean types.
- * &lt;RapidBean Type&gt;<b>'['</b>&lt;Subexpression&gt;<b>']'</b><br/>
+ * Type expression for bean queries. The top level expression that mainly
+ * focuses on bean types. &lt;RapidBean
+ * Type&gt;<b>'['</b>&lt;Subexpression&gt;<b>']'</b><br/>
  * 
  * @author Martin Bluemel
  */
@@ -73,15 +73,15 @@ public class QueryExprConditionType extends QueryExpression {
 		this.childExpression = null;
 	}
 
-	//    private boolean closed = false;
+	// private boolean closed = false;
 	//
-	//    public boolean getClosed() {
-	//        return this.closed;
-	//    }
+	// public boolean getClosed() {
+	// return this.closed;
+	// }
 	//
-	//    public void close() {
-	//        this.closed = true;
-	//    }
+	// public void close() {
+	// this.closed = true;
+	// }
 
 	/**
 	 * constructor.

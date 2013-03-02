@@ -20,8 +20,8 @@ package org.rapidbeans.core.util;
 import org.w3c.dom.Node;
 
 /**
- * Utility class for primitive XML parsing using
- * good old JAXP DOM parser technology.
+ * Utility class for primitive XML parsing using good old JAXP DOM parser
+ * technology.
  * 
  * @author Martin Bluemel
  */

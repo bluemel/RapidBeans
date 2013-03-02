@@ -30,9 +30,8 @@ import org.rapidbeans.core.type.TypePropertyBoolean;
 public class PropertyBoolean extends Property {
 
 	/**
-	 * The Boolean value.
-	 * !!! do not initialize here because the superclass does it
-	 * with the property type's default value
+	 * The Boolean value. !!! do not initialize here because the superclass does
+	 * it with the property type's default value
 	 */
 	private Boolean value;
 
@@ -64,7 +63,8 @@ public class PropertyBoolean extends Property {
 	 */
 	public boolean getValueBoolean() {
 		if (this.value == null) {
-			throw new RapidBeansRuntimeException("value for property not defined");
+			throw new RapidBeansRuntimeException(
+					"value for property not defined");
 		}
 		return this.value;
 	}
@@ -72,8 +72,8 @@ public class PropertyBoolean extends Property {
 	/**
 	 * String value getter.
 	 * 
-	 * @return the String representation of the Property's value.
-	 *         For an Integer this is a decimal number
+	 * @return the String representation of the Property's value. For an Integer
+	 *         this is a decimal number
 	 */
 	public String toString() {
 		if (this.value == null) {
@@ -92,26 +92,28 @@ public class PropertyBoolean extends Property {
 	 *            <b>String:</b> the boolean as string { 'false' | 'true' }<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-			public void setValue(final Object newValue) {
-				value = (Boolean) newValue;
-			}
-		});
+		super.setValueWithEvents(this.value, newValue,
+				new PropertyValueSetter() {
+					public void setValue(final Object newValue) {
+						value = (Boolean) newValue;
+					}
+				});
 	}
 
 	/**
 	 * converter.
 	 * 
 	 * @param booleanValue
-	 *            the object to convert.
-	 *            It must be an instance of the following classes:
-	 *            <il> <li><b>Boolean:</b> the boolean value itself<br/>
-	 *            </li> <li><b>String:</b> the boolean as string { 'false' | 'true' }</li> </il>
+	 *            the object to convert. It must be an instance of the following
+	 *            classes: <il> <li><b>Boolean:</b> the boolean value itself<br/>
+	 *            </li> <li><b>String:</b> the boolean as string { 'false' |
+	 *            'true' }</li> </il>
 	 * 
 	 * @return the converted value
 	 */
 	public Boolean convertValue(final Object booleanValue) {
-		return ((TypePropertyBoolean) this.getType()).convertValue(booleanValue);
+		return ((TypePropertyBoolean) this.getType())
+				.convertValue(booleanValue);
 	}
 
 	/**

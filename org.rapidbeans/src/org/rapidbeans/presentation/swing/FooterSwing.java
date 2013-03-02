@@ -65,7 +65,8 @@ public class FooterSwing extends Footer {
 	 */
 	@Override
 	public void clearMessage() {
-		if (this.getPresentationMode().ordinal() < FooterPresentationMode.always.ordinal()) {
+		if (this.getPresentationMode().ordinal() < FooterPresentationMode.always
+				.ordinal()) {
 			this.setVisible(false);
 		}
 		this.messageField.setText("");

@@ -34,7 +34,8 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * test the completion of german date input.
 	 */
 	public void testInputfieldCompletionGerman() {
-		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM,
+				Locale.GERMAN);
 		EditorPropertyDateSwing proped = createTestPropEdDateGerman();
 		assertCompletion("02.02.2002", "02.02.2002", proped, df);
 		assertCompletion("2.2.2", "02.02.2002", proped, df);
@@ -148,8 +149,8 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 *            the date formatter
 	 */
 	private void assertCompletion(final String uncompleteDate,
-			final String completedDate,
-			final EditorPropertyDateSwing proped, final DateFormat df) {
+			final String completedDate, final EditorPropertyDateSwing proped,
+			final DateFormat df) {
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText(uncompleteDate);
 		assertEquals(completedDate, df.format(proped.getInputFieldValue()));
@@ -219,8 +220,8 @@ public class EditorPropertyDateSwingTest extends TestCase {
 		client.setCurrentLocale(locale);
 		RapidBean testBean = createTestBean1();
 		PropertyDate prop = (PropertyDate) testBean.getProperty("date");
-		EditorPropertyDateSwing proped =
-				new EditorPropertyDateSwing(client, null, prop, prop.clone(testBean));
+		EditorPropertyDateSwing proped = new EditorPropertyDateSwing(client,
+				null, prop, prop.clone(testBean));
 		return proped;
 	}
 
@@ -232,14 +233,14 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	private static GenericBean createTestBean1() {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TestBean1") == null) {
 			String descr = "<beantype name=\"TestBean1\">"
-					+ "<property name=\"date\" type=\"date\"/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"date\" type=\"date\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode
+					.getDocumentTopLevel(new ByteArrayInputStream(descr
+							.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean =
-				(GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("TestBean1");
 		return bean;
 	}
 
@@ -247,7 +248,7 @@ public class EditorPropertyDateSwingTest extends TestCase {
 	 * tear down.
 	 */
 	public void tearDown() {
-		//        TestHelper.tearDownTypeDef("TestBean1");
+		// TestHelper.tearDownTypeDef("TestBean1");
 		TestHelperTypeLoader.clearBeanTypesGeneric();
 	}
 }

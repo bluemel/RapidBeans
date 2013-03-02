@@ -60,7 +60,8 @@ public final class RapidEnumTest extends TestCase {
 	 * Test method for getType().
 	 */
 	public void testGetType() {
-		assertEquals("org.rapidbeans.domain.org.Sex", Sex.male.getType().getName());
+		assertEquals("org.rapidbeans.domain.org.Sex", Sex.male.getType()
+				.getName());
 	}
 
 	/**

@@ -35,8 +35,7 @@ public class SettingsChangedEvent {
 	 * Constructor.
 	 * 
 	 * @param prop
-	 *            the settingsProperty
-	 *            that just has been changed
+	 *            the settingsProperty that just has been changed
 	 */
 	public SettingsChangedEvent(final Property prop) {
 		this.settingsProp = prop;

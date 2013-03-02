@@ -68,16 +68,18 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	 *            the client
 	 */
 	public EditorPropertyComboboxSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+			final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
-		if (prop.getType().isKeyCandidate() && (!this.getBeanEditor().isInNewMode())) {
+		if (prop.getType().isKeyCandidate()
+				&& (!this.getBeanEditor().isInNewMode())) {
 			// unfortunately a combo box still can be edited
 			// although editable is set to false.
-			//this.comboBox.setEditable(false);
-			// TODO Framework 4) how to set a combo box uneditable or to change the text foreground
-			//                    while it is disabled?
+			// this.comboBox.setEditable(false);
+			// TODO Framework 4) how to set a combo box uneditable or to change
+			// the text foreground
+			// while it is disabled?
 			this.comboBox.setEnabled(false);
 			this.comboBox.setBackground(COLOR_KEY);
 		} else if (prop.getType().getMandatory()) {
@@ -86,18 +88,19 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		if (prop instanceof PropertyChoice) {
 			this.comboBox.setModel(new ModelComboBoxEnum(
 					(TypePropertyChoice) prop.getType()));
-			this.comboBox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
+			this.comboBox.setRenderer(new RendererListEnum(client
+					.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
 			this.comboBox.setModel(new ModelComboBoxCollection(
-					(PropertyCollection) this.getProperty(),
-					this.getBeanEditor().getDocumentView().getDocument()));
-			this.comboBox.setRenderer(new RendererListCollection(
-					this.getBeanEditor().getDocumentView().getDocument(),
-					client.getCurrentLocale()));
+					(PropertyCollection) this.getProperty(), this
+							.getBeanEditor().getDocumentView().getDocument()));
+			this.comboBox.setRenderer(new RendererListCollection(this
+					.getBeanEditor().getDocumentView().getDocument(), client
+					.getCurrentLocale()));
 		} else {
-			throw new RapidBeansRuntimeException("EditorPropertyComboboxSwing does not support properties of class \""
-					+ prop.getType().getProptype().name() + "\"\n"
-					+ "");
+			throw new RapidBeansRuntimeException(
+					"EditorPropertyComboboxSwing does not support properties of class \""
+							+ prop.getType().getProptype().name() + "\"\n" + "");
 		}
 		this.comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(final ItemEvent e) {
@@ -106,8 +109,7 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		});
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.comboBox.setEnabled(false);
 		}
 	}
@@ -141,8 +143,8 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		final TypeProperty proptype = this.getProperty().getType();
 		if (proptype instanceof TypePropertyCollection) {
 			this.comboBox.setModel(new ModelComboBoxCollection(
-					(PropertyCollection) this.getProperty(),
-					this.getBeanEditor().getDocumentView().getDocument()));
+					(PropertyCollection) this.getProperty(), this
+							.getBeanEditor().getDocumentView().getDocument()));
 		}
 		if (proptype instanceof TypePropertyChoice) {
 			this.comboBox.setModel(new ModelComboBoxEnum(
@@ -199,17 +201,17 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	 */
 	public void beanChanged(final ChangedEvent e) {
 		super.beanChanged(e);
-		//        TypePropertyCollection colPropType = null;
-		//        TypePropertyChoice choicePropType = null;
-		//        final TypeProperty proptype = this.getProperty().getType();
-		//        if (proptype instanceof TypePropertyCollection) {
-		//            colPropType = (TypePropertyCollection) proptype;
-		//        }
-		//        if (proptype instanceof TypePropertyChoice) {
-		//            choicePropType = (TypePropertyChoice) proptype;
-		//        }
-		//        if (colPropType != null || choicePropType != null) {
-		//            this.updateUI();
-		//        }
+		// TypePropertyCollection colPropType = null;
+		// TypePropertyChoice choicePropType = null;
+		// final TypeProperty proptype = this.getProperty().getType();
+		// if (proptype instanceof TypePropertyCollection) {
+		// colPropType = (TypePropertyCollection) proptype;
+		// }
+		// if (proptype instanceof TypePropertyChoice) {
+		// choicePropType = (TypePropertyChoice) proptype;
+		// }
+		// if (colPropType != null || choicePropType != null) {
+		// this.updateUI();
+		// }
 	}
 }

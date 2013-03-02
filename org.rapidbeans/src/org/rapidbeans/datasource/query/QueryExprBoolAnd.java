@@ -63,7 +63,8 @@ class QueryExprBoolAnd extends QueryExpression {
 	 */
 	public QueryExprBoolAnd(final QueryExpression argLastCreatedExpression) {
 		// get the parent of last created expression
-		QueryExpression lastCreatedParent = argLastCreatedExpression.getParentExpression();
+		QueryExpression lastCreatedParent = argLastCreatedExpression
+				.getParentExpression();
 
 		// precedence OR before closed Braces
 		QueryExpression lastCreatedExpression = argLastCreatedExpression;
@@ -89,7 +90,8 @@ class QueryExprBoolAnd extends QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db,
+			final List<RapidBean> resultSetIn) {
 		List<RapidBean> resultSet = resultSetIn;
 		for (QueryExpression childExpression : this.childExpressions) {
 			resultSet = childExpression.eval(db, resultSet);

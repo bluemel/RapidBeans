@@ -102,11 +102,11 @@ public abstract class TypePropertyNumber extends TypeProperty {
 	 *            the parent bean type
 	 */
 	public TypePropertyNumber(final String typeNameExtension,
-			final XmlNode[] xmlNodes,
-			final TypeRapidBean parentBeanType) {
+			final XmlNode[] xmlNodes, final TypeRapidBean parentBeanType) {
 		super(typeNameExtension, xmlNodes, parentBeanType);
 
-		final String numberClassName = xmlNodes[0].getAttributeValue("@implementation");
+		final String numberClassName = xmlNodes[0]
+				.getAttributeValue("@implementation");
 		if (numberClassName != null) {
 			try {
 				this.numberClass = Class.forName(numberClassName);
@@ -135,7 +135,8 @@ public abstract class TypePropertyNumber extends TypeProperty {
 		try {
 			final Constructor<Number> numberConstructor = (Constructor<Number>) this.numberClass
 					.getConstructor(NUMBER_CONSTRUCTOR_PARAM_TYPES);
-			number = (Number) numberConstructor.newInstance(new Object[] { numberString });
+			number = (Number) numberConstructor
+					.newInstance(new Object[] { numberString });
 		} catch (IllegalArgumentException e) {
 			throw new RapidBeansRuntimeException(e);
 		} catch (InstantiationException e) {

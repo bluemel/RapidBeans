@@ -42,8 +42,8 @@ public abstract class MessageDialog {
 			messageDialog = new MessageDialogSwing();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("no Message Dialog for GUI type \""
-					+ guitype.name() + "\"");
+			throw new RapidBeansRuntimeException(
+					"no Message Dialog for GUI type \"" + guitype.name() + "\"");
 		}
 		return messageDialog;
 	}
@@ -77,7 +77,8 @@ public abstract class MessageDialog {
 	 *            the window title
 	 * @return true if yes, false if no
 	 */
-	public abstract boolean messageYesNo(final String message, final String title);
+	public abstract boolean messageYesNo(final String message,
+			final String title);
 
 	/**
 	 * Shows a dialog with a yes no question message.
@@ -88,5 +89,6 @@ public abstract class MessageDialog {
 	 *            the window title
 	 * @return yes, no, cancel according to the user's response
 	 */
-	public abstract MessageDialogResponse messageYesNoCancel(final String message, final String title);
+	public abstract MessageDialogResponse messageYesNoCancel(
+			final String message, final String title);
 }

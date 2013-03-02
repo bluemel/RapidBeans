@@ -26,16 +26,22 @@ public class TypeRapidBeanTest extends TestCase {
 	 * as the name says.
 	 */
 	public void testInheritanceWithGenericBeans() {
-		RapidBean bean1 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		Collection<TypeProperty> proptypes1 = bean1.getType().getPropertyTypes();
+		RapidBean bean1 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanGen");
+		Collection<TypeProperty> proptypes1 = bean1.getType()
+				.getPropertyTypes();
 		assertEquals(9, proptypes1.size());
 
-		RapidBean bean2 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanExtended1Gen");
-		Collection<TypeProperty> proptypes2 = bean2.getType().getPropertyTypes();
+		RapidBean bean2 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanExtended1Gen");
+		Collection<TypeProperty> proptypes2 = bean2.getType()
+				.getPropertyTypes();
 		assertEquals(10, proptypes2.size());
 
-		RapidBean bean3 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanExtended2Gen");
-		Collection<TypeProperty> proptypes3 = bean3.getType().getPropertyTypes();
+		RapidBean bean3 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanExtended2Gen");
+		Collection<TypeProperty> proptypes3 = bean3.getType()
+				.getPropertyTypes();
 		assertEquals(11, proptypes3.size());
 	}
 }

@@ -30,8 +30,8 @@ import org.rapidbeans.service.CursorStyle;
  */
 public class ActionManager {
 
-	private static final Logger log = Logger.getLogger(
-			ActionManager.class.getName());
+	private static final Logger log = Logger.getLogger(ActionManager.class
+			.getName());
 
 	/**
 	 * default constructor.
@@ -65,27 +65,24 @@ public class ActionManager {
 	}
 
 	/**
-	 * Template method for controlled action execution.
-	 * Controls
-	 * - the cursor
-	 * - the logging
-	 * - the message display
+	 * Template method for controlled action execution. Controls - the cursor -
+	 * the logging - the message display
 	 * 
 	 * @param action
 	 *            the action to execute.
 	 */
 	protected void executeControlled(final Action action) {
 		final Application app = ApplicationManager.getApplication();
-		if (app.isUsingAuthorization()
-				&& action.getRolesrequired() != null
+		if (app.isUsingAuthorization() && action.getRolesrequired() != null
 				&& action.getRolesrequired().size() > 0
 				&& (!app.userIsAuthorized(action.getRolesrequired()))) {
 			app.messageError(
 					app.getCurrentLocale().getStringMessage(
 							"authorization.denied.action",
-							app.getAuthenticatedUser().getProperty("accountname").toString()),
-					app.getCurrentLocale().getStringMessage("authorization.denied.title")
-					);
+							app.getAuthenticatedUser()
+									.getProperty("accountname").toString()),
+					app.getCurrentLocale().getStringMessage(
+							"authorization.denied.title"));
 			return;
 		}
 		final Footer footer = app.getMainwindow().getFooter();

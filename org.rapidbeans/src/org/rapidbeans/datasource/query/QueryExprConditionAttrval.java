@@ -87,9 +87,8 @@ class QueryExprConditionAttrval extends QueryExpression {
 	private int compOperator = OPERATOR_COMP_UNDEF;
 
 	/**
-	 * getter for the comparison operator.
-	 * Needed to differ between a match and a normal condition
-	 * during construction.
+	 * getter for the comparison operator. Needed to differ between a match and
+	 * a normal condition during construction.
 	 * 
 	 * @return the comparison operator
 	 */
@@ -180,7 +179,8 @@ class QueryExprConditionAttrval extends QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db,
+			final List<RapidBean> resultSetIn) {
 		ArrayList<RapidBean> resultSet = new ArrayList<RapidBean>();
 		RapidBean bo;
 		Property bop = null;
@@ -199,12 +199,13 @@ class QueryExprConditionAttrval extends QueryExpression {
 			} else {
 				curBop = curBo.getProperty(this.attrName);
 				if (bop == null) {
-					bo = RapidBeanImplStrict.createInstance(curBo.getType().getName());
+					bo = RapidBeanImplStrict.createInstance(curBo.getType()
+							.getName());
 					bop = bo.getProperty(this.attrName);
 					if (bop == null) {
-						throw new QueryException(
-								"Property \"" + this.attrName + "\" not found for type \""
-										+ bo.getType().getName() + "\"");
+						throw new QueryException("Property \"" + this.attrName
+								+ "\" not found for type \""
+								+ bo.getType().getName() + "\"");
 					}
 					if (bop instanceof PropertyAssociationend) {
 						isAssocEnd = true;
@@ -222,9 +223,11 @@ class QueryExprConditionAttrval extends QueryExpression {
 
 			if (this.compOperator == OPERATOR_COMP_MATCH) {
 				if (this.isId) {
-					curMatch = this.attrRegExpPattern.matcher(curId.toString()).matches();
+					curMatch = this.attrRegExpPattern.matcher(curId.toString())
+							.matches();
 				} else {
-					curMatch = this.attrRegExpPattern.matcher(curBop.toString()).matches();
+					curMatch = this.attrRegExpPattern
+							.matcher(curBop.toString()).matches();
 				}
 			} else {
 				if (this.isId) {

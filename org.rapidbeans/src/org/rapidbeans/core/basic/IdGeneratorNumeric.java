@@ -65,15 +65,16 @@ public final class IdGeneratorNumeric implements IdGenerator {
 				if (this.maxGenNumber < 0) {
 					return this.maxGenNumber++;
 				} else /* this.maxGenNUmber == 0 */{
-					throw new RapidBeansRuntimeException("maximal number reached");
+					throw new RapidBeansRuntimeException(
+							"maximal number reached");
 				}
 			}
 		}
 	}
 
 	/**
-	 * notify the number generator that an ID exists so that the
-	 * max gen number will be set high enough.
+	 * notify the number generator that an ID exists so that the max gen number
+	 * will be set high enough.
 	 * 
 	 * @param existingId
 	 *            existing numeric id as int

@@ -28,8 +28,7 @@ import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.type.TypePropertyCollection;
 
 /**
- * The expression that allows to express a condition for a linked
- * object.
+ * The expression that allows to express a condition for a linked object.
  * 
  * @author Martin Bluemel
  */
@@ -116,7 +115,8 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 * @return the set with found objects
 	 */
 	@SuppressWarnings("unchecked")
-	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db,
+			final List<RapidBean> resultSetIn) {
 		ArrayList<RapidBean> resultSet = new ArrayList<RapidBean>();
 		List<RapidBean> resultSetLinkTargets = null;
 		String linkTypename = null;
@@ -137,21 +137,24 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 				parentBeanList.add(curLinkTargetBean);
 				// check the target bean against the child expressions
 				if (this.childExpression != null) {
-					resultSetLinkTargets = this.childExpression.eval(db, parentBeanList);
+					resultSetLinkTargets = this.childExpression.eval(db,
+							parentBeanList);
 					if (resultSetLinkTargets.contains(curLinkTargetBean)) {
 						resultSet.add(curBean);
 					}
 				}
 			} else {
-				curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
+				curColProp = (PropertyCollection) curBean
+						.getProperty(this.linkname);
 				if (curColProp == null) {
-					throw new QueryException("No collection property \"" + this.linkname
-							+ "\" found for type \"" + curBean.getType().getName() + "\"");
+					throw new QueryException("No collection property \""
+							+ this.linkname + "\" found for type \""
+							+ curBean.getType().getName() + "\"");
 				}
 
 				if (linkTypename == null) {
-					linkTypename = ((TypePropertyCollection)
-							curColProp.getType()).getTargetType().getName();
+					linkTypename = ((TypePropertyCollection) curColProp
+							.getType()).getTargetType().getName();
 				}
 
 				// check if there are linked beans for the specified
@@ -159,9 +162,8 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 				curLinkSet = (Collection<RapidBean>) curColProp.getValue();
 
 				if ((curLinkSet != null)
-						&& (((this.multiplicity == -1) && (curLinkSet.size() > 0))
-						|| ((this.multiplicity != -1) && (curLinkSet.size() > 0))))
-				{
+						&& (((this.multiplicity == -1) && (curLinkSet.size() > 0)) || ((this.multiplicity != -1) && (curLinkSet
+								.size() > 0)))) {
 					match = false;
 
 					for (Link curLink : curLinkSet) {
@@ -169,12 +171,15 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 						if (curLink instanceof RapidBean) {
 							curLinkTargetBean = (RapidBean) curLink;
 						} else {
-							curLinkTargetBean = db.findBean(linkTypename, curLink.getIdString());
+							curLinkTargetBean = db.findBean(linkTypename,
+									curLink.getIdString());
 						}
 						// check the target bean against the child expressions
 						if (this.childExpression != null) {
-							resultSetLinkTargets = this.childExpression.eval(db, db.findBeansByType(linkTypename));
-							if (resultSetLinkTargets.contains(curLinkTargetBean)) {
+							resultSetLinkTargets = this.childExpression.eval(
+									db, db.findBeansByType(linkTypename));
+							if (resultSetLinkTargets
+									.contains(curLinkTargetBean)) {
 								match = true;
 								break;
 							}
@@ -188,14 +193,14 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 		}
 
 		//
-		//            for (RapidBean curBean : resultSet) {
-		//                curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
-		//                curLinkSet = (Collection<RapidBean>) curColProp.getValue();
+		// for (RapidBean curBean : resultSet) {
+		// curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
+		// curLinkSet = (Collection<RapidBean>) curColProp.getValue();
 		//
-		//                // remove all RapidBeans that don't have at least one
-		//                // link target that matches the link condition
-		//            }
-		//        }
+		// // remove all RapidBeans that don't have at least one
+		// // link target that matches the link condition
+		// }
+		// }
 
 		return resultSet;
 	}

@@ -18,8 +18,7 @@
 package org.rapidbeans.core.basic;
 
 /**
- * A simple key value pair for generic value setting of
- * map properties.
+ * A simple key value pair for generic value setting of map properties.
  * 
  * @author Martin Bluemel
  */

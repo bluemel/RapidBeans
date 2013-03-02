@@ -35,9 +35,9 @@ import org.rapidbeans.core.type.TypePropertyInteger;
 public final class PropertyInteger extends PropertyNumber {
 
 	/**
-	 * the Integer value (Byte, Short, Integer, Long, BigInteger).
-	 * !!! do not initialize here because the superclass does it
-	 * with the property type's default value
+	 * the Integer value (Byte, Short, Integer, Long, BigInteger). !!! do not
+	 * initialize here because the superclass does it with the property type's
+	 * default value
 	 */
 	private Number value;
 
@@ -56,7 +56,8 @@ public final class PropertyInteger extends PropertyNumber {
 	/**
 	 * generic value getter.
 	 * 
-	 * @return the value of this Property as Number (Byte, Short, Integer, Long, BigInteger)
+	 * @return the value of this Property as Number (Byte, Short, Integer, Long,
+	 *         BigInteger)
 	 */
 	public Number getValue() {
 		return this.value;
@@ -113,8 +114,8 @@ public final class PropertyInteger extends PropertyNumber {
 	/**
 	 * String value getter.
 	 * 
-	 * @return the String representation of the Property's value.
-	 *         For an Integer this is a decimal number
+	 * @return the String representation of the Property's value. For an Integer
+	 *         this is a decimal number
 	 */
 	public String toString() {
 		if (this.value == null) {
@@ -129,23 +130,25 @@ public final class PropertyInteger extends PropertyNumber {
 	 * @param newValue
 	 *            the new integer value for this property.<br/>
 	 *            Must be an instance of the following classes:<br/>
-	 *            <b>Number (Long, Integer, Short, Byte):</b> the integer value itself<br/>
+	 *            <b>Number (Long, Integer, Short, Byte):</b> the integer value
+	 *            itself<br/>
 	 *            <b>String:</b> the integer as decimal string<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-			public void setValue(final Object newValue) {
-				value = (Number) newValue;
-			}
-		});
+		super.setValueWithEvents(this.value, newValue,
+				new PropertyValueSetter() {
+					public void setValue(final Object newValue) {
+						value = (Number) newValue;
+					}
+				});
 	}
 
 	/**
 	 * converter.
 	 * 
 	 * @param integerValue
-	 *            the object to convert
-	 *            Must be an instance of the following classes:<br/>
+	 *            the object to convert Must be an instance of the following
+	 *            classes:<br/>
 	 *            <b>Integer:</b> the integer value itself<br/>
 	 *            <b>String:</b> the integer as decimal string<br/>
 	 * 
@@ -177,15 +180,18 @@ public final class PropertyInteger extends PropertyNumber {
 			return null;
 		}
 		// check against max boundary
-		final Number maxValue = ((TypePropertyInteger) this.getType()).getMaxValue();
+		final Number maxValue = ((TypePropertyInteger) this.getType())
+				.getMaxValue();
 		if (maxValue != null) {
 			boolean exceeded = false;
 			if (newNumberValue instanceof BigInteger) {
-				exceeded = ((BigInteger) newNumberValue).compareTo((BigInteger) maxValue) > 0;
+				exceeded = ((BigInteger) newNumberValue)
+						.compareTo((BigInteger) maxValue) > 0;
 			} else if (newNumberValue instanceof Long) {
 				exceeded = ((Long) newNumberValue).compareTo((Long) maxValue) > 0;
 			} else if (newNumberValue instanceof Integer) {
-				exceeded = ((Integer) newNumberValue).compareTo((Integer) maxValue) > 0;
+				exceeded = ((Integer) newNumberValue)
+						.compareTo((Integer) maxValue) > 0;
 			} else if (newNumberValue instanceof Short) {
 				exceeded = ((Short) newNumberValue).compareTo((Short) maxValue) > 0;
 			} else if (newNumberValue instanceof Byte) {
@@ -193,23 +199,26 @@ public final class PropertyInteger extends PropertyNumber {
 			}
 			if (exceeded) {
 				throw new ValidationException("invalid.prop.integer.maxval",
-						this,
-						"invalid integer \"" + newNumberValue.toString()
-								+ "\" greater than maximal value \"" + maxValue.toString() + "\".",
-						new Object[] { newNumberValue, maxValue });
+						this, "invalid integer \"" + newNumberValue.toString()
+								+ "\" greater than maximal value \""
+								+ maxValue.toString() + "\".", new Object[] {
+								newNumberValue, maxValue });
 			}
 		}
 
 		// check against min boundary
-		final Number minValue = ((TypePropertyInteger) this.getType()).getMinValue();
+		final Number minValue = ((TypePropertyInteger) this.getType())
+				.getMinValue();
 		if (minValue != null) {
 			boolean exceeded = false;
 			if (newNumberValue instanceof BigInteger) {
-				exceeded = ((BigInteger) newNumberValue).compareTo((BigInteger) minValue) < 0;
+				exceeded = ((BigInteger) newNumberValue)
+						.compareTo((BigInteger) minValue) < 0;
 			} else if (newNumberValue instanceof Long) {
 				exceeded = ((Long) newNumberValue).compareTo((Long) minValue) < 0;
 			} else if (newNumberValue instanceof Integer) {
-				exceeded = ((Integer) newNumberValue).compareTo((Integer) minValue) < 0;
+				exceeded = ((Integer) newNumberValue)
+						.compareTo((Integer) minValue) < 0;
 			} else if (newNumberValue instanceof Short) {
 				exceeded = ((Short) newNumberValue).compareTo((Short) minValue) < 0;
 			} else if (newNumberValue instanceof Byte) {
@@ -217,10 +226,10 @@ public final class PropertyInteger extends PropertyNumber {
 			}
 			if (exceeded) {
 				throw new ValidationException("invalid.prop.integer.minval",
-						this,
-						"invalid integer \"" + newNumberValue.toString()
-								+ "\" lower than minimal value \"" + minValue.toString() + "\".",
-						new Object[] { newNumberValue, minValue });
+						this, "invalid integer \"" + newNumberValue.toString()
+								+ "\" lower than minimal value \""
+								+ minValue.toString() + "\".", new Object[] {
+								newNumberValue, minValue });
 			}
 		}
 		return newNumberValue;

@@ -27,10 +27,10 @@ public class UserAuthnDataTest extends TestCase {
 	 */
 	public void testReadAuthnDataDoc() {
 		Application.setAuthnRoleType("org.rapidbeans.security.Role");
-		Document doc = new Document("aunthn",
-				new File("../org.rapidbeans/testdata/authn/authn01.xml"));
-		User martin = (User) doc.findBean(
-				"org.rapidbeans.security.User", "bluemel");
+		Document doc = new Document("aunthn", new File(
+				"../org.rapidbeans/testdata/authn/authn01.xml"));
+		User martin = (User) doc.findBean("org.rapidbeans.security.User",
+				"bluemel");
 		assertEquals("Martin", martin.getFirstname());
 		Collection<RapidEnum> roles = (Collection<RapidEnum>) martin.getRoles();
 		assertEquals(1, roles.size());

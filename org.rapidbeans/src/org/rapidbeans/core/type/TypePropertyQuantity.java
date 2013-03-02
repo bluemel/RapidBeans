@@ -69,7 +69,8 @@ public class TypePropertyQuantity extends TypeProperty {
 
 		String s = propertyNodes[0].getAttributeValue("@quantity");
 		if (s == null) {
-			throw new RapidBeansRuntimeException("Mandatory property \"quantity\" not defined");
+			throw new RapidBeansRuntimeException(
+					"Mandatory property \"quantity\" not defined");
 		}
 		if (s != null) {
 			if (!s.contains(".") && parentBeanType.getPackageName() != null) {
@@ -79,19 +80,21 @@ public class TypePropertyQuantity extends TypeProperty {
 				this.quantitytype = TypeRapidQuantity.forName(s);
 			} catch (TypeNotFoundException e) {
 				if (!s.contains(".")) {
-					this.quantitytype = TypeRapidQuantity.forName(parentBeanType.getPackageName()
-							+ '.' + s);
+					this.quantitytype = TypeRapidQuantity
+							.forName(parentBeanType.getPackageName() + '.' + s);
 				}
 			}
 		}
 		s = propertyNodes[0].getAttributeValue("@maxval");
 		if (s != null) {
-			this.maxVal = RapidQuantity.createInstance(this.quantitytype.getName(), s);
+			this.maxVal = RapidQuantity.createInstance(
+					this.quantitytype.getName(), s);
 		}
 
 		s = propertyNodes[0].getAttributeValue("@minval");
 		if (s != null) {
-			this.minVal = RapidQuantity.createInstance(this.quantitytype.getName(), s);
+			this.minVal = RapidQuantity.createInstance(
+					this.quantitytype.getName(), s);
 		}
 
 		s = propertyNodes[0].getAttributeValue("@defaultunit");
@@ -101,7 +104,8 @@ public class TypePropertyQuantity extends TypeProperty {
 
 		s = propertyNodes[0].getAttributeValue("@default");
 		if (s != null) {
-			this.setDefaultValue(RapidQuantity.createInstance(this.quantitytype.getName(), s));
+			this.setDefaultValue(RapidQuantity.createInstance(
+					this.quantitytype.getName(), s));
 		}
 	}
 

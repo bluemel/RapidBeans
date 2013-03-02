@@ -58,7 +58,8 @@ public final class RapidBeanSerializer {
 	 * @param rootBean
 	 *            the bean or root bean of the composite
 	 */
-	public void saveBean(final RapidBean rootBean, final URL url, final String encoding) {
+	public void saveBean(final RapidBean rootBean, final URL url,
+			final String encoding) {
 		if (url == null) {
 			throw new IllegalArgumentException("no URL given");
 		}
@@ -75,12 +76,14 @@ public final class RapidBeanSerializer {
 				}
 				if (!(file.exists())) {
 					if (!file.createNewFile()) {
-						throw new RapidBeansRuntimeException("Could not create file \""
-								+ file.getAbsolutePath() + "\"");
+						throw new RapidBeansRuntimeException(
+								"Could not create file \""
+										+ file.getAbsolutePath() + "\"");
 					}
 				}
 				osw = new OutputStreamWriter(new FileOutputStream(file), enc);
-			} else if (url.getProtocol().equals("ftp") || url.getProtocol().equals("http")) {
+			} else if (url.getProtocol().equals("ftp")
+					|| url.getProtocol().equals("http")) {
 				final URLConnection urlc = url.openConnection();
 				if (url.getProtocol().equals("http")) {
 					urlc.setDoOutput(true);
@@ -88,17 +91,21 @@ public final class RapidBeanSerializer {
 				final OutputStream os = urlc.getOutputStream();
 				osw = new OutputStreamWriter(os, enc);
 			} else {
-				throw new RapidBeansRuntimeException("Unsupported protocol \"" + url.getProtocol() + "\"");
+				throw new RapidBeansRuntimeException("Unsupported protocol \""
+						+ url.getProtocol() + "\"");
 			}
 			writeToWriter(rootBean, osw, enc);
 		} catch (IOException e) {
-			throw new RapidBeansRuntimeException("writing document file \"" + url.toString() + "\"failed", e);
+			throw new RapidBeansRuntimeException("writing document file \""
+					+ url.toString() + "\"failed", e);
 		} finally {
 			if (osw != null) {
 				try {
 					osw.close();
 				} catch (IOException e) {
-					throw new RapidBeansRuntimeException("writing document file \"" + url.toString() + "\"failed", e);
+					throw new RapidBeansRuntimeException(
+							"writing document file \"" + url.toString()
+									+ "\"failed", e);
 				}
 			}
 		}
@@ -110,8 +117,10 @@ public final class RapidBeanSerializer {
 	 * @param rootBean
 	 *            the bean or root bean of the composite
 	 */
-	public void writeToWriter(final RapidBean rootBean, Writer osw, String encoding) throws IOException {
-		osw.write("<?xml version=\"1.0\" encoding=\"" + encoding + "\" standalone=\"yes\"?>");
+	public void writeToWriter(final RapidBean rootBean, Writer osw,
+			String encoding) throws IOException {
+		osw.write("<?xml version=\"1.0\" encoding=\"" + encoding
+				+ "\" standalone=\"yes\"?>");
 		osw.write(LF);
 		this.write(osw, 0, null, rootBean);
 	}
@@ -150,18 +159,21 @@ public final class RapidBeanSerializer {
 	 * @param bean
 	 *            the bean
 	 */
-	private void write(final Writer osw, final int depth, final PropertyCollection colProp, final RapidBean bean) {
+	private void write(final Writer osw, final int depth,
+			final PropertyCollection colProp, final RapidBean bean) {
 		try {
 			PlatformHelper.getLineFeed();
 			String propname = null;
 			String xmlelement = null;
 			if (colProp != null) {
 				propname = colProp.getType().getPropName();
-				int maxmult = ((TypePropertyCollection) colProp.getType()).getMaxmult();
+				int maxmult = ((TypePropertyCollection) colProp.getType())
+						.getMaxmult();
 				if ((maxmult > 1 || maxmult < 0) && propname.endsWith("s")) {
 					propname = propname.substring(0, propname.length() - 1);
 				}
-				xmlelement = colProp.getType().mapTypeToXmlElement(bean.getType());
+				xmlelement = colProp.getType().mapTypeToXmlElement(
+						bean.getType());
 			}
 			if (depth == 0) {
 				osw.write("<");
@@ -198,13 +210,16 @@ public final class RapidBeanSerializer {
 				osw.write(LF);
 			}
 
-			final List<PropertyCollection> compColProperties = bean.getColPropertiesComposition();
+			final List<PropertyCollection> compColProperties = bean
+					.getColPropertiesComposition();
 			boolean closeImmediately = true;
 
 			TypeProperty proptype;
 			RapidBean colBean;
 			Collection<?> col;
-			if (colProp != null && ((TypePropertyCollection) colProp.getType()).getTargetType() != bean.getType()
+			if (colProp != null
+					&& ((TypePropertyCollection) colProp.getType())
+							.getTargetType() != bean.getType()
 					&& xmlelement == null) {
 				for (int i = -1; i < depth; i++) {
 					osw.write("\t");
@@ -220,8 +235,8 @@ public final class RapidBeanSerializer {
 					continue;
 				}
 				if (prop.getValue() != null
-						&& (!(proptype instanceof TypePropertyCollection)
-						|| (!((TypePropertyCollection) proptype).isComposition()))) {
+						&& (!(proptype instanceof TypePropertyCollection) || (!((TypePropertyCollection) proptype)
+								.isComposition()))) {
 					switch (proptype.getXmlBindingType()) {
 					case attribute:
 						for (int i = -1; i < depth; i++) {
@@ -244,7 +259,8 @@ public final class RapidBeanSerializer {
 			}
 			if (closeImmediately) {
 				for (PropertyCollection prop : compColProperties) {
-					if (prop.getValue() != null && ((Collection<?>) prop.getValue()).size() > 0) {
+					if (prop.getValue() != null
+							&& ((Collection<?>) prop.getValue()).size() > 0) {
 						closeImmediately = false;
 						break;
 					}
@@ -274,8 +290,8 @@ public final class RapidBeanSerializer {
 					continue;
 				}
 				if (prop.getValue() != null
-						&& (!(proptype instanceof TypePropertyCollection)
-						|| (!((TypePropertyCollection) proptype).isComposition()))) {
+						&& (!(proptype instanceof TypePropertyCollection) || (!((TypePropertyCollection) proptype)
+								.isComposition()))) {
 					switch (proptype.getXmlBindingType()) {
 					case element:
 						for (int i = -1; i < depth; i++) {
@@ -322,7 +338,8 @@ public final class RapidBeanSerializer {
 			}
 
 		} catch (IOException e) {
-			throw new RapidBeansRuntimeException("writing document file failed", e);
+			throw new RapidBeansRuntimeException(
+					"writing document file failed", e);
 		}
 	}
 }

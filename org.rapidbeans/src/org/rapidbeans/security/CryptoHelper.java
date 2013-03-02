@@ -67,8 +67,7 @@ public class CryptoHelper {
 	 * 
 	 * @return the encrypted string
 	 */
-	public static String encrypt(
-			final String sIn) {
+	public static String encrypt(final String sIn) {
 		return encrypt(sIn, getDefaultKeyPhrase());
 	}
 
@@ -82,9 +81,7 @@ public class CryptoHelper {
 	 * 
 	 * @return the encrypted string
 	 */
-	public static String encrypt(
-			final String sIn,
-			final String keyPhrase) {
+	public static String encrypt(final String sIn, final String keyPhrase) {
 		try {
 			final MessageDigest md = MessageDigest.getInstance(HASH_ALG);
 			final DigestInputStream digestIn = new DigestInputStream(
@@ -94,10 +91,11 @@ public class CryptoHelper {
 				;
 			digestIn.close();
 			final Cipher cipher = getCipher(true, keyPhrase);
-			final ByteArrayInputStream srcStream =
-					new ByteArrayInputStream(sIn.getBytes());
+			final ByteArrayInputStream srcStream = new ByteArrayInputStream(
+					sIn.getBytes());
 			final ByteArrayOutputStream out = new ByteArrayOutputStream();
-			final CipherOutputStream cipherStream = new CipherOutputStream(out, cipher);
+			final CipherOutputStream cipherStream = new CipherOutputStream(out,
+					cipher);
 			cipherStream.write(md.digest());
 			int len;
 			while ((len = srcStream.read(buffer)) != -1)
@@ -120,8 +118,7 @@ public class CryptoHelper {
 	 * 
 	 * @return the decrypted string
 	 */
-	public static String decrypt(
-			final String sIn) {
+	public static String decrypt(final String sIn) {
 		return decrypt(sIn, getDefaultKeyPhrase());
 	}
 
@@ -135,9 +132,7 @@ public class CryptoHelper {
 	 * 
 	 * @return the decrypted string
 	 */
-	public static String decrypt(
-			final String sIn,
-			final String keyPhrase) {
+	public static String decrypt(final String sIn, final String keyPhrase) {
 		try {
 			final byte[] originalHash = new byte[HASH_LEN];
 			final Cipher cipher = getCipher(false, keyPhrase);
@@ -145,18 +140,18 @@ public class CryptoHelper {
 					new ByteArrayInputStream(BDEC.decodeBuffer(sIn)), cipher);
 			cipherStream.read(originalHash);
 			final MessageDigest md = MessageDigest.getInstance(HASH_ALG);
-			final DigestInputStream digestStream =
-					new DigestInputStream(cipherStream, md);
+			final DigestInputStream digestStream = new DigestInputStream(
+					cipherStream, md);
 			final ByteArrayOutputStream out = new ByteArrayOutputStream();
 			byte[] buffer = new byte[BUFSIZE];
 			int len;
 			while ((len = digestStream.read(buffer)) != -1)
 				out.write(buffer, 0, len);
 			digestStream.close();
-			//          final byte[] computedHash = md.digest();
-			//          if (!(Arrays.equals(originalHash, computedHash))) {
-			//          throw new RapidBeansRuntimeException("hashs do not equal");
-			//          }
+			// final byte[] computedHash = md.digest();
+			// if (!(Arrays.equals(originalHash, computedHash))) {
+			// throw new RapidBeansRuntimeException("hashs do not equal");
+			// }
 			return out.toString();
 		} catch (IOException e) {
 			throw new RapidBeansRuntimeException(e);
@@ -181,19 +176,17 @@ public class CryptoHelper {
 	 * @throws IOException
 	 * @throws GeneralSecurityException
 	 */
-	public static void encryptFile(
-			final String keyPhrase,
-			final String srcFileName,
-			final String dstFileName)
+	public static void encryptFile(final String keyPhrase,
+			final String srcFileName, final String dstFileName)
 			throws IOException, GeneralSecurityException {
 		final MessageDigest md;
 		final CipherOutputStream cipherStream;
 
 		// MessageDigest-Exemplar erzeugen
 		md = MessageDigest.getInstance(HASH_ALG);
-		//Einen Stream mit diesem Exemplar erzeugen
-		final DigestInputStream digestStream =
-				new DigestInputStream(new FileInputStream(srcFileName), md);
+		// Einen Stream mit diesem Exemplar erzeugen
+		final DigestInputStream digestStream = new DigestInputStream(
+				new FileInputStream(srcFileName), md);
 
 		// Datei einmal einlesen, um den Hash zu berechnen
 		byte[] buffer = new byte[BUFSIZE];
@@ -210,8 +203,8 @@ public class CryptoHelper {
 		final FileInputStream srcStream = new FileInputStream(srcFileName);
 
 		// Cipher-Stream ueber einem FileOutputStream erzeugen
-		cipherStream =
-				new CipherOutputStream(new FileOutputStream(dstFileName), cipher);
+		cipherStream = new CipherOutputStream(
+				new FileOutputStream(dstFileName), cipher);
 
 		// Hash verschluesselt in die Datei schreiben
 		cipherStream.write(hash);
@@ -233,10 +226,8 @@ public class CryptoHelper {
 	 * @throws IOException
 	 * @throws GeneralSecurityException
 	 */
-	public static boolean decryptFile(
-			final String keyPhrase,
-			final String srcFileName,
-			final String dstFileName)
+	public static boolean decryptFile(final String keyPhrase,
+			final String srcFileName, final String dstFileName)
 			throws IOException, GeneralSecurityException {
 		CipherInputStream cipherStream;
 		FileOutputStream dstStream;
@@ -247,8 +238,8 @@ public class CryptoHelper {
 
 		Cipher cipher = getCipher(false, keyPhrase);
 
-		cipherStream =
-				new CipherInputStream(new FileInputStream(srcFileName), cipher);
+		cipherStream = new CipherInputStream(new FileInputStream(srcFileName),
+				cipher);
 		cipherStream.read(originalHash);
 		md = MessageDigest.getInstance(HASH_ALG);
 		digestStream = new DigestInputStream(cipherStream, md);
@@ -265,28 +256,25 @@ public class CryptoHelper {
 	}
 
 	/**
-	 * create a cipher for symmetric encryption or
-	 * decryption.
+	 * create a cipher for symmetric encryption or decryption.
 	 * 
 	 * @param encrypt
-	 *            determines if the cipher should be
-	 *            used for encryption or decryption
+	 *            determines if the cipher should be used for encryption or
+	 *            decryption
 	 * @param keyPhrase
 	 *            the key phrase
 	 * @return the cipher
 	 * @throws IOException
 	 *             if IO fails
 	 * @throws GeneralSecurityException
-	 *             if a general
-	 *             security problem occurs
+	 *             if a general security problem occurs
 	 */
-	protected static Cipher getCipher(
-			final boolean encrypt,
-			final String keyPhrase)
-			throws IOException, GeneralSecurityException {
+	protected static Cipher getCipher(final boolean encrypt,
+			final String keyPhrase) throws IOException,
+			GeneralSecurityException {
 		byte[] rawKey = getSymmetricKey(keyPhrase);
-		final Key key = new SecretKeySpec(
-				new DESedeKeySpec(rawKey).getKey(), ENC_ALG);
+		final Key key = new SecretKeySpec(new DESedeKeySpec(rawKey).getKey(),
+				ENC_ALG);
 		final Cipher cipher = Cipher.getInstance(ENC_ALG);
 		if (encrypt) {
 			cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -301,8 +289,8 @@ public class CryptoHelper {
 	 * 
 	 * @param keyPhrase
 	 *            the key phrase
-	 * @return a byte array that serves a symmetric key
-	 *         for encryption or decryption
+	 * @return a byte array that serves a symmetric key for encryption or
+	 *         decryption
 	 * @throws IOException
 	 *             in case of IO problems
 	 * @throws GeneralSecurityException

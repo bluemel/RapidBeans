@@ -40,8 +40,8 @@ public final class ClassHelper {
 	 * 
 	 * @return if class to check is a subclass of or implements the given class.
 	 */
-	public static boolean classOf(
-			final Class<?> superclassOrInterface, final Class<?> classToCheck) {
+	public static boolean classOf(final Class<?> superclassOrInterface,
+			final Class<?> classToCheck) {
 		if (classToCheck == superclassOrInterface) {
 			return true;
 		} else {
@@ -51,7 +51,8 @@ public final class ClassHelper {
 				}
 			}
 			if (superclassOrInterface.isInterface()) {
-				for (final Class<?> interfaceClass : classToCheck.getInterfaces()) {
+				for (final Class<?> interfaceClass : classToCheck
+						.getInterfaces()) {
 					if (classOf(superclassOrInterface, interfaceClass)) {
 						return true;
 					}

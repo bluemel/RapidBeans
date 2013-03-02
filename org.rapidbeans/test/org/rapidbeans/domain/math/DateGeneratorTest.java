@@ -34,11 +34,11 @@ public class DateGeneratorTest extends TestCase {
 	static final DateFormat DFTIME = DateFormat.getDateTimeInstance(
 			DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
 
-	//    /**
-	//     * Date formatter.
-	//     */
-	//    static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(
-	//            DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
+	// /**
+	// * Date formatter.
+	// */
+	// static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(
+	// DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
 
 	/**
 	 * normal case.
@@ -103,8 +103,8 @@ public class DateGeneratorTest extends TestCase {
 	public void testGenerateFromSmallerTo() throws ParseException {
 		DateGenerator testGenerator = new DateGenerator();
 		try {
-			testGenerator.generateDays(
-					DFDATE.parse("15.11.2005"), DFDATE.parse("11.11.2005"));
+			testGenerator.generateDays(DFDATE.parse("15.11.2005"),
+					DFDATE.parse("11.11.2005"));
 			fail("expected IllegalArgumentException");
 		} catch (IllegalArgumentException e) {
 			assertTrue(true);

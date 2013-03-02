@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation;
 
-
-
 // BEGIN manual code section
 // Submenu.import
 import java.util.ArrayList;
@@ -30,9 +28,8 @@ import org.rapidbeans.presentation.swing.SubmenuSwing;
 // END manual code section
 
 /**
- * Rapid Bean class: Submenu.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: Submenu. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	// BEGIN manual code section
@@ -56,17 +53,15 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	 * 
 	 * @return the created instance
 	 */
-	public static final Submenu createInstance(
-			final ConfigSubmenu config,
-			final Application client,
-			final String resourcePath) {
+	public static final Submenu createInstance(final ConfigSubmenu config,
+			final Application client, final String resourcePath) {
 		Submenu menu = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
 			menu = new SubmenuSwing(config, client, resourcePath);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp();
+			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
 			throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -90,13 +85,13 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 			final String resourcePath) {
 		this.setName(menuConfig.getName());
 		Collection<MenuEntry> menuEntries = new ArrayList<MenuEntry>();
-		List<ConfigMenuEntry> menuEntryConfigs = (ReadonlyListCollection<ConfigMenuEntry>)
-				menuConfig.getMenuentrys();
+		List<ConfigMenuEntry> menuEntryConfigs = (ReadonlyListCollection<ConfigMenuEntry>) menuConfig
+				.getMenuentrys();
 		if (menuEntryConfigs != null) {
 			for (ConfigMenuEntry menuEntryConfig : menuEntryConfigs) {
 				if (client.userIsAuthorized(menuEntryConfig.getRolesrequired())) {
-					menuEntries.add(MenuEntry.createInstance(menuEntryConfig, client,
-							resourcePath + "." + this.getName()));
+					menuEntries.add(MenuEntry.createInstance(menuEntryConfig,
+							client, resourcePath + "." + this.getName()));
 				}
 			}
 		}
@@ -115,8 +110,8 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("menuentrys");
+		this.menuentrys = (org.rapidbeans.core.basic.PropertyAssociationend) this
+				.getProperty("menuentrys");
 	}
 
 	/**
@@ -131,6 +126,7 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -143,6 +139,7 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -156,7 +153,8 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(Submenu.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(Submenu.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -171,33 +169,44 @@ public class Submenu extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry> getMenuentrys() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry>)
-			this.menuentrys.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.MenuEntry>) this.menuentrys
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("menuentrys");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"menuentrys");
 		}
 	}
 
 	/**
 	 * setter for Property 'menuentrys'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'menuentrys' to set
 	 */
-	public void setMenuentrys(final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
+	public void setMenuentrys(
+			final java.util.Collection<org.rapidbeans.presentation.MenuEntry> argValue) {
 		this.menuentrys.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'menuentrys'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addMenuentry(final org.rapidbeans.presentation.MenuEntry bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys)
+				.addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'menuentrys'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void removeMenuentry(final org.rapidbeans.presentation.MenuEntry bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys)
+				.removeLink(bean);
 	}
 }

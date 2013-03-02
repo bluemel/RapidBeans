@@ -20,13 +20,12 @@ package org.rapidbeans.presentation.swing;
 import org.rapidbeans.core.basic.PropertyCollection;
 
 /**
- * The wrapper class for PropertyCollection of type composition
- * to avoid side effects during rendering a Swing Tree.
+ * The wrapper class for PropertyCollection of type composition to avoid side
+ * effects during rendering a Swing Tree.
  * 
  * @author Martin Bluemel
  */
-public class DocumentTreeNodePropColComp
-		extends DocumentTreeNodePropCol {
+public class DocumentTreeNodePropColComp extends DocumentTreeNodePropCol {
 
 	/**
 	 * constructor.

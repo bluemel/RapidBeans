@@ -58,7 +58,8 @@ public final class TestSuiteHelper {
 	@SuppressWarnings("unchecked")
 	public static void fill(final TestSuite suite, final File dir,
 			final String classNamePattern, final String parentPackage,
-			final ArrayList<String> classnamesIn, final ArrayList<String> classnamesEx) {
+			final ArrayList<String> classnamesIn,
+			final ArrayList<String> classnamesEx) {
 		String pckg;
 		if (parentPackage == null) {
 			pckg = "";
@@ -67,7 +68,8 @@ public final class TestSuiteHelper {
 		} else {
 			pckg = parentPackage + "." + dir.getName();
 		}
-		final File[] testClassFiles = dir.listFiles(new FileFilterRegExp("\\A" + classNamePattern + ".java\\z"));
+		final File[] testClassFiles = dir.listFiles(new FileFilterRegExp("\\A"
+				+ classNamePattern + ".java\\z"));
 		int i;
 		String filename, classname, pureClassname;
 		for (i = 0; i < testClassFiles.length; i++) {
@@ -75,11 +77,11 @@ public final class TestSuiteHelper {
 			pureClassname = filename.substring(0, filename.length() - 5);
 			classname = pckg + "." + pureClassname;
 			try {
-				if ((classnamesIn == null
-						|| classnamesIn.contains(classname))
-						&& (classnamesEx == null
-						|| (!classnamesEx.contains(classname)))) {
-					suite.addTestSuite((Class<TestCase>) Class.forName(classname));
+				if ((classnamesIn == null || classnamesIn.contains(classname))
+						&& (classnamesEx == null || (!classnamesEx
+								.contains(classname)))) {
+					suite.addTestSuite((Class<TestCase>) Class
+							.forName(classname));
 				}
 			} catch (ClassNotFoundException e) {
 				Assert.fail("test class not found: " + classname);
@@ -87,8 +89,10 @@ public final class TestSuiteHelper {
 		}
 		final File[] allFiles = dir.listFiles();
 		for (i = 0; i < allFiles.length; i++) {
-			if (allFiles[i].isDirectory() && !(allFiles[i].getName().equals(".svn"))) {
-				fill(suite, allFiles[i], classNamePattern, pckg, classnamesIn, classnamesEx);
+			if (allFiles[i].isDirectory()
+					&& !(allFiles[i].getName().equals(".svn"))) {
+				fill(suite, allFiles[i], classNamePattern, pckg, classnamesIn,
+						classnamesEx);
 			}
 		}
 	}

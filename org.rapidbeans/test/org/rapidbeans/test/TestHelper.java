@@ -30,7 +30,8 @@ public final class TestHelper {
 	 *            the XML type description
 	 * @return the TestBean instance
 	 */
-	public static GenericBean createGenericBeanInstance(final String xmlDescription) {
+	public static GenericBean createGenericBeanInstance(
+			final String xmlDescription) {
 		final XmlNode xmlNode = XmlNode.getDocumentTopLevel(xmlDescription);
 		TypeRapidBean type = new TypeRapidBean(null, xmlNode, null, false);
 		GenericBean newBean = new GenericBean(type);

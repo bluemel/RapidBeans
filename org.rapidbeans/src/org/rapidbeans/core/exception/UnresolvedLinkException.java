@@ -62,7 +62,8 @@ public class UnresolvedLinkException extends RapidBeansRuntimeException {
 	 * @param exception
 	 *            the nested exception
 	 */
-	public UnresolvedLinkException(final String message, final Throwable exception) {
+	public UnresolvedLinkException(final String message,
+			final Throwable exception) {
 		super(message, exception);
 	}
 }

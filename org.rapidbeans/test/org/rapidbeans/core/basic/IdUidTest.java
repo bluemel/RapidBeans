@@ -41,8 +41,8 @@ public class IdUidTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBean(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBean(final String name, final String prename,
+			final String dateofbirth) {
 		String descr = "<beantype name=\"TestBean\">"
 				+ "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"

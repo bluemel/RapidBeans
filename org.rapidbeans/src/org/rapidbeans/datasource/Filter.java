@@ -30,9 +30,8 @@ import org.rapidbeans.datasource.query.Query;
 import org.rapidbeans.datasource.query.QueryExprConditionType;
 
 /**
- * A Filter defines a set of filter rules applied to a set of beans.
- * You apply this filter to a document and then simply query if a bean
- * is included.
+ * A Filter defines a set of filter rules applied to a set of beans. You apply
+ * this filter to a document and then simply query if a bean is included.
  * 
  * @author Martin Bluemel
  */
@@ -73,9 +72,11 @@ public class Filter {
 	 */
 	public boolean applies(final RapidBean bean) {
 		if (this.document == null) {
-			throw new RapidBeansRuntimeException("Filter not correctly initialized");
+			throw new RapidBeansRuntimeException(
+					"Filter not correctly initialized");
 		}
-		return this.idMap.contains(bean.getType().getName(), bean.getIdString());
+		return this.idMap
+				.contains(bean.getType().getName(), bean.getIdString());
 	}
 
 	/**
@@ -88,7 +89,8 @@ public class Filter {
 	 */
 	public boolean applies(final TypeRapidBean type) {
 		if (this.document == null) {
-			throw new RapidBeansRuntimeException("Filter not correctly initialized");
+			throw new RapidBeansRuntimeException(
+					"Filter not correctly initialized");
 		}
 		return this.typeMap.get(type.getName()) != null;
 	}
@@ -125,21 +127,21 @@ public class Filter {
 		if (this.includesRules != null && this.includesRules.size() > 0) {
 			for (final Query includesRule : this.includesRules) {
 				if (includesRule.getQueryExpressionTreeRoot() instanceof QueryExprConditionType) {
-					final String typename = ((QueryExprConditionType) includesRule.getQueryExpressionTreeRoot())
-							.getTypename();
+					final String typename = ((QueryExprConditionType) includesRule
+							.getQueryExpressionTreeRoot()).getTypename();
 					if (this.typeMap.get(typename) == null) {
-						this.typeMap.put(typename, TypeRapidBean.forName(typename));
+						this.typeMap.put(typename,
+								TypeRapidBean.forName(typename));
 					}
 				}
 				for (final RapidBean bean : doc.findBeansByQuery(includesRule)) {
-					if (this.idMap.findBean(bean.getType().getName(), bean.getIdString())
-					== null) {
+					if (this.idMap.findBean(bean.getType().getName(),
+							bean.getIdString()) == null) {
 						this.idMap.insert(bean);
 						RapidBean parentBean = bean.getParentBean();
 						while (parentBean != null
-								&& this.idMap.findBean(
-										parentBean.getType().getName(),
-										parentBean.getIdString()) == null) {
+								&& this.idMap.findBean(parentBean.getType()
+										.getName(), parentBean.getIdString()) == null) {
 							this.idMap.insert(parentBean);
 							parentBean = parentBean.getParentBean();
 						}
@@ -158,14 +160,14 @@ public class Filter {
 		}
 		for (final Query excludesRule : this.excludesRules) {
 			for (final RapidBean bean : doc.findBeansByQuery(excludesRule)) {
-				if (this.idMap.findBean(bean.getType().getName(), bean.getIdString())
-				!= null) {
+				if (this.idMap.findBean(bean.getType().getName(),
+						bean.getIdString()) != null) {
 					deleteWithChildsFromIdMap(bean);
 				}
 			}
 			if (excludesRule.getQueryExpressionTreeRoot() instanceof QueryExprConditionType) {
-				final String typename = ((QueryExprConditionType) excludesRule.getQueryExpressionTreeRoot())
-						.getTypename();
+				final String typename = ((QueryExprConditionType) excludesRule
+						.getQueryExpressionTreeRoot()).getTypename();
 				if (this.typeMap.get(typename) != null
 						&& this.idMap.findAllIds(typename).size() == 0) {
 					this.typeMap.remove(typename);
@@ -178,13 +180,13 @@ public class Filter {
 	private void deleteWithChildsFromIdMap(final RapidBean bean) {
 		this.idMap.delete(bean);
 		for (PropertyCollection colProp : bean.getColProperties()) {
-			final Collection<RapidBean> col =
-					(Collection<RapidBean>) colProp.getValue();
+			final Collection<RapidBean> col = (Collection<RapidBean>) colProp
+					.getValue();
 			if (col == null) {
 				continue;
 			}
-			final TypePropertyCollection colPropType =
-					(TypePropertyCollection) colProp.getType();
+			final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
+					.getType();
 			if (colPropType.isComposition()) {
 				for (RapidBean bean1 : col) {
 					deleteWithChildsFromIdMap(bean1);

@@ -20,8 +20,8 @@ package org.rapidbeans.core.exception;
 /**
  * @author Martin Bluemel
  */
-public class QuantityConversionNotSupportedException
-		extends RapidBeansRuntimeException {
+public class QuantityConversionNotSupportedException extends
+		RapidBeansRuntimeException {
 
 	/**
 	 * serial version UID.
@@ -53,8 +53,8 @@ public class QuantityConversionNotSupportedException
 	 * @param exception
 	 *            the exception
 	 */
-	public QuantityConversionNotSupportedException(
-			final String message, final Throwable exception) {
+	public QuantityConversionNotSupportedException(final String message,
+			final Throwable exception) {
 		super(message, exception);
 	}
 

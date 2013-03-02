@@ -105,7 +105,8 @@ class QueryExprBrace extends QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db,
+			final List<RapidBean> resultSetIn) {
 		List<RapidBean> resultSet = new ArrayList<RapidBean>();
 		if (this.childExpression != null) {
 			resultSet = this.childExpression.eval(db, resultSetIn);

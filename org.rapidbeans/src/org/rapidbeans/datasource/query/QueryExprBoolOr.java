@@ -67,11 +67,12 @@ class QueryExprBoolOr extends QueryExpression {
 	public QueryExprBoolOr(final QueryExpression argLastCreatedExpression) {
 		// get the parent of last created expression
 		QueryExpression lastCreatedExpression = argLastCreatedExpression;
-		QueryExpression lastCreatedParent = argLastCreatedExpression.getParentExpression();
+		QueryExpression lastCreatedParent = argLastCreatedExpression
+				.getParentExpression();
 		// precedence AND before OR and before closed Braces
 		while (lastCreatedParent instanceof QueryExprBoolAnd
-				|| (lastCreatedParent instanceof QueryExprBrace
-				&& ((QueryExprBrace) lastCreatedParent).isClosed())) {
+				|| (lastCreatedParent instanceof QueryExprBrace && ((QueryExprBrace) lastCreatedParent)
+						.isClosed())) {
 			lastCreatedParent = lastCreatedParent.getParentExpression();
 			lastCreatedExpression = lastCreatedExpression.getParentExpression();
 		}
@@ -91,7 +92,8 @@ class QueryExprBoolOr extends QueryExpression {
 	 * 
 	 * @return the collection with beans
 	 */
-	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db,
+			final List<RapidBean> resultSetIn) {
 		ArrayList<RapidBean> resultSet = new ArrayList<RapidBean>();
 		List<RapidBean> resultSetChild;
 		List<RapidBean> resultSetInNotMatched = new ArrayList<RapidBean>();

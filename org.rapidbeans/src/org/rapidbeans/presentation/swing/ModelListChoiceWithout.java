@@ -99,12 +99,12 @@ public final class ModelListChoiceWithout extends DefaultListModel {
 	 * update the listAllEnums.
 	 */
 	protected void updateList() {
-		final ReadonlyListCollection<RapidEnum> allEnums =
-				new ReadonlyListCollection<RapidEnum>(
-						this.choicePropType.getEnumType().getElements(),
-						this.choicePropType);
+		final ReadonlyListCollection<RapidEnum> allEnums = new ReadonlyListCollection<RapidEnum>(
+				this.choicePropType.getEnumType().getElements(),
+				this.choicePropType);
 		this.listAllEnums = new ArrayList<RapidEnum>();
-		final ReadonlyListCollection<?> currentPropValue = this.choiceProp.getValue();
+		final ReadonlyListCollection<?> currentPropValue = this.choiceProp
+				.getValue();
 		for (RapidEnum singleEnum : allEnums) {
 			if (currentPropValue == null
 					|| (!currentPropValue.contains(singleEnum))) {

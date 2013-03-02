@@ -134,8 +134,7 @@ public abstract class MainWindow {
 	public abstract DocumentView getActiveDocumentView();
 
 	/**
-	 * @return the Z order if the view is a top level view.
-	 *         -1 otherwise.
+	 * @return the Z order if the view is a top level view. -1 otherwise.
 	 */
 	public abstract int getViewZOrder(final View view);
 
@@ -157,7 +156,7 @@ public abstract class MainWindow {
 			mainWindow = new MainWindowSwing(client, mainWindowConfig);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp();
+			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
 			throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -184,8 +183,8 @@ public abstract class MainWindow {
 			final String resourcePathToolbar = this.getName() + ".toolbar";
 			if (mainWindowConfig.getToolbars() != null) {
 				for (final ConfigToolbar conf : mainWindowConfig.getToolbars()) {
-					this.addToolbar(Toolbar.createInstance(client,
-							this, conf, resourcePathToolbar));
+					this.addToolbar(Toolbar.createInstance(client, this, conf,
+							resourcePathToolbar));
 				}
 			}
 			if (mainWindowConfig.getMenubar() != null) {

@@ -22,16 +22,15 @@ public class FilterTest extends TestCase {
 	public void testExcludes01() {
 		final Document doc = new Document(new File(
 				"../org.rapidbeans/testdata/addressbook5/adrbookdb.xml"));
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.User");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.User");
 		assertEquals(5, doc.findBeansByQuery(query).size());
 		final Filter filter = new Filter();
 		filter.addExcludes("org.rapidbeans.test.addressbook5.User");
 		filter.setDocument(doc);
 		RapidBean root = doc.getRoot();
 		assertTrue(filter.applies(root));
-		for (RapidBean bean : doc.findBeansByType(
-				"org.rapidbeans.test.addressbook5.User")) {
+		for (RapidBean bean : doc
+				.findBeansByType("org.rapidbeans.test.addressbook5.User")) {
 			assertFalse(filter.applies(bean));
 		}
 	}

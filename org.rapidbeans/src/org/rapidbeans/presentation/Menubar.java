@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation;
 
-
-
 // BEGIN manual code section
 // Menubar.import
 import java.util.ArrayList;
@@ -29,9 +27,8 @@ import org.rapidbeans.presentation.swing.MenubarSwing;
 // END manual code section
 
 /**
- * Rapid Bean class: Menubar.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: Menubar. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class Menubar extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -56,7 +53,7 @@ public class Menubar extends RapidBeanImplStrict {
 			menuBar = new MenubarSwing(client, menubarConfig, resourcePath);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp();
+			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
 			throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -76,8 +73,8 @@ public class Menubar extends RapidBeanImplStrict {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public Menubar(final Application client,
-			final ConfigMenubar menubarConfig, final String resourcePath) {
+	public Menubar(final Application client, final ConfigMenubar menubarConfig,
+			final String resourcePath) {
 		this.setName(menubarConfig.getName());
 		Collection<Submenu> submenus = new ArrayList<Submenu>();
 		for (ConfigSubmenu submenuConfig : menubarConfig.getMenus()) {
@@ -129,10 +126,10 @@ public class Menubar extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
-		this.menus = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("menus");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("name");
+		this.menus = (org.rapidbeans.core.basic.PropertyAssociationend) this
+				.getProperty("menus");
 	}
 
 	/**
@@ -147,6 +144,7 @@ public class Menubar extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -159,6 +157,7 @@ public class Menubar extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -172,7 +171,8 @@ public class Menubar extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(Menubar.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(Menubar.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -188,12 +188,14 @@ public class Menubar extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"name");
 		}
 	}
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
@@ -207,33 +209,44 @@ public class Menubar extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.Submenu> getMenus() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.Submenu>)
-			this.menus.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.Submenu>) this.menus
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("menus");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"menus");
 		}
 	}
 
 	/**
 	 * setter for Property 'menus'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'menus' to set
 	 */
-	public void setMenus(final java.util.Collection<org.rapidbeans.presentation.Submenu> argValue) {
+	public void setMenus(
+			final java.util.Collection<org.rapidbeans.presentation.Submenu> argValue) {
 		this.menus.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'menus'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addMenu(final org.rapidbeans.presentation.Submenu bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.menus).addLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.menus)
+				.addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'menus'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void removeMenu(final org.rapidbeans.presentation.Submenu bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.menus).removeLink(bean);
+		((org.rapidbeans.core.basic.PropertyCollection) this.menus)
+				.removeLink(bean);
 	}
 }

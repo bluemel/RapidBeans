@@ -36,8 +36,8 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 
 /**
- * cell renderer for the Swing implementation for a tree view
- * for a bean document.
+ * cell renderer for the Swing implementation for a tree view for a bean
+ * document.
  * 
  * @author Martin Bluemel
  */
@@ -66,7 +66,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 * @param loc
 	 *            the locale
 	 */
-	public DocumentTreeCellRenderer(final Document doc, final RapidBeansLocale loc) {
+	public DocumentTreeCellRenderer(final Document doc,
+			final RapidBeansLocale loc) {
 		this.document = doc;
 		this.locale = loc;
 		if (this.locale == null) {
@@ -75,12 +76,11 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	}
 
 	/**
-	 * Sets the value of the current tree cell to value.
-	 * If selected is true, the cell will be drawn as if selected.
-	 * If expanded is true the node is currently expanded and if leaf
-	 * is true the node represets a leaf and if hasFocus is true the
-	 * node currently has focus. tree is the JTree the receiver is
-	 * being configured for. Returns the Component that the renderer
+	 * Sets the value of the current tree cell to value. If selected is true,
+	 * the cell will be drawn as if selected. If expanded is true the node is
+	 * currently expanded and if leaf is true the node represets a leaf and if
+	 * hasFocus is true the node currently has focus. tree is the JTree the
+	 * receiver is being configured for. Returns the Component that the renderer
 	 * uses to draw the value.
 	 * 
 	 * @param tree
@@ -101,23 +101,21 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 * @return the tree cell renderer component
 	 */
 	public Component getTreeCellRendererComponent(final JTree tree,
-			final Object value,
-			final boolean isSelected,
-			final boolean expanded,
-			final boolean leaf,
-			final int row,
+			final Object value, final boolean isSelected,
+			final boolean expanded, final boolean leaf, final int row,
 			final boolean hasGotFocus) {
 		String text = null;
 		ImageIcon icon = null;
-		DocumentTreeCellRenderer comp = (DocumentTreeCellRenderer)
-				super.getTreeCellRendererComponent(tree, value, isSelected,
+		DocumentTreeCellRenderer comp = (DocumentTreeCellRenderer) super
+				.getTreeCellRendererComponent(tree, value, isSelected,
 						expanded, leaf, row, hasGotFocus);
 		if (value instanceof RapidBean) {
 			text = findText((RapidBean) value);
 			icon = findIcon((RapidBean) value, false);
 		} else if (value instanceof DocumentTreeNodeBeanLink) {
 			text = findText(((DocumentTreeNodeBeanLink) value).getLinkedBean());
-			icon = findIcon(((DocumentTreeNodeBeanLink) value).getLinkedBean(), true);
+			icon = findIcon(((DocumentTreeNodeBeanLink) value).getLinkedBean(),
+					true);
 		} else if (value instanceof DocumentTreeNodePropCol) {
 			text = findText((DocumentTreeNodePropCol) value);
 			icon = findIcon((DocumentTreeNodePropCol) value);
@@ -139,11 +137,13 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		String text = null;
 
 		// 1) take resource definition: treeview.beanlabel.<path>
-		//    e. g. treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
+		// e. g.
+		// treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
 		try {
 			if (bean.getContainer() != null
 					&& bean.getContainer() instanceof Document) {
-				final String path = ((Document) bean.getContainer()).getPath(bean, '.');
+				final String path = ((Document) bean.getContainer()).getPath(
+						bean, '.');
 				final String pattern = "treeview.beanlabel." + path;
 				final String s = this.locale.getStringGui(pattern);
 				text = bean.expandPropertyValues(s, this.locale);
@@ -152,15 +152,18 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 			text = null;
 		}
 
-		// 1b) take resource definition: treeview.beanlabel.<documentprefix>*.<path>
-		//    e. g. treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
+		// 1b) take resource definition:
+		// treeview.beanlabel.<documentprefix>*.<path>
+		// e. g.
+		// treeview.beanlabel.masterdata.clubs.trainingdates.trainerplannings
 		if (text == null) {
 			try {
 				if (bean.getContainer() != null
 						&& bean.getContainer() instanceof Document) {
 					final List<String> sa = StringHelper.split(
 							"treeview.beanlabel."
-									+ ((Document) bean.getContainer()).getPath(bean, '.'), ".");
+									+ ((Document) bean.getContainer()).getPath(
+											bean, '.'), ".");
 					if (sa.size() > 3) {
 						final String docname = sa.get(2);
 						final int docnamepos = docname.indexOf('_');
@@ -171,7 +174,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 									sb.append('.');
 								}
 								if (i == 2) {
-									sb.append(docname.substring(0, docnamepos + 1));
+									sb.append(docname.substring(0,
+											docnamepos + 1));
 									sb.append('*');
 								} else {
 									sb.append(sa.get(i));
@@ -179,7 +183,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 							}
 							final String pattern = sb.toString();
 							text = bean.expandPropertyValues(
-									this.locale.getStringGui(pattern), this.locale);
+									this.locale.getStringGui(pattern),
+									this.locale);
 						}
 					}
 				}
@@ -209,13 +214,13 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// daisy chain of tries to find an appropriate text for
 		// compositions collection (or container) properties
 
-		// try tree view resource string specifically defined for this kind of document
+		// try tree view resource string specifically defined for this kind of
+		// document
 		// "document.<document config name>.treeview.<property name>.label"
 		try {
 			text = this.locale.getStringGui("document."
 					+ this.document.getConfigNameOrName() + ".treeview."
-					+ colNode.getColProp().getType().getPropName()
-					+ ".label");
+					+ colNode.getColProp().getType().getPropName() + ".label");
 		} catch (MissingResourceException e) {
 			text = null;
 		}
@@ -227,9 +232,9 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 			TypeRapidBean type = colNode.getColProp().getBean().getType();
 			while (text == null && type != null) {
 				try {
-					final String key = "bean."
-							+ type.getName().toLowerCase()
-							+ ".prop." + colNode.getColProp().getType().getPropName();
+					final String key = "bean." + type.getName().toLowerCase()
+							+ ".prop."
+							+ colNode.getColProp().getType().getPropName();
 					text = this.locale.getStringGui(key);
 				} catch (MissingResourceException e) {
 					text = null;
@@ -243,14 +248,16 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 		// target type or one of it's parent types
 		// "bean.<lowercased target typename>(.plural)" or
 		// "bean.<lowercased target typename>" in case of maxmult == 1
-		if (text == null && colNode.getColProp().getType() instanceof TypePropertyCollection) {
-			final TypePropertyCollection colPropType =
-					(TypePropertyCollection) colNode.getColProp().getType();
+		if (text == null
+				&& colNode.getColProp().getType() instanceof TypePropertyCollection) {
+			final TypePropertyCollection colPropType = (TypePropertyCollection) colNode
+					.getColProp().getType();
 			TypeRapidBean type = colPropType.getTargetType();
 			while (text == null && type != null) {
 				try {
 					text = type.toStringGui(this.locale,
-							(colPropType.getMaxmult() != 1), colPropType.getPropName());
+							(colPropType.getMaxmult() != 1),
+							colPropType.getPropName());
 					String key = "bean." + type.getName().toLowerCase();
 					if (colPropType.getMaxmult() != 1) {
 						key += ".plural";
@@ -259,7 +266,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 				} catch (MissingResourceException e) {
 					if (colPropType.getMaxmult() != 1) {
 						try {
-							final String key1 = "bean." + type.getName().toLowerCase();
+							final String key1 = "bean."
+									+ type.getName().toLowerCase();
 							text = locale.getStringGui(key1);
 							text += "s";
 						} catch (MissingResourceException e1) {
@@ -287,8 +295,7 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 * @param bean
 	 *            the bean for which we need a text
 	 * @param link
-	 *            determines if it is a bean or a
-	 *            link to a bean.
+	 *            determines if it is a bean or a link to a bean.
 	 * 
 	 * @return the found text or null if none found
 	 */
@@ -298,9 +305,10 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 
 		if (ApplicationManager.getApplication() != null
 				&& ApplicationManager.getApplication().getMainwindow() != null
-				&& ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager() != null) {
-			icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager().getIcon(
-					bean.getType());
+				&& ((MainWindowSwing) ApplicationManager.getApplication()
+						.getMainwindow()).getIconManager() != null) {
+			icon = ((MainWindowSwing) ApplicationManager.getApplication()
+					.getMainwindow()).getIconManager().getIcon(bean.getType());
 		}
 
 		if (icon == null) {
@@ -329,7 +337,8 @@ public final class DocumentTreeCellRenderer extends DefaultTreeCellRenderer {
 	 */
 	private ImageIcon findIcon(final DocumentTreeNodePropCol colNode) {
 		ImageIcon icon = null;
-		if (((TypePropertyCollection) colNode.getColProp().getType()).isComposition()) {
+		if (((TypePropertyCollection) colNode.getColProp().getType())
+				.isComposition()) {
 			icon = getIconColPropComposition();
 		} else {
 			icon = getIconColPropLink();

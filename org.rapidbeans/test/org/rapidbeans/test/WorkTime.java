@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.test;
 
-
-
 // BEGIN manual code section
 // WorkTime.import
 import java.math.BigDecimal;
@@ -28,9 +26,8 @@ import org.rapidbeans.domain.math.UnitTime;
 // END manual code section
 
 /**
- * Rapid Bean class: WorkTime.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: WorkTime. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class WorkTime extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -74,10 +71,10 @@ public class WorkTime extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.from = (org.rapidbeans.core.basic.PropertyDate)
-			this.getProperty("from");
-		this.to = (org.rapidbeans.core.basic.PropertyDate)
-			this.getProperty("to");
+		this.from = (org.rapidbeans.core.basic.PropertyDate) this
+				.getProperty("from");
+		this.to = (org.rapidbeans.core.basic.PropertyDate) this
+				.getProperty("to");
 	}
 
 	/**
@@ -92,6 +89,7 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -104,6 +102,7 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -117,7 +116,8 @@ public class WorkTime extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(WorkTime.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(WorkTime.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -133,12 +133,14 @@ public class WorkTime extends RapidBeanImplStrict {
 		try {
 			return (java.util.Date) this.from.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("from");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"from");
 		}
 	}
 
 	/**
 	 * setter for Property 'from'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'from' to set
 	 */
@@ -153,12 +155,14 @@ public class WorkTime extends RapidBeanImplStrict {
 		try {
 			return (java.util.Date) this.to.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("to");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"to");
 		}
 	}
 
 	/**
 	 * setter for Property 'to'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'to' to set
 	 */

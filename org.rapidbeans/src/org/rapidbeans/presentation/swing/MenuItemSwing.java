@@ -55,8 +55,7 @@ public class MenuItemSwing extends MenuItem {
 	 *            the resource path
 	 */
 	public MenuItemSwing(final ConfigMenuItem menuItemConfig,
-			final Application client,
-			final String resourcePath) {
+			final Application client, final String resourcePath) {
 		super(client, menuItemConfig, resourcePath);
 		this.menuitem.setName(menuItemConfig.getName());
 		this.menuitem.setText(getMenuText(client, resourcePath));
@@ -69,8 +68,9 @@ public class MenuItemSwing extends MenuItem {
 		if (enablerConfig != null) {
 			this.menuitem.setEnabler(enablerConfig.createInstance(client));
 		}
-		final ImageIcon icon = ((MainWindowSwing) client.getMainwindow()).getIconManager().getIcon(
-				resourcePath + "." + this.getName() + ".icon");
+		final ImageIcon icon = ((MainWindowSwing) client.getMainwindow())
+				.getIconManager().getIcon(
+						resourcePath + "." + this.getName() + ".icon");
 		if (icon != null) {
 			this.menuitem.setIcon(icon);
 		}

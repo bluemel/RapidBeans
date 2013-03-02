@@ -68,8 +68,8 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 	 *            the client
 	 */
 	public EditorPropertyTextSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+			final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
 		if (prop.getType().isKeyCandidate()
@@ -113,10 +113,12 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER:
 				case KeyEvent.VK_DOWN:
-					getBeanEditor().rotateFocus(getProperty(), EditorBean.DIRECTION_DOWN);
+					getBeanEditor().rotateFocus(getProperty(),
+							EditorBean.DIRECTION_DOWN);
 					break;
 				case KeyEvent.VK_UP:
-					getBeanEditor().rotateFocus(getProperty(), EditorBean.DIRECTION_UP);
+					getBeanEditor().rotateFocus(getProperty(),
+							EditorBean.DIRECTION_UP);
 					break;
 				default:
 					break;
@@ -137,8 +139,7 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.text.setEnabled(false);
 		}
 	}
@@ -153,13 +154,13 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 		try {
 			this.setUIEventLock();
 			if (this.getProperty() instanceof PropertyCollection) {
-				final Collection<?> col =
-						(Collection<?>) this.getProperty().getValue();
+				final Collection<?> col = (Collection<?>) this.getProperty()
+						.getValue();
 				if (col == null) {
 					this.text.setText("");
 				} else {
-					final TypePropertyCollection colType =
-							(TypePropertyCollection) this.getProperty().getType();
+					final TypePropertyCollection colType = (TypePropertyCollection) this
+							.getProperty().getType();
 					if (colType.getMaxmult() == 1) {
 						RapidBean bean = (RapidBean) col.iterator().next();
 						if (bean == null) {
@@ -184,7 +185,8 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 		String ifValue = this.text.getText();
 		if (ifValue.equals("")) {
 			TypeProperty type = this.getProperty().getType();
-			if ((type instanceof TypePropertyString) && ((TypePropertyString) type).getEmptyValid()) {
+			if ((type instanceof TypePropertyString)
+					&& ((TypePropertyString) type).getEmptyValid()) {
 				ifValue = this.text.getText();
 			} else {
 				ifValue = null;
@@ -203,15 +205,13 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 	/**
 	 * validate an input field.
 	 * 
-	 * @return if the string in the input field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the input field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param ex
 	 *            the validation exception
 	 */
-	protected boolean hasPotentiallyValidInputField(
-			final ValidationException ex) {
+	protected boolean hasPotentiallyValidInputField(final ValidationException ex) {
 		if (ex.getSignature().startsWith("invalid.prop.integer")) {
 			if (ex.getSignature().endsWith("lower")) {
 				return true;

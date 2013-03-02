@@ -18,7 +18,8 @@ public final class BBQueryMemoryLeakPerfTest extends TestCase {
 		Query[] queries = new Query[1000000];
 		try {
 			for (int i = 0; i < 1000000; i++) {
-				queries[i] = new Query("xxx[yyy[zzz1 = '123' && zzzz2 = '123']]");
+				queries[i] = new Query(
+						"xxx[yyy[zzz1 = '123' && zzzz2 = '123']]");
 			}
 			fail("expected out of memory error");
 		} catch (OutOfMemoryError e) {

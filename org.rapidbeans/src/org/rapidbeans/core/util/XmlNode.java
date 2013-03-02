@@ -45,8 +45,8 @@ import org.xml.sax.SAXException;
 /**
  * @author Martin Bluemel
  * 
- *         Utility class for primitive XML parsing using
- *         good old JAXP DOM parser technology.
+ *         Utility class for primitive XML parsing using good old JAXP DOM
+ *         parser technology.
  */
 public class XmlNode {
 
@@ -80,20 +80,20 @@ public class XmlNode {
 	}
 
 	/**
-	 * retrieve the first subnode of a node according
-	 * to the given pattern.<br/>
+	 * retrieve the first subnode of a node according to the given pattern.<br/>
 	 * 
 	 * @param pattern
-	 *            the pattern: &lt;entity 1&gt[&lt;entity 2&gt&lt;entity 3&gt...]
+	 *            the pattern: &lt;entity 1&gt[&lt;entity 2&gt&lt;entity
+	 *            3&gt...]
 	 * 
 	 * @return the found node or null if no node was found
 	 */
 	public XmlNode getFirstSubnode(final String pattern) {
 		Collection<XmlNode> subnodes = this.getSubnodes(pattern);
 		if (subnodes.size() == 0) {
-			throw new UtilException(
-					"XML Util Error: could not find subnode \"" + pattern
-							+ "\" of node \"" + this.node.getNodeName() + "\"");
+			throw new UtilException("XML Util Error: could not find subnode \""
+					+ pattern + "\" of node \"" + this.node.getNodeName()
+					+ "\"");
 		}
 		return subnodes.iterator().next();
 	}
@@ -101,8 +101,8 @@ public class XmlNode {
 	/**
 	 * determine all sunbnodes of a node.
 	 * 
-	 * @return a collection of all subnodes
-	 *         (empty collection if no subnode was found).
+	 * @return a collection of all subnodes (empty collection if no subnode was
+	 *         found).
 	 */
 	public Collection<XmlNode> getSubnodes() {
 		final NodeList subnodes = this.node.getChildNodes();
@@ -118,8 +118,10 @@ public class XmlNode {
 	 * determine all sub nodes of a node according to the given pattern.
 	 * 
 	 * @param pattern
-	 *            the pattern: &lt;entity 1&gt[&lt;entity 2&gt&lt;entity 3&gt...]
-	 * @return a collection of found nodes (empty collection if no node was found).
+	 *            the pattern: &lt;entity 1&gt[&lt;entity 2&gt&lt;entity
+	 *            3&gt...]
+	 * @return a collection of found nodes (empty collection if no node was
+	 *         found).
 	 */
 	public List<XmlNode> getSubnodes(final String pattern) {
 		String firstPatternToken = null;
@@ -163,11 +165,12 @@ public class XmlNode {
 	}
 
 	/**
-	 * retrieve an attribute out of a node according to the given pattern
-	 * and return it's value.
+	 * retrieve an attribute out of a node according to the given pattern and
+	 * return it's value.
 	 * 
 	 * @param pattern
-	 *            the attribute pattern: [&lt;entity 1&gt&lt;entity 2&gt&lt;entity 3&gt.../]@&lt;attribute&gt
+	 *            the attribute pattern: [&lt;entity 1&gt&lt;entity
+	 *            2&gt&lt;entity 3&gt.../]@&lt;attribute&gt
 	 * @return the found attribute's value or null if not found
 	 */
 	public String getAttributeValue(final String pattern) {
@@ -175,11 +178,12 @@ public class XmlNode {
 	}
 
 	/**
-	 * retrieve an attribute out of a node according to the given pattern
-	 * and return it's value (with default value).
+	 * retrieve an attribute out of a node according to the given pattern and
+	 * return it's value (with default value).
 	 * 
 	 * @param pattern
-	 *            the attribute pattern: [&lt;entity 1&gt&lt;entity 2&gt&lt;entity 3&gt.../]@&lt;attribute&gt
+	 *            the attribute pattern: [&lt;entity 1&gt&lt;entity
+	 *            2&gt&lt;entity 3&gt.../]@&lt;attribute&gt
 	 * @param defaultValue
 	 *            the default value in case the attribute is not found
 	 * @return the found attribute's value or a default value if not found
@@ -187,8 +191,8 @@ public class XmlNode {
 	public String getAttributeValue(final String pattern,
 			final String defaultValue) {
 		String ret = defaultValue;
-		final String firstPatternToken =
-				new StringTokenizer(pattern, "/").nextToken();
+		final String firstPatternToken = new StringTokenizer(pattern, "/")
+				.nextToken();
 		if (firstPatternToken.startsWith("@")) {
 			String attrName = firstPatternToken.substring(1);
 			final NamedNodeMap attrs = this.node.getAttributes();
@@ -203,8 +207,8 @@ public class XmlNode {
 	}
 
 	/**
-	 * Parse an XML document from a URL using a DOM parser and get
-	 * the top level node.
+	 * Parse an XML document from a URL using a DOM parser and get the top level
+	 * node.
 	 * 
 	 * @param url
 	 *            the URL
@@ -213,13 +217,15 @@ public class XmlNode {
 	 */
 	public static XmlNodeTopLevel getDocumentTopLevel(final URL url) {
 		if (url.getProtocol().equals("file")) {
-			return getDocumentTopLevel(new File(url.getFile().replaceAll("%20", " ")));
+			return getDocumentTopLevel(new File(url.getFile().replaceAll("%20",
+					" ")));
 		} else if (url.getProtocol().equals("ftp")
 				|| url.getProtocol().equals("http")
 				|| url.toString().startsWith("jar:http:")) {
 			return getDocumentTopLevelConnection(url);
 		} else {
-			throw new RapidBeansRuntimeException("Unsupported protocol \"" + url.getProtocol());
+			throw new RapidBeansRuntimeException("Unsupported protocol \""
+					+ url.getProtocol());
 		}
 	}
 
@@ -231,8 +237,7 @@ public class XmlNode {
 	 * 
 	 * @return the top level node
 	 */
-	public static XmlNodeTopLevel getDocumentTopLevel(
-			final File xmlResourceFile) {
+	public static XmlNodeTopLevel getDocumentTopLevel(final File xmlResourceFile) {
 		InputStream is = null;
 		try {
 			is = new FileInputStream(xmlResourceFile);
@@ -264,8 +269,8 @@ public class XmlNode {
 			URLConnection urlc = url.openConnection();
 			is = urlc.getInputStream();
 			if (is == null) {
-				throw new UtilException("URL \""
-						+ url.toString() + "\" not found");
+				throw new UtilException("URL \"" + url.toString()
+						+ "\" not found");
 			}
 			return getDocumentTopLevel(is);
 		} catch (IOException e) {
@@ -290,8 +295,7 @@ public class XmlNode {
 	 * 
 	 * @return the top level node
 	 */
-	public static XmlNode getDocumentTopLevel(
-			final String descr) {
+	public static XmlNode getDocumentTopLevel(final String descr) {
 		return getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 	}
 
@@ -309,23 +313,23 @@ public class XmlNode {
 			final DocumentBuilderFactory dbf = DocumentBuilderFactory
 					.newInstance();
 			dbf.setNamespaceAware(true);
-			//            dbf.setValidating(true);
+			// dbf.setValidating(true);
 			dbf.setValidating(false);
 			final DocumentBuilder db = dbf.newDocumentBuilder();
-			//            db.setErrorHandler(new ErrorHandler() {
-			//                @Override
-			//                public void error(SAXParseException e) throws SAXException {
-			//                    System.out.println("PARSER ERROR: " + e.getMessage());
-			//                }
-			//                @Override
-			//                public void fatalError(SAXParseException e) throws SAXException {   
-			//                    System.out.println("PARSER FATAL ERROR: " + e.getMessage());
-			//                }
-			//                @Override
-			//                public void warning(SAXParseException e) throws SAXException {
-			//                    System.out.println("PARSER WARNING: " + e.getMessage());
-			//                }
-			//            });
+			// db.setErrorHandler(new ErrorHandler() {
+			// @Override
+			// public void error(SAXParseException e) throws SAXException {
+			// System.out.println("PARSER ERROR: " + e.getMessage());
+			// }
+			// @Override
+			// public void fatalError(SAXParseException e) throws SAXException {
+			// System.out.println("PARSER FATAL ERROR: " + e.getMessage());
+			// }
+			// @Override
+			// public void warning(SAXParseException e) throws SAXException {
+			// System.out.println("PARSER WARNING: " + e.getMessage());
+			// }
+			// });
 			final Document doc = db.parse(inputStream);
 			final NodeList topLevelNodes = doc.getChildNodes();
 			int i = 0;
@@ -337,7 +341,8 @@ public class XmlNode {
 				}
 			}
 			if (topLevelNode == null) {
-				throw new RapidBeansRuntimeException("No top level element found.");
+				throw new RapidBeansRuntimeException(
+						"No top level element found.");
 			}
 			return new XmlNodeTopLevel(topLevelNode, doc.getXmlEncoding());
 		} catch (ParserConfigurationException e) {

@@ -35,11 +35,11 @@ public class ConfigMenuItem extends RapidBeanBaseConfigMenuItem {
 	 */
 	@Override
 	public Action getAction() {
-		if (super.getChildaction() != null
-				&& super.getAction() != null) {
-			throw new RapidBeansRuntimeException("Invalid configuration for menu item"
-					+ this.getName() + "either use a"
-					+ " contained action or a linked action not both");
+		if (super.getChildaction() != null && super.getAction() != null) {
+			throw new RapidBeansRuntimeException(
+					"Invalid configuration for menu item" + this.getName()
+							+ "either use a"
+							+ " contained action or a linked action not both");
 		}
 		if (super.getAction() != null) {
 			return super.getAction();
@@ -111,7 +111,8 @@ public class ConfigMenuItem extends RapidBeanBaseConfigMenuItem {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigMenuItem.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(ConfigMenuItem.class);
 
 	/**
 	 * @return the Biz Bean's type

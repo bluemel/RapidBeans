@@ -38,20 +38,22 @@ public final class ManifestReader {
 	}
 
 	/**
-	 * Read a manifest from the same jar file or class folder hierarchy
-	 * of the given class.
+	 * Read a manifest from the same jar file or class folder hierarchy of the
+	 * given class.
 	 * 
 	 * @param clazz
-	 *            the class that lies in the jar file ore the same
-	 *            class folder hierarchy.
+	 *            the class that lies in the jar file ore the same class folder
+	 *            hierarchy.
 	 * @return the manifest
 	 */
 	public static Manifest readManifestFromJarOfClass(final Class<?> clazz) {
 		final String className = clazz.getSimpleName();
 		final String classFileName = className + ".class";
-		final String classFilePath = clazz.getPackage().toString().replace('.', '/')
+		final String classFilePath = clazz.getPackage().toString()
+				.replace('.', '/')
 				+ "/" + className;
-		final String pathToThisClass = clazz.getResource(classFileName).toString();
+		final String pathToThisClass = clazz.getResource(classFileName)
+				.toString();
 		final String pathToManifest = pathToThisClass.toString().substring(0,
 				pathToThisClass.length() + 2 - ("/" + classFilePath).length())
 				+ "/META-INF/MANIFEST.MF";

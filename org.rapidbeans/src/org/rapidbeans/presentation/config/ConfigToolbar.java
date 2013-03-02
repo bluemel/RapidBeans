@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.presentation.config;
 
-
-
 // BEGIN manual code section
 // ConfigToolbar.import
 import org.rapidbeans.core.type.TypeRapidBean;
@@ -21,11 +19,11 @@ import org.rapidbeans.core.type.TypeRapidBean;
 // END manual code section
 
 /**
- * Rapid Bean class: ConfigToolbar.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: ConfigToolbar. Partially generated Java class !!!Do only
+ * edit manually in marked sections!!!
  **/
-public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenuEntry {
+public class ConfigToolbar extends
+		org.rapidbeans.presentation.config.ConfigMenuEntry {
 	// BEGIN manual code section
 	// ConfigToolbar.classBody
 	// END manual code section
@@ -50,12 +48,12 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
-		this.classname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("classname");
-		this.buttons = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("buttons");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("name");
+		this.classname = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("classname");
+		this.buttons = (org.rapidbeans.core.basic.PropertyAssociationend) this
+				.getProperty("buttons");
 	}
 
 	/**
@@ -70,6 +68,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -82,6 +81,7 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -95,7 +95,8 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(ConfigToolbar.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(ConfigToolbar.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -111,12 +112,14 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"name");
 		}
 	}
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
@@ -131,12 +134,14 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 		try {
 			return (String) this.classname.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("classname");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"classname");
 		}
 	}
 
 	/**
 	 * setter for Property 'classname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
@@ -150,33 +155,46 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton> getButtons() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton>)
-			this.buttons.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbarButton>) this.buttons
+					.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("buttons");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"buttons");
 		}
 	}
 
 	/**
 	 * setter for Property 'buttons'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'buttons' to set
 	 */
-	public void setButtons(final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
+	public void setButtons(
+			final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbarButton> argValue) {
 		this.buttons.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
-	public void addButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).addLink(bean);
+	public void addButton(
+			final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.buttons)
+				.addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
-	public void removeButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
-		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).removeLink(bean);
+	public void removeButton(
+			final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
+		((org.rapidbeans.core.basic.PropertyCollection) this.buttons)
+				.removeLink(bean);
 	}
 }

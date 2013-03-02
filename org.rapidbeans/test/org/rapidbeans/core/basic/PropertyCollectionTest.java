@@ -84,15 +84,20 @@ public class PropertyCollectionTest {
 	public void testAddAndRemoveLinkOkComponentTreeSetSorted() {
 		TypeRapidBean rtypeParent = (TypeRapidBean) TypeRapidBean
 				.forName("org.rapidbeans.test.addressbook5.Addressbook");
-		TypePropertyCollection aetypeParentSons = (TypePropertyCollection) rtypeParent.getPropertyType("persons");
+		TypePropertyCollection aetypeParentSons = (TypePropertyCollection) rtypeParent
+				.getPropertyType("persons");
 		Class<?> colClassBefore = aetypeParentSons.getCollectionClass();
 		Assert.assertSame(TreeSet.class, colClassBefore);
-		RapidBean adrbook = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Addressbook");
-		RapidBean person1 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean adrbook = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Addressbook");
+		RapidBean person1 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person1.setPropValue("lastname", "A");
-		RapidBean person2 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean person2 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person2.setPropValue("lastname", "B");
-		Assert.assertNull(((PropertyCollection) adrbook.getProperty("persons")).getValue());
+		Assert.assertNull(((PropertyCollection) adrbook.getProperty("persons"))
+				.getValue());
 		Assert.assertNull(person1.getParentBean());
 		Assert.assertNull(person2.getParentBean());
 
@@ -100,9 +105,10 @@ public class PropertyCollectionTest {
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person2);
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person1);
 		Assert.assertEquals(2,
-				((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).size());
-		Iterator<Link> iter = ((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue())
-				.iterator();
+				((Collection<Link>) ((PropertyCollection) adrbook
+						.getProperty("persons")).getValue()).size());
+		Iterator<Link> iter = ((Collection<Link>) ((PropertyCollection) adrbook
+				.getProperty("persons")).getValue()).iterator();
 		Assert.assertSame(person1, iter.next());
 		Assert.assertSame(person2, iter.next());
 		Assert.assertSame(adrbook, person1.getParentBean());
@@ -113,18 +119,23 @@ public class PropertyCollectionTest {
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person1);
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person2);
 		Assert.assertEquals(2,
-				((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).size());
-		iter = ((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).iterator();
+				((Collection<Link>) ((PropertyCollection) adrbook
+						.getProperty("persons")).getValue()).size());
+		iter = ((Collection<Link>) ((PropertyCollection) adrbook
+				.getProperty("persons")).getValue()).iterator();
 		Assert.assertSame(person1, iter.next());
 		Assert.assertSame(person2, iter.next());
 		Assert.assertSame(adrbook, person1.getParentBean());
 		Assert.assertSame(adrbook, person2.getParentBean());
 
 		// remove the links again
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person2);
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person1);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person2);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person1);
 		Assert.assertEquals(0,
-				((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).size());
+				((Collection<Link>) ((PropertyCollection) adrbook
+						.getProperty("persons")).getValue()).size());
 		Assert.assertNull(person1.getParentBean());
 		Assert.assertNull(person2.getParentBean());
 	}
@@ -139,27 +150,35 @@ public class PropertyCollectionTest {
 		// initialize one address book containing 4 entries
 		TypeRapidBean rtypeParent = (TypeRapidBean) TypeRapidBean
 				.forName("org.rapidbeans.test.addressbook5.Addressbook");
-		TypePropertyCollection aetypeParentSons = (TypePropertyCollection) rtypeParent.getPropertyType("persons");
+		TypePropertyCollection aetypeParentSons = (TypePropertyCollection) rtypeParent
+				.getPropertyType("persons");
 		Class<?> colClassBefore = aetypeParentSons.getCollectionClass();
 		Assert.assertSame(TreeSet.class, colClassBefore);
-		RapidBean adrbook = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Addressbook");
-		Assert.assertNull(((PropertyCollection) adrbook.getProperty("persons")).getValue());
-		RapidBean person1 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean adrbook = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Addressbook");
+		Assert.assertNull(((PropertyCollection) adrbook.getProperty("persons"))
+				.getValue());
+		RapidBean person1 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person1.setPropValue("lastname", "B");
-		RapidBean person2 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean person2 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person2.setPropValue("lastname", "C");
-		RapidBean person3 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean person3 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person3.setPropValue("lastname", "D");
-		RapidBean person4 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.addressbook5.Person");
+		RapidBean person4 = RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.addressbook5.Person");
 		person4.setPropValue("lastname", "E");
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person2);
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person1);
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person4);
 		((PropertyCollection) adrbook.getProperty("persons")).addLink(person3);
 		Assert.assertEquals(4,
-				((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).size());
-		Iterator<Link> iter = ((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue())
-				.iterator();
+				((Collection<Link>) ((PropertyCollection) adrbook
+						.getProperty("persons")).getValue()).size());
+		Iterator<Link> iter = ((Collection<Link>) ((PropertyCollection) adrbook
+				.getProperty("persons")).getValue()).iterator();
 		Assert.assertSame(person1, iter.next());
 		Assert.assertSame(person2, iter.next());
 		Assert.assertSame(person3, iter.next());
@@ -167,19 +186,25 @@ public class PropertyCollectionTest {
 
 		// change one single property and check correct sorting
 		person2.setPropValue("lastname", "X");
-		iter = ((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).iterator();
+		iter = ((Collection<Link>) ((PropertyCollection) adrbook
+				.getProperty("persons")).getValue()).iterator();
 		Assert.assertSame(person1, iter.next());
 		Assert.assertSame(person3, iter.next());
 		Assert.assertSame(person4, iter.next());
 		Assert.assertSame(person2, iter.next());
 
 		// remove the links agains
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person1);
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person2);
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person3);
-		((PropertyCollection) adrbook.getProperty("persons")).removeLink(person4);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person1);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person2);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person3);
+		((PropertyCollection) adrbook.getProperty("persons"))
+				.removeLink(person4);
 		Assert.assertEquals(0,
-				((Collection<Link>) ((PropertyCollection) adrbook.getProperty("persons")).getValue()).size());
+				((Collection<Link>) ((PropertyCollection) adrbook
+						.getProperty("persons")).getValue()).size());
 	}
 
 	/**
@@ -188,8 +213,9 @@ public class PropertyCollectionTest {
 	@Test
 	public void testNewOkDefaultNullAndGetValue() {
 		this.createTestBean();
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\"" + " targettype=\"TestBean\""
-				+ " />");
+		PropertyCollection prop = this
+				.createCollectionProperty("<property name=\"test\""
+						+ " targettype=\"TestBean\"" + " />");
 		Assert.assertNull(prop.getValue());
 	}
 
@@ -201,8 +227,9 @@ public class PropertyCollectionTest {
 	@Test
 	public void testNewOkDefaultEmpty() {
 		this.createTestBean();
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\"" + " targettype=\"TestBean\""
-				+ " default=\"\"/>");
+		PropertyCollection prop = this
+				.createCollectionProperty("<property name=\"test\""
+						+ " targettype=\"TestBean\"" + " default=\"\"/>");
 		Collection<Link> col = (Collection<Link>) prop.getValue();
 		Assert.assertEquals(0, col.size());
 	}
@@ -217,7 +244,8 @@ public class PropertyCollectionTest {
 			this.createCollectionProperty("<property name=\"locales\"/>");
 			Assert.fail("expected ModelValidationException");
 		} catch (ModelValidationException e) {
-			Assert.assertTrue(e.getMessage().contains("no targettype specified"));
+			Assert.assertTrue(e.getMessage()
+					.contains("no targettype specified"));
 		}
 	}
 
@@ -342,7 +370,8 @@ public class PropertyCollectionTest {
 		// create 1 Address and 1 Person
 		Address adr = new Address();
 		Person martin = new Person("\"Martin\" \"Bl�mel\" \"19641014\"");
-		TypePropertyCollection proptype = (TypePropertyCollection) adr.getProperty("inhabitants").getType();
+		TypePropertyCollection proptype = (TypePropertyCollection) adr
+				.getProperty("inhabitants").getType();
 		Class<?> colClassBefore = proptype.getCollectionClass();
 		try {
 			proptype.setCollectionClass(ArrayList.class);
@@ -353,7 +382,8 @@ public class PropertyCollectionTest {
 			// add the same Person to the Address as inhabitant twice
 			adr.addInhabitant(martin);
 			try {
-				// should Assert.fail because of the association end with multiplicity
+				// should Assert.fail because of the association end with
+				// multiplicity
 				// 1
 				adr.addInhabitant(martin);
 				Assert.fail("expected ValidationException exception");
@@ -369,7 +399,8 @@ public class PropertyCollectionTest {
 	public void testAddLinkInvalidSameLinkTwiceHashSet() {
 		// create 1 Address and 1 Person
 		Address adr = new Address();
-		TypePropertyCollection proptype = (TypePropertyCollection) adr.getProperty("inhabitants").getType();
+		TypePropertyCollection proptype = (TypePropertyCollection) adr
+				.getProperty("inhabitants").getType();
 		Assert.assertSame(LinkedHashSet.class, proptype.getCollectionClass());
 		Person martin = new Person("\"Martin\" \"Bl�mel\" \"19641014\"");
 		Assert.assertNull(adr.getInhabitants());
@@ -394,15 +425,19 @@ public class PropertyCollectionTest {
 	@Test
 	public void testAddLinkOkMultNtoNArrayListSameLinkTwice() {
 		// create 2 ClosingPeriods and 2 Locations
-		TypePropertyCollection proptypeCpLocations = (TypePropertyCollection) TypeRapidBean.forName(
-				ClosingPeriod.class.getName()).getPropertyType("locations");
-		TypePropertyCollection proptypeLocClosedons = (TypePropertyCollection) TypeRapidBean.forName(
-				Location.class.getName()).getPropertyType("closedons");
-		Class<?> colClassCpLocationsBefore = proptypeCpLocations.getCollectionClass();
-		Class<?> colClassLocClosedonsBefore = proptypeLocClosedons.getCollectionClass();
+		TypePropertyCollection proptypeCpLocations = (TypePropertyCollection) TypeRapidBean
+				.forName(ClosingPeriod.class.getName()).getPropertyType(
+						"locations");
+		TypePropertyCollection proptypeLocClosedons = (TypePropertyCollection) TypeRapidBean
+				.forName(Location.class.getName()).getPropertyType("closedons");
+		Class<?> colClassCpLocationsBefore = proptypeCpLocations
+				.getCollectionClass();
+		Class<?> colClassLocClosedonsBefore = proptypeLocClosedons
+				.getCollectionClass();
 		proptypeCpLocations.setCollectionClass(ArrayList.class);
 		proptypeLocClosedons.setCollectionClass(ArrayList.class);
-		ClosingPeriod cp1 = new ClosingPeriod(new String[] { "20051225", "XMas Holidays", "20060101" });
+		ClosingPeriod cp1 = new ClosingPeriod(new String[] { "20051225",
+				"XMas Holidays", "20060101" });
 		Location loc1 = new Location(new String[] { "Location A" });
 		try {
 			cp1.addLocation(loc1);
@@ -529,7 +564,8 @@ public class PropertyCollectionTest {
 
 		// test
 		try {
-			((PropertyCollection) umartin.getProperty("person")).addLink(martin);
+			((PropertyCollection) umartin.getProperty("person"))
+					.addLink(martin);
 			Assert.fail("expected a ValidationException");
 		} catch (ValidationException e) {
 			Assert.assertTrue(true);
@@ -551,7 +587,8 @@ public class PropertyCollectionTest {
 	public void testAddLinkInvalidTargetType() {
 		Address adr = new Address();
 		try {
-			((PropertyCollection) adr.getProperty("inhabitants")).addLink(new Location());
+			((PropertyCollection) adr.getProperty("inhabitants"))
+					.addLink(new Location());
 			Assert.fail("expected \"ValidationException\"");
 		} catch (ValidationException e) {
 			Assert.assertTrue(true);
@@ -855,11 +892,17 @@ public class PropertyCollectionTest {
 	public void testRemoveLinkComponentDeleteOrphanedFromDoc() {
 		AddressBook adrbook = new AddressBook();
 		Document doc = new Document(adrbook);
-		Assert.assertSame(doc.findBeansByType("org.rapidbeans.test.codegen.AddressBook").get(0), doc.getRoot());
-		Person martin = new Person(new String[] { "Bl�mel", "Martin", "19641014" });
+		Assert.assertSame(
+				doc.findBeansByType("org.rapidbeans.test.codegen.AddressBook")
+						.get(0), doc.getRoot());
+		Person martin = new Person(new String[] { "Bl�mel", "Martin",
+				"19641014" });
 		adrbook.addPerson(martin);
-		Assert.assertSame(martin, ((ReadonlyListCollection<?>) adrbook.getPersons()).get(0));
-		Assert.assertSame(martin, doc.findBeansByType("org.rapidbeans.test.codegen.Person").get(0));
+		Assert.assertSame(martin,
+				((ReadonlyListCollection<?>) adrbook.getPersons()).get(0));
+		Assert.assertSame(martin,
+				doc.findBeansByType("org.rapidbeans.test.codegen.Person")
+						.get(0));
 		Address fasanstreet = new Address();
 		fasanstreet.setStreet("Fasanenstra�e");
 		adrbook.addAddress(fasanstreet);
@@ -877,8 +920,9 @@ public class PropertyCollectionTest {
 	@Test
 	public void testToStringSingleBean() {
 		RapidBean bean = this.createTestBean();
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\"" + " targettype=\"TestBean\""
-				+ " />");
+		PropertyCollection prop = this
+				.createCollectionProperty("<property name=\"test\""
+						+ " targettype=\"TestBean\"" + " />");
 		prop.setValue(bean);
 		Assert.assertEquals("Bl�mel_Martin_19641014", prop.toString());
 	}
@@ -890,15 +934,19 @@ public class PropertyCollectionTest {
 	public void testToStringMultipleBeans() {
 		RapidBean bean1 = this.createTestBean("Bl�mel", "Martin", "19641014");
 		RapidBean bean2 = this.createTestBean("Bl�mel", "Ulrike", "19620802");
-		RapidBean bean3 = this.createTestBean("Keinki", "Katharina", "19901119");
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\"" + " targettype=\"TestBean\""
-				+ "/>", ",", "\\");
+		RapidBean bean3 = this
+				.createTestBean("Keinki", "Katharina", "19901119");
+		PropertyCollection prop = this.createCollectionProperty(
+				"<property name=\"test\"" + " targettype=\"TestBean\"" + "/>",
+				",", "\\");
 		Collection<RapidBean> col = new ArrayList<RapidBean>();
 		col.add(bean1);
 		col.add(bean2);
 		col.add(bean3);
 		prop.setValue(col);
-		Assert.assertEquals("Bl�mel_Martin_19641014,Bl�mel_Ulrike_19620802,Keinki_Katharina_19901119", prop.toString());
+		Assert.assertEquals(
+				"Bl�mel_Martin_19641014,Bl�mel_Ulrike_19620802,Keinki_Katharina_19901119",
+				prop.toString());
 	}
 
 	/**
@@ -907,8 +955,9 @@ public class PropertyCollectionTest {
 	@Test
 	public void testValidateOk() {
 		RapidBean bean = createTestBean("Bl�mel", "Martin", "19641014");
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\"" + " targettype=\"TestBean\""
-				+ " />");
+		PropertyCollection prop = this
+				.createCollectionProperty("<property name=\"test\""
+						+ " targettype=\"TestBean\"" + " />");
 		prop.validate(bean);
 	}
 
@@ -918,8 +967,10 @@ public class PropertyCollectionTest {
 	@Test
 	public void testValidateInvalidWrongType() {
 		RapidBean bean = createTestBean("Bl�mel", "Martin", "19641014");
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\""
-				+ " targettype=\"org.rapidbeans.test.TestBean\"" + " />");
+		PropertyCollection prop = this
+				.createCollectionProperty("<property name=\"test\""
+						+ " targettype=\"org.rapidbeans.test.TestBean\""
+						+ " />");
 		try {
 			prop.validate(bean);
 			Assert.fail("expected ValidationException");
@@ -939,8 +990,10 @@ public class PropertyCollectionTest {
 	@Test
 	public void testGetValueImmutability() throws java.text.ParseException {
 
-		PropertyCollection prop = this.createCollectionProperty("<property name=\"test\""
-				+ " targettype=\"org.rapidbeans.test.TestBean\"" + " />", ",", "\\");
+		PropertyCollection prop = this.createCollectionProperty(
+				"<property name=\"test\""
+						+ " targettype=\"org.rapidbeans.test.TestBean\""
+						+ " />", ",", "\\");
 
 		// originally prop's value is null (undefined)
 		Assert.assertNull(prop.getValue());
@@ -972,9 +1025,10 @@ public class PropertyCollectionTest {
 	public void testAddLinkOkMultNtoNArrayList() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use TreeSet as collection implementing class
-		((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-				.setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
+		((TypePropertyCollection) (new Location()).getProperty("closedons")
+				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
 				.setCollectionClass(ArrayList.class);
 		tstNMAssociationInverse();
 	}
@@ -986,9 +1040,10 @@ public class PropertyCollectionTest {
 	public void testAddLinkOkMultNtoNLinkedHashSet() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use TreeSet as collection implementing class
-		((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-				.setCollectionClass(LinkedHashSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
+		((TypePropertyCollection) (new Location()).getProperty("closedons")
+				.getType()).setCollectionClass(LinkedHashSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
 				.setCollectionClass(LinkedHashSet.class);
 		tstNMAssociationInverse();
 	}
@@ -1000,9 +1055,10 @@ public class PropertyCollectionTest {
 	public void testAddLinkOkMultNtoNTreeSet() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use TreeSet as collection implementing class
-		((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-				.setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
+		((TypePropertyCollection) (new Location()).getProperty("closedons")
+				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
 				.setCollectionClass(TreeSet.class);
 		tstNMAssociationInverse();
 	}
@@ -1013,9 +1069,10 @@ public class PropertyCollectionTest {
 	private void tstNMAssociationInverse() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use TreeSet as collection implementing class
-		((TypePropertyCollection) (new Location()).getProperty("closedons").getType())
-				.setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
+		((TypePropertyCollection) (new Location()).getProperty("closedons")
+				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
 				.setCollectionClass(TreeSet.class);
 		// set up two locations and closing periods
 		ClosingPeriod cp1 = new ClosingPeriod("\"20050101\" \"1\"");
@@ -1033,10 +1090,12 @@ public class PropertyCollectionTest {
 		// link locA with cp1
 		locA.addClosedon(cp1);
 		Assert.assertEquals(1, locA.getClosedons().size());
-		ReadonlyListCollection<ClosingPeriod> cps = (ReadonlyListCollection<ClosingPeriod>) locA.getClosedons();
+		ReadonlyListCollection<ClosingPeriod> cps = (ReadonlyListCollection<ClosingPeriod>) locA
+				.getClosedons();
 		Assert.assertSame(cp1, cps.get(0));
 		Assert.assertNull(locB.getClosedons());
-		ReadonlyListCollection<Location> locs = (ReadonlyListCollection<Location>) cp1.getLocations();
+		ReadonlyListCollection<Location> locs = (ReadonlyListCollection<Location>) cp1
+				.getLocations();
 		Assert.assertSame(locA, locs.get(0));
 		Assert.assertEquals(1, cp1.getLocations().size());
 		Assert.assertNull(cp2.getLocations());
@@ -1147,19 +1206,23 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 
 		adrbook.removePerson(blu);
 
 		Assert.assertEquals(1, group.getPersons().size());
 		Assert.assertEquals(fru, group.getPersons().get(0));
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 		Assert.assertEquals(1, fru.getGroups().size());
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(0, blu.getGroups().size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 	}
 
 	@Test
@@ -1184,8 +1247,9 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 
 		blu.delete(); // = doc.delete(blu)
 
@@ -1195,9 +1259,12 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(1, group.getPersons().size());
 		Assert.assertTrue(group.getPersons().contains(fru));
 		Assert.assertFalse(group.getPersons().contains(blu));
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 
 		adrbook = new Addressbook();
 		doc = new Document(adrbook);
@@ -1219,8 +1286,9 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 
 		fru.delete(); // = doc.delete(blu)
 
@@ -1230,9 +1298,12 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(1, group.getPersons().size());
 		Assert.assertTrue(group.getPersons().contains(blu));
 		Assert.assertFalse(group.getPersons().contains(fru));
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.addressbook.Person")
+						.size());
 	}
 
 	/**
@@ -1255,12 +1326,16 @@ public class PropertyCollectionTest {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBean(final String name, final String prename, final String dateofbirth) {
-		String descr = "<beantype name=\"TestBean\" idtype=\"keyprops\">" + "<property name=\"name\" key=\"true\"/>"
+	private GenericBean createTestBean(final String name, final String prename,
+			final String dateofbirth) {
+		String descr = "<beantype name=\"TestBean\" idtype=\"keyprops\">"
+				+ "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"
-				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>" + "</beantype>";
+				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
+				+ "</beantype>";
 		GenericBean bean = null;
-		TypeRapidBean testBeanType = (TypeRapidBean) RapidBeansTypeLoader.getInstance().lookupType("TestBean");
+		TypeRapidBean testBeanType = (TypeRapidBean) RapidBeansTypeLoader
+				.getInstance().lookupType("TestBean");
 		if (testBeanType == null) {
 			bean = TestHelper.createGenericBeanInstance(descr);
 			RapidBeansTypeLoader.getInstance().registerType(bean.getType());
@@ -1295,10 +1370,12 @@ public class PropertyCollectionTest {
 	 *            the escaping char
 	 * @return a new Collection property.
 	 */
-	private PropertyCollection createCollectionProperty(final String descr, final String sep, final String esc) {
-		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
-		TypePropertyCollection type = new TypePropertyCollection(new XmlNode[] { propertyNode }, null, "Collection",
-				sep, esc);
+	private PropertyCollection createCollectionProperty(final String descr,
+			final String sep, final String esc) {
+		XmlNode propertyNode = XmlNode
+				.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
+		TypePropertyCollection type = new TypePropertyCollection(
+				new XmlNode[] { propertyNode }, null, "Collection", sep, esc);
 		return new PropertyCollection(type, null);
 	}
 }

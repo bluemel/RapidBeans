@@ -48,7 +48,7 @@ import org.rapidbeans.presentation.EditorProperty;
  * @author Martin Bluemel
  */
 // TODO Framework 21) introduce null selection for enum choices and
-//                   1 : 0..1 collections
+// 1 : 0..1 collections
 public class EditorBeanSwing extends EditorBean {
 
 	/**
@@ -62,10 +62,9 @@ public class EditorBeanSwing extends EditorBean {
 	private JPanel panel = new JPanel();
 
 	/**
-	 * the north panel.
-	 * The construct to stick a further panel into the "NORTH"
-	 * section of the main panel with BIrderLayout
-	 * causes the editor to be aligned to the upper window boundary.
+	 * the north panel. The construct to stick a further panel into the "NORTH"
+	 * section of the main panel with BIrderLayout causes the editor to be
+	 * aligned to the upper window boundary.
 	 */
 	private JPanel panelProps = new JPanel();
 
@@ -133,9 +132,9 @@ public class EditorBeanSwing extends EditorBean {
 	 * @param bizBean
 	 *            the bean to edit
 	 * @param newBeanParentColProp
-	 *            a new Bean's parent collection property.
-	 *            Is not null if a new Bean is to be created
-	 *            Is null if an existing bean is simply edited
+	 *            a new Bean's parent collection property. Is not null if a new
+	 *            Bean is to be created Is null if an existing bean is simply
+	 *            edited
 	 */
 	public EditorBeanSwing(final Application client,
 			final DocumentView docView, final RapidBean bizBean,
@@ -148,19 +147,22 @@ public class EditorBeanSwing extends EditorBean {
 		for (EditorProperty propEditor : this.getPropEditors()) {
 			this.panelProps.add((Component) propEditor.getLabelWidget(),
 					new GridBagConstraints(0, i, 1, 1, 0.0, 0.0,
-							GridBagConstraints.NORTHWEST, GridBagConstraints.NONE,
-							new Insets(5, 5, 5, 5), 0, 0));
+							GridBagConstraints.NORTHWEST,
+							GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+							0));
 			if (propEditor instanceof EditorPropertyListSwing) {
 				editorWithYExtension = true;
 				this.panelProps.add((Component) propEditor.getWidget(),
 						new GridBagConstraints(1, i++, 1, 1, 1.0, 1.0,
-								GridBagConstraints.NORTHWEST, GridBagConstraints.BOTH,
+								GridBagConstraints.NORTHWEST,
+								GridBagConstraints.BOTH,
 								new Insets(5, 5, 5, 5), 0, 0));
 			} else {
 				this.panelProps.add((Component) propEditor.getWidget(),
 						new GridBagConstraints(1, i++, 1, 1, 1.0, 0.0,
-								GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL,
-								new Insets(5, 5, 5, 5), 0, 0));
+								GridBagConstraints.NORTHWEST,
+								GridBagConstraints.HORIZONTAL, new Insets(5, 5,
+										5, 5), 0, 0));
 			}
 		}
 		this.panelButtons.setLayout(new GridBagLayout());
@@ -187,30 +189,25 @@ public class EditorBeanSwing extends EditorBean {
 				handleActionClose();
 			}
 		});
-		this.panelButtons.add(this.buttonOk,
-				new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.NONE,
-						new Insets(5, 5, 5, 5), 0, 0));
-		this.panelButtons.add(this.buttonApply,
-				new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.NONE,
-						new Insets(5, 5, 5, 5), 0, 0));
-		this.panelButtons.add(this.buttonClose,
-				new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.NONE,
-						new Insets(5, 5, 5, 5), 0, 0));
+		this.panelButtons.add(this.buttonOk, new GridBagConstraints(0, 0, 1, 1,
+				1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+				new Insets(5, 5, 5, 5), 0, 0));
+		this.panelButtons.add(this.buttonApply, new GridBagConstraints(1, 0, 1,
+				1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		this.panelButtons.add(this.buttonClose, new GridBagConstraints(2, 0, 1,
+				1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		final JPanel p = new JPanel();
 		p.setLayout(new GridBagLayout());
 		if (editorWithYExtension) {
-			p.add(this.panelProps,
-					new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-							GridBagConstraints.NORTH, GridBagConstraints.BOTH,
-							new Insets(0, 0, 0, 0), 0, 0));
+			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+					GridBagConstraints.NORTH, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 0), 0, 0));
 		} else {
-			p.add(this.panelProps,
-					new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-							GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-							new Insets(0, 0, 0, 0), 0, 0));
+			p.add(this.panelProps, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+					GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+					new Insets(0, 0, 0, 0), 0, 0));
 		}
 		this.scrollPane.getViewport().add(p);
 		this.panel.add(this.scrollPane, BorderLayout.CENTER);
@@ -219,13 +216,12 @@ public class EditorBeanSwing extends EditorBean {
 	}
 
 	/**
-	 * validate and update the GUI.
-	 * - the buttons enabled
-	 * - the text of the close button
+	 * validate and update the GUI. - the buttons enabled - the text of the
+	 * close button
 	 * 
 	 * @param propEditor
-	 *            the propEditor where the input field has been changed.
-	 *            Give a null if an OK, Apply or Close button has been pressed instead.
+	 *            the propEditor where the input field has been changed. Give a
+	 *            null if an OK, Apply or Close button has been pressed instead.
 	 */
 	private void validateAndUpdateButtons() {
 		try {
@@ -252,18 +248,18 @@ public class EditorBeanSwing extends EditorBean {
 	}
 
 	/**
-	 * validate and update the GUI.
-	 * - the buttons enabled
-	 * - the text of the close button
+	 * validate and update the GUI. - the buttons enabled - the text of the
+	 * close button
 	 * 
 	 * @param propEditor
-	 *            the propEditor where the input field has been changed.
-	 *            Give a null if an OK, Apply or Close button has been pressed instead.
+	 *            the propEditor where the input field has been changed. Give a
+	 *            null if an OK, Apply or Close button has been pressed instead.
 	 */
 	public void validateAndUpdateButtons(final EditorProperty propEditor) {
 		try {
 			ThreadLocalValidationSettings.readonlyOff();
-			super.validateInputAndUpdateBean(false, false, false, true, propEditor);
+			super.validateInputAndUpdateBean(false, false, false, true,
+					propEditor);
 			updateButtons(true);
 		} catch (ValidationException e) {
 			updateButtons(false);
@@ -273,9 +269,7 @@ public class EditorBeanSwing extends EditorBean {
 	}
 
 	/**
-	 * update the GUI.
-	 * - the buttons enabled
-	 * - the text of the close button
+	 * update the GUI. - the buttons enabled - the text of the close button
 	 * 
 	 * @param valid
 	 *            if all input values are valid or not
@@ -310,14 +304,14 @@ public class EditorBeanSwing extends EditorBean {
 						"commongui.text.close"));
 			}
 		}
-		//  	} else {
-		//  	this.buttonOk.setEnabled(false);
-		//  	this.buttonApply.setEnabled(false);
-		//  	this.buttonApply.setText(this.getLocale().getStringGui(
-		//  	"commongui.text.apply"));
-		//  	this.buttonClose.setText(this.getLocale().getStringGui(
-		//  	"commongui.text.close"));
-		//  	}
+		// } else {
+		// this.buttonOk.setEnabled(false);
+		// this.buttonApply.setEnabled(false);
+		// this.buttonApply.setText(this.getLocale().getStringGui(
+		// "commongui.text.apply"));
+		// this.buttonClose.setText(this.getLocale().getStringGui(
+		// "commongui.text.close"));
+		// }
 	}
 
 	/**
@@ -337,8 +331,8 @@ public class EditorBeanSwing extends EditorBean {
 	/**
 	 * for white box testing.
 	 * 
-	 * @return a HashMap with button wigets.
-	 *         The keys are the button names ok, apply and close
+	 * @return a HashMap with button wigets. The keys are the button names ok,
+	 *         apply and close
 	 */
 	public HashMap<String, Object> getButtonWidgets() {
 		HashMap<String, Object> buttons = new HashMap<String, Object>();

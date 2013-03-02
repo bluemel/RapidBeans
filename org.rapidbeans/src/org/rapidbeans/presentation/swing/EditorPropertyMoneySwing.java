@@ -44,12 +44,11 @@ public class EditorPropertyMoneySwing extends EditorPropertyQuantitySwing {
 	 *            the client
 	 */
 	public EditorPropertyMoneySwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+			final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.setEnabled(false);
 		} else if (client.getConfiguration().getCurrency().getRestricttoone()) {
 			this.getWidgetComboBox().setEnabled(false);
@@ -63,7 +62,8 @@ public class EditorPropertyMoneySwing extends EditorPropertyQuantitySwing {
 		if (this.getWidgetComboBox().getSelectedItem() == null) {
 			final Application client = ApplicationManager.getApplication();
 			if (client.getConfiguration().getCurrency() != null) {
-				final Currency defaultCurrency = client.getConfiguration().getCurrency().getDefaultcurrency();
+				final Currency defaultCurrency = client.getConfiguration()
+						.getCurrency().getDefaultcurrency();
 				if (defaultCurrency != null) {
 					this.getWidgetComboBox().setSelectedItem(defaultCurrency);
 				}

@@ -74,9 +74,10 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testReadFromFile() {
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), new File(
-				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()),
+				new File(
+						"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 		ConfigApplication config = (ConfigApplication) testdoc.getRoot();
 		Assert.assertSame(ApplicationGuiType.swing, config.getGuitype());
 		ConfigMainWindow mainWindow = config.getMainwindow();
@@ -91,8 +92,11 @@ public class DocumentTest {
 				for (ConfigMenuEntry entry : menu.getMenuentrys()) {
 					if (entry.getName().equals("quit")) {
 						action = ((ConfigMenuItem) entry).getAction();
-						Assert.assertEquals("org.rapidbeans.service.ActionQuit", action.getClassname());
-						Assert.assertEquals("org.rapidbeans.service.Action", action.getClass().getName());
+						Assert.assertEquals(
+								"org.rapidbeans.service.ActionQuit",
+								action.getClassname());
+						Assert.assertEquals("org.rapidbeans.service.Action",
+								action.getClass().getName());
 					}
 				}
 			}
@@ -124,8 +128,11 @@ public class DocumentTest {
 				for (ConfigMenuEntry entry : menu.getMenuentrys()) {
 					if (entry.getName().equals("quit")) {
 						action = ((ConfigMenuItem) entry).getAction();
-						Assert.assertEquals("org.rapidbeans.service.ActionQuit", action.getClassname());
-						Assert.assertEquals("org.rapidbeans.service.Action", action.getClass().getName());
+						Assert.assertEquals(
+								"org.rapidbeans.service.ActionQuit",
+								action.getClassname());
+						Assert.assertEquals("org.rapidbeans.service.Action",
+								action.getClass().getName());
 					}
 				}
 			}
@@ -139,12 +146,14 @@ public class DocumentTest {
 	 * @throws FileNotFoundException
 	 */
 	@Test
-	public void testReadFromInputStream() throws MalformedURLException, FileNotFoundException {
+	public void testReadFromInputStream() throws MalformedURLException,
+			FileNotFoundException {
 		File file = new File(
 				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
 		FileInputStream is = new FileInputStream(file);
-		Document testdoc = new Document("test", TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file.toURI().toURL(), is);
+		Document testdoc = new Document("test",
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file
+						.toURI().toURL(), is);
 		ConfigApplication config = (ConfigApplication) testdoc.getRoot();
 		Assert.assertSame(ApplicationGuiType.swing, config.getGuitype());
 		ConfigMainWindow mainWindow = config.getMainwindow();
@@ -159,8 +168,11 @@ public class DocumentTest {
 				for (ConfigMenuEntry entry : menu.getMenuentrys()) {
 					if (entry.getName().equals("quit")) {
 						action = ((ConfigMenuItem) entry).getAction();
-						Assert.assertEquals("org.rapidbeans.service.ActionQuit", action.getClassname());
-						Assert.assertEquals("org.rapidbeans.service.Action", action.getClass().getName());
+						Assert.assertEquals(
+								"org.rapidbeans.service.ActionQuit",
+								action.getClassname());
+						Assert.assertEquals("org.rapidbeans.service.Action",
+								action.getClass().getName());
 					}
 				}
 			}
@@ -179,7 +191,8 @@ public class DocumentTest {
 		// the test XML file (ISO-8859-1 encoded)
 		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
 
-		// test readability of German "umlauts" with ISO-8859-1 configured reader
+		// test readability of German "umlauts" with ISO-8859-1 configured
+		// reader
 		LineNumberReader lnr = new LineNumberReader(new InputStreamReader(
 				new FileInputStream(file), "ISO-8859-1"));
 		for (int i = 0; i < 5; i++) {
@@ -189,18 +202,21 @@ public class DocumentTest {
 		Assert.assertEquals("\t\tid=\"" + UE + "berseestra" + SS + "e\"", line);
 		lnr.close();
 
-		// prove that an UTF-8 configured reader can't read the "umlauts" correctly
-		lnr = new LineNumberReader(new InputStreamReader(
-				new FileInputStream(file), "UTF-8"));
+		// prove that an UTF-8 configured reader can't read the "umlauts"
+		// correctly
+		lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(
+				file), "UTF-8"));
 		for (int i = 0; i < 5; i++) {
 			lnr.readLine();
 		}
-		Assert.assertFalse(lnr.readLine().equals("\t\tid=\"" + UE + "berseestr" + SS + "e\""));
+		Assert.assertFalse(lnr.readLine().equals(
+				"\t\tid=\"" + UE + "berseestr" + SS + "e\""));
 		lnr.close();
 
 		// read the "umlauts" with a RapidBeans document
 		Document testdoc = new Document(file);
-		Location loc = (Location) testdoc.findBean("org.rapidbeans.test.Location", UE + "berseestra" + SS + "e");
+		Location loc = (Location) testdoc.findBean(
+				"org.rapidbeans.test.Location", UE + "berseestra" + SS + "e");
 		Assert.assertEquals(UE + "berseestra" + SS + "e", loc.getName());
 		Assert.assertEquals("ISO-8859-1", testdoc.getEncoding());
 	}
@@ -216,7 +232,8 @@ public class DocumentTest {
 		// the test XML file (ISO-8859-1 encoded)
 		File file = new File("../org.rapidbeans/testdata/EncodingTestUTF.xml");
 
-		// test readability of German "umlauts" with ISO-8859-1 configured reader
+		// test readability of German "umlauts" with ISO-8859-1 configured
+		// reader
 		LineNumberReader lnr = new LineNumberReader(new InputStreamReader(
 				new FileInputStream(file), "UTF-8"));
 		for (int i = 0; i < 5; i++) {
@@ -226,19 +243,22 @@ public class DocumentTest {
 		Assert.assertEquals("\t\tid=\"" + UE + "berseestra" + SS + "e\"", line);
 		lnr.close();
 
-		// prove that an UTF-8 configured reader can't read the "umlauts" correctly
-		lnr = new LineNumberReader(new InputStreamReader(
-				new FileInputStream(file), "ISO-8859-1"));
+		// prove that an UTF-8 configured reader can't read the "umlauts"
+		// correctly
+		lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(
+				file), "ISO-8859-1"));
 		for (int i = 0; i < 6; i++) {
 			lnr.readLine();
 		}
 		line = lnr.readLine();
-		Assert.assertFalse(line.equals("\t\tid=\"" + UE + "berseestra" + SS + "e\""));
+		Assert.assertFalse(line.equals("\t\tid=\"" + UE + "berseestra" + SS
+				+ "e\""));
 		lnr.close();
 
 		// read the "umlauts" with a RapidBeans document
 		Document testdoc = new Document(file);
-		Location loc = (Location) testdoc.findBean("org.rapidbeans.test.Location", UE + "berseestra" + SS + "e");
+		Location loc = (Location) testdoc.findBean(
+				"org.rapidbeans.test.Location", UE + "berseestra" + SS + "e");
 		Assert.assertEquals(UE + "berseestra" + SS + "e", loc.getName());
 		Assert.assertEquals("UTF-8", testdoc.getEncoding());
 	}
@@ -251,21 +271,26 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testWriteEncodingSame() throws IOException {
-		TypePropertyCollection loctype = (TypePropertyCollection)
-				TypeRapidBean.forName("org.rapidbeans.test.BillingPeriod").getPropertyType("locations");
+		TypePropertyCollection loctype = (TypePropertyCollection) TypeRapidBean
+				.forName("org.rapidbeans.test.BillingPeriod").getPropertyType(
+						"locations");
 		Assert.assertSame(ArrayList.class, loctype.getCollectionClass());
-		TypePropertyCollection cptype = (TypePropertyCollection)
-				TypeRapidBean.forName("org.rapidbeans.test.BillingPeriod").getPropertyType("closingperiods");
+		TypePropertyCollection cptype = (TypePropertyCollection) TypeRapidBean
+				.forName("org.rapidbeans.test.BillingPeriod").getPropertyType(
+						"closingperiods");
 		Assert.assertSame(ArrayList.class, cptype.getCollectionClass());
-		TypePropertyCollection loctype1 = (TypePropertyCollection)
-				TypeRapidBean.forName("org.rapidbeans.test.ClosingPeriod").getPropertyType("locations");
+		TypePropertyCollection loctype1 = (TypePropertyCollection) TypeRapidBean
+				.forName("org.rapidbeans.test.ClosingPeriod").getPropertyType(
+						"locations");
 		loctype1.setCollectionClass(ArrayList.class);
-		TypePropertyCollection cptype1 = (TypePropertyCollection)
-				TypeRapidBean.forName("org.rapidbeans.test.Location").getPropertyType("closedons");
+		TypePropertyCollection cptype1 = (TypePropertyCollection) TypeRapidBean
+				.forName("org.rapidbeans.test.Location").getPropertyType(
+						"closedons");
 		cptype1.setCollectionClass(ArrayList.class);
 		// the test XML file (ISO-8859-1 encoded)
 		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
-		File testfile = new File("../org.rapidbeans/testdata/TestEncodingISO.xml");
+		File testfile = new File(
+				"../org.rapidbeans/testdata/TestEncodingISO.xml");
 		if (testfile.exists()) {
 			testfile.delete();
 		}
@@ -289,8 +314,10 @@ public class DocumentTest {
 	public void testWriteEncodingDifferent() throws IOException {
 		// the test XML file (ISO-8859-1 encoded)
 		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
-		File testfileExpected = new File("../org.rapidbeans/testdata/EncodingTestUTF.xml");
-		File testfile = new File("../org.rapidbeans/testdata/TestEncodingChange.xml");
+		File testfileExpected = new File(
+				"../org.rapidbeans/testdata/EncodingTestUTF.xml");
+		File testfile = new File(
+				"../org.rapidbeans/testdata/TestEncodingChange.xml");
 		if (testfile.exists()) {
 			testfile.delete();
 		}
@@ -301,7 +328,8 @@ public class DocumentTest {
 		testdoc.setUrl(testfile.toURI().toURL());
 		testdoc.setEncoding("UTF-8");
 		testdoc.save();
-		Assert.assertTrue(FileHelper.filesEqual(testfileExpected, testfile, true, true));
+		Assert.assertTrue(FileHelper.filesEqual(testfileExpected, testfile,
+				true, true));
 		testfile.delete();
 	}
 
@@ -313,10 +341,13 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testWrite() throws IOException {
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		File file2 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationTest.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplicationSwing.class.getName()), file1);
+		File file1 = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file2 = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationTest.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplicationSwing.class.getName()),
+				file1);
 		testdoc.setUrl(file2.toURI().toURL());
 		testdoc.save();
 		Assert.assertTrue(FileHelper.filesEqual(file1, file2, true, true));
@@ -326,19 +357,21 @@ public class DocumentTest {
 	@Test
 	public void testInsertComponentExplicitly() {
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication clientCfg = (ConfigApplication) testdoc.getRoot();
-		Collection<ConfigLocale> locales =
-				clientCfg.getLocales();
+		Collection<ConfigLocale> locales = clientCfg.getLocales();
 		Assert.assertEquals(1, locales.size());
 
 		// create a new RapidBeansLocale bean and assert that it is not
 		// living in the document
 		ConfigLocale locale = new ConfigLocale("at");
 		Assert.assertNull(locale.getContainer());
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.core.common.RapidBeansLocale", locale.getIdString()));
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.core.common.RapidBeansLocale",
+				locale.getIdString()));
 
 		// add the new bean as component to the Application bean that
 		// is already living in the document
@@ -347,27 +380,29 @@ public class DocumentTest {
 	}
 
 	/**
-	 * test inserting a simple bean as component to a bean
-	 * that is already living in a document.
-	 * This should implicitly insert this Bean into the document.
+	 * test inserting a simple bean as component to a bean that is already
+	 * living in a document. This should implicitly insert this Bean into the
+	 * document.
 	 */
 	@Test
 	public void testInsertComponentImplicitly() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication clientCfg = (ConfigApplication) testdoc.getRoot();
-		Collection<ConfigLocale> locales =
-				clientCfg.getLocales();
+		Collection<ConfigLocale> locales = clientCfg.getLocales();
 		Assert.assertEquals(1, locales.size());
 
 		// create a new RapidBeansLocale bean and assert that it is not
 		// living in the document
 		ConfigLocale locale = new ConfigLocale("at");
 		Assert.assertNull(locale.getContainer());
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.core.common.RapidBeansLocale", locale.getIdString()));
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.core.common.RapidBeansLocale",
+				locale.getIdString()));
 
 		// add the new bean as component to the Application bean that
 		// is already living in the document
@@ -376,23 +411,26 @@ public class DocumentTest {
 
 		Assert.assertSame(testdoc, locale.getContainer());
 		Assert.assertTrue(testdoc.contains(locale));
-		Assert.assertSame(locale, testdoc.findBean(
-				ConfigLocale.class.getName(), locale.getIdString()));
+		Assert.assertSame(
+				locale,
+				testdoc.findBean(ConfigLocale.class.getName(),
+						locale.getIdString()));
 		locales = clientCfg.getLocales();
 		Assert.assertEquals(2, locales.size());
 		Assert.assertSame(clientCfg, locale.getParentBean());
 	}
 
 	/**
-	 * test inserting a simple bean as component to a bean
-	 * that is already living in a document twice.
+	 * test inserting a simple bean as component to a bean that is already
+	 * living in a document twice.
 	 */
 	@Test(expected = BeanDuplicateException.class)
 	public void testInsertComponentImplicitlyDuplicate() {
 		// set up a test document out of file Application.xml
 		Document testdoc = createTestDocument(false);
 		GenericBean bpRoot = (GenericBean) testdoc.getRoot();
-		PropertyCollection bpRootTrainers = (PropertyCollection) bpRoot.getProperty("trainers");
+		PropertyCollection bpRootTrainers = (PropertyCollection) bpRoot
+				.getProperty("trainers");
 
 		// create a new Trainer bean and assert
 		// that it is not living in the document
@@ -418,14 +456,17 @@ public class DocumentTest {
 	public void testNMAssociationInverseArrayList() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use ArrayList as collection implementing class
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType())
+				.setCollectionClass(ArrayList.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
 		tstNMAssociationInverse();
 	}
 
@@ -436,23 +477,29 @@ public class DocumentTest {
 	public void testNMAssociationInverseLinkedHashSet() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use LinkedHashSet as collection implementing class
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(LinkedHashSet.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(LinkedHashSet.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(LinkedHashSet.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType())
+				.setCollectionClass(LinkedHashSet.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(LinkedHashSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(LinkedHashSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(LinkedHashSet.class);
 		tstNMAssociationInverse();
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType())
+				.setCollectionClass(ArrayList.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
 	}
 
 	/**
@@ -462,23 +509,28 @@ public class DocumentTest {
 	public void testNMAssociationInverseTreeSet() {
 		// configure collection properties of Location and ClosingPeriod
 		// to use TreeSet as collection implementing class
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType()).setCollectionClass(TreeSet.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(TreeSet.class);
 		tstNMAssociationInverse();
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType())
+				.setCollectionClass(ArrayList.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
 	}
 
 	/**
@@ -489,8 +541,9 @@ public class DocumentTest {
 		// to use TreeSet as collection implementing class
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(TreeSet.class);
 		// set up two locations and closing periods
 		ClosingPeriod cp1 = new ClosingPeriod("\"20050101\" \"1\"");
 		ClosingPeriod cp2 = new ClosingPeriod("\"20050201\" \"2\"");
@@ -514,10 +567,12 @@ public class DocumentTest {
 		// link locA with cp1
 		locA.addClosedon(cp1);
 		Assert.assertEquals(1, locA.getClosedons().size());
-		ReadonlyListCollection<ClosingPeriod> cps = (ReadonlyListCollection<ClosingPeriod>) locA.getClosedons();
+		ReadonlyListCollection<ClosingPeriod> cps = (ReadonlyListCollection<ClosingPeriod>) locA
+				.getClosedons();
 		Assert.assertSame(cp1, cps.get(0));
 		Assert.assertNull(locB.getClosedons());
-		ReadonlyListCollection<Location> locs = (ReadonlyListCollection<Location>) cp1.getLocations();
+		ReadonlyListCollection<Location> locs = (ReadonlyListCollection<Location>) cp1
+				.getLocations();
 		Assert.assertSame(locA, locs.get(0));
 		Assert.assertEquals(1, cp1.getLocations().size());
 		Assert.assertNull(cp2.getLocations());
@@ -605,40 +660,51 @@ public class DocumentTest {
 
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
 	}
 
 	/**
-	 * Test loading the following document.
-	 * 4 instances of 2 class.es
-	 * There is an n : m association betwee the two classes.
-	 * This association can be navigated bidirectionally.
+	 * Test loading the following document. 4 instances of 2 class.es There is
+	 * an n : m association betwee the two classes. This association can be
+	 * navigated bidirectionally.
 	 */
 	@Test
 	public void testLoadDocNMInverseArrayList() {
 		TypePropertyCollection.setDefaultCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType())
+				.setCollectionClass(ArrayList.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(ArrayList.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(ArrayList.class);
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(ArrayList.class);
 
-		Document doc = new Document(
-				new File("../org.rapidbeans/testdata/NMAssocTest01.xml"));
-		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
-		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.Location").size());
-		BillingPeriod bp = (BillingPeriod) doc.findBeansByType("org.rapidbeans.test.BillingPeriod").iterator().next();
-		Location locA = (Location) doc.findBean("org.rapidbeans.test.Location", "A");
-		Location locB = (Location) doc.findBean("org.rapidbeans.test.Location", "B");
-		ClosingPeriod cp1 = (ClosingPeriod) doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050101_1");
-		ClosingPeriod cp2 = (ClosingPeriod) doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050201_2");
+		Document doc = new Document(new File(
+				"../org.rapidbeans/testdata/NMAssocTest01.xml"));
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.Location").size());
+		BillingPeriod bp = (BillingPeriod) doc
+				.findBeansByType("org.rapidbeans.test.BillingPeriod")
+				.iterator().next();
+		Location locA = (Location) doc.findBean("org.rapidbeans.test.Location",
+				"A");
+		Location locB = (Location) doc.findBean("org.rapidbeans.test.Location",
+				"B");
+		ClosingPeriod cp1 = (ClosingPeriod) doc.findBean(
+				"org.rapidbeans.test.ClosingPeriod", "20050101_1");
+		ClosingPeriod cp2 = (ClosingPeriod) doc.findBean(
+				"org.rapidbeans.test.ClosingPeriod", "20050201_2");
 
-		List<RapidBean> beans = (List<RapidBean>)
-				doc.findBeansByType("org.rapidbeans.test.Location");
+		List<RapidBean> beans = (List<RapidBean>) doc
+				.findBeansByType("org.rapidbeans.test.Location");
 		Assert.assertEquals(2, beans.size());
 		Assert.assertSame(locA, beans.get(0));
 		Assert.assertSame(locB, beans.get(1));
@@ -680,8 +746,10 @@ public class DocumentTest {
 		Assert.assertSame(cp1, it.next());
 
 		cp2.delete();
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
-		Assert.assertNull(doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050201_2"));
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
+		Assert.assertNull(doc.findBean("org.rapidbeans.test.ClosingPeriod",
+				"20050201_2"));
 
 		col = cp1.getLocations();
 		Assert.assertEquals(2, col.size());
@@ -711,7 +779,8 @@ public class DocumentTest {
 		Assert.assertSame(cp1, it.next());
 
 		locB.delete();
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.Location").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.Location").size());
 		Assert.assertNull(doc.findBean("org.rapidbeans.test.Location", "B"));
 
 		Assert.assertEquals(0, locB.getClosedons().size());
@@ -728,32 +797,42 @@ public class DocumentTest {
 	}
 
 	/**
-	 * Test loading the following document.
-	 * 4 instances of 2 class.es
-	 * There is an n : m association betwee the two classes.
-	 * This association can be navigated bidirectionally.
+	 * Test loading the following document. 4 instances of 2 class.es There is
+	 * an n : m association betwee the two classes. This association can be
+	 * navigated bidirectionally.
 	 */
 	@Test
 	public void testLoadDocNMInverseTreeSet() {
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new BillingPeriod()).getProperty("closingperiods")
-				.getType()).setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new BillingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(TreeSet.class);
+		((TypePropertyCollection) (new BillingPeriod()).getProperty(
+				"closingperiods").getType()).setCollectionClass(TreeSet.class);
 		((TypePropertyCollection) (new Location()).getProperty("closedons")
 				.getType()).setCollectionClass(TreeSet.class);
-		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations")
-				.getType()).setCollectionClass(TreeSet.class);
-		Document doc = new Document(new File("../org.rapidbeans/testdata/NMAssocTest01.xml"));
-		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
-		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.Location").size());
-		BillingPeriod bp = (BillingPeriod) doc.findBeansByType("org.rapidbeans.test.BillingPeriod").iterator().next();
-		Location locA = (Location) doc.findBean("org.rapidbeans.test.Location", "A");
-		Location locB = (Location) doc.findBean("org.rapidbeans.test.Location", "B");
-		ClosingPeriod cp1 = (ClosingPeriod) doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050101_1");
-		ClosingPeriod cp2 = (ClosingPeriod) doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050201_2");
+		((TypePropertyCollection) (new ClosingPeriod())
+				.getProperty("locations").getType())
+				.setCollectionClass(TreeSet.class);
+		Document doc = new Document(new File(
+				"../org.rapidbeans/testdata/NMAssocTest01.xml"));
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
+		Assert.assertEquals(2,
+				doc.findBeansByType("org.rapidbeans.test.Location").size());
+		BillingPeriod bp = (BillingPeriod) doc
+				.findBeansByType("org.rapidbeans.test.BillingPeriod")
+				.iterator().next();
+		Location locA = (Location) doc.findBean("org.rapidbeans.test.Location",
+				"A");
+		Location locB = (Location) doc.findBean("org.rapidbeans.test.Location",
+				"B");
+		ClosingPeriod cp1 = (ClosingPeriod) doc.findBean(
+				"org.rapidbeans.test.ClosingPeriod", "20050101_1");
+		ClosingPeriod cp2 = (ClosingPeriod) doc.findBean(
+				"org.rapidbeans.test.ClosingPeriod", "20050201_2");
 
-		List<RapidBean> beans = (List<RapidBean>)
-				doc.findBeansByType("org.rapidbeans.test.Location");
+		List<RapidBean> beans = (List<RapidBean>) doc
+				.findBeansByType("org.rapidbeans.test.Location");
 		Assert.assertEquals(2, beans.size());
 		Assert.assertSame(locA, beans.get(0));
 		Assert.assertSame(locB, beans.get(1));
@@ -795,8 +874,10 @@ public class DocumentTest {
 		Assert.assertSame(cp2, it.next());
 
 		cp2.delete();
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
-		Assert.assertNull(doc.findBean("org.rapidbeans.test.ClosingPeriod", "20050201_2"));
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
+		Assert.assertNull(doc.findBean("org.rapidbeans.test.ClosingPeriod",
+				"20050201_2"));
 
 		col = cp1.getLocations();
 		Assert.assertEquals(2, col.size());
@@ -826,7 +907,8 @@ public class DocumentTest {
 		Assert.assertSame(cp1, it.next());
 
 		locB.delete();
-		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.Location").size());
+		Assert.assertEquals(1,
+				doc.findBeansByType("org.rapidbeans.test.Location").size());
 		Assert.assertNull(doc.findBean("org.rapidbeans.test.Location", "B"));
 
 		Assert.assertEquals(0, locB.getClosedons().size());
@@ -841,22 +923,25 @@ public class DocumentTest {
 		it = col.iterator();
 		Assert.assertSame(cp1, it.next());
 
-		Document doc1 = new Document(new File("../org.rapidbeans/testdata/treesettest01.xml"));
+		Document doc1 = new Document(new File(
+				"../org.rapidbeans/testdata/treesettest01.xml"));
 		col = doc1.findBeansByType("org.rapidbeans.test.Location");
 		it = col.iterator();
 		Location loc1 = (Location) it.next();
 		Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", loc1.getIdString());
 		Location loc2 = (Location) it.next();
-		Assert.assertEquals("Turnhalle Grundschule S" + ue + "d", loc2.getIdString());
+		Assert.assertEquals("Turnhalle Grundschule S" + ue + "d",
+				loc2.getIdString());
 		col = loc1.getClosedons();
 		it = col.iterator();
-		Assert.assertEquals("20051222_Weihnachtsferien", ((RapidBean) it.next()).getIdString());
-		Assert.assertEquals("20060116_Schulputztag", ((RapidBean) it.next()).getIdString());
+		Assert.assertEquals("20051222_Weihnachtsferien",
+				((RapidBean) it.next()).getIdString());
+		Assert.assertEquals("20060116_Schulputztag",
+				((RapidBean) it.next()).getIdString());
 	}
 
 	/**
-	 * test creating an association instance between beans
-	 * within a document.
+	 * test creating an association instance between beans within a document.
 	 */
 	@Test
 	public void testAddLinkFromBeanIndocToBeanIndoc() {
@@ -866,7 +951,8 @@ public class DocumentTest {
 		Address adr = new Address();
 		Person martin = new Person("\"Martin\" \"Bl�mel\" \"19641014\"");
 		Person jojo = new Person("\"Johannes\" \"Bl�mel\" \"19641014\"");
-		TypeRapidBean.forName("org.rapidbeans.test.codegen.Address").setIdGenerator(new IdGeneratorNumeric());
+		TypeRapidBean.forName("org.rapidbeans.test.codegen.Address")
+				.setIdGenerator(new IdGeneratorNumeric());
 		book.addAddress(adr);
 		book.addPerson(martin);
 		book.addPerson(jojo);
@@ -890,9 +976,8 @@ public class DocumentTest {
 	}
 
 	/**
-	 * test creating an association instance between a bean
-	 * within a document and one outside a document should be
-	 * forbidden.
+	 * test creating an association instance between a bean within a document
+	 * and one outside a document should be forbidden.
 	 */
 	@Test(expected = RapidBeansRuntimeException.class)
 	public void testAddLinkFromBeanIndocToBeanOutdoc() {
@@ -915,9 +1000,11 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testChangeParentComponent() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplicationSwing.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplicationSwing.class.getName()),
+				file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
 		ConfigMenubar menubar = mainwin.getMenubar();
@@ -959,23 +1046,36 @@ public class DocumentTest {
 			i++;
 		}
 		Assert.assertEquals("edit", submenuEdit.getName());
-		Assert.assertSame(submenuEdit,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuEdit.getIdString()));
+		Assert.assertSame(submenuEdit, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuEdit.getIdString()));
 		Assert.assertEquals("test", submenuTest.getName());
-		Assert.assertSame(submenuTest,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest.getIdString()));
-		Assert.assertSame(menuItemTest1,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemTest1.getIdString()));
+		Assert.assertSame(submenuTest, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest.getIdString()));
+		Assert.assertSame(menuItemTest1, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemTest1.getIdString()));
 		Assert.assertEquals("test1", menuItemTest1.getName());
-		Assert.assertSame(submenuTest2,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest2.getIdString()));
+		Assert.assertSame(submenuTest2, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest2.getIdString()));
 		Assert.assertEquals("test2", submenuTest2.getName());
-		Assert.assertEquals(11, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(6, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(17, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				11,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				6,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				17,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 		Assert.assertEquals(2, submenuEdit.getMenuentrys().size());
 		Assert.assertEquals(2, submenuTest.getMenuentrys().size());
 		Assert.assertSame(submenuTest, menuItemTest1.getParentBean());
@@ -992,42 +1092,56 @@ public class DocumentTest {
 				"org.rapidbeans.presentation.config.ConfigSubmenu",
 				submenuTest2.getIdString()));
 		Assert.assertEquals("test2", submenuTest2.getName());
-		Assert.assertEquals(11, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(6, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(17, testdoc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				11,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				6,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				17,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 
 		Assert.assertEquals(3, submenuEdit.getMenuentrys().size());
 		Assert.assertEquals(1, submenuTest.getMenuentrys().size());
 		Assert.assertSame(submenuTest, menuItemTest1.getParentBean());
 		Assert.assertSame(submenuEdit, submenuTest2.getParentBean());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
-		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml"),
-				true, true));
+		Assert.assertTrue(FileHelper
+				.filesEqual(
+						file1,
+						new File(
+								"../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml"),
+						true, true));
 		file1.delete();
 	}
 
 	/**
-	 * test changing the parent of a component within a document.
-	 * This can not to be accomplished in two steps
-	 * 1) remove the component from the current parent
-	 * 2) add it to the desired parent
-	 * because the deleted hierarchy will be destroyed completely
+	 * test changing the parent of a component within a document. This can not
+	 * to be accomplished in two steps 1) remove the component from the current
+	 * parent 2) add it to the desired parent because the deleted hierarchy will
+	 * be destroyed completely
 	 * 
 	 * @throws IOException
 	 *             if IO fails
 	 */
 	@Test
 	public void testChangeParentComponentTheWrongWay1() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplicationSwing.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplicationSwing.class.getName()),
+				file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
 		ConfigMenubar menubar = mainwin.getMenubar();
@@ -1069,20 +1183,36 @@ public class DocumentTest {
 			i++;
 		}
 		Assert.assertEquals("edit", submenuEdit.getName());
-		Assert.assertSame(submenuEdit,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuEdit.getIdString()));
+		Assert.assertSame(submenuEdit, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuEdit.getIdString()));
 		Assert.assertEquals("test", submenuTest.getName());
-		Assert.assertSame(submenuTest,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest.getIdString()));
-		Assert.assertSame(menuItemTest1,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemTest1.getIdString()));
+		Assert.assertSame(submenuTest, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest.getIdString()));
+		Assert.assertSame(menuItemTest1, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemTest1.getIdString()));
 		Assert.assertEquals("test1", menuItemTest1.getName());
-		Assert.assertSame(submenuTest2,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest2.getIdString()));
+		Assert.assertSame(submenuTest2, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest2.getIdString()));
 		Assert.assertEquals("test2", submenuTest2.getName());
-		Assert.assertEquals(11, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(6, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(17, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				11,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				6,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				17,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 
 		Assert.assertEquals(2, submenuEdit.getMenuentrys().size());
 		Assert.assertEquals(2, submenuTest.getMenuentrys().size());
@@ -1091,44 +1221,75 @@ public class DocumentTest {
 
 		// move submenu "test2" from the "test" menu to the "edit" menu
 		submenuTest.removeMenuentry(submenuTest2);
-		Assert.assertEquals(7, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(4, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(11, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				7,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				4,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				11,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 		submenuEdit.addMenuentry(submenuTest2);
 
-		Assert.assertSame(menuItemTest1,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemTest1.getIdString()));
+		Assert.assertSame(menuItemTest1, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemTest1.getIdString()));
 		Assert.assertEquals("test1", menuItemTest1.getName());
-		Assert.assertSame(submenuTest2,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest2.getIdString()));
+		Assert.assertSame(submenuTest2, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest2.getIdString()));
 		Assert.assertEquals("test2", submenuTest2.getName());
-		Assert.assertEquals(7, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(5, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(12, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				7,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				5,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				12,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 
 		Assert.assertEquals(3, submenuEdit.getMenuentrys().size());
 		Assert.assertEquals(1, submenuTest.getMenuentrys().size());
 		Assert.assertSame(submenuTest, menuItemTest1.getParentBean());
 		Assert.assertSame(submenuEdit, submenuTest2.getParentBean());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
-		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterRemoveAndAddComposite.xml"),
-				true, true));
+		Assert.assertTrue(FileHelper
+				.filesEqual(
+						file1,
+						new File(
+								"../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterRemoveAndAddComposite.xml"),
+						true, true));
 		file1.delete();
 	}
 
 	/**
-	 * test changing the parent of a component without
-	 * removing it from the current parent should fail.
+	 * test changing the parent of a component without removing it from the
+	 * current parent should fail.
 	 */
 	@Test(expected = RapidBeansRuntimeException.class)
 	public void testChangeParentComponentTheWrongWay2() {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
 		ConfigMenubar menubar = mainwin.getMenubar();
@@ -1173,9 +1334,8 @@ public class DocumentTest {
 	}
 
 	/**
-	 * test creating an association instance between a bean
-	 * outside a document and one within a document should be
-	 * also forbidden.
+	 * test creating an association instance between a bean outside a document
+	 * and one within a document should be also forbidden.
 	 */
 	@Test(expected = RapidBeansRuntimeException.class)
 	public void testAddLinkFromBeanOutdocToBeanIndoc() {
@@ -1197,16 +1357,17 @@ public class DocumentTest {
 	public void testDelete() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigLocale localeconfig = (ConfigLocale) testdoc.findBean(
 				ConfigLocale.class.getName(), "en");
 		String id = localeconfig.getIdString();
 		Assert.assertEquals("en", localeconfig.getName());
-		Assert.assertSame(localeconfig, testdoc.findBean(
-				ConfigLocale.class.getName(), id));
+		Assert.assertSame(localeconfig,
+				testdoc.findBean(ConfigLocale.class.getName(), id));
 		Assert.assertSame(client, localeconfig.getParentBean());
 		Assert.assertSame(testdoc, localeconfig.getContainer());
 
@@ -1224,9 +1385,11 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testDeleteComposite() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document testdoc = new Document(TypeRapidBean.forName(
-				ConfigApplicationSwing.class.getName()), file);
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document testdoc = new Document(
+				TypeRapidBean.forName(ConfigApplicationSwing.class.getName()),
+				file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
 		ConfigMenubar menubar = mainwin.getMenubar();
@@ -1272,66 +1435,110 @@ public class DocumentTest {
 			}
 			i++;
 		}
-		Assert.assertSame(menubar,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenubar", menubar.getIdString()));
+		Assert.assertSame(menubar, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenubar",
+				menubar.getIdString()));
 		Assert.assertSame(testdoc, menubar.getContainer());
 		Assert.assertSame(mainwin, menubar.getParentBean());
 		Assert.assertEquals(3, submenus1.size());
 		Assert.assertEquals("file", submenuFile.getName());
-		Assert.assertSame(submenuFile,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuFile.getIdString()));
+		Assert.assertSame(submenuFile, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuFile.getIdString()));
 		Assert.assertEquals("edit", submenuEdit.getName());
-		Assert.assertSame(submenuEdit,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuEdit.getIdString()));
+		Assert.assertSame(submenuEdit, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuEdit.getIdString()));
 		Assert.assertEquals("test", submenuTest.getName());
-		Assert.assertSame(submenuTest,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu", submenuTest.getIdString()));
+		Assert.assertSame(submenuTest, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
+				submenuTest.getIdString()));
 		Assert.assertEquals("load", menuItemLoad.getName());
-		Assert.assertSame(menuItemLoad,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemLoad.getIdString()));
+		Assert.assertSame(menuItemLoad, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemLoad.getIdString()));
 		Assert.assertEquals("save", menuItemSave.getName());
-		Assert.assertSame(menuItemSave,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemSave.getIdString()));
+		Assert.assertSame(menuItemSave, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemSave.getIdString()));
 		Assert.assertEquals("quit", menuItemQuit.getName());
 		Assert.assertSame(testdoc, menuItemQuit.getContainer());
-		Assert.assertSame(menuItemQuit,
-				testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem", menuItemQuit.getIdString()));
-		Assert.assertEquals(11, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(6, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(17, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertSame(menuItemQuit, testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
+				menuItemQuit.getIdString()));
+		Assert.assertEquals(
+				11,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				6,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				17,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 
 		menubar.delete();
 
-		Assert.assertNull(testdoc.findBeanByQuery("org.rapidbeans.presentation.config.ConfigMenubar"));
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenubar", menubar.getIdString()));
+		Assert.assertNull(testdoc
+				.findBeanByQuery("org.rapidbeans.presentation.config.ConfigMenubar"));
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenubar",
+				menubar.getIdString()));
 		Assert.assertNull(menubar.getParentBean());
 		Assert.assertEquals(0, menubar.getMenus().size());
 		Assert.assertNull(menubar.getContainer());
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
 				submenuFile.getIdString()));
 		Assert.assertNull(submenuFile.getParentBean());
 		Assert.assertEquals(0, submenuFile.getMenuentrys().size());
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
 				submenuEdit.getIdString()));
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigSubmenu",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigSubmenu",
 				submenuTest.getIdString()));
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
 				menuItemLoad.getIdString()));
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
 				menuItemSave.getIdString()));
-		Assert.assertNull(testdoc.findBean("org.rapidbeans.presentation.config.ConfigMenuItem",
+		Assert.assertNull(testdoc.findBean(
+				"org.rapidbeans.presentation.config.ConfigMenuItem",
 				menuItemQuit.getIdString()));
 		Assert.assertNull(menuItemQuit.getContainer());
-		Assert.assertEquals(0, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem").size());
-		Assert.assertEquals(0, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
-		Assert.assertEquals(0, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
+		Assert.assertEquals(
+				0,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuItem")
+						.size());
+		Assert.assertEquals(
+				0,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigSubmenu")
+						.size());
+		Assert.assertEquals(
+				0,
+				testdoc.findBeansByQuery(
+						"org.rapidbeans.presentation.config.ConfigMenuEntry")
+						.size());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
-		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterDelComposite.xml"),
-				true, true));
+		Assert.assertTrue(FileHelper
+				.filesEqual(
+						file1,
+						new File(
+								"../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterDelComposite.xml"),
+						true, true));
 		file1.delete();
 	}
 
@@ -1342,11 +1549,14 @@ public class DocumentTest {
 	public void testCloneLinkedBeanComposite() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		Document doc = new Document(TypeRapidBean.forName(
-				ConfigApplication.class.getName()), file);
-		ConfigMainWindow mainwin = (ConfigMainWindow) doc.findBeansByType(
-				"org.rapidbeans.presentation.config.ConfigMainWindow").iterator().next();
+		File file = new File(
+				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		Document doc = new Document(
+				TypeRapidBean.forName(ConfigApplication.class.getName()), file);
+		ConfigMainWindow mainwin = (ConfigMainWindow) doc
+				.findBeansByType(
+						"org.rapidbeans.presentation.config.ConfigMainWindow")
+				.iterator().next();
 		Assert.assertNotNull(mainwin);
 		Assert.assertSame(mainwin, mainwin.getMenubar().getParentBean());
 		ConfigMainWindow cMainwin = (ConfigMainWindow) mainwin.clone();
@@ -1368,16 +1578,24 @@ public class DocumentTest {
 		book.addAddress(adr);
 		book.addPerson(pers);
 		Document doc = new Document("testdoc", book);
-		Assert.assertEquals(1, doc.findBeansByQuery("org.rapidbeans.test.codegen.Address").size());
-		Assert.assertEquals(1, doc.findBeansByQuery("org.rapidbeans.test.codegen.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByQuery("org.rapidbeans.test.codegen.Address")
+						.size());
+		Assert.assertEquals(1,
+				doc.findBeansByQuery("org.rapidbeans.test.codegen.Person")
+						.size());
 		adr.addInhabitant(pers);
 		Assert.assertEquals(1, adr.getInhabitants().size());
 		Assert.assertSame(pers, adr.getInhabitants().iterator().next());
 		Assert.assertSame(adr, pers.getAddress());
 
 		Person bClone = (Person) pers.clone();
-		Assert.assertEquals(1, doc.findBeansByQuery("org.rapidbeans.test.codegen.Address").size());
-		Assert.assertEquals(1, doc.findBeansByQuery("org.rapidbeans.test.codegen.Person").size());
+		Assert.assertEquals(1,
+				doc.findBeansByQuery("org.rapidbeans.test.codegen.Address")
+						.size());
+		Assert.assertEquals(1,
+				doc.findBeansByQuery("org.rapidbeans.test.codegen.Person")
+						.size());
 		Assert.assertEquals(1, adr.getInhabitants().size());
 		Assert.assertSame(pers, adr.getInhabitants().iterator().next());
 		Assert.assertSame(adr, pers.getAddress());
@@ -1407,9 +1625,9 @@ public class DocumentTest {
 		Document doc = createTestDocument(false);
 		Assert.assertFalse(doc.getChanged());
 
-		GenericBean trainer = createTrainer(
-				"Meier", "Michael", false, false);
-		((PropertyCollection) doc.getRoot().getProperty("trainers")).addLink(trainer);
+		GenericBean trainer = createTrainer("Meier", "Michael", false, false);
+		((PropertyCollection) doc.getRoot().getProperty("trainers"))
+				.addLink(trainer);
 		Assert.assertTrue(doc.getChanged());
 	}
 
@@ -1423,7 +1641,8 @@ public class DocumentTest {
 
 		GenericBean berit = (GenericBean) doc.findBeansByQuery(
 				"Trainer[firstname = 'Berit']").get(0);
-		((PropertyCollection) doc.getRoot().getProperty("trainers")).removeLink(berit);
+		((PropertyCollection) doc.getRoot().getProperty("trainers"))
+				.removeLink(berit);
 		Assert.assertTrue(doc.getChanged());
 	}
 
@@ -1437,7 +1656,8 @@ public class DocumentTest {
 
 		GenericBean berit = (GenericBean) doc.findBeansByQuery(
 				"Trainer[firstname = 'Berit']").get(0);
-		Assert.assertFalse(((Boolean) berit.getProperty("leader").getValue()).booleanValue());
+		Assert.assertFalse(((Boolean) berit.getProperty("leader").getValue())
+				.booleanValue());
 		// writing the same value does not change the document
 		berit.getProperty("leader").setValue(new Boolean(false));
 		Assert.assertFalse(doc.getChanged());
@@ -1458,17 +1678,17 @@ public class DocumentTest {
 	}
 
 	/**
-	 * create a test document. This document contains:
-	 * - 1 BillingPeriod object as top level object
-	 * - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic
-	 * - 3 TrainingDate objects:
+	 * create a test document. This document contains: - 1 BillingPeriod object
+	 * as top level object - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic - 3
+	 * TrainingDate objects:
 	 * 
 	 * @param certificatesMandatory
 	 *            if the certificate of a Trainer are mandatory
 	 * 
 	 * @return the test document
 	 */
-	private static Document createTestDocument(final boolean certificatesMandatory) {
+	private static Document createTestDocument(
+			final boolean certificatesMandatory) {
 
 		// set up certificates
 		Collection<RapidBean> certs = new ArrayList<RapidBean>();
@@ -1478,22 +1698,26 @@ public class DocumentTest {
 		// set up the trainers
 		// don't do this in perfect alphabetical order
 		Collection<RapidBean> trainers = new ArrayList<RapidBean>();
-		GenericBean trainer3 = createTrainer("Dahlheimer", "Berit", false, certificatesMandatory);
+		GenericBean trainer3 = createTrainer("Dahlheimer", "Berit", false,
+				certificatesMandatory);
 		trainers.add(trainer3);
-		GenericBean trainer4 = createTrainer("Dautovic", "Damir", false, certificatesMandatory);
+		GenericBean trainer4 = createTrainer("Dautovic", "Damir", false,
+				certificatesMandatory);
 		trainers.add(trainer4);
-		GenericBean trainer1 = createTrainer("Bl�mel", "Martin", true, certificatesMandatory);
+		GenericBean trainer1 = createTrainer("Bl�mel", "Martin", true,
+				certificatesMandatory);
 		trainers.add(trainer1);
-		GenericBean trainer2 = createTrainer("Bl�mel", "Ulrike", false, certificatesMandatory);
+		GenericBean trainer2 = createTrainer("Bl�mel", "Ulrike", false,
+				certificatesMandatory);
 		trainers.add(trainer2);
 
 		// set up the training dates
 		Collection<RapidBean> trdates = new ArrayList<RapidBean>();
-		GenericBean trdateMo = createTrainingDate("Aikido Adults I",
-				"monday", "19:30", "21:30", trainer2);
+		GenericBean trdateMo = createTrainingDate("Aikido Adults I", "monday",
+				"19:30", "21:30", trainer2);
 		trdates.add(trdateMo);
-		GenericBean trdateTu = createTrainingDate("Aikido Children",
-				"tuesday", "18:00", "19:30", trainer3);
+		GenericBean trdateTu = createTrainingDate("Aikido Children", "tuesday",
+				"18:00", "19:30", trainer3);
 		trdates.add(trdateTu);
 		GenericBean trdateTh = createTrainingDate("Aikido Adults II",
 				"thursday", "19:00", "21:30", trainer3);
@@ -1509,19 +1733,19 @@ public class DocumentTest {
 		return doc;
 	}
 
-	//    /**
-	//     * create a test document. This document contains:
-	//     * - 1 BillingPeriod object as top level object
-	//     * - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic
-	//     * - 3 TrainingDate objects:
-	//     *
-	//     * @return the test document
-	//     */
-	//    private static Document createTestDocumentWithEmptyColProps() {
-	//        GenericBean billingPeriod = createBillingPeriod("20060101", "20060331");
-	//        Document doc = new Document("test", billingPeriod);
-	//        return doc;
-	//    }
+	// /**
+	// * create a test document. This document contains:
+	// * - 1 BillingPeriod object as top level object
+	// * - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic
+	// * - 3 TrainingDate objects:
+	// *
+	// * @return the test document
+	// */
+	// private static Document createTestDocumentWithEmptyColProps() {
+	// GenericBean billingPeriod = createBillingPeriod("20060101", "20060331");
+	// Document doc = new Document("test", billingPeriod);
+	// return doc;
+	// }
 
 	/**
 	 * create a generic test BillingPeriod.
@@ -1545,12 +1769,12 @@ public class DocumentTest {
 					+ "/>"
 					+ "<property name=\"certificates\" type=\"collection\""
 					+ " composition=\"true\" targettype=\"Certificate\"/>"
-					+ "/>"
-					+ "</beantype>";
+					+ "/>" + "</beantype>";
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("BillingPeriod");
 		bean.setPropValue("from", dateBegin);
 		bean.setPropValue("to", dateEnd);
 		return bean;
@@ -1571,26 +1795,26 @@ public class DocumentTest {
 	 * @return the test bean
 	 */
 	private static GenericBean createTrainer(final String lastname,
-			final String firstname, final boolean leader, final boolean mandatory) {
+			final String firstname, final boolean leader,
+			final boolean mandatory) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Trainer") == null) {
 			String descr = "<beantype name=\"Trainer\" idtype=\"keyprops\">"
 					+ "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
 					+ "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
 					+ "<property name=\"leader\" type=\"boolean\""
-					+ " mandatory=\"true\" default=\"false\""
-					+ "/>"
+					+ " mandatory=\"true\" default=\"false\"" + "/>"
 					+ "<property name=\"certificates\" type=\"collection\"";
 			if (mandatory) {
 				descr += "    mandatory=\"true\" default=\"\"";
 			}
-			descr += "    targettype=\"Certificate\""
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+			descr += "    targettype=\"Certificate\"" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode
+					.getDocumentTopLevel(new ByteArrayInputStream(descr
+							.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("Trainer");
 		bean.setPropValue("lastname", lastname);
 		bean.setPropValue("firstname", firstname);
 		bean.setPropValue("leader", new Boolean(leader));
@@ -1609,13 +1833,14 @@ public class DocumentTest {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Certificate") == null) {
 			String descr = "<beantype name=\"Certificate\" idtype=\"keyprops\">"
 					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode
+					.getDocumentTopLevel(new ByteArrayInputStream(descr
+							.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("Certificate");
 		bean.setPropValue("name", name);
 		return bean;
 	}
@@ -1649,13 +1874,14 @@ public class DocumentTest {
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
 					+ "<property name=\"defaulttrainer\" type=\"collection\""
 					+ " targettype=\"Trainer\""
-					+ " minmult=\"1\" maxmult=\"1\"/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ " minmult=\"1\" maxmult=\"1\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode
+					.getDocumentTopLevel(new ByteArrayInputStream(descr
+							.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("TrainingDate");
 		bean.setPropValue("name", name);
 		bean.setPropValue("dayofweek", dayofweek);
 		bean.setPropValue("timestart", tstart);

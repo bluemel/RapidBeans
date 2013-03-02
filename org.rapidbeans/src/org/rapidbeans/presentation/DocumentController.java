@@ -27,8 +27,8 @@ import org.rapidbeans.datasource.Document;
 import org.rapidbeans.presentation.settings.SettingsAll;
 
 /**
- * Static helper class to drive document interactions
- * like "Open, Save, Save As".
+ * Static helper class to drive document interactions like
+ * "Open, Save, Save As".
  * 
  * @author Martin Bluemel
  */
@@ -48,36 +48,36 @@ public final class DocumentController {
 	 * @param viewconfname
 	 *            the view configuration's name to use
 	 */
-	public static void open(final String docconfname,
-			final String viewconfname) {
+	public static void open(final String docconfname, final String viewconfname) {
 		final Application app = ApplicationManager.getApplication();
 		final RapidBeansLocale locale = app.getCurrentLocale();
 		final File docFile = FileChooser.chooseFile(
 				locale.getStringGui("commongui.text.open"),
-				FileChooserType.open,
-				app.getSettings().getBasic().getFolderdoc(),
+				FileChooserType.open, app.getSettings().getBasic()
+						.getFolderdoc(),
 				locale.getStringGui("commongui.text.document"), "xml");
 		if (docFile != null) {
 			final Document doc = new Document(docFile);
 			try {
 				app.openDocumentView(doc, docconfname, viewconfname);
-				app.getSettings().getBasic().setFolderdoc(docFile.getParentFile());
+				app.getSettings().getBasic()
+						.setFolderdoc(docFile.getParentFile());
 				app.getSettingsDoc().save();
 				app.addDocumentOpenedToHistory(doc);
 			} catch (AuthorizationException e) {
 				app.messageError(
 						app.getCurrentLocale().getStringMessage(
 								"authorization.denied.document",
-								app.getAuthenticatedUser().getProperty("accountname").toString()),
-						app.getCurrentLocale().getStringMessage("authorization.denied.title")
-						);
+								app.getAuthenticatedUser()
+										.getProperty("accountname").toString()),
+						app.getCurrentLocale().getStringMessage(
+								"authorization.denied.title"));
 			}
 		}
 	}
 
 	/**
-	 * Drives the document action "Save".
-	 * The active document is saved.
+	 * Drives the document action "Save". The active document is saved.
 	 */
 	public static void save() {
 		save(ApplicationManager.getApplication().getActiveDocument());
@@ -101,8 +101,8 @@ public final class DocumentController {
 	}
 
 	/**
-	 * Drives the document action "Save As".
-	 * The active document is saved under a chosen name.
+	 * Drives the document action "Save As". The active document is saved under
+	 * a chosen name.
 	 */
 	public static void saveAs() {
 		saveAs(ApplicationManager.getApplication().getActiveDocument());
@@ -120,17 +120,18 @@ public final class DocumentController {
 		final RapidBeansLocale locale = app.getCurrentLocale();
 		final File docFile = FileChooser.chooseFile(
 				locale.getStringGui("commongui.text.saveas"),
-				FileChooserType.save,
-				settings.getBasic().getFolderdoc(),
+				FileChooserType.save, settings.getBasic().getFolderdoc(),
 				locale.getStringGui("commongui.text.document"), "xml");
 		if (docFile != null) {
 			if (document != null) {
 				boolean save = true;
 				if (docFile.exists()) {
-					save = app.messageYesNo(
-							locale.getStringGui("messagedialog.title.saveas.overwrite"),
-							locale.getStringMessage("messagedialog.saveas.overwrite",
-									docFile.getAbsolutePath()));
+					save = app
+							.messageYesNo(
+									locale.getStringGui("messagedialog.title.saveas.overwrite"),
+									locale.getStringMessage(
+											"messagedialog.saveas.overwrite",
+											docFile.getAbsolutePath()));
 				}
 				if (save) {
 					try {
@@ -143,7 +144,8 @@ public final class DocumentController {
 					final boolean forceEncoding = (app.getSettings().getBasic()
 							.getDefaultencodingusage() == DefaultEncodingUsage.write);
 					document.save(defaultEncoding, forceEncoding, null);
-					app.getSettings().getBasic().setFolderdoc(docFile.getParentFile());
+					app.getSettings().getBasic()
+							.setFolderdoc(docFile.getParentFile());
 					app.getSettingsDoc().save();
 				}
 			}

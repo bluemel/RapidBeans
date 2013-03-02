@@ -19,8 +19,8 @@ import junit.framework.TestCase;
 public final class TimeOfDayTest extends TestCase {
 
 	/**
-	 * test constructor with string: simple integers with one or two
-	 * digits will be interpreted as hours.
+	 * test constructor with string: simple integers with one or two digits will
+	 * be interpreted as hours.
 	 */
 	public void testTimeOfDayHours() {
 		TimeOfDay time = new TimeOfDay("2");
@@ -32,8 +32,8 @@ public final class TimeOfDayTest extends TestCase {
 	}
 
 	/**
-	 * test constructor with string: two integers (each one
-	 * or two digits separated by ':'.
+	 * test constructor with string: two integers (each one or two digits
+	 * separated by ':'.
 	 */
 	public void testTimeOfDayMinutes() {
 		TimeOfDay time = new TimeOfDay("1:59");
@@ -45,8 +45,8 @@ public final class TimeOfDayTest extends TestCase {
 	}
 
 	/**
-	 * test constructor with string: simple quntity coding coding
-	 * with magnitude and unit.
+	 * test constructor with string: simple quntity coding coding with magnitude
+	 * and unit.
 	 */
 	public void testTimeOfDayMinutesQuantity() {
 		TimeOfDay time = new TimeOfDay("1140 min");
@@ -59,10 +59,12 @@ public final class TimeOfDayTest extends TestCase {
 	 */
 	public void testTimeOfDaySeconds() {
 		TimeOfDay time = new TimeOfDay("23:02:09");
-		assertEquals(new BigDecimal(23 * 3600 + 2 * 60 + 9), time.getMagnitude());
+		assertEquals(new BigDecimal(23 * 3600 + 2 * 60 + 9),
+				time.getMagnitude());
 		assertSame(UnitTime.s, time.getUnit());
 		time = new TimeOfDay("9:58:12");
-		assertEquals(new BigDecimal(9 * 3600 + 58 * 60 + 12), time.getMagnitude());
+		assertEquals(new BigDecimal(9 * 3600 + 58 * 60 + 12),
+				time.getMagnitude());
 		assertSame(UnitTime.s, time.getUnit());
 	}
 

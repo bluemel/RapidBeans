@@ -40,7 +40,8 @@ public final class PlatformHelper {
 
 	private static String hostname = null;
 
-	private static final Logger log = Logger.getLogger(PlatformHelper.class.getName());
+	private static final Logger log = Logger.getLogger(PlatformHelper.class
+			.getName());
 
 	/**
 	 * @return the current operating system family
@@ -84,8 +85,8 @@ public final class PlatformHelper {
 		hostname = getHostname();
 	}
 
-	protected static void determineSystem(final String osName, final String osVersionString)
-			throws AssertionError {
+	protected static void determineSystem(final String osName,
+			final String osVersionString) throws AssertionError {
 		log.info("OS name = \"" + osName + "\"");
 		osVersion = new Version(osVersionString);
 		log.info("OS version = \"" + osVersion + "\"");

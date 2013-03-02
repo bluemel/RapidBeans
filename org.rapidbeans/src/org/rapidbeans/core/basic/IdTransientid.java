@@ -82,7 +82,7 @@ public final class IdTransientid extends Id {
 	 * @return -1, 0, 1
 	 */
 	public int compareTo(final IdTransientid id) {
-		return new Integer(this.reference.hashCode()).compareTo(
-				new Integer(id.reference.hashCode()));
+		return new Integer(this.reference.hashCode()).compareTo(new Integer(
+				id.reference.hashCode()));
 	}
 }

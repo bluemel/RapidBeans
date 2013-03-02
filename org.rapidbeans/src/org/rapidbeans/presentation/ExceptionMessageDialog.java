@@ -68,10 +68,8 @@ public abstract class ExceptionMessageDialog {
 	 * 
 	 * @return the instance
 	 */
-	public static ExceptionMessageDialog createInstance(
-			final Application app,
-			final Throwable throwable,
-			final String title) {
+	public static ExceptionMessageDialog createInstance(final Application app,
+			final Throwable throwable, final String title) {
 		ExceptionMessageDialog dialog = null;
 		switch (app.getConfiguration().getGuitype()) {
 		case swing:

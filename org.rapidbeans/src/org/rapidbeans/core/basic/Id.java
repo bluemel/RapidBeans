@@ -29,13 +29,13 @@ import org.rapidbeans.core.util.StringHelper;
  * 
  * @author Martin Bluemel
  */
-public abstract class Id
-		implements Comparable<Id> {
+public abstract class Id implements Comparable<Id> {
 
 	/**
 	 * constant used for reflective instantiation.
 	 */
-	private static final Class<?>[] CONSTR_PARAMTYPES_BIZBEAN_STRING = { RapidBean.class, String.class };
+	private static final Class<?>[] CONSTR_PARAMTYPES_BIZBEAN_STRING = {
+			RapidBean.class, String.class };
 
 	/**
 	 * factory method.
@@ -52,9 +52,11 @@ public abstract class Id
 		IdType idtype = type.getIdtype();
 		String classname = null;
 		try {
-			classname = "org.rapidbeans.core.basic.Id" + StringHelper.upperFirstCharacter(idtype.name());
+			classname = "org.rapidbeans.core.basic.Id"
+					+ StringHelper.upperFirstCharacter(idtype.name());
 			final Class<?> clazz = Class.forName(classname);
-			final Constructor<?> constr = clazz.getConstructor(CONSTR_PARAMTYPES_BIZBEAN_STRING);
+			final Constructor<?> constr = clazz
+					.getConstructor(CONSTR_PARAMTYPES_BIZBEAN_STRING);
 			final Object[] initargs = { bean, idString };
 			id = (Id) constr.newInstance(initargs);
 		} catch (ClassNotFoundException e) {
@@ -64,17 +66,25 @@ public abstract class Id
 			throw new RapidBeansRuntimeException("Id class \"" + classname
 					+ "\" does not have a constructor with String");
 		} catch (IllegalArgumentException e) {
-			throw new RapidBeansRuntimeException("IllegalArgumentException while trying"
-					+ " to create instance for Id class \"" + classname, e);
+			throw new RapidBeansRuntimeException(
+					"IllegalArgumentException while trying"
+							+ " to create instance for Id class \"" + classname,
+					e);
 		} catch (InstantiationException e) {
-			throw new RapidBeansRuntimeException("InstantiationException while trying"
-					+ " to create instance for Id class \"" + classname, e);
+			throw new RapidBeansRuntimeException(
+					"InstantiationException while trying"
+							+ " to create instance for Id class \"" + classname,
+					e);
 		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException("IllegalAccessException while trying"
-					+ " to create instance for Id class \"" + classname, e);
+			throw new RapidBeansRuntimeException(
+					"IllegalAccessException while trying"
+							+ " to create instance for Id class \"" + classname,
+					e);
 		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException("InvocationTargetException while trying"
-					+ " to create instance for Id class \"" + classname, e);
+			throw new RapidBeansRuntimeException(
+					"InvocationTargetException while trying"
+							+ " to create instance for Id class \"" + classname,
+					e);
 		}
 		return id;
 	}

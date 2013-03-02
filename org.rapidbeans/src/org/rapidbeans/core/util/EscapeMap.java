@@ -56,7 +56,8 @@ public class EscapeMap {
 	public EscapeMap(final List<String> mapping) {
 		final int size = mapping.size();
 		if (size < 2) {
-			throw new IllegalArgumentException("less than two mapping arguments specified");
+			throw new IllegalArgumentException(
+					"less than two mapping arguments specified");
 		}
 		if (size % 2 != 0) {
 			throw new IllegalArgumentException("odd mapping arguments count");
@@ -75,7 +76,8 @@ public class EscapeMap {
 	 */
 	public EscapeMap(final String[] mapping) {
 		if (mapping.length < 2) {
-			throw new IllegalArgumentException("less than two mapping arguments specified");
+			throw new IllegalArgumentException(
+					"less than two mapping arguments specified");
 		}
 		if (mapping.length % 2 != 0) {
 			throw new IllegalArgumentException("odd mapping arguments count");

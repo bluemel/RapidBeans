@@ -62,14 +62,14 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	}
 
 	/**
-	 * Helper flag to eliminate two consecutive separators while
-	 * the history menu is switched off.
+	 * Helper flag to eliminate two consecutive separators while the history
+	 * menu is switched off.
 	 */
 	private boolean separatorRemoved = false;
 
 	/**
-	 * Helper flag to eliminate two consecutive separators while
-	 * the history menu is switched off.
+	 * Helper flag to eliminate two consecutive separators while the history
+	 * menu is switched off.
 	 */
 	private boolean lastSwitchedOn = true;
 
@@ -85,8 +85,7 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	 */
 	public MenuHistoryOpenDocumentSwing(
 			final ConfigMenuHistoryOpenDocument config,
-			final Application client,
-			final String resourcePath) {
+			final Application client, final String resourcePath) {
 		super(client, config, resourcePath);
 		switch (getPresentation()) {
 		case inline:
@@ -105,7 +104,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	 *            the application
 	 * @param resourcePath
 	 */
-	private void initHistorySubmenu(final Application client, final String resourcePath) {
+	private void initHistorySubmenu(final Application client,
+			final String resourcePath) {
 		if (this.getName() == null || this.getName().length() == 0) {
 			this.setName("recentdocumentsopened");
 		}
@@ -114,7 +114,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 		final RapidBeansLocale locale = client.getCurrentLocale();
 		if (locale != null) {
 			try {
-				final String key = resourcePath + "." + this.getName() + ".label";
+				final String key = resourcePath + "." + this.getName()
+						+ ".label";
 				menuText = locale.getStringGui(key);
 			} catch (MissingResourceException e) {
 				menuText = this.getName();
@@ -136,7 +137,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 		}
 		final Submenu parentMenu = (Submenu) this.getParentBean();
 		final JMenu parentMenuWidget = (JMenu) parentMenu.getWidget();
-		final List<MenuEntry> menuEntries = (List<MenuEntry>) parentMenu.getMenuentrys();
+		final List<MenuEntry> menuEntries = (List<MenuEntry>) parentMenu
+				.getMenuentrys();
 		final int entryCount = menuEntries.size();
 		int itemCount = parentMenuWidget.getItemCount();
 		int indexEntries = 0;
@@ -156,10 +158,12 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 				if (entry == this) {
 					// remove old history menu items
 					if (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.inline
-							|| (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu
-							&& (this.historySubmenu == null || !this.getOn()))) {
+							|| (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu && (this.historySubmenu == null || !this
+									.getOn()))) {
 						while ((nextEntry == null && indexItems < itemCount)
-								|| ((!this.separatorRemoved) && nextEntry != null && menuItem != nextEntry.getWidget())) {
+								|| ((!this.separatorRemoved)
+										&& nextEntry != null && menuItem != nextEntry
+										.getWidget())) {
 							parentMenuWidget.remove(indexItems);
 							itemCount--;
 							if (indexItems < itemCount) {
@@ -176,32 +180,41 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 							for (int i = 0; i < histListCount; i++) {
 								final JMenuItem histMenuItem = new JMenuItem();
 								histMenuItem.setText(super.getMenuText(i));
-								histMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										histMenuItemSelected((JMenuItem) e.getSource());
-									}
-								});
-								parentMenuWidget.insert(histMenuItem, indexItems++);
+								histMenuItem
+										.addActionListener(new ActionListener() {
+											public void actionPerformed(
+													ActionEvent e) {
+												histMenuItemSelected((JMenuItem) e
+														.getSource());
+											}
+										});
+								parentMenuWidget.insert(histMenuItem,
+										indexItems++);
 								itemCount++;
 							}
 							break;
 
 						case submenu:
 							if (this.historySubmenu == null) {
-								initHistorySubmenu(ApplicationManager.getApplication(),
+								initHistorySubmenu(
+										ApplicationManager.getApplication(),
 										this.resourcePath);
-								parentMenuWidget.insert(this.historySubmenu, indexItems++);
+								parentMenuWidget.insert(this.historySubmenu,
+										indexItems++);
 								itemCount++;
 							}
 							this.historySubmenu.removeAll();
 							for (int i = 0; i < histListCount; i++) {
 								final JMenuItem histMenuItem = new JMenuItem();
 								histMenuItem.setText(super.getMenuText(i));
-								histMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										histMenuItemSelected((JMenuItem) e.getSource());
-									}
-								});
+								histMenuItem
+										.addActionListener(new ActionListener() {
+											public void actionPerformed(
+													ActionEvent e) {
+												histMenuItemSelected((JMenuItem) e
+														.getSource());
+											}
+										});
 								this.historySubmenu.add(histMenuItem);
 							}
 							break;
@@ -223,8 +236,7 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 							this.separatorRemoved = true;
 						}
 
-						if (this.getPresentation()
-						== MenuHistoryOpenDocumentPresentationMode.submenu) {
+						if (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu) {
 							this.historySubmenu = null;
 						}
 						this.lastSwitchedOn = false;
@@ -236,7 +248,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 					case inline:
 						// skip foreign in lined history menu items
 						while ((nextEntry == null && indexItems < itemCount)
-								|| (nextEntry != null && menuItem != nextEntry.getWidget())) {
+								|| (nextEntry != null && menuItem != nextEntry
+										.getWidget())) {
 							indexItems++;
 							if (indexItems < itemCount) {
 								menuItem = parentMenuWidget.getItem(indexItems);
@@ -251,7 +264,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 				}
 			} else {
 				if (menuItem != entry.getWidget()) {
-					throw new RapidBeansRuntimeException("Assertion failed: menuItem != entry.getWidget");
+					throw new RapidBeansRuntimeException(
+							"Assertion failed: menuItem != entry.getWidget");
 				}
 				indexItems++;
 			}
@@ -266,7 +280,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	 *            the menu item that has been selected
 	 */
 	private void histMenuItemSelected(final JMenuItem selectedMenuItem) {
-		final int index = Integer.parseInt(StringHelper.splitFirst(selectedMenuItem.getText()));
+		final int index = Integer.parseInt(StringHelper
+				.splitFirst(selectedMenuItem.getText()));
 		super.histMenuItemSelected(index - 1);
 	}
 }

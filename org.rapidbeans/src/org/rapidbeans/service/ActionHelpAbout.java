@@ -33,9 +33,8 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 
 /**
- * Pops up the usual "About" dialog-
- * This dialog usually shows the applcation's version,
- * the vendor, the developers, etc...
+ * Pops up the usual "About" dialog- This dialog usually shows the applcation's
+ * version, the vendor, the developers, etc...
  * 
  * @author Martin Bluemel
  */
@@ -47,14 +46,13 @@ public class ActionHelpAbout extends Action {
 	public void execute() {
 		Application client = ApplicationManager.getApplication();
 		if (client != null) {
-			client.messageInfo(getInfo(),
-					client.getCurrentLocale().getStringGui("messagedialog.about.title"));
+			client.messageInfo(getInfo(), client.getCurrentLocale()
+					.getStringGui("messagedialog.about.title"));
 		}
 	}
 
 	/**
-	 * Compute the version info out of the manifest
-	 * in a localized manner.
+	 * Compute the version info out of the manifest in a localized manner.
 	 * 
 	 * @param locale
 	 *            the locale
@@ -66,28 +64,38 @@ public class ActionHelpAbout extends Action {
 		try {
 			versionString = locale.getStringMessage("info.about.application");
 		} catch (MissingResourceException e) {
-			final String title = ((JFrame) client.getMainwindow().getWidget()).getTitle();
+			final String title = ((JFrame) client.getMainwindow().getWidget())
+					.getTitle();
 			if (title != null && title.length() > 0) {
 				versionString = title;
 			}
 		}
 		Manifest manifest;
 		try {
-			manifest = ManifestReader.readManifestFromJarOfClass(client.getClass());
+			manifest = ManifestReader.readManifestFromJarOfClass(client
+					.getClass());
 			versionString += "\n";
 			versionString += locale.getStringMessage("info.about.authors");
-			versionString += manifest.getMainAttributes().getValue("Created-By");
+			versionString += manifest.getMainAttributes()
+					.getValue("Created-By");
 			versionString += "\n\n";
-			versionString += locale.getStringMessage("info.about.version.program");
-			versionString += manifest.getMainAttributes().getValue("Implementation-Version");
+			versionString += locale
+					.getStringMessage("info.about.version.program");
+			versionString += manifest.getMainAttributes().getValue(
+					"Implementation-Version");
 			versionString += "\n";
-			versionString += locale.getStringMessage("info.about.version.program.build.number");
-			versionString += manifest.getMainAttributes().getValue("Implementation-Build-Number");
+			versionString += locale
+					.getStringMessage("info.about.version.program.build.number");
+			versionString += manifest.getMainAttributes().getValue(
+					"Implementation-Build-Number");
 			versionString += "\n";
-			versionString += locale.getStringMessage("info.about.version.program.build.date");
-			versionString += manifest.getMainAttributes().getValue("Implementation-Build-Date");
+			versionString += locale
+					.getStringMessage("info.about.version.program.build.date");
+			versionString += manifest.getMainAttributes().getValue(
+					"Implementation-Build-Date");
 			versionString += "\n\n";
-			versionString += locale.getStringMessage("info.about.version.components");
+			versionString += locale
+					.getStringMessage("info.about.version.components");
 			ComponentDescr descr;
 			String componentKey = null;
 			Map<String, ComponentDescr> map = new HashMap<String, ComponentDescr>();
@@ -95,11 +103,14 @@ public class ActionHelpAbout extends Action {
 				final String attrKey = ((Attributes.Name) o).toString();
 				if (attrKey.startsWith("Component-")) {
 					if (attrKey.endsWith("-Name")) {
-						componentKey = attrKey.substring(10, attrKey.length() - 5);
+						componentKey = attrKey.substring(10,
+								attrKey.length() - 5);
 					} else if (attrKey.endsWith("-Package")) {
-						componentKey = attrKey.substring(10, attrKey.length() - 8);
+						componentKey = attrKey.substring(10,
+								attrKey.length() - 8);
 					} else if (attrKey.endsWith("-Version")) {
-						componentKey = attrKey.substring(10, attrKey.length() - 8);
+						componentKey = attrKey.substring(10,
+								attrKey.length() - 8);
 					}
 					if (map.containsKey(componentKey)) {
 						descr = map.get(componentKey);
@@ -109,35 +120,44 @@ public class ActionHelpAbout extends Action {
 					}
 					descr.setName(componentKey);
 					if (attrKey.endsWith("-Name")) {
-						descr.setDescription(manifest.getMainAttributes().getValue(attrKey));
+						descr.setDescription(manifest.getMainAttributes()
+								.getValue(attrKey));
 					}
 					if (attrKey.endsWith("-Package")) {
-						descr.setPkg(manifest.getMainAttributes().getValue(attrKey));
+						descr.setPkg(manifest.getMainAttributes().getValue(
+								attrKey));
 					}
 					if (attrKey.endsWith("-Version")) {
-						descr.setVersion(manifest.getMainAttributes().getValue(attrKey));
+						descr.setVersion(manifest.getMainAttributes().getValue(
+								attrKey));
 					}
 				}
 			}
 			for (ComponentDescr descr1 : map.values()) {
 				versionString += "\n- " + descr1.getName() + ":";
 				versionString += "\n    " + descr1.getDescription();
-				versionString += "\n    " + locale.getStringMessage("info.about.version.version")
+				versionString += "\n    "
+						+ locale.getStringMessage("info.about.version.version")
 						+ descr1.getVersion();
 			}
 			versionString += "\n\n";
-			versionString += locale.getStringMessage("info.about.version.java.build");
-			versionString += manifest.getMainAttributes().getValue("Java-Version-Build");
+			versionString += locale
+					.getStringMessage("info.about.version.java.build");
+			versionString += manifest.getMainAttributes().getValue(
+					"Java-Version-Build");
 			versionString += "\n";
-			versionString += locale.getStringMessage("info.about.version.java.develop");
-			versionString += manifest.getMainAttributes().getValue("Java-Version-Develop");
+			versionString += locale
+					.getStringMessage("info.about.version.java.develop");
+			versionString += manifest.getMainAttributes().getValue(
+					"Java-Version-Develop");
 		} catch (UtilException e) {
 			if (!(e.getCause() instanceof FileNotFoundException)) {
 				throw e;
 			}
 		}
 		versionString += "\n";
-		versionString += locale.getStringMessage("info.about.version.java.current");
+		versionString += locale
+				.getStringMessage("info.about.version.java.current");
 		versionString += System.getProperty("java.version");
 		return versionString;
 	}

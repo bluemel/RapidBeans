@@ -55,8 +55,9 @@ public final class SoundHelper {
 		} catch (UtilException e) {
 			Throwable eNested = e.getCause();
 			if (eNested instanceof IOException) {
-				throw new UtilException("IO exception while trying to play sound file  \""
-						+ soundfile.getAbsolutePath() + "\"", eNested);
+				throw new UtilException(
+						"IO exception while trying to play sound file  \""
+								+ soundfile.getAbsolutePath() + "\"", eNested);
 			} else if (eNested instanceof UnsupportedAudioFileException) {
 				throw new UtilException("unsupported audio file: \""
 						+ soundfile.getAbsolutePath() + "\"", eNested);
@@ -74,7 +75,8 @@ public final class SoundHelper {
 	 */
 	public static void play(final InputStream instream) {
 		try {
-			final AudioInputStream stream = AudioSystem.getAudioInputStream(instream);
+			final AudioInputStream stream = AudioSystem
+					.getAudioInputStream(instream);
 			final AudioFormat format = stream.getFormat();
 			final DataLine.Info info = new DataLine.Info(Clip.class, format);
 			final Clip clip = (Clip) AudioSystem.getLine(info);

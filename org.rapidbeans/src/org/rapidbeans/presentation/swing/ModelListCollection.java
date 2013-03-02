@@ -62,20 +62,21 @@ public final class ModelListCollection extends DefaultListModel {
 		this.colProp = prop;
 		if (colProp.getValue() != null) {
 			this.list = (ReadonlyListCollection<RapidBean>) colProp.getValue();
-			//this.list = new ReadonlyListCollectionCached(colProp, colProp.getValue());
+			// this.list = new ReadonlyListCollectionCached(colProp,
+			// colProp.getValue());
 		} else {
 			this.list = null;
 		}
 	}
 
-	//    /**
-	//     * release the model.
-	//     */
-	//    public void release() {
-	//        if (this.list != null) {
-	//            this.list.release();
-	//        }
-	//    }
+	// /**
+	// * release the model.
+	// */
+	// public void release() {
+	// if (this.list != null) {
+	// this.list.release();
+	// }
+	// }
 
 	/**
 	 * @return the number of enum elements
@@ -141,8 +142,11 @@ public final class ModelListCollection extends DefaultListModel {
 			this.list = null;
 		} else {
 			if (this.list == null
-					|| (!this.list.isSameCollection((Collection<RapidBean>) prop.getValue()))) {
-				this.list = new ReadonlyListCollection<RapidBean>((Collection<RapidBean>) prop.getValue(),
+					|| (!this.list
+							.isSameCollection((Collection<RapidBean>) prop
+									.getValue()))) {
+				this.list = new ReadonlyListCollection<RapidBean>(
+						(Collection<RapidBean>) prop.getValue(),
 						(TypePropertyCollection) prop.getType());
 			}
 			this.fireContentsChanged(this, 0, this.list.size());

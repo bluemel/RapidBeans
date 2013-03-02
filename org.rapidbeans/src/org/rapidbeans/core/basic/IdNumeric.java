@@ -46,7 +46,8 @@ public final class IdNumeric extends Id {
 	 *            the String with the number.
 	 */
 	public IdNumeric(final RapidBean bean, final String argNumber) {
-		IdGeneratorNumeric generator = (IdGeneratorNumeric) bean.getType().getIdGenerator();
+		IdGeneratorNumeric generator = (IdGeneratorNumeric) bean.getType()
+				.getIdGenerator();
 		if (generator == null) {
 			// lazy initialization of numeric ID generator in case
 			// no ID generator is set otherwise

@@ -89,16 +89,17 @@ public class ToolbarButtonSwing extends ToolbarButton {
 	 *            the resource path
 	 */
 	public ToolbarButtonSwing(final ConfigToolbarButton cfg,
-			final Application client,
-			final MainWindow mainWindow,
+			final Application client, final MainWindow mainWindow,
 			final String resourcePath) {
 		super(client, cfg, resourcePath);
 		this.button.setName(cfg.getName());
 		final RapidBeansLocale locale = client.getCurrentLocale();
-		final String key = resourcePath + "." + this.getName().toLowerCase() + ".icon";
+		final String key = resourcePath + "." + this.getName().toLowerCase()
+				+ ".icon";
 
 		// set the icon
-		final ImageIcon icon = ((MainWindowSwing) mainWindow).getIconManager().getIcon(key);
+		final ImageIcon icon = ((MainWindowSwing) mainWindow).getIconManager()
+				.getIcon(key);
 		if (icon != null) {
 			this.button.setIcon(icon);
 		}
@@ -107,7 +108,8 @@ public class ToolbarButtonSwing extends ToolbarButton {
 		String ttext = null;
 		if (locale != null) {
 			try {
-				ttext = locale.getStringGui(resourcePath + "." + this.getName() + ".tooltip");
+				ttext = locale.getStringGui(resourcePath + "." + this.getName()
+						+ ".tooltip");
 			} catch (MissingResourceException e) {
 				ttext = null;
 			}
@@ -128,7 +130,8 @@ public class ToolbarButtonSwing extends ToolbarButton {
 		String text = null;
 		if (locale != null) {
 			try {
-				text = locale.getStringGui(resourcePath + "." + this.getName() + ".label");
+				text = locale.getStringGui(resourcePath + "." + this.getName()
+						+ ".label");
 			} catch (MissingResourceException e) {
 				text = null;
 			}

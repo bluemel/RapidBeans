@@ -12,8 +12,6 @@
  */
 package org.rapidbeans.core.common;
 
-
-
 // BEGIN manual code section
 // RapidBeansLocale.import
 import java.util.Enumeration;
@@ -29,15 +27,14 @@ import org.rapidbeans.presentation.Application;
 // END manual code section
 
 /**
- * Rapid Bean class: RapidBeansLocale.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: RapidBeansLocale. Partially generated Java class !!!Do only
+ * edit manually in marked sections!!!
  **/
 public class RapidBeansLocale extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// RapidBeansLocale.classBody
-	private static final Logger log = Logger.getLogger(
-			RapidBeansLocale.class.getName());
+	private static final Logger log = Logger.getLogger(RapidBeansLocale.class
+			.getName());
 
 	/**
 	 * the associated Java Locale instance.
@@ -119,8 +116,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting one string.
+	 * return the localized string for a given resource key while inserting one
+	 * string.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -142,8 +139,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting two strings.
+	 * return the localized string for a given resource key while inserting two
+	 * strings.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -168,8 +165,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting three strings.
+	 * return the localized string for a given resource key while inserting
+	 * three strings.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -233,7 +230,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the resource bundle
 	 */
-	private ResourceBundle initResourceBundle(final String s, final String textsName) {
+	private ResourceBundle initResourceBundle(final String s,
+			final String textsName) {
 		String baseName = s + ".lang." + this.getName() + "." + textsName;
 		ResourceBundle bundle = null;
 		try {
@@ -266,7 +264,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return zzz
 	 */
-	private ResourceBundle initResourceBundle(final Application client, final String textsName) {
+	private ResourceBundle initResourceBundle(final Application client,
+			final String textsName) {
 		return this.initResourceBundle(client.getRootpackage(), textsName);
 	}
 
@@ -281,8 +280,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this
+				.getProperty("name");
 	}
 
 	/**
@@ -297,6 +296,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -309,6 +309,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -322,7 +323,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	/**
 	 * the bean's type (class variable).
 	 */
-	private static TypeRapidBean type = TypeRapidBean.createInstance(RapidBeansLocale.class);
+	private static TypeRapidBean type = TypeRapidBean
+			.createInstance(RapidBeansLocale.class);
 
 	/**
 	 * @return the Biz Bean's type
@@ -338,12 +340,14 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 		try {
 			return (String) this.name.getValue();
 		} catch (NullPointerException e) {
-			throw new org.rapidbeans.core.exception.PropNotInitializedException("name");
+			throw new org.rapidbeans.core.exception.PropNotInitializedException(
+					"name");
 		}
 	}
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */

@@ -38,9 +38,7 @@ public class ValidationReadonlyException extends ValidationException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public ValidationReadonlyException(
-			final String sig,
-			final Object source,
+	public ValidationReadonlyException(final String sig, final Object source,
 			final String message) {
 		super(sig, source, message);
 	}
@@ -58,11 +56,8 @@ public class ValidationReadonlyException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationReadonlyException(
-			final String sig,
-			final Object source,
-			final String message,
-			final Throwable cause) {
+	public ValidationReadonlyException(final String sig, final Object source,
+			final String message, final Throwable cause) {
 		super(sig, source, message, cause);
 	}
 
@@ -79,11 +74,8 @@ public class ValidationReadonlyException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationReadonlyException(
-			final String sig,
-			final Object source,
-			final String message,
-			final Object[] messArgs) {
+	public ValidationReadonlyException(final String sig, final Object source,
+			final String message, final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 	}
 }

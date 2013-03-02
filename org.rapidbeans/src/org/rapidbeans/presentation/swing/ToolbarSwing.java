@@ -55,10 +55,8 @@ public class ToolbarSwing extends Toolbar {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public ToolbarSwing(final Application client,
-			final MainWindow mainWindow,
-			final ConfigToolbar toolbarConfig,
-			final String resourcePath) {
+	public ToolbarSwing(final Application client, final MainWindow mainWindow,
+			final ConfigToolbar toolbarConfig, final String resourcePath) {
 		super(client, mainWindow, toolbarConfig, resourcePath);
 		if (this.getButtons() != null) {
 			for (final ToolbarButton button : this.getButtons()) {

@@ -47,13 +47,13 @@ import org.rapidbeans.presentation.EditorBeanListener;
 import org.rapidbeans.presentation.config.ConfigPropEditorBean;
 
 /**
- * the bean editor GUI for
- * big single or multiple RapidEnum or Collection choices.
+ * the bean editor GUI for big single or multiple RapidEnum or Collection
+ * choices.
  * 
  * @author Martin Bluemel
  */
-public class EditorPropertyListSwing extends EditorPropertySwing
-		implements EditorBeanListener {
+public class EditorPropertyListSwing extends EditorPropertySwing implements
+		EditorBeanListener {
 
 	/**
 	 * Provide only valid association partners in the Out list.
@@ -133,11 +133,12 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 	 *            the client
 	 */
 	public EditorPropertyListSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+			final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		if (this.getConfig() != null) {
-			final String sProvideOnlyValid = this.getConfig().getArgumentValue("restrictchoicetovalid");
+			final String sProvideOnlyValid = this.getConfig().getArgumentValue(
+					"restrictchoicetovalid");
 			if (sProvideOnlyValid != null) {
 				if (Boolean.parseBoolean(sProvideOnlyValid)) {
 					this.provideOnlyValidInOut = true;
@@ -152,17 +153,17 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 		this.listPanel.setLayout(this.listPanelLayout);
 		if (prop instanceof PropertyChoice) {
 			this.list.setModel(new ModelListChoice((PropertyChoice) prop));
-			this.list.setCellRenderer(new RendererListEnum(
-					client.getCurrentLocale(), this));
+			this.list.setCellRenderer(new RendererListEnum(client
+					.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
 			this.list.setModel(new ModelListCollection(
-					(PropertyCollection) this.getProperty(),
-					this.getBeanEditor().getDocumentView().getDocument()));
-			this.list.setCellRenderer(new RendererListCollection(
-					bizBeanEditor.getDocumentView().getDocument(),
-					this.getLocale()));
+					(PropertyCollection) this.getProperty(), this
+							.getBeanEditor().getDocumentView().getDocument()));
+			this.list.setCellRenderer(new RendererListCollection(bizBeanEditor
+					.getDocumentView().getDocument(), this.getLocale()));
 		} else {
-			throw new RapidBeansRuntimeException("Class \"" + EditorPropertyListSwing.class
+			throw new RapidBeansRuntimeException("Class \""
+					+ EditorPropertyListSwing.class
 					+ "\" does not support properties of class \""
 					+ prop.getClass().getName() + "\".");
 		}
@@ -201,8 +202,8 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 		final ConfigPropEditorBean cfg = getConfig();
 		if (prop.getReadonly()
 				|| (cfg != null && !cfg.getEnabled())
-				|| (prop.getType().isKeyCandidate()
-				&& (!this.getBeanEditor().isInNewMode()))) {
+				|| (prop.getType().isKeyCandidate() && (!this.getBeanEditor()
+						.isInNewMode()))) {
 			this.listPanel.setEnabled(false);
 			this.editButton.setEnabled(false);
 		}
@@ -215,10 +216,9 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 	 */
 	public EditorPropertyList2Swing openListEditor() {
 		if (this.listEditor == null) {
-			this.listEditor = new EditorPropertyList2Swing(
-					this.getBeanEditor().getDocumentView().getClient(),
-					this.getBeanEditor(), this.getProperty(),
-					this.getPropertyBak(), this,
+			this.listEditor = new EditorPropertyList2Swing(this.getBeanEditor()
+					.getDocumentView().getClient(), this.getBeanEditor(),
+					this.getProperty(), this.getPropertyBak(), this,
 					this.provideOnlyValidInOut);
 		} else {
 			JDialog f = (JDialog) this.listEditor.getWidget();
@@ -234,14 +234,18 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 		try {
 			this.setUIEventLock();
 			if (this.list.getModel() instanceof ModelListCollection) {
-				((ModelListCollection) this.list.getModel()).fireColPropChanged(
-						(PropertyCollection) this.getProperty());
+				((ModelListCollection) this.list.getModel())
+						.fireColPropChanged((PropertyCollection) this
+								.getProperty());
 			} else if (this.list.getModel() instanceof ModelListChoice) {
-				((ModelListChoice) this.list.getModel()).fireChoicePropChanged(
-						(PropertyChoice) this.getProperty());
+				((ModelListChoice) this.list.getModel())
+						.fireChoicePropChanged((PropertyChoice) this
+								.getProperty());
 			} else {
-				throw new RapidBeansRuntimeException("Unknown list model class \""
-						+ this.list.getModel().getClass().getName() + "\"");
+				throw new RapidBeansRuntimeException(
+						"Unknown list model class \""
+								+ this.list.getModel().getClass().getName()
+								+ "\"");
 			}
 			this.list.repaint();
 			if (this.listEditor != null) {
@@ -256,31 +260,31 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 	 * @return the selected CheckBoxe's names
 	 */
 	public Object getInputFieldValue() {
-		//        Object value = null;
-		//        if (this.getProperty() instanceof PropertyChoice) {
-		//        } else if (this.getProperty() instanceof PropertyCollection) {
-		//        }
+		// Object value = null;
+		// if (this.getProperty() instanceof PropertyChoice) {
+		// } else if (this.getProperty() instanceof PropertyCollection) {
+		// }
 		// Data binding with collections should to the job
 		return this.getProperty().getValue();
-		//        switch (this.getNullBehavour()) {
-		//        case always_empty:
-		//            // Data binding with collections should to the job
-		////            return this.getProperty().getValue();
-		////            ArrayList<Link> list = new ArrayList<Link>();
-		////            for (Object o : this.list.getSelectedValues()) {
-		////                list.add((Link) o);
-		////            }
-		////            return list;
-		////            return new ReadonlyListArray(this.list.getSelectedValues());
-		//        case always_null:
-		//            if (this.list.getSelectedValues().length == 0) {
-		//                return null;
-		//            } else {
-		//                return new ReadonlyListArray(this.list.getSelectedValues());
-		//            }
-		//        default:
-		//            return new ReadonlyListArray(this.list.getSelectedValues());
-		//        }
+		// switch (this.getNullBehavour()) {
+		// case always_empty:
+		// // Data binding with collections should to the job
+		// // return this.getProperty().getValue();
+		// // ArrayList<Link> list = new ArrayList<Link>();
+		// // for (Object o : this.list.getSelectedValues()) {
+		// // list.add((Link) o);
+		// // }
+		// // return list;
+		// // return new ReadonlyListArray(this.list.getSelectedValues());
+		// case always_null:
+		// if (this.list.getSelectedValues().length == 0) {
+		// return null;
+		// } else {
+		// return new ReadonlyListArray(this.list.getSelectedValues());
+		// }
+		// default:
+		// return new ReadonlyListArray(this.list.getSelectedValues());
+		// }
 	}
 
 	/**
@@ -326,9 +330,11 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 		super.beanRemoved(e);
 		if (this.getProperty().getValue() != null) {
 			if (this.list.getModel() instanceof ModelListCollection) {
-				((ModelListCollection) this.list.getModel()).fireBeanRemoved(e.getBean());
+				((ModelListCollection) this.list.getModel()).fireBeanRemoved(e
+						.getBean());
 			} else if (this.list.getModel() instanceof ModelListChoice) {
-				((ModelListChoice) this.list.getModel()).fireBeanRemoved(e.getBean());
+				((ModelListChoice) this.list.getModel()).fireBeanRemoved(e
+						.getBean());
 			}
 		}
 		if (this.listEditor != null) {
@@ -337,8 +343,7 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 	}
 
 	/**
-	 * ovrerrides the EditorProperty method and adds a repaint
-	 * of the list.
+	 * ovrerrides the EditorProperty method and adds a repaint of the list.
 	 * 
 	 * bean changed event.
 	 * 
@@ -367,9 +372,9 @@ public class EditorPropertyListSwing extends EditorPropertySwing
 	 *            the bean editor
 	 */
 	public void editorClosed(final EditorBean editor) {
-		//        if (this.list.getModel() instanceof ModelListCollection) {
-		//                ((ModelListCollection) this.list.getModel()).release();
-		//        }
+		// if (this.list.getModel() instanceof ModelListCollection) {
+		// ((ModelListCollection) this.list.getModel()).release();
+		// }
 		if (this.listEditor != null) {
 			((JDialog) this.listEditor.getWidget()).dispose();
 			this.listEditor = null;

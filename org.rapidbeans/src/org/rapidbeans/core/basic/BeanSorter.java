@@ -35,12 +35,11 @@ public class BeanSorter {
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<TypeProperty[]> propertySortOrderTL =
-			new ThreadLocal<TypeProperty[]>() {
-				protected synchronized TypeProperty[] initialValue() {
-					return null;
-				}
-			};
+	private static ThreadLocal<TypeProperty[]> propertySortOrderTL = new ThreadLocal<TypeProperty[]>() {
+		protected synchronized TypeProperty[] initialValue() {
+			return null;
+		}
+	};
 
 	/**
 	 * @return the thread local property sorter
@@ -109,7 +108,8 @@ public class BeanSorter {
 
 		// sort that collection
 		// set the property sort order thread local
-		set(this.propertySortOrder.toArray(new TypeProperty[this.propertySortOrder.size()]));
+		set(this.propertySortOrder
+				.toArray(new TypeProperty[this.propertySortOrder.size()]));
 		SortedSet<RapidBean> sortedBeans = new TreeSet<RapidBean>();
 		for (RapidBean bean : beans) {
 			sortedBeans.add(bean);

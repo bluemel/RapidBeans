@@ -22,8 +22,7 @@ import java.util.ListIterator;
 import org.rapidbeans.core.exception.ImmutableCollectionException;
 
 /**
- * An iteratator for an immutable Collection
- * with potential List features.
+ * An iteratator for an immutable Collection with potential List features.
  * 
  * @author Martin Bluemel
  */

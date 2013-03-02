@@ -18,9 +18,8 @@ public class GenericBeanTest extends TestCase {
 	/**
 	 * Test of createInstance(XmlNode).
 	 * 
-	 * This Method is intended to be used for Unit Tests.
-	 * The bean's type is not registered
-	 * at the bean type loader (RapidBeansTypeLoader).
+	 * This Method is intended to be used for Unit Tests. The bean's type is not
+	 * registered at the bean type loader (RapidBeansTypeLoader).
 	 */
 	public void testCreateInstanceDescr() {
 		String descr = "<beantype name=\"TestBean1\"/>";
@@ -31,9 +30,8 @@ public class GenericBeanTest extends TestCase {
 	/**
 	 * Test of createInstance(XmlNode).
 	 * 
-	 * This Method is intended to be used for Unit Tests.
-	 * The bean's type is not registered
-	 * at the bean type loader (RapidBeansTypeLoader).
+	 * This Method is intended to be used for Unit Tests. The bean's type is not
+	 * registered at the bean type loader (RapidBeansTypeLoader).
 	 */
 	public void testCreateInstanceDescrTypeLoader() {
 		String descr = "<beantype name=\"TestBean\"/>";
@@ -80,7 +78,8 @@ public class GenericBeanTest extends TestCase {
 				+ "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		bean.setPropValue("zzz", "martin.bluemel@web.de");
-		assertEquals("martin.bluemel@web.de", bean.getProperty("zzz").getValue());
+		assertEquals("martin.bluemel@web.de", bean.getProperty("zzz")
+				.getValue());
 	}
 
 	/**
@@ -104,36 +103,38 @@ public class GenericBeanTest extends TestCase {
 	/**
 	 * Test createInstance(String typename).
 	 * 
-	 * This Method can be used for generic beans
-	 * A generic bean has a pure declarative type without
-	 * a Java class definition).
-	 * If you use this method the bean's type is registered a the
-	 * bean type loader.
+	 * This Method can be used for generic beans A generic bean has a pure
+	 * declarative type without a Java class definition). If you use this method
+	 * the bean's type is registered a the bean type loader.
 	 */
 	public void testCreateInstanceFromModels() {
-		GenericBean bean1 =
-				(GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType().getName());
-		GenericBean bean2 =
-				(GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType().getName());
+		GenericBean bean1 = (GenericBean) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanGen");
+		assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType()
+				.getName());
+		GenericBean bean2 = (GenericBean) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanGen");
+		assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType()
+				.getName());
 		// approve that the type instance is registered just once
 		assertSame(bean1.getType(), bean2.getType());
 	}
 
 	@SuppressWarnings("unchecked")
 	public void testDefaultValue() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance(
-				"org.rapidbeans.test.TestBeanGen");
-		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanGen");
+		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex"))
+				.get(0);
 		assertSame(Sex.male, defaultSex);
 	}
 
 	@SuppressWarnings("unchecked")
 	public void testOverriding() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance(
-				"org.rapidbeans.test.TestBeanExtended1aGen");
-		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
+		GenericBean bean = (GenericBean) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.test.TestBeanExtended1aGen");
+		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex"))
+				.get(0);
 		assertSame(Sex.female, defaultSex);
 	}
 }

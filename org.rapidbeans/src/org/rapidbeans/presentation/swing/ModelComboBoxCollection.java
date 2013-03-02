@@ -72,7 +72,8 @@ public class ModelComboBoxCollection extends DefaultComboBoxModel {
 	 */
 	public ModelComboBoxCollection(final PropertyCollection colProp,
 			final Document doc) {
-		final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
+		final TypePropertyCollection colPropType = (TypePropertyCollection) colProp
+				.getType();
 		if (colPropType.getMinmult() == 0 && (!colPropType.getMandatory())) {
 			this.provideEmpty = true;
 		}
@@ -80,17 +81,21 @@ public class ModelComboBoxCollection extends DefaultComboBoxModel {
 		final TypeRapidBean targetType = colPropType.getTargetType();
 		TypePropertyCollection inverseColPropType = null;
 		if (colPropType.getInverse() != null) {
-			inverseColPropType = (TypePropertyCollection) targetType.getPropertyType(colPropType.getInverse());
+			inverseColPropType = (TypePropertyCollection) targetType
+					.getPropertyType(colPropType.getInverse());
 		}
 		for (final RapidBean bean : doc.findBeansByType(targetType.getName())) {
 			if (colPropType.getMaxmult() != 1
-					|| (inverseColPropType != null && inverseColPropType.getMaxmult() != 1)
+					|| (inverseColPropType != null && inverseColPropType
+							.getMaxmult() != 1)
 					|| (bean == null)
 					|| (bean.getProperty(colPropType.getInverse()) == null)
 					|| (bean.getProperty(colPropType.getInverse()).getValue() == null)
-					|| (((Collection<?>) ((PropertyCollection) bean.getProperty(colPropType.getInverse())).getValue())
+					|| (((Collection<?>) ((PropertyCollection) bean
+							.getProperty(colPropType.getInverse())).getValue())
 							.size() == 0)
-					|| (((Collection<?>) ((PropertyCollection) bean.getProperty(colPropType.getInverse())).getValue())
+					|| (((Collection<?>) ((PropertyCollection) bean
+							.getProperty(colPropType.getInverse())).getValue())
 							.iterator().next() == colProp.getBean())) {
 				this.list.add(bean);
 			}
