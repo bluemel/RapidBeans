@@ -177,10 +177,10 @@ public final class XalanWrapper {
 			}
 
 			if (error == 0) {
-				TransformerFactory tFactory =
-						javax.xml.transform.TransformerFactory.newInstance();
-				Transformer transformer =
-						tFactory.newTransformer(new StreamSource(style));
+				TransformerFactory tFactory = javax.xml.transform.TransformerFactory
+						.newInstance();
+				Transformer transformer = tFactory
+						.newTransformer(new StreamSource(style));
 				for (final Entry<String, String> param : parameterMap
 						.entrySet()) {
 					transformer.setParameter(param.getKey(), param.getValue());
@@ -204,22 +204,26 @@ public final class XalanWrapper {
 		return error;
 	}
 
-    /**
-     * Splits a string into tokens using one or multiple delimiter characters.
-     *
-     * @param string the string to spit.
-     * @param delimChars a string containing all delimiter characters
-     *
-     * @return a list containing all tokens
-     */
-    private static List<String> split(final String string, final String delimChars) {
-        final ArrayList<String> list = new ArrayList<String>();
-        final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
-        while (tokenizer.hasMoreTokens()) {
-            list.add(tokenizer.nextToken());
-        }
-        return list;
-    }
+	/**
+	 * Splits a string into tokens using one or multiple delimiter characters.
+	 * 
+	 * @param string
+	 *            the string to spit.
+	 * @param delimChars
+	 *            a string containing all delimiter characters
+	 * 
+	 * @return a list containing all tokens
+	 */
+	private static List<String> split(final String string,
+			final String delimChars) {
+		final ArrayList<String> list = new ArrayList<String>();
+		final StringTokenizer tokenizer = new StringTokenizer(string,
+				delimChars);
+		while (tokenizer.hasMoreTokens()) {
+			list.add(tokenizer.nextToken());
+		}
+		return list;
+	}
 
 	/**
 	 * Print the command line help.

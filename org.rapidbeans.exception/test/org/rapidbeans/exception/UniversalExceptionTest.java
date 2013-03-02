@@ -15,7 +15,7 @@ import org.junit.Test;
 
 /**
  * Unit Test if the UniversalException
- *
+ * 
  * @author Martin Bluemel
  */
 public class UniversalExceptionTest {
@@ -91,9 +91,9 @@ public class UniversalExceptionTest {
 		}
 
 		/**
-		 * Throws always a RuntimeException in order
-		 * to provoke an InvocationTargetException
-		 *
+		 * Throws always a RuntimeException in order to provoke an
+		 * InvocationTargetException
+		 * 
 		 * @return nothing
 		 */
 		// this method is used by means of reflection
@@ -237,19 +237,17 @@ public class UniversalExceptionTest {
 			// Assert.assertEquals(25, e.getStackTrace().length);
 			Assert.assertEquals("f6", e.getStackTrace()[0].getMethodName());
 			Assert.assertEquals("f1", e.getStackTrace()[5].getMethodName());
-			Assert.assertEquals("testRuntimeException", e.getStackTrace()[6]
-					.getMethodName());
+			Assert.assertEquals("testRuntimeException",
+					e.getStackTrace()[6].getMethodName());
 		}
 	}
 
 	/**
-	 * Test if the UniversalException has a correct time
-	 * stamp.
+	 * Test if the UniversalException has a correct time stamp.
 	 */
 	@Test
 	public void testTimeStamp() {
-		UniversalException sex =
-				new UniversalException(TEST_MESSAGE);
+		UniversalException sex = new UniversalException(TEST_MESSAGE);
 		final Date currentTime = new Date();
 		final Date ts = sex.getTimeStamp();
 		// asserting the current time in milliseconds is a bit dangerous
@@ -280,10 +278,9 @@ public class UniversalExceptionTest {
 	@Test
 	public void testMessageWrapped() {
 		RuntimeException rex = new RuntimeException(TEST_MESSAGE);
-		UniversalException uniEx =
-				new UniversalException(rex);
-		Assert.assertEquals("wrapped java.lang.RuntimeException: test message", uniEx
-				.getMessage());
+		UniversalException uniEx = new UniversalException(rex);
+		Assert.assertEquals("wrapped java.lang.RuntimeException: test message",
+				uniEx.getMessage());
 	}
 
 	/**
@@ -308,7 +305,8 @@ public class UniversalExceptionTest {
 			s01_1();
 		} catch (UniversalException uniEx) {
 			UniversalException rex = (UniversalException) uniEx.getCause();
-			Assert.assertEquals("java.lang.RuntimeException", rex.getOriginalClassname());
+			Assert.assertEquals("java.lang.RuntimeException",
+					rex.getOriginalClassname());
 			Assert.assertEquals(TEST_MESSAGE, rex.getMessage());
 			UniversalException mex = (UniversalException) rex.getCause();
 			Assert.assertEquals(
@@ -323,8 +321,8 @@ public class UniversalExceptionTest {
 			Assert.assertNull(mex.getProperty("message"));
 			Assert.assertNull(mex.getProperty("localizedMessage"));
 			Assert.assertNull(mex.getProperty("stackTrace"));
-			Assert.assertEquals(getStackTraceExpectedCauseChain(
-					uniEx.getTimeStamp().toString()),
+			Assert.assertEquals(getStackTraceExpectedCauseChain(uniEx
+					.getTimeStamp().toString()),
 					filterEnvironment(printStackTraceWriter(uniEx)));
 		}
 	}
@@ -339,8 +337,7 @@ public class UniversalExceptionTest {
 		UniversalException uniEx = new UniversalException(rex);
 		Assert.assertEquals("wrapped java.lang.RuntimeException: "
 				+ "org.rapidbeans.exception.UniversalException: "
-				+ "test message", uniEx
-				.getMessage());
+				+ "test message", uniEx.getMessage());
 	}
 
 	@Test
