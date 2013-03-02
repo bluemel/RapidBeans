@@ -23,47 +23,49 @@ import org.apache.tools.ant.BuildException;
 
 /**
  * the source file with the generated code.
- *
+ * 
  * @author Martin Bluemel
- *
+ * 
  */
 public class CodeFileGen extends CodeFile {
 
-    /**
-     * constructor.
-     * @param argFile the file
-     */
-    //* @throws IOException I/O problem
-    public CodeFileGen(final File argFile) {
-       //throws IOException {
-        super(argFile);
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param argFile
+	 *            the file
+	 */
+	// * @throws IOException I/O problem
+	public CodeFileGen(final File argFile) {
+		// throws IOException {
+		super(argFile);
+	}
 
-    /**
-     * validation.
-     */
-    public final void validate() {
-        if (this.getFile() == null) {
-            throw new BuildException(
-                "No value defined for mandatory attribute \"srcfilegen\".");
-        }
-        if (!this.getFile().exists()) {
-            throw new BuildException(
-                    "invalid path given for attribute \"srcfilegen\"."
-                        + "Can't find file \""
-                        + this.getFile().getAbsolutePath() + "\".");
-        }
-        if (!this.getFile().canRead()) {
-            throw new BuildException(
-                    "invalid file given for attribute \"srcfilegen\"."
-                        + "Can't read file \""
-                        + this.getFile().getAbsolutePath() + "\".");
-        }
-        if (this.getFile().isDirectory()) {
-            throw new BuildException(
-                "invalid file given for attribute \"srcfilegen\"."
-                    + "File \"" + this.getFile().getAbsolutePath()
-                    + "\" is a directory. Expected a file.");
-        }
-    }
+	/**
+	 * validation.
+	 */
+	public final void validate() {
+		if (this.getFile() == null) {
+			throw new BuildException(
+					"No value defined for mandatory attribute \"srcfilegen\".");
+		}
+		if (!this.getFile().exists()) {
+			throw new BuildException(
+					"invalid path given for attribute \"srcfilegen\"."
+							+ "Can't find file \""
+							+ this.getFile().getAbsolutePath() + "\".");
+		}
+		if (!this.getFile().canRead()) {
+			throw new BuildException(
+					"invalid file given for attribute \"srcfilegen\"."
+							+ "Can't read file \""
+							+ this.getFile().getAbsolutePath() + "\".");
+		}
+		if (this.getFile().isDirectory()) {
+			throw new BuildException(
+					"invalid file given for attribute \"srcfilegen\"."
+							+ "File \"" + this.getFile().getAbsolutePath()
+							+ "\" is a directory. Expected a file.");
+		}
+	}
 }

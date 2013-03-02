@@ -19,37 +19,37 @@ package org.rapidbeans.ant;
 
 import org.apache.tools.ant.BuildException;
 
-
 /**
  * Simple line.
- *
+ * 
  * @version initial
- *
+ * 
  * @author Martin Bluemel
  */
 public final class CodeFilePartLine extends CodeFilePart {
 
-    /**
-     * the line.
-     */
-    private String line = null;
+	/**
+	 * the line.
+	 */
+	private String line = null;
 
-    /**
-     * constructor.
-     *
-     * @param argLine the line
-     */
-    public CodeFilePartLine(final String argLine) {
-        if (argLine == null) {
-            throw new BuildException("Null line is not allowed");
-        }
-        this.line = argLine;
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param argLine
+	 *            the line
+	 */
+	public CodeFilePartLine(final String argLine) {
+		if (argLine == null) {
+			throw new BuildException("Null line is not allowed");
+		}
+		this.line = argLine;
+	}
 
-    /**
-     * @return text as String.
-     */
-    public String getText() {
-        return this.line + PlatformHelper.getLineFeed();
-    }
+	/**
+	 * @return text as String.
+	 */
+	public String getText() {
+		return this.line + PlatformHelper.getLineFeed();
+	}
 }

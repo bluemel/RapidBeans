@@ -19,20 +19,20 @@ package org.rapidbeans.ant;
 
 /**
  * abstract class for every part of the code file.
- *
+ * 
  * @author Martin Bluemel
  */
 public abstract class CodeFilePart {
 
-    /**
-     * Default constructor.
-     */
-    public CodeFilePart() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public CodeFilePart() {
+		super();
+	}
 
-    /**
-     * @return text as String.
-     */
-    public abstract String getText();
+	/**
+	 * @return text as String.
+	 */
+	public abstract String getText();
 }

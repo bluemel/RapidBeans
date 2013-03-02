@@ -17,14 +17,11 @@
 
 package org.rapidbeans.ant;
 
-
 /**
  * Operating systems supported.
- *
+ * 
  * @author Martin Bluemel
  */
 public enum OperatingSystem {
-    linux,
-    windows,
-    mac
+	linux, windows, mac
 }

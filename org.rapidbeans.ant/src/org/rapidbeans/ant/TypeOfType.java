@@ -18,8 +18,5 @@
 package org.rapidbeans.ant;
 
 public enum TypeOfType {
-    undefined,
-    enumtype,
-    quantitytype,
-    beantype
+	undefined, enumtype, quantitytype, beantype
 }

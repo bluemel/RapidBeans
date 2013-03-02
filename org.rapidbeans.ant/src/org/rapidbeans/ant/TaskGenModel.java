@@ -34,8 +34,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
- * This Ant task conveniently drives the XSLT based RapidBeans code generation for a whole directory hierarchy
- * (similar to Ant task "javac").
+ * This Ant task conveniently drives the XSLT based RapidBeans code generation
+ * for a whole directory hierarchy (similar to Ant task "javac").
  * 
  * @author Martin Bluemel
  */
@@ -82,16 +82,16 @@ public final class TaskGenModel extends Task {
 	private File styleBean;
 
 	/**
-	 * the code generation mode.
-	 * Overwrites the mode particularly specified in the model.
+	 * the code generation mode. Overwrites the mode particularly specified in
+	 * the model.
 	 */
 	private CodeGenMode codeGenMode = null;
 
 	private static final CodeGenMode DEFAULT_CODEGEN_MODE = CodeGenMode.simple;
 
 	/**
-	 * the code generation implementation: { 'simple' | 'strict' }.
-	 * Overwrites the implementation particularly specified in the model.
+	 * the code generation implementation: { 'simple' | 'strict' }. Overwrites
+	 * the implementation particularly specified in the model.
 	 */
 	private CodeGenImpl codeGenImpl = null;
 
@@ -104,8 +104,8 @@ public final class TaskGenModel extends Task {
 	 * not regarding modification dates.
 	 * 
 	 * @param force
-	 *            determines if the generation should be performed
-	 *            not regarding modification dates
+	 *            determines if the generation should be performed not regarding
+	 *            modification dates
 	 */
 	public void setForce(final boolean force) {
 		this.force = force;
@@ -214,39 +214,48 @@ public final class TaskGenModel extends Task {
 	public void execute() {
 		// plausi checks for attributes
 		if (this.srcdir == null) {
-			throw new BuildException("No Source directory. Please define value for attribute \"srcdir\".");
+			throw new BuildException(
+					"No Source directory. Please define value for attribute \"srcdir\".");
 		}
 		if (!this.srcdir.exists()) {
-			throw new BuildException("Source directory \"" + this.srcdir + " not found");
+			throw new BuildException("Source directory \"" + this.srcdir
+					+ " not found");
 		}
 		if (!this.srcdir.isDirectory()) {
-			throw new BuildException("Invalid source directory. File \"" + this.srcdir + " is not a directory");
+			throw new BuildException("Invalid source directory. File \""
+					+ this.srcdir + " is not a directory");
 		}
 		if (this.destdirsimple == null) {
-			throw new BuildException("No Destination directory. Please define value for attribute \"destdir\".");
+			throw new BuildException(
+					"No Destination directory. Please define value for attribute \"destdir\".");
 		}
 		if (!this.destdirsimple.exists()) {
-			throw new BuildException("Destination directory \"" + this.destdirsimple + " not found");
+			throw new BuildException("Destination directory \""
+					+ this.destdirsimple + " not found");
 		}
 		if (!this.destdirsimple.isDirectory()) {
-			throw new BuildException("Invalid destination directory. File \"" + this.destdirsimple
-					+ " is not a directory");
+			throw new BuildException("Invalid destination directory. File \""
+					+ this.destdirsimple + " is not a directory");
 		}
 		if (!this.destdirsimple.exists()) {
-			throw new BuildException("Destination directory \"" + this.destdirsimple + " not found");
+			throw new BuildException("Destination directory \""
+					+ this.destdirsimple + " not found");
 		}
 		if (this.destdirjoint == null) {
-			throw new BuildException("No Destination directory. Please define value for attribute \"destdirjoint\".");
+			throw new BuildException(
+					"No Destination directory. Please define value for attribute \"destdirjoint\".");
 		}
 		if (!this.destdirjoint.exists()) {
-			throw new BuildException("Destination directory \"" + this.destdirjoint + " not found");
+			throw new BuildException("Destination directory \""
+					+ this.destdirjoint + " not found");
 		}
 		if (!this.destdirjoint.isDirectory()) {
-			throw new BuildException("Invalid destination directory. File \"" + this.destdirjoint
-					+ " is not a directory");
+			throw new BuildException("Invalid destination directory. File \""
+					+ this.destdirjoint + " is not a directory");
 		}
 		if (!this.destdirjoint.exists()) {
-			throw new BuildException("Destination directory \"" + this.destdirjoint + " not found");
+			throw new BuildException("Destination directory \""
+					+ this.destdirjoint + " not found");
 		}
 		this.processDir(this.srcdir, this.destdirsimple, this.destdirjoint, "");
 	}
@@ -269,10 +278,16 @@ public final class TaskGenModel extends Task {
 	 */
 	public void processDir(final File sdir, final File ddirsimple,
 			final File ddirjoint, final String pkgname) {
-		this.log("process: source directory: " + sdir.getAbsolutePath(), Project.MSG_VERBOSE);
-		this.log("process: simple destination directory: " + ddirsimple.getAbsolutePath(), Project.MSG_VERBOSE);
-		this.log("process: joint destination directory: " + ddirjoint.getAbsolutePath(), Project.MSG_VERBOSE);
-		this.log("style directory: " + this.styledir.getAbsolutePath(), Project.MSG_VERBOSE);
+		this.log("process: source directory: " + sdir.getAbsolutePath(),
+				Project.MSG_VERBOSE);
+		this.log(
+				"process: simple destination directory: "
+						+ ddirsimple.getAbsolutePath(), Project.MSG_VERBOSE);
+		this.log(
+				"process: joint destination directory: "
+						+ ddirjoint.getAbsolutePath(), Project.MSG_VERBOSE);
+		this.log("style directory: " + this.styledir.getAbsolutePath(),
+				Project.MSG_VERBOSE);
 
 		File[] sfiles = sdir.listFiles();
 		String sfilename;
@@ -290,15 +305,18 @@ public final class TaskGenModel extends Task {
 						new File(ddirjoint, sfilename), subPkgname);
 			} else {
 				if (!sfilename.endsWith(".xml")) {
-					this.log("skipping non XML file \"" + sfilename + "\"", Project.MSG_VERBOSE);
+					this.log("skipping non XML file \"" + sfilename + "\"",
+							Project.MSG_VERBOSE);
 					continue;
 				}
 
-				final CodeGenParameters cgen = this.extractCodeGenParameters(sfiles[i]);
+				final CodeGenParameters cgen = this
+						.extractCodeGenParameters(sfiles[i]);
 
 				switch (cgen.getTypeOfType()) {
 				case undefined:
-					this.log("no description of bean type in file \"" + sfilename + "\"", Project.MSG_VERBOSE);
+					this.log("no description of bean type in file \""
+							+ sfilename + "\"", Project.MSG_VERBOSE);
 					continue;
 				case enumtype:
 					stylesheet = this.styleEnum;
@@ -313,7 +331,8 @@ public final class TaskGenModel extends Task {
 
 				File ddir = null;
 				File tgtfile = null;
-				final String classname = sfilename.substring(0, sfilename.length() - LEN_EXTENSION);
+				final String classname = sfilename.substring(0,
+						sfilename.length() - LEN_EXTENSION);
 				final String pkgdirname = pkgname.replace('.', '/');
 				switch (cgen.getCodeGenMode()) {
 				case simple:
@@ -323,7 +342,8 @@ public final class TaskGenModel extends Task {
 					break;
 				case split:
 					ddir = new File(this.destdirsimple, pkgdirname);
-					tgtfile = new File(ddir, "RapidBeanBase" + classname + ".java");
+					tgtfile = new File(ddir, "RapidBeanBase" + classname
+							+ ".java");
 					this.log("codegen mode: split", Project.MSG_VERBOSE);
 					break;
 				case joint:
@@ -335,17 +355,18 @@ public final class TaskGenModel extends Task {
 					this.log("codegen mode: none", Project.MSG_VERBOSE);
 					continue;
 				default:
-					this.log("Illegal codegen mode",
-							Project.MSG_VERBOSE);
+					this.log("Illegal codegen mode", Project.MSG_VERBOSE);
 					continue;
 				}
 				if (!this.force && tgtfile.exists()
 						&& sfiles[i].lastModified() <= tgtfile.lastModified()
 						&& stylesheet.lastModified() <= tgtfile.lastModified()) {
-					this.log("up to date file \"" + sfilename + "\"", Project.MSG_VERBOSE);
+					this.log("up to date file \"" + sfilename + "\"",
+							Project.MSG_VERBOSE);
 					continue;
 				}
-				this.transform(sfiles[i], tgtfile, stylesheet, pkgname, classname, cgen);
+				this.transform(sfiles[i], tgtfile, stylesheet, pkgname,
+						classname, cgen);
 			}
 		}
 	}
@@ -353,8 +374,8 @@ public final class TaskGenModel extends Task {
 	/**
 	 * Read the XML model description file and determine in advance:
 	 * 
-	 * - "type" of Rapid type: bean type, enum type, quantity type
-	 * determines the template to use for code generation
+	 * - "type" of Rapid type: bean type, enum type, quantity type determines
+	 * the template to use for code generation
 	 * 
 	 * @param xmlFile
 	 *            the file to check
@@ -380,17 +401,20 @@ public final class TaskGenModel extends Task {
 			} else if (doc.getElementsByTagName("beantype").item(0) != null) {
 				cgen.setTypeOfType(TypeOfType.beantype);
 			} else {
-				throw new BuildException("Could not determine type of Rapid type { 'bean' | 'enum' | 'quantity' }");
+				throw new BuildException(
+						"Could not determine type of Rapid type { 'bean' | 'enum' | 'quantity' }");
 			}
 
 			if (this.codeGenMode != null) {
 				cgen.setCodeGenMode(this.codeGenMode);
 			} else {
-				final Node cgenNode = doc.getElementsByTagName("codegen").item(0);
+				final Node cgenNode = doc.getElementsByTagName("codegen").item(
+						0);
 				if (cgenNode == null) {
 					cgen.setCodeGenMode(DEFAULT_CODEGEN_MODE);
 				} else {
-					final Node modeNode = cgenNode.getAttributes().getNamedItem("mode");
+					final Node modeNode = cgenNode.getAttributes()
+							.getNamedItem("mode");
 					if (modeNode == null) {
 						cgen.setCodeGenMode(DEFAULT_CODEGEN_MODE);
 					} else {
@@ -404,7 +428,8 @@ public final class TaskGenModel extends Task {
 						} else if (mode.equalsIgnoreCase("joint")) {
 							cgen.setCodeGenMode(CodeGenMode.joint);
 						} else {
-							throw new RuntimeException("Invalid codegen mode \"" + mode + "\"");
+							throw new RuntimeException(
+									"Invalid codegen mode \"" + mode + "\"");
 						}
 					}
 				}
@@ -413,11 +438,13 @@ public final class TaskGenModel extends Task {
 			if (this.codeGenImpl != null) {
 				cgen.setImplementation(this.codeGenImpl);
 			} else {
-				final Node cgenNode = doc.getElementsByTagName("codegen").item(0);
+				final Node cgenNode = doc.getElementsByTagName("codegen").item(
+						0);
 				if (cgenNode == null) {
 					cgen.setImplementation(DEFAULT_CODEGEN_IMPL);
 				} else {
-					final Node implNode = cgenNode.getAttributes().getNamedItem("implementation");
+					final Node implNode = cgenNode.getAttributes()
+							.getNamedItem("implementation");
 					if (implNode == null) {
 						cgen.setImplementation(DEFAULT_CODEGEN_IMPL);
 					} else {
@@ -427,7 +454,9 @@ public final class TaskGenModel extends Task {
 						} else if (impl.equalsIgnoreCase("simple")) {
 							cgen.setImplementation(CodeGenImpl.simple);
 						} else {
-							throw new RuntimeException("Invalid codegen implementation \"" + impl + "\"");
+							throw new RuntimeException(
+									"Invalid codegen implementation \"" + impl
+											+ "\"");
 						}
 					}
 				}
@@ -462,11 +491,12 @@ public final class TaskGenModel extends Task {
 	 * @param classname
 	 *            the class name
 	 */
-	private void transform(final File fsrc, final File ftgt,
-			final File fstyle, final String pkgname,
-			final String classname, final CodeGenParameters cgen) {
+	private void transform(final File fsrc, final File ftgt, final File fstyle,
+			final String pkgname, final String classname,
+			final CodeGenParameters cgen) {
 		// since Ant 1.7 we can't reuse the XSLT Task in the way we did before.
-		// Maybe later on we could find out what we have to reset in order to reuse
+		// Maybe later on we could find out what we have to reset in order to
+		// reuse
 		// the task again
 		this.xsltTask = new XXslt();
 		this.xsltTask.setProject(this.getProject());
@@ -493,16 +523,21 @@ public final class TaskGenModel extends Task {
 
 		this.xsltParameterImplementation = this.xsltTask.createParam();
 		this.xsltParameterImplementation.setName("implementation");
-		this.xsltParameterImplementation.setExpression(cgen.getImplementation().name());
+		this.xsltParameterImplementation.setExpression(cgen.getImplementation()
+				.name());
 
 		this.xsltParameterIndent = this.xsltTask.createParam();
 		this.xsltParameterIndent.setName("indent");
 		this.xsltParameterIndent.setExpression(cgen.getIndent());
 
-		this.log("IN File \"" + fsrc.getAbsolutePath() + "\"", Project.MSG_VERBOSE);
-		this.log("OUT File \"" + ftgt.getAbsolutePath() + "\"", Project.MSG_VERBOSE);
-		this.log("STYLE File \"" + fstyle.getAbsolutePath() + "\"", Project.MSG_VERBOSE);
-		this.log("performing RapidBeans code generation of class \"" + ftgt, Project.MSG_VERBOSE);
+		this.log("IN File \"" + fsrc.getAbsolutePath() + "\"",
+				Project.MSG_VERBOSE);
+		this.log("OUT File \"" + ftgt.getAbsolutePath() + "\"",
+				Project.MSG_VERBOSE);
+		this.log("STYLE File \"" + fstyle.getAbsolutePath() + "\"",
+				Project.MSG_VERBOSE);
+		this.log("performing RapidBeans code generation of class \"" + ftgt,
+				Project.MSG_VERBOSE);
 		this.xsltTask.execute();
 	}
 

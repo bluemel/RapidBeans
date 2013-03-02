@@ -19,45 +19,47 @@ package org.rapidbeans.ant;
 
 /**
  * a simple key / value pair container.
- *
+ * 
  * @version initial
- *
+ * 
  * @author bm092114
  */
 public final class KeyValuePair {
 
-    /**
-     * the key.
-     */
-    private String key;
+	/**
+	 * the key.
+	 */
+	private String key;
 
-    /**
-     * the value.
-     */
-    private String value;
+	/**
+	 * the value.
+	 */
+	private String value;
 
-    /**
-     * constructor.
-     *
-     * @param argKey    key
-     * @param argValue  value
-     */
-    public KeyValuePair(final String argKey, final String argValue) {
-        this.key = argKey;
-        this.value = argValue;
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param argKey
+	 *            key
+	 * @param argValue
+	 *            value
+	 */
+	public KeyValuePair(final String argKey, final String argValue) {
+		this.key = argKey;
+		this.value = argValue;
+	}
 
-    /**
-     * @return key
-     */
-    public String getKey() {
-        return this.key;
-    }
+	/**
+	 * @return key
+	 */
+	public String getKey() {
+		return this.key;
+	}
 
-    /**
-     * @return value
-     */
-    public String getValue() {
-        return this.value;
-    }
+	/**
+	 * @return value
+	 */
+	public String getValue() {
+		return this.value;
+	}
 }

@@ -20,67 +20,69 @@ package org.rapidbeans.ant;
 import java.util.List;
 
 /**
- * Implements version arithmetics by simply splitting a version
- * string into components using a given delimiter. 
+ * Implements version arithmetics by simply splitting a version string into
+ * components using a given delimiter.
  * 
  * @author Martin Bluemel
  */
 public class Version {
 
-    /**
-     * the version string.
-     */
-    private String string = null;
+	/**
+	 * the version string.
+	 */
+	private String string = null;
 
-    /**
-     * @see java.lang.Object#toString()
-     */
-    public final String toString() {
-        return this.string;
-    }
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public final String toString() {
+		return this.string;
+	}
 
-    /**
-     * The list with the version component strings.
-     */
+	/**
+	 * The list with the version component strings.
+	 */
 	private List<String> components = null;
 
-    /**
-     * @return a list with the version component strings
-     */
-    public final List<String> getComponents() {
-        return this.components;
-    }
+	/**
+	 * @return a list with the version component strings
+	 */
+	public final List<String> getComponents() {
+		return this.components;
+	}
 
-    /**
-     * @param index the index of the version component
-     *
-     * @return a single version component
-     */
-    protected final String getComponent(final int index) {
-        return this.components.get(index);
-    }
+	/**
+	 * @param index
+	 *            the index of the version component
+	 * 
+	 * @return a single version component
+	 */
+	protected final String getComponent(final int index) {
+		return this.components.get(index);
+	}
 
-    /**
-     * Construct a version out of a version string.
-     *
-     * @param versionString - the version string.
-     *                        '.' is assumed to be the separator character.
-     */
+	/**
+	 * Construct a version out of a version string.
+	 * 
+	 * @param versionString
+	 *            - the version string. '.' is assumed to be the separator
+	 *            character.
+	 */
 	protected Version(final String versionString) {
 		this(versionString, ".");
 	}
 
-    /**
-     * Construct a version out of a version string
-     * and one single delimiter
-     *
-     * @param versionString the version string 
-     * @param separatorChars the separator character or characters to use
-     */
-	protected Version(final String versionString,
-            final String separatorChars) {
-	    this.string = versionString;
-        this.components = StringHelper.split(versionString, separatorChars);
+	/**
+	 * Construct a version out of a version string and one single delimiter
+	 * 
+	 * @param versionString
+	 *            the version string
+	 * @param separatorChars
+	 *            the separator character or characters to use
+	 */
+	protected Version(final String versionString, final String separatorChars) {
+		this.string = versionString;
+		this.components = StringHelper.split(versionString, separatorChars);
 	}
 
 	/**
@@ -90,39 +92,38 @@ public class Version {
 		Version v = (Version) o;
 		if (this.components.size() != v.components.size()) {
 			return false;
-        }
+		}
 		for (int i = 0; i < this.components.size(); i++) {
-			if (!this.components.get(i).equals(
-                    v.components.get(i))) {
+			if (!this.components.get(i).equals(v.components.get(i))) {
 				return false;
-            }
+			}
 		}
 		return true;
 	}
 
-    /**
-     * @see java.lang.Object#hashCode()
-     */
-    public int hashCode() {
-        return this.string.hashCode();
-    }
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		return this.string.hashCode();
+	}
 
 	/**
-     * @see java.lang.Object#compareTo()
+	 * @see java.lang.Object#compareTo()
 	 */
 	public int compareTo(final Object o) {
 
-        final Version that = (Version) o;
-	    final int componentsSizeThis = this.components.size();
-        final int componentsSizeThat = that.components.size();
+		final Version that = (Version) o;
+		final int componentsSizeThis = this.components.size();
+		final int componentsSizeThat = that.components.size();
 		Integer componentNumThis, componentNumThat;
 
 		for (int i = 0; i < componentsSizeThis; i++) {
 
 			if (i >= that.components.size()) {
-	            // return greater if "that" as no components to compare anymore
+				// return greater if "that" as no components to compare anymore
 				return 1;
-            }
+			}
 
 			final String componentStringThis = this.components.get(i);
 			final String componentStringThat = that.components.get(i);
@@ -140,25 +141,26 @@ public class Version {
 			}
 
 			if (componentNumThis != null && componentNumThat != null) {
-	            // if both components are numbers perform an Integer compareTo()
+				// if both components are numbers perform an Integer compareTo()
 				final int c = componentNumThis.compareTo(componentNumThat);
 				if (c != 0) {
 					return c;
-                }
+				}
 			} else if (componentNumThis == null && componentNumThat == null) {
-	            // if both components are no numbers compare them alphabetical
-				final int c = componentStringThis.compareTo(componentStringThat);
+				// if both components are no numbers compare them alphabetical
+				final int c = componentStringThis
+						.compareTo(componentStringThat);
 				if (c > 0) {
 					return 1;
-                }
+				}
 				if (c < 0) {
 					return -1;
-                }
-		    // pure numbers will always be estimated to be a greater version
-			// than other strings
-            } else if (componentNumThis != null && componentNumThat == null) {
+				}
+				// pure numbers will always be estimated to be a greater version
+				// than other strings
+			} else if (componentNumThis != null && componentNumThat == null) {
 				return 1;
-            } else if (componentNumThis == null && componentNumThat != null) {
+			} else if (componentNumThis == null && componentNumThat != null) {
 				return -1;
 			}
 		}
@@ -166,7 +168,7 @@ public class Version {
 		// return less if that still has components left
 		if (componentsSizeThat > componentsSizeThis) {
 			return -1;
-        }
+		}
 		return 0;
 	}
 }

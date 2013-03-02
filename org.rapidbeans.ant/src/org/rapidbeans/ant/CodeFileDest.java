@@ -23,129 +23,137 @@ import java.io.IOException;
 
 import org.apache.tools.ant.BuildException;
 
-
 /**
  * the source file with the generated code.
- *
+ * 
  * @author Martin Bluemel
  */
 public class CodeFileDest extends CodeFile {
 
-    /**
-     * the gateway for convenient Ant access.
-     */
-    private AntGateway ant = null;
+	/**
+	 * the gateway for convenient Ant access.
+	 */
+	private AntGateway ant = null;
 
-    /**
-     * constructor.
-     * @param argFile the file
-     * @param argAnt Ant gateway
-     */
-    public CodeFileDest(final File argFile, final AntGateway argAnt) {
-        super(argFile);
-        this.ant = argAnt;
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param argFile
+	 *            the file
+	 * @param argAnt
+	 *            Ant gateway
+	 */
+	public CodeFileDest(final File argFile, final AntGateway argAnt) {
+		super(argFile);
+		this.ant = argAnt;
+	}
 
-    /**
-     * validation.
-     */
-    public final void validate() {
-        if (this.getFile() == null) {
-            throw new BuildException(
-                "No value defined for mandatory attribute \"destfile\".");
-        }
-        if (!this.getFile().getParentFile().exists()) {
-            this.ant.mkdir(this.getFile().getParentFile());
-        }
-        if (!this.getFile().getParentFile().exists()) {
-            throw new BuildException(
-                    "invalid file given for attribute \"destfile\"."
-                        + "Can't nether find nor create parent directory for"
-                        + " file \"" + this.getFile().getAbsolutePath()
-                        + "\".");
-        }
-        if (this.getFile().exists() && (!this.getFile().canWrite())) {
-            throw new BuildException(
-                    "invalid file given for attribute \"destfile\"."
-                        + "Can't write file \""
-                        + this.getFile().getAbsolutePath() + "\".");
-        }
-        if (this.getFile().exists() && this.getFile().isDirectory()) {
-            throw new BuildException(
-                "invalid file given for attribute \"destfile\"."
-                    + "File \"" + this.getFile().getAbsolutePath()
-                    + "\" is a directory. Expected a file.");
-        }
-    }
+	/**
+	 * validation.
+	 */
+	public final void validate() {
+		if (this.getFile() == null) {
+			throw new BuildException(
+					"No value defined for mandatory attribute \"destfile\".");
+		}
+		if (!this.getFile().getParentFile().exists()) {
+			this.ant.mkdir(this.getFile().getParentFile());
+		}
+		if (!this.getFile().getParentFile().exists()) {
+			throw new BuildException(
+					"invalid file given for attribute \"destfile\"."
+							+ "Can't nether find nor create parent directory for"
+							+ " file \"" + this.getFile().getAbsolutePath()
+							+ "\".");
+		}
+		if (this.getFile().exists() && (!this.getFile().canWrite())) {
+			throw new BuildException(
+					"invalid file given for attribute \"destfile\"."
+							+ "Can't write file \""
+							+ this.getFile().getAbsolutePath() + "\".");
+		}
+		if (this.getFile().exists() && this.getFile().isDirectory()) {
+			throw new BuildException(
+					"invalid file given for attribute \"destfile\"."
+							+ "File \"" + this.getFile().getAbsolutePath()
+							+ "\" is a directory. Expected a file.");
+		}
+	}
 
-    /**
-     * the merge.
-     * @param srcfilegen gen
-     * @param srcfileman man
-     * @param beginUnmatchedSection marker string
-     * @param endUnmatchedSection marker string
-     */
-    public final void merge(final CodeFileGen srcfilegen,
-            final CodeFileMan srcfileman,
-            final String beginUnmatchedSection, final String endUnmatchedSection) {
+	/**
+	 * the merge.
+	 * 
+	 * @param srcfilegen
+	 *            gen
+	 * @param srcfileman
+	 *            man
+	 * @param beginUnmatchedSection
+	 *            marker string
+	 * @param endUnmatchedSection
+	 *            marker string
+	 */
+	public final void merge(final CodeFileGen srcfilegen,
+			final CodeFileMan srcfileman, final String beginUnmatchedSection,
+			final String endUnmatchedSection) {
 
-        // step 1: merge all bodies from srcfileman over the corresponding
-        // bodies in srcfilegen
-        for (final CodeFilePart part : srcfilegen.getParts()) {
-            if (part instanceof CodeFilePartBody
-            		&& srcfileman != null) {
-            	final CodeFilePartBody bodygen = (CodeFilePartBody) part;
-            	final String signature = bodygen.getSignature();
-            	final CodeFilePartBody bodyman = srcfileman.getBody(signature);
-            	if (bodyman != null) {
-            		if (bodyman.getMerged()) {
-            			throw new BuildException("Body \"" + signature + "\""
-            					+ "is already merged.");
-            		}
-            		this.appendBodyPart(bodyman);
-            		bodyman.setMerged(true);
-            	} else {
-            		this.appendBodyPart(bodygen);
-            	}
-            } else {
-                this.appendPart(part);
-            }
-        }
+		// step 1: merge all bodies from srcfileman over the corresponding
+		// bodies in srcfilegen
+		for (final CodeFilePart part : srcfilegen.getParts()) {
+			if (part instanceof CodeFilePartBody && srcfileman != null) {
+				final CodeFilePartBody bodygen = (CodeFilePartBody) part;
+				final String signature = bodygen.getSignature();
+				final CodeFilePartBody bodyman = srcfileman.getBody(signature);
+				if (bodyman != null) {
+					if (bodyman.getMerged()) {
+						throw new BuildException("Body \"" + signature + "\""
+								+ "is already merged.");
+					}
+					this.appendBodyPart(bodyman);
+					bodyman.setMerged(true);
+				} else {
+					this.appendBodyPart(bodygen);
+				}
+			} else {
+				this.appendPart(part);
+			}
+		}
 
-        // step 2: append all unmatched bodies (bodies from srcfileman without
-        //         a corresponding body signature in srgfilegen
-        if (srcfileman != null) {
-            for (final CodeFilePart part2 : srcfileman.getParts()) {
-                if (part2 instanceof CodeFilePartBody) {
-                    final CodeFilePartBody bodyman = (CodeFilePartBody) part2;
-                    if (!bodyman.getMerged() && !bodyman.isEmpty()) {
-                        this.appendPart(new CodeFilePartLine(""));
-                        this.appendPart(new CodeFilePartLine(
-                                beginUnmatchedSection));
-                        this.appendBodyPart(bodyman);
-                        this.appendPart(new CodeFilePartLine(
-                                endUnmatchedSection));
-                    }
-                }
-            }
-        }
-    }
+		// step 2: append all unmatched bodies (bodies from srcfileman without
+		// a corresponding body signature in srgfilegen
+		if (srcfileman != null) {
+			for (final CodeFilePart part2 : srcfileman.getParts()) {
+				if (part2 instanceof CodeFilePartBody) {
+					final CodeFilePartBody bodyman = (CodeFilePartBody) part2;
+					if (!bodyman.getMerged() && !bodyman.isEmpty()) {
+						this.appendPart(new CodeFilePartLine(""));
+						this.appendPart(new CodeFilePartLine(
+								beginUnmatchedSection));
+						this.appendBodyPart(bodyman);
+						this.appendPart(new CodeFilePartLine(
+								endUnmatchedSection));
+					}
+				}
+			}
+		}
+	}
 
-    /**
-     * the write.
-     * @throws IOException IO problem
-     */
-    public final void write() throws IOException {
-        FileWriter wr = null;
-        try {
-            wr = new FileWriter(this.getFile());
-            for (final CodeFilePart part : this.getParts()) {
-                wr.write(part.getText());
-            } 
-        } finally {
-            if (wr != null) {
-                wr.close();
-            }
-        }
-    }
+	/**
+	 * the write.
+	 * 
+	 * @throws IOException
+	 *             IO problem
+	 */
+	public final void write() throws IOException {
+		FileWriter wr = null;
+		try {
+			wr = new FileWriter(this.getFile());
+			for (final CodeFilePart part : this.getParts()) {
+				wr.write(part.getText());
+			}
+		} finally {
+			if (wr != null) {
+				wr.close();
+			}
+		}
+	}
 }

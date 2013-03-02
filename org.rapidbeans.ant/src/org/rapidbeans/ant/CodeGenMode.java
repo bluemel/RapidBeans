@@ -18,8 +18,5 @@
 package org.rapidbeans.ant;
 
 public enum CodeGenMode {
-    none,
-    simple,
-    split,
-    joint
+	none, simple, split, joint
 }
