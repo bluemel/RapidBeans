@@ -35,12 +35,11 @@ public class BeanSorter {
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<TypeProperty[]> propertySortOrderTL =
-			new ThreadLocal<TypeProperty[]>() {
-				protected synchronized TypeProperty[] initialValue() {
-					return null;
-				}
-			};
+	private static ThreadLocal<TypeProperty[]> propertySortOrderTL = new ThreadLocal<TypeProperty[]>() {
+		protected synchronized TypeProperty[] initialValue() {
+			return null;
+		}
+	};
 
 	/**
 	 * @return the thread local property sorter

@@ -13,14 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
- * Exception that guarantees that you can always deserialize
- * it by changing all nested exceptions into instances of this
- * class while storing the original instance's class name
- * the original instances properties as string key value pairs
- * adds a time stamp information
- *
+ * Exception that guarantees that you can always deserialize it by changing all
+ * nested exceptions into instances of this class while storing the original
+ * instance's class name the original instances properties as string key value
+ * pairs adds a time stamp information
+ * 
  * @author Martin Bluemel
  */
 public class UniversalException extends Exception {
@@ -42,8 +40,7 @@ public class UniversalException extends Exception {
 
 	private String originalClassname;
 
-	private final Map<String, String> properties =
-			new HashMap<String, String>();
+	private final Map<String, String> properties = new HashMap<String, String>();
 
 	/**
 	 * Constructor with a message only.
@@ -64,8 +61,7 @@ public class UniversalException extends Exception {
 	 *            exception.
 	 */
 	public UniversalException(final Throwable cause) {
-		super("wrapped " + cause.getClass().getName() + COLON
-				+ cause.getMessage(), convertCause(cause));
+		super("wrapped " + cause.getClass().getName() + COLON + cause.getMessage(), convertCause(cause));
 		this.timeStamp = new Date();
 	}
 
@@ -78,8 +74,7 @@ public class UniversalException extends Exception {
 	 *            the root cause exception that will be saved as nested
 	 *            exception.
 	 */
-	public UniversalException(final String message,
-			final Throwable cause) {
+	public UniversalException(final String message, final Throwable cause) {
 		super(message, convertCause(cause));
 		this.timeStamp = new Date();
 	}
@@ -112,15 +107,14 @@ public class UniversalException extends Exception {
 
 	/**
 	 * Convert the complete cause chain into Exceptions if necessary.
-	 *
+	 * 
 	 * @param cause
 	 *            the top level cause
-	 *
+	 * 
 	 * @return the top level cause converted into a ServiceException containing
 	 *         only ServiceEception as nested exceptions (causes)
 	 */
-	private static UniversalException convertCause(
-			final Throwable cause) {
+	private static UniversalException convertCause(final Throwable cause) {
 		if (cause instanceof UniversalException) {
 			return (UniversalException) cause;
 		}
@@ -148,19 +142,13 @@ public class UniversalException extends Exception {
 				causeChain.set(i, universalException);
 				// reflect over the Exception class' getters
 				for (final Method method : currentCause.getClass().getMethods()) {
-					if (method.getName().startsWith("get")
-							&& method.getName().length() > GET_SEPARATION_INDEX
+					if (method.getName().startsWith("get") && method.getName().length() > GET_SEPARATION_INDEX
 							&& method.getParameterTypes().length == 0
-							&& Character.isUpperCase(method.getName().charAt(
-									GET_SEPARATION_INDEX))) {
-						final String key =
-								lowerFirstCharacter(method.getName().substring(
-										3));
+							&& Character.isUpperCase(method.getName().charAt(GET_SEPARATION_INDEX))) {
+						final String key = lowerFirstCharacter(method.getName().substring(3));
 						// exclude standard Object and Exception getters
-						if (key.equals("class") || key.equals("cause")
-								|| key.equals("message")
-								|| key.equals("localizedMessage")
-								|| key.equals("stackTrace")) {
+						if (key.equals("class") || key.equals("cause") || key.equals("message")
+								|| key.equals("localizedMessage") || key.equals("stackTrace")) {
 							continue;
 						}
 						try {
@@ -168,12 +156,13 @@ public class UniversalException extends Exception {
 							if (value == null) {
 								universalException.properties.put(key, "<null>");
 							} else {
-								universalException.properties.put(key, value
-										.toString());
+								universalException.properties.put(key, value.toString());
 							}
-						// we can not really reach test coverage for the IllegalAccessException
-						// so in my eyes the IllegalAccesException would have been better designed
-						// as a RntimeException
+							// we can not really reach test coverage for the
+							// IllegalAccessException
+							// so in my eyes the IllegalAccesException would
+							// have been better designed
+							// as a RntimeException
 						} catch (IllegalAccessException e) {
 							putSeviceExceptionProperties(universalException, key);
 						} catch (InvocationTargetException e) {
@@ -196,11 +185,8 @@ public class UniversalException extends Exception {
 	 *            the property key where we had problems to determine a value
 	 *            for.
 	 */
-	private static void putSeviceExceptionProperties(
-			UniversalException serviceException,
-			final String key) {
-		serviceException.properties.put(key,
-				"<problems to retrieve exception property " + key + ">");
+	private static void putSeviceExceptionProperties(UniversalException serviceException, final String key) {
+		serviceException.properties.put(key, "<problems to retrieve exception property " + key + ">");
 	}
 
 	/**
@@ -258,8 +244,7 @@ public class UniversalException extends Exception {
 			for (final StackTraceElement trace : this.getStackTrace()) {
 				s.println(TAB + AT + trace);
 			}
-			final UniversalException ourCause =
-					(UniversalException) getCause();
+			final UniversalException ourCause = (UniversalException) getCause();
 			if (ourCause != null) {
 				printStackTraceAsCause(ourCause, s, this.getStackTrace());
 			}
@@ -276,9 +261,8 @@ public class UniversalException extends Exception {
 	 * @param parentTrace
 	 *            the stack trace of the parent exception
 	 */
-	private static void printStackTraceAsCause(
-			final UniversalException t,
-			final OutputMediaAdapter s, final StackTraceElement[] parentTrace) {
+	private static void printStackTraceAsCause(final UniversalException t, final OutputMediaAdapter s,
+			final StackTraceElement[] parentTrace) {
 
 		// Compute number of frames in common between this and caused
 		StackTraceElement[] trace = t.getStackTrace();
@@ -309,8 +293,7 @@ public class UniversalException extends Exception {
 		}
 
 		// Recurse if we have a cause
-		UniversalException ourCause =
-				(UniversalException) t.getCause();
+		UniversalException ourCause = (UniversalException) t.getCause();
 		if (ourCause != null) {
 			printStackTraceAsCause(ourCause, s, trace);
 		}
@@ -322,8 +305,7 @@ public class UniversalException extends Exception {
 	 * <ul>
 	 * <li>the {@linkplain Class#getName() name} of the class of this object
 	 * <li>": " (a colon and a space)
-	 * <li>the result of invoking this object's {@link #getLocalizedMessage}
-	 * method
+	 * <li>the result of invoking this object's {@link #getLocalizedMessage} method
 	 * </ul>
 	 * If <tt>getLocalizedMessage</tt> returns <tt>null</tt>, then just the
 	 * class name is returned.

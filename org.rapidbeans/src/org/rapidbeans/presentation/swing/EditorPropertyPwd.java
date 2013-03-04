@@ -91,16 +91,15 @@ public class EditorPropertyPwd extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyPwd(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyPwd(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		if (!(prop instanceof PropertyString)) {
 			throw new RapidBeansRuntimeException("invalid property for pwd editor");
 		}
 		super.initColors();
-		this.button.setText(client.getCurrentLocale().getStringGui(
-				"editor.org.rapidbeans.security.user.pwd.button.set"));
+		this.button.setText(client.getCurrentLocale()
+				.getStringGui("editor.org.rapidbeans.security.user.pwd.button.set"));
 		this.button.addActionListener(new ActionListener() {
 			/**
 			 * @param e
@@ -122,24 +121,14 @@ public class EditorPropertyPwd extends EditorPropertySwing {
 			}
 		});
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.state, new GridBagConstraints(
-				0, 0, 1, 1, 1.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.button, new GridBagConstraints(
-				1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.NONE,
-				new Insets(0, 5, 0, 0), 0, 0));
-		this.panel.add(this.buttonReset, new GridBagConstraints(
-				2, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.NONE,
-				new Insets(0, 5, 0, 0), 0, 0));
+		this.panel.add(this.state, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.button, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(0, 5, 0, 0), 0, 0));
+		this.panel.add(this.buttonReset, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(0, 5, 0, 0), 0, 0));
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.panel.setEnabled(false);
 		}
 		this.updateUI();

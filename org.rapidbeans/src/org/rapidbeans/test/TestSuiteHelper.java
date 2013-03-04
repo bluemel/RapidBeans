@@ -56,9 +56,8 @@ public final class TestSuiteHelper {
 	 *            the classnames to exclude
 	 */
 	@SuppressWarnings("unchecked")
-	public static void fill(final TestSuite suite, final File dir,
-			final String classNamePattern, final String parentPackage,
-			final ArrayList<String> classnamesIn, final ArrayList<String> classnamesEx) {
+	public static void fill(final TestSuite suite, final File dir, final String classNamePattern,
+			final String parentPackage, final ArrayList<String> classnamesIn, final ArrayList<String> classnamesEx) {
 		String pckg;
 		if (parentPackage == null) {
 			pckg = "";
@@ -75,10 +74,8 @@ public final class TestSuiteHelper {
 			pureClassname = filename.substring(0, filename.length() - 5);
 			classname = pckg + "." + pureClassname;
 			try {
-				if ((classnamesIn == null
-						|| classnamesIn.contains(classname))
-						&& (classnamesEx == null
-						|| (!classnamesEx.contains(classname)))) {
+				if ((classnamesIn == null || classnamesIn.contains(classname))
+						&& (classnamesEx == null || (!classnamesEx.contains(classname)))) {
 					suite.addTestSuite((Class<TestCase>) Class.forName(classname));
 				}
 			} catch (ClassNotFoundException e) {

@@ -43,8 +43,7 @@ interface DocumentTreeViewListener {
 	 * @param key
 	 *            the tree path of the parent collection property
 	 * @param parentBeanColProp
-	 *            the parent bean Collection Property
-	 *            of the new bean
+	 *            the parent bean Collection Property of the new bean
 	 * 
 	 * @return the bean editor
 	 */

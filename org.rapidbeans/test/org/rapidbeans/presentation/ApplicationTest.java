@@ -60,8 +60,7 @@ public final class ApplicationTest extends TestCase {
 	 * Test load an Application configuration.
 	 */
 	public void testLoadInstance() {
-		ApplicationManager.start(null,
-				"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
+		ApplicationManager.start(null, "../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
 				new TestClient() {
 					@Override
 					public Properties getOptions() {
@@ -95,7 +94,8 @@ public final class ApplicationTest extends TestCase {
 		assertEquals(800, mainWindow.getWidth());
 		assertEquals(500, mainWindow.getHeight());
 		// does not work for the rapid beans framework test
-		//assertEquals("Application Test Application", ((JFrame) mainWindow.getWidget()).getTitle());
+		// assertEquals("Application Test Application", ((JFrame)
+		// mainWindow.getWidget()).getTitle());
 
 		Menubar menubar = mainWindow.getMenubar();
 		Collection<Submenu> menus = menubar.getMenus();
@@ -133,7 +133,8 @@ public final class ApplicationTest extends TestCase {
 		MenuItemSwing item222 = (MenuItemSwing) iter5.next();
 		assertEquals("test222", item222.getName());
 		// does not work for the rapid beans framework test
-		//assertEquals("Test 222", ((JMenuItem) item222.getWidget()).getText());
+		// assertEquals("Test 222", ((JMenuItem)
+		// item222.getWidget()).getText());
 	}
 
 	/**
@@ -154,14 +155,12 @@ public final class ApplicationTest extends TestCase {
 		try {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
-			Document doc1 = new Document(TypeRapidBean.forName(
-					ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			DocumentView view1 = client.openDocumentView(doc1, null, null);
-			Document doc2 = new Document(TypeRapidBean.forName(
-					ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			DocumentView view2 = client.openDocumentView(doc2, null, null);
 			assertSame(view1, view2);
 		} finally {
@@ -176,14 +175,12 @@ public final class ApplicationTest extends TestCase {
 		try {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
-			Document doc1 = new Document(TypeRapidBean.forName(
-					ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
 			client.openDocumentView(doc1, null, null);
-			Document doc2 = new Document(TypeRapidBean.forName(
-					ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
+			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+					"../org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
 			assertTrue(doc2.getName().endsWith(
 					"/org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
 			client.openDocumentView(doc2, null, null);

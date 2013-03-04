@@ -34,8 +34,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
- * This Ant task conveniently drives the XSLT based RapidBeans code generation for a whole directory hierarchy
- * (similar to Ant task "javac").
+ * This Ant task conveniently drives the XSLT based RapidBeans code generation
+ * for a whole directory hierarchy (similar to Ant task "javac").
  * 
  * @author Martin Bluemel
  */
@@ -82,16 +82,16 @@ public final class TaskGenModel extends Task {
 	private File styleBean;
 
 	/**
-	 * the code generation mode.
-	 * Overwrites the mode particularly specified in the model.
+	 * the code generation mode. Overwrites the mode particularly specified in
+	 * the model.
 	 */
 	private CodeGenMode codeGenMode = null;
 
 	private static final CodeGenMode DEFAULT_CODEGEN_MODE = CodeGenMode.simple;
 
 	/**
-	 * the code generation implementation: { 'simple' | 'strict' }.
-	 * Overwrites the implementation particularly specified in the model.
+	 * the code generation implementation: { 'simple' | 'strict' }. Overwrites
+	 * the implementation particularly specified in the model.
 	 */
 	private CodeGenImpl codeGenImpl = null;
 
@@ -104,8 +104,8 @@ public final class TaskGenModel extends Task {
 	 * not regarding modification dates.
 	 * 
 	 * @param force
-	 *            determines if the generation should be performed
-	 *            not regarding modification dates
+	 *            determines if the generation should be performed not regarding
+	 *            modification dates
 	 */
 	public void setForce(final boolean force) {
 		this.force = force;
@@ -267,8 +267,7 @@ public final class TaskGenModel extends Task {
 	 *            the package name
 	 * @throws BuildException
 	 */
-	public void processDir(final File sdir, final File ddirsimple,
-			final File ddirjoint, final String pkgname) {
+	public void processDir(final File sdir, final File ddirsimple, final File ddirjoint, final String pkgname) {
 		this.log("process: source directory: " + sdir.getAbsolutePath(), Project.MSG_VERBOSE);
 		this.log("process: simple destination directory: " + ddirsimple.getAbsolutePath(), Project.MSG_VERBOSE);
 		this.log("process: joint destination directory: " + ddirjoint.getAbsolutePath(), Project.MSG_VERBOSE);
@@ -286,8 +285,7 @@ public final class TaskGenModel extends Task {
 				} else {
 					subPkgname = pkgname + "." + sfilename;
 				}
-				this.processDir(sfiles[i], new File(ddirsimple, sfilename),
-						new File(ddirjoint, sfilename), subPkgname);
+				this.processDir(sfiles[i], new File(ddirsimple, sfilename), new File(ddirjoint, sfilename), subPkgname);
 			} else {
 				if (!sfilename.endsWith(".xml")) {
 					this.log("skipping non XML file \"" + sfilename + "\"", Project.MSG_VERBOSE);
@@ -335,12 +333,10 @@ public final class TaskGenModel extends Task {
 					this.log("codegen mode: none", Project.MSG_VERBOSE);
 					continue;
 				default:
-					this.log("Illegal codegen mode",
-							Project.MSG_VERBOSE);
+					this.log("Illegal codegen mode", Project.MSG_VERBOSE);
 					continue;
 				}
-				if (!this.force && tgtfile.exists()
-						&& sfiles[i].lastModified() <= tgtfile.lastModified()
+				if (!this.force && tgtfile.exists() && sfiles[i].lastModified() <= tgtfile.lastModified()
 						&& stylesheet.lastModified() <= tgtfile.lastModified()) {
 					this.log("up to date file \"" + sfilename + "\"", Project.MSG_VERBOSE);
 					continue;
@@ -353,8 +349,8 @@ public final class TaskGenModel extends Task {
 	/**
 	 * Read the XML model description file and determine in advance:
 	 * 
-	 * - "type" of Rapid type: bean type, enum type, quantity type
-	 * determines the template to use for code generation
+	 * - "type" of Rapid type: bean type, enum type, quantity type determines
+	 * the template to use for code generation
 	 * 
 	 * @param xmlFile
 	 *            the file to check
@@ -462,11 +458,11 @@ public final class TaskGenModel extends Task {
 	 * @param classname
 	 *            the class name
 	 */
-	private void transform(final File fsrc, final File ftgt,
-			final File fstyle, final String pkgname,
+	private void transform(final File fsrc, final File ftgt, final File fstyle, final String pkgname,
 			final String classname, final CodeGenParameters cgen) {
 		// since Ant 1.7 we can't reuse the XSLT Task in the way we did before.
-		// Maybe later on we could find out what we have to reset in order to reuse
+		// Maybe later on we could find out what we have to reset in order to
+		// reuse
 		// the task again
 		this.xsltTask = new XXslt();
 		this.xsltTask.setProject(this.getProject());

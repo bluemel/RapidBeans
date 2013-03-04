@@ -239,11 +239,8 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final BigDecimal d,
-			final RapidBeansLocale locale,
-			final String numberFormatString) {
-		return format(d.toString(), numberFormatString,
-				locale.getStringGui("number.format.char.separator").charAt(0),
+	public static String format(final BigDecimal d, final RapidBeansLocale locale, final String numberFormatString) {
+		return format(d.toString(), numberFormatString, locale.getStringGui("number.format.char.separator").charAt(0),
 				locale.getStringGui("number.format.char.decimal").charAt(0));
 	}
 
@@ -259,16 +256,14 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final int i,
-			final RapidBeansLocale locale,
-			final String numberFormatString) {
-		return format(Integer.toString(i), numberFormatString,
-				locale.getStringGui("number.format.char.separator").charAt(0),
-				locale.getStringGui("number.format.char.decimal").charAt(0));
+	public static String format(final int i, final RapidBeansLocale locale, final String numberFormatString) {
+		return format(Integer.toString(i), numberFormatString, locale.getStringGui("number.format.char.separator")
+				.charAt(0), locale.getStringGui("number.format.char.decimal").charAt(0));
 	}
 
 	/**
-	 * Formats a long integer number according to the given number format string.
+	 * Formats a long integer number according to the given number format
+	 * string.
 	 * 
 	 * @param l
 	 *            the long integer number
@@ -279,9 +274,7 @@ public class NumberFormat {
 	 * 
 	 * @return the formatted number string
 	 */
-	public static String format(final long l,
-			final RapidBeansLocale locale,
-			final String numberFormatString) {
+	public static String format(final long l, final RapidBeansLocale locale, final String numberFormatString) {
 		return format(Long.toString(l), numberFormatString,
 				locale.getStringGui("number.format.char.separator").charAt(0),
 				locale.getStringGui("number.format.char.decimal").charAt(0));
@@ -382,8 +375,7 @@ public class NumberFormat {
 				} else if (cf == PATTERN_SEPARATOR_CHAR) {
 					buf.setCharAt(posFormat, separatorChar);
 				} else {
-					throw new UtilException("unexpected char'" + cf + "' at pos "
-							+ posFormat);
+					throw new UtilException("unexpected char'" + cf + "' at pos " + posFormat);
 				}
 				posFormat++;
 			}

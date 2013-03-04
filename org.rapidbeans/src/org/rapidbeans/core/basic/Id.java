@@ -29,8 +29,7 @@ import org.rapidbeans.core.util.StringHelper;
  * 
  * @author Martin Bluemel
  */
-public abstract class Id
-		implements Comparable<Id> {
+public abstract class Id implements Comparable<Id> {
 
 	/**
 	 * constant used for reflective instantiation.
@@ -58,8 +57,7 @@ public abstract class Id
 			final Object[] initargs = { bean, idString };
 			id = (Id) constr.newInstance(initargs);
 		} catch (ClassNotFoundException e) {
-			throw new RapidBeansRuntimeException("Id class \"" + classname
-					+ "\" not found");
+			throw new RapidBeansRuntimeException("Id class \"" + classname + "\" not found");
 		} catch (NoSuchMethodException e) {
 			throw new RapidBeansRuntimeException("Id class \"" + classname
 					+ "\" does not have a constructor with String");

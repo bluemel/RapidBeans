@@ -58,9 +58,8 @@ public class EditorPropertyCheckboxSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyCheckboxSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyCheckboxSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
 		this.checkbox.addItemListener(new ItemListener() {
@@ -70,8 +69,7 @@ public class EditorPropertyCheckboxSwing extends EditorPropertySwing {
 		});
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.checkbox.setEnabled(false);
 		}
 	}

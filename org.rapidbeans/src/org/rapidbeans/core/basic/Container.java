@@ -24,8 +24,7 @@ import org.rapidbeans.core.event.PropertyChangeEvent;
 import org.rapidbeans.datasource.query.Query;
 
 /**
- * A very general interface for common properties of
- * a document and a database.
+ * A very general interface for common properties of a document and a database.
  * 
  * @author Martin Bluemel
  */
@@ -42,8 +41,7 @@ public interface Container {
 	String getConfigName();
 
 	/**
-	 * @return the document's configuration name
-	 *         or name in special cases.
+	 * @return the document's configuration name or name in special cases.
 	 */
 	String getConfigNameOrName();
 
@@ -123,8 +121,8 @@ public interface Container {
 	 * query for all beans of a type.
 	 * 
 	 * @param typename
-	 *            the name of the bean type for which you
-	 *            want to find instances.
+	 *            the name of the bean type for which you want to find
+	 *            instances.
 	 * 
 	 * @return a list with all found beans
 	 */
@@ -176,8 +174,7 @@ public interface Container {
 	 * fire the bean pre add event.
 	 * 
 	 * @param bean
-	 *            the bean that was added
-	 *            (has become element of this document).
+	 *            the bean that was added (has become element of this document).
 	 */
 	void fireBeanAddPre(final RapidBean bean);
 
@@ -185,8 +182,7 @@ public interface Container {
 	 * fire the bean added event.
 	 * 
 	 * @param bean
-	 *            the bean that was added
-	 *            (has become element of this document).
+	 *            the bean that was added (has become element of this document).
 	 */
 	void fireBeanAdded(final RapidBean bean);
 
@@ -194,8 +190,8 @@ public interface Container {
 	 * fire the bean pre remove event.
 	 * 
 	 * @param bean
-	 *            the bean that is going to be removed
-	 *            (has become element of this document).
+	 *            the bean that is going to be removed (has become element of
+	 *            this document).
 	 */
 	void fireBeanRemovePre(final RapidBean bean);
 
@@ -203,8 +199,8 @@ public interface Container {
 	 * fire the bean removed event.
 	 * 
 	 * @param bean
-	 *            the bean that was removed
-	 *            (has become element of this document).
+	 *            the bean that was removed (has become element of this
+	 *            document).
 	 */
 	void fireBeanRemoved(final RapidBean bean);
 

@@ -25,8 +25,8 @@ package org.rapidbeans.core.event;
 public interface PropertyChangeListener {
 
 	/**
-	 * The before property change event handle method to implement
-	 * by every listener.
+	 * The before property change event handle method to implement by every
+	 * listener.
 	 * 
 	 * @param e
 	 *            the property change event
@@ -34,8 +34,8 @@ public interface PropertyChangeListener {
 	void propertyChangePre(PropertyChangeEvent e);
 
 	/**
-	 * The after property change event handle method to implement
-	 * by every listener.
+	 * The after property change event handle method to implement by every
+	 * listener.
 	 * 
 	 * @param e
 	 *            the property change event

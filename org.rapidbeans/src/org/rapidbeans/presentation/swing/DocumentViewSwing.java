@@ -101,14 +101,12 @@ public class DocumentViewSwing extends DocumentView {
 	 * @param filter
 	 *            the filter
 	 */
-	public DocumentViewSwing(final Application client, final Document doc,
-			final String docconfname, final String viewconfname,
-			final Filter filter) {
+	public DocumentViewSwing(final Application client, final Document doc, final String docconfname,
+			final String viewconfname, final Filter filter) {
 		super(client, doc, docconfname, viewconfname, filter);
 
 		ImageIcon icon = null;
-		if (ApplicationManager.getApplication() != null
-				&& ApplicationManager.getApplication().getMainwindow() != null
+		if (ApplicationManager.getApplication() != null && ApplicationManager.getApplication().getMainwindow() != null
 				&& ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager() != null) {
 			icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow()).getIconManager().getIcon(
 					doc.getRoot().getType());
@@ -190,9 +188,8 @@ public class DocumentViewSwing extends DocumentView {
 				this.editorKeyMap.put((JPanel) editor.getWidget(),
 						beans[i].getType().getName() + "::" + beans[i].getIdString());
 				final String tabTitle = editor.getTitle();
-				final ImageIcon icon = ((MainWindowSwing)
-						ApplicationManager.getApplication().getMainwindow()).getIconManager().getIcon(
-								beans[i].getType());
+				final ImageIcon icon = ((MainWindowSwing) ApplicationManager.getApplication().getMainwindow())
+						.getIconManager().getIcon(beans[i].getType());
 				this.editorPane.addTab(tabTitle, icon, (JPanel) editor.getWidget());
 			}
 		}
@@ -205,8 +202,7 @@ public class DocumentViewSwing extends DocumentView {
 	 */
 	protected void updateTitle() {
 		final String oldTitle = this.frame.getTitle();
-		if (oldTitle != null && oldTitle.length() > 0
-				&& oldTitle.charAt(0) == '*') {
+		if (oldTitle != null && oldTitle.length() > 0 && oldTitle.charAt(0) == '*') {
 			this.frame.setTitle("*" + this.getTitle());
 		} else {
 			this.frame.setTitle(this.getTitle());
@@ -223,11 +219,10 @@ public class DocumentViewSwing extends DocumentView {
 	 * 
 	 * @return the bean editor just created
 	 */
-	public EditorBean createBean(final Object key,
-			final PropertyCollection parentBeanColProp) {
+	public EditorBean createBean(final Object key, final PropertyCollection parentBeanColProp) {
 		final boolean docChangedBefore = getDocument().getChanged();
-		RapidBean newBean = RapidBeanImplStrict.createInstance(
-				((TypePropertyCollection) parentBeanColProp.getType()).getTargetType().getName());
+		RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) parentBeanColProp.getType())
+				.getTargetType().getName());
 		EditorBean editor = this.getEditor(newBean, true);
 		if (editor == null) {
 			editor = super.addBeanEditor(newBean, parentBeanColProp, key, true);

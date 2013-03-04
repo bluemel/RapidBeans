@@ -95,8 +95,7 @@ public class PropertyChangeEvent {
 	 * @param link
 	 *            the link that just has been added or removed
 	 */
-	public PropertyChangeEvent(final Property argProperty,
-			final Object argOldValue, final Object argNewValue,
+	public PropertyChangeEvent(final Property argProperty, final Object argOldValue, final Object argNewValue,
 			final PropertyChangeEventType type, final Link link) {
 		this.property = argProperty;
 		this.oldValue = argOldValue;

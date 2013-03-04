@@ -1,18 +1,16 @@
 /*
  * Partially generated code file: ConfigMainWindow.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.config.ConfigMainWindow
  * 
- * model:    model/org/rapidbeans/presentation/config/ConfigMainWindow.xml
+ * model: model/org/rapidbeans/presentation/config/ConfigMainWindow.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
-
-
 
 // BEGIN manual code section
 // ConfigMainWindow.import
@@ -25,9 +23,8 @@ import org.rapidbeans.core.type.TypeRapidBean;
 // END manual code section
 
 /**
- * Rapid Bean class: ConfigMainWindow.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: ConfigMainWindow. Partially generated Java class !!!Do only
+ * edit manually in marked sections!!!
  **/
 public class ConfigMainWindow extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -68,18 +65,12 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
-		this.width = (org.rapidbeans.core.basic.PropertyInteger)
-			this.getProperty("width");
-		this.height = (org.rapidbeans.core.basic.PropertyInteger)
-			this.getProperty("height");
-		this.toolbars = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("toolbars");
-		this.menubar = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("menubar");
-		this.footer = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("footer");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
+		this.width = (org.rapidbeans.core.basic.PropertyInteger) this.getProperty("width");
+		this.height = (org.rapidbeans.core.basic.PropertyInteger) this.getProperty("height");
+		this.toolbars = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("toolbars");
+		this.menubar = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("menubar");
+		this.footer = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("footer");
 	}
 
 	/**
@@ -94,6 +85,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -106,6 +98,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -141,6 +134,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
@@ -161,6 +155,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'width'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'width' to set
 	 */
@@ -181,6 +176,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'height'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'height' to set
 	 */
@@ -194,8 +190,8 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbar> getToolbars() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbar>)
-			this.toolbars.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigToolbar>) this.toolbars
+					.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("toolbars");
 		}
@@ -203,22 +199,29 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'toolbars'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'toolbars' to set
 	 */
 	public void setToolbars(final java.util.Collection<org.rapidbeans.presentation.config.ConfigToolbar> argValue) {
 		this.toolbars.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'toolbars'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addToolbar(final org.rapidbeans.presentation.config.ConfigToolbar bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.toolbars).addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'toolbars'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void removeToolbar(final org.rapidbeans.presentation.config.ConfigToolbar bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.toolbars).removeLink(bean);
@@ -230,16 +233,15 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.config.ConfigMenubar getMenubar() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenubar> col
-				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenubar>) this.menubar.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenubar> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigMenubar>) this.menubar
+					.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
 					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.presentation.config.ConfigMenubar"
-							+ "\" \"" + link.getIdString() + "\"");
+							+ "org.rapidbeans.presentation.config.ConfigMenubar" + "\" \"" + link.getIdString() + "\"");
 				} else {
 					return (org.rapidbeans.presentation.config.ConfigMenubar) col.iterator().next();
 				}
@@ -251,6 +253,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'menubar'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'menubar' to set
 	 */
@@ -264,16 +267,15 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.config.ConfigFooter getFooter() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigFooter> col
-				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigFooter>) this.footer.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigFooter> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.config.ConfigFooter>) this.footer
+					.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
 					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.presentation.config.ConfigFooter"
-							+ "\" \"" + link.getIdString() + "\"");
+							+ "org.rapidbeans.presentation.config.ConfigFooter" + "\" \"" + link.getIdString() + "\"");
 				} else {
 					return (org.rapidbeans.presentation.config.ConfigFooter) col.iterator().next();
 				}
@@ -285,6 +287,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'footer'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'footer' to set
 	 */

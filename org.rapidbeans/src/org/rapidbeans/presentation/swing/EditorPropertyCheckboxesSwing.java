@@ -48,8 +48,7 @@ import org.rapidbeans.presentation.EditorBean;
 import org.rapidbeans.presentation.config.ConfigPropEditorBean;
 
 /**
- * the bean editor GUI for
- * small multiple RapidEnum or Collection choices.
+ * the bean editor GUI for small multiple RapidEnum or Collection choices.
  * 
  * @author Martin Bluemel
  */
@@ -93,9 +92,8 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyCheckboxesSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyCheckboxesSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
 		// since it is impossible to enter a null value if the property
@@ -123,13 +121,11 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 			updateCheckboxes();
 		} else {
 			throw new RapidBeansRuntimeException("Class \"" + EditorPropertyCheckboxesSwing.class
-					+ "\" does not support properties of class \""
-					+ prop.getClass().getName() + "\".");
+					+ "\" does not support properties of class \"" + prop.getClass().getName() + "\".");
 		}
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.checkboxPanel.setEnabled(false);
 		}
 	}
@@ -141,8 +137,8 @@ public class EditorPropertyCheckboxesSwing extends EditorPropertySwing {
 		final Property prop = this.getProperty();
 		final EditorBean bizBeanEditor = this.getBeanEditor();
 		final TypePropertyCollection colPropType = (TypePropertyCollection) prop.getType();
-		final List<RapidBean> allTargetBeans = bizBeanEditor.getDocumentView().getDocument().findBeansByType(
-				colPropType.getTargetType().getName());
+		final List<RapidBean> allTargetBeans = bizBeanEditor.getDocumentView().getDocument()
+				.findBeansByType(colPropType.getTargetType().getName());
 		JCheckBox curCheckBox;
 		for (Component comp : this.checkboxPanel.getComponents()) {
 			this.checkboxPanel.remove(comp);

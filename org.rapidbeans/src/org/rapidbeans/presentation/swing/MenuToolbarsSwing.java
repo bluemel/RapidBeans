@@ -79,10 +79,7 @@ public class MenuToolbarsSwing extends MenuToolbars {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuToolbarsSwing(
-			final ConfigMenuToolbars config,
-			final Application client,
-			final String resourcePath) {
+	public MenuToolbarsSwing(final ConfigMenuToolbars config, final Application client, final String resourcePath) {
 		super(client, config, resourcePath);
 		this.mainWindow = client.getMainwindow();
 		switch (this.mainWindow.getToolbars().size()) {
@@ -93,9 +90,8 @@ public class MenuToolbarsSwing extends MenuToolbars {
 			this.toolbarMap.put(this.singleToolbarMenuItem, this.mainWindow.getToolbars().get(0));
 			this.singleToolbarMenuItem.setSelected(this.mainWindow.getToolbars().get(0).getOn());
 			this.singleToolbarMenuItem.setVisible(this.mainWindow.getToolbars().get(0).getOn());
-			this.singleToolbarMenuItem.setText(
-					this.mainWindow.getToolbars().get(0).getTextLocalized(
-							client, resourcePath));
+			this.singleToolbarMenuItem.setText(this.mainWindow.getToolbars().get(0)
+					.getTextLocalized(client, resourcePath));
 			this.singleToolbarMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					menuItemSelectionToggled(e);

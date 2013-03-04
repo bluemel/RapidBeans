@@ -42,8 +42,8 @@ abstract class QueryExpression {
 	}
 
 	/**
-	 * break up the parent expsession link.
-	 * Used to avoid cyclic dependencies after parsing.
+	 * break up the parent expsession link. Used to avoid cyclic dependencies
+	 * after parsing.
 	 */
 	public void releaseParentExpression() {
 		this.parentExpression = null;
@@ -119,8 +119,7 @@ abstract class QueryExpression {
 	 * 
 	 * @return the dump string
 	 */
-	protected String dump(final String sIn, final int ipDepth,
-			final boolean bpParentIsLast, final boolean bpIsLast,
+	protected String dump(final String sIn, final int ipDepth, final boolean bpParentIsLast, final boolean bpIsLast,
 			final String spIndentIn) {
 
 		final StringBuffer s = new StringBuffer(sIn);
@@ -165,8 +164,8 @@ abstract class QueryExpression {
 				}
 			}
 		} catch (QueryException e) {
-			if (!e.getMessage().startsWith("attribute value condition"
-					+ " expressions do not have a child expressions")) {
+			if (!e.getMessage()
+					.startsWith("attribute value condition" + " expressions do not have a child expressions")) {
 				throw e;
 			}
 		}

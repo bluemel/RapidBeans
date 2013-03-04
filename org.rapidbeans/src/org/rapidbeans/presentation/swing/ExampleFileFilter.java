@@ -154,8 +154,7 @@ public final class ExampleFileFilter extends FileFilter {
 	 * it shouldn't.
 	 * 
 	 * @param f
-	 *            the file
-	 *            Files that begin with "." are ignored.
+	 *            the file Files that begin with "." are ignored.
 	 * @return if the file can be accepted or not
 	 * 
 	 * @see #getExtension
@@ -197,14 +196,15 @@ public final class ExampleFileFilter extends FileFilter {
 	 * Adds a filetype "dot" extension to filter against.
 	 * 
 	 * @param extension
-	 *            the extension to filter for
-	 *            For example: the following code will create a filter that filters out all
-	 *            files except those that end in ".jpg" and ".tif":
+	 *            the extension to filter for For example: the following code
+	 *            will create a filter that filters out all files except those
+	 *            that end in ".jpg" and ".tif":
 	 * 
 	 *            ExampleFileFilter filter = new ExampleFileFilter();
 	 *            filter.addExtension("jpg"); filter.addExtension("tif");
 	 * 
-	 *            Note that the "." before the extension is not needed and will be ignored.
+	 *            Note that the "." before the extension is not needed and will
+	 *            be ignored.
 	 */
 	public void addExtension(final String extension) {
 		if (this.filters == null) {
@@ -226,7 +226,8 @@ public final class ExampleFileFilter extends FileFilter {
 	public String getDescription() {
 		if (this.fullDescription == null) {
 			if (this.description == null || isExtensionListInDescription()) {
-				//this.fullDescription = this.description == null ? "(" : description + " (";
+				// this.fullDescription = this.description == null ? "(" :
+				// description + " (";
 				if (this.description == null) {
 					this.fullDescription = "(";
 				} else {

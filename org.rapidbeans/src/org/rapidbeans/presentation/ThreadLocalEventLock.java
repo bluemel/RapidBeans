@@ -27,22 +27,20 @@ public final class ThreadLocalEventLock {
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<Integer> lockLevel =
-			new ThreadLocal<Integer>() {
-				protected synchronized Integer initialValue() {
-					return new Integer(0);
-				}
-			};
+	private static ThreadLocal<Integer> lockLevel = new ThreadLocal<Integer>() {
+		protected synchronized Integer initialValue() {
+			return new Integer(0);
+		}
+	};
 
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<EditorProperty> sourcePropertyEditor =
-			new ThreadLocal<EditorProperty>() {
-				protected synchronized EditorProperty initialValue() {
-					return null;
-				}
-			};
+	private static ThreadLocal<EditorProperty> sourcePropertyEditor = new ThreadLocal<EditorProperty>() {
+		protected synchronized EditorProperty initialValue() {
+			return null;
+		}
+	};
 
 	/**
 	 * set the lock.

@@ -34,15 +34,12 @@ public class ActionUserAuthn extends Action {
 	public final void execute() {
 		Application client = ApplicationManager.getApplication();
 		try {
-			DocumentView settingsView =
-					client.openDocumentView(client.getAuthnDoc(),
-							"authn", "standard");
+			DocumentView settingsView = client.openDocumentView(client.getAuthnDoc(), "authn", "standard");
 			settingsView.getTreeView().setShowProperties(true);
 		} catch (ValidationException e) {
 			RapidBeansLocale locale = ApplicationManager.getApplication().getCurrentLocale();
 			if (!ApplicationManager.getApplication().getTestMode()) {
-				ApplicationManager.getApplication().messageError(
-						e.getLocalizedMessage(locale),
+				ApplicationManager.getApplication().messageError(e.getLocalizedMessage(locale),
 						locale.getStringGui("messagedialog.title.config.wrong"));
 			}
 		}

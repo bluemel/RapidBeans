@@ -35,22 +35,23 @@ public final class RapidBeansTypeLoaderTest extends TestCase {
 		assertSame(Sex.female, enumSexElements.get(1));
 	}
 
-	//    /**
-	//     * test get the type from it's name.
-	//     */
-	//    public void testGetMetainfoFromEnumTypeNameGeneric() {
-	//        // also a generic enum class can be loaded automatically
-	//        // when its metainfo is retrieved by enum type name
-	//        // if its XML description can be found
-	//        // (RapidBeansTypeLoader and ClassLoader)
-	//        TypeRapidEnum enumtypeLang = TypeRapidEnum.forName("org.rapidbeans.test.Lang");
-	//        assertNotNull(enumtypeLang);
-	//        assertEquals(INT_6, enumtypeLang.getElements().length);
-	//        assertEquals("english", enumtypeLang.elementOf(0).getName());
-	//        assertEquals("spanish", enumtypeLang.elementOf(1).getName());
-	//        assertEquals("portugese", enumtypeLang.elementOf(2).getName());
-	//        assertEquals("chinese", enumtypeLang.elementOf(INT_3).getName());
-	//        assertEquals("french", enumtypeLang.elementOf(INT_4).getName());
-	//        assertEquals("german", enumtypeLang.elementOf(INT_5).getName());
-	//    }
+	// /**
+	// * test get the type from it's name.
+	// */
+	// public void testGetMetainfoFromEnumTypeNameGeneric() {
+	// // also a generic enum class can be loaded automatically
+	// // when its metainfo is retrieved by enum type name
+	// // if its XML description can be found
+	// // (RapidBeansTypeLoader and ClassLoader)
+	// TypeRapidEnum enumtypeLang =
+	// TypeRapidEnum.forName("org.rapidbeans.test.Lang");
+	// assertNotNull(enumtypeLang);
+	// assertEquals(INT_6, enumtypeLang.getElements().length);
+	// assertEquals("english", enumtypeLang.elementOf(0).getName());
+	// assertEquals("spanish", enumtypeLang.elementOf(1).getName());
+	// assertEquals("portugese", enumtypeLang.elementOf(2).getName());
+	// assertEquals("chinese", enumtypeLang.elementOf(INT_3).getName());
+	// assertEquals("french", enumtypeLang.elementOf(INT_4).getName());
+	// assertEquals("german", enumtypeLang.elementOf(INT_5).getName());
+	// }
 }

@@ -1,18 +1,16 @@
 /*
  * Partially generated code file: User.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.security.User
  * 
- * model:    model/org/rapidbeans/security/User.xml
+ * model: model/org/rapidbeans/security/User.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.security;
-
-
 
 // BEGIN manual code section
 // User.import
@@ -33,9 +31,8 @@ import sun.misc.BASE64Encoder;
 // END manual code section
 
 /**
- * Rapid Bean class: User.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: User. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class User extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -57,8 +54,7 @@ public class User extends RapidBeanImplStrict {
 	 * 
 	 * @return the hashed pwd
 	 */
-	public static final String hashPwd(
-			final String pwdIn, final String pwdHashAlgorithm) {
+	public static final String hashPwd(final String pwdIn, final String pwdHashAlgorithm) {
 		String pwdHashed = null;
 		try {
 			final MessageDigest md = MessageDigest.getInstance(pwdHashAlgorithm);
@@ -76,11 +72,10 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'pwd' to set
 	 * @param pwdHashAlgorithm
-	 *            specify the hash algorithm used or null
-	 *            if you do not want to hash
+	 *            specify the hash algorithm used or null if you do not want to
+	 *            hash
 	 */
-	public final void setPwdSec(
-			final String argValue, final String pwdHashAlgorithm) {
+	public final void setPwdSec(final String argValue, final String pwdHashAlgorithm) {
 		if (argValue == null) {
 			setPwd(null);
 		} else {
@@ -98,11 +93,10 @@ public class User extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'pwd' to set
 	 * @param pwdHashAlgorithm
-	 *            specify the hash algorithm used or null
-	 *            if you do not want to hash
+	 *            specify the hash algorithm used or null if you do not want to
+	 *            hash
 	 */
-	public static final void setPwdSecS(final RapidBean user,
-			final String argValue, final String pwdHashAlgorithm) {
+	public static final void setPwdSecS(final RapidBean user, final String argValue, final String pwdHashAlgorithm) {
 		if (argValue == null) {
 			user.setPropValue("pwd", null);
 		} else {
@@ -142,8 +136,8 @@ public class User extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * Generic role check. Works for concrete User instances
-	 * as well as for generic ones.
+	 * Generic role check. Works for concrete User instances as well as for
+	 * generic ones.
 	 * 
 	 * @param authenticatedUser
 	 *            the concrete or generic user instances
@@ -153,14 +147,9 @@ public class User extends RapidBeanImplStrict {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean hasRoleGeneric(
-			final RapidBean user,
-			final String rolename) {
-		if (!TypeRapidBean.isSameOrSubtype(
-				TypeRapidBean.forName("org.rapidbeans.security.User"),
-				user.getType())) {
-			throw new RapidBeansRuntimeException("Bean type \""
-					+ user.getType().getName() + "\" is no user.");
+	public static boolean hasRoleGeneric(final RapidBean user, final String rolename) {
+		if (!TypeRapidBean.isSameOrSubtype(TypeRapidBean.forName("org.rapidbeans.security.User"), user.getType())) {
+			throw new RapidBeansRuntimeException("Bean type \"" + user.getType().getName() + "\" is no user.");
 		}
 		if (user instanceof User) {
 			return ((User) user).hasRole(rolename);
@@ -211,18 +200,12 @@ public class User extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.accountname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("accountname");
-		this.pwd = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("pwd");
-		this.lastname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("lastname");
-		this.firstname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("firstname");
-		this.email = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("email");
-		this.roles = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("roles");
+		this.accountname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("accountname");
+		this.pwd = (org.rapidbeans.core.basic.PropertyString) this.getProperty("pwd");
+		this.lastname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("lastname");
+		this.firstname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("firstname");
+		this.email = (org.rapidbeans.core.basic.PropertyString) this.getProperty("email");
+		this.roles = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("roles");
 	}
 
 	/**
@@ -237,6 +220,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -249,6 +233,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -284,6 +269,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'accountname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'accountname' to set
 	 */
@@ -304,6 +290,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'pwd'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'pwd' to set
 	 */
@@ -324,6 +311,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'lastname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'lastname' to set
 	 */
@@ -344,6 +332,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'firstname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'firstname' to set
 	 */
@@ -364,6 +353,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'email'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'email' to set
 	 */
@@ -385,6 +375,7 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'roles'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'roles' to set
 	 */

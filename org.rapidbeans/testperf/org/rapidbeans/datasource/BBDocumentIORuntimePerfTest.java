@@ -39,8 +39,7 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 	private boolean isWarmedUp = false;
 
 	/**
-	 * set up the unit test:
-	 * warm up the first time.
+	 * set up the unit test: warm up the first time.
 	 * 
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
@@ -66,8 +65,7 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 		try {
 			return;
 		} finally {
-			TypePropertyCollection.setDefaultCollectionClass(
-					TypePropertyCollection.DEFAULT_COLLECTION_CLASS_DEFAULT);
+			TypePropertyCollection.setDefaultCollectionClass(TypePropertyCollection.DEFAULT_COLLECTION_CLASS_DEFAULT);
 		}
 	}
 
@@ -91,8 +89,7 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 		// -----------------------------------------------------------------
 		// test generating a bunch of Person beans
 		// -----------------------------------------------------------------
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ " generating " + number + " Person beans...");
+		System.out.println("[BBDocumentIORuntimePerfTest]" + " generating " + number + " Person beans...");
 		Thread.sleep(100);
 		long timeExpectedMax = 10000;
 		long startTime = System.currentTimeMillis();
@@ -101,74 +98,61 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 			adrbook.addPerson(generatePerson());
 		}
 		long time = System.currentTimeMillis() - startTime;
-		assertTrue("creation of "
-				+ number + " Person beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ "   generation took " + time + " ms");
+		assertTrue("creation of " + number + " Person beans took longer than " + timeExpectedMax + " ms: " + time
+				+ " ms", time <= timeExpectedMax);
+		System.out.println("[BBDocumentIORuntimePerfTest]" + "   generation took " + time + " ms");
 		Thread.sleep(100);
 
 		// -----------------------------------------------------------------
 		// Test creating a document with that bunch of Person beans:
 		// The beans a added to the "identity map" (pool).
 		// -----------------------------------------------------------------
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ " creating document...");
+		System.out.println("[BBDocumentIORuntimePerfTest]" + " creating document...");
 		Thread.sleep(100);
 		timeExpectedMax = 5000;
 		startTime = System.currentTimeMillis();
 		Document testdoc = new Document("testdoc", adrbook);
 		testdoc.setUrl(file.toURI().toURL());
 		time = System.currentTimeMillis() - startTime;
-		assertTrue("creation of a document with "
-				+ number + " Person beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ "   document creation took " + time + " ms");
+		assertTrue("creation of a document with " + number + " Person beans took longer than " + timeExpectedMax
+				+ " ms: " + time + " ms", time <= timeExpectedMax);
+		System.out.println("[BBDocumentIORuntimePerfTest]" + "   document creation took " + time + " ms");
 		Thread.sleep(100);
 
 		// -----------------------------------------------------------------
 		// test executing a query over that bunch of Person beans
 		// -----------------------------------------------------------------
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ " executing query...");
+		System.out.println("[BBDocumentIORuntimePerfTest]" + " executing query...");
 		Thread.sleep(100);
 		timeExpectedMax = 500;
 		startTime = System.currentTimeMillis();
 		List<RapidBean> beans = testdoc.findBeansByQuery("org.rapidbeans.test.Person[surname $ 'A.*']");
 		time = System.currentTimeMillis() - startTime;
-		assertTrue("query over "
-				+ number + " Person beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
+		assertTrue("query over " + number + " Person beans took longer than " + timeExpectedMax + " ms: " + time
+				+ " ms", time <= timeExpectedMax);
 		System.out.println("[BBDocumentIORuntimePerfTest]   query took " + time + " ms");
 		System.out.println("[BBDocumentIORuntimePerfTest]   found " + beans.size() + " Persons.");
-		//        for (int i = 0; i < 10; i++) {
-		//            if (beans.size() > i) {
-		//                System.out.println("   Person No " + (i + 1) + ": " + ((Person) beans.get(i)).getSurname());
-		//            }
-		//        }
+		// for (int i = 0; i < 10; i++) {
+		// if (beans.size() > i) {
+		// System.out.println("   Person No " + (i + 1) + ": " + ((Person)
+		// beans.get(i)).getSurname());
+		// }
+		// }
 
 		// -----------------------------------------------------------------
 		// test writing the document to a file
 		// -----------------------------------------------------------------
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ " writing document to file " + file.getAbsolutePath() + "...");
+		System.out.println("[BBDocumentIORuntimePerfTest]" + " writing document to file " + file.getAbsolutePath()
+				+ "...");
 		Thread.sleep(100);
 		timeExpectedMax = 5000;
 		startTime = System.currentTimeMillis();
 		testdoc.save();
 		time = System.currentTimeMillis() - startTime;
-		assertTrue("writing a document with "
-				+ number + " Person beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ "   writing took " + time + " ms");
-		System.out.println("[BBDocumentIORuntimePerfTest]"
-				+ "   file size = " + file.length() + " byte");
+		assertTrue("writing a document with " + number + " Person beans took longer than " + timeExpectedMax + " ms: "
+				+ time + " ms", time <= timeExpectedMax);
+		System.out.println("[BBDocumentIORuntimePerfTest]" + "   writing took " + time + " ms");
+		System.out.println("[BBDocumentIORuntimePerfTest]" + "   file size = " + file.length() + " byte");
 		Thread.sleep(100);
 
 		// -----------------------------------------------------------------
@@ -181,21 +165,17 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 		timeExpectedMax = 25000;
 
 		testdoc = null;
-		System.out.println("[BBDocumentIORuntimePerfTest] waiting 2 seconds for"
-				+ " garbage collection...");
+		System.out.println("[BBDocumentIORuntimePerfTest] waiting 2 seconds for" + " garbage collection...");
 		Thread.sleep(2000);
 
-		System.out.println("[BBDocumentIORuntimePerfTest] reading document from file "
-				+ file.getAbsolutePath() + "...");
+		System.out
+				.println("[BBDocumentIORuntimePerfTest] reading document from file " + file.getAbsolutePath() + "...");
 		startTime = System.currentTimeMillis();
 		testdoc = new Document("testdoc", file);
 		time = System.currentTimeMillis() - startTime;
-		assertTrue("reading a document with "
-				+ number + " Person beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BBDocumentIORuntimePerfTest]   reading took "
-				+ time + " ms");
+		assertTrue("reading a document with " + number + " Person beans took longer than " + timeExpectedMax + " ms: "
+				+ time + " ms", time <= timeExpectedMax);
+		System.out.println("[BBDocumentIORuntimePerfTest]   reading took " + time + " ms");
 		Thread.sleep(100);
 
 		file.delete();
@@ -205,15 +185,9 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 	 * @return a new person
 	 */
 	public static Person generatePerson() {
-		Person person = new Person("\""
-				+ generateName(3, 15)
-				+ "\" \""
-				+ generateName(3, 20)
-				+ "\" \"19640101\"");
-		person.setEmail(generateName(1, 15) + "@"
-				+ generateName(5, 15) + ".de");
-		person.setSex((Sex) TypeRapidEnum.forName("org.rapidbeans.domain.org.Sex").
-				elementOf(random.nextInt(2)));
+		Person person = new Person("\"" + generateName(3, 15) + "\" \"" + generateName(3, 20) + "\" \"19640101\"");
+		person.setEmail(generateName(1, 15) + "@" + generateName(5, 15) + ".de");
+		person.setSex((Sex) TypeRapidEnum.forName("org.rapidbeans.domain.org.Sex").elementOf(random.nextInt(2)));
 		person.setPhone(generateNumber(5, 16));
 		return person;
 	}
@@ -277,13 +251,13 @@ public class BBDocumentIORuntimePerfTest extends TestCase {
 		return (char) (random.nextInt(10) + '0');
 	}
 
-	//    /**
-	//     * @return a new address
-	//     */
-	//    private Address generateAddress() {
-	//        Address address = new Address();
-	//        return address;
-	//    }
+	// /**
+	// * @return a new address
+	// */
+	// private Address generateAddress() {
+	// Address address = new Address();
+	// return address;
+	// }
 
 	/**
 	 * @param args

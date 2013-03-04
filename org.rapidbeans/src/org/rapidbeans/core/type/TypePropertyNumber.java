@@ -101,8 +101,7 @@ public abstract class TypePropertyNumber extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyNumber(final String typeNameExtension,
-			final XmlNode[] xmlNodes,
+	public TypePropertyNumber(final String typeNameExtension, final XmlNode[] xmlNodes,
 			final TypeRapidBean parentBeanType) {
 		super(typeNameExtension, xmlNodes, parentBeanType);
 
@@ -114,8 +113,7 @@ public abstract class TypePropertyNumber extends TypeProperty {
 				throw new RapidBeansRuntimeException(e);
 			}
 			if (!ClassHelper.classOf(Number.class, this.numberClass)) {
-				throw new RapidBeansRuntimeException("Class \""
-						+ this.numberClass + "\" is no Number class.");
+				throw new RapidBeansRuntimeException("Class \"" + this.numberClass + "\" is no Number class.");
 			}
 		}
 	}

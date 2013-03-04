@@ -40,8 +40,7 @@ public class TypePropertyVersion extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyVersion(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyVersion(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("Version", propertyNodes, parentBeanType);
 		String s = propertyNodes[0].getAttributeValue("@default");
 		if (s != null) {

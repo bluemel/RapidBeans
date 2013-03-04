@@ -28,8 +28,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetFirstSubnodeSimple() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertEquals("country", subnode.getAttributeValue("@name"));
 	}
@@ -39,8 +39,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetSubnodesSimple() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		Collection<XmlNode> subnodes = topLevelNode.getSubnodes("property");
 		Assert.assertEquals(5, subnodes.size());
 	}
@@ -50,8 +50,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetAttributeValueExistent() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertEquals("country", subnode.getAttributeValue("@name"));
 	}
@@ -61,8 +61,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetAttributeValueNotExistent() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertNull(subnode.getAttributeValue("@xxx"));
 	}
@@ -72,8 +72,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetAttributeValueDefaultExistent() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertEquals("country", subnode.getAttributeValue("@name", "eugene"));
 	}
@@ -83,8 +83,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetAttributeValueDefaultNotFound() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertEquals("eugene", subnode.getAttributeValue("@xxx", "eugene"));
 	}
@@ -94,29 +94,29 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetAttributeValueDefaultEmpty() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		XmlNode subnode = topLevelNode.getFirstSubnode("property");
 		Assert.assertEquals("", subnode.getAttributeValue("@testempty", "xxx"));
 	}
 
 	// NEVER EVER USED!?!
-	//    /**
-	//     * test.
-	//     */
-	//    public void testGetDocumentTopLevelClassLoader() {
-	//        XmlNode topLevelNode = XmlNode.getDocumentTopLevelClassLoader(
-	//            "org/rapidbeans/test/Address.xml");
-	//        Assert.assertEquals("beantype", topLevelNode.getName());
-	//    }
+	// /**
+	// * test.
+	// */
+	// public void testGetDocumentTopLevelClassLoader() {
+	// XmlNode topLevelNode = XmlNode.getDocumentTopLevelClassLoader(
+	// "org/rapidbeans/test/Address.xml");
+	// Assert.assertEquals("beantype", topLevelNode.getName());
+	// }
 
 	/**
 	 * Test method.
 	 */
 	@Test
 	public void testGetDocumentTopLevelFile() {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml"));
 		Assert.assertNotNull(topLevelNode);
 	}
 
@@ -128,8 +128,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetDocumentTopLevelInputStream() throws FileNotFoundException {
-		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new FileInputStream(
-				new File("../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml")));
+		XmlNode topLevelNode = XmlNode.getDocumentTopLevel(new FileInputStream(new File(
+				"../org.rapidbeans/testmodel/org/rapidbeans/test/codegen/Address.xml")));
 		Assert.assertNotNull(topLevelNode);
 	}
 
@@ -138,11 +138,8 @@ public final class XmlNodeTest {
 	 */
 	@Test
 	public void testGetDocumentTopLevelString() {
-		final String descr = "<property name=\"test\" type=\"string\""
-				+ " default=\"test1\""
-				+ "/>";
-		final XmlNode node = XmlNode.getDocumentTopLevel(
-				new ByteArrayInputStream(descr.getBytes()));
+		final String descr = "<property name=\"test\" type=\"string\"" + " default=\"test1\"" + "/>";
+		final XmlNode node = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 		Assert.assertEquals("property", node.getName());
 		Assert.assertEquals("test", node.getAttributeValue("@name"));
 		Assert.assertEquals("string", node.getAttributeValue("@type"));

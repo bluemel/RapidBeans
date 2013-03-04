@@ -75,8 +75,7 @@ public final class RapidBeanSerializer {
 				}
 				if (!(file.exists())) {
 					if (!file.createNewFile()) {
-						throw new RapidBeansRuntimeException("Could not create file \""
-								+ file.getAbsolutePath() + "\"");
+						throw new RapidBeansRuntimeException("Could not create file \"" + file.getAbsolutePath() + "\"");
 					}
 				}
 				osw = new OutputStreamWriter(new FileOutputStream(file), enc);
@@ -220,8 +219,8 @@ public final class RapidBeanSerializer {
 					continue;
 				}
 				if (prop.getValue() != null
-						&& (!(proptype instanceof TypePropertyCollection)
-						|| (!((TypePropertyCollection) proptype).isComposition()))) {
+						&& (!(proptype instanceof TypePropertyCollection) || (!((TypePropertyCollection) proptype)
+								.isComposition()))) {
 					switch (proptype.getXmlBindingType()) {
 					case attribute:
 						for (int i = -1; i < depth; i++) {
@@ -274,8 +273,8 @@ public final class RapidBeanSerializer {
 					continue;
 				}
 				if (prop.getValue() != null
-						&& (!(proptype instanceof TypePropertyCollection)
-						|| (!((TypePropertyCollection) proptype).isComposition()))) {
+						&& (!(proptype instanceof TypePropertyCollection) || (!((TypePropertyCollection) proptype)
+								.isComposition()))) {
 					switch (proptype.getXmlBindingType()) {
 					case element:
 						for (int i = -1; i < depth; i++) {

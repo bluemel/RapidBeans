@@ -27,8 +27,7 @@ import org.rapidbeans.core.type.TypePropertyFile;
 /**
  * A <b>File</b> bean property stores handles to files.<br/>
  * In addition it optionally enforces validation of:<br/>
- * - fileType
- * Attributes<br/>
+ * - fileType Attributes<br/>
  * <b>fileType: { file, directory }<br/>
  * </b> specifies the maximal length of the String<br/>
  * <b>default: default = null</b> specifies the default value<br/>
@@ -38,8 +37,7 @@ import org.rapidbeans.core.type.TypePropertyFile;
 public class PropertyFile extends Property {
 
 	/**
-	 * the property's File value.
-	 * !!! do not initialize here because the
+	 * the property's File value. !!! do not initialize here because the
 	 * superclass does it with the property type's default value
 	 */
 	private File value;
@@ -86,7 +84,8 @@ public class PropertyFile extends Property {
 	 *            the new value for this property.<br/>
 	 *            Must be an instance of the following class:<br/>
 	 *            <b>File:</b> a File<br/>
-	 *            <b>String:</b> a String describing a absolute or relative path to the file<br/>
+	 *            <b>String:</b> a String describing a absolute or relative path
+	 *            to the file<br/>
 	 */
 	public void setValue(final Object newValue) {
 		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
@@ -97,8 +96,7 @@ public class PropertyFile extends Property {
 	}
 
 	/**
-	 * converts different classes to the Property's internal
-	 * value class.<br/>
+	 * converts different classes to the Property's internal value class.<br/>
 	 * For a File property String or File are accepted.
 	 * 
 	 * @param argValue
@@ -119,10 +117,9 @@ public class PropertyFile extends Property {
 		} else if (argValue instanceof String) {
 			f = new File((String) argValue);
 		} else {
-			throw new ValidationException("invalid.prop.string.type",
-					this,
-					"Tried to convert value from a data type \""
-							+ argValue.getClass().getName() + "\" different to String.");
+			throw new ValidationException("invalid.prop.string.type", this,
+					"Tried to convert value from a data type \"" + argValue.getClass().getName()
+							+ "\" different to String.");
 		}
 		return f;
 	}
@@ -157,20 +154,14 @@ public class PropertyFile extends Property {
 			final Object[] messageArgs = { file.getAbsolutePath() };
 			switch (type.getFiletype()) {
 			case file:
-				throw new ValidationException("invalid.prop.dir.notexists",
-						this,
-						"File \"" + file.getAbsolutePath() + "\" does not exist.",
-						messageArgs);
+				throw new ValidationException("invalid.prop.dir.notexists", this, "File \"" + file.getAbsolutePath()
+						+ "\" does not exist.", messageArgs);
 			case link:
-				throw new ValidationException("invalid.prop.link.notexists",
-						this,
-						"File \"" + file.getAbsolutePath() + "\" does not exist.",
-						messageArgs);
+				throw new ValidationException("invalid.prop.link.notexists", this, "File \"" + file.getAbsolutePath()
+						+ "\" does not exist.", messageArgs);
 			default:
-				throw new ValidationException("invalid.prop.file.notexists",
-						this,
-						"File \"" + file.getAbsolutePath() + "\" does not exist.",
-						messageArgs);
+				throw new ValidationException("invalid.prop.file.notexists", this, "File \"" + file.getAbsolutePath()
+						+ "\" does not exist.", messageArgs);
 			}
 		}
 
@@ -179,28 +170,24 @@ public class PropertyFile extends Property {
 			switch (type.getFiletype()) {
 			case file:
 				if (!file.isFile()) {
-					throw new ValidationException("invalid.prop.file.nofile",
-							this,
-							"File \"" + file.getAbsolutePath() + "\" is not a plain file.");
+					throw new ValidationException("invalid.prop.file.nofile", this, "File \"" + file.getAbsolutePath()
+							+ "\" is not a plain file.");
 				}
 				break;
 			case directory:
 				if (!file.isDirectory()) {
-					throw new ValidationException("invalid.prop.file.nodir",
-							this,
-							"File \"" + file.getAbsolutePath() + "\" is not a directory.");
+					throw new ValidationException("invalid.prop.file.nodir", this, "File \"" + file.getAbsolutePath()
+							+ "\" is not a directory.");
 				}
 				break;
 			case fileordir:
 				if ((!file.isDirectory()) && (!file.isFile())) {
-					throw new ValidationException("invalid.prop.file.nofileordir",
-							this,
-							"File \"" + file.getAbsolutePath() + "\" is neither a file nor a directory.");
+					throw new ValidationException("invalid.prop.file.nofileordir", this, "File \""
+							+ file.getAbsolutePath() + "\" is neither a file nor a directory.");
 				}
 				break;
 			default:
-				throw new RapidBeansRuntimeException("usupported file type \""
-						+ type.getFiletype().name() + "\"");
+				throw new RapidBeansRuntimeException("usupported file type \"" + type.getFiletype().name() + "\"");
 			}
 		}
 

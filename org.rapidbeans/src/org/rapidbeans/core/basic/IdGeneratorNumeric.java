@@ -72,8 +72,8 @@ public final class IdGeneratorNumeric implements IdGenerator {
 	}
 
 	/**
-	 * notify the number generator that an ID exists so that the
-	 * max gen number will be set high enough.
+	 * notify the number generator that an ID exists so that the max gen number
+	 * will be set high enough.
 	 * 
 	 * @param existingId
 	 *            existing numeric id as int

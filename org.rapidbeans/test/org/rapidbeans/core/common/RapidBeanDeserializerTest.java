@@ -31,8 +31,7 @@ import org.rapidbeans.test.codegen.Person;
 public class RapidBeanDeserializerTest extends TestCase {
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)} . (type = null).
 	 * 
 	 * @throws IOException
 	 */
@@ -45,35 +44,32 @@ public class RapidBeanDeserializerTest extends TestCase {
 		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
 		assertEquals("test",
 				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)} . (type = null).
 	 * 
 	 * @throws IOException
 	 */
 	public void testLoadBeanConcreteStyle() throws IOException {
-		Document doc = new Document("testdoc",
-				TypeRapidBean.forName(ConfigApplication.class.getName()),
-				new File("../org.rapidbeans/testdata/deserialization/AppConcreteStyle.xml"));
+		Document doc = new Document("testdoc", TypeRapidBean.forName(ConfigApplication.class.getName()), new File(
+				"../org.rapidbeans/testdata/deserialization/AppConcreteStyle.xml"));
 		ConfigApplication cfg = (ConfigApplication) doc.getRoot();
 		assertEquals("org.rapidbeans.presentation.TestClient", cfg.getApplicationclass());
 		assertNotNull((ConfigMainWindow) doc.findBeanByQuery("/mainwindow"));
 		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
 		assertEquals("test",
 				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)}.
-	 * (type = null).
+	 * Test method for {@link org.rapidbeans.core.common.RapidBeanDeserializer#loadBean(org.rapidbeans.core.type.TypeRapidBean, java.net.URL)} . (type = null).
 	 * 
 	 * @throws IOException
 	 */
@@ -86,8 +82,8 @@ public class RapidBeanDeserializerTest extends TestCase {
 		assertNotNull((ConfigMenubar) doc.findBeanByQuery("/mainwindow/menubar"));
 		assertEquals("test",
 				((ConfigSubmenu) doc.findBeanByQuery("/mainwindow/menubar/menus[name = 'test']")).getName());
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 	}
 

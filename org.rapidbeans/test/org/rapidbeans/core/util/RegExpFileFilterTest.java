@@ -19,8 +19,8 @@ import junit.framework.TestCase;
 public final class RegExpFileFilterTest extends TestCase {
 
 	/**
-	 * test the accept method with some regular expressions.
-	 * The constructor implicitly is tested with that
+	 * test the accept method with some regular expressions. The constructor
+	 * implicitly is tested with that
 	 */
 	public void testAccept() {
 		FileFilterRegExp filter = new FileFilterRegExp("*.xml");

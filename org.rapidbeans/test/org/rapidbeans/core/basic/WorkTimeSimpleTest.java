@@ -20,24 +20,23 @@ public class WorkTimeSimpleTest {
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFDATE = DateFormat.getDateInstance(
-			DateFormat.MEDIUM, Locale.GERMAN);
+	static final DateFormat DFDATE = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
 
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFTIME = DateFormat.getDateTimeInstance(
-			DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
+	static final DateFormat DFTIME = DateFormat
+			.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
 
 	/**
 	 * Date formatter.
 	 */
-	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(
-			DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
+	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.LONG,
+			Locale.GERMAN);
 
 	/**
-	 * Constructor test:
-	 * the constructor initializes all date attribute to empty (null).
+	 * Constructor test: the constructor initializes all date attribute to empty
+	 * (null).
 	 */
 	@Test
 	public void testWorkTime() throws SecurityException, NoSuchFieldException, ParseException {

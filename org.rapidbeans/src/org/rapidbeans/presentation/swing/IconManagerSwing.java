@@ -58,8 +58,7 @@ public class IconManagerSwing {
 	 * @return the image icon
 	 */
 	public ImageIcon getIcon(final TypeRapidBean beantype) {
-		final String key = "bean."
-				+ beantype.getName().toLowerCase() + ".icon";
+		final String key = "bean." + beantype.getName().toLowerCase() + ".icon";
 		return getIcon(key);
 	}
 
@@ -80,9 +79,8 @@ public class IconManagerSwing {
 			url = ClassLoader.getSystemResource(value);
 		}
 		if (url == null) {
-			throw new MissingResourceException("Image resource file not found:\n"
-					+ "  key = \"" + key + "\", value = \"" + value + "\"\n"
-					+ "  see resource file presentation/gui.properties", key, value);
+			throw new MissingResourceException("Image resource file not found:\n" + "  key = \"" + key
+					+ "\", value = \"" + value + "\"\n" + "  see resource file presentation/gui.properties", key, value);
 		}
 		try {
 			image = ImageIO.read(url);
@@ -108,16 +106,14 @@ public class IconManagerSwing {
 		final Application app = ApplicationManager.getApplication();
 		URL url = ClassLoader.getSystemResource(value);
 		if (url == null) {
-			url = ClassLoader.getSystemResource(app.getRootpackage().replace('.', '/')
-					+ "/presentation/" + value);
+			url = ClassLoader.getSystemResource(app.getRootpackage().replace('.', '/') + "/presentation/" + value);
 		}
 		if (url == null) {
 			url = ApplicationManager.getApplication().getClass().getResource(value);
 		}
 		if (url == null) {
-			throw new MissingResourceException("Icon resource file not found:\n"
-					+ "  key = \"" + key + "\", value = \"" + value + "\"\n"
-					+ "  see resource file presentation/gui.properties", key, value);
+			throw new MissingResourceException("Icon resource file not found:\n" + "  key = \"" + key
+					+ "\", value = \"" + value + "\"\n" + "  see resource file presentation/gui.properties", key, value);
 		}
 		icon = new ImageIcon(url);
 		this.iconMap.put(key, icon);

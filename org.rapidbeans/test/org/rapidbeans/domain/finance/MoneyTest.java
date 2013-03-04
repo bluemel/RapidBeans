@@ -26,8 +26,7 @@ public final class MoneyTest extends TestCase {
 	 */
 	public void testMoneyString() {
 		Money money = new Money("11 euro");
-		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.finance.Money"),
-				money.getType());
+		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.finance.Money"), money.getType());
 		assertSame(Money.class, money.getType().getImplementingClass());
 		assertEquals(new BigDecimal("11"), money.getMagnitude());
 		assertSame(Currency.euro, money.getUnit());
@@ -38,8 +37,7 @@ public final class MoneyTest extends TestCase {
 	 */
 	public void testMoneyMagUnit() {
 		Money mon = new Money(new BigDecimal("100.00"), Currency.euro);
-		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.finance.Money"),
-				mon.getType());
+		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.finance.Money"), mon.getType());
 		assertSame(Money.class, mon.getType().getImplementingClass());
 		assertEquals(new BigDecimal("100.00"), mon.getMagnitude());
 		assertSame(Currency.euro, mon.getUnit());

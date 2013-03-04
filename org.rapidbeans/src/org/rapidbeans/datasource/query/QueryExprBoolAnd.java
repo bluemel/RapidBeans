@@ -67,8 +67,7 @@ class QueryExprBoolAnd extends QueryExpression {
 
 		// precedence OR before closed Braces
 		QueryExpression lastCreatedExpression = argLastCreatedExpression;
-		while (lastCreatedParent instanceof QueryExprBrace
-				&& ((QueryExprBrace) lastCreatedParent).isClosed()) {
+		while (lastCreatedParent instanceof QueryExprBrace && ((QueryExprBrace) lastCreatedParent).isClosed()) {
 			lastCreatedParent = lastCreatedParent.getParentExpression();
 			lastCreatedExpression = lastCreatedExpression.getParentExpression();
 		}

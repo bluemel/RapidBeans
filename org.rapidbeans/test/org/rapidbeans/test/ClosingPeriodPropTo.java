@@ -52,18 +52,15 @@ public class ClosingPeriodPropTo extends PropertyDate {
 		}
 		if (fromTime != null) {
 			if (date.getTime() < fromTime.getTime()) {
-				throw new ValidationException("invalid.prop.closingperiod.from.less.from",
-						this,
-						"invalid value \"" + date.toString()
-								+ "\" for property \"to\""
-								+ " less than property \"from\" = \""
-								+ fromTime.toString() + "\"");
+				throw new ValidationException("invalid.prop.closingperiod.from.less.from", this, "invalid value \""
+						+ date.toString() + "\" for property \"to\"" + " less than property \"from\" = \""
+						+ fromTime.toString() + "\"");
 			}
 		}
 		return date;
 	}
 }
 
-//        // BEGIN manual code section
-//        // ClosingPeriod.toBeforeChange()
-//        // END manual code section
+// // BEGIN manual code section
+// // ClosingPeriod.toBeforeChange()
+// // END manual code section

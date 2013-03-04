@@ -149,8 +149,7 @@ public class QueryTest extends TestCase {
 	 */
 	public void testFindByQueryStringAttrAssocEndNoCompId() {
 		Document doc = createTestDocument(false);
-		Collection<RapidBean> resultSet = doc.findBeansByQuery(
-				"TrainingDate[defaulttrainer[id = 'Dahlheimer_Berit']]");
+		Collection<RapidBean> resultSet = doc.findBeansByQuery("TrainingDate[defaulttrainer[id = 'Dahlheimer_Berit']]");
 		assertEquals(2, resultSet.size());
 		Iterator<RapidBean> iter = resultSet.iterator();
 		GenericBean date = (GenericBean) iter.next();
@@ -163,25 +162,20 @@ public class QueryTest extends TestCase {
 	}
 
 	public void testFindByQueryStringAttrAssocEndNoCompOtherProp() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "owner[accountname = 'user1']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb["
+				+ "owner[accountname = 'user1']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
 	public void testFindByQueryStringAttrAssocEndCompId() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "name = 'Address Book 1'"
-						+ " & persons[id='41bb6f77-d599-4368-b2d6-b385ff342625']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb[" + "name = 'Address Book 1'"
+				+ " & persons[id='41bb6f77-d599-4368-b2d6-b385ff342625']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 
 	public void testFindByQueryStringAttrAssocEndCompOtherProp() {
-		final Query query = new Query(
-				"org.rapidbeans.test.addressbook5.AddressbookInDb["
-						+ "name = 'Address Book 1'"
-						+ " & persons[lastname='Ehlert']]");
+		final Query query = new Query("org.rapidbeans.test.addressbook5.AddressbookInDb[" + "name = 'Address Book 1'"
+				+ " & persons[lastname='Ehlert']]");
 		assertEquals(1, testdoc02.findBeansByQuery(query).size());
 	}
 

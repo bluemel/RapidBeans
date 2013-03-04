@@ -42,11 +42,10 @@ public final class RapidBeanTest extends TestCase {
 	 * test method createInstance().
 	 */
 	public void testCreateInstance() {
-		ConfigApplicationSwing bean = (ConfigApplicationSwing) RapidBeanImplStrict.createInstance(
-				"org.rapidbeans.presentation.config.swing.ConfigApplicationSwing");
+		ConfigApplicationSwing bean = (ConfigApplicationSwing) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.presentation.config.swing.ConfigApplicationSwing");
 		assertSame(ConfigApplicationSwing.class, bean.getClass());
-		assertSame(TypeRapidBean.forName(
-				"org.rapidbeans.presentation.config.swing.ConfigApplicationSwing"),
+		assertSame(TypeRapidBean.forName("org.rapidbeans.presentation.config.swing.ConfigApplicationSwing"),
 				bean.getType());
 		PropertyString name = (PropertyString) bean.getProperty("name");
 		assertNotNull(name);
@@ -76,13 +75,10 @@ public final class RapidBeanTest extends TestCase {
 	 * test get the key properties.
 	 */
 	public void testGetKeyProperties() {
-		String descr =
-				"<beantype name=\"TestBean1\" idtype=\"keyprops\">"
-						+ "<property name=\"surname\" key=\"true\"/>"
-						+ "<property name=\"prename\" key=\"true\"/>"
-						+ "<property name=\"dateofbirth\" type=\"date\"/>"
-						+ "<property name=\"city\" key=\"true\"/>"
-						+ "</beantype>";
+		String descr = "<beantype name=\"TestBean1\" idtype=\"keyprops\">"
+				+ "<property name=\"surname\" key=\"true\"/>" + "<property name=\"prename\" key=\"true\"/>"
+				+ "<property name=\"dateofbirth\" type=\"date\"/>" + "<property name=\"city\" key=\"true\"/>"
+				+ "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		assertEquals(3, ((IdKeyprops) bean.getId()).getKeyprops().length);
 	}
@@ -91,8 +87,8 @@ public final class RapidBeanTest extends TestCase {
 	 * test method createInstance().
 	 */
 	public void testNavigateFromProperty() {
-		ConfigApplication bean = (ConfigApplication)
-				RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.config.ConfigApplication");
+		ConfigApplication bean = (ConfigApplication) RapidBeanImplStrict
+				.createInstance("org.rapidbeans.presentation.config.ConfigApplication");
 		assertSame(bean, bean.getProperty("name").getBean());
 	}
 
@@ -101,12 +97,12 @@ public final class RapidBeanTest extends TestCase {
 	 */
 	public void testGetParentBeans() {
 		Document doc = new Document("testdoc",
-				TypeRapidBean.forName("org.rapidbeans.presentation.config.ConfigApplication"),
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
-		assertNotNull((ConfigSubmenu) doc.findBeanByQuery(
-				"org.rapidbeans.presentation.config.ConfigSubmenu[name = 'test']"));
-		Collection<RapidBean> menuItems = doc.findBeansByQuery(
-				"org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
+				TypeRapidBean.forName("org.rapidbeans.presentation.config.ConfigApplication"), new File(
+						"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+		assertNotNull((ConfigSubmenu) doc
+				.findBeanByQuery("org.rapidbeans.presentation.config.ConfigSubmenu[name = 'test']"));
+		Collection<RapidBean> menuItems = doc
+				.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuItem[name = 'test222']");
 		assertEquals(1, menuItems.size());
 		RapidBean menuItem = menuItems.iterator().next();
 		RapidBean[] parentBeans = menuItem.getParentBeans();
@@ -138,8 +134,8 @@ public final class RapidBeanTest extends TestCase {
 	}
 
 	/**
-	 * By default (no resources specified) the UI (localized) type name is
-	 * the (unqualified or short) beantype name
+	 * By default (no resources specified) the UI (localized) type name is the
+	 * (unqualified or short) beantype name
 	 */
 	public void testToStringGuiTypeDefault() {
 		Document doc = createTestDocument();
@@ -159,13 +155,9 @@ public final class RapidBeanTest extends TestCase {
 		RapidBeansLocale locale = new RapidBeansLocale("en");
 		locale.init("org.rapidbeans");
 		RapidBean billingPeriod = doc.getRoot();
-		assertEquals("BillingPeriod",
-				billingPeriod.getType().toStringGui(
-						locale, false, null));
+		assertEquals("BillingPeriod", billingPeriod.getType().toStringGui(locale, false, null));
 		RapidBean bluemel = doc.findBean("Trainer", "Bl�mel_Martin");
-		assertEquals("Trainer",
-				bluemel.getType().toStringGui(
-						locale, false, null));
+		assertEquals("Trainer", bluemel.getType().toStringGui(locale, false, null));
 	}
 
 	/**
@@ -176,17 +168,14 @@ public final class RapidBeanTest extends TestCase {
 		RapidBeansLocale locale = new RapidBeansLocale("en");
 		locale.init("org.rapidbeans");
 		RapidBean bluemel = doc.findBean("Trainer", "Bl�mel_Martin");
-		assertEquals("Trainer",
-				bluemel.getType().toStringGui(locale, false, null));
-		assertEquals("Person",
-				bluemel.getType().getSupertype().toStringGui(locale, false, null));
+		assertEquals("Trainer", bluemel.getType().toStringGui(locale, false, null));
+		assertEquals("Person", bluemel.getType().getSupertype().toStringGui(locale, false, null));
 	}
 
 	/**
-	 * create a test document. This document contains:
-	 * - 1 BillingPeriod object as top level object
-	 * - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic
-	 * - 3 TrainingDate objects:
+	 * create a test document. This document contains: - 1 BillingPeriod object
+	 * as top level object - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic - 3
+	 * TrainingDate objects:
 	 * 
 	 * @return the test document
 	 */
@@ -210,14 +199,11 @@ public final class RapidBeanTest extends TestCase {
 
 		// set up the training dates
 		Collection<RapidBean> trdates = new ArrayList<RapidBean>();
-		GenericBean trdateMo = createTrainingDate("Aikido Adults I",
-				"monday", "19:30", "21:30", trainer2);
+		GenericBean trdateMo = createTrainingDate("Aikido Adults I", "monday", "19:30", "21:30", trainer2);
 		trdates.add(trdateMo);
-		GenericBean trdateTu = createTrainingDate("Aikido Children",
-				"tuesday", "18:00", "19:30", trainer3);
+		GenericBean trdateTu = createTrainingDate("Aikido Children", "tuesday", "18:00", "19:30", trainer3);
 		trdates.add(trdateTu);
-		GenericBean trdateTh = createTrainingDate("Aikido Adults II",
-				"thursday", "19:00", "21:30", trainer3);
+		GenericBean trdateTh = createTrainingDate("Aikido Adults II", "thursday", "19:00", "21:30", trainer3);
 		trdates.add(trdateTh);
 
 		// set up the billing period document
@@ -239,8 +225,7 @@ public final class RapidBeanTest extends TestCase {
 	 *            the end date
 	 * @return the test bean
 	 */
-	private static GenericBean createBillingPeriod(final String dateBegin,
-			final String dateEnd) {
+	private static GenericBean createBillingPeriod(final String dateBegin, final String dateEnd) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("BillingPeriod") == null) {
 			String descr = "<beantype name=\"BillingPeriod\" idtype=\"keyprops\">"
 					+ "<property name=\"from\" type=\"date\" key=\"true\"/>"
@@ -249,10 +234,8 @@ public final class RapidBeanTest extends TestCase {
 					+ " composition=\"true\" targettype=\"Trainer\" collectionclass=\"java.util.TreeSet\"/>"
 					+ "<property name=\"trainingdates\" type=\"collection\""
 					+ " composition=\"true\" targettype=\"TrainingDate\" collectionclass=\"java.util.TreeSet\"/>"
-					+ "/>"
-					+ "<property name=\"certificates\" type=\"collection\""
-					+ " composition=\"true\" targettype=\"Certificate\" collectionclass=\"java.util.TreeSet\"/>"
-					+ "/>"
+					+ "/>" + "<property name=\"certificates\" type=\"collection\""
+					+ " composition=\"true\" targettype=\"Certificate\" collectionclass=\"java.util.TreeSet\"/>" + "/>"
 					+ "</beantype>";
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
 			new TypeRapidBean(null, xmlNode, null, true);
@@ -277,33 +260,28 @@ public final class RapidBeanTest extends TestCase {
 	 * 
 	 * @return the test bean
 	 */
-	private static GenericBean createTrainer(final String lastname,
-			final String firstname, final boolean leader, final boolean mandatory) {
+	private static GenericBean createTrainer(final String lastname, final String firstname, final boolean leader,
+			final boolean mandatory) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Person") == null) {
 			String descr = "<beantype name=\"Person\" idtype=\"keyprops\">"
 					+ "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
-					+ "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"firstname\" type=\"string\" key=\"true\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		if (RapidBeansTypeLoader.getInstance().lookupType("Trainer") == null) {
 			String descr = "<beantype name=\"Trainer\" idtype=\"keyprops\" extends=\"Person\">"
-					//                + "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
-					//                + "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
-					+ "<property name=\"leader\" type=\"boolean\""
-					+ " mandatory=\"true\" default=\"false\""
-					+ "/>"
+					// +
+					// "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
+					// +
+					// "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
+					+ "<property name=\"leader\" type=\"boolean\"" + " mandatory=\"true\" default=\"false\"" + "/>"
 					+ "<property name=\"certificates\" type=\"collection\"";
 			if (mandatory) {
 				descr += "    mandatory=\"true\" default=\"\"";
 			}
-			descr += "    targettype=\"Certificate\""
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+			descr += "    targettype=\"Certificate\"" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
@@ -324,11 +302,8 @@ public final class RapidBeanTest extends TestCase {
 	private static GenericBean createCertificate(final String name) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Certificate") == null) {
 			String descr = "<beantype name=\"Certificate\" idtype=\"keyprops\">"
-					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"name\" type=\"string\" key=\"true\"/>" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
@@ -351,9 +326,8 @@ public final class RapidBeanTest extends TestCase {
 	 *            the default trainer
 	 * @return the generic training date bean
 	 */
-	private static GenericBean createTrainingDate(final String name,
-			final String dayofweek, final String tstart, final String tend,
-			final GenericBean defaulttrainer) {
+	private static GenericBean createTrainingDate(final String name, final String dayofweek, final String tstart,
+			final String tend, final GenericBean defaulttrainer) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TrainingDate") == null) {
 			String descr = "<beantype name=\"TrainingDate\" idtype=\"keyprops\">"
 					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
@@ -363,12 +337,9 @@ public final class RapidBeanTest extends TestCase {
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
 					+ "<property name=\"timeend\" type=\"quantity\""
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
-					+ "<property name=\"defaulttrainer\" type=\"collection\""
-					+ " targettype=\"Trainer\""
-					+ " minmult=\"1\" maxmult=\"1\"/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"defaulttrainer\" type=\"collection\"" + " targettype=\"Trainer\""
+					+ " minmult=\"1\" maxmult=\"1\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");

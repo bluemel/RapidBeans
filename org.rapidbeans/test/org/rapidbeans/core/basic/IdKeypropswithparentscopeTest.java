@@ -32,8 +32,7 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 		grandma.setPropValue("children", pa);
 		assertEquals("Bl�mel_Gudrun_19390511/Bl�mel_Martin_19641014", pa.getIdString());
 		pa.setPropValue("children", kid);
-		assertEquals("Bl�mel_Gudrun_19390511/Bl�mel_Martin_19641014/"
-				+ "Bl�mel_Melanie_20020831", kid.getIdString());
+		assertEquals("Bl�mel_Gudrun_19390511/Bl�mel_Martin_19641014/" + "Bl�mel_Melanie_20020831", kid.getIdString());
 	}
 
 	/**
@@ -45,41 +44,41 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 		assertEquals(kid1.getId(), kid2.getId());
 	}
 
-	//    /**
-	//     * Test method for equals().
-	//     */
-	//    public void testEqualsEquals1SameParent() {
-	//        ArrayList<RapidBean> kids = new ArrayList<RapidBean>();
-	//        GenericBean kid1 = createTestBeanP0("Bl�mel", "Melanie", "20020831");
-	//        kids.add(kid1);
-	//        GenericBean kid2 = createTestBeanP0("Bl�mel", "Melanie", "20020831");
-	//        kids.add(kid2);
-	//        GenericBean pa = createTestBeanP1("Bl�mel", "Martin", "19641014");
-	//        pa.setPropValue("children", kids);
-	//        assertEquals(kid1.getId(), kid2.getId());
-	//    }
+	// /**
+	// * Test method for equals().
+	// */
+	// public void testEqualsEquals1SameParent() {
+	// ArrayList<RapidBean> kids = new ArrayList<RapidBean>();
+	// GenericBean kid1 = createTestBeanP0("Bl�mel", "Melanie", "20020831");
+	// kids.add(kid1);
+	// GenericBean kid2 = createTestBeanP0("Bl�mel", "Melanie", "20020831");
+	// kids.add(kid2);
+	// GenericBean pa = createTestBeanP1("Bl�mel", "Martin", "19641014");
+	// pa.setPropValue("children", kids);
+	// assertEquals(kid1.getId(), kid2.getId());
+	// }
 
-	//    /**
-	//     * Test method for equals().
-	//     */
-	//    public void testEqualsDifferent() {
-	//        GenericBean bean1 = createTestBean("Bl�mel", "Martin", "19641014");
-	//        IdKeyprops id1 = new IdKeyprops(bean1, null);
-	//        GenericBean bean2 = createTestBean("Bl�mel", "Johannes", "19641014");
-	//        IdKeyprops id2 = new IdKeyprops(bean2, null);
-	//        assertFalse(id1.equals(id2));
-	//    }
+	// /**
+	// * Test method for equals().
+	// */
+	// public void testEqualsDifferent() {
+	// GenericBean bean1 = createTestBean("Bl�mel", "Martin", "19641014");
+	// IdKeyprops id1 = new IdKeyprops(bean1, null);
+	// GenericBean bean2 = createTestBean("Bl�mel", "Johannes", "19641014");
+	// IdKeyprops id2 = new IdKeyprops(bean2, null);
+	// assertFalse(id1.equals(id2));
+	// }
 	//
-	//    /**
-	//     * Test method for equals().
-	//     */
-	//    public void testEqualsWrongType() {
-	//        TestBean bean = new TestBean("\"Bl�mel\" \"Martin\" \"19641014\"");
-	//        bean.getType().setIdGenerator(new IdGeneratorUid());
-	//        IdKeyprops id1 = new IdKeyprops(bean, null);
-	//        IdUid id2 = new IdUid(bean);
-	//        assertFalse(id1.equals(id2));
-	//    }
+	// /**
+	// * Test method for equals().
+	// */
+	// public void testEqualsWrongType() {
+	// TestBean bean = new TestBean("\"Bl�mel\" \"Martin\" \"19641014\"");
+	// bean.getType().setIdGenerator(new IdGeneratorUid());
+	// IdKeyprops id1 = new IdKeyprops(bean, null);
+	// IdUid id2 = new IdUid(bean);
+	// assertFalse(id1.equals(id2));
+	// }
 
 	@SuppressWarnings("unchecked")
 	public void testSortingSimple() {
@@ -90,8 +89,7 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 		GenericBean p2 = createTestBeanP2("2", "2", "20100101");
 		p2.setPropValue("children", p1);
 		p1.setPropValue("children", new GenericBean[] { p0c, p0b, p0a });
-		ReadonlyListCollection<GenericBean> list = (ReadonlyListCollection<GenericBean>)
-				p1.getPropValue("children");
+		ReadonlyListCollection<GenericBean> list = (ReadonlyListCollection<GenericBean>) p1.getPropValue("children");
 		assertSame(p0c, list.get(0));
 		assertSame(p0b, list.get(1));
 		assertSame(p0a, list.get(2));
@@ -108,8 +106,7 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 		GenericBean p2 = createTestBeanP2("2", "2", "20100101");
 		p2.setPropValue("children", p1);
 		p1.setPropValue("children", new GenericBean[] { p0b, p0c, p0a });
-		ReadonlyListCollection<GenericBean> list = (ReadonlyListCollection<GenericBean>)
-				p1.getPropValue("children");
+		ReadonlyListCollection<GenericBean> list = (ReadonlyListCollection<GenericBean>) p1.getPropValue("children");
 		assertSame(p0a, list.get(0));
 		assertSame(p0b, list.get(1));
 		assertSame(p0c, list.get(2));
@@ -126,16 +123,13 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBeanP0(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBeanP0(final String name, final String prename, final String dateofbirth) {
 		GenericBean bean = null;
 		RapidBeansType type = RapidBeansTypeLoader.getInstance().lookupType("TestBeanP0");
 		if (type == null) {
 			String descr = "<beantype name=\"TestBeanP0\" idtype=\"keypropswithparentscope\">"
-					+ "<property name=\"name\" key=\"true\"/>"
-					+ "<property name=\"prename\" key=\"true\"/>"
-					+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
-					+ "</beantype>";
+					+ "<property name=\"name\" key=\"true\"/>" + "<property name=\"prename\" key=\"true\"/>"
+					+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>" + "</beantype>";
 			bean = TestHelper.createGenericBeanInstance(descr);
 			type = bean.getType();
 			RapidBeansTypeLoader.getInstance().registerType(type);
@@ -159,11 +153,9 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBeanP1(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBeanP1(final String name, final String prename, final String dateofbirth) {
 		String descr = "<beantype name=\"TestBeanP1\" idtype=\"keypropswithparentscope\">"
-				+ "<property name=\"name\" key=\"true\"/>"
-				+ "<property name=\"prename\" key=\"true\"/>"
+				+ "<property name=\"name\" key=\"true\"/>" + "<property name=\"prename\" key=\"true\"/>"
 				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
 				+ "<property name=\"children\" type=\"collection\" composition=\"true\" targettype=\"TestBeanP0\"/>"
 				+ "</beantype>";
@@ -186,11 +178,9 @@ public class IdKeypropswithparentscopeTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBeanP2(final String name,
-			final String prename, final String dateofbirth) {
+	private GenericBean createTestBeanP2(final String name, final String prename, final String dateofbirth) {
 		String descr = "<beantype name=\"TestBeanP2\" idtype=\"keypropswithparentscope\">"
-				+ "<property name=\"name\" key=\"true\"/>"
-				+ "<property name=\"prename\" key=\"true\"/>"
+				+ "<property name=\"name\" key=\"true\"/>" + "<property name=\"prename\" key=\"true\"/>"
 				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
 				+ "<property name=\"children\" type=\"collection\" composition=\"true\" targettype=\"TestBeanP1\"/>"
 				+ "</beantype>";

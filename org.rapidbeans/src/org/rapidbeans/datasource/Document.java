@@ -552,12 +552,9 @@ public class Document extends ContainerImpl {
 	 */
 	public void insert(final RapidBean bean, final boolean implicitly) {
 		if (this.idmap.findBean(bean.getType().getName(), bean.getIdString()) != null) {
-			throw new BeanDuplicateException("messagedialog.create.duplicate",
-					bean,
-					"Bean \"" + bean.toString()
-							+ "\" already exists in document \""
-							+ this.getName() + "\"", new Object[] {
-							bean.toStringGui(ApplicationManager.getApplication().getCurrentLocale()) });
+			throw new BeanDuplicateException("messagedialog.create.duplicate", bean, "Bean \"" + bean.toString()
+					+ "\" already exists in document \"" + this.getName() + "\"",
+					new Object[] { bean.toStringGui(ApplicationManager.getApplication().getCurrentLocale()) });
 		}
 		this.fireBeanAddPre(bean);
 		this.idmap.insert(bean);
@@ -1013,8 +1010,7 @@ public class Document extends ContainerImpl {
 								if (link instanceof LinkFrozen) {
 									targetBean = this.vistorIdmap.findBean(colPropTargetTypename, link.getIdString());
 									if (targetBean == null) {
-										throw new ValidationException(
-												"invalid.reference", bean,
+										throw new ValidationException("invalid.reference", bean,
 												"could not resolve reference from bean:\n" + "\""
 														+ bean.getType().getName() + "::" + bean.getIdString() + "\"\n"
 														+ "property: \"" + prop.getName() + "\"\n" + "to bean \""

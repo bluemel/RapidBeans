@@ -49,16 +49,15 @@ public abstract class Footer {
 	 * 
 	 * @return the instance
 	 */
-	public static Footer createInstance(final Application client,
-			final ConfigMainWindow mainWindowConfig) {
+	public static Footer createInstance(final Application client, final ConfigMainWindow mainWindowConfig) {
 		Footer footer = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
 			footer = new FooterSwing(mainWindowConfig.getFooter());
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 		return footer;
 	}

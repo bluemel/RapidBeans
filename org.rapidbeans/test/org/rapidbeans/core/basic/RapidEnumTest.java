@@ -83,8 +83,7 @@ public final class RapidEnumTest extends TestCase {
 	 * Test method for RapidEnum.format(RapidEnum[], char).
 	 */
 	public void testFormat() {
-		assertEquals("male,female",
-				TypeRapidEnum.format(Sex.male.getType().getElements()));
+		assertEquals("male,female", TypeRapidEnum.format(Sex.male.getType().getElements()));
 	}
 
 	/**

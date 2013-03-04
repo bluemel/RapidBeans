@@ -34,8 +34,8 @@ import org.rapidbeans.core.type.TypePropertyDate;
 import org.rapidbeans.core.util.StringHelper;
 
 /**
- * A <b>Date</b> bean property encapsulates Date values which
- * express a certain point of time in the precision of milliseconds.<br/>
+ * A <b>Date</b> bean property encapsulates Date values which express a certain
+ * point of time in the precision of milliseconds.<br/>
  * The precision of the property is configurable from millisecond to year<br/>
  * In addition it optionally enforces validation of:<br/>
  * - minimal date<br/>
@@ -46,24 +46,22 @@ import org.rapidbeans.core.util.StringHelper;
 public class PropertyDate extends Property {
 
 	/**
-	 * the property's Date value.
-	 * !!! do not initialize here because the superclass does it
-	 * with the property type's default value
+	 * the property's Date value. !!! do not initialize here because the
+	 * superclass does it with the property type's default value
 	 */
 	private Date value;
 
 	/**
 	 * formatter for language independent format 1.
 	 */
-	private static final DateFormat LANG_INDEP_DATE_FORMAT_1 =
-			DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
+	private static final DateFormat LANG_INDEP_DATE_FORMAT_1 = DateFormat.getDateInstance(DateFormat.MEDIUM,
+			Locale.GERMAN);
 
 	/**
 	 * formatter for language independent format 2.
 	 */
-	private static final DateFormat LANG_INDEP_DATE_FORMAT_2 =
-			DateFormat.getDateTimeInstance(
-					DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.GERMAN);
+	private static final DateFormat LANG_INDEP_DATE_FORMAT_2 = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
+			DateFormat.MEDIUM, Locale.GERMAN);
 
 	/**
 	 * constructor for a new Date Property.
@@ -89,7 +87,7 @@ public class PropertyDate extends Property {
 		} else {
 			if (this.value != null) {
 				// clone the date value object in order
-				// to compensate the Java design error of a mutable Date object 
+				// to compensate the Java design error of a mutable Date object
 				date = new Date(this.value.getTime());
 			}
 		}
@@ -111,12 +109,13 @@ public class PropertyDate extends Property {
 	}
 
 	/**
-	 * String getter.
-	 * Converts the Date Property into a String depending on the configured precision.<br/>
+	 * String getter. Converts the Date Property into a String depending on the
+	 * configured precision.<br/>
 	 * Examples:<br/>
 	 * precision = year, date = 2005 => <b>2005</b><br/>
 	 * precision = day, date = March 15, 2005 => <b>20050315</b><br/>
-	 * precision = millisecond, date = March 15, 2005, time = 11:23:45.678 pm => <b>20050315112345678</b><br/>
+	 * precision = millisecond, date = March 15, 2005, time = 11:23:45.678 pm =>
+	 * <b>20050315112345678</b><br/>
 	 * 
 	 * @return the String representation of this Property's value.
 	 */
@@ -178,25 +177,17 @@ public class PropertyDate extends Property {
 		// check against max boundary
 		final long maxTime = type.getMaxVal();
 		if (time > maxTime) {
-			throw new ValidationException("invalid.prop.date.greater",
-					this,
-					"invalid date \""
-							+ PropertyDate.format(new Date(time), type.getPrecision())
-							+ "\" greater than maximal date \""
-							+ PropertyDate.format(new Date(maxTime), type.getPrecision())
-							+ ".", new String[] {});
+			throw new ValidationException("invalid.prop.date.greater", this, "invalid date \""
+					+ PropertyDate.format(new Date(time), type.getPrecision()) + "\" greater than maximal date \""
+					+ PropertyDate.format(new Date(maxTime), type.getPrecision()) + ".", new String[] {});
 		}
 
 		// check against min boundary
 		final long minTime = type.getMinVal();
 		if (time < minTime) {
-			throw new ValidationException("invalid.prop.date.lower",
-					this,
-					"invalid date \""
-							+ PropertyDate.format(new Date(time), type.getPrecision())
-							+ "\" lower than minimal date \""
-							+ PropertyDate.format(new Date(minTime), type.getPrecision())
-							+ ".");
+			throw new ValidationException("invalid.prop.date.lower", this, "invalid date \""
+					+ PropertyDate.format(new Date(time), type.getPrecision()) + "\" lower than minimal date \""
+					+ PropertyDate.format(new Date(minTime), type.getPrecision()) + ".");
 		}
 
 		return date;
@@ -227,10 +218,8 @@ public class PropertyDate extends Property {
 		} else if (argVal instanceof Long) {
 			time = cutPrecisionLong(((Long) argVal).longValue());
 		} else {
-			throw new ValidationException("invalid.prop.date.type",
-					this,
-					"invalid data type \"" + argVal.getClass().getName()
-							+ "\".\nOnly \"Date\", \"String\", and Long are valid types.");
+			throw new ValidationException("invalid.prop.date.type", this, "invalid data type \""
+					+ argVal.getClass().getName() + "\".\nOnly \"Date\", \"String\", and Long are valid types.");
 		}
 
 		return new Date(time);
@@ -287,8 +276,7 @@ public class PropertyDate extends Property {
 	 * @return the cut String
 	 */
 	public long cutPrecisionLong(final long newValue) {
-		return cutPrecisionLong(newValue,
-				((TypePropertyDate) this.getType()).getPrecision());
+		return cutPrecisionLong(newValue, ((TypePropertyDate) this.getType()).getPrecision());
 	}
 
 	/**
@@ -312,7 +300,8 @@ public class PropertyDate extends Property {
 			break;
 		case day:
 			cutValue = parse(format(new Date(newValue), precision)).getTime();
-			//cutValue = ((newValue + 3600000) / 86400000) * 86400000 - 3600000;
+			// cutValue = ((newValue + 3600000) / 86400000) * 86400000 -
+			// 3600000;
 			break;
 		case hour:
 			cutValue = parse(format(new Date(newValue), precision)).getTime();
@@ -388,27 +377,20 @@ public class PropertyDate extends Property {
 		int len = s.length();
 
 		if (!StringHelper.isDigitsOnly(s)) {
-			throw new ValidationException("invalid.prop.date.string.norm.number",
-					null,
-					"invalid date norm string \"" + s
-							+ "\", must have at least 4 and at maximum 17 digits."
-							+ "\nExample: 19641014235945999 means"
-							+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
+			throw new ValidationException("invalid.prop.date.string.norm.number", null, "invalid date norm string \""
+					+ s + "\", must have at least 4 and at maximum 17 digits." + "\nExample: 19641014235945999 means"
+					+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
 		}
 		if (len < 4) {
-			throw new ValidationException("invalid.prop.date.string.norm.short",
-					null,
-					"invalid " + len + " digit date norm string \"" + s
-							+ "\", must have at least 4 digits."
-							+ "\nExample: 1964 means the year 1964.");
+			throw new ValidationException("invalid.prop.date.string.norm.short", null, "invalid " + len
+					+ " digit date norm string \"" + s + "\", must have at least 4 digits."
+					+ "\nExample: 1964 means the year 1964.");
 		}
 		if (len > 17) {
-			throw new ValidationException("invalid.prop.date.string.norm.long",
-					null,
-					"invalid " + len + " digit date (point of time) norm string \"" + s
-							+ "\", must have at maximum 17 characters."
-							+ "\nExample: 19641014235945999 means"
-							+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
+			throw new ValidationException("invalid.prop.date.string.norm.long", null, "invalid " + len
+					+ " digit date (point of time) norm string \"" + s + "\", must have at maximum 17 characters."
+					+ "\nExample: 19641014235945999 means"
+					+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
 		}
 
 		int iDay = -1;
@@ -422,20 +404,16 @@ public class PropertyDate extends Property {
 			sDate = "01.01." + s.substring(0, 4);
 			break;
 		case 5:
-			throw new ValidationException("invalid.prop.date.string.norm.5",
-					null,
-					"invalid " + len + " digit date norm string \"" + s
-							+ "\", must have 4 or 6 digits."
-							+ "\nExample: 196410 means October 14.");
+			throw new ValidationException("invalid.prop.date.string.norm.5", null, "invalid " + len
+					+ " digit date norm string \"" + s + "\", must have 4 or 6 digits."
+					+ "\nExample: 196410 means October 14.");
 		case 6:
 			sDate = "01." + s.substring(4, 6) + "." + s.substring(0, 4);
 			break;
 		case 7:
-			throw new ValidationException("invalid.prop.date.string.norm.7",
-					null,
-					"invalid " + len + " digit date norm string \"" + s
-							+ "\", must have 6 or 8 digits."
-							+ "\nExample: 19641014 means October 14, 1964.");
+			throw new ValidationException("invalid.prop.date.string.norm.7", null, "invalid " + len
+					+ " digit date norm string \"" + s + "\", must have 6 or 8 digits."
+					+ "\nExample: 19641014 means October 14, 1964.");
 		case 8:
 			iDay = Integer.parseInt(s.substring(6, 8));
 			iMonth = Integer.parseInt(s.substring(4, 6)) - 1;
@@ -443,46 +421,35 @@ public class PropertyDate extends Property {
 			cal = new GregorianCalendar(iYear, iMonth, iDay);
 			break;
 		case 9:
-			throw new ValidationException("invalid.prop.date.string.norm.9",
-					null,
-					"invalid " + len + " digit date (point of time) norm string \"" + s
-							+ "\", must have 8 or 10 digits."
-							+ "\nExample: 1964101423 means"
-							+ " October 14, 1964 11 pm seconds.");
+			throw new ValidationException("invalid.prop.date.string.norm.9", null, "invalid " + len
+					+ " digit date (point of time) norm string \"" + s + "\", must have 8 or 10 digits."
+					+ "\nExample: 1964101423 means" + " October 14, 1964 11 pm seconds.");
 		case 10:
 			sDate = s.substring(6, 8) + "." + s.substring(4, 6) + "." + s.substring(0, 4) + " " + s.substring(8, 10)
 					+ ":00:00";
 			break;
 		case 11:
-			throw new ValidationException("invalid.prop.date.string.norm.11",
-					null,
-					"invalid " + len + " digit date (point of time) norm string \"" + s
-							+ "\", must have 10 or 12 digits."
-							+ "\nExample: 196410142359 means"
-							+ " October 14, 1964 11:59 pm.");
+			throw new ValidationException("invalid.prop.date.string.norm.11", null, "invalid " + len
+					+ " digit date (point of time) norm string \"" + s + "\", must have 10 or 12 digits."
+					+ "\nExample: 196410142359 means" + " October 14, 1964 11:59 pm.");
 		case 12:
 			sDate = s.substring(6, 8) + "." + s.substring(4, 6) + "." + s.substring(0, 4) + " " + s.substring(8, 10)
 					+ ":" + s.substring(10, 12) + ":00";
 			break;
 		case 13:
-			throw new ValidationException("invalid.prop.date.string.norm.13",
-					null,
-					"invalid " + len + " digit date (point of time) norm string \"" + s
-							+ "\", must have 12 or 14 digits."
-							+ "\nExample: 19641014235945 means"
-							+ " October 14, 1964 11:59 pm 45 seconds.");
+			throw new ValidationException("invalid.prop.date.string.norm.13", null, "invalid " + len
+					+ " digit date (point of time) norm string \"" + s + "\", must have 12 or 14 digits."
+					+ "\nExample: 19641014235945 means" + " October 14, 1964 11:59 pm 45 seconds.");
 		case 14:
 			sDate = s.substring(6, 8) + "." + s.substring(4, 6) + "." + s.substring(0, 4) + " " + s.substring(8, 10)
 					+ ":" + s.substring(10, 12) + ":" + s.substring(12, 14);
 			break;
 		case 15:
 		case 16:
-			throw new ValidationException("invalid.prop.date.string.norm.1516",
-					null,
-					"invalid " + len + " digit date (point of time) norm string \"" + s
-							+ "\", must have 14 or 17 digits."
-							+ "\nExample: 19641014235945999 means"
-							+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
+			throw new ValidationException("invalid.prop.date.string.norm.1516", null, "invalid " + len
+					+ " digit date (point of time) norm string \"" + s + "\", must have 14 or 17 digits."
+					+ "\nExample: 19641014235945999 means"
+					+ " October 14, 1964 11:59 pm 45 seconds and 999 milliseconds.");
 		case 17:
 			sDate = s.substring(6, 8) + "." + s.substring(4, 6) + "." + s.substring(0, 4) + " " + s.substring(8, 10)
 					+ ":" + s.substring(10, 12) + ":" + s.substring(12, 14);
@@ -494,25 +461,16 @@ public class PropertyDate extends Property {
 
 		if (cal != null) {
 			if (iDay != cal.get(Calendar.DAY_OF_MONTH)) {
-				throw new ValidationException("invalid.prop.date.dayofmonth",
-						null,
-						"invalid date \"" + s + "\"."
-								+ "\nDay of month \"" + new Integer(iDay).toString()
-								+ "\" is incorrect.");
+				throw new ValidationException("invalid.prop.date.dayofmonth", null, "invalid date \"" + s + "\"."
+						+ "\nDay of month \"" + new Integer(iDay).toString() + "\" is incorrect.");
 			}
 			if (iMonth != cal.get(Calendar.MONTH)) {
-				throw new ValidationException("invalid.prop.date.month",
-						null,
-						"invalid date \"" + s + "\"."
-								+ "\"Month \"" + new Integer(iMonth).toString()
-								+ "\" is incorrect.");
+				throw new ValidationException("invalid.prop.date.month", null, "invalid date \"" + s + "\"."
+						+ "\"Month \"" + new Integer(iMonth).toString() + "\" is incorrect.");
 			}
 			if (iYear != cal.get(Calendar.YEAR)) {
-				throw new ValidationException("invalid.prop.date.year",
-						null,
-						"invalid date \"" + s + "\"."
-								+ "\nYear \"" + new Integer(iYear).toString()
-								+ "\" is incorrect.");
+				throw new ValidationException("invalid.prop.date.year", null, "invalid date \"" + s + "\"."
+						+ "\nYear \"" + new Integer(iYear).toString() + "\" is incorrect.");
 			}
 			date = cal.getTime();
 		} else {
@@ -528,9 +486,8 @@ public class PropertyDate extends Property {
 					date = new Date(date.getTime() + iMillis);
 				}
 			} catch (java.text.ParseException e) {
-				throw new ValidationException("invalid.prop.date.parse",
-						null,
-						"invalid non parseable date \"" + sDate + "\".");
+				throw new ValidationException("invalid.prop.date.parse", null, "invalid non parseable date \"" + sDate
+						+ "\".");
 			}
 		}
 
@@ -555,8 +512,8 @@ public class PropertyDate extends Property {
 	 * @param format
 	 *            the format (see class java.text.DateFormat)
 	 * @param field
-	 *            the field (see class java.text.DateFormat).
-	 *            Set this argument to -1 if all field shoud be shown
+	 *            the field (see class java.text.DateFormat). Set this argument
+	 *            to -1 if all field shoud be shown
 	 * @return the formatted string
 	 */
 	public String format(final RapidBeansLocale locale, final int format, final int field) {
@@ -603,29 +560,29 @@ public class PropertyDate extends Property {
 		}
 
 		int field = -1;
-		//        DATE_FIELD
-		//        DAY_OF_WEEK_FIELD
-		//        DAY_OF_WEEK_IN_MONTH_FIELD
-		//        DAY_OF_YEAR_FIELD
-		//        DAY_OF_WEEK_IN_MONTH_FIELD
-		//        DAY_OF_WEEK_IN_MONTH
-		//        DATE_FIELD
-		//        DAY_OF_WEEK_FIELD
-		//        DAY_OF_YEAR_FIELD
-		//        ERA_FIELD
-		//        HOUR_OF_DAY0_FIELD
-		//        HOUR_OF_DAY1_FIELD
-		//        HOUR0_FIELD
-		//        HOUR1_FIELD
-		//        MILLISECOND_FIELD
-		//        MILLISECOND field
-		//        MINUTE_FIELD
-		//        MONTH_FIELD
-		//        SECOND_FIELD
-		//        TIMEZONE_FIELD
-		//        WEEK_OF_MONTH_FIELD
-		//        WEEK_OF_YEAR_FIELD
-		//        YEAR_FIELD
+		// DATE_FIELD
+		// DAY_OF_WEEK_FIELD
+		// DAY_OF_WEEK_IN_MONTH_FIELD
+		// DAY_OF_YEAR_FIELD
+		// DAY_OF_WEEK_IN_MONTH_FIELD
+		// DAY_OF_WEEK_IN_MONTH
+		// DATE_FIELD
+		// DAY_OF_WEEK_FIELD
+		// DAY_OF_YEAR_FIELD
+		// ERA_FIELD
+		// HOUR_OF_DAY0_FIELD
+		// HOUR_OF_DAY1_FIELD
+		// HOUR0_FIELD
+		// HOUR1_FIELD
+		// MILLISECOND_FIELD
+		// MILLISECOND field
+		// MINUTE_FIELD
+		// MONTH_FIELD
+		// SECOND_FIELD
+		// TIMEZONE_FIELD
+		// WEEK_OF_MONTH_FIELD
+		// WEEK_OF_YEAR_FIELD
+		// YEAR_FIELD
 
 		String sfField = sField + "_FIELD";
 		switch (sfField.charAt(0)) {
@@ -682,15 +639,12 @@ public class PropertyDate extends Property {
 	 *            { DateFormat.DATE_FIELD, MONTH_FIELD, YEAR_FIELD, ...
 	 * @return a string for the property's value for UI
 	 */
-	public static String formatDate(final Date date,
-			final RapidBeansLocale locale, final int format,
-			final int field) {
+	public static String formatDate(final Date date, final RapidBeansLocale locale, final int format, final int field) {
 		if (date == null) {
 			return "-";
 		}
 		String s = null;
-		final DateFormat formatter =
-				DateFormat.getDateInstance(format, locale.getLocale());
+		final DateFormat formatter = DateFormat.getDateInstance(format, locale.getLocale());
 		final StringBuffer sb = new StringBuffer();
 		if (field > -1) {
 			final FieldPosition fp = new FieldPosition(field);
@@ -716,8 +670,7 @@ public class PropertyDate extends Property {
 	 * 
 	 * @return if the intervals overlap or not
 	 */
-	public static boolean dateIntervalsOverlap(final Date i1From, final Date i1To,
-			final Date i2From, final Date i2To) {
+	public static boolean dateIntervalsOverlap(final Date i1From, final Date i1To, final Date i2From, final Date i2To) {
 		if (i1From == null) {
 			throw new IllegalArgumentException("null value given for i1from.");
 		}
@@ -730,9 +683,7 @@ public class PropertyDate extends Property {
 		if (i2To == null) {
 			throw new IllegalArgumentException("null value given for i2To.");
 		}
-		return (((i1From.compareTo(i2From) > 0)
-		&& (i1From.compareTo(i2To) < 0))
-		|| (i1To.compareTo(i2From) > 0)
+		return (((i1From.compareTo(i2From) > 0) && (i1From.compareTo(i2To) < 0)) || (i1To.compareTo(i2From) > 0)
 				&& (i1To.compareTo(i2To) < 0));
 	}
 }

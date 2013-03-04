@@ -22,9 +22,9 @@ public class IdNumericGeneratorTest extends TestCase {
 	}
 
 	/**
-	 * After having generated ID 2,147,483,647 = 2^31-1 = Long.MAX_VALUE
-	 * the generator continues with negative numbers from
-	 * -2,147,483,648 = 2^31-1 = Long.MIN_VALUE up to -1.
+	 * After having generated ID 2,147,483,647 = 2^31-1 = Long.MAX_VALUE the
+	 * generator continues with negative numbers from -2,147,483,648 = 2^31-1 =
+	 * Long.MIN_VALUE up to -1.
 	 */
 	public void testGenerateNumberMaxInt() {
 		IdGeneratorNumeric generator = new IdGeneratorNumeric();
@@ -37,9 +37,8 @@ public class IdNumericGeneratorTest extends TestCase {
 	}
 
 	/**
-	 * test the boundary condition.
-	 * The generator should generate a -1 as last number and afterwards switch
-	 * to 0, 0 is not given out but is the boundary
+	 * test the boundary condition. The generator should generate a -1 as last
+	 * number and afterwards switch to 0, 0 is not given out but is the boundary
 	 */
 	public void testGenerateNumberBoundary1() {
 		IdGeneratorNumeric generator = new IdGeneratorNumeric();

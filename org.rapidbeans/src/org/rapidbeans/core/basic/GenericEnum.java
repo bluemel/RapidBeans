@@ -92,11 +92,11 @@ public class GenericEnum implements Cloneable, Comparable<RapidEnum>, RapidEnum 
 	}
 
 	/**
-	 * Generic instance finder for enums.
-	 * Provides a generic way to retrieve certain enum elements.<br/>
+	 * Generic instance finder for enums. Provides a generic way to retrieve
+	 * certain enum elements.<br/>
 	 * Instead of<br/>
 	 * <code>RapidEnum enum = Length.m</code> you can also code<br/>
-	 * <code>RapidEnum enum = RapidEnum.getInstance("org.rapidbeans.domain.math.Length", "m")</code><br/>
+	 * <code>RapidEnum enum = RapidEnum.getInstance("org.rapidbeans.domain.math.Length", "m")</code> <br/>
 	 * <p>
 	 * <b>throws TypeNotFoundException:</b><br/>
 	 * if the specified RapidEnum type does not exist<br/>
@@ -113,14 +113,13 @@ public class GenericEnum implements Cloneable, Comparable<RapidEnum>, RapidEnum 
 	 * 
 	 * @return the RapidEnum element instance.
 	 */
-	public static RapidEnum valueOf(final String enumTypeName,
-			final String enumName) {
+	public static RapidEnum valueOf(final String enumTypeName, final String enumName) {
 		return TypeRapidEnum.forName(enumTypeName).elementOf(enumName);
 	}
 
 	/**
-	 * one and only common constructor for RapidBeans RapidEnum elements.
-	 * Must only be used by subclasses.
+	 * one and only common constructor for RapidBeans RapidEnum elements. Must
+	 * only be used by subclasses.
 	 * 
 	 * @param argType
 	 *            the generic enum's type
@@ -181,17 +180,13 @@ public class GenericEnum implements Cloneable, Comparable<RapidEnum>, RapidEnum 
 	public final int compareTo(final RapidEnum object) {
 		int comp = 0;
 		if (!(object instanceof GenericEnum)) {
-			throw new UtilException("Cannot compare a GenericEnum against a \""
-					+ object.getClass().getName() + "\".\n"
+			throw new UtilException("Cannot compare a GenericEnum against a \"" + object.getClass().getName() + "\".\n"
 					+ "Only enums of same type can be compared against each other.");
 		}
 		GenericEnum genenum = (GenericEnum) object;
 		if (!(this.getType() == genenum.getType())) {
-			throw new UtilException(
-					"Cannot compare a GenericEnum against a \""
-							+ object.getClass().getName() + "\".\n"
-							+ "Only enums of same type can be compared"
-							+ " against each other.");
+			throw new UtilException("Cannot compare a GenericEnum against a \"" + object.getClass().getName() + "\".\n"
+					+ "Only enums of same type can be compared" + " against each other.");
 		}
 		if (this.ordinal > genenum.ordinal) {
 			comp = 1;
@@ -204,32 +199,30 @@ public class GenericEnum implements Cloneable, Comparable<RapidEnum>, RapidEnum 
 	}
 
 	/**
-	 * Initialize a RapidEnum generic type with elements
-	 * dynamically generated a initializion time.
+	 * Initialize a RapidEnum generic type with elements dynamically generated a
+	 * initializion time.
 	 * 
 	 * @param enumClass
 	 *            the enum class
 	 * @param elements
 	 *            the elements ((must be subclass of generic enum)
 	 */
-	protected static TypeRapidEnum initType(Class<?> enumClass,
-			List<RapidEnum> elements) {
+	protected static TypeRapidEnum initType(Class<?> enumClass, List<RapidEnum> elements) {
 		TypeRapidEnum type = TypeRapidEnum.createInstance(enumClass.getName(), elements);
 		initType(type, elements);
 		return type;
 	}
 
 	/**
-	 * Initialize a RapidEnum generic type with elements
-	 * dynamically generated a initializion time.
+	 * Initialize a RapidEnum generic type with elements dynamically generated a
+	 * initializion time.
 	 * 
 	 * @param enumClass
 	 *            the enum class
 	 * @param elements
 	 *            the elements ((must be subclass of generic enum)
 	 */
-	protected static void initType(final TypeRapidEnum type,
-			final List<RapidEnum> elements) {
+	protected static void initType(final TypeRapidEnum type, final List<RapidEnum> elements) {
 		for (final RapidEnum enumElement : elements) {
 			final GenericEnum genEnumElement = (GenericEnum) enumElement;
 			genEnumElement.setType(type);

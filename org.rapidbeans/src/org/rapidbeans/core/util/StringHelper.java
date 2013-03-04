@@ -93,12 +93,11 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Implements a more powerful mechanism to remove or filter
-	 * leading and trailing characters than String.trim().<br/>
-	 * Instead of simply removing whitespace characters you can
-	 * specify an arbitrary character to be removed.<br/>
-	 * This variant removes the specified character from
-	 * both sides.
+	 * Implements a more powerful mechanism to remove or filter leading and
+	 * trailing characters than String.trim().<br/>
+	 * Instead of simply removing whitespace characters you can specify an
+	 * arbitrary character to be removed.<br/>
+	 * This variant removes the specified character from both sides.
 	 * 
 	 * @param string
 	 *            the string to strip
@@ -112,12 +111,11 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Implements a more powerful mechanism to remove or filter
-	 * leading and trailing characters than String.trim().<br/>
-	 * Instead of simply removing whitespace characters you can
-	 * specify arbitrary characters to be removed.<br/>
-	 * This variant removes the specified characters from
-	 * both sides.
+	 * Implements a more powerful mechanism to remove or filter leading and
+	 * trailing characters than String.trim().<br/>
+	 * Instead of simply removing whitespace characters you can specify
+	 * arbitrary characters to be removed.<br/>
+	 * This variant removes the specified characters from both sides.
 	 * 
 	 * @param string
 	 *            the string to strip
@@ -131,17 +129,16 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Implements a more powerful mechanism to remove or filter
-	 * leading and trailing whitespace characters than String.trim().<br/>
-	 * Additionally to simply removing whitespace on both string ends
-	 * you can specify if only leading or trailing characters are
-	 * removed.
+	 * Implements a more powerful mechanism to remove or filter leading and
+	 * trailing whitespace characters than String.trim().<br/>
+	 * Additionally to simply removing whitespace on both string ends you can
+	 * specify if only leading or trailing characters are removed.
 	 * 
 	 * @param string
 	 *            the string to strip
 	 * @param stripMode
-	 *            specifies if only leading or trailing characters are
-	 *            removed or if removal happens on both sides.
+	 *            specifies if only leading or trailing characters are removed
+	 *            or if removal happens on both sides.
 	 * 
 	 * @return the filtered string
 	 */
@@ -150,57 +147,52 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Implements a more powerful mechanism to remove or filter
-	 * leading and trailing characters than String.trim().<br/>
-	 * Instead of simply removing whitespace can specify a character
-	 * to be removed.<br/>
-	 * Additionally you can specify the characters are removed from
-	 * both sides or if only leading or trailing characters are
-	 * removed.
+	 * Implements a more powerful mechanism to remove or filter leading and
+	 * trailing characters than String.trim().<br/>
+	 * Instead of simply removing whitespace can specify a character to be
+	 * removed.<br/>
+	 * Additionally you can specify the characters are removed from both sides
+	 * or if only leading or trailing characters are removed.
 	 * 
 	 * @param string
 	 *            the string to strip
 	 * @param stripCharacters
 	 *            specifies a list of characters to remove or filter.
 	 * @param stripMode
-	 *            specifies if only leading or trailing characters are
-	 *            removed or if removal happens on both sides.
+	 *            specifies if only leading or trailing characters are removed
+	 *            or if removal happens on both sides.
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string,
-			final char trimChar, final StripMode mode) {
+	public static String strip(final String string, final char trimChar, final StripMode mode) {
 		return strip(string, new char[] { trimChar }, mode);
 	}
 
 	/**
-	 * Implements a more powerful mechanism to remove or filter
-	 * leading and trailing characters than String.trim().<br/>
-	 * Instead of simply removing whitespace can specify the characters
-	 * to be removed.<br/>
-	 * Additionally you can specify the characters are removed from
-	 * both sides or if only leading or trailing characters are
-	 * removed.
+	 * Implements a more powerful mechanism to remove or filter leading and
+	 * trailing characters than String.trim().<br/>
+	 * Instead of simply removing whitespace can specify the characters to be
+	 * removed.<br/>
+	 * Additionally you can specify the characters are removed from both sides
+	 * or if only leading or trailing characters are removed.
 	 * 
 	 * @param string
 	 *            the string to strip
 	 * @param stripCharacters
 	 *            specifies a list of characters to remove or filter.
 	 * @param stripMode
-	 *            specifies if only leading or trailing characters are
-	 *            removed or if removal happens on both sides.
+	 *            specifies if only leading or trailing characters are removed
+	 *            or if removal happens on both sides.
 	 * 
 	 * @return the filtered string
 	 */
-	public static String strip(final String string,
-			final char[] trimChars, final StripMode mode) {
+	public static String strip(final String string, final char[] trimChars, final StripMode mode) {
 		final int len = string.length();
 		int firstNonStrippedIndex = 0;
 		int lastNonStrippedIndex = len;
 		if (mode == StripMode.both || mode == StripMode.leading) {
 			firstNonStrippedIndex = -1;
-			while (firstNonStrippedIndex < len
-					&& charMatches(trimChars, string.charAt(++firstNonStrippedIndex)))
+			while (firstNonStrippedIndex < len && charMatches(trimChars, string.charAt(++firstNonStrippedIndex)))
 				;
 		}
 		if (mode == StripMode.both || mode == StripMode.trailing) {
@@ -231,8 +223,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * A primitive helper for formatting strings by simply
-	 * filling it up on the left or on the right side.
+	 * A primitive helper for formatting strings by simply filling it up on the
+	 * left or on the right side.
 	 * 
 	 * @param string
 	 *            the string
@@ -245,8 +237,7 @@ public final class StringHelper {
 	 * 
 	 * @return the string filled up to the specified length
 	 */
-	public static String fillUp(final String string, final int length,
-			final char fillChar, final FillMode mode) {
+	public static String fillUp(final String string, final int length, final char fillChar, final FillMode mode) {
 		final int charsToFillCount = length - string.length();
 		if (charsToFillCount <= 0) {
 			return string;
@@ -274,8 +265,7 @@ public final class StringHelper {
 	private static final String[] EMPTY_STRING_ARRAY = {};
 
 	/**
-	 * Splits a string into tokens using any whitespace character
-	 * a delimiter.
+	 * Splits a string into tokens using any whitespace character a delimiter.
 	 * 
 	 * @param string
 	 *            the string to split.
@@ -306,8 +296,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Split the first token from a give string using any
-	 * whitespace character as delimiter.
+	 * Split the first token from a give string using any whitespace character
+	 * as delimiter.
 	 * 
 	 * @param string
 	 *            the string to split
@@ -319,8 +309,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Split the first token from a give string using one or
-	 * multiple delimiter characters given in a string.
+	 * Split the first token from a give string using one or multiple delimiter
+	 * characters given in a string.
 	 * 
 	 * @param string
 	 *            the string to split
@@ -339,8 +329,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Split the last token from a give string using any
-	 * whitespace character as delimiter.
+	 * Split the last token from a give string using any whitespace character as
+	 * delimiter.
 	 * 
 	 * @param string
 	 *            the string to split
@@ -352,8 +342,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Split the last token from a give string using one or
-	 * multiple delimiter characters given in a string.
+	 * Split the last token from a give string using one or multiple delimiter
+	 * characters given in a string.
 	 * 
 	 * @param string
 	 *            the string to split
@@ -372,9 +362,9 @@ public final class StringHelper {
 	}
 
 	/**
-	 * Split all before the last token from a given string using one
-	 * delimiter character in a string. The delimiter tokens in between
-	 * will be simply returned.
+	 * Split all before the last token from a given string using one delimiter
+	 * character in a string. The delimiter tokens in between will be simply
+	 * returned.
 	 * 
 	 * @param string
 	 *            the string to split
@@ -427,8 +417,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * A convenient method to split a string by any whitespace
-	 * character but leave quoted substring together.
+	 * A convenient method to split a string by any whitespace character but
+	 * leave quoted substring together.
 	 * 
 	 * @param string
 	 *            the string that will be split
@@ -529,16 +519,14 @@ public final class StringHelper {
 			list.add(buffer.toString());
 			break;
 		case 2:
-			throw new UtilException("Missing qouote at the end of string\""
-					+ string + "\"");
+			throw new UtilException("Missing qouote at the end of string\"" + string + "\"");
 		}
 
 		return list.toArray(EMPTY_STRING_ARRAY);
 	}
 
 	/**
-	 * A helper class to flag for each split token
-	 * if it was quoted or not.
+	 * A helper class to flag for each split token if it was quoted or not.
 	 * 
 	 * @author Martin Bluemel
 	 */
@@ -583,8 +571,8 @@ public final class StringHelper {
 	}
 
 	/**
-	 * A convenient method to split a string by any whitespace
-	 * character but leave quoted substring together.
+	 * A convenient method to split a string by any whitespace character but
+	 * leave quoted substring together.
 	 * 
 	 * @param string
 	 *            the string that will be split
@@ -686,15 +674,13 @@ public final class StringHelper {
 			list.add(new SplitToken(false, buffer.toString()));
 			break;
 		case 2:
-			throw new UtilException("Missing qouote at the end of string @"
-					+ string + "@");
+			throw new UtilException("Missing qouote at the end of string @" + string + "@");
 		}
 
 		return list;
 	}
 
-	public static List<String> splitEscaped(
-			String string, char sep, char esc) {
+	public static List<String> splitEscaped(String string, char sep, char esc) {
 		final List<String> list = new ArrayList<String>();
 		final StringBuffer buffer = new StringBuffer();
 		int state = 0;
@@ -744,8 +730,7 @@ public final class StringHelper {
 			list.add(buffer.toString());
 			break;
 		case 2:
-			throw new UtilException(
-					"Missing character after escape character '" + esc + "'");
+			throw new UtilException("Missing character after escape character '" + esc + "'");
 		}
 
 		return list;
@@ -850,8 +835,7 @@ public final class StringHelper {
 	 * 
 	 * @return the escaped string
 	 */
-	private static void escape(final String in,
-			final StringBuffer out, final Map<String, String> escMap) {
+	private static void escape(final String in, final StringBuffer out, final Map<String, String> escMap) {
 		final int len = in.length();
 		for (int i = 0; i < len; i++) {
 			boolean replaced = false;
@@ -921,8 +905,7 @@ public final class StringHelper {
 	 *            - TRIM_MODE_BOTH, TRIM_MODE_LEADING or TRIM_MODE_TRAILING
 	 * @return - trimmed string
 	 */
-	public static String trim(final String sIn, final char[] trimChars,
-			final TrimMode mode) {
+	public static String trim(final String sIn, final char[] trimChars, final TrimMode mode) {
 		String s = sIn;
 		int len = sIn.length();
 		int posStart = 0;

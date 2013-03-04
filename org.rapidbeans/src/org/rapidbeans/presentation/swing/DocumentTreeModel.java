@@ -38,8 +38,7 @@ import org.rapidbeans.datasource.Document;
 import org.rapidbeans.datasource.Filter;
 
 /**
- * model part of the Swing implementation for a tree view
- * for a bean document.
+ * model part of the Swing implementation for a tree view for a bean document.
  * 
  * @author Martin Bluemel
  */
@@ -66,8 +65,7 @@ public final class DocumentTreeModel implements TreeModel {
 	 * setter.
 	 * 
 	 * @param show
-	 *            determines if bean links
-	 *            are presented to the tree view.
+	 *            determines if bean links are presented to the tree view.
 	 */
 	protected void setShowBeanLinks(final boolean show) {
 		this.showBeanLinks = show;
@@ -89,8 +87,7 @@ public final class DocumentTreeModel implements TreeModel {
 	 * setter.
 	 * 
 	 * @param show
-	 *            determines if properties
-	 *            are presented to the tree view.
+	 *            determines if properties are presented to the tree view.
 	 */
 	protected void setShowProperties(final boolean show) {
 		this.showProperties = show;
@@ -112,7 +109,8 @@ public final class DocumentTreeModel implements TreeModel {
 	}
 
 	/**
-	 * Returns the root of the tree. Returns <code>null</code> only if the tree has no nodes.
+	 * Returns the root of the tree. Returns <code>null</code> only if the tree
+	 * has no nodes.
 	 * 
 	 * @return the root of the tree
 	 */
@@ -121,13 +119,13 @@ public final class DocumentTreeModel implements TreeModel {
 	}
 
 	/**
-	 * Returns the child of <code>parent</code> at index <code>index</code> in the parent's child array. <code>parent</code> must be a node previously obtained
-	 * from this data source. This should not return <code>null</code> if <code>index</code> is a valid index for <code>parent</code> (that is <code>index >= 0 && index < getChildCount(parent</code>)).
-	 * The parent can be of the following classes.<br/>
-	 * <b>bean: </b>the childs are all Collection Properties
-	 * with role type "composition"<br/>
-	 * <b>PropertyCollection: </b>the child are the beans of this
-	 * collection<br/>
+	 * Returns the child of <code>parent</code> at index <code>index</code> in
+	 * the parent's child array. <code>parent</code> must be a node previously
+	 * obtained from this data source. This should not return <code>null</code> if <code>index</code> is a valid index for <code>parent</code> (that is <code>index >= 0 && index < getChildCount(parent</code>)). The parent can
+	 * be of the following classes.<br/>
+	 * <b>bean: </b>the childs are all Collection Properties with role type
+	 * "composition"<br/>
+	 * <b>PropertyCollection: </b>the child are the beans of this collection<br/>
 	 * 
 	 * @param parent
 	 *            a node in the tree, obtained from this data source
@@ -143,8 +141,7 @@ public final class DocumentTreeModel implements TreeModel {
 		if (parent instanceof RapidBean) {
 			if (this.showProperties) {
 				if (this.showBeanLinks) {
-					final List<PropertyCollection> colList =
-							((RapidBean) parent).getColProperties();
+					final List<PropertyCollection> colList = ((RapidBean) parent).getColProperties();
 					PropertyCollection colProp = null;
 					if (this.beanFilter == null) {
 						colProp = colList.get(index);
@@ -167,8 +164,7 @@ public final class DocumentTreeModel implements TreeModel {
 						foundObj = new DocumentTreeNodePropColLink(colProp);
 					}
 				} else { // showBeanLinks == false
-					final List<PropertyCollection> compColList =
-							((RapidBean) parent).getColPropertiesComposition();
+					final List<PropertyCollection> compColList = ((RapidBean) parent).getColPropertiesComposition();
 					if (this.beanFilter == null) {
 						foundObj = new DocumentTreeNodePropColComp(compColList.get(index));
 					} else {
@@ -196,8 +192,7 @@ public final class DocumentTreeModel implements TreeModel {
 				boolean isComposition;
 				for (PropertyCollection colProp : colList) {
 					if (this.showBeanLinks) {
-						isComposition = ((TypePropertyCollection)
-								colProp.getType()).isComposition();
+						isComposition = ((TypePropertyCollection) colProp.getType()).isComposition();
 					} else {
 						isComposition = true;
 					}
@@ -222,18 +217,16 @@ public final class DocumentTreeModel implements TreeModel {
 			}
 		} else if (parent instanceof DocumentTreeNodePropCol) {
 			// a composition collection returns directly beans
-			final PropertyCollection parentColProp =
-					((DocumentTreeNodePropCol) parent).getColProp();
+			final PropertyCollection parentColProp = ((DocumentTreeNodePropCol) parent).getColProp();
 			if (this.beanFilter == null) {
-				final RapidBean bean = (RapidBean)
-						((ReadonlyListCollection<Link>) parentColProp.getValue()).get(index);
+				final RapidBean bean = (RapidBean) ((ReadonlyListCollection<Link>) parentColProp.getValue()).get(index);
 				if (parent instanceof DocumentTreeNodePropColLink) {
 					foundObj = new DocumentTreeNodeBeanLink(bean);
 				} else if (parent instanceof DocumentTreeNodePropColComp) {
 					foundObj = bean;
 				} else {
-					throw new RapidBeansRuntimeException("Unexpected parent class \""
-							+ parent.getClass().getName() + "\" for bean tree model");
+					throw new RapidBeansRuntimeException("Unexpected parent class \"" + parent.getClass().getName()
+							+ "\" for bean tree model");
 				}
 			} else {
 				int i = 0;
@@ -251,12 +244,11 @@ public final class DocumentTreeModel implements TreeModel {
 			}
 		} else {
 			// bean link nodes or other objects never should be asked for childs
-			throw new RapidBeansRuntimeException("Unexpected parent class \""
-					+ parent.getClass().getName() + "\" for bean tree model");
+			throw new RapidBeansRuntimeException("Unexpected parent class \"" + parent.getClass().getName()
+					+ "\" for bean tree model");
 		}
 		if (foundObj == null) {
-			throw new RapidBeansRuntimeException("No child object found for parent "
-					+ parent + " at index " + index);
+			throw new RapidBeansRuntimeException("No child object found for parent " + parent + " at index " + index);
 		}
 		return foundObj;
 	}
@@ -265,11 +257,12 @@ public final class DocumentTreeModel implements TreeModel {
 	 * returns the number of children of parent.
 	 * 
 	 * @param parent
-	 *            the bean or PropertyCollection tree node.
-	 *            Must be a node previously obtained from this data source.
+	 *            the bean or PropertyCollection tree node. Must be a node
+	 *            previously obtained from this data source.
 	 * 
 	 * @return 0 if the node is a leaf or if it has no children.<br/>
-	 *         for beans: the number of Collection Properties with role type "composition"<br/>
+	 *         for beans: the number of Collection Properties with role type
+	 *         "composition"<br/>
 	 *         for Collection Properties: the number of collected beans<br/>
 	 */
 	@SuppressWarnings("unchecked")
@@ -321,8 +314,8 @@ public final class DocumentTreeModel implements TreeModel {
 				}
 			}
 		} else {
-			throw new RapidBeansRuntimeException("Unexpected child class \""
-					+ parent.getClass().getName() + "\"for bean tree model");
+			throw new RapidBeansRuntimeException("Unexpected child class \"" + parent.getClass().getName()
+					+ "\"for bean tree model");
 		}
 		return count;
 	}
@@ -338,10 +331,8 @@ public final class DocumentTreeModel implements TreeModel {
 	}
 
 	/**
-	 * Returns the index of child in parent.
-	 * If either <code>parent</code> or <code>child</code> is <code>null</code>, returns -1.
-	 * If either <code>parent</code> or <code>child</code> don't
-	 * belong to this tree model, returns -1.
+	 * Returns the index of child in parent. If either <code>parent</code> or <code>child</code> is <code>null</code>, returns -1. If either <code>parent</code> or <code>child</code> don't belong to this tree
+	 * model, returns -1.
 	 * 
 	 * @param parent
 	 *            a node in the tree, obtained from this data source
@@ -366,8 +357,7 @@ public final class DocumentTreeModel implements TreeModel {
 				colPropList = parentBean.getColPropertiesComposition();
 			}
 			if (this.showProperties) {
-				final DocumentTreeNodePropCol childPropTreeNode =
-						(DocumentTreeNodePropCol) child;
+				final DocumentTreeNodePropCol childPropTreeNode = (DocumentTreeNodePropCol) child;
 				int i = 0;
 				for (PropertyCollection colProp : colPropList) {
 					if (childPropTreeNode.getColProp() == colProp) {
@@ -383,8 +373,8 @@ public final class DocumentTreeModel implements TreeModel {
 				} else if (child instanceof DocumentTreeNodeBeanLink) {
 					childBean = ((DocumentTreeNodeBeanLink) child).getLinkedBean();
 				} else {
-					throw new RapidBeansRuntimeException("Unexpected child class \""
-							+ child.getClass().getName() + "\" for bean tree model");
+					throw new RapidBeansRuntimeException("Unexpected child class \"" + child.getClass().getName()
+							+ "\" for bean tree model");
 				}
 				boolean found = false;
 				for (PropertyCollection colProp : colPropList) {
@@ -401,22 +391,20 @@ public final class DocumentTreeModel implements TreeModel {
 				}
 			}
 		} else if (parent instanceof DocumentTreeNodePropCol) {
-			final DocumentTreeNodePropCol parentCollection =
-					(DocumentTreeNodePropCol) parent;
+			final DocumentTreeNodePropCol parentCollection = (DocumentTreeNodePropCol) parent;
 			RapidBean childBean;
 			if (child instanceof RapidBean) {
 				childBean = (RapidBean) child;
 			} else if (child instanceof DocumentTreeNodeBeanLink) {
 				childBean = ((DocumentTreeNodeBeanLink) child).getLinkedBean();
 			} else {
-				throw new RapidBeansRuntimeException("Unexpected child class \""
-						+ child.getClass().getName() + "\" for bean tree model");
+				throw new RapidBeansRuntimeException("Unexpected child class \"" + child.getClass().getName()
+						+ "\" for bean tree model");
 			}
-			index = ((ReadonlyListCollection<Link>)
-					parentCollection.getColProp().getValue()).indexOf(childBean);
+			index = ((ReadonlyListCollection<Link>) parentCollection.getColProp().getValue()).indexOf(childBean);
 		} else {
-			throw new RapidBeansRuntimeException("Unexpected parent class \""
-					+ parent.getClass().getName() + "\" for bean tree model");
+			throw new RapidBeansRuntimeException("Unexpected parent class \"" + parent.getClass().getName()
+					+ "\" for bean tree model");
 		}
 		return index;
 	}
@@ -453,9 +441,8 @@ public final class DocumentTreeModel implements TreeModel {
 	 *            the new value
 	 */
 	public void valueForPathChanged(final TreePath path, final Object newValue) {
-		TreeModelEvent e = new TreeModelEvent(this, path, new int[] { this.getIndexOfChild(
-				path.getParentPath().getLastPathComponent(), newValue) },
-				new Object[] { newValue });
+		TreeModelEvent e = new TreeModelEvent(this, path, new int[] { this.getIndexOfChild(path.getParentPath()
+				.getLastPathComponent(), newValue) }, new Object[] { newValue });
 		for (TreeModelListener listener : this.listeners) {
 			listener.treeNodesChanged(e);
 		}
@@ -479,8 +466,8 @@ public final class DocumentTreeModel implements TreeModel {
 	static final Object[] OA = new Object[0];
 
 	/**
-	 * retrieve an Object Array containing the path of all
-	 * parent beans and Properties.
+	 * retrieve an Object Array containing the path of all parent beans and
+	 * Properties.
 	 * 
 	 * @param argObject
 	 *            the object: ether a bean or a BBPropCollctionTreeNode
@@ -489,8 +476,7 @@ public final class DocumentTreeModel implements TreeModel {
 	 * 
 	 * @return the Object array which is empty if there isn't any parent
 	 */
-	protected Object[] getParentObjects(final Object argObject,
-			final boolean includeObjectSelf) {
+	protected Object[] getParentObjects(final Object argObject, final boolean includeObjectSelf) {
 		ArrayList<Object> al = new ArrayList<Object>();
 		if (includeObjectSelf) {
 			al.add(argObject);
@@ -510,8 +496,7 @@ public final class DocumentTreeModel implements TreeModel {
 				}
 			} else if (o instanceof DocumentTreeNodeBeanLink) {
 				if (o instanceof RapidBean) {
-					PropertyCollection parentProp = ((DocumentTreeNodeBeanLink) o)
-							.getLinkedBean().getParentProperty();
+					PropertyCollection parentProp = ((DocumentTreeNodeBeanLink) o).getLinkedBean().getParentProperty();
 					if (parentProp == null) {
 						o = null;
 					} else {
@@ -527,8 +512,8 @@ public final class DocumentTreeModel implements TreeModel {
 					o = null;
 				}
 			} else {
-				throw new RapidBeansRuntimeException("Unexpected parent class \""
-						+ o.getClass().getName() + "\" for bean tree model");
+				throw new RapidBeansRuntimeException("Unexpected parent class \"" + o.getClass().getName()
+						+ "\" for bean tree model");
 			}
 			if (o != null) {
 				al.add(o);
@@ -546,20 +531,18 @@ public final class DocumentTreeModel implements TreeModel {
 	}
 
 	/**
-	 * Fires a change event for a certain node (bean or Property)
-	 * that indicates that the tree structure has changed below this root.
+	 * Fires a change event for a certain node (bean or Property) that indicates
+	 * that the tree structure has changed below this root.
 	 * 
 	 * @param root
 	 *            the root bean or property with changes below
 	 * @param tree
 	 *            the tree widget
 	 */
-	protected void fireTreeStructureChanged(
-			final Object root, final JTree tree) {
+	protected void fireTreeStructureChanged(final Object root, final JTree tree) {
 
 		if (!(root instanceof RapidBean || root instanceof DocumentTreeNodePropCol)) {
-			throw new RapidBeansRuntimeException("unexpected class of given root object: "
-					+ root.getClass().getName());
+			throw new RapidBeansRuntimeException("unexpected class of given root object: " + root.getClass().getName());
 		}
 
 		final MyTreeNode treeNode = findPresentedTreeNodes(tree, this.getRoot());
@@ -575,8 +558,7 @@ public final class DocumentTreeModel implements TreeModel {
 	}
 
 	@SuppressWarnings("unchecked")
-	private MyTreeNode findPresentedTreeNodes(
-			final JTree tree, final Object presentedObject) {
+	private MyTreeNode findPresentedTreeNodes(final JTree tree, final Object presentedObject) {
 		MyTreeNode node = null;
 		final TreePath path = this.findTreePath(tree, presentedObject);
 		if (path != null) {
@@ -584,8 +566,8 @@ public final class DocumentTreeModel implements TreeModel {
 			if (presentedObject instanceof RapidBean) {
 				for (final Property prop : (((RapidBean) presentedObject)).getPropertyList()) {
 					if (prop instanceof PropertyCollection) {
-						final MyTreeNode subnode = findPresentedTreeNodes(tree,
-								new DocumentTreeNodePropColComp(((PropertyCollection) prop)));
+						final MyTreeNode subnode = findPresentedTreeNodes(tree, new DocumentTreeNodePropColComp(
+								((PropertyCollection) prop)));
 						if (subnode != null) {
 							node.addPresentedChildNode(subnode);
 						}
@@ -630,8 +612,7 @@ public final class DocumentTreeModel implements TreeModel {
 		}
 	}
 
-	private TreePath findTreePath(
-			final JTree tree, final Object presentedObject) {
+	private TreePath findTreePath(final JTree tree, final Object presentedObject) {
 		TreePath treePath = null;
 		int row = 0;
 		while (true) {
@@ -644,8 +625,8 @@ public final class DocumentTreeModel implements TreeModel {
 				}
 			} else if (presentedObject instanceof DocumentTreeNodePropCol) {
 				if (treePath.getLastPathComponent() instanceof DocumentTreeNodePropCol
-						&& ((DocumentTreeNodePropCol) presentedObject).getColProp()
-							== ((DocumentTreeNodePropCol) treePath.getLastPathComponent()).getColProp()) {
+						&& ((DocumentTreeNodePropCol) presentedObject).getColProp() == ((DocumentTreeNodePropCol) treePath
+								.getLastPathComponent()).getColProp()) {
 					break;
 				}
 			} else {
@@ -691,8 +672,7 @@ public final class DocumentTreeModel implements TreeModel {
 	 * @param beans
 	 *            the child objects
 	 */
-	protected void fireBeansInserted(final TreePath path,
-			final int[] childIndices, final RapidBean[] beans) {
+	protected void fireBeansInserted(final TreePath path, final int[] childIndices, final RapidBean[] beans) {
 		TreeModelEvent e = new TreeModelEvent(this, path, childIndices, beans);
 		for (TreeModelListener listener : this.listeners) {
 			listener.treeNodesInserted(e);
@@ -709,8 +689,7 @@ public final class DocumentTreeModel implements TreeModel {
 	 * @param beans
 	 *            the child objects
 	 */
-	protected void fireBeansDeleted(final TreePath path,
-			final int[] childIndices, final RapidBean[] beans) {
+	protected void fireBeansDeleted(final TreePath path, final int[] childIndices, final RapidBean[] beans) {
 		TreeModelEvent e = new TreeModelEvent(this, path, childIndices, beans);
 		for (TreeModelListener listener : this.listeners) {
 			listener.treeNodesRemoved(e);

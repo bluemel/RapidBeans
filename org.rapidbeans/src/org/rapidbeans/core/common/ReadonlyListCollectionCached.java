@@ -28,25 +28,21 @@ import org.rapidbeans.core.event.PropertyChangeListener;
 import org.rapidbeans.core.type.TypePropertyCollection;
 
 /**
- * Encapsulates any collection to make it
- * 1) immutable (read only). Hence if you try to use a changing
- * method like add you get a RuntimeException
- * 2) a List. If the collection is a List the reading List methods
- * use the List directly.
- * 3) If the collection is not a List the reading List methods work
- * on an array (internally made out of it)
- * in addition caches of the array list or array if they are used
- * The object listens to any changes of this property and invalidates
- * the caches if the collection has changed.
+ * Encapsulates any collection to make it 1) immutable (read only). Hence if you
+ * try to use a changing method like add you get a RuntimeException 2) a List.
+ * If the collection is a List the reading List methods use the List directly.
+ * 3) If the collection is not a List the reading List methods work on an array
+ * (internally made out of it) in addition caches of the array list or array if
+ * they are used The object listens to any changes of this property and
+ * invalidates the caches if the collection has changed.
  * 
- * Please note that you must release this collection explicitly in order
- * to make it possible that they are garbage collected.
+ * Please note that you must release this collection explicitly in order to make
+ * it possible that they are garbage collected.
  * 
  * @author Martin Bluemel
  */
 @SuppressWarnings("unchecked")
-public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
-		implements PropertyChangeListener {
+public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T> implements PropertyChangeListener {
 
 	/**
 	 * cached array.
@@ -90,17 +86,16 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	}
 
 	/**
-	 * It's important to release the object in order
-	 * to dispose it for garbage collection.
+	 * It's important to release the object in order to dispose it for garbage
+	 * collection.
 	 */
 	public void release() {
 		this.property.getBean().removePropertyChangeListener(this);
 	}
 
 	/**
-	 * returns the collection converted to an array.
-	 * Since an array is immutable this is not a problem.
-	 * All users of to array must be aware that they will
+	 * returns the collection converted to an array. Since an array is immutable
+	 * this is not a problem. All users of to array must be aware that they will
 	 * get a snapshot of the collection's current state.
 	 * 
 	 * @return the collection converted to an array
@@ -113,8 +108,8 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	}
 
 	/**
-	 * returns the collection converted to an array list.
-	 * Since an arry list is not immutable this method is private.
+	 * returns the collection converted to an array list. Since an arry list is
+	 * not immutable this method is private.
 	 * 
 	 * @return the collection converted to an array
 	 */
@@ -126,10 +121,9 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	}
 
 	/**
-	 * returns the element at the specified position in the list.
-	 * Caution: Collections that are no Lists will be converted
-	 * to arrays which will cause performance problems in case
-	 * a big collections.
+	 * returns the element at the specified position in the list. Caution:
+	 * Collections that are no Lists will be converted to arrays which will
+	 * cause performance problems in case a big collections.
 	 * 
 	 * @param index
 	 *            the position
@@ -148,7 +142,8 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	 * 
 	 * @param o
 	 *            the object reference tha specifies the element to search for
-	 * @return the last index of the element with the given reference or -1 if not found
+	 * @return the last index of the element with the given reference or -1 if
+	 *         not found
 	 */
 	public int lastIndexOf(final Object o) {
 		if (this.getCollection() instanceof List) {
@@ -159,8 +154,8 @@ public class ReadonlyListCollectionCached<T> extends ReadonlyListCollection<T>
 	}
 
 	/**
-	 * The before property change event handle method to implement
-	 * by every listener.
+	 * The before property change event handle method to implement by every
+	 * listener.
 	 * 
 	 * @param e
 	 *            the property change event

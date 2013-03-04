@@ -36,18 +36,15 @@ import org.rapidbeans.core.util.StringHelper;
 /**
  * The "classical" bean implementation of the RapidBeans framework.
  * 
- * * one extra property instance per attribute
- * + quite save against illegal modifications
- * * properties are absolutely immutable
- * * setting properties to illegal values requires extra effort to switch of validation
- * + potentially higher dynamics possible (morphic objects not yet implemented)
- * - not so memory friendly
- * - harder to debug
+ * * one extra property instance per attribute + quite save against illegal
+ * modifications * properties are absolutely immutable * setting properties to
+ * illegal values requires extra effort to switch of validation + potentially
+ * higher dynamics possible (morphic objects not yet implemented) - not so
+ * memory friendly - harder to debug
  * 
  * @author Martin Bluemel
  */
-public abstract class RapidBeanImplStrict
-		extends RapidBeanImplParent {
+public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 
 	/**
 	 * empty string array.
@@ -57,9 +54,7 @@ public abstract class RapidBeanImplStrict
 	/**
 	 * parameter types for constructor RapidBean(String).
 	 */
-	private static final Class<?>[] CONSTR_PARAMTYPES_STRING_ARRAY = {
-			String[].class
-	};
+	private static final Class<?>[] CONSTR_PARAMTYPES_STRING_ARRAY = { String[].class };
 
 	/**
 	 * Creates a new bean instance from a special type.
@@ -130,8 +125,8 @@ public abstract class RapidBeanImplStrict
 	 * constructor with initial values as one String.
 	 * 
 	 * @param initvals
-	 *            String with initial values braced with quotes
-	 *            separated by a blank;
+	 *            String with initial values braced with quotes separated by a
+	 *            blank;
 	 */
 	public RapidBeanImplStrict(final String initvals) {
 		this(initvals, null);
@@ -141,8 +136,8 @@ public abstract class RapidBeanImplStrict
 	 * constructor with initial values as one String and type.
 	 * 
 	 * @param initvals
-	 *            String with initial values braced with quotes
-	 *            separated by a blank;
+	 *            String with initial values braced with quotes separated by a
+	 *            blank;
 	 * @param type
 	 *            the type
 	 */
@@ -200,7 +195,8 @@ public abstract class RapidBeanImplStrict
 				}
 			}
 
-			// automatically create child instances for composite children bean classes
+			// automatically create child instances for composite children bean
+			// classes
 			// with minimal multiplicity defined
 			for (final PropertyCollection colProp : this.getColPropertiesComposition()) {
 				final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
@@ -219,12 +215,11 @@ public abstract class RapidBeanImplStrict
 		}
 	}
 
-	//	private static final Logger log = Logger.getLogger(
-	//			RapidBeanImplStrict.class.getName());
+	// private static final Logger log = Logger.getLogger(
+	// RapidBeanImplStrict.class.getName());
 
 	/**
-	 * The property container.
-	 * Implements the composition.
+	 * The property container. Implements the composition.
 	 */
 	private Property[] properties = null;
 
@@ -239,8 +234,7 @@ public abstract class RapidBeanImplStrict
 	public void initPropmap() {
 		this.propmap = new HashMap<String, Property>();
 		for (int i = 0; i < this.properties.length; i++) {
-			this.propmap.put(this.properties[i].getType().getPropName(),
-					this.properties[i]);
+			this.propmap.put(this.properties[i].getType().getPropName(), this.properties[i]);
 		}
 	}
 
@@ -279,8 +273,7 @@ public abstract class RapidBeanImplStrict
 	public final List<PropertyCollection> getColPropertiesComposition() {
 		final List<PropertyCollection> colproplist = new ArrayList<PropertyCollection>();
 		for (int i = 0; i < this.properties.length; i++) {
-			if (ClassHelper.classOf(TypePropertyCollection.class,
-					this.properties[i].getType().getClass())
+			if (ClassHelper.classOf(TypePropertyCollection.class, this.properties[i].getType().getClass())
 					&& ((TypePropertyCollection) this.properties[i].getType()).isComposition()) {
 				colproplist.add((PropertyCollection) this.properties[i]);
 			}
@@ -302,8 +295,8 @@ public abstract class RapidBeanImplStrict
 	}
 
 	/**
-	 * Convenience getter for a property's value.
-	 * Encourages not to hold the bean's property reference for a long time.
+	 * Convenience getter for a property's value. Encourages not to hold the
+	 * bean's property reference for a long time.
 	 * 
 	 * @param name
 	 *            the Property's name
@@ -315,17 +308,15 @@ public abstract class RapidBeanImplStrict
 		}
 		Property prop = this.propmap.get(name);
 		if (prop == null) {
-			throw new ValidationException("invalid.prop.name",
-					this,
-					"unknown property \"" + name
-							+ "\" for bean type \"" + this.getType().getName() + "\".");
+			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
+					+ "\" for bean type \"" + this.getType().getName() + "\".");
 		}
 		return prop.getValue();
 	}
 
 	/**
-	 * Convenience setter for a property's value.
-	 * Encourages not to hold the bean's property reference for a long time.
+	 * Convenience setter for a property's value. Encourages not to hold the
+	 * bean's property reference for a long time.
 	 * 
 	 * @param name
 	 *            the Property's name
@@ -338,10 +329,8 @@ public abstract class RapidBeanImplStrict
 		}
 		Property prop = this.propmap.get(name);
 		if (prop == null) {
-			throw new ValidationException("invalid.prop.name",
-					this,
-					"unknown property \"" + name
-							+ "\" for bean type \"" + this.getType().getName() + "\".");
+			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
+					+ "\" for bean type \"" + this.getType().getName() + "\".");
 		}
 		prop.setValue(value);
 	}
@@ -364,9 +353,8 @@ public abstract class RapidBeanImplStrict
 	 * @param cloneContainer
 	 *            the container for the cloned bean
 	 * 
-	 * @return a clone of this bean including
-	 *         the whole hierarchy. The container in set to
-	 *         null. Non compositions links are frozen.
+	 * @return a clone of this bean including the whole hierarchy. The container
+	 *         in set to null. Non compositions links are frozen.
 	 */
 	public RapidBean cloneExternal(final Container cloneContainer) {
 		RapidBean bClone = RapidBeanImplStrict.createInstance(this.getType());

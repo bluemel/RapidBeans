@@ -28,8 +28,7 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 	private RapidBean[] parentBeans;
 
 	/**
-	 * the full id string.
-	 * Do not init with null here!
+	 * the full id string. Do not init with null here!
 	 */
 	private String idString;
 
@@ -110,8 +109,7 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 	}
 
 	/**
-	 * lazy initialize the Keyprops.
-	 * Used during initialization.
+	 * lazy initialize the Keyprops. Used during initialization.
 	 */
 	protected void initKeyprops() {
 		super.initKeyprops();
@@ -122,8 +120,7 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 		for (int i = start; i < this.parentBeans.length; i++) {
 			switch (this.parentBeans[i].getType().getIdtype()) {
 			case keypropswithparentscope:
-				sb.append(((IdKeypropswithparentscope)
-						this.parentBeans[i].getId()).getIdStringKeyprops());
+				sb.append(((IdKeypropswithparentscope) this.parentBeans[i].getId()).getIdStringKeyprops());
 				break;
 			default:
 				sb.append(this.parentBeans[i].getIdString());
@@ -135,7 +132,8 @@ public final class IdKeypropswithparentscope extends IdKeyprops {
 	}
 
 	/**
-	 * little helper for determining the start index for iterating over the parents.
+	 * little helper for determining the start index for iterating over the
+	 * parents.
 	 * 
 	 * @return the start index
 	 */

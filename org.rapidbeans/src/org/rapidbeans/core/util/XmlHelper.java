@@ -60,9 +60,8 @@ public class XmlHelper {
 	public static Node getFirstSubnode(final Node node, final String pattern) {
 		Node[] subnodes = getSubnodes(node, pattern);
 		if (subnodes.length == 0) {
-			throw new RapidBeansRuntimeException(
-					"XML Util Error: could not find subnode \"" + pattern
-							+ "\" of node \"" + node.getNodeName() + "\"");
+			throw new RapidBeansRuntimeException("XML Util Error: could not find subnode \"" + pattern
+					+ "\" of node \"" + node.getNodeName() + "\"");
 		}
 		return subnodes[0];
 	}
@@ -76,8 +75,7 @@ public class XmlHelper {
 		final int subnodesCount = subnodes.getLength();
 		final List<Node> foundNodes = new ArrayList<Node>();
 		for (int i = 0; i < subnodesCount; i++) {
-			if (firstPatternToken == null
-					|| subnodes.item(i).getNodeName().equals(firstPatternToken)) {
+			if (firstPatternToken == null || subnodes.item(i).getNodeName().equals(firstPatternToken)) {
 				foundNodes.add(subnodes.item(i));
 			}
 		}
@@ -90,8 +88,7 @@ public class XmlHelper {
 		return getNodeValue(node, pattern, null);
 	}
 
-	public static String getNodeValue(final Node startnode,
-			final String pattern, final String defaultValue) {
+	public static String getNodeValue(final Node startnode, final String pattern, final String defaultValue) {
 		String ret = defaultValue;
 		Node node = getNode(startnode, pattern);
 		if (node != null) {
@@ -108,11 +105,9 @@ public class XmlHelper {
 	/**
 	 * 
 	 * @param node
-	 *            -
-	 *            XML Node
+	 *            - XML Node
 	 * @param nodePathPattern
-	 *            -
-	 *            e. g.: //Server/Service/Connector/@port
+	 *            - e. g.: //Server/Service/Connector/@port
 	 *            Service/Connector[2]/@port
 	 * 
 	 * @return found attribute node
@@ -121,18 +116,15 @@ public class XmlHelper {
 		if (StringHelper.trim(nodePathPattern).equals("")) {
 			return node;
 		}
-		final StringTokenizer st =
-				new StringTokenizer(nodePathPattern, "/");
+		final StringTokenizer st = new StringTokenizer(nodePathPattern, "/");
 		final String firstPatternToken = st.nextToken();
 		if (firstPatternToken.startsWith("@")) {
 			final String attrName = firstPatternToken.substring(1);
 			return node.getAttributes().getNamedItem(attrName);
 		} else {
-			final String subnodePathPattern = getSubnodePathPattern(
-					nodePathPattern, firstPatternToken);
+			final String subnodePathPattern = getSubnodePathPattern(nodePathPattern, firstPatternToken);
 			final String subnodeName = getSubnodePathToken(firstPatternToken);
-			final SubnodeFilter subnodeFilter = createSubnodeFilter(
-					new XmlHelper(), firstPatternToken);
+			final SubnodeFilter subnodeFilter = createSubnodeFilter(new XmlHelper(), firstPatternToken);
 			final Node[] subnodes = getSubnodes(node, subnodeName);
 			if (subnodes == null || subnodes.length == 0) {
 				return null;
@@ -141,34 +133,31 @@ public class XmlHelper {
 		}
 	}
 
-	//    /**
-	//     * @param node XML Node
-	//     * @param attname pattern
-	//     *              e. g.: //Server/Service/Connector/@port
-	//     *            Service/Connector[2]/@port
-	//     * @param attval value of the attribute
-	//     * @return found attribute node
-	//     */
-	//    public static Node createAttribute(final Node node, final String attname,
-	//            final String attval) {
-	//        Element element = (Element) node;
-	//        element.setAttribute(attname, attval);
-	//        return null;
-	//    }
+	// /**
+	// * @param node XML Node
+	// * @param attname pattern
+	// * e. g.: //Server/Service/Connector/@port
+	// * Service/Connector[2]/@port
+	// * @param attval value of the attribute
+	// * @return found attribute node
+	// */
+	// public static Node createAttribute(final Node node, final String attname,
+	// final String attval) {
+	// Element element = (Element) node;
+	// element.setAttribute(attname, attval);
+	// return null;
+	// }
 
 	/**
 	 * extracts the name.
 	 * 
 	 * @param pattern
-	 *            -
-	 *            xxx
+	 *            - xxx
 	 * @param firstPatternToken
-	 *            -
-	 *            xxx
+	 *            - xxx
 	 * @return node name without order e. g. xxx[2] -> xxx
 	 */
-	private static String getSubnodePathPattern(final String pattern,
-			final String firstPatternToken) {
+	private static String getSubnodePathPattern(final String pattern, final String firstPatternToken) {
 		switch (StringHelper.split(pattern, "/").size()) {
 		case 0:
 		case 1:
@@ -227,8 +216,7 @@ public class XmlHelper {
 			token = st.nextToken();
 		}
 		if (!token.startsWith("@")) {
-			throw new RapidBeansRuntimeException("pattern \"" + nodePattern
-					+ "\" does not define an attribute");
+			throw new RapidBeansRuntimeException("pattern \"" + nodePattern + "\" does not define an attribute");
 		}
 		return token.substring(1);
 	}
@@ -237,8 +225,7 @@ public class XmlHelper {
 	 * extracts the name.
 	 * 
 	 * @param patternToken
-	 *            -
-	 *            XML path component
+	 *            - XML path component
 	 * @return node name without order e. g. xxx[2] -> xxx
 	 */
 	private static String getSubnodePathToken(final String patternToken) {
@@ -257,11 +244,9 @@ public class XmlHelper {
 	 * @return top level document
 	 */
 	public static Node getDocumentTopLevel(final String xmlResourceFileName) {
-		final InputStream is = ClassLoader
-				.getSystemResourceAsStream(xmlResourceFileName);
+		final InputStream is = ClassLoader.getSystemResourceAsStream(xmlResourceFileName);
 		if (is == null) {
-			throw new RapidBeansRuntimeException("System resource file \""
-					+ xmlResourceFileName + "\" not found");
+			throw new RapidBeansRuntimeException("System resource file \"" + xmlResourceFileName + "\" not found");
 		}
 		return getDocumentTopLevel(is);
 	}
@@ -292,8 +277,7 @@ public class XmlHelper {
 	 */
 	public static Node getDocumentTopLevel(final InputStream is) {
 		try {
-			final DocumentBuilderFactory dbf =
-					DocumentBuilderFactory.newInstance();
+			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware(true);
 			dbf.setValidating(false);
 			final DocumentBuilder db = dbf.newDocumentBuilder();
@@ -308,8 +292,7 @@ public class XmlHelper {
 		}
 	}
 
-	public static final SubnodeFilter createSubnodeFilter(
-			final XmlHelper encInstance, final String s) {
+	public static final SubnodeFilter createSubnodeFilter(final XmlHelper encInstance, final String s) {
 		if (s.matches(".*\\[[0-9]*]")) {
 			return encInstance.new SubnodeFilterOrder(s);
 		} else if (s.matches(".*\\[@.* *= *'.*'].*")) {
@@ -323,11 +306,9 @@ public class XmlHelper {
 		public abstract Node filter(Node[] subnodes, String subnodePattern);
 	}
 
-	private class SubnodeFilterFirst
-			extends SubnodeFilter {
+	private class SubnodeFilterFirst extends SubnodeFilter {
 
-		public Node filter(Node[] subnodes,
-				final String subnodePathPattern) {
+		public Node filter(Node[] subnodes, final String subnodePathPattern) {
 			Node ret;
 			for (int i = 0; i < subnodes.length; i++) {
 				ret = getNode(subnodes[i], subnodePathPattern);
@@ -340,19 +321,16 @@ public class XmlHelper {
 
 		public SubnodeFilterFirst(String s) {
 			if (s.indexOf('[') != -1) {
-				throw new RapidBeansRuntimeException(
-						"'[' not found in string \"" + s + "\"");
+				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
 			}
 		}
 	}
 
-	private class SubnodeFilterOrder
-			extends SubnodeFilter {
+	private class SubnodeFilterOrder extends SubnodeFilter {
 
 		private int order = -1;
 
-		public Node filter(Node[] subnodes,
-				final String subnodePathPattern) {
+		public Node filter(Node[] subnodes, final String subnodePathPattern) {
 			if (this.order >= subnodes.length) {
 				return null;
 			}
@@ -361,22 +339,18 @@ public class XmlHelper {
 
 		public SubnodeFilterOrder(String s) {
 			if (s.indexOf('[') > -1) {
-				this.order = Integer.parseInt(s.substring(
-						s.indexOf('[') + 1, s.length() - 1));
+				this.order = Integer.parseInt(s.substring(s.indexOf('[') + 1, s.length() - 1));
 			} else {
-				throw new RapidBeansRuntimeException(
-						"'[' not found in string \"" + s + "\"");
+				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
 			}
 		}
 	}
 
-	private class SubnodeFilterAttvals
-			extends SubnodeFilter {
+	private class SubnodeFilterAttvals extends SubnodeFilter {
 
 		private Map<String, String> attrmap = null;
 
-		public Node filter(Node[] subnodes,
-				final String subnodePathPattern) {
+		public Node filter(Node[] subnodes, final String subnodePathPattern) {
 			Node ret = null;
 			for (int i = 0; i < subnodes.length; i++) {
 				final NamedNodeMap attrs = subnodes[i].getAttributes();
@@ -384,8 +358,7 @@ public class XmlHelper {
 					boolean match = true;
 					for (final Entry<String, String> entry : this.attrmap.entrySet()) {
 						final Node attr = attrs.getNamedItem(entry.getKey());
-						if ((attr == null)
-								|| (!attr.getNodeValue().equals(entry.getValue()))) {
+						if ((attr == null) || (!attr.getNodeValue().equals(entry.getValue()))) {
 							match = false;
 							break;
 						}
@@ -403,8 +376,7 @@ public class XmlHelper {
 			if (s.indexOf('[') > -1) {
 				this.attrmap = parseIdAttrs(s);
 			} else {
-				throw new RapidBeansRuntimeException(
-						"'[' not found in string \"" + s + "\"");
+				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
 			}
 		}
 	}

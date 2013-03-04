@@ -67,9 +67,10 @@ public class RapidBeanSerializerTest extends TestCase {
 		File reference = new File("testdata/serialization/testSerMultiElem.xml");
 		assertTrue(reference.exists());
 		assertTrue("File difference", FileHelper.filesEqual(testfile, reference, true, true));
-		//        doc = new Document(testfile);
-		//        p1 = (Person) doc.findBean("org.rapidbeans.test.Person", "Bluemel_Martin_19641014");
-		//        assertEquals("xxx\nyyy", p1.getComment());
+		// doc = new Document(testfile);
+		// p1 = (Person) doc.findBean("org.rapidbeans.test.Person",
+		// "Bluemel_Martin_19641014");
+		// assertEquals("xxx\nyyy", p1.getComment());
 		assertTrue(testfile.delete());
 	}
 
@@ -92,7 +93,7 @@ public class RapidBeanSerializerTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.RapidBeanSerializer#saveBean(org.rapidbeans.core.basic.RapidBean, java.net.URL, java.lang.String)}.
+	 * Test method for {@link org.rapidbeans.core.common.RapidBeanSerializer#saveBean(org.rapidbeans.core.basic.RapidBean, java.net.URL, java.lang.String)} .
 	 * 
 	 * @throws IOException
 	 * @throws JAXBException
@@ -100,10 +101,8 @@ public class RapidBeanSerializerTest extends TestCase {
 	public void testSaveBeanForJaxb() throws IOException {
 		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
 		File file2 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationTestTweakedBinding.xml");
-		Document doc = new Document(TypeRapidBean.forName(
-				ConfigApplicationSwing.class.getName()), file1);
-		(new RapidBeanSerializer()).saveBean(doc.getRoot(),
-				file2.toURI().toURL(), doc.getEncoding());
+		Document doc = new Document(TypeRapidBean.forName(ConfigApplicationSwing.class.getName()), file1);
+		(new RapidBeanSerializer()).saveBean(doc.getRoot(), file2.toURI().toURL(), doc.getEncoding());
 		assertTrue(FileHelper.filesEqual(file1, file2, true, true));
 		file2.delete();
 	}

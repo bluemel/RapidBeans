@@ -79,24 +79,24 @@ public class Addressbook5IntegrationTest {
 
 	private static DocumentTreeViewSwing treeView3 = null;
 
-	//    private static Document doc3 = null;
+	// private static Document doc3 = null;
 
 	private static JTree tree3 = null;
 
 	// JUnit 3 stuff
-	//    private static int testMethodCount = -1;
+	// private static int testMethodCount = -1;
 	//
-	//    private static int testMethodIndex = 0;
+	// private static int testMethodIndex = 0;
 	//
-	//    private int countTestMethods() {
-	//        int count = 0;
-	//        for (Method method : this.getClass().getMethods()) {
-	//            if (method.getName().startsWith("test")) {
-	//                count++;
-	//            }
-	//        }
-	//        return count;
-	//    }
+	// private int countTestMethods() {
+	// int count = 0;
+	// for (Method method : this.getClass().getMethods()) {
+	// if (method.getName().startsWith("test")) {
+	// count++;
+	// }
+	// }
+	// return count;
+	// }
 
 	@BeforeClass
 	public static void setUpClass() throws IOException {
@@ -112,8 +112,7 @@ public class Addressbook5IntegrationTest {
 		String viewname = "file:";
 		switch (PlatformHelper.getOsfamily()) {
 		case windows:
-			viewname += "/"
-					+ testDocument.getCanonicalPath().replace(File.separatorChar, '/');
+			viewname += "/" + testDocument.getCanonicalPath().replace(File.separatorChar, '/');
 			break;
 		default:
 			viewname += testDocument.getCanonicalPath();
@@ -124,13 +123,12 @@ public class Addressbook5IntegrationTest {
 		treeView1 = (DocumentTreeViewSwing) view1.getTreeView();
 		tree1 = (JTree) treeView1.getTree();
 		view3 = (DocumentView) application3.getView(viewname);
-		//        doc3 = view3.getDocument();
+		// doc3 = view3.getDocument();
 		treeView3 = (DocumentTreeViewSwing) view3.getTreeView();
 		tree3 = (JTree) treeView3.getTree();
 	}
 
-	private static void initApp(Application app, final String lang,
-			final Locale loc) throws IOException {
+	private static void initApp(Application app, final String lang, final Locale loc) throws IOException {
 		if (app == null) {
 			System.setProperty("user.language", lang);
 			System.setProperty("user.country", "");
@@ -152,10 +150,10 @@ public class Addressbook5IntegrationTest {
 	@After
 	public void tearDown() {
 		// JUnit 3 stuff
-		//        testMethodIndex++;
-		//        if (testMethodIndex < testMethodCount) {
+		// testMethodIndex++;
+		// if (testMethodIndex < testMethodCount) {
 		resetApplication(application1, view1, doc1);
-		//        }
+		// }
 	}
 
 	@AfterClass
@@ -163,8 +161,7 @@ public class Addressbook5IntegrationTest {
 		ApplicationManager.resetApplication();
 	}
 
-	private void resetApplication(final TestApplication app,
-			final View view, Document doc) {
+	private void resetApplication(final TestApplication app, final View view, Document doc) {
 		app.setTestMode(true);
 		view.close();
 		app.setTestMode(TEST_MODE);
@@ -179,9 +176,9 @@ public class Addressbook5IntegrationTest {
 	}
 
 	/**
-	 * More than one -docroottype leads to one "New" Submenu with
-	 * one specific menu entry per type.
-	 * Per default the specific menu entry shows the root element bean's type name.
+	 * More than one -docroottype leads to one "New" Submenu with one specific
+	 * menu entry per type. Per default the specific menu entry shows the root
+	 * element bean's type name.
 	 */
 	@Test
 	public void testNewMenuDocrootclassSingle() {
@@ -206,10 +203,9 @@ public class Addressbook5IntegrationTest {
 
 	/**
 	 * If you have specified a localized class name as GUI text
-	 * bean.org.rapidbeans.test.addressbook5.<lowercased class name>
-	 * and no special menu text
-	 * mainwindow.menubar.file.newsubmenu.<lowercased class name>.label
-	 * the localized class name will be taken as menu text
+	 * bean.org.rapidbeans.test.addressbook5.<lowercased class name> and no
+	 * special menu text mainwindow.menubar.file.newsubmenu.<lowercased class
+	 * name>.label the localized class name will be taken as menu text
 	 */
 	@Test
 	public void testNewMenuDocrootclassMultiLocalizedClassnames() {
@@ -224,8 +220,8 @@ public class Addressbook5IntegrationTest {
 
 	/**
 	 * If you have specified a special menu GUI text
-	 * mainwindow.menubar.file.newsubmenu.<lowercased class name>.label
-	 * this text will be taken as menu text
+	 * mainwindow.menubar.file.newsubmenu.<lowercased class name>.label this
+	 * text will be taken as menu text
 	 */
 	@Test
 	public void testNewMenuDocrootclassMultiLocalizedGuiTexts() {
@@ -242,15 +238,12 @@ public class Addressbook5IntegrationTest {
 	 * Create a new person named "Gustav Gans".
 	 */
 	@Test
-	public void testAssociation1to1()
-			throws InterruptedException, IOException {
+	public void testAssociation1to1() throws InterruptedException, IOException {
 
-		Person alf = (Person) doc1.findBeanByQuery(
-				"org.rapidbeans.test.addressbook5.Person[firstname = 'Alfred']");
-		Person martin = (Person) doc1.findBeanByQuery(
-				"org.rapidbeans.test.addressbook5.Person[firstname = 'Martin']");
-		GenericBean umartin = (GenericBean) doc1.findBeanByQuery(
-				"org.rapidbeans.test.addressbook5.User[accountname = 'martin']");
+		Person alf = (Person) doc1.findBeanByQuery("org.rapidbeans.test.addressbook5.Person[firstname = 'Alfred']");
+		Person martin = (Person) doc1.findBeanByQuery("org.rapidbeans.test.addressbook5.Person[firstname = 'Martin']");
+		GenericBean umartin = (GenericBean) doc1
+				.findBeanByQuery("org.rapidbeans.test.addressbook5.User[accountname = 'martin']");
 
 		// SETUP: assert user martin is neither linked to alf nor to martin
 		Assert.assertEquals("Alfred", alf.getPropValue("firstname"));
@@ -260,27 +253,25 @@ public class Addressbook5IntegrationTest {
 		Assert.assertEquals("martin", umartin.getPropValue("accountname"));
 		Assert.assertNull(umartin.getPropValue("person"));
 
-		// SETUP: open editor for beans Person:alf, Person:martin, AdrbookUser:martin
+		// SETUP: open editor for beans Person:alf, Person:martin,
+		// AdrbookUser:martin
 		tree1.expandPath(tree1.getPathForRow(1));
 		tree1.expandPath(tree1.getPathForRow(10));
 
 		tree1.setSelectionPath(tree1.getPathForRow(2));
 		EditorBean edAnton = treeView1.editBeans();
 		Assert.assertSame(alf, edAnton.getBean());
-		EditorPropertyComboboxSwing pedAlfUser = (EditorPropertyComboboxSwing)
-				edAnton.getPropEditor("user");
+		EditorPropertyComboboxSwing pedAlfUser = (EditorPropertyComboboxSwing) edAnton.getPropEditor("user");
 		Assert.assertNull(pedAlfUser.getInputFieldValue());
 
 		tree1.setSelectionPath(tree1.getPathForRow(5));
 		EditorBean edMartin = treeView1.editBeans();
-		EditorPropertyComboboxSwing pedMartinUser = (EditorPropertyComboboxSwing)
-				edMartin.getPropEditor("user");
+		EditorPropertyComboboxSwing pedMartinUser = (EditorPropertyComboboxSwing) edMartin.getPropEditor("user");
 		Assert.assertSame(martin, edMartin.getBean());
 
 		tree1.setSelectionPath(tree1.getPathForRow(15));
 		EditorBean edUmartin = treeView1.editBeans();
-		EditorPropertyComboboxSwing pedUmartinPerson = (EditorPropertyComboboxSwing)
-				edUmartin.getPropEditor("person");
+		EditorPropertyComboboxSwing pedUmartinPerson = (EditorPropertyComboboxSwing) edUmartin.getPropEditor("person");
 		Assert.assertSame(umartin, edUmartin.getBean());
 
 		// assert all 3 editors have no user / person selected
@@ -291,8 +282,7 @@ public class Addressbook5IntegrationTest {
 		Assert.assertEquals(8, cbUmartinPersons.getItemCount());
 
 		// TEST: associate AdrbookUser:martin with Person:alf
-		cbUmartinPersons.setSelectedIndex(
-				findIndex(cbUmartinPersons, "firstname", "Alfred"));
+		cbUmartinPersons.setSelectedIndex(findIndex(cbUmartinPersons, "firstname", "Alfred"));
 
 		Assert.assertSame(alf, ((Collection<?>) umartin.getPropValue("person")).iterator().next());
 		Assert.assertSame(umartin, ((Collection<?>) alf.getPropValue("user")).iterator().next());
@@ -303,8 +293,7 @@ public class Addressbook5IntegrationTest {
 		Assert.assertNull(pedMartinUser.getInputFieldValue());
 
 		// TEST: associate AdrbookUser:martin with Person:martin
-		cbUmartinPersons.setSelectedIndex(
-				findIndex(cbUmartinPersons, "firstname", "Martin"));
+		cbUmartinPersons.setSelectedIndex(findIndex(cbUmartinPersons, "firstname", "Martin"));
 
 		Assert.assertSame(martin, ((Collection<?>) umartin.getPropValue("person")).iterator().next());
 		Assert.assertSame(umartin, ((Collection<?>) martin.getPropValue("user")).iterator().next());
@@ -338,9 +327,7 @@ public class Addressbook5IntegrationTest {
 		final int count = cb.getItemCount();
 		for (int i = 0; i < count; i++) {
 			final RapidBean bean = (RapidBean) cb.getItemAt(i);
-			if (bean != null
-					&& bean.getProperty(attrname) != null
-					&& ((String) bean.getPropValue(attrname)).equals(s)) {
+			if (bean != null && bean.getProperty(attrname) != null && ((String) bean.getPropValue(attrname)).equals(s)) {
 				return i;
 			}
 		}
@@ -348,18 +335,15 @@ public class Addressbook5IntegrationTest {
 	}
 
 	/**
-	 * Create a new group "gr"
-	 * and afterwards a second group "gr1".
+	 * Create a new group "gr" and afterwards a second group "gr1".
 	 * 
-	 * While typing the second group we are temporarily in a state
-	 * where the second group's name is equal to the one we have
-	 * already created formerly.
-	 * At this stage the editor changes to "error presentation mode".
-	 * However when we continue typing the mode should be normal again.
+	 * While typing the second group we are temporarily in a state where the
+	 * second group's name is equal to the one we have already created formerly.
+	 * At this stage the editor changes to "error presentation mode". However
+	 * when we continue typing the mode should be normal again.
 	 */
 	@Test
-	public void testCreateGroupTemporarilyDuplicate()
-			throws InterruptedException, IOException {
+	public void testCreateGroupTemporarilyDuplicate() throws InterruptedException, IOException {
 		Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 		GenericBean adrbook = (GenericBean) doc1.getRoot();
 		Assert.assertNotNull(adrbook.getProperty("groups").getValue());
@@ -398,8 +382,7 @@ public class Addressbook5IntegrationTest {
 	}
 
 	@Test
-	public void testDeletePerson4()
-			throws InterruptedException, IOException {
+	public void testDeletePerson4() throws InterruptedException, IOException {
 		tree1.expandPath(tree1.getPathForRow(1));
 		tree1.setSelectionPath(tree1.getPathForRow(4));
 		RapidBean bean = treeView1.getSelectedBeans()[0];
@@ -410,8 +393,7 @@ public class Addressbook5IntegrationTest {
 	}
 
 	@Test
-	public void testDeletePerson5()
-			throws InterruptedException, IOException {
+	public void testDeletePerson5() throws InterruptedException, IOException {
 		tree1.expandPath(tree1.getPathForRow(1));
 		tree1.setSelectionPath(tree1.getPathForRow(5));
 		RapidBean bean = treeView1.getSelectedBeans()[0];
@@ -446,12 +428,9 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(7, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -466,18 +445,12 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(6, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertFalse(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
-			Assert.assertEquals(2, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group1));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group2));
+			Assert.assertEquals(6, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertFalse(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
 		} finally {
 			if (!adrbookPersons.getValue().contains(alfred)) {
 				adrbookPersons.removeLink(martin);
@@ -502,12 +475,9 @@ public class Addressbook5IntegrationTest {
 				Assert.assertEquals(2, martin.getGroups().size());
 				Assert.assertSame(group1, martin.getGroups().get(0));
 				Assert.assertSame(group2, martin.getGroups().get(1));
-				Assert.assertEquals(7, doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").size());
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(martin));
+				Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 				Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -541,12 +511,9 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(7, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -566,18 +533,12 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(6, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertFalse(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
-			Assert.assertEquals(2, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group1));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group2));
+			Assert.assertEquals(6, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertFalse(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
 		} finally {
 			if (!adrbookPersons.getValue().contains(alfred)) {
 				adrbookPersons.removeLink(martin);
@@ -602,12 +563,9 @@ public class Addressbook5IntegrationTest {
 				Assert.assertEquals(2, martin.getGroups().size());
 				Assert.assertSame(group1, martin.getGroups().get(0));
 				Assert.assertSame(group2, martin.getGroups().get(1));
-				Assert.assertEquals(7, doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").size());
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(martin));
+				Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 				Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -641,12 +599,9 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(7, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -663,18 +618,12 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(6, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertFalse(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
-			Assert.assertEquals(2, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group1));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group2));
+			Assert.assertEquals(6, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertFalse(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
 		} finally {
 			if (!adrbookPersons.getValue().contains(alfred)) {
 				adrbookPersons.removeLink(martin);
@@ -699,12 +648,9 @@ public class Addressbook5IntegrationTest {
 				Assert.assertEquals(2, martin.getGroups().size());
 				Assert.assertSame(group1, martin.getGroups().get(0));
 				Assert.assertSame(group2, martin.getGroups().get(1));
-				Assert.assertEquals(7, doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").size());
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-				Assert.assertTrue(doc1.findBeansByType(
-						"org.rapidbeans.test.addressbook5.Person").contains(martin));
+				Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 				Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 				Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -739,12 +685,9 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(7, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -764,18 +707,12 @@ public class Addressbook5IntegrationTest {
 			Assert.assertEquals(2, martin.getGroups().size());
 			Assert.assertSame(group1, martin.getGroups().get(0));
 			Assert.assertSame(group2, martin.getGroups().get(1));
-			Assert.assertEquals(6, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").size());
-			Assert.assertFalse(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Person").contains(martin));
-			Assert.assertEquals(2, doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").size());
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group1));
-			Assert.assertTrue(doc1.findBeansByType(
-					"org.rapidbeans.test.addressbook5.Group").contains(group2));
+			Assert.assertEquals(6, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+			Assert.assertFalse(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
+			Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
+			Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
 		} catch (RuntimeException re1) {
 			re = re1;
 		} finally {
@@ -802,12 +739,9 @@ public class Addressbook5IntegrationTest {
 					Assert.assertEquals(2, martin.getGroups().size());
 					Assert.assertSame(group1, martin.getGroups().get(0));
 					Assert.assertSame(group2, martin.getGroups().get(1));
-					Assert.assertEquals(7, doc1.findBeansByType(
-							"org.rapidbeans.test.addressbook5.Person").size());
-					Assert.assertTrue(doc1.findBeansByType(
-							"org.rapidbeans.test.addressbook5.Person").contains(alfred));
-					Assert.assertTrue(doc1.findBeansByType(
-							"org.rapidbeans.test.addressbook5.Person").contains(martin));
+					Assert.assertEquals(7, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").size());
+					Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(alfred));
+					Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Person").contains(martin));
 					Assert.assertEquals(2, doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").size());
 					Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group1));
 					Assert.assertTrue(doc1.findBeansByType("org.rapidbeans.test.addressbook5.Group").contains(group2));
@@ -825,8 +759,7 @@ public class Addressbook5IntegrationTest {
 	}
 
 	@Test
-	public void testUpdatePersonChangeLastnameProgrammatically()
-			throws InterruptedException, IOException {
+	public void testUpdatePersonChangeLastnameProgrammatically() throws InterruptedException, IOException {
 
 		tree1.expandPath(tree1.getPathForRow(1));
 
@@ -876,8 +809,7 @@ public class Addressbook5IntegrationTest {
 	}
 
 	@Test
-	public void testUpdatePersonChangeLastnameViaEditor()
-			throws InterruptedException, IOException {
+	public void testUpdatePersonChangeLastnameViaEditor() throws InterruptedException, IOException {
 		tree1.expandPath(tree1.getPathForRow(1));
 
 		RapidBean b1 = (RapidBean) tree1.getPathForRow(2).getLastPathComponent();
@@ -930,8 +862,7 @@ public class Addressbook5IntegrationTest {
 	}
 
 	@Test
-	public void testUpdatePersonDate()
-			throws InterruptedException, IOException {
+	public void testUpdatePersonDate() throws InterruptedException, IOException {
 		tree1.expandPath(tree1.getPathForRow(1));
 		tree1.setSelectionPath(tree1.getPathForRow(3));
 		EditorBean ed = treeView1.editBeans();
@@ -1011,11 +942,9 @@ public class Addressbook5IntegrationTest {
 
 		private boolean testMode = TEST_MODE;
 
-		public TestApplication(final String[] docroottypes)
-				throws IOException {
-			super("MyAddressbook", docroottypes,
-					"org.rapidbeans.test.addressbook5",
-					testDocument.getCanonicalPath(), null, null);
+		public TestApplication(final String[] docroottypes) throws IOException {
+			super("MyAddressbook", docroottypes, "org.rapidbeans.test.addressbook5", testDocument.getCanonicalPath(),
+					null, null);
 		}
 
 		public void setTestMode(final boolean mode) {
@@ -1032,8 +961,7 @@ public class Addressbook5IntegrationTest {
 	 */
 	private static class TestApplication1 extends TestApplication {
 
-		public TestApplication1(final File testDocument)
-				throws IOException {
+		public TestApplication1(final File testDocument) throws IOException {
 			super(new String[] { "org.rapidbeans.test.addressbook5.Addressbook" });
 		}
 	}
@@ -1043,8 +971,7 @@ public class Addressbook5IntegrationTest {
 	 */
 	private static class TestApplication2 extends TestApplication {
 
-		public TestApplication2(final File testDocument)
-				throws IOException {
+		public TestApplication2(final File testDocument) throws IOException {
 			super(new String[] { "org.rapidbeans.test.addressbook5.Addressbook",
 					"org.rapidbeans.test.addressbook5.Person" });
 		}
@@ -1054,8 +981,7 @@ public class Addressbook5IntegrationTest {
 	 * Two doc1 root types.
 	 */
 	private static class TestApplication3 extends TestApplication {
-		public TestApplication3(final File testDocument)
-				throws IOException {
+		public TestApplication3(final File testDocument) throws IOException {
 			super(new String[] { "org.rapidbeans.test.addressbook5.Addressbook",
 					"org.rapidbeans.test.addressbook5.Person" });
 		}
@@ -1065,8 +991,7 @@ public class Addressbook5IntegrationTest {
 	 * Two doc1 root types.
 	 */
 	private static class TestApplication4 extends TestApplication {
-		public TestApplication4(final File testDocument)
-				throws IOException {
+		public TestApplication4(final File testDocument) throws IOException {
 			super(new String[] { "org.rapidbeans.test.addressbook5.Addressbook",
 					"org.rapidbeans.test.addressbook5.Person" });
 		}
@@ -1078,20 +1003,18 @@ public class Addressbook5IntegrationTest {
 		}
 		initApp(application1, "en", Locale.ENGLISH);
 		// JUnit 3 Stuff
-		//        if (testMethodCount == -1) {
-		//            testMethodCount = this.countTestMethods();
-		//        }
+		// if (testMethodCount == -1) {
+		// testMethodCount = this.countTestMethods();
+		// }
 		view1 = (DocumentView) application1.getView("file:/"
-				+ testDocument.getCanonicalPath().replace(File.separatorChar, '/')
-				+ ".standard");
+				+ testDocument.getCanonicalPath().replace(File.separatorChar, '/') + ".standard");
 		doc1 = view1.getDocument();
 		treeView1 = (DocumentTreeViewSwing) view1.getTreeView();
 		tree1 = (JTree) treeView1.getTree();
 
 		view3 = (DocumentView) application3.getView("file:/"
-				+ testDocument.getCanonicalPath().replace(File.separatorChar, '/')
-				+ ".standard");
-		//        doc3 = view3.getDocument();
+				+ testDocument.getCanonicalPath().replace(File.separatorChar, '/') + ".standard");
+		// doc3 = view3.getDocument();
 		treeView3 = (DocumentTreeViewSwing) view3.getTreeView();
 		tree3 = (JTree) treeView3.getTree();
 	}

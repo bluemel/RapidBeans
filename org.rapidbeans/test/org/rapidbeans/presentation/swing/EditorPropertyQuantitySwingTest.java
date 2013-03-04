@@ -52,8 +52,7 @@ public class EditorPropertyQuantitySwingTest {
 	@Test
 	public void testHasPotentiallyValidInputFieldGerman() {
 		EditorPropertyQuantitySwing proped = createTestPropEdQuantity();
-		ValidationException ex = new ValidationException(
-				"invalid.prop.quantity.string.local.incomplete", proped, "yyy");
+		ValidationException ex = new ValidationException("invalid.prop.quantity.string.local.incomplete", proped, "yyy");
 		assertPotentialOkQuantity("", true, proped, ex);
 		assertPotentialOkQuantity("1", true, proped, ex);
 		assertPotentialOkQuantity("a", false, proped, ex);
@@ -71,8 +70,7 @@ public class EditorPropertyQuantitySwingTest {
 	 * @param proped
 	 *            the property date editor
 	 */
-	private void assertValidTyping(final String input,
-			final boolean shouldBePotentiallyValid,
+	private void assertValidTyping(final String input, final boolean shouldBePotentiallyValid,
 			final boolean shouldBeValid, final EditorPropertyQuantitySwing proped) {
 		JTextField tf = proped.getWidgetTextField();
 		tf.setText(input);
@@ -104,8 +102,8 @@ public class EditorPropertyQuantitySwingTest {
 	 * @param ex
 	 *            the exception
 	 */
-	private void assertPotentialOkQuantity(final String s, final boolean ok,
-			final EditorPropertyQuantitySwing proped, final ValidationException ex) {
+	private void assertPotentialOkQuantity(final String s, final boolean ok, final EditorPropertyQuantitySwing proped,
+			final ValidationException ex) {
 		proped.getWidgetTextField().setText(s);
 		Assert.assertEquals(ok, proped.hasPotentiallyValidInputField(ex));
 	}
@@ -124,8 +122,7 @@ public class EditorPropertyQuantitySwingTest {
 		RapidBean testBean = createTestBean1();
 		PropertyQuantity prop = (PropertyQuantity) testBean.getProperty("quant");
 		prop.setValue(new Length(BigDecimal.ZERO, UnitLength.m));
-		EditorPropertyQuantitySwing proped =
-				new EditorPropertyQuantitySwing(client, null, prop, prop.clone(testBean));
+		EditorPropertyQuantitySwing proped = new EditorPropertyQuantitySwing(client, null, prop, prop.clone(testBean));
 		return proped;
 	}
 
@@ -136,17 +133,12 @@ public class EditorPropertyQuantitySwingTest {
 	 */
 	private static GenericBean createTestBean1() {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TestBean1") == null) {
-			String descr = "<beantype name=\"TestBean1\">"
-					+ "<property name=\"quant\" type=\"quantity\""
-					+ " quantity=\"org.rapidbeans.domain.math.Length\">"
-					+ "</property>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+			String descr = "<beantype name=\"TestBean1\">" + "<property name=\"quant\" type=\"quantity\""
+					+ " quantity=\"org.rapidbeans.domain.math.Length\">" + "</property>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean =
-				(GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
 		return bean;
 	}
 

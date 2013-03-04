@@ -59,13 +59,15 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		assertNull(proped.getInputFieldValue());
 		assertFalse(proped.isInputFieldChanged());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
 		assertTrue(proped.isInputFieldChanged());
 
-		// when you delete these characters again the input field value is valid and null
+		// when you delete these characters again the input field value is valid
+		// and null
 		// again since empty is invalid anyway
 		tf.setText("");
 		proped.validateInputField();
@@ -74,12 +76,11 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	/**
-	 * The default behavior is that empty strings are invalid
-	 * Mandatory means that they may not be null.
+	 * The default behavior is that empty strings are invalid Mandatory means
+	 * that they may not be null.
 	 */
 	public void testStringGetInputFieldValueEmptyDefaultManadatory() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "mandatory", "true" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "mandatory", "true" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -112,13 +113,15 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		// it is not really changed but the user should change it
 		assertFalse(proped.isInputFieldChanged());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
 		assertTrue(proped.isInputFieldChanged());
 
-		// when you delete these characters again the input field value is valid and null
+		// when you delete these characters again the input field value is valid
+		// and null
 		// again since empty is invalid anyway
 		tf.setText("");
 		assertNull(proped.getInputFieldValue());
@@ -136,8 +139,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	 * same as default behavior.
 	 */
 	public void testStringGetInputFieldValueEmptyInvalid() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "emptyvalid", "false" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "emptyvalid", "false" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -156,12 +158,14 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		proped.validateInputField();
 		assertNull(proped.getInputFieldValue());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
 
-		// when you delete these characters again the input field value is valid and null
+		// when you delete these characters again the input field value is valid
+		// and null
 		// again since empty is invalid anyway
 		tf.setText("");
 		proped.validateInputField();
@@ -172,8 +176,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	 * same as default mandatory behavior.
 	 */
 	public void testStringGetInputFieldValueEmptyInvalidManadatory() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "mandatory", "true", "emptyvalid", "false" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "mandatory", "true", "emptyvalid", "false" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -196,12 +199,14 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		// initially the input field value is valid and null
 		assertNull(proped.getInputFieldValue());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
 
-		// when you delete these characters again the input field value is valid and null
+		// when you delete these characters again the input field value is valid
+		// and null
 		// again since empty is invalid anyway
 		tf.setText("");
 		assertNull(proped.getInputFieldValue());
@@ -215,14 +220,13 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	/**
-	 * If empty is valid the input field always returns an empty string.
-	 * That automatically results in the fact that the editor initially
-	 * has a changed input field. If you want to avoid that you simply
-	 * set the property's default value to an empty string (see next test).
+	 * If empty is valid the input field always returns an empty string. That
+	 * automatically results in the fact that the editor initially has a changed
+	 * input field. If you want to avoid that you simply set the property's
+	 * default value to an empty string (see next test).
 	 */
 	public void testStringGetInputFieldValueEmptyValid() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "emptyvalid", "true" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "emptyvalid", "true" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -237,7 +241,8 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		assertEquals("", proped.getInputFieldValue());
 		assertTrue(proped.isInputFieldChanged());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
@@ -252,14 +257,12 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	/**
-	 * If empty is valid the input field always returns an empty string.
-	 * Setting the property's default value to an empty string helps
-	 * avoiding undefined values and having a changed input field
-	 * value initially.
+	 * If empty is valid the input field always returns an empty string. Setting
+	 * the property's default value to an empty string helps avoiding undefined
+	 * values and having a changed input field value initially.
 	 */
 	public void testStringGetInputFieldValueEmptyValidDefaultvalueEmpty() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "default", "", "emptyvalid", "true" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "default", "", "emptyvalid", "true" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -276,7 +279,8 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		assertEquals("", proped.getInputFieldValue());
 		assertFalse(proped.isInputFieldChanged());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
@@ -294,8 +298,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	 * If empty is valid the input field always returns an empty string.
 	 */
 	public void testStringGetInputFieldValueEmptyValidMandatory() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "mandatory", "true", "emptyvalid", "true" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "mandatory", "true", "emptyvalid", "true" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -325,7 +328,8 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		proped.validateInputField();
 		assertEquals("", proped.getInputFieldValue());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		assertTrue(proped.isInputFieldChanged());
 		tf.setText("a");
 		proped.validateInputField();
@@ -340,12 +344,12 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	/**
-	 * These configurations go together well.
-	 * You have valid values from the start.
+	 * These configurations go together well. You have valid values from the
+	 * start.
 	 */
 	public void testStringGetInputFieldValueEmptyValidManadtoryDefaultvalueEmpty() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "mandatory", "true", "default", "", "emptyvalid", "true" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "mandatory", "true", "default", "",
+				"emptyvalid", "true" });
 		JTextField tf = (JTextField) proped.getWidget();
 
 		// just to reassure the PropertyString behavior
@@ -367,7 +371,8 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		assertEquals("", proped.getInputFieldValue());
 		assertFalse(proped.isInputFieldChanged());
 
-		// when you start writing characters the input field value is valid and defined
+		// when you start writing characters the input field value is valid and
+		// defined
 		tf.setText("a");
 		proped.validateInputField();
 		assertEquals("a", proped.getInputFieldValue());
@@ -382,8 +387,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	public void testStringInvalidPattern() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "pattern", "[0-9]*" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "pattern", "[0-9]*" });
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText("1234x");
 		try {
@@ -398,8 +402,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	public void testStringInvalidMaxlen() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "maxlen", "10" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "maxlen", "10" });
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText("12345678901");
 		try {
@@ -414,8 +417,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	}
 
 	public void testStringInvalidMinlen() {
-		EditorPropertyTextSwing proped = createTestPropEdText(
-				new String[] { "minlen", "2" });
+		EditorPropertyTextSwing proped = createTestPropEdText(new String[] { "minlen", "2" });
 		JTextField tf = (JTextField) proped.getWidget();
 		tf.setText("1");
 		try {
@@ -432,8 +434,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 	/**
 	 * @return a test property editor with a simple text field
 	 */
-	private static EditorPropertyTextSwing createTestPropEdText(
-			final String[] testBeanConstraints) {
+	private static EditorPropertyTextSwing createTestPropEdText(final String[] testBeanConstraints) {
 		TestClient client = new TestClient();
 		ConfigApplication config = new ConfigApplication();
 		client.setConfiguration(config);
@@ -443,8 +444,7 @@ public class EditorPropertyTextSwingTest extends TestCase {
 		client.setCurrentLocale(locale);
 		RapidBean testBean = createTestBean1(testBeanConstraints);
 		Property prop = testBean.getProperty("textnumber");
-		EditorPropertyTextSwing proped =
-				new EditorPropertyTextSwing(client, null, prop, prop.clone(testBean));
+		EditorPropertyTextSwing proped = new EditorPropertyTextSwing(client, null, prop, prop.clone(testBean));
 		return proped;
 	}
 
@@ -467,12 +467,10 @@ public class EditorPropertyTextSwingTest extends TestCase {
 			}
 			descr.append("/>");
 			descr.append("</beantype>");
-			final XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.toString().getBytes()));
+			final XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.toString().getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean =
-				(GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TestBean1");
 		return bean;
 	}
 

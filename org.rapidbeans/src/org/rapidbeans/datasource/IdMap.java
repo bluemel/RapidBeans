@@ -28,9 +28,8 @@ import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.type.TypeRapidBean;
 
 /**
- * A straight forward implementation of an identity map.
- * It consists in a hash map (by bean typename) that
- * contains itself hash maps (by bean identity.
+ * A straight forward implementation of an identity map. It consists in a hash
+ * map (by bean typename) that contains itself hash maps (by bean identity.
  * 
  * @author Martin Bluemel
  */
@@ -83,8 +82,7 @@ public final class IdMap {
 		}
 		String id = bean.getId().toString();
 		if (this.findBean(typename, id) != null) {
-			throw new DatasourceException("Failed to insert bean \"" + typename
-					+ "::" + id + "\" into pool.\n"
+			throw new DatasourceException("Failed to insert bean \"" + typename + "::" + id + "\" into pool.\n"
 					+ "It is already in there.");
 		}
 		submap.put(id, bean);
@@ -150,8 +148,7 @@ public final class IdMap {
 			foundBean = map.get(id.toString());
 		}
 		if (foundBean == null) {
-			final Collection<TypeRapidBean> subtypes =
-					TypeRapidBean.forName(typename).getSubtypes();
+			final Collection<TypeRapidBean> subtypes = TypeRapidBean.forName(typename).getSubtypes();
 			for (TypeRapidBean subtype : subtypes) {
 				map = this.idmap.get(subtype.getName());
 				if (map != null) {
@@ -178,8 +175,8 @@ public final class IdMap {
 	 * query for all beans of a type.
 	 * 
 	 * @param typename
-	 *            the name of the bean type for which you
-	 *            want to find instances.
+	 *            the name of the bean type for which you want to find
+	 *            instances.
 	 * 
 	 * @return a list with all found beans
 	 */
@@ -187,28 +184,28 @@ public final class IdMap {
 		return this.idmap.get(typename).keySet();
 	}
 
-	//    /**
-	//     * query for all beans of a type.
-	//     *
-	//     * @param typename the name of the bean type for which you
-	//     *        want to find instances.
-	//     *
-	//     * @return a collection with all found beans
-	//     */
-	//    public Collection<RapidBean> findAll(final String typename) {
-	//        HashMap<String, RapidBean> map = this.idmap.get(typename);
-	//        if (map == null) {
-	//            return new ArrayList<RapidBean>();
-	//        }
-	//        return map.values();
-	//    }
+	// /**
+	// * query for all beans of a type.
+	// *
+	// * @param typename the name of the bean type for which you
+	// * want to find instances.
+	// *
+	// * @return a collection with all found beans
+	// */
+	// public Collection<RapidBean> findAll(final String typename) {
+	// HashMap<String, RapidBean> map = this.idmap.get(typename);
+	// if (map == null) {
+	// return new ArrayList<RapidBean>();
+	// }
+	// return map.values();
+	// }
 
 	/**
 	 * query for all beans of a type.
 	 * 
 	 * @param typename
-	 *            the name of the bean type for which you
-	 *            want to find instances.
+	 *            the name of the bean type for which you want to find
+	 *            instances.
 	 * 
 	 * @return a list with all found beans
 	 */
@@ -219,9 +216,8 @@ public final class IdMap {
 	}
 
 	/**
-	 * implements a recursive traversal through the whole
-	 * inheritance tree to fill the result set with all objects
-	 * of this type and all subtypes.
+	 * implements a recursive traversal through the whole inheritance tree to
+	 * fill the result set with all objects of this type and all subtypes.
 	 * 
 	 * @param type
 	 *            the type of beans to search for
@@ -241,47 +237,47 @@ public final class IdMap {
 		}
 	}
 
-	//    /**
-	//     * find a set of beans by query.
-	//     *
-	//     * @param squery the query string.
-	//     *
-	//     * @return a list with all found beans
-	//     */
-	//    public List<RapidBean> findBeansByQuery(final String squery) {
-	//        return this.findBeansByQuery(new Query(squery));
-	//    }
+	// /**
+	// * find a set of beans by query.
+	// *
+	// * @param squery the query string.
+	// *
+	// * @return a list with all found beans
+	// */
+	// public List<RapidBean> findBeansByQuery(final String squery) {
+	// return this.findBeansByQuery(new Query(squery));
+	// }
 	//
-	//    /**
-	//     * find a set of beans by query.
-	//     *
-	//     * @param query the query.
-	//     *
-	//     * @return a list with all found beans
-	//     */
-	//    public List<RapidBean> findBeansByQuery(final Query query) {
-	//        return query.findBeans(this);
-	//    }
+	// /**
+	// * find a set of beans by query.
+	// *
+	// * @param query the query.
+	// *
+	// * @return a list with all found beans
+	// */
+	// public List<RapidBean> findBeansByQuery(final Query query) {
+	// return query.findBeans(this);
+	// }
 	//
-	//    /**
-	//     * find a single bean by query.
-	//     *
-	//     * @param squery the query string.
-	//     *
-	//     * @return the bean found or null
-	//     */
-	//    public RapidBean findBeanByQuery(final String squery) {
-	//        return this.findBeanByQuery(new Query(squery));
-	//    }
+	// /**
+	// * find a single bean by query.
+	// *
+	// * @param squery the query string.
+	// *
+	// * @return the bean found or null
+	// */
+	// public RapidBean findBeanByQuery(final String squery) {
+	// return this.findBeanByQuery(new Query(squery));
+	// }
 	//
-	//    /**
-	//     * find a single bean by query.
-	//     *
-	//     * @param query the query.
-	//     *
-	//     * @return the bean found or null
-	//     */
-	//    public RapidBean findBeanByQuery(final Query query) {
-	//        return query.findBean(this);
-	//    }
+	// /**
+	// * find a single bean by query.
+	// *
+	// * @param query the query.
+	// *
+	// * @return the bean found or null
+	// */
+	// public RapidBean findBeanByQuery(final Query query) {
+	// return query.findBean(this);
+	// }
 }

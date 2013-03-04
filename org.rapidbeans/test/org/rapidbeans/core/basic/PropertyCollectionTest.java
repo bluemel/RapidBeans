@@ -353,7 +353,8 @@ public class PropertyCollectionTest {
 			// add the same Person to the Address as inhabitant twice
 			adr.addInhabitant(martin);
 			try {
-				// should Assert.fail because of the association end with multiplicity
+				// should Assert.fail because of the association end with
+				// multiplicity
 				// 1
 				adr.addInhabitant(martin);
 				Assert.fail("expected ValidationException exception");
@@ -1147,8 +1148,7 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 
 		adrbook.removePerson(blu);
 
@@ -1158,8 +1158,7 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(1, fru.getGroups().size());
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(0, blu.getGroups().size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 	}
 
 	@Test
@@ -1184,8 +1183,7 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 
 		blu.delete(); // = doc.delete(blu)
 
@@ -1196,8 +1194,7 @@ public class PropertyCollectionTest {
 		Assert.assertTrue(group.getPersons().contains(fru));
 		Assert.assertFalse(group.getPersons().contains(blu));
 		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 
 		adrbook = new Addressbook();
 		doc = new Document(adrbook);
@@ -1219,8 +1216,7 @@ public class PropertyCollectionTest {
 		Assert.assertEquals(group, fru.getGroups().get(0));
 		Assert.assertEquals(1, blu.getGroups().size());
 		Assert.assertEquals(group, blu.getGroups().get(0));
-		Assert.assertEquals(2, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 
 		fru.delete(); // = doc.delete(blu)
 
@@ -1231,8 +1227,7 @@ public class PropertyCollectionTest {
 		Assert.assertTrue(group.getPersons().contains(blu));
 		Assert.assertFalse(group.getPersons().contains(fru));
 		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
-		Assert.assertEquals(1, doc.findBeansByType(
-				"org.rapidbeans.test.addressbook.Person").size());
+		Assert.assertEquals(1, doc.findBeansByType("org.rapidbeans.test.addressbook.Person").size());
 	}
 
 	/**

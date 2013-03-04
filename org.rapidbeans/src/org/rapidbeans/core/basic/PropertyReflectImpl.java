@@ -51,8 +51,7 @@ public class PropertyReflectImpl extends Property {
 	public Object getValue() {
 		Object ret = null;
 		final Class<?> clazz = getBean().getType().getImplementingClass();
-		final String getterMethodName = "get"
-				+ StringHelper.upperFirstCharacter(getName());
+		final String getterMethodName = "get" + StringHelper.upperFirstCharacter(getName());
 		try {
 			final Method method = clazz.getMethod(getterMethodName);
 			ret = method.invoke(getBean());
@@ -91,10 +90,9 @@ public class PropertyReflectImpl extends Property {
 	}
 
 	/**
-	 * converts different classes to the Property's internal
-	 * value class.<br/>
-	 * For a String property this means just verifying that the given
-	 * object is a String.
+	 * converts different classes to the Property's internal value class.<br/>
+	 * For a String property this means just verifying that the given object is
+	 * a String.
 	 * 
 	 * @param argValue
 	 *            the value to convert<br/>

@@ -67,13 +67,11 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyTextSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyTextSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
-		if (prop.getType().isKeyCandidate()
-				&& (!this.getBeanEditor().isInNewMode())) {
+		if (prop.getType().isKeyCandidate() && (!this.getBeanEditor().isInNewMode())) {
 			this.text.setEditable(false);
 		}
 
@@ -137,8 +135,7 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.text.setEnabled(false);
 		}
 	}
@@ -153,13 +150,11 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 		try {
 			this.setUIEventLock();
 			if (this.getProperty() instanceof PropertyCollection) {
-				final Collection<?> col =
-						(Collection<?>) this.getProperty().getValue();
+				final Collection<?> col = (Collection<?>) this.getProperty().getValue();
 				if (col == null) {
 					this.text.setText("");
 				} else {
-					final TypePropertyCollection colType =
-							(TypePropertyCollection) this.getProperty().getType();
+					final TypePropertyCollection colType = (TypePropertyCollection) this.getProperty().getType();
 					if (colType.getMaxmult() == 1) {
 						RapidBean bean = (RapidBean) col.iterator().next();
 						if (bean == null) {
@@ -203,15 +198,13 @@ public class EditorPropertyTextSwing extends EditorPropertySwing {
 	/**
 	 * validate an input field.
 	 * 
-	 * @return if the string in the input field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the input field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param ex
 	 *            the validation exception
 	 */
-	protected boolean hasPotentiallyValidInputField(
-			final ValidationException ex) {
+	protected boolean hasPotentiallyValidInputField(final ValidationException ex) {
 		if (ex.getSignature().startsWith("invalid.prop.integer")) {
 			if (ex.getSignature().endsWith("lower")) {
 				return true;

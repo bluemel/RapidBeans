@@ -7,9 +7,8 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Test suite for all (heap) memory tests.
- * These tests verify that the garbage collection works out
- * (memory leaks, cyclic references, ...).
+ * Test suite for all (heap) memory tests. These tests verify that the garbage
+ * collection works out (memory leaks, cyclic references, ...).
  * 
  * @author Martin Bluemel
  */
@@ -57,8 +56,7 @@ public final class TestSuiteMemoryPerf {
 				classnames.add(classname);
 			}
 		}
-		TestSuiteHelper.fill(suite, new File("testperf"), ".*MemoryPerfTest",
-				null, classnames, null);
+		TestSuiteHelper.fill(suite, new File("testperf"), ".*MemoryPerfTest", null, classnames, null);
 		return suite;
 	}
 }

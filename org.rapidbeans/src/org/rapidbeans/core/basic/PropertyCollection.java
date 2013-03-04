@@ -49,25 +49,23 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 
 /**
- * A <b>Collection</b> bean property encapsulates a set of bean links belonging to
- * a certain associaton.
+ * A <b>Collection</b> bean property encapsulates a set of bean links belonging
+ * to a certain associaton.
  * 
  * @author Martin Bluemel
  */
-public class PropertyCollection extends PropertyAssociationend
-		implements PropertyChangeListener {
+public class PropertyCollection extends PropertyAssociationend implements PropertyChangeListener {
 
 	/**
-	 * the collection of beans.
-	 * !!! do not initialize here as this would overwrite
-	 * the superclasses default constructor's behaviour.
+	 * the collection of beans. !!! do not initialize here as this would
+	 * overwrite the superclasses default constructor's behaviour.
 	 */
 	private Collection<Link> value;
 
 	/**
-	 * generic value getter.
-	 * since collections are n o t immutable and we don't want to clone
-	 * a collection that could be very large we just give out the iterator.
+	 * generic value getter. since collections are n o t immutable and we don't
+	 * want to clone a collection that could be very large we just give out the
+	 * iterator.
 	 * 
 	 * @return a collection of beans
 	 */
@@ -75,8 +73,7 @@ public class PropertyCollection extends PropertyAssociationend
 		if (this.value == null) {
 			return null;
 		} else {
-			return new ReadonlyListCollection<Link>(this.value,
-					(TypePropertyCollection) this.getType());
+			return new ReadonlyListCollection<Link>(this.value, (TypePropertyCollection) this.getType());
 		}
 	}
 
@@ -98,12 +95,11 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param touchInverseLinks
 	 *            if an inverse link will be added or not
 	 * @param checkContainerLinksToExternalObjects
-	 *            determines if links from an object living inside the
-	 *            container should be allowed.
-	 *            Be very careful to set this argument to false.
+	 *            determines if links from an object living inside the container
+	 *            should be allowed. Be very careful to set this argument to
+	 *            false.
 	 */
-	public void setValue(final Object newValue,
-			final boolean touchInverseLinks,
+	public void setValue(final Object newValue, final boolean touchInverseLinks,
 			final boolean checkContainerLinksToExternalObjects) {
 		this.setValue(newValue, touchInverseLinks, checkContainerLinksToExternalObjects, true);
 	}
@@ -116,16 +112,14 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param touchInverseLinks
 	 *            if an inverse link will be added or not
 	 * @param checkContainerLinksToExternalObjects
-	 *            determines if links from an object living inside the
-	 *            container should be allowed.
-	 *            Be very careful to set this argument to false.
+	 *            determines if links from an object living inside the container
+	 *            should be allowed. Be very careful to set this argument to
+	 *            false.
 	 * @param validate
 	 *            turn validation off / on
 	 */
-	public void setValue(final Object col,
-			final boolean touchInverseLinks,
-			final boolean checkContainerLinksToExternalObjects,
-			final boolean validate) {
+	public void setValue(final Object col, final boolean touchInverseLinks,
+			final boolean checkContainerLinksToExternalObjects, final boolean validate) {
 
 		Collection<Link> newCol = null;
 		if (validate) {
@@ -150,48 +144,43 @@ public class PropertyCollection extends PropertyAssociationend
 			// Especially for x to 1 associations:
 			// remove also inverse links pointing to the object
 			// that is going to be linked
-			if (touchInverseLinks
-					&& newCol != null
-					&& newCol.size() > 0
-					&& proptype.getInverse() != null) {
-				final TypePropertyCollection inverseProptype = (TypePropertyCollection)
-						proptype.getTargetType().getPropertyType(proptype.getInverse());
+			if (touchInverseLinks && newCol != null && newCol.size() > 0 && proptype.getInverse() != null) {
+				final TypePropertyCollection inverseProptype = (TypePropertyCollection) proptype.getTargetType()
+						.getPropertyType(proptype.getInverse());
 				if (inverseProptype == null) {
-					throw new RapidBeansRuntimeException(
-							"could not find inverse property type: \""
-									+ proptype.getTargetType().getName()
-									+ "\", property: \"" + proptype.getInverse() + "\"");
+					throw new RapidBeansRuntimeException("could not find inverse property type: \""
+							+ proptype.getTargetType().getName() + "\", property: \"" + proptype.getInverse() + "\"");
 				}
 				if (inverseProptype.getMaxmult() != TypePropertyCollection.INFINITE) {
 					for (final Link newLink : newCol) {
 						if (newLink instanceof RapidBean) {
 							final RapidBean beanToLink = (RapidBean) newLink;
-							final Collection<?> alreadyLinkedBeans = (Collection<?>)
-									beanToLink.getPropValue(inverseProptype.getPropName());
-							if (alreadyLinkedBeans != null
-									&& alreadyLinkedBeans.size()
-									>= inverseProptype.getMaxmult()) {
-								//                                if (alreadyLinkedBeans.contains(this.getBean())) {
-								//                                    final PropertyCollection inverseColProp = (PropertyCollection) beanToLink.getProperty(inverseProptype.getPropName());
-								//                                    inverseColProp.removeLink(this.getBean());
-								//                                } else {
-								//                                    throw new ValidationException("xxx", "yyy");
-								//                                }
+							final Collection<?> alreadyLinkedBeans = (Collection<?>) beanToLink
+									.getPropValue(inverseProptype.getPropName());
+							if (alreadyLinkedBeans != null && alreadyLinkedBeans.size() >= inverseProptype.getMaxmult()) {
+								// if
+								// (alreadyLinkedBeans.contains(this.getBean()))
+								// {
+								// final PropertyCollection inverseColProp =
+								// (PropertyCollection)
+								// beanToLink.getProperty(inverseProptype.getPropName());
+								// inverseColProp.removeLink(this.getBean());
+								// } else {
+								// throw new ValidationException("xxx", "yyy");
+								// }
 								switch (alreadyLinkedBeans.size()) {
 								case 0: // do nothing
 									break;
 								case 1:
-									final PropertyCollection colProp = (PropertyCollection)
-											beanToLink.getProperty(inverseProptype.getPropName());
+									final PropertyCollection colProp = (PropertyCollection) beanToLink
+											.getProperty(inverseProptype.getPropName());
 									colProp.setValue(new ArrayList<RapidBean>(), true, true, false);
 									break;
 								default:
-									throw new RapidBeansRuntimeException(
-											"did not expect bean \""
-													+ beanToLink.getType() + "::"
-													+ beanToLink.getIdString()
-													+ "\" to be already linked with more than one bean ("
-													+ "property \"" + inverseProptype.getPropName() + "\").");
+									throw new RapidBeansRuntimeException("did not expect bean \""
+											+ beanToLink.getType() + "::" + beanToLink.getIdString()
+											+ "\" to be already linked with more than one bean (" + "property \""
+											+ inverseProptype.getPropName() + "\").");
 								}
 							}
 						}
@@ -200,20 +189,14 @@ public class PropertyCollection extends PropertyAssociationend
 			}
 
 			final Collection<Link> oldCol = this.value;
-			if ((oldCol == null && newCol != null)
-					|| (oldCol != null && newCol == null)
-					|| ((oldCol != null && newCol != null)
-					&& (!oldCol.equals(newCol)))) {
-				fireChangePre(this, PropertyChangeEventType.set,
-						oldCol, newCol, null);
+			if ((oldCol == null && newCol != null) || (oldCol != null && newCol == null)
+					|| ((oldCol != null && newCol != null) && (!oldCol.equals(newCol)))) {
+				fireChangePre(this, PropertyChangeEventType.set, oldCol, newCol, null);
 			}
 			this.value = newCol;
-			if ((oldCol == null && newCol != null)
-					|| (oldCol != null && newCol == null)
-					|| ((oldCol != null && newCol != null)
-					&& (!oldCol.equals(newCol)))) {
-				fireChanged(this, PropertyChangeEventType.set,
-						oldCol, newCol, null);
+			if ((oldCol == null && newCol != null) || (oldCol != null && newCol == null)
+					|| ((oldCol != null && newCol != null) && (!oldCol.equals(newCol)))) {
+				fireChanged(this, PropertyChangeEventType.set, oldCol, newCol, null);
 			}
 
 			if (this.value != null) {
@@ -248,19 +231,18 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param addInverse
 	 *            if an inverse link should be added
 	 * @param checkContainerLinksToExternalObjects
-	 *            determines if links from an object living inside the
-	 *            container should be allowed.
-	 *            Be very careful to set this argument to false.
+	 *            determines if links from an object living inside the container
+	 *            should be allowed. Be very careful to set this argument to
+	 *            false.
 	 * @param checkContainerAlreadyContains
 	 *            determines if the bean already is contained by the container
 	 */
-	public void addLink(final Link link,
-			final boolean addInverse,
-			final boolean checkContainerLinksToExternalObjects,
+	public void addLink(final Link link, final boolean addInverse, final boolean checkContainerLinksToExternalObjects,
 			final boolean checkContainerAlreadyContains) {
 
 		// Validation for add link checks null on mandatory, target type, ...
-		// The check on the multiplicity with one single instance always succeeds
+		// The check on the multiplicity with one single instance always
+		// succeeds
 		// but will be done separately for addLink afterwards.
 		validate(link, ValidationMode.add);
 		ContainerImpl doc = null;
@@ -274,10 +256,8 @@ public class PropertyCollection extends PropertyAssociationend
 				doc = (ContainerImpl) this.getBean().getContainer();
 				if (doc != null && checkContainerAlreadyContains) {
 					final TypeRapidBean linkType = proptype.getTargetType();
-					if ((linkType.getIdtype() == IdType.keyprops
-							|| linkType.getIdtype() == IdType.keypropswithparentscope)
-							&& link instanceof RapidBean
-							&& ((RapidBean) link).getParentBean() != this.getBean()) {
+					if ((linkType.getIdtype() == IdType.keyprops || linkType.getIdtype() == IdType.keypropswithparentscope)
+							&& link instanceof RapidBean && ((RapidBean) link).getParentBean() != this.getBean()) {
 						prevParent = ((RapidBean) link).getParentBean();
 						((RapidBean) link).setParentBean(this.getBean());
 						parentSet = true;
@@ -297,16 +277,14 @@ public class PropertyCollection extends PropertyAssociationend
 							final String locGuiId = ((RapidBean) link).toStringGuiId(locale);
 							message = "Bean \"" + locGuiId + "\" already exists in document \""
 									+ getBean().getContainer().getName() + "\"";
-							throw new BeanDuplicateException(
-									"messagedialog.create.duplicate",
-									this.getBean(), message, new Object[] { locGuiId });
+							throw new BeanDuplicateException("messagedialog.create.duplicate", this.getBean(), message,
+									new Object[] { locGuiId });
 						} else {
 							final String sid = ((RapidBean) link).getIdString();
-							message = "Bean \"" + sid
-									+ "\" already exists in document \""
+							message = "Bean \"" + sid + "\" already exists in document \""
 									+ getBean().getContainer().getName() + "\"";
-							throw new BeanDuplicateException("messagedialog.create.duplicate",
-									this.getBean(), message, new Object[] { sid });
+							throw new BeanDuplicateException("messagedialog.create.duplicate", this.getBean(), message,
+									new Object[] { sid });
 						}
 					}
 				}
@@ -315,8 +293,7 @@ public class PropertyCollection extends PropertyAssociationend
 				this.value = createNewCollection();
 			} else {
 				final int maxmult = proptype.getMaxmult();
-				if (maxmult != TypePropertyCollection.INFINITE
-						&& this.value.size() > maxmult - 1) {
+				if (maxmult != TypePropertyCollection.INFINITE && this.value.size() > maxmult - 1) {
 					// special handling for inverse frozen links
 					// do not throw an exception if value contains a frozen
 					// link that equals the id string of the new link which
@@ -326,34 +303,27 @@ public class PropertyCollection extends PropertyAssociationend
 							proptype.getMaxmult() };
 					if (ThreadLocalValidationSettings.getValidation()) {
 						if (!(link instanceof RapidBean) || (!containsFrozenLinkWithIdstring(link.getIdString()))) {
-							throw new ValidationException(
-									"invalid.prop.collection.add.maxmult",
-									link,
-									"Bean \"" + this.getBean().getType().getName() + "::"
-											+ this.getBean().getIdString() + "\":"
-											+ "Collection property \"" + this.getType().getPropName() + "\": "
-											+ " failed to add bean " + link.getIdString()
-											+ ".\nMaximal multiplicity " + proptype.getMaxmult()
-											+ " exceeded.", oa);
+							throw new ValidationException("invalid.prop.collection.add.maxmult", link, "Bean \""
+									+ this.getBean().getType().getName() + "::" + this.getBean().getIdString() + "\":"
+									+ "Collection property \"" + this.getType().getPropName() + "\": "
+									+ " failed to add bean " + link.getIdString() + ".\nMaximal multiplicity "
+									+ proptype.getMaxmult() + " exceeded.", oa);
 						}
 					}
 				}
 			}
 			fireChangePre(this, PropertyChangeEventType.addlink, null, null, link);
 			if (!this.value.add(link)) {
-				throw new ValidationInstanceAssocTwiceException(
-						"invalid.prop.collection.add.already",
-						this, link,
-						"Collection property \"" + this.getType().getPropName() + "\": "
-								+ " failed to add bean " + link.getIdString()
+				throw new ValidationInstanceAssocTwiceException("invalid.prop.collection.add.already", this, link,
+						"Collection property \"" + this.getType().getPropName() + "\": " + " failed to add bean "
+								+ link.getIdString()
 								+ ".\nBean already is in this collection which does not permit duplicates.",
 						new String[] { this.getType().getPropName(), link.getIdString() });
 			}
 			if (addInverse && link instanceof RapidBean) {
 				try {
 					addInverseLink((RapidBean) link, addInverse, checkContainerLinksToExternalObjects, false);
-					if ((link instanceof RapidBean)
-							&& proptype.isComposition()) {
+					if ((link instanceof RapidBean) && proptype.isComposition()) {
 						if (doc != null) {
 							insertComponentsIntoContainer((RapidBean) link, doc);
 							resolveFrozenLinksInComponents((RapidBean) link, doc);
@@ -364,11 +334,9 @@ public class PropertyCollection extends PropertyAssociationend
 					throw e;
 				}
 			}
-			fireChanged(this, PropertyChangeEventType.addlink,
-					null, null, link);
+			fireChanged(this, PropertyChangeEventType.addlink, null, null, link);
 			if (link instanceof RapidBean
-					&& (proptype.getSorting() == SortingType.byPropertyValues
-					|| proptype.getSorting() == SortingType.byPropertyValuesAll)) {
+					&& (proptype.getSorting() == SortingType.byPropertyValues || proptype.getSorting() == SortingType.byPropertyValuesAll)) {
 				((RapidBean) link).addPropertyChangeListener(this);
 			}
 		} finally {
@@ -384,18 +352,14 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param addInverse
 	 *            the switch to prevent from endless recursion
 	 * @param checkContainerLinksToExternalObjects
-	 *            determines if links from an object living inside the
-	 *            container should be allowed.
-	 *            Be very careful to set this argument to false.
+	 *            determines if links from an object living inside the container
+	 *            should be allowed. Be very careful to set this argument to
+	 *            false.
 	 * @param setValue
-	 *            true if called from setValue
-	 *            false if called from addValue
+	 *            true if called from setValue false if called from addValue
 	 */
-	private void addInverseLink(
-			final RapidBean linkedBean,
-			final boolean addInverse,
-			final boolean checkContainerLinksToExternalObjects,
-			final boolean setValue) {
+	private void addInverseLink(final RapidBean linkedBean, final boolean addInverse,
+			final boolean checkContainerLinksToExternalObjects, final boolean setValue) {
 		TypePropertyCollection colType = (TypePropertyCollection) this.getType();
 		RapidBean bean = this.getBean();
 		ContainerImpl container = null;
@@ -404,16 +368,14 @@ public class PropertyCollection extends PropertyAssociationend
 		}
 		Container linkedContainer = linkedBean.getContainer();
 		if (colType.isComposition()) {
-			if (linkedBean.getParentBean() != null
-					&& linkedBean.getParentBean() != this.getBean()) {
+			if (linkedBean.getParentBean() != null && linkedBean.getParentBean() != this.getBean()) {
 				throw new RapidBeansRuntimeException("tried to add a bean as component"
 						+ " that already is component of another bean (has a parent)");
 			}
 			linkedBean.setParentBean(this.getBean());
 			if (container == null) {
 				if (linkedContainer != null) {
-					throw new RapidBeansRuntimeException("tried to compose a bean"
-							+ " living outside a container"
+					throw new RapidBeansRuntimeException("tried to compose a bean" + " living outside a container"
 							+ " with one inside a container");
 				}
 			} else {
@@ -422,14 +384,12 @@ public class PropertyCollection extends PropertyAssociationend
 					container.insert(linkedBean, true);
 					linkedBean.setContainer(container);
 				} else if (container != linkedContainer) {
-					throw new RapidBeansRuntimeException(
-							"tried to compose a bean living outside a container"
-									+ " with one inside a different container");
+					throw new RapidBeansRuntimeException("tried to compose a bean living outside a container"
+							+ " with one inside a different container");
 				}
 			}
 		} else if (colType.getInverse() != null && addInverse) {
-			PropertyCollection inverseColProp = (PropertyCollection)
-					linkedBean.getProperty(colType.getInverse());
+			PropertyCollection inverseColProp = (PropertyCollection) linkedBean.getProperty(colType.getInverse());
 			if (inverseColProp != null) {
 				if (setValue) {
 					final TypePropertyCollection inverseColPropType = (TypePropertyCollection) inverseColProp.getType();
@@ -445,18 +405,15 @@ public class PropertyCollection extends PropertyAssociationend
 					if (container == null) {
 						if (linkedContainer != null) {
 							throw new RapidBeansRuntimeException("tried to associate"
-									+ " a bean living outside a container"
-									+ " with one inside a container");
+									+ " a bean living outside a container" + " with one inside a container");
 						}
 					} else {
 						if (linkedContainer == null) {
 							throw new RapidBeansRuntimeException("tried to associate a"
-									+ " bean living inside a container"
-									+ " with one outside a container");
+									+ " bean living inside a container" + " with one outside a container");
 						} else if (container != linkedContainer) {
 							throw new RapidBeansRuntimeException("tried to associate a"
-									+ " bean living outside a container"
-									+ " with one inside a different container");
+									+ " bean living outside a container" + " with one inside a different container");
 						}
 					}
 				}
@@ -482,15 +439,12 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param removeInverse
 	 *            if the inverse link has to be removed
 	 * @param checkNotFound
-	 *            throw an exception if the link to remove is not in
-	 *            this property
+	 *            throw an exception if the link to remove is not in this
+	 *            property
 	 * @param deleteOrpahnedComponent
-	 *            unbind orphaned component from all other
-	 *            links.
+	 *            unbind orphaned component from all other links.
 	 */
-	public void removeLink(final Link link,
-			final boolean removeInverse,
-			final boolean checkNotFound,
+	public void removeLink(final Link link, final boolean removeInverse, final boolean checkNotFound,
 			final boolean deleteOrpahnedComponent) {
 
 		if (!removeInverse && (this.value == null || this.value.size() == 0)) {
@@ -504,25 +458,20 @@ public class PropertyCollection extends PropertyAssociationend
 		try {
 			validate(link, ValidationMode.remove);
 			if (ThreadLocalValidationSettings.getValidation()) {
-				if (this.value != null
-						&& this.value.size() <= proptype.getMinmult()
+				if (this.value != null && this.value.size() <= proptype.getMinmult()
 						&& (this.getBean().getBeanState() != RapidBeanState.deleting)) {
-					throw new ValidationException(
-							"invalid.prop.collection.remove.minmult",
-							this.getBean(),
+					throw new ValidationException("invalid.prop.collection.remove.minmult", this.getBean(),
 							"Collection property \"" + this.getType().getPropName() + "\": "
-									+ " failed to remove bean " + link.getIdString()
-									+ ".\nMinimal multiplicity " + proptype.getMinmult() + " undergone.");
+									+ " failed to remove bean " + link.getIdString() + ".\nMinimal multiplicity "
+									+ proptype.getMinmult() + " undergone.");
 				}
 			}
 			fireChangePre(this, PropertyChangeEventType.removelink, null, null, link);
 			if (this.value != null && !this.value.remove(link)) {
 				if (checkNotFound) {
-					throw new BeanNotFoundException(
-							"Collection property \"" + this.getType().getPropName() + "\": "
-									+ " failed to remove bean " + link.getIdString()
-									+ ".\nBean is not in this collection."
-									+ "Collction class: " + this.value.getClass().getName());
+					throw new BeanNotFoundException("Collection property \"" + this.getType().getPropName() + "\": "
+							+ " failed to remove bean " + link.getIdString() + ".\nBean is not in this collection."
+							+ "Collction class: " + this.value.getClass().getName());
 				}
 			}
 			if (removeInverse && link instanceof RapidBean) {
@@ -532,8 +481,7 @@ public class PropertyCollection extends PropertyAssociationend
 					return;
 				}
 			}
-			if (deleteOrpahnedComponent
-					&& (link instanceof RapidBean) && proptype.isComposition()) {
+			if (deleteOrpahnedComponent && (link instanceof RapidBean) && proptype.isComposition()) {
 				final RapidBean bean = (RapidBean) link;
 				final ContainerImpl doc = (ContainerImpl) this.getBean().getContainer();
 				if (doc != null) {
@@ -541,12 +489,10 @@ public class PropertyCollection extends PropertyAssociationend
 				}
 			}
 			if (link instanceof RapidBean
-					&& (proptype.getSorting() == SortingType.byPropertyValues
-					|| proptype.getSorting() == SortingType.byPropertyValuesAll)) {
+					&& (proptype.getSorting() == SortingType.byPropertyValues || proptype.getSorting() == SortingType.byPropertyValuesAll)) {
 				((RapidBean) link).removePropertyChangeListener(this);
 			}
-			fireChanged(this, PropertyChangeEventType.removelink,
-					null, null, link);
+			fireChanged(this, PropertyChangeEventType.removelink, null, null, link);
 		} finally {
 			cleanupSorting(proptype, propsbefore);
 		}
@@ -561,8 +507,7 @@ public class PropertyCollection extends PropertyAssociationend
 	 *            the switch to prevent from endless recursion
 	 */
 	private void removeInverseLink(final RapidBean linkedBean, final boolean removeInverse) {
-		final TypePropertyCollection colType =
-				(TypePropertyCollection) this.getType();
+		final TypePropertyCollection colType = (TypePropertyCollection) this.getType();
 		if (colType.isComposition()) {
 			linkedBean.setParentBean(null);
 			if (linkedBean.getContainer() != null) {
@@ -570,8 +515,7 @@ public class PropertyCollection extends PropertyAssociationend
 				linkedBean.setContainer(null);
 			}
 		} else if (colType.getInverse() != null && removeInverse) {
-			PropertyCollection inverseColProp = (PropertyCollection)
-					linkedBean.getProperty(colType.getInverse());
+			PropertyCollection inverseColProp = (PropertyCollection) linkedBean.getProperty(colType.getInverse());
 			if (inverseColProp != null) {
 				try {
 					ThreadLocalValidationSettings.validationOff();
@@ -591,9 +535,7 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param doc
 	 *            the container
 	 */
-	private void insertComponentsIntoContainer(
-			final RapidBean bean,
-			final ContainerImpl doc) {
+	private void insertComponentsIntoContainer(final RapidBean bean, final ContainerImpl doc) {
 		if (bean.getContainer() == null) {
 			doc.insert(bean, true);
 		} else if (bean.getContainer() != doc) {
@@ -618,15 +560,12 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param doc
 	 *            the container
 	 */
-	private void resolveFrozenLinksInComponents(
-			final RapidBean bean,
-			final Container doc) {
+	private void resolveFrozenLinksInComponents(final RapidBean bean, final Container doc) {
 		final List<PropertyCollection> colProps = bean.getColProperties();
 		final int size = colProps.size();
 		for (int i = 0; i < size; i++) {
 			final PropertyCollection colProp = colProps.get(i);
-			final TypePropertyCollection colPropType =
-					(TypePropertyCollection) colProp.getType();
+			final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 			if (colProp.value != null) {
 				if (colPropType.isComposition()) {
 					for (Link childBeanLink : colProp.value) {
@@ -642,10 +581,8 @@ public class PropertyCollection extends PropertyAssociationend
 							final RapidBean linkedBean = doc.findBean(colPropType.getTargetType().getName(),
 									childBeanLink.getIdString());
 							if (linkedBean == null) {
-								throw new UnresolvedLinkException("from "
-										+ getBean().getType().getName()
-										+ "::" + getBean().toString() + " to "
-										+ colPropType.getTargetType().getName() + "::"
+								throw new UnresolvedLinkException("from " + getBean().getType().getName() + "::"
+										+ getBean().toString() + " to " + colPropType.getTargetType().getName() + "::"
 										+ childBeanLink.getIdString());
 							}
 							col.add(linkedBean);
@@ -690,8 +627,7 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param parentBean
 	 *            the parent bean
 	 */
-	protected void initDefaultValue(final TypeProperty propType,
-			final RapidBean parentBean) {
+	protected void initDefaultValue(final TypeProperty propType, final RapidBean parentBean) {
 		try {
 			this.setValue(propType.getDefaultValue());
 		} catch (ValidationMandatoryException e) {
@@ -723,8 +659,8 @@ public class PropertyCollection extends PropertyAssociationend
 	}
 
 	/**
-	 * validation for Collection Properties.
-	 * - delegate validation to all components.
+	 * validation for Collection Properties. - delegate validation to all
+	 * components.
 	 * 
 	 * @param newValue
 	 *            the new value to validate
@@ -734,8 +670,7 @@ public class PropertyCollection extends PropertyAssociationend
 	 */
 	public Object validate(final Object newValue) {
 		final Collection<Link> ret = validate(newValue, ValidationMode.set);
-		if (((TypePropertyCollection) this.getType()).isComposition()
-				&& this.value != null) {
+		if (((TypePropertyCollection) this.getType()).isComposition() && this.value != null) {
 			for (final Link link : this.value) {
 				if (link instanceof RapidBean) {
 					((RapidBean) link).validate();
@@ -760,8 +695,7 @@ public class PropertyCollection extends PropertyAssociationend
 	public Collection<Link> validate(final Object newValue, final ValidationMode mode) {
 
 		// general validation includes conversion
-		final Collection<Link> collection =
-				(Collection<Link>) super.validate(newValue);
+		final Collection<Link> collection = (Collection<Link>) super.validate(newValue);
 
 		if (!ThreadLocalValidationSettings.getValidation()) {
 			return collection;
@@ -775,46 +709,30 @@ public class PropertyCollection extends PropertyAssociationend
 
 		// check new collection size against maximal multiplicity
 		final int maxmult = type.getMaxmult();
-		if (maxmult != TypePropertyCollection.INFINITE
-				&& size > maxmult) {
-			final Object[] oa = {
-					this.getBean().getType().getName() + "::"
-							+ this.getBean().getIdString(),
-					maxmult };
-			throw new ValidationException("invalid.prop.collection.val.maxmult",
-					this.getBean(),
-					"Bean \"" + this.getBean().getType().getName() + "::"
-							+ this.getBean().getIdString() + "\""
-							+ ".\nMaximal multiplicity " + maxmult
-							+ " exceeded.", oa);
+		if (maxmult != TypePropertyCollection.INFINITE && size > maxmult) {
+			final Object[] oa = { this.getBean().getType().getName() + "::" + this.getBean().getIdString(), maxmult };
+			throw new ValidationException("invalid.prop.collection.val.maxmult", this.getBean(), "Bean \""
+					+ this.getBean().getType().getName() + "::" + this.getBean().getIdString() + "\""
+					+ ".\nMaximal multiplicity " + maxmult + " exceeded.", oa);
 		}
 
 		// check new collection size against maximal multiplicity
 		final int minmult = type.getMinmult();
 		if (size < minmult) {
-			final Object[] oa = {
-					this.getBean().getType().getName() + "::"
-							+ this.getBean().getIdString(),
-					minmult };
-			throw new ValidationException("invalid.prop.collection.val.minmult",
-					this.getBean(),
-					"Bean \"" + this.getBean().getType().getName() + "::"
-							+ this.getBean().getIdString() + "\""
-							+ ".\nMinimal multiplicity " + maxmult
-							+ " undergone.", oa);
+			final Object[] oa = { this.getBean().getType().getName() + "::" + this.getBean().getIdString(), minmult };
+			throw new ValidationException("invalid.prop.collection.val.minmult", this.getBean(), "Bean \""
+					+ this.getBean().getType().getName() + "::" + this.getBean().getIdString() + "\""
+					+ ".\nMinimal multiplicity " + maxmult + " undergone.", oa);
 		}
 
 		// check target types of links of new collection
 		for (Link link : collection) {
 			if (link instanceof RapidBean) {
 				final RapidBean bean = (RapidBean) link;
-				if (!TypeRapidBean.isSameOrSubtype(type.getTargetType(),
-						bean.getType())) {
-					throw new ValidationException("invalid.prop.collection.targettype",
-							this.getBean(),
-							"Collection property \"" + this.getType().getPropName() + "\": "
-									+ " invalid bean type \"" + bean.getType().getName()
-									+ "\".\nType \"" + type.getTargetType().getName()
+				if (!TypeRapidBean.isSameOrSubtype(type.getTargetType(), bean.getType())) {
+					throw new ValidationException("invalid.prop.collection.targettype", this.getBean(),
+							"Collection property \"" + this.getType().getPropName() + "\": " + " invalid bean type \""
+									+ bean.getType().getName() + "\".\nType \"" + type.getTargetType().getName()
 									+ "\" is required.");
 				}
 			}
@@ -865,12 +783,11 @@ public class PropertyCollection extends PropertyAssociationend
 				collection.add(new LinkFrozen(sa[i]));
 			}
 		} else {
-			throw new ValidationException("invalid.prop.collection.type",
-					this,
-					"Collection property \"" + this.getType().getPropName() + "\": "
-							+ " invalid data type " + collectionValue.getClass().getName()
-							+ ".\nOnly \"bean\", \"Collection<RapidBean>\", \"RapidBean[]\""
-							+ " \"String[]\", and \"String\" are valid types.");
+			throw new ValidationException("invalid.prop.collection.type", this, "Collection property \""
+					+ this.getType().getPropName() + "\": " + " invalid data type "
+					+ collectionValue.getClass().getName()
+					+ ".\nOnly \"bean\", \"Collection<RapidBean>\", \"RapidBean[]\""
+					+ " \"String[]\", and \"String\" are valid types.");
 		}
 		return collection;
 	}
@@ -885,19 +802,15 @@ public class PropertyCollection extends PropertyAssociationend
 	 */
 	private void checkBean(final Collection<Link> collection, Object obj) {
 		if (obj == null) {
-			throw new ValidationException(
-					"invalid.prop.collection.contentnull",
-					this.getBean(),
-					"invalid null object");
+			throw new ValidationException("invalid.prop.collection.contentnull", this.getBean(), "invalid null object");
 		} else if (obj instanceof RapidBean || obj instanceof LinkFrozen) {
 			collection.add((Link) obj);
 		} else if (obj instanceof String) {
 			collection.add(new LinkFrozen((String) obj));
 		} else {
-			throw new ValidationException("invalid.prop.collection.contenttype",
-					this.getBean(),
-					"Collection property \"" + this.getType().getPropName() + "\": "
-							+ " invalid content data type " + obj.getClass().getName()
+			throw new ValidationException("invalid.prop.collection.contenttype", this.getBean(),
+					"Collection property \"" + this.getType().getPropName() + "\": " + " invalid content data type "
+							+ obj.getClass().getName()
 							+ ".\nOnly \"bean\", \"LinkFrozen\", and \"String\" are valid types.");
 		}
 	}
@@ -934,8 +847,8 @@ public class PropertyCollection extends PropertyAssociationend
 		// use reflective creation for special collection classes
 		Collection<Link> newCol = null;
 		try {
-			newCol = (Collection<Link>) ((TypePropertyCollection)
-					this.getType()).getCollectionClassConstructor().newInstance(COLLECTION_CONSTR_ARGS);
+			newCol = (Collection<Link>) ((TypePropertyCollection) this.getType()).getCollectionClassConstructor()
+					.newInstance(COLLECTION_CONSTR_ARGS);
 		} catch (IllegalAccessException e) {
 			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
 		} catch (InstantiationException e) {
@@ -952,13 +865,13 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param idstr
 	 *            the id string to search for
 	 * 
-	 * @return if the collection already contains a link with the given idstring.
+	 * @return if the collection already contains a link with the given
+	 *         idstring.
 	 */
 	private boolean containsFrozenLinkWithIdstring(final String idstr) {
 		boolean contains = false;
 		for (Link link : this.value) {
-			if (link instanceof LinkFrozen
-					&& link.getIdString().equals(idstr)) {
+			if (link instanceof LinkFrozen && link.getIdString().equals(idstr)) {
 				contains = true;
 				break;
 			}
@@ -967,8 +880,8 @@ public class PropertyCollection extends PropertyAssociationend
 	}
 
 	/**
-	 * The before property change event handle method to implement
-	 * by every listener.
+	 * The before property change event handle method to implement by every
+	 * listener.
 	 * 
 	 * @param e
 	 *            the property change event
@@ -978,8 +891,8 @@ public class PropertyCollection extends PropertyAssociationend
 	}
 
 	/**
-	 * The after property change event handle method to implement
-	 * by every listener.
+	 * The after property change event handle method to implement by every
+	 * listener.
 	 * 
 	 * @param e
 	 *            the property change event
@@ -1015,13 +928,11 @@ public class PropertyCollection extends PropertyAssociationend
 			final Collection<Link> oldCol = this.value;
 			final boolean changed = !collectionsContainSameLinks(oldCol, newCol);
 			if (changed) {
-				fireChangePre(this, PropertyChangeEventType.set,
-						oldCol, newCol, null);
+				fireChangePre(this, PropertyChangeEventType.set, oldCol, newCol, null);
 			}
 			this.value = newCol;
 			if (changed) {
-				fireChanged(this, PropertyChangeEventType.set,
-						oldCol, newCol, null);
+				fireChanged(this, PropertyChangeEventType.set, oldCol, newCol, null);
 			}
 		} finally {
 			cleanupSorting(proptype, propsbefore);
@@ -1035,16 +946,15 @@ public class PropertyCollection extends PropertyAssociationend
 	 *            the first collection of Links
 	 * @param col2
 	 *            the second collection of Links
-	 * @return true if both collections contain exactly the same Links
-	 *         in the same order or if both collections are null<br/>
+	 * @return true if both collections contain exactly the same Links in the
+	 *         same order or if both collections are null<br/>
 	 *         false otherwise
 	 */
 	public static boolean collectionsContainSameLinks(final Collection<Link> col1, final Collection<Link> col2) {
 		boolean colsEqual = true;
 		if (col1 == null && col2 == null) {
 			colsEqual = true;
-		} else if (col1 != null && col2 == null
-				|| col1 == null && col2 != null) {
+		} else if (col1 != null && col2 == null || col1 == null && col2 != null) {
 			colsEqual = false;
 		} else if (col1.size() != col2.size()) {
 			colsEqual = false;
@@ -1087,8 +997,7 @@ public class PropertyCollection extends PropertyAssociationend
 	 * @param proptype
 	 *            the association end property's type
 	 */
-	public static void cleanupSorting(final TypeProperty proptype,
-			final TypeProperty[] propsbefore) {
+	public static void cleanupSorting(final TypeProperty proptype, final TypeProperty[] propsbefore) {
 		if (!(proptype instanceof TypePropertyCollection)) {
 			return;
 		}
@@ -1118,8 +1027,8 @@ public class PropertyCollection extends PropertyAssociationend
 	 */
 	private void removePropertyChangeListeners(final Collection<Link> col) {
 		final TypePropertyCollection proptype = (TypePropertyCollection) this.getType();
-		if (col != null && (proptype.getSorting() == SortingType.byPropertyValues
-				|| proptype.getSorting() == SortingType.byPropertyValuesAll)) {
+		if (col != null
+				&& (proptype.getSorting() == SortingType.byPropertyValues || proptype.getSorting() == SortingType.byPropertyValuesAll)) {
 			for (Link link : col) {
 				if (link instanceof RapidBean) {
 					((RapidBean) link).removePropertyChangeListener(this);

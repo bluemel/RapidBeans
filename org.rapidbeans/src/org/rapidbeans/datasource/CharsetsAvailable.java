@@ -26,11 +26,10 @@ import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
- * Handwritten generic enum that provides all character sets available in
- * Java as enum. Some important character sets are provided as constants.
+ * Handwritten generic enum that provides all character sets available in Java
+ * as enum. Some important character sets are provided as constants.
  */
-public final class CharsetsAvailable
-		extends GenericEnum {
+public final class CharsetsAvailable extends GenericEnum {
 
 	// ------------------------------------------------------------------------
 	// Some important enum elements
@@ -56,7 +55,8 @@ public final class CharsetsAvailable
 	// -----------------------------------------------------------------------
 
 	/**
-	 * get the type object that describes the enum's metadata (like a Class object).
+	 * get the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @return the type object
 	 **/
@@ -65,7 +65,8 @@ public final class CharsetsAvailable
 	}
 
 	/**
-	 * get the type object that describes the enum's metadata (like a Class object).
+	 * get the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @return the type object
 	 **/
@@ -82,12 +83,12 @@ public final class CharsetsAvailable
 	 * @return the enumeration element
 	 */
 	public static CharsetsAvailable getInstance(final String charsetName) {
-		return (CharsetsAvailable) GenericEnum.valueOf(CharsetsAvailable.class.getName(),
-				charsetName);
+		return (CharsetsAvailable) GenericEnum.valueOf(CharsetsAvailable.class.getName(), charsetName);
 	}
 
 	/**
-	 * set the type object that describes the enum's metadata (like a Class object).
+	 * set the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @param argType
 	 *            the type object
@@ -102,9 +103,9 @@ public final class CharsetsAvailable
 	protected static TypeRapidEnum type = null;
 
 	/**
-	 * The constructor for enum elements.
-	 * Since all enum elements are pre instantiated before the first use
-	 * of this enum class this constructor exclusively is used internally.
+	 * The constructor for enum elements. Since all enum elements are pre
+	 * instantiated before the first use of this enum class this constructor
+	 * exclusively is used internally.
 	 * 
 	 * @param argName
 	 *            the enum element name

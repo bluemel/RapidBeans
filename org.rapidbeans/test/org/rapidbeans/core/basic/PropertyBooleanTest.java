@@ -26,8 +26,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValue() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\" default=\"true\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\" default=\"true\"/>");
 		assertEquals(Boolean.TRUE, prop.getValue());
 	}
 
@@ -35,8 +34,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for default value setting and getValue().
 	 */
 	public void testDefaultAndGetValueNull() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 	}
 
@@ -45,8 +43,7 @@ public class PropertyBooleanTest extends TestCase {
 	 */
 	public void testDefaultValueInvalid() {
 		try {
-			this.createBooleanProperty(
-					"<property name=\"test\" default=\"xxx\"/>");
+			this.createBooleanProperty("<property name=\"test\" default=\"xxx\"/>");
 			fail("expected ValidationException");
 		} catch (ValidationException e) {
 			assertTrue(true);
@@ -57,9 +54,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToStringTrue() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\""
-						+ " default=\"TrUe\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"" + " default=\"TrUe\"/>");
 		assertEquals("true", prop.toString());
 	}
 
@@ -67,9 +62,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for toString().
 	 */
 	public void testToStringFalse() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\""
-						+ " default=\"FaLSE\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"" + " default=\"FaLSE\"/>");
 		assertEquals("false", prop.toString());
 	}
 
@@ -77,8 +70,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for toString() with undefined property value.
 	 */
 	public void testToStringNull() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertEquals(null, prop.toString());
 	}
 
@@ -86,8 +78,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValueTrue() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(Boolean.TRUE);
 		assertEquals(Boolean.TRUE, prop.getValue());
@@ -97,8 +88,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValueFalse() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(Boolean.FALSE);
 		assertEquals(Boolean.FALSE, prop.getValue());
@@ -108,8 +98,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Test method for setValue(Object).
 	 */
 	public void testSetValueBoolean() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
 		prop.setValue(true);
 		assertEquals(Boolean.TRUE, prop.getValue());
@@ -119,8 +108,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * test of method convertValue(): happy day.
 	 */
 	public void testConvertBoolean() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertEquals(Boolean.FALSE, prop.convertValue(Boolean.FALSE));
 		assertEquals(Boolean.TRUE, prop.convertValue(Boolean.TRUE));
 	}
@@ -129,8 +117,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * test of method convertValue(): happy day with String.
 	 */
 	public void testConvertString() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		assertEquals(Boolean.FALSE, prop.convertValue("false"));
 		assertEquals(Boolean.TRUE, prop.convertValue("True"));
 	}
@@ -139,8 +126,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * test of method convertValue(): invalid String.
 	 */
 	public void testConvertStringInvalid() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		try {
 			prop.convertValue("falxe");
 			fail("expected ValidationException");
@@ -153,20 +139,21 @@ public class PropertyBooleanTest extends TestCase {
 	 * test of method convertValue(): wrong class.
 	 */
 	public void testConvertInvalid() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		try {
 			prop.convertValue(new Integer(123));
 			fail("expected validation exception");
 		} catch (ValidationException e) {
 			assertEquals("invalid.prop.boolean.type", e.getSignature());
-			assertTrue(e.getMessage().startsWith("Property \"test\": invalid data type"
-					+ " \"java.lang.Integer\" for a boolean property"));
-			//            assertTrue(e.getLocalizedMessage().startsWith("Property \"test\": invalid data type"
-			//                    + " \"java.lang.Integer\" for a boolean property"));
-			//            RapidBeansLocale locale = (RapidBeansLocale) RapidBeanImplStrict.createInstance("org.rapidbeans.core.common.RapidBeansLocale");
-			//            assertTrue(e.getLocalizedMessage(locale, Integer.class.getName()).startsWith(
-			//                    "Invalid data type \"java.lang.Integer\" for a boolean property"));
+			assertTrue(e.getMessage().startsWith(
+					"Property \"test\": invalid data type" + " \"java.lang.Integer\" for a boolean property"));
+			// assertTrue(e.getLocalizedMessage().startsWith("Property \"test\": invalid data type"
+			// + " \"java.lang.Integer\" for a boolean property"));
+			// RapidBeansLocale locale = (RapidBeansLocale)
+			// RapidBeanImplStrict.createInstance("org.rapidbeans.core.common.RapidBeansLocale");
+			// assertTrue(e.getLocalizedMessage(locale,
+			// Integer.class.getName()).startsWith(
+			// "Invalid data type \"java.lang.Integer\" for a boolean property"));
 		}
 	}
 
@@ -174,8 +161,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * Happy day test for validation.
 	 */
 	public void testValidateOk() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		prop.validate(true);
 		prop.validate(false);
 		prop.validate(Boolean.TRUE);
@@ -191,12 +177,11 @@ public class PropertyBooleanTest extends TestCase {
 	}
 
 	/**
-	 * Test for validation for a String that is (without checking
-	 * upper or lower case) not 'true' or 'false'.
+	 * Test for validation for a String that is (without checking upper or lower
+	 * case) not 'true' or 'false'.
 	 */
 	public void testValidateWrongString() {
-		PropertyBoolean prop = this.createBooleanProperty(
-				"<property name=\"test\"/>");
+		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		try {
 			prop.validate("trux");
 			fail("expected validation exception");
@@ -213,8 +198,7 @@ public class PropertyBooleanTest extends TestCase {
 	 * @return a new Integer Property instance.
 	 */
 	private PropertyBoolean createBooleanProperty(final String descr) {
-		XmlNode propertyNode = XmlNode.getDocumentTopLevel(
-				new ByteArrayInputStream(descr.getBytes()));
+		XmlNode propertyNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 		TypePropertyBoolean type = new TypePropertyBoolean(new XmlNode[] { propertyNode }, null);
 		return new PropertyBoolean(type, null);
 	}

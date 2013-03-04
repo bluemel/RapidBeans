@@ -21,14 +21,12 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	private boolean isWarmedUp = false;
 
 	/**
-	 * set up the unit test:
-	 * warm up the first time.
+	 * set up the unit test: warm up the first time.
 	 * 
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
 	 */
-	public void setUp()
-			throws InterruptedException {
+	public void setUp() throws InterruptedException {
 		// warm up
 		if (!this.isWarmedUp) {
 			System.out.println("[BeanCompositeCreateRuntimePerfTest] warm up...");
@@ -40,11 +38,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	}
 
 	/**
-	 * the test proves:
-	 * 100 k MenuItem beans can be created per second
-	 * as composite children of a Submenu bean (Pentium M 1,6 GHz)
-	 * using the default collection class for collection properties
-	 * (ArrayList directly constructed).
+	 * the test proves: 100 k MenuItem beans can be created per second as
+	 * composite children of a Submenu bean (Pentium M 1,6 GHz) using the
+	 * default collection class for collection properties (ArrayList directly
+	 * constructed).
 	 * 
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
@@ -57,11 +54,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	}
 
 	/**
-	 * the test prooves:
-	 * 100 k MenuItem beans can be created per second
-	 * as composite childs of a Submenu bean (Pentium M 1,6 GHz)
-	 * using the default collection class for collection properties
-	 * (ArrayList refectively constrcuted).
+	 * the test prooves: 100 k MenuItem beans can be created per second as
+	 * composite childs of a Submenu bean (Pentium M 1,6 GHz) using the default
+	 * collection class for collection properties (ArrayList refectively
+	 * constrcuted).
 	 * 
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
@@ -84,12 +80,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 	 * @throws InterruptedException
 	 *             because we use Thread.sleep().
 	 */
-	private void testBeanCompositeTreeHeap(final int count, final long timeExpectedMax)
-			throws InterruptedException {
+	private void testBeanCompositeTreeHeap(final int count, final long timeExpectedMax) throws InterruptedException {
 
 		// set up a first composite tree
-		System.out.println("[BeanCompositeCreateRuntimePerfTest]"
-				+ " setting up the composite tree...");
+		System.out.println("[BeanCompositeCreateRuntimePerfTest]" + " setting up the composite tree...");
 		final long timeStart = System.currentTimeMillis();
 		Thread.sleep(100);
 		Submenu menu1 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
@@ -97,12 +91,10 @@ public final class BeanCompositeCreateRuntimePerfTest extends TestCase {
 
 		// check runtime
 		final long time = System.currentTimeMillis() - timeStart;
-		assertTrue("[BeanCompositeCreateRuntimePerfTest] creation of "
-				+ count + " Sumbmenu beans took longer than "
-				+ timeExpectedMax + " ms: " + time + " ms",
-				time <= timeExpectedMax);
-		System.out.println("[BeanCompositeCreateRuntimePerfTest]"
-				+ "   creation of " + count + " Sumbmenu beans (composite) took " + time + " ms");
+		assertTrue("[BeanCompositeCreateRuntimePerfTest] creation of " + count + " Sumbmenu beans took longer than "
+				+ timeExpectedMax + " ms: " + time + " ms", time <= timeExpectedMax);
+		System.out.println("[BeanCompositeCreateRuntimePerfTest]" + "   creation of " + count
+				+ " Sumbmenu beans (composite) took " + time + " ms");
 	}
 
 	/**

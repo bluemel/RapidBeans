@@ -28,18 +28,18 @@ import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
- * Handwritten generic enum that provides all character sets available in
- * Java as enum. Some important character sets are provided as constants.
+ * Handwritten generic enum that provides all character sets available in Java
+ * as enum. Some important character sets are provided as constants.
  */
-public final class ApplicationLnfTypeSwing
-		extends GenericEnum {
+public final class ApplicationLnfTypeSwing extends GenericEnum {
 
 	// ------------------------------------------------------------------------
 	// fixed set of helper methods
 	// -----------------------------------------------------------------------
 
 	/**
-	 * get the type object that describes the enum's metadata (like a Class object).
+	 * get the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @return the type object
 	 **/
@@ -48,7 +48,8 @@ public final class ApplicationLnfTypeSwing
 	}
 
 	/**
-	 * get the type object that describes the enum's metadata (like a Class object).
+	 * get the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @return the type object
 	 **/
@@ -65,12 +66,12 @@ public final class ApplicationLnfTypeSwing
 	 * @return the enumeration element
 	 */
 	public static ApplicationLnfTypeSwing getInstance(final String lnfName) {
-		return (ApplicationLnfTypeSwing) GenericEnum.valueOf(ApplicationLnfTypeSwing.class.getName(),
-				lnfName);
+		return (ApplicationLnfTypeSwing) GenericEnum.valueOf(ApplicationLnfTypeSwing.class.getName(), lnfName);
 	}
 
 	/**
-	 * set the type object that describes the enum's metadata (like a Class object).
+	 * set the type object that describes the enum's metadata (like a Class
+	 * object).
 	 * 
 	 * @param argType
 	 *            the type object
@@ -109,9 +110,9 @@ public final class ApplicationLnfTypeSwing
 	protected static TypeRapidEnum type = null;
 
 	/**
-	 * The constructor for enum elements.
-	 * Since all enum elements are pre instantiated before the first use
-	 * of this enum class this constructor exclusively is used internally.
+	 * The constructor for enum elements. Since all enum elements are pre
+	 * instantiated before the first use of this enum class this constructor
+	 * exclusively is used internally.
 	 * 
 	 * @param argName
 	 *            the enum element name
@@ -133,8 +134,7 @@ public final class ApplicationLnfTypeSwing
 		elements.add(new ApplicationLnfTypeSwing("system", order++));
 		Class<?> lafClass;
 		for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-			final ApplicationLnfTypeSwing laf = new ApplicationLnfTypeSwing(
-					info.getName().toLowerCase(), order++);
+			final ApplicationLnfTypeSwing laf = new ApplicationLnfTypeSwing(info.getName().toLowerCase(), order++);
 			try {
 				lafClass = Class.forName(info.getClassName());
 			} catch (ClassNotFoundException e) {

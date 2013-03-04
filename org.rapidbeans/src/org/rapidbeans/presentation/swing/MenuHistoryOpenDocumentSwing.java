@@ -62,14 +62,14 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	}
 
 	/**
-	 * Helper flag to eliminate two consecutive separators while
-	 * the history menu is switched off.
+	 * Helper flag to eliminate two consecutive separators while the history
+	 * menu is switched off.
 	 */
 	private boolean separatorRemoved = false;
 
 	/**
-	 * Helper flag to eliminate two consecutive separators while
-	 * the history menu is switched off.
+	 * Helper flag to eliminate two consecutive separators while the history
+	 * menu is switched off.
 	 */
 	private boolean lastSwitchedOn = true;
 
@@ -83,9 +83,7 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public MenuHistoryOpenDocumentSwing(
-			final ConfigMenuHistoryOpenDocument config,
-			final Application client,
+	public MenuHistoryOpenDocumentSwing(final ConfigMenuHistoryOpenDocument config, final Application client,
 			final String resourcePath) {
 		super(client, config, resourcePath);
 		switch (getPresentation()) {
@@ -156,8 +154,8 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 				if (entry == this) {
 					// remove old history menu items
 					if (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.inline
-							|| (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu
-							&& (this.historySubmenu == null || !this.getOn()))) {
+							|| (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu && (this.historySubmenu == null || !this
+									.getOn()))) {
 						while ((nextEntry == null && indexItems < itemCount)
 								|| ((!this.separatorRemoved) && nextEntry != null && menuItem != nextEntry.getWidget())) {
 							parentMenuWidget.remove(indexItems);
@@ -188,8 +186,7 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 
 						case submenu:
 							if (this.historySubmenu == null) {
-								initHistorySubmenu(ApplicationManager.getApplication(),
-										this.resourcePath);
+								initHistorySubmenu(ApplicationManager.getApplication(), this.resourcePath);
 								parentMenuWidget.insert(this.historySubmenu, indexItems++);
 								itemCount++;
 							}
@@ -215,16 +212,14 @@ public class MenuHistoryOpenDocumentSwing extends MenuHistoryOpenDocument {
 					} else {
 						// if there are two separators remove the second
 						if (menuEntries.get(indexEntries - 1) instanceof MenuSeparator
-								&& nextEntry instanceof MenuSeparator
-								&& this.lastSwitchedOn
+								&& nextEntry instanceof MenuSeparator && this.lastSwitchedOn
 								&& parentMenuWidget.getItem(indexItems) == null) {
 							parentMenuWidget.remove(indexItems);
 							itemCount--;
 							this.separatorRemoved = true;
 						}
 
-						if (this.getPresentation()
-						== MenuHistoryOpenDocumentPresentationMode.submenu) {
+						if (this.getPresentation() == MenuHistoryOpenDocumentPresentationMode.submenu) {
 							this.historySubmenu = null;
 						}
 						this.lastSwitchedOn = false;

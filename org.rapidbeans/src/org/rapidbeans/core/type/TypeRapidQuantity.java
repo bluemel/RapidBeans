@@ -72,16 +72,14 @@ public class TypeRapidQuantity extends RapidBeansType {
 		validateString(unitEnumTypename, "quantitytype", "unitenum");
 		TypeRapidEnum unitEnumType = null;
 		if (!unitEnumTypename.contains(".") && quantityTypeName.contains(".")) {
-			unitEnumTypename = StringHelper.splitBeforeLast(quantityTypeName, ".")
-					+ '.' + unitEnumTypename;
+			unitEnumTypename = StringHelper.splitBeforeLast(quantityTypeName, ".") + '.' + unitEnumTypename;
 		}
 		unitEnumType = TypeRapidEnum.forName(unitEnumTypename);
 
 		// transform the units into the short conversion table
 		// description e. g.
 		// "pm/1E12,nm/1E9,um/1E6,mm/1E3,cm/1E2,dm/10,m*1,km*1E3";
-		final Collection<XmlNode> units =
-				typeDescrRootNode.getSubnodes("unit");
+		final Collection<XmlNode> units = typeDescrRootNode.getSubnodes("unit");
 		StringBuffer conversionTableDescr = new StringBuffer();
 		int i = 0;
 		for (XmlNode unit : units) {
@@ -99,8 +97,7 @@ public class TypeRapidQuantity extends RapidBeansType {
 		this.setName(quantityTypeName);
 		this.setImplementingClass(clazz);
 		this.unittype = unitEnumType;
-		this.conversionTable = new TypeRapidQuantityConversionTable(
-				unitEnumType, conversionTableDescr.toString());
+		this.conversionTable = new TypeRapidQuantityConversionTable(unitEnumType, conversionTableDescr.toString());
 	}
 
 	/**
@@ -141,8 +138,7 @@ public class TypeRapidQuantity extends RapidBeansType {
 	 * 
 	 * @return the new type instance
 	 */
-	public static TypeRapidQuantity createInstance(
-			final String descr) {
+	public static TypeRapidQuantity createInstance(final String descr) {
 		return createInstance(XmlNode.getDocumentTopLevel(descr));
 	}
 
@@ -154,8 +150,7 @@ public class TypeRapidQuantity extends RapidBeansType {
 	 * 
 	 * @return the new type instance
 	 */
-	public static TypeRapidQuantity createInstance(
-			final XmlNode descrTopLevel) {
+	public static TypeRapidQuantity createInstance(final XmlNode descrTopLevel) {
 		TypeRapidQuantity type = new TypeRapidQuantity(null, descrTopLevel);
 		RapidBeansTypeLoader.getInstance().registerType(type);
 		return type;
@@ -183,12 +178,10 @@ public class TypeRapidQuantity extends RapidBeansType {
 	 * @param attrname
 	 *            attribute name
 	 */
-	private static void validateString(final String s,
-			final String entityname, final String attrname) {
+	private static void validateString(final String s, final String entityname, final String attrname) {
 		if (s == null) {
-			throw new RapidBeansRuntimeException("Error parsing XML quantity description."
-					+ " entity <" + entityname + ">"
-					+ " attribute \"" + attrname + "\" not found");
+			throw new RapidBeansRuntimeException("Error parsing XML quantity description." + " entity <" + entityname
+					+ ">" + " attribute \"" + attrname + "\" not found");
 		}
 		if (s.equals("")) {
 			throw new RapidBeansRuntimeException("Error parsing XML quantity description."

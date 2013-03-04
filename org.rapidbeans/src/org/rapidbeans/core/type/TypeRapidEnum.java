@@ -48,14 +48,13 @@ public final class TypeRapidEnum extends RapidBeansType {
 	private List<RapidEnum> elements = null;
 
 	/**
-	 * hash map with the enum's element instances for high performance
-	 * lookup by name.
+	 * hash map with the enum's element instances for high performance lookup by
+	 * name.
 	 */
 	private Map<String, RapidEnum> enumMap = null;
 
 	/**
-	 * hash map with the enum's element descriptions
-	 * lookup by name.
+	 * hash map with the enum's element descriptions lookup by name.
 	 */
 	private Map<String, String> descriptionMap = new HashMap<String, String>();
 
@@ -108,8 +107,8 @@ public final class TypeRapidEnum extends RapidBeansType {
 		}
 		if (e == null) {
 			if (!this.getName().equals("org.rapidbeans.core.basic.RapidEnum")) {
-				throw new EnumException("element \"" + enumElementName
-						+ "\" is not part of enum \"" + this.getName() + "\"");
+				throw new EnumException("element \"" + enumElementName + "\" is not part of enum \"" + this.getName()
+						+ "\"");
 			}
 		}
 		return e;
@@ -149,9 +148,7 @@ public final class TypeRapidEnum extends RapidBeansType {
 	 */
 	public String getStringGui(final RapidEnum enumElement, final RapidBeansLocale locale) {
 		try {
-			return locale.getStringGui("enum."
-					+ this.getName().toLowerCase()
-					+ "." + enumElement.name().toLowerCase());
+			return locale.getStringGui("enum." + this.getName().toLowerCase() + "." + enumElement.name().toLowerCase());
 		} catch (MissingResourceException e) {
 			return enumElement.name();
 		}
@@ -170,8 +167,7 @@ public final class TypeRapidEnum extends RapidBeansType {
 	}
 
 	/**
-	 * format a comma separated String out of a list
-	 * with enum elements.
+	 * format a comma separated String out of a list with enum elements.
 	 * 
 	 * @param enumList
 	 *            the List with enum elements
@@ -233,8 +229,7 @@ public final class TypeRapidEnum extends RapidBeansType {
 	 * 
 	 * @return the enum type instance
 	 */
-	public static TypeRapidEnum createInstance(
-			final String typename, final List<RapidEnum> elements) {
+	public static TypeRapidEnum createInstance(final String typename, final List<RapidEnum> elements) {
 		final TypeRapidEnum type = new TypeRapidEnum(typename, elements);
 		RapidBeansTypeLoader.getInstance().registerType(type);
 		return type;
@@ -277,8 +272,8 @@ public final class TypeRapidEnum extends RapidBeansType {
 	}
 
 	/**
-	 * constructor for a type instance of a generic enum with
-	 * elements already given.
+	 * constructor for a type instance of a generic enum with elements already
+	 * given.
 	 * 
 	 * @param typename
 	 *            the fully qualified enum type name
@@ -334,8 +329,7 @@ public final class TypeRapidEnum extends RapidBeansType {
 	 * @param decl
 	 *            the enumeration type declaration
 	 */
-	private void initFromClass(final Class<?> clazz,
-			final XmlNode decl) {
+	private void initFromClass(final Class<?> clazz, final XmlNode decl) {
 		this.setName(clazz.getName());
 		this.setImplementingClass(clazz);
 
@@ -374,11 +368,9 @@ public final class TypeRapidEnum extends RapidBeansType {
 	 * constructor for a type instance of a generic enum.
 	 * 
 	 * @param typenameOrDescr
-	 *            the fully qualified enum type name or the
-	 *            whole description
+	 *            the fully qualified enum type name or the whole description
 	 */
-	private void initFromTypeDescr(final String typenameOrDescr,
-			final XmlNode decl) {
+	private void initFromTypeDescr(final String typenameOrDescr, final XmlNode decl) {
 		this.setImplementingClass(null);
 
 		this.elements = new ArrayList<RapidEnum>();
@@ -393,8 +385,7 @@ public final class TypeRapidEnum extends RapidBeansType {
 		}
 		int i = 0;
 		for (XmlNode node : tlNode.getSubnodes("enum")) {
-			this.descriptionMap.put(node.getAttributeValue("@name"),
-					RapidBeansType.readDescription(node));
+			this.descriptionMap.put(node.getAttributeValue("@name"), RapidBeansType.readDescription(node));
 			final GenericEnum genericEnum = new GenericEnum(this, node.getAttributeValue("@name"), i++);
 			this.elements.add(genericEnum);
 			this.enumMap.put(genericEnum.name(), genericEnum);
@@ -405,8 +396,8 @@ public final class TypeRapidEnum extends RapidBeansType {
 	private void checkElements() {
 		if (this.elements.size() == 0) {
 			if (!this.getName().equals("org.rapidbeans.core.basic.RapidEnum")) {
-				throw new EnumException("Problems with enumeration type \""
-						+ getName() + "\". An enum must at least have one member");
+				throw new EnumException("Problems with enumeration type \"" + getName()
+						+ "\". An enum must at least have one member");
 			}
 		}
 		int j;
@@ -415,11 +406,8 @@ public final class TypeRapidEnum extends RapidBeansType {
 			final RapidEnum enumElement = this.elements.get(i);
 			for (j = i + 1; j < elemSize; j++) {
 				if (enumElement == this.elements.get(j)) {
-					throw new EnumException(
-							"Invalid enum for TypeRapidEnum (enum class name \""
-									+ this.getName() + "\"): enum element \""
-									+ this.elements.get(i).name()
-									+ "\" enumerated more than once\n");
+					throw new EnumException("Invalid enum for TypeRapidEnum (enum class name \"" + this.getName()
+							+ "\"): enum element \"" + this.elements.get(i).name() + "\" enumerated more than once\n");
 				}
 			}
 		}

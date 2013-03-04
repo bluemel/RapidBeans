@@ -44,13 +44,10 @@ public class IdNumericTest extends TestCase {
 	 *            the date of birth
 	 * @return the test bean
 	 */
-	private GenericBean createTestBeanNumeric(final String name,
-			final String prename, final String dateofbirth) {
-		String descr = "<beantype name=\"TestBean\" idtype=\"numeric\">"
-				+ "<property name=\"name\" key=\"true\"/>"
+	private GenericBean createTestBeanNumeric(final String name, final String prename, final String dateofbirth) {
+		String descr = "<beantype name=\"TestBean\" idtype=\"numeric\">" + "<property name=\"name\" key=\"true\"/>"
 				+ "<property name=\"prename\" key=\"true\"/>"
-				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>"
-				+ "</beantype>";
+				+ "<property name=\"dateofbirth\" type=\"date\" key=\"true\"/>" + "</beantype>";
 		GenericBean bean = TestHelper.createGenericBeanInstance(descr);
 		bean.setPropValue("name", name);
 		bean.setPropValue("prename", prename);

@@ -52,8 +52,7 @@ public class ExceptionMessageDialogSwing extends ExceptionMessageDialog {
 		this.dialog.setTitle(title);
 		this.dialog.setSize(600, 400);
 		final Dimension screenSize = this.dialog.getToolkit().getScreenSize();
-		this.dialog.setLocation((screenSize.width - 600) / 2,
-				(screenSize.height - 400) / 2);
+		this.dialog.setLocation((screenSize.width - 600) / 2, (screenSize.height - 400) / 2);
 		this.scrollPane.getViewport().add(this.textArea);
 		this.dialog.getContentPane().add(this.scrollPane);
 		this.textArea.setText(StringHelper.toStackTraceString(throwable));

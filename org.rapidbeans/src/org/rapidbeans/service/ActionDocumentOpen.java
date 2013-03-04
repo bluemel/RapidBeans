@@ -37,7 +37,7 @@ public class ActionDocumentOpen extends Action {
 	 * load a bean document from file.
 	 */
 	public void execute() {
-		DocumentController.open(this.getArgumentValue("docconfname", null),
-				this.getArgumentValue("viewconfname", null));
+		DocumentController
+				.open(this.getArgumentValue("docconfname", null), this.getArgumentValue("viewconfname", null));
 	}
 }

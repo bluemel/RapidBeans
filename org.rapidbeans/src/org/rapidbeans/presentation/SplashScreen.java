@@ -18,12 +18,12 @@
 package org.rapidbeans.presentation;
 
 /**
- * The client application's splash screen usually pops up
- * during start up (initialization).
+ * The client application's splash screen usually pops up during start up
+ * (initialization).
  */
 public abstract class SplashScreen {
 
-	//    private int timeMinMillis = -1;
+	// private int timeMinMillis = -1;
 
 	public abstract Object getWidget();
 }

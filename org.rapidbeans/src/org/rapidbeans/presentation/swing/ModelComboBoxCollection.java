@@ -70,8 +70,7 @@ public class ModelComboBoxCollection extends DefaultComboBoxModel {
 	 * @param doc
 	 *            the document
 	 */
-	public ModelComboBoxCollection(final PropertyCollection colProp,
-			final Document doc) {
+	public ModelComboBoxCollection(final PropertyCollection colProp, final Document doc) {
 		final TypePropertyCollection colPropType = (TypePropertyCollection) colProp.getType();
 		if (colPropType.getMinmult() == 0 && (!colPropType.getMandatory())) {
 			this.provideEmpty = true;
@@ -106,8 +105,7 @@ public class ModelComboBoxCollection extends DefaultComboBoxModel {
 	 * @param doc
 	 *            the document
 	 */
-	public ModelComboBoxCollection(final TypePropertyCollection colPropType,
-			final Collection<RapidBean> col) {
+	public ModelComboBoxCollection(final TypePropertyCollection colPropType, final Collection<RapidBean> col) {
 		if (colPropType.getMinmult() == 0 && (!colPropType.getMandatory())) {
 			this.provideEmpty = true;
 		}

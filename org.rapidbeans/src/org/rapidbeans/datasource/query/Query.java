@@ -36,8 +36,7 @@ import org.rapidbeans.presentation.ApplicationManager;
  */
 public final class Query {
 
-	private static final Logger log = Logger.getLogger(
-			Query.class.getName());
+	private static final Logger log = Logger.getLogger(Query.class.getName());
 
 	/**
 	 * constant for buffer length.
@@ -102,8 +101,8 @@ public final class Query {
 	 * @param db
 	 *            the database to query beans from
 	 * 
-	 * @return a single bean found by that query
-	 *         or null if no bean has been found
+	 * @return a single bean found by that query or null if no bean has been
+	 *         found
 	 */
 	public RapidBean findBean(final Container db) {
 		List<RapidBean> resultSet = this.findBeans(db);
@@ -113,9 +112,7 @@ public final class Query {
 		case 1:
 			return resultSet.iterator().next();
 		default:
-			throw new DatasourceException(
-					"Unexpectedly found " + resultSet.size()
-							+ " beans instead of one");
+			throw new DatasourceException("Unexpectedly found " + resultSet.size() + " beans instead of one");
 		}
 	}
 
@@ -183,9 +180,8 @@ public final class Query {
 			// parse function parameters
 			case 13:
 				if (c != ')') {
-					throw new QueryException("Error in query \"" + queryString
-							+ "\", unexpected character '" + c + "',"
-							+ " expected ')' to close parameterless function.");
+					throw new QueryException("Error in query \"" + queryString + "\", unexpected character '" + c
+							+ "'," + " expected ')' to close parameterless function.");
 				}
 				state = 2;
 				break;
@@ -211,8 +207,7 @@ public final class Query {
 				break;
 
 			default:
-				throw new QueryException("Error in query \"" + queryString
-						+ "\", undefined state " + state);
+				throw new QueryException("Error in query \"" + queryString + "\", undefined state " + state);
 			}
 		}
 
@@ -225,8 +220,8 @@ public final class Query {
 			break;
 		default:
 			break;
-		//throw new QueryException("Error in query \"" + queryString
-		//        + "\", undefined state " + state);
+		// throw new QueryException("Error in query \"" + queryString
+		// + "\", undefined state " + state);
 		}
 	}
 
@@ -287,8 +282,7 @@ public final class Query {
 		int state = curState;
 		switch (c) {
 		default:
-			throw new QueryException("'" + c + "' not expexted while"
-					+ " parsing blanks after classname or path");
+			throw new QueryException("'" + c + "' not expexted while" + " parsing blanks after classname or path");
 		case '[':
 			this.depth1++;
 			state = 1;
@@ -321,8 +315,7 @@ public final class Query {
 	 * 
 	 * @return the parser's next state
 	 */
-	private int parseAttributeOrLinkSetName(final int curState, final char c,
-			final String queryString) {
+	private int parseAttributeOrLinkSetName(final int curState, final char c, final String queryString) {
 		int state = curState;
 		switch (c) {
 		default:
@@ -388,8 +381,7 @@ public final class Query {
 			this.depth1--;
 			if (this.depth1 == 0) {
 				if (this.depth2 > 0) {
-					throw new DatasourceException(
-							"Closing ')' missing before last closing ']'");
+					throw new DatasourceException("Closing ')' missing before last closing ']'");
 				}
 				state = 6;
 			}
@@ -455,8 +447,7 @@ public final class Query {
 	 * 
 	 * @return the parser's next state
 	 */
-	private int parseAttributeValue(final int curState,
-			final char c, final String queryString) {
+	private int parseAttributeValue(final int curState, final char c, final String queryString) {
 		int state = curState;
 		switch (c) {
 		case '\'':
@@ -482,8 +473,7 @@ public final class Query {
 				this.depth2--;
 				break;
 			default:
-				throw new QueryException("Unexpected character '" + c
-						+ "\'. Expected ']' or ')'.");
+				throw new QueryException("Unexpected character '" + c + "\'. Expected ']' or ')'.");
 			}
 			break;
 
@@ -511,15 +501,12 @@ public final class Query {
 			break;
 		case '(':
 			// quick hack for primitive functions
-			if (this.buf.length() > 0
-					&& this.buf.toString().equals("authenticatedUser")) {
-				this.setValueOfAttrValueCondition(
-						ApplicationManager.getApplication().getAuthenticatedUser().getProperty("accountname")
-								.toString());
+			if (this.buf.length() > 0 && this.buf.toString().equals("authenticatedUser")) {
+				this.setValueOfAttrValueCondition(ApplicationManager.getApplication().getAuthenticatedUser()
+						.getProperty("accountname").toString());
 				this.buf.delete(0, BUFFER_LENGTH);
 			} else {
-				throw new DatasourceException(
-						"Unexpected fuction '" + this.buf.toString() + "' in query");
+				throw new DatasourceException("Unexpected fuction '" + this.buf.toString() + "' in query");
 			}
 			state = 13;
 			break;
@@ -527,8 +514,7 @@ public final class Query {
 		case '=':
 		case '>':
 		case '<':
-			throw new DatasourceException(
-					"Unexpected character '" + c + "' in query");
+			throw new DatasourceException("Unexpected character '" + c + "' in query");
 		case ' ':
 		case '\n':
 		case '\t':
@@ -552,8 +538,7 @@ public final class Query {
 	 * 
 	 * @return the parser's next state
 	 */
-	private int parseQuotedAttributeValue(final int curState,
-			final char c, final String queryString) {
+	private int parseQuotedAttributeValue(final int curState, final char c, final String queryString) {
 		int state = curState;
 		switch (c) {
 		case '\'':
@@ -577,9 +562,8 @@ public final class Query {
 				this.buf.append('\0');
 				break;
 			default:
-				throw new QueryException("Error in query \"" + queryString
-						+ "\", invalid escape sequence \\" + c + ".\n"
-						+ "Valid escape sequences \\\\, \\n, \\t, \\0");
+				throw new QueryException("Error in query \"" + queryString + "\", invalid escape sequence \\" + c
+						+ ".\n" + "Valid escape sequences \\\\, \\n, \\t, \\0");
 			}
 			break;
 		default:
@@ -599,8 +583,7 @@ public final class Query {
 	 * 
 	 * @return the parser's next state
 	 */
-	private int parseQuotedAttributeTypeConstant(final int curState,
-			final char c, final String queryString) {
+	private int parseQuotedAttributeTypeConstant(final int curState, final char c, final String queryString) {
 		int state = curState;
 		switch (c) {
 		case '\'':
@@ -624,9 +607,8 @@ public final class Query {
 				this.buf.append('\0');
 				break;
 			default:
-				throw new QueryException("Error in query \"" + queryString
-						+ "\", invalid escape sequence \\" + c1 + ".\n"
-						+ "Valid escape sequences \\\\, \\n, \\t, \\0");
+				throw new QueryException("Error in query \"" + queryString + "\", invalid escape sequence \\" + c1
+						+ ".\n" + "Valid escape sequences \\\\, \\n, \\t, \\0");
 			}
 			break;
 		default:
@@ -765,14 +747,16 @@ public final class Query {
 	 * create and AND expression.
 	 */
 	private void addNewBoolAndExpression() {
-		//        if (!(this.lastCreatedExpression instanceof QueryExprConditionAttrval
-		//                || this.lastCreatedExpression instanceof QueryExprConditionLinkSet
-		//                || this.lastCreatedExpression instanceof QueryExprBrace)) {
-		//            throw new QueryException("can't create a BoolAndExpression after a \""
-		//                    + this.lastCreatedExpression.getClass().getName() + "\"\n"
-		//                    + "only directly after an "
-		//                    + "AttributeValueCondition\n" + "or LinkSetCondition or a BraceExpression");
-		//        }
+		// if (!(this.lastCreatedExpression instanceof QueryExprConditionAttrval
+		// || this.lastCreatedExpression instanceof QueryExprConditionLinkSet
+		// || this.lastCreatedExpression instanceof QueryExprBrace)) {
+		// throw new
+		// QueryException("can't create a BoolAndExpression after a \""
+		// + this.lastCreatedExpression.getClass().getName() + "\"\n"
+		// + "only directly after an "
+		// + "AttributeValueCondition\n" +
+		// "or LinkSetCondition or a BraceExpression");
+		// }
 		this.lastCreatedExpression = new QueryExprBoolAnd(this.lastCreatedExpression);
 		log.fine(" adding new BoolAndExpression");
 		log.fine(" ---------------------------------------");
@@ -806,8 +790,7 @@ public final class Query {
 			if (type.getAbstract()) {
 				final List<TypeRapidBean> concreteSubtypes = type.getConcreteSubtypes();
 				if (concreteSubtypes.size() == 0) {
-					throw new QueryException("no concrete subtype found for type \""
-							+ type.getName() + "\"");
+					throw new QueryException("no concrete subtype found for type \"" + type.getName() + "\"");
 				}
 				final TypeRapidBean firstConcreteSubtype = concreteSubtypes.get(0);
 				bbExample = RapidBeanImplStrict.createInstance(firstConcreteSubtype);
@@ -816,8 +799,8 @@ public final class Query {
 			}
 			final Property prop = bbExample.getProperty(propPath);
 			if (prop == null) {
-				throw new DatasourceException("invalid sort criteria \"" + propPath + "\""
-						+ " for bean type \"" + bbExample.getType().getName() + "\"");
+				throw new DatasourceException("invalid sort criteria \"" + propPath + "\"" + " for bean type \""
+						+ bbExample.getType().getName() + "\"");
 			}
 			this.sorter.addSortCriteria(prop.getType());
 		} else {
@@ -846,16 +829,12 @@ public final class Query {
 	 */
 	private QueryExpression closeBrace1(final int depth) {
 		QueryExpression lastCreatedBraceExpression = this.lastCreatedExpression;
-		log.fine(" closing Brace 1a ']': lastCreatedExpression:"
-				+ lastCreatedBraceExpression.getClass().getName());
+		log.fine(" closing Brace 1a ']': lastCreatedExpression:" + lastCreatedBraceExpression.getClass().getName());
 
 		while (!(lastCreatedBraceExpression instanceof QueryExprConditionLinkSet
-				|| lastCreatedBraceExpression instanceof QueryExprConditionType
-				|| (lastCreatedBraceExpression instanceof QueryExprConditionAttrval
-		&& depth <= 1))) {
+				|| lastCreatedBraceExpression instanceof QueryExprConditionType || (lastCreatedBraceExpression instanceof QueryExprConditionAttrval && depth <= 1))) {
 			lastCreatedBraceExpression = lastCreatedBraceExpression.getParentExpression();
-			log.fine(" closing Brace 1b ']': lastCreatedExpression:"
-					+ lastCreatedBraceExpression.getClass().getName());
+			log.fine(" closing Brace 1b ']': lastCreatedExpression:" + lastCreatedBraceExpression.getClass().getName());
 		}
 
 		return lastCreatedBraceExpression;
@@ -871,12 +850,10 @@ public final class Query {
 	 */
 	private QueryExpression closeBrace2(final int depth) {
 		QueryExpression lastCreatedBraceExpression = this.lastCreatedExpression;
-		log.fine(" closing Brace 2a ')': lastCreatedExpression:"
-				+ lastCreatedBraceExpression.getClass().getName());
+		log.fine(" closing Brace 2a ')': lastCreatedExpression:" + lastCreatedBraceExpression.getClass().getName());
 		while (!(lastCreatedBraceExpression instanceof QueryExprBrace)) {
 			lastCreatedBraceExpression = lastCreatedBraceExpression.getParentExpression();
-			log.fine(" closing Brace 2b ')': lastCreatedExpression:"
-					+ lastCreatedBraceExpression.getClass().getName());
+			log.fine(" closing Brace 2b ')': lastCreatedExpression:" + lastCreatedBraceExpression.getClass().getName());
 		}
 		((QueryExprBrace) lastCreatedBraceExpression).close();
 		return lastCreatedBraceExpression;

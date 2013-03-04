@@ -29,10 +29,9 @@ import org.rapidbeans.core.type.TypeRapidQuantity;
 public class GenericQuantity extends RapidQuantity {
 
 	/**
-	 * The Rapid Bean type instance.
-	 * Since we have no class we can't make it a static
-	 * member of the class. So every instance has to have
-	 * a reference to it's type.
+	 * The Rapid Bean type instance. Since we have no class we can't make it a
+	 * static member of the class. So every instance has to have a reference to
+	 * it's type.
 	 */
 	private TypeRapidQuantity type = null;
 
@@ -79,8 +78,7 @@ public class GenericQuantity extends RapidQuantity {
 	 *            the quantity type
 	 * @param value
 	 */
-	public GenericQuantity(final TypeRapidQuantity qtype,
-			final BigDecimal argMagnitude, final RapidEnum argUnit) {
+	public GenericQuantity(final TypeRapidQuantity qtype, final BigDecimal argMagnitude, final RapidEnum argUnit) {
 		super(argMagnitude, argUnit);
 		this.type = qtype;
 	}

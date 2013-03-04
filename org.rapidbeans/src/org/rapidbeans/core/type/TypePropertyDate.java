@@ -58,8 +58,7 @@ public class TypePropertyDate extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyDate(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyDate(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("Date", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@default");

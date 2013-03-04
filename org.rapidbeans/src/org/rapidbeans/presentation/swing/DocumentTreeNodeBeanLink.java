@@ -48,21 +48,21 @@ public class DocumentTreeNodeBeanLink {
 		this.linkedBean = bean;
 	}
 
-	//    /**
-	//     * Delegates equals to the bean's implementation.
-	//     *
-	//     * @param o the other node
-	//     *
-	//     * @return if this node equals or not
-	//     */
-	//    public boolean equals(final DocumentTreeNodeBeanLink o) {
-	//        return this.linkedBean.equals(o.linkedBean);
-	//    }
+	// /**
+	// * Delegates equals to the bean's implementation.
+	// *
+	// * @param o the other node
+	// *
+	// * @return if this node equals or not
+	// */
+	// public boolean equals(final DocumentTreeNodeBeanLink o) {
+	// return this.linkedBean.equals(o.linkedBean);
+	// }
 	//
-	//    /**
-	//     * @return the hash code of the encapsulated bean.
-	//     */
-	//    public int hashCode() {
-	//        return this.linkedBean.hashCode();
-	//    }
+	// /**
+	// * @return the hash code of the encapsulated bean.
+	// */
+	// public int hashCode() {
+	// return this.linkedBean.hashCode();
+	// }
 }

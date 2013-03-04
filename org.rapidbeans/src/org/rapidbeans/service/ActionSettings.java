@@ -34,9 +34,7 @@ public class ActionSettings extends Action {
 	public final void execute() {
 		Application client = ApplicationManager.getApplication();
 		try {
-			DocumentView settingsView =
-					client.openDocumentView(client.getSettingsDoc(),
-							"settings", "standard");
+			DocumentView settingsView = client.openDocumentView(client.getSettingsDoc(), "settings", "standard");
 			settingsView.getTreeView().setShowProperties(false);
 			if (settingsView.getDocument().getChanged()) {
 				settingsView.getDocument().save();
@@ -44,8 +42,7 @@ public class ActionSettings extends Action {
 		} catch (ValidationException e) {
 			RapidBeansLocale locale = ApplicationManager.getApplication().getCurrentLocale();
 			if (!ApplicationManager.getApplication().getTestMode()) {
-				ApplicationManager.getApplication().messageError(
-						e.getLocalizedMessage(locale),
+				ApplicationManager.getApplication().messageError(e.getLocalizedMessage(locale),
 						locale.getStringGui("messagedialog.title.config.wrong"));
 			}
 		}

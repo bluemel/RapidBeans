@@ -19,40 +19,33 @@ import junit.framework.TestCase;
 public final class StringHelperTest extends TestCase {
 
 	public void testStripBothWhitespace() {
-		assertEquals("hello world", StringHelper.strip("\t\t \n  hello world \t \n",
-				StringHelper.StripMode.both));
+		assertEquals("hello world", StringHelper.strip("\t\t \n  hello world \t \n", StringHelper.StripMode.both));
 	}
 
 	public void testStripTrailing() {
-		assertEquals("/\\ abc 789/ ", StringHelper.strip(
-				"/\\ abc 789/ /\\///\\",
-				new char[] { '/', '\\' },
-				StringHelper.StripMode.trailing));
+		assertEquals("/\\ abc 789/ ",
+				StringHelper.strip("/\\ abc 789/ /\\///\\", new char[] { '/', '\\' }, StringHelper.StripMode.trailing));
 	}
 
 	public void testStripLeading() {
-		assertEquals("abc/789", StringHelper.strip(
-				"//abc/789", '/',
-				StringHelper.StripMode.leading));
+		assertEquals("abc/789", StringHelper.strip("//abc/789", '/', StringHelper.StripMode.leading));
 	}
 
 	public void testFillUpLeft() {
-		assertEquals("000123", StringHelper.fillUp(
-				"123", 6, '0', StringHelper.FillMode.left));
+		assertEquals("000123", StringHelper.fillUp("123", 6, '0', StringHelper.FillMode.left));
 	}
 
 	public void testFillUpRight() {
-		assertEquals("hello world         ", StringHelper.fillUp(
-				"hello world", 20, ' ', StringHelper.FillMode.right));
+		assertEquals("hello world         ", StringHelper.fillUp("hello world", 20, ' ', StringHelper.FillMode.right));
 	}
 
-	//    // Core 2 Duo Notebook: 0,75 sec
-	//    public void testFillUpPerf() {
-	//        for (int i = 0; i < 1000000; i++) {
-	//            StringHelper.fillUp("hello world", 20, ' ', StringHelper.FillMode.left);
-	//            StringHelper.fillUp("hello world", 20, ' ', StringHelper.FillMode.right);
-	//        }
-	//    }
+	// // Core 2 Duo Notebook: 0,75 sec
+	// public void testFillUpPerf() {
+	// for (int i = 0; i < 1000000; i++) {
+	// StringHelper.fillUp("hello world", 20, ' ', StringHelper.FillMode.left);
+	// StringHelper.fillUp("hello world", 20, ' ', StringHelper.FillMode.right);
+	// }
+	// }
 
 	public void testSplitWhitespace() {
 		List<String> sp = StringHelper.split("\t1 22\n\t\t 333 \n4444\n");
@@ -64,9 +57,7 @@ public final class StringHelperTest extends TestCase {
 	}
 
 	public void testSplitPath() {
-		List<String> sp = StringHelper.split(
-				"//D:/Projects/RapidBeans\\org.rapidbeans\\src",
-				"/\\");
+		List<String> sp = StringHelper.split("//D:/Projects/RapidBeans\\org.rapidbeans\\src", "/\\");
 		assertEquals(5, sp.size());
 		assertEquals("D:", sp.get(0));
 		assertEquals("Projects", sp.get(1));
@@ -80,9 +71,7 @@ public final class StringHelperTest extends TestCase {
 	}
 
 	public void testSplitFirstPath() {
-		assertEquals("D:", StringHelper.splitFirst(
-				"//D:/Projects/RapidBeans\\org.rapidbeans\\src",
-				"/\\"));
+		assertEquals("D:", StringHelper.splitFirst("//D:/Projects/RapidBeans\\org.rapidbeans\\src", "/\\"));
 	}
 
 	public void testSplitFirstWhitespaceNo() {
@@ -103,48 +92,39 @@ public final class StringHelperTest extends TestCase {
 	}
 
 	public void testSplitLastPath() {
-		assertEquals("src", StringHelper.splitLast(
-				"//D:/Projects/RapidBeans\\org.rapidbeans\\src",
-				"/\\"));
+		assertEquals("src", StringHelper.splitLast("//D:/Projects/RapidBeans\\org.rapidbeans\\src", "/\\"));
 	}
 
 	public void testSplitBeforeLast() {
-		assertEquals("http://www.martin-bluemel.de", StringHelper.splitBeforeLast(
-				"http://www.martin-bluemel.de/software", "/.-"));
+		assertEquals("http://www.martin-bluemel.de",
+				StringHelper.splitBeforeLast("http://www.martin-bluemel.de/software", "/.-"));
 	}
 
 	public void testSplitBeforeLastMultipleDelimSequence() {
-		assertEquals("http://www.martin-bluemel.de", StringHelper.splitBeforeLast(
-				"http://www.martin-bluemel.de/-.--..software-/./.--", "/.-"));
+		assertEquals("http://www.martin-bluemel.de",
+				StringHelper.splitBeforeLast("http://www.martin-bluemel.de/-.--..software-/./.--", "/.-"));
 	}
 
 	public void testSplitBeforeLastOnlyOneDelimsAround() {
-		assertEquals("software", StringHelper.splitBeforeLast(
-				"-.--..software-/./.--", "/.-"));
+		assertEquals("software", StringHelper.splitBeforeLast("-.--..software-/./.--", "/.-"));
 	}
 
 	public void testSplitBeforeLastOnlyOneDelimsRight() {
-		assertEquals("software", StringHelper.splitBeforeLast(
-				"software-/./.--", "/.-"));
+		assertEquals("software", StringHelper.splitBeforeLast("software-/./.--", "/.-"));
 	}
 
 	public void testSplitBeforeLastOnlyOneDelimsLeft() {
-		assertEquals("software", StringHelper.splitBeforeLast(
-				"-.--..software", "/.-"));
+		assertEquals("software", StringHelper.splitBeforeLast("-.--..software", "/.-"));
 	}
 
 	public void testSplitBeforeLastOnlyOneDelimsNo() {
-		assertEquals("software", StringHelper.splitBeforeLast(
-				"software", "/.-"));
+		assertEquals("software", StringHelper.splitBeforeLast("software", "/.-"));
 	}
 
 	public void testSplitEscaped() {
-		assertEquals("X,Y,Z", StringHelper.splitEscaped(
-				"X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(0));
-		assertEquals("Bluemel,Martin", StringHelper.splitEscaped(
-				"X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(1));
-		assertEquals("ABC", StringHelper.splitEscaped(
-				"X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(2));
+		assertEquals("X,Y,Z", StringHelper.splitEscaped("X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(0));
+		assertEquals("Bluemel,Martin", StringHelper.splitEscaped("X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(1));
+		assertEquals("ABC", StringHelper.splitEscaped("X\\,Y\\,Z,Bluemel\\,Martin,ABC", ',', '\\').get(2));
 	}
 
 	public void testSplitQuotedMixed() {
@@ -171,9 +151,8 @@ public final class StringHelperTest extends TestCase {
 	}
 
 	public void testSplitQuotedToken() {
-		final List<StringHelper.SplitToken> sl =
-				StringHelper.splitQuotedIsQuoted(
-						"/C \"echo Hello \\\"My Folks\\\"!& pause\"");
+		final List<StringHelper.SplitToken> sl = StringHelper
+				.splitQuotedIsQuoted("/C \"echo Hello \\\"My Folks\\\"!& pause\"");
 		assertEquals(2, sl.size());
 		assertEquals("/C", sl.get(0).getToken());
 		assertEquals(false, sl.get(0).isQuoted());
@@ -194,24 +173,13 @@ public final class StringHelperTest extends TestCase {
 	}
 
 	public void testEscapeMapSimple() {
-		EscapeMap map = new EscapeMap(new String[] {
-				"\b", "\\b",
-				"\n", "\\n",
-				"\r", "\\r",
-				"\t", "\\t",
-		});
+		EscapeMap map = new EscapeMap(new String[] { "\b", "\\b", "\n", "\\n", "\r", "\\r", "\t", "\\t", });
 		assertEquals("12\\t3\\n\\xx\\bx\\r", StringHelper.escape("12\t3\n\\xx\bx\r", map));
 		assertEquals("12\t3\n\\xx\bx\r", StringHelper.unescape("12\\t3\\n\\xx\\bx\\r", map));
 	}
 
 	public void testEscapeMapBackslash() {
-		EscapeMap map = new EscapeMap(new String[] {
-				"\b", "\\b",
-				"\n", "\\n",
-				"\r", "\\r",
-				"\t", "\\t",
-				"\\", "\\\\"
-		});
+		EscapeMap map = new EscapeMap(new String[] { "\b", "\\b", "\n", "\\n", "\r", "\\r", "\t", "\\t", "\\", "\\\\" });
 		assertEquals("\\\\t", StringHelper.escape("\\t", map));
 		assertEquals("\\t", StringHelper.unescape("\\\\t", map));
 	}

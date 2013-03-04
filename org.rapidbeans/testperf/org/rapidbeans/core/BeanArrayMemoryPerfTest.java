@@ -9,17 +9,15 @@ import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 
 /**
- * Test heap space needs and garbage collection for a bean
- * array.
+ * Test heap space needs and garbage collection for a bean array.
  * 
  * @author Martin Bluemel
  */
 public final class BeanArrayMemoryPerfTest extends TestCase {
 
 	/**
-	 * the test prooves:
-	 * 1) 100 k MenuItem beans can be created per second (Pentium M 1,6 GHz)
-	 * 2) beans and their properties are garbage collected.
+	 * the test prooves: 1) 100 k MenuItem beans can be created per second
+	 * (Pentium M 1,6 GHz) 2) beans and their properties are garbage collected.
 	 * 
 	 * @throws InterruptedException
 	 *             because of Thread.sleep.
@@ -50,12 +48,10 @@ public final class BeanArrayMemoryPerfTest extends TestCase {
 		} catch (RapidBeansRuntimeException e) {
 			final Throwable e1 = e.getCause();
 			assertTrue("caught BBRuntimeException with cause different from InvocationTargetException"
-					+ e1.getClass().getName() + ": " + e1.getMessage(),
-					e1 instanceof InvocationTargetException);
+					+ e1.getClass().getName() + ": " + e1.getMessage(), e1 instanceof InvocationTargetException);
 			final Throwable e2 = e1.getCause();
 			assertTrue("caught InvocationTargetException with nested exception different from OutOfMemoryError: "
-					+ e2.getClass().getName() + ": " + e2.getMessage(),
-					e2 instanceof OutOfMemoryError);
+					+ e2.getClass().getName() + ": " + e2.getMessage(), e2 instanceof OutOfMemoryError);
 			System.out.println("[BeanArrayMemoryPerfTest] got an InvocationTargetException"
 					+ " caused by an OutOfMemoryError as expected");
 		} catch (OutOfMemoryError e) {

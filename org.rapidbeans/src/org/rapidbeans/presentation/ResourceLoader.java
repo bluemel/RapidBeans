@@ -25,12 +25,12 @@ import java.util.List;
 /**
  * The ResourceLoader tries to load resources.
  * 
- * 1) by a number of given classes from the jars where these classes
- * come from relatively to their package which is fine for
- * remote applications in form of Java WebStart apps or Java Applets.
+ * 1) by a number of given classes from the jars where these classes come from
+ * relatively to their package which is fine for remote applications in form of
+ * Java WebStart apps or Java Applets.
  * 
- * 2) by the ClassLoader as system resource which is fine for simple
- * local Java applications.
+ * 2) by the ClassLoader as system resource which is fine for simple local Java
+ * applications.
  */
 public class ResourceLoader {
 

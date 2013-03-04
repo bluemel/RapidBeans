@@ -18,8 +18,8 @@
 package org.rapidbeans.core.exception;
 
 /**
- * Indicates that a prop has been accessed too early in a
- * state when it was not completely initialized.
+ * Indicates that a prop has been accessed too early in a state when it was not
+ * completely initialized.
  * 
  * @author Martin Bluemel
  */

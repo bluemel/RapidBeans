@@ -76,8 +76,8 @@ public abstract class ApplicationManager {
 	}
 
 	/**
-	 * creates an Application and configures it with data from the file specified
-	 * by appConfigFilePath.
+	 * creates an Application and configures it with data from the file
+	 * specified by appConfigFilePath.
 	 * 
 	 * @param appConfigFilePath
 	 *            specifies the application config file
@@ -91,20 +91,18 @@ public abstract class ApplicationManager {
 	 * by appConfigFilePath.
 	 * 
 	 * @param rootPackageClass
-	 *            a class located in the app's root package.
-	 *            This class must be used for correct resource loading
-	 *            in case of a remote app (Applet or Java WebStart application).
+	 *            a class located in the app's root package. This class must be
+	 *            used for correct resource loading in case of a remote app
+	 *            (Applet or Java WebStart application).
 	 * @param appConfigFilePath
-	 *            the path including the file name that specifies
-	 *            the config file relatively to the app's root package
+	 *            the path including the file name that specifies the config
+	 *            file relatively to the app's root package
 	 * @param app
 	 *            the applet or application
 	 * @param options
 	 *            the options
 	 */
-	public static void start(final Class<?> rootPackageClass,
-			final String appConfigFilePath,
-			final Appl appl) {
+	public static void start(final Class<?> rootPackageClass, final String appConfigFilePath, final Appl appl) {
 		Application newApp = null;
 		InputStream is = null;
 		URL url = null;
@@ -127,7 +125,7 @@ public abstract class ApplicationManager {
 		// 2nd try load as resource from the jar either
 		// - via class loader as system resource (local application) or
 		// - from the same jar where the rootPackageClass comes from
-		//   relatively to this classes package (remote application)
+		// relatively to this classes package (remote application)
 		final ResourceLoader resourceLoader = new ResourceLoader();
 		if (is == null) {
 			resourceLoader.addRootPackageClass(rootPackageClass);
@@ -136,17 +134,16 @@ public abstract class ApplicationManager {
 		}
 
 		if (is == null) {
-			throw new RapidBeansRuntimeException("Application configuration file \""
-					+ appConfigFilePath + "\" not found as local file and in classpath");
+			throw new RapidBeansRuntimeException("Application configuration file \"" + appConfigFilePath
+					+ "\" not found as local file and in classpath");
 		}
 
 		Document appConfigDoc = null;
-		if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("applicationcfg")
-				!= null) {
+		if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("applicationcfg") != null) {
 			appConfigDoc = new Document("applicationcfg", null, url, is);
 		} else {
-			appConfigDoc = new Document("applicationcfg", TypeRapidBean.forName(
-					"org.rapidbeans.presentation.config.ConfigApplication"), url, is);
+			appConfigDoc = new Document("applicationcfg",
+					TypeRapidBean.forName("org.rapidbeans.presentation.config.ConfigApplication"), url, is);
 		}
 		final ConfigApplication config = (ConfigApplication) appConfigDoc.getRoot();
 		if (appl != null && appl instanceof Application) {
@@ -211,8 +208,7 @@ public abstract class ApplicationManager {
 	 * 
 	 * @return the application class
 	 */
-	private static Class<?> determineApplicationClass(
-			final String appConfigFilePath, final ConfigApplication config) {
+	private static Class<?> determineApplicationClass(final String appConfigFilePath, final ConfigApplication config) {
 		Class<?> appClass = null;
 		final List<String> testclassnames = new ArrayList<String>();
 		String classname = config.getApplicationclass();
@@ -233,8 +229,7 @@ public abstract class ApplicationManager {
 			// try to find
 			// <root package>.presentation.<application name>Application
 			try {
-				classname = config.getRootpackage()
-						+ ".presentation." + config.getName() + "Application";
+				classname = config.getRootpackage() + ".presentation." + config.getName() + "Application";
 				appClass = Class.forName(classname);
 			} catch (ClassNotFoundException e) {
 				testclassnames.add(classname);
@@ -244,8 +239,7 @@ public abstract class ApplicationManager {
 			// <root package>.presentation.<application name>
 			if (appClass == null) {
 				try {
-					classname = config.getRootpackage()
-							+ ".presentation." + config.getName();
+					classname = config.getRootpackage() + ".presentation." + config.getName();
 					appClass = Class.forName(classname);
 				} catch (ClassNotFoundException e) {
 					testclassnames.add(classname);
@@ -255,8 +249,7 @@ public abstract class ApplicationManager {
 			// try to find
 			// <root package>.<application name>Application
 			try {
-				classname = config.getRootpackage()
-						+ "." + config.getName() + "Application";
+				classname = config.getRootpackage() + "." + config.getName() + "Application";
 				appClass = Class.forName(classname);
 			} catch (ClassNotFoundException e) {
 				testclassnames.add(classname);
@@ -266,8 +259,7 @@ public abstract class ApplicationManager {
 			// <root package>.<application name>
 			if (appClass == null) {
 				try {
-					classname = config.getRootpackage()
-							+ "." + config.getName();
+					classname = config.getRootpackage() + "." + config.getName();
 					appClass = Class.forName(classname);
 				} catch (ClassNotFoundException e) {
 					testclassnames.add(classname);
@@ -281,11 +273,11 @@ public abstract class ApplicationManager {
 				testclassnames.add(classname);
 			}
 
-			// try to find the configured application class under the root package
+			// try to find the configured application class under the root
+			// package
 			if (appClass == null) {
 				try {
-					classname = config.getRootpackage()
-							+ "." + config.getApplicationclass();
+					classname = config.getRootpackage() + "." + config.getApplicationclass();
 					appClass = Class.forName(classname);
 				} catch (ClassNotFoundException e) {
 					testclassnames.add(classname);
@@ -295,8 +287,7 @@ public abstract class ApplicationManager {
 			// try to find the configured application class under
 			// <root package>.presentation
 			if (appClass == null) {
-				classname = config.getRootpackage()
-						+ ".presentation." + config.getApplicationclass();
+				classname = config.getRootpackage() + ".presentation." + config.getApplicationclass();
 				try {
 					appClass = Class.forName(classname);
 				} catch (ClassNotFoundException e) {
@@ -305,8 +296,7 @@ public abstract class ApplicationManager {
 			}
 		}
 		if (appClass == null) {
-			String msg = "could not determine application class.\n"
-					+ "looked up at the following locations:";
+			String msg = "could not determine application class.\n" + "looked up at the following locations:";
 			for (String clsn : testclassnames) {
 				msg += "\n" + clsn;
 			}

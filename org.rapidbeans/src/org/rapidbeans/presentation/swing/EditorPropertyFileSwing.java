@@ -96,9 +96,8 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyFileSwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyFileSwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		if (!(prop instanceof PropertyFile)) {
 			throw new RapidBeansRuntimeException("invalid propperty for a file editor");
@@ -133,20 +132,13 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 			}
 		});
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.text, new GridBagConstraints(
-				0, 0, 1, 1, 1.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		this.panel.add(this.button, new GridBagConstraints(
-				1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL,
-				new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.text, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+		this.panel.add(this.button, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.panel.setEnabled(false);
 		}
 	}
@@ -184,15 +176,13 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 	/**
 	 * validate an input field.
 	 * 
-	 * @return if the string in the input field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the input field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param ex
 	 *            the validation exception
 	 */
-	protected boolean hasPotentiallyValidInputField(
-			final ValidationException ex) {
+	protected boolean hasPotentiallyValidInputField(final ValidationException ex) {
 		if (ex.getSignature().startsWith("invalid.prop.integer")) {
 			if (ex.getSignature().endsWith("lower")) {
 				return true;
@@ -214,7 +204,8 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 				chooserDir = client.getSettings().getBasic().getFolderfiles();
 			}
 		} else {
-			// take the parent directory of the file chosen lately for this property
+			// take the parent directory of the file chosen lately for this
+			// property
 			chooserDir = (File) this.getProperty().getValue();
 			chooserDir = chooserDir.getParentFile();
 		}
@@ -226,8 +217,7 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 			}
 		}
 
-		final TypePropertyFile type = (TypePropertyFile)
-				this.getProperty().getType();
+		final TypePropertyFile type = (TypePropertyFile) this.getProperty().getType();
 		switch (type.getFiletype()) {
 		case directory:
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -247,11 +237,10 @@ public class EditorPropertyFileSwing extends EditorPropertySwing {
 			chooser.setFileFilter(filter);
 		}
 
-		chooser.setDialogTitle(this.getLocale().getStringGui("commongui.text.choose")
-				+ ": " + this.getProperty().getNameGui(this.getLocale()));
-		int returnVal = chooser.showDialog((Component) this.getBeanEditor().
-				getDocumentView().getClient().getMainwindow().getWidget(),
-				this.getLocale().getStringGui("commongui.text.choose"));
+		chooser.setDialogTitle(this.getLocale().getStringGui("commongui.text.choose") + ": "
+				+ this.getProperty().getNameGui(this.getLocale()));
+		int returnVal = chooser.showDialog((Component) this.getBeanEditor().getDocumentView().getClient()
+				.getMainwindow().getWidget(), this.getLocale().getStringGui("commongui.text.choose"));
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			final File file = chooser.getSelectedFile();
 			if (file != null && file.exists()) {

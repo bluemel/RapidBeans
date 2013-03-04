@@ -41,29 +41,31 @@ import org.rapidbeans.core.util.ClassHelper;
 import org.rapidbeans.core.util.StringHelper;
 
 /**
- * The base class for every bean property.
- * Bean properties encapsulate value objects
- * and come with the following features:<br/>
- * - They can be accessed in a generic manner (Object getValue(), void setValue(Object))<br/>
- * - New property values are always validated before being set event if they're set internally<br/>
- * - Every property can be converted from (parse) or to (format) a normal string representation<br/>
- * - They ensure immutability in case the value objects are mutable (for example date)<br/>
+ * The base class for every bean property. Bean properties encapsulate value
+ * objects and come with the following features:<br/>
+ * - They can be accessed in a generic manner (Object getValue(), void
+ * setValue(Object))<br/>
+ * - New property values are always validated before being set event if they're
+ * set internally<br/>
+ * - Every property can be converted from (parse) or to (format) a normal string
+ * representation<br/>
+ * - They ensure immutability in case the value objects are mutable (for example
+ * date)<br/>
  * <br/>
- * The following basic property types are supported: <li><b><code>association (end)</code></b> a collection of references to other beans (Links)</li> <li><b><code>boolean&nbsp&nbsp&nbsp&nbsp</code></b>a boolean value ('true' or 'false')</li> <li><b><code>choice&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>(multiple) choice of enum entries (RapidEnum)</li> <li><b><code>date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>a date</li> <li><b><code>decimal (not yet implemented)&nbsp&nbsp&nbsp&nbsp</code>
- * </b>numeric value stored in decimal format (BigDecimal)</li> <li><b><code>file&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>File or Directory</li> <li><b><code>float (not yet implemented)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>numeric value stored in floating point format (double)</li> <li><b><code>integer&nbsp&nbsp&nbsp&nbsp</code></b>numeric value stored in integer format (long)</li> <li><b><code>quantity&nbsp&nbsp&nbsp</code></b>quantity consisting in magnitude (Number) and unit (RapidEnum)</li>
- * <li><b><code>string&nbsp&nbsp;&nbsp&nbsp&nbsp</code></b> a (Java) string consisting of Unicode characters (internal encoding: UTF-16)</li> <br/>
+ * The following basic property types are supported: <li><b> <code>association (end)</code></b> a collection of references to other beans (Links)</li> <li><b><code>boolean&nbsp&nbsp&nbsp&nbsp</code></b>a boolean value ('true' or 'false')</li> <li><b> <code>choice&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>(multiple) choice of enum entries (RapidEnum)</li> <li><b> <code>date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>a date</li> <li><b> <code>decimal (not yet implemented)&nbsp&nbsp&nbsp&nbsp</code>
+ * </b>numeric value stored in decimal format (BigDecimal)</li> <li><b> <code>file&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code></b>File or Directory</li> <li>
+ * <b><code>float (not yet implemented)&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</code> </b>numeric value stored in floating point format (double)</li> <li><b> <code>integer&nbsp&nbsp&nbsp&nbsp</code></b>numeric value stored in integer format (long)</li> <li><b><code>quantity&nbsp&nbsp&nbsp</code></b>quantity consisting in magnitude (Number) and unit (RapidEnum)</li> <li><b> <code>string&nbsp&nbsp;&nbsp&nbsp&nbsp</code></b> a (Java) string consisting of Unicode characters (internal encoding: UTF-16)</li> <br/>
  * <br/>
- * Please note the this schema could be extended in the future and can
- * be also extended by yourself. That means you can invent, implement and
- * use your own property types deriving one of these basic property types. <br/>
+ * Please note the this schema could be extended in the future and can be also
+ * extended by yourself. That means you can invent, implement and use your own
+ * property types deriving one of these basic property types. <br/>
  * <br/>
  * 
  * @see RapidBean
  * 
  * @author Martin Bluemel
  */
-public abstract class Property
-		implements Cloneable, Comparable<Property> {
+public abstract class Property implements Cloneable, Comparable<Property> {
 
 	/**
 	 * the property's type.
@@ -199,18 +201,19 @@ public abstract class Property
 	public abstract Object convertValue(Object value);
 
 	/**
-	 * Check if the property's (initial) value is valid.
-	 * Remember that properties never are allowed to get invalid values.
+	 * Check if the property's (initial) value is valid. Remember that
+	 * properties never are allowed to get invalid values.
 	 */
 	public void validate() {
 		validate(getValue());
 	}
 
 	/**
-	 * The basic property validation. Should be called with super.validate
-	 * by every overloaded validate method.<br>
+	 * The basic property validation. Should be called with super.validate by
+	 * every overloaded validate method.<br>
 	 * - checks a write lock (read only)<br>
-	 * - check if an empty (null) value is to be written to a key or mandatory property<br>
+	 * - check if an empty (null) value is to be written to a key or mandatory
+	 * property<br>
 	 * - delegate validation to all components.
 	 * 
 	 * @param newValue
@@ -225,36 +228,26 @@ public abstract class Property
 		}
 
 		// check if the property may be written
-		//        System.out.println("@@@ readonly = " + this.getReadonly());
-		//        System.out.println("@@@ check = " + ThreadLocalValidationSettings.getReadonlyCheck());
-		if (this.getReadonly()
-				&& ThreadLocalValidationSettings.getReadonlyCheck()) {
-			throw new ValidationReadonlyException(
-					"invalid.prop.readonly.proptype",
-					this,
-					"Property \"" + this.getName() + "\" must not be written at all.");
+		// System.out.println("@@@ readonly = " + this.getReadonly());
+		// System.out.println("@@@ check = " +
+		// ThreadLocalValidationSettings.getReadonlyCheck());
+		if (this.getReadonly() && ThreadLocalValidationSettings.getReadonlyCheck()) {
+			throw new ValidationReadonlyException("invalid.prop.readonly.proptype", this, "Property \""
+					+ this.getName() + "\" must not be written at all.");
 		}
 
 		// check if a null (= not defined) value is
 		// to be written to a mandatory property
-		if (newValConverted == null && this.type.getMandatory()
-				&& ThreadLocalValidationSettings.getMandatoryCheck()) {
+		if (newValConverted == null && this.type.getMandatory() && ThreadLocalValidationSettings.getMandatoryCheck()) {
 			if (this.getBean() != null) {
-				throw new ValidationMandatoryException(
-						"invalid.prop.mandatory",
-						this,
-						"Bean \"" + this.getBean().getType().getName() + "::"
-								+ this.getBean().toString() + ", "
-								+ "Property \"" + this.getType().getPropName() + "\": "
-								+ "an empty (null) value must not be written"
-								+ " to a mandatory property");
+				throw new ValidationMandatoryException("invalid.prop.mandatory", this, "Bean \""
+						+ this.getBean().getType().getName() + "::" + this.getBean().toString() + ", " + "Property \""
+						+ this.getType().getPropName() + "\": " + "an empty (null) value must not be written"
+						+ " to a mandatory property");
 			} else {
-				throw new ValidationMandatoryException(
-						"invalid.prop.mandatory",
-						this,
-						"Property \"" + this.getType().getPropName() + "\": "
-								+ "an empty (null) value must not be written"
-								+ " to a mandatory property");
+				throw new ValidationMandatoryException("invalid.prop.mandatory", this, "Property \""
+						+ this.getType().getPropName() + "\": " + "an empty (null) value must not be written"
+						+ " to a mandatory property");
 			}
 		}
 
@@ -319,15 +312,14 @@ public abstract class Property
 							} catch (ClassCastException e) {
 								if (o1 instanceof LinkFrozen) {
 									throw new RapidBeansRuntimeException("This bean property "
-											+ this.getBean().getType().getName() + "::"
-											+ this.getBean().getIdString() + "." + this.getName()
-											+ ", link to " + ((LinkFrozen) o1).getIdString() + " is not resolved.");
+											+ this.getBean().getType().getName() + "::" + this.getBean().getIdString()
+											+ "." + this.getName() + ", link to " + ((LinkFrozen) o1).getIdString()
+											+ " is not resolved.");
 								}
 								if (o2 instanceof LinkFrozen) {
 									throw new RapidBeansRuntimeException("Other bean property "
-											+ prop.getBean().getType().getName() + "::"
-											+ prop.getBean().getIdString() + "." + prop.getName()
-											+ ", link to bean "
+											+ prop.getBean().getType().getName() + "::" + prop.getBean().getIdString()
+											+ "." + prop.getName() + ", link to bean "
 											+ ((TypePropertyCollection) prop.getType()).getTargetType().getName()
 											+ "::" + o2.toString() + " is not resolved.");
 								}
@@ -341,9 +333,8 @@ public abstract class Property
 						}
 					}
 				} else {
-					throw new RapidBeansRuntimeException("Value objects v1 (class \""
-							+ v1.getClass().getName() + "\") and v2 (class \""
-							+ v2.getClass().getName() + "\") are not comparable.\n"
+					throw new RapidBeansRuntimeException("Value objects v1 (class \"" + v1.getClass().getName()
+							+ "\") and v2 (class \"" + v2.getClass().getName() + "\") are not comparable.\n"
 							+ "Prop 1: " + this.getBean().getIdString() + "." + this.getType().getPropName() + "\n"
 							+ "Prop 2: " + prop.getBean().getIdString() + "." + prop.getType().getPropName() + "\n");
 				}
@@ -353,8 +344,8 @@ public abstract class Property
 	}
 
 	/**
-	 * the test for equality of two properties.
-	 * Handles empty values and delegates test to the value objects if both are not empty.
+	 * the test for equality of two properties. Handles empty values and
+	 * delegates test to the value objects if both are not empty.
 	 * 
 	 * @param o
 	 *            the property to compare this property with
@@ -426,10 +417,8 @@ public abstract class Property
 	 * @return the cloned property
 	 */
 	@SuppressWarnings("unchecked")
-	public Property cloneValue(final Property pClone,
-			final Container cloneContainer) {
-		boolean threadLocPropSet = ThreadLocalProperties.set(
-				"bean.setparentbean.donotchangeids", true);
+	public Property cloneValue(final Property pClone, final Container cloneContainer) {
+		boolean threadLocPropSet = ThreadLocalProperties.set("bean.setparentbean.donotchangeids", true);
 		try {
 			if (this instanceof PropertyCollection) {
 				Collection<Link> colBeans = (Collection<Link>) this.getValue();
@@ -475,8 +464,7 @@ public abstract class Property
 			return pClone;
 		} finally {
 			if (threadLocPropSet) {
-				ThreadLocalProperties.unset(
-						"bean.setparentbean.donotchangeids");
+				ThreadLocalProperties.unset("bean.setparentbean.donotchangeids");
 			}
 		}
 		return pClone;
@@ -537,16 +525,14 @@ public abstract class Property
 	 *            the Locale
 	 * @return a string for the propertie's name UI
 	 */
-	public static String getNameGuiS(final TypeProperty propType,
-			final TypeRapidBean beanType,
+	public static String getNameGuiS(final TypeProperty propType, final TypeRapidBean beanType,
 			final RapidBeansLocale locale) {
 		String text = null;
 		if (text == null) {
 			if (beanType != null) {
 				try {
-					final String key = "bean."
-							+ beanType.getName().toLowerCase()
-							+ ".prop." + propType.getPropName().toLowerCase();
+					final String key = "bean." + beanType.getName().toLowerCase() + ".prop."
+							+ propType.getPropName().toLowerCase();
 					text = locale.getStringGui(key);
 				} catch (MissingResourceException e) {
 					text = null;
@@ -557,8 +543,7 @@ public abstract class Property
 		if (text == null && propType instanceof TypePropertyCollection) {
 			try {
 				TypePropertyCollection colPropType = (TypePropertyCollection) propType;
-				String pattern = "bean."
-						+ colPropType.getTargetType().getName().toLowerCase();
+				String pattern = "bean." + colPropType.getTargetType().getName().toLowerCase();
 				if (colPropType.getMaxmult() != 1) {
 					pattern += ".plural";
 				}
@@ -571,8 +556,7 @@ public abstract class Property
 		if (text == null && beanType.getSupertype() != null
 				&& beanType.getSupertype().getPropertyType(propType.getPropName()) != null) {
 			final TypeRapidBean beanSupertype = beanType.getSupertype();
-			final TypeProperty propSupertype =
-					beanSupertype.getPropertyType(propType.getPropName());
+			final TypeProperty propSupertype = beanSupertype.getPropertyType(propType.getPropName());
 			text = getNameGuiS(propSupertype, beanSupertype, locale);
 		}
 
@@ -596,13 +580,10 @@ public abstract class Property
 	 * @param link
 	 *            the link
 	 */
-	protected void fireChangePre(final Property prop,
-			final PropertyChangeEventType changeType,
-			final Object oldVal, final Object newVal,
-			final Link link) {
+	protected void fireChangePre(final Property prop, final PropertyChangeEventType changeType, final Object oldVal,
+			final Object newVal, final Link link) {
 		if (this.bean != null) {
-			final PropertyChangeEvent event = new PropertyChangeEvent(
-					prop, oldVal, newVal, changeType, link);
+			final PropertyChangeEvent event = new PropertyChangeEvent(prop, oldVal, newVal, changeType, link);
 			this.bean.propertyChangePre(event);
 		}
 	}
@@ -621,21 +602,16 @@ public abstract class Property
 	 * @param link
 	 *            the link
 	 */
-	protected void fireChanged(final Property prop,
-			final PropertyChangeEventType changeType,
-			final Object oldVal, final Object newVal,
-			final Link link) {
-		if (this.bean != null
-				&& this.bean.getBeanState() != RapidBeanState.initializing) {
-			final PropertyChangeEvent event = new PropertyChangeEvent(
-					prop, oldVal, newVal, changeType, link);
+	protected void fireChanged(final Property prop, final PropertyChangeEventType changeType, final Object oldVal,
+			final Object newVal, final Link link) {
+		if (this.bean != null && this.bean.getBeanState() != RapidBeanState.initializing) {
+			final PropertyChangeEvent event = new PropertyChangeEvent(prop, oldVal, newVal, changeType, link);
 			this.bean.propertyChanged(event);
 		}
 	}
 
 	/**
-	 * The template method for the pure value change and
-	 * firing the events.
+	 * The template method for the pure value change and firing the events.
 	 * 
 	 * @param oldValue
 	 * @param newValue
@@ -644,15 +620,11 @@ public abstract class Property
 	protected void setValueWithEvents(final Object oldValue, final Object newValue,
 			final PropertyValueSetter valueSetter) {
 		final Object validatedNewValue = validate(newValue);
-		if ((validatedNewValue == null && oldValue != null)
-				|| (validatedNewValue != null && oldValue == null)
-				|| (validatedNewValue != null && oldValue != null
-				&& (!oldValue.equals(validatedNewValue)))) {
-			fireChangePre(this, PropertyChangeEventType.set,
-					oldValue, validatedNewValue, null);
+		if ((validatedNewValue == null && oldValue != null) || (validatedNewValue != null && oldValue == null)
+				|| (validatedNewValue != null && oldValue != null && (!oldValue.equals(validatedNewValue)))) {
+			fireChangePre(this, PropertyChangeEventType.set, oldValue, validatedNewValue, null);
 			valueSetter.setValue(validatedNewValue);
-			fireChanged(this, PropertyChangeEventType.set,
-					oldValue, validatedNewValue, null);
+			fireChanged(this, PropertyChangeEventType.set, oldValue, validatedNewValue, null);
 		}
 	}
 

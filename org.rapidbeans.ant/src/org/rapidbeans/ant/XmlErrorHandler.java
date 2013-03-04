@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: XmlErrorHandler.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 01/01/2005
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -23,47 +23,50 @@ import org.xml.sax.SAXParseException;
 
 /**
  * The XML parser's error handler.
- *
+ * 
  * @author Martin Bluemel
  */
 final class EasybizAntTasksXmlErrorHandler implements ErrorHandler {
 
-    /**
-     * the default constructor.
-     */
-    public EasybizAntTasksXmlErrorHandler() {
-    }
+	/**
+	 * the default constructor.
+	 */
+	public EasybizAntTasksXmlErrorHandler() {
+	}
 
-    /**
-     * warning.
-     *
-     * @param e
-     *            the exception
-     * @throws SAXException the SAX exception that is a warning
-     */
-    public void warning(final SAXParseException e) throws SAXException {
-        throw e;
-    }
+	/**
+	 * warning.
+	 * 
+	 * @param e
+	 *            the exception
+	 * @throws SAXException
+	 *             the SAX exception that is a warning
+	 */
+	public void warning(final SAXParseException e) throws SAXException {
+		throw e;
+	}
 
-    /**
-     * error.
-     *
-     * @param e
-     *            the exception
-     * @throws SAXException the SAX exception that is an error
-     */
-    public void error(final SAXParseException e) throws SAXException {
-        throw e;
-    }
+	/**
+	 * error.
+	 * 
+	 * @param e
+	 *            the exception
+	 * @throws SAXException
+	 *             the SAX exception that is an error
+	 */
+	public void error(final SAXParseException e) throws SAXException {
+		throw e;
+	}
 
-    /**
-     * fatal error.
-     *
-     * @param e
-     *            the exception
-     * @throws SAXException the SAX exception that is a fatal error
-     */
-    public void fatalError(final SAXParseException e) throws SAXException {
-        throw e;
-    }
+	/**
+	 * fatal error.
+	 * 
+	 * @param e
+	 *            the exception
+	 * @throws SAXException
+	 *             the SAX exception that is a fatal error
+	 */
+	public void fatalError(final SAXParseException e) throws SAXException {
+		throw e;
+	}
 }

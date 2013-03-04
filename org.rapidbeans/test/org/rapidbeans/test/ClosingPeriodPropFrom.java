@@ -52,28 +52,25 @@ public class ClosingPeriodPropFrom extends PropertyDate {
 		}
 		if (toTime != null) {
 			if (date.getTime() > toTime.getTime()) {
-				throw new ValidationException("invalid.prop.closingperiod.from.greater.to",
-						this,
-						"invalid value \"" + date.toString()
-								+ "\" for property \"from\""
-								+ " greater than property \"to\" = \""
-								+ toTime.toString() + "\"");
+				throw new ValidationException("invalid.prop.closingperiod.from.greater.to", this, "invalid value \""
+						+ date.toString() + "\" for property \"from\"" + " greater than property \"to\" = \""
+						+ toTime.toString() + "\"");
 			}
 		}
 		return date;
 	}
 }
 
-//        // BEGIN manual code section
-//        // ClosingPeriod.toBeforeChange()
-//        final Date fromTime = this.getFrom();
-//        if (fromTime != null) {
-//            if (((Date) e.getNewValue()).getTime() < fromTime.getTime()) {
-//                throw new ValidationException("invalid.prop.closingperiod.from.less.from",
-//                        "invalid value \"" + e.getNewValue().toString()
-//                        + "\"for property \"to\""
-//                        + " smaller than property \"from\" = \""
-//                        + this.getProperty("to").toString() + "\"");
-//            }
-//        }
-//        // END manual code section
+// // BEGIN manual code section
+// // ClosingPeriod.toBeforeChange()
+// final Date fromTime = this.getFrom();
+// if (fromTime != null) {
+// if (((Date) e.getNewValue()).getTime() < fromTime.getTime()) {
+// throw new ValidationException("invalid.prop.closingperiod.from.less.from",
+// "invalid value \"" + e.getNewValue().toString()
+// + "\"for property \"to\""
+// + " smaller than property \"from\" = \""
+// + this.getProperty("to").toString() + "\"");
+// }
+// }
+// // END manual code section

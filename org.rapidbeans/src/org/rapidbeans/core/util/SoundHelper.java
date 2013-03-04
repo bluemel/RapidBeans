@@ -50,16 +50,14 @@ public final class SoundHelper {
 		try {
 			play(new FileInputStream(soundfile));
 		} catch (FileNotFoundException e) {
-			throw new UtilException("sound file not found: \""
-					+ soundfile.getAbsolutePath() + "\"", e);
+			throw new UtilException("sound file not found: \"" + soundfile.getAbsolutePath() + "\"", e);
 		} catch (UtilException e) {
 			Throwable eNested = e.getCause();
 			if (eNested instanceof IOException) {
 				throw new UtilException("IO exception while trying to play sound file  \""
 						+ soundfile.getAbsolutePath() + "\"", eNested);
 			} else if (eNested instanceof UnsupportedAudioFileException) {
-				throw new UtilException("unsupported audio file: \""
-						+ soundfile.getAbsolutePath() + "\"", eNested);
+				throw new UtilException("unsupported audio file: \"" + soundfile.getAbsolutePath() + "\"", eNested);
 			} else {
 				throw e;
 			}

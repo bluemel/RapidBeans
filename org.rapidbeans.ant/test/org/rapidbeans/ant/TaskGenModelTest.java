@@ -1,10 +1,10 @@
 /*
  * Rapid Beans Framework, SDK, Ant Tasks: TaskGenModelTest.java
- *
+ * 
  * Copyright (C) 2009 Martin Bluemel
- *
+ * 
  * Creation Date: 08/11/2007
- *
+ * 
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
  * either version 3 of the License, or (at your option) any later version.
@@ -17,7 +17,6 @@
 
 package org.rapidbeans.ant;
 
-
 import java.io.File;
 
 import org.apache.tools.ant.Project;
@@ -28,37 +27,37 @@ import org.junit.Test;
 
 /**
  * Unit TestCase (Unit Tests).
- *
+ * 
  * @author Martin Bluemel
  */
 public final class TaskGenModelTest {
 
-    @Test
-    public void testExecute() {
-        Project project = new Project();
-        project.setKeepGoingMode(false);
+	@Test
+	public void testExecute() {
+		Project project = new Project();
+		project.setKeepGoingMode(false);
 
-        // load environment variables into the
-        // project's properties (prefix "env.")
-        Property propTask = new Property();
-        propTask.setProject(project);
-        propTask.setEnvironment("env");
-        propTask.execute();
+		// load environment variables into the
+		// project's properties (prefix "env.")
+		Property propTask = new Property();
+		propTask.setProject(project);
+		propTask.setEnvironment("env");
+		propTask.execute();
 
-        Mkdir mkdirTask = new Mkdir();
-        mkdirTask.setDir(new File("testdata/testtmp"));
-        mkdirTask.execute();
+		Mkdir mkdirTask = new Mkdir();
+		mkdirTask.setDir(new File("testdata/testtmp"));
+		mkdirTask.execute();
 
-        TaskGenModel task = new TaskGenModel();
-        task.setProject(project);
-        task.setSrcdir(new File("../org.rapidbeans/model"));
-        task.setDestdirsimple(new File("testdata/testtmp"));
-        task.setDestdirjoint(new File("testdata/testtmp"));
-        task.setStyledir(new File("../org.rapidbeans/codegentemplates"));
-        task.execute();
+		TaskGenModel task = new TaskGenModel();
+		task.setProject(project);
+		task.setSrcdir(new File("../org.rapidbeans/model"));
+		task.setDestdirsimple(new File("testdata/testtmp"));
+		task.setDestdirjoint(new File("testdata/testtmp"));
+		task.setStyledir(new File("../org.rapidbeans/codegentemplates"));
+		task.execute();
 
-        Delete deleteTask = new Delete();
-        deleteTask.setDir(new File("testdata/testtmp"));
-        deleteTask.execute();
-    }
+		Delete deleteTask = new Delete();
+		deleteTask.setDir(new File("testdata/testtmp"));
+		deleteTask.execute();
+	}
 }

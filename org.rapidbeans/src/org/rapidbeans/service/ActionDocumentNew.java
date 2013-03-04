@@ -36,15 +36,13 @@ public class ActionDocumentNew extends Action {
 	public void execute() {
 		final String rootClassName = this.getArgumentValue("rootclass");
 		if (rootClassName == null) {
-			throw new RapidBeansRuntimeException(
-					"Action argument \"rootclass\" not defined");
+			throw new RapidBeansRuntimeException("Action argument \"rootclass\" not defined");
 		}
 		final List<String> sa = StringHelper.split(rootClassName, ".");
 		final String shortRootClassName = sa.get(sa.size() - 1).toLowerCase();
 		final String docconfname = this.getArgumentValue("docconfname", shortRootClassName);
 		final String viewconfname = this.getArgumentValue("viewconfname", "standard");
-		ApplicationManager.getApplication().openNewDocumentView(
-				shortRootClassName + "_new", rootClassName,
+		ApplicationManager.getApplication().openNewDocumentView(shortRootClassName + "_new", rootClassName,
 				docconfname, viewconfname);
 	}
 }

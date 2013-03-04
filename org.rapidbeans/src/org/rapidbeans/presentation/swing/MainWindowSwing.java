@@ -130,8 +130,7 @@ public final class MainWindowSwing extends MainWindow {
 		if (widget instanceof JInternalFrame) {
 			JInternalFrame iframe = (JInternalFrame) widget;
 			try {
-				switch (client.getSettings().getBasic()
-						.getGui().getDocViewOpenWindowBehaviour()) {
+				switch (client.getSettings().getBasic().getGui().getDocViewOpenWindowBehaviour()) {
 				case maximized:
 					iframe.setMaximum(true);
 					break;
@@ -199,15 +198,13 @@ public final class MainWindowSwing extends MainWindow {
 			return null;
 		}
 		for (Component comp : this.desktopPane.getComponents()) {
-			if (comp instanceof JInternalFrame
-					&& this.desktopPane.getComponentZOrder(comp) == 0) {
+			if (comp instanceof JInternalFrame && this.desktopPane.getComponentZOrder(comp) == 0) {
 				topFrame = (JInternalFrame) comp;
 				break;
 			}
 		}
 		if (topFrame != null) {
-			activeDocumentView = (DocumentView)
-					ApplicationManager.getApplication().getViewByWidget(topFrame);
+			activeDocumentView = (DocumentView) ApplicationManager.getApplication().getViewByWidget(topFrame);
 		}
 		return activeDocumentView;
 	}
@@ -244,16 +241,14 @@ public final class MainWindowSwing extends MainWindow {
 	 * @param mainWindowConfig
 	 *            the configuration
 	 */
-	public MainWindowSwing(final Application client,
-			final ConfigMainWindow mainWindowConfig) {
+	public MainWindowSwing(final Application client, final ConfigMainWindow mainWindowConfig) {
 		super(client, mainWindowConfig);
 
 		this.frame = new JFrame();
 		if (mainWindowConfig == null) {
 			this.frame.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		} else {
-			this.frame.setSize(mainWindowConfig.getWidth(),
-					mainWindowConfig.getHeight());
+			this.frame.setSize(mainWindowConfig.getWidth(), mainWindowConfig.getHeight());
 		}
 		this.frame.setTitle(getWindowTitle(client));
 		final Image image = getIconManager().getImage("mainwindow.icon");
@@ -301,8 +296,7 @@ public final class MainWindowSwing extends MainWindow {
 	private IconManagerSwing iconManager = null;
 
 	/**
-	 * @return the Z order if the view is a top level view.
-	 *         -1 otherwise.
+	 * @return the Z order if the view is a top level view. -1 otherwise.
 	 */
 	@Override
 	public int getViewZOrder(final View view) {
@@ -343,10 +337,7 @@ public final class MainWindowSwing extends MainWindow {
 	public void restoreUiState(final UiState uiState) {
 		final MainWindowState mainWinState = uiState.getMainWindow();
 		if (mainWinState != null) {
-			this.frame.setBounds(
-					mainWinState.getLocationX(),
-					mainWinState.getLocationY(),
-					mainWinState.getWidth(),
+			this.frame.setBounds(mainWinState.getLocationX(), mainWinState.getLocationY(), mainWinState.getWidth(),
 					mainWinState.getHeight());
 		}
 	}
@@ -377,9 +368,7 @@ public final class MainWindowSwing extends MainWindow {
 		setComponentCursor(this.frame, cursor);
 	}
 
-	private void setComponentCursor(
-			final Component component,
-			final Cursor cursor) {
+	private void setComponentCursor(final Component component, final Cursor cursor) {
 		component.setCursor(cursor);
 		if (component instanceof Container) {
 			final Container cont = (Container) component;

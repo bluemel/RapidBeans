@@ -1,18 +1,16 @@
 /*
  * Partially generated code file: Action.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.service.Action
  * 
- * model:    model/org/rapidbeans/service/Action.xml
+ * model: model/org/rapidbeans/service/Action.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.service;
-
-
 
 // BEGIN manual code section
 // Action.import
@@ -33,9 +31,8 @@ import org.rapidbeans.presentation.ApplicationManager;
 // END manual code section
 
 /**
- * Rapid Bean class: Action.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: Action. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public class Action extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -46,8 +43,8 @@ public class Action extends RapidBeanImplStrict {
 	 * @param name
 	 *            the argument name
 	 * 
-	 * @return the value of the action argument with the given name
-	 *         or null if not found
+	 * @return the value of the action argument with the given name or null if
+	 *         not found
 	 */
 	public String getArgumentValue(final String name) {
 		final Collection<ActionArgument> aarguments = this.getArguments();
@@ -69,8 +66,8 @@ public class Action extends RapidBeanImplStrict {
 	 * @param defaultval
 	 *            the default value if the argument is not defined
 	 * 
-	 * @return the value of the action argument with the given name
-	 *         or the given default if not found
+	 * @return the value of the action argument with the given name or the given
+	 *         default if not found
 	 */
 	public String getArgumentValue(final String name, final String defaultval) {
 		final String argval = this.getArgumentValue(name);
@@ -109,8 +106,7 @@ public class Action extends RapidBeanImplStrict {
 		// construct action via reflection
 		try {
 			final Class<?> actionClass = Class.forName(this.getClassname());
-			Constructor<?> constructor =
-					actionClass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
+			Constructor<?> constructor = actionClass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
 			action = (Action) constructor.newInstance(CONSTRUCTOR_PARAMS);
 			if (this.getArguments() != null) {
 				for (final ActionArgument aa : this.getArguments()) {
@@ -143,14 +139,12 @@ public class Action extends RapidBeanImplStrict {
 		final Application app = ApplicationManager.getApplication();
 		String message = null;
 		try {
-			message = app.getCurrentLocale().getStringGui("action."
-					+ getClassname() + ".message." + getState().name());
+			message = app.getCurrentLocale().getStringGui("action." + getClassname() + ".message." + getState().name());
 		} catch (MissingResourceException me) {
 			message = null;
 		}
 		if (message == null) {
-			message = app.getCurrentLocale().getStringMessage(
-					"action.execution." + getState().name(),
+			message = app.getCurrentLocale().getStringMessage("action.execution." + getState().name(),
 					toStringGuiId(app.getCurrentLocale()));
 		}
 		return message;
@@ -202,22 +196,14 @@ public class Action extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.classname = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("classname");
-		this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("arguments");
-		this.state = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("state");
-		this.waitcursor = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("waitcursor");
-		this.background = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("background");
-		this.progressbar = (org.rapidbeans.core.basic.PropertyBoolean)
-			this.getProperty("progressbar");
-		this.rolesrequired = (org.rapidbeans.core.basic.PropertyChoice)
-			this.getProperty("rolesrequired");
-		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
-			this.getProperty("enabler");
+		this.classname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("classname");
+		this.arguments = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("arguments");
+		this.state = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("state");
+		this.waitcursor = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("waitcursor");
+		this.background = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("background");
+		this.progressbar = (org.rapidbeans.core.basic.PropertyBoolean) this.getProperty("progressbar");
+		this.rolesrequired = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("rolesrequired");
+		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("enabler");
 	}
 
 	/**
@@ -235,6 +221,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -247,6 +234,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -282,6 +270,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'classname'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */
@@ -295,8 +284,8 @@ public class Action extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument> getArguments() {
 		try {
-			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument>)
-			this.arguments.getValue();
+			return (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.ActionArgument>) this.arguments
+					.getValue();
 		} catch (NullPointerException e) {
 			throw new org.rapidbeans.core.exception.PropNotInitializedException("arguments");
 		}
@@ -304,22 +293,29 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'arguments'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'arguments' to set
 	 */
 	public void setArguments(final java.util.Collection<org.rapidbeans.service.ActionArgument> argValue) {
 		this.arguments.setValue(argValue);
 	}
+
 	/**
 	 * add method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addArgument(final org.rapidbeans.service.ActionArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).addLink(bean);
 	}
+
 	/**
 	 * remove method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * 
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void removeArgument(final org.rapidbeans.service.ActionArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).removeLink(bean);
@@ -343,12 +339,12 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'state'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'state' to set
 	 */
 	public void setState(final org.rapidbeans.service.ActionState argValue) {
-		java.util.List<org.rapidbeans.service.ActionState> list =
-			new java.util.ArrayList<org.rapidbeans.service.ActionState>();
+		java.util.List<org.rapidbeans.service.ActionState> list = new java.util.ArrayList<org.rapidbeans.service.ActionState>();
 		list.add(argValue);
 		this.state.setValue(list);
 	}
@@ -366,6 +362,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'waitcursor'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'waitcursor' to set
 	 */
@@ -386,6 +383,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'background'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'background' to set
 	 */
@@ -406,6 +404,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'progressbar'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'progressbar' to set
 	 */
@@ -427,6 +426,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'rolesrequired'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'rolesrequired' to set
 	 */
@@ -440,16 +440,15 @@ public class Action extends RapidBeanImplStrict {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
-				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
+					.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
 					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.presentation.enabler.Enabler"
-							+ "\" \"" + link.getIdString() + "\"");
+							+ "org.rapidbeans.presentation.enabler.Enabler" + "\" \"" + link.getIdString() + "\"");
 				} else {
 					return (org.rapidbeans.presentation.enabler.Enabler) col.iterator().next();
 				}
@@ -461,6 +460,7 @@ public class Action extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'enabler'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */

@@ -29,12 +29,11 @@ public final class ThreadLocalProperties {
 	/**
 	 * Thread hack.
 	 */
-	private static ThreadLocal<Hashtable<String, Object>> props =
-			new ThreadLocal<Hashtable<String, Object>>() {
-				protected synchronized Hashtable<String, Object> initialValue() {
-					return new Hashtable<String, Object>();
-				}
-			};
+	private static ThreadLocal<Hashtable<String, Object>> props = new ThreadLocal<Hashtable<String, Object>>() {
+		protected synchronized Hashtable<String, Object> initialValue() {
+			return new Hashtable<String, Object>();
+		}
+	};
 
 	/**
 	 * set the property.
@@ -46,8 +45,7 @@ public final class ThreadLocalProperties {
 	 * 
 	 * @return if the property has been set successfully
 	 */
-	public static boolean set(final String key,
-			final Object value) {
+	public static boolean set(final String key, final Object value) {
 		boolean accepted = false;
 		// once a property is set it can not be set
 		if (props.get().get(key) == null) {

@@ -46,8 +46,7 @@ public final class PresentationSwingTestHelper {
 	 */
 	public static Application getTestClient() {
 		if (testClient == null) {
-			ApplicationManager.start(null,
-					"../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
+			ApplicationManager.start(null, "../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
 					new Application() {
 						@Override
 						public Properties getOptions() {
@@ -90,8 +89,7 @@ public final class PresentationSwingTestHelper {
 		getTestClient();
 		testDocument = createTestDocument(true);
 		testClient.addDocument(testDocument);
-		testDocview = (DocumentViewSwing) DocumentView.createInstance(
-				testClient, testDocument, "test", "expert", null);
+		testDocview = (DocumentViewSwing) DocumentView.createInstance(testClient, testDocument, "test", "expert", null);
 		testClient.addView(testDocview);
 		return (DocumentTreeViewSwing) testDocview.getTreeView();
 	}
@@ -105,8 +103,7 @@ public final class PresentationSwingTestHelper {
 		getTestClient();
 		testDocument = createTestDocumentWithEmptyColProps();
 		testClient.addDocument(testDocument);
-		testDocview = (DocumentViewSwing) DocumentView.createInstance(testClient, testDocument,
-				"test", "expert", null);
+		testDocview = (DocumentViewSwing) DocumentView.createInstance(testClient, testDocument, "test", "expert", null);
 		testClient.addView(testDocview);
 		return (DocumentTreeViewSwing) testDocview.getTreeView();
 	}
@@ -157,15 +154,14 @@ public final class PresentationSwingTestHelper {
 	 * @return the collection property name
 	 */
 	public static String getColPropName(final JTree tree, final int index) {
-		return ((DocumentTreeNodePropColComp) tree.getPathForRow(index)
-				.getLastPathComponent()).getColProp().getType().getPropName();
+		return ((DocumentTreeNodePropColComp) tree.getPathForRow(index).getLastPathComponent()).getColProp().getType()
+				.getPropName();
 	}
 
 	/**
-	 * create a test document. This document contains:
-	 * - 1 BillingPeriod object as top level object
-	 * - 3 Trainer objects: Bluemel, Dahlheimer, Dautovic
-	 * - 3 TrainingDate objects:
+	 * create a test document. This document contains: - 1 BillingPeriod object
+	 * as top level object - 3 Trainer objects: Bluemel, Dahlheimer, Dautovic -
+	 * 3 TrainingDate objects:
 	 * 
 	 * @param certificatesMandatory
 	 *            if the certificate of a Trainer are mandatory
@@ -190,14 +186,11 @@ public final class PresentationSwingTestHelper {
 
 		// set up the training dates
 		Collection<RapidBean> trdates = new ArrayList<RapidBean>();
-		GenericBean trdateMo = createTrainingDate("Aikido Adults I",
-				"monday", "19:30", "21:30", trainer2);
+		GenericBean trdateMo = createTrainingDate("Aikido Adults I", "monday", "19:30", "21:30", trainer2);
 		trdates.add(trdateMo);
-		GenericBean trdateTu = createTrainingDate("Aikido Children",
-				"tuesday", "18:00", "19:30", trainer3);
+		GenericBean trdateTu = createTrainingDate("Aikido Children", "tuesday", "18:00", "19:30", trainer3);
 		trdates.add(trdateTu);
-		GenericBean trdateTh = createTrainingDate("Aikido Adults II",
-				"thursday", "19:00", "21:30", trainer3);
+		GenericBean trdateTh = createTrainingDate("Aikido Adults II", "thursday", "19:00", "21:30", trainer3);
 		trdates.add(trdateTh);
 
 		// set up the billing period document
@@ -211,10 +204,9 @@ public final class PresentationSwingTestHelper {
 	}
 
 	/**
-	 * create a test document. This document contains:
-	 * - 1 BillingPeriod object as top level object
-	 * - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic
-	 * - 3 TrainingDate objects:
+	 * create a test document. This document contains: - 1 BillingPeriod object
+	 * as top level object - 3 Trainer objects: Bl�mel, Dahlheimer, Dautovic - 3
+	 * TrainingDate objects:
 	 * 
 	 * @return the test document
 	 */
@@ -233,8 +225,7 @@ public final class PresentationSwingTestHelper {
 	 *            the end date
 	 * @return the test bean
 	 */
-	public static GenericBean createBillingPeriod(final String dateBegin,
-			final String dateEnd) {
+	public static GenericBean createBillingPeriod(final String dateBegin, final String dateEnd) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("BillingPeriod") == null) {
 			String descr = "<beantype name=\"BillingPeriod\" idtype=\"keyprops\">"
 					+ "<property name=\"from\" type=\"date\" key=\"true\"/>"
@@ -242,12 +233,9 @@ public final class PresentationSwingTestHelper {
 					+ "<property name=\"trainers\" type=\"collection\""
 					+ " composition=\"true\" targettype=\"Trainer\"/>"
 					+ "<property name=\"trainingdates\" type=\"collection\""
-					+ " composition=\"true\" targettype=\"TrainingDate\"/>"
-					+ "/>"
+					+ " composition=\"true\" targettype=\"TrainingDate\"/>" + "/>"
 					+ "<property name=\"certificates\" type=\"collection\""
-					+ " composition=\"true\" targettype=\"Certificate\"/>"
-					+ "/>"
-					+ "</beantype>";
+					+ " composition=\"true\" targettype=\"Certificate\"/>" + "/>" + "</beantype>";
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
@@ -271,25 +259,20 @@ public final class PresentationSwingTestHelper {
 	 * 
 	 * @return the test bean
 	 */
-	public static GenericBean createTrainer(final String lastname,
-			final String firstname, final boolean leader, final boolean mandatory) {
+	public static GenericBean createTrainer(final String lastname, final String firstname, final boolean leader,
+			final boolean mandatory) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Trainer") == null) {
 			String descr = "<beantype name=\"Trainer\" idtype=\"keyprops\">"
 					+ "<property name=\"lastname\" type=\"string\" key=\"true\"/>"
 					+ "<property name=\"firstname\" type=\"string\" key=\"true\"/>"
-					+ "<property name=\"leader\" type=\"boolean\""
-					+ " mandatory=\"true\" default=\"false\""
-					+ "/>"
+					+ "<property name=\"leader\" type=\"boolean\"" + " mandatory=\"true\" default=\"false\"" + "/>"
 					+ "<property name=\"email\" pattern=\"\\A[.\\-0-9A-Za-z]*@[.\\-0-9A-Za-z]*\\z\"/>"
 					+ "<property name=\"certificates\" type=\"collection\"";
 			if (mandatory) {
 				descr += "    mandatory=\"true\" default=\"\"";
 			}
-			descr += "    targettype=\"Certificate\""
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+			descr += "    targettype=\"Certificate\"" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
@@ -310,11 +293,8 @@ public final class PresentationSwingTestHelper {
 	public static GenericBean createCertificate(final String name) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("Certificate") == null) {
 			String descr = "<beantype name=\"Certificate\" idtype=\"keyprops\">"
-					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
-					+ "/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"name\" type=\"string\" key=\"true\"/>" + "/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
@@ -337,9 +317,8 @@ public final class PresentationSwingTestHelper {
 	 *            the default trainer
 	 * @return the generic training date bean
 	 */
-	public static GenericBean createTrainingDate(final String name,
-			final String dayofweek, final String tstart, final String tend,
-			final GenericBean defaulttrainer) {
+	public static GenericBean createTrainingDate(final String name, final String dayofweek, final String tstart,
+			final String tend, final GenericBean defaulttrainer) {
 		if (RapidBeansTypeLoader.getInstance().lookupType("TrainingDate") == null) {
 			String descr = "<beantype name=\"TrainingDate\" idtype=\"keyprops\">"
 					+ "<property name=\"name\" type=\"string\" key=\"true\"/>"
@@ -349,12 +328,9 @@ public final class PresentationSwingTestHelper {
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
 					+ "<property name=\"timeend\" type=\"quantity\""
 					+ " quantity=\"org.rapidbeans.domain.math.TimeOfDay\"/>"
-					+ "<property name=\"defaulttrainer\" type=\"collection\""
-					+ " targettype=\"Trainer\""
-					+ " minmult=\"1\" maxmult=\"1\"/>"
-					+ "</beantype>";
-			XmlNode xmlNode = XmlNode.getDocumentTopLevel(
-					new ByteArrayInputStream(descr.getBytes()));
+					+ "<property name=\"defaulttrainer\" type=\"collection\"" + " targettype=\"Trainer\""
+					+ " minmult=\"1\" maxmult=\"1\"/>" + "</beantype>";
+			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");

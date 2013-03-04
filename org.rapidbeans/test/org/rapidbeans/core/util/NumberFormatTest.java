@@ -26,33 +26,23 @@ public class NumberFormatTest extends TestCase {
 	}
 
 	public void testFormatSimple() {
-		assertEquals("20.00", NumberFormat.format(
-				new BigDecimal("20"), locEn, "##.00"));
-		assertEquals("20,00", NumberFormat.format(
-				new BigDecimal("20"), locDe, "##.00"));
-		assertEquals("20.00", NumberFormat.format(
-				new Integer(20), locEn, "##.00"));
-		assertEquals("20,00", NumberFormat.format(
-				new Integer(20), locDe, "##.00"));
-		assertEquals("20.00", NumberFormat.format(
-				new Long(20), locEn, "##.00"));
-		assertEquals("20,00", NumberFormat.format(
-				new Long(20), locDe, "##.00"));
+		assertEquals("20.00", NumberFormat.format(new BigDecimal("20"), locEn, "##.00"));
+		assertEquals("20,00", NumberFormat.format(new BigDecimal("20"), locDe, "##.00"));
+		assertEquals("20.00", NumberFormat.format(new Integer(20), locEn, "##.00"));
+		assertEquals("20,00", NumberFormat.format(new Integer(20), locDe, "##.00"));
+		assertEquals("20.00", NumberFormat.format(new Long(20), locEn, "##.00"));
+		assertEquals("20,00", NumberFormat.format(new Long(20), locDe, "##.00"));
 	}
 
 	public void testFormatUpperBoundaries() {
-		assertEquals("20.00", NumberFormat.format(
-				new BigDecimal("20"), locEn, "##.00"));
-		assertEquals("20,00", NumberFormat.format(
-				new BigDecimal("20"), locDe, "##.00"));
-		assertEquals("2111222333.00", NumberFormat.format(
-				new Integer(2111222333), locEn, "##########.00"));
-		assertEquals("2111222333,00", NumberFormat.format(
-				new Integer(2111222333), locDe, "##########.00"));
-		assertEquals("9111222333444555666.00", NumberFormat.format(
-				new Long(9111222333444555666L), locEn, "###################.00"));
-		assertEquals("9111222333444555666,00", NumberFormat.format(
-				new Long(9111222333444555666L), locDe, "###################.00"));
+		assertEquals("20.00", NumberFormat.format(new BigDecimal("20"), locEn, "##.00"));
+		assertEquals("20,00", NumberFormat.format(new BigDecimal("20"), locDe, "##.00"));
+		assertEquals("2111222333.00", NumberFormat.format(new Integer(2111222333), locEn, "##########.00"));
+		assertEquals("2111222333,00", NumberFormat.format(new Integer(2111222333), locDe, "##########.00"));
+		assertEquals("9111222333444555666.00",
+				NumberFormat.format(new Long(9111222333444555666L), locEn, "###################.00"));
+		assertEquals("9111222333444555666,00",
+				NumberFormat.format(new Long(9111222333444555666L), locDe, "###################.00"));
 	}
 
 	public void testFormatBDAfterDecimalDigitsAndRounding() {
@@ -74,20 +64,22 @@ public class NumberFormatTest extends TestCase {
 		testFormat("#00.00", 12.344, " 12,34", true);
 		testFormat("000.00", 12.344, "012,34", true);
 		testFormat("##0.00##", 12.344, " 12,344 ", true);
-		//        testFormat("#,###,###,##0.00 EUR", 1000000000.1111, "1.000.000.000,11 EUR", true);
-		//        testFormat("##,##,##,##,#0.00 EUR", 1000000000.1111, "10.00.00.00.00,11 EUR", true);
-		//        testFormat("##,###,##0", 70050020, "70.050.020", true);
-		//        testFormat("##,##,##,#0", 70050020, "70.05.00.20", true);
-		//        testFormat("##,###,##0", 70050020, "70.050.020", true);
-		//        testFormat("###,###,#0", 70050020, "700.500.20", false);
-		//        testFormat("#,###,###,##0.00 EUR", 1.1111, "1,11 EUR", true);
-		//        testFormat("0.000E00", 1000000000.1111, "1,000E09", true);
+		// testFormat("#,###,###,##0.00 EUR", 1000000000.1111,
+		// "1.000.000.000,11 EUR", true);
+		// testFormat("##,##,##,##,#0.00 EUR", 1000000000.1111,
+		// "10.00.00.00.00,11 EUR", true);
+		// testFormat("##,###,##0", 70050020, "70.050.020", true);
+		// testFormat("##,##,##,#0", 70050020, "70.05.00.20", true);
+		// testFormat("##,###,##0", 70050020, "70.050.020", true);
+		// testFormat("###,###,#0", 70050020, "700.500.20", false);
+		// testFormat("#,###,###,##0.00 EUR", 1.1111, "1,11 EUR", true);
+		// testFormat("0.000E00", 1000000000.1111, "1,000E09", true);
 
 		// runden
-		//        testFormat("##0.00", 12.346, "12,35", true);
+		// testFormat("##0.00", 12.346, "12,35", true);
 		testFormat("#0.00", 12.344, "12,34", true);
-		//        testFormat("##0.00", 12.345, " 12,34", true);
-		//        testFormat("#0.00", 12.34500000000001, "12,35", true);
+		// testFormat("##0.00", 12.345, " 12,34", true);
+		// testFormat("#0.00", 12.34500000000001, "12,35", true);
 	}
 
 	/**

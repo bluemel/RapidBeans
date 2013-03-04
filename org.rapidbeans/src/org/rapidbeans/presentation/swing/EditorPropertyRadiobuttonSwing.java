@@ -59,8 +59,7 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyRadiobuttonSwing(final Application client,
-			final EditorBean bizBeanEditor,
+	public EditorPropertyRadiobuttonSwing(final Application client, final EditorBean bizBeanEditor,
 			final Property prop, final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		super.initColors();
@@ -71,8 +70,7 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 		});
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.radioButton.setEnabled(false);
 		}
 	}
@@ -84,8 +82,7 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 		try {
 			this.setUIEventLock();
 			if (this.getProperty() instanceof PropertyBoolean) {
-				this.radioButton.setSelected(
-						((Boolean) this.getProperty().getValue()).booleanValue());
+				this.radioButton.setSelected(((Boolean) this.getProperty().getValue()).booleanValue());
 			} else {
 				this.radioButton.setText(this.getProperty().toString());
 			}

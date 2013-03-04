@@ -152,14 +152,12 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 	 * @param filter
 	 *            the filter
 	 */
-	public DocumentTreeViewSwing(final Application client, final Document doc,
-			final Filter filter) {
+	public DocumentTreeViewSwing(final Application client, final Document doc, final Filter filter) {
 		super(client, doc, filter);
 		this.treeModel = new DocumentTreeModel(doc, filter);
 		this.treeModel.setShowBeanLinks(this.getShowBeanLinks());
 		this.tree = new JTree(this.treeModel);
-		this.tree.getSelectionModel().setSelectionMode(
-				TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+		this.tree.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
 		this.scrollPane = new JScrollPane(this.tree);
 		final RapidBeansLocale loc = client.getCurrentLocale();
 		this.tree.setCellRenderer(new DocumentTreeCellRenderer(doc, loc));
@@ -217,13 +215,10 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 			public void keyTyped(KeyEvent e) {
 			}
 		});
-		this.popupMenuItemNew.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.new"));
+		this.popupMenuItemNew.setText(client.getCurrentLocale().getStringGui("commongui.text.new"));
 		this.popupMenuItemNew.isFocusable();
-		this.popupMenuItemEdit.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.edit"));
-		this.popupMenuItemDelete.setText(client.getCurrentLocale().getStringGui(
-				"commongui.text.delete"));
+		this.popupMenuItemEdit.setText(client.getCurrentLocale().getStringGui("commongui.text.edit"));
+		this.popupMenuItemDelete.setText(client.getCurrentLocale().getStringGui("commongui.text.delete"));
 		this.popupMenuItemNew.addActionListener(new ActionListener() {
 			@SuppressWarnings({ "synthetic-access", "unqualified-field-access" })
 			public void actionPerformed(final ActionEvent e) {
@@ -259,7 +254,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 		this.popupMenu.add(this.popupMenuItemNew);
 		this.popupMenu.add(this.popupMenuItemEdit);
 		this.popupMenu.add(this.popupMenuItemDelete);
-		//this.popupMenu.isFocusable();
+		// this.popupMenu.isFocusable();
 		// the component popup menu eats up the right click mouse event
 		this.tree.setComponentPopupMenu(this.popupMenu);
 	}
@@ -267,7 +262,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 	/**
 	 * Delete a set of selected beans.
 	 */
-	//Is protected to enable Unit Tests.
+	// Is protected to enable Unit Tests.
 	protected void deleteBeans() {
 
 		// retrieve the paths selected in the tree
@@ -292,8 +287,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 	 */
 	public EditorBean createBean() {
 		EditorBean editor = null;
-		if (this.tree != null && this.tree.getSelectionPaths() != null
-				&& this.tree.getSelectionPaths().length > 0) {
+		if (this.tree != null && this.tree.getSelectionPaths() != null && this.tree.getSelectionPaths().length > 0) {
 			final TreePath path = this.tree.getSelectionPaths()[0];
 			final Object selObj = path.getLastPathComponent();
 			if (selObj instanceof DocumentTreeNodePropColComp) {
@@ -337,7 +331,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 	 *            the mouse event.
 	 */
 	private void mouseClickedLeft(final MouseEvent e) {
-		//this.popupMenu.setVisible(false);
+		// this.popupMenu.setVisible(false);
 		if (e.getClickCount() == 2) {
 			final TreePath path = this.tree.getPathForLocation(e.getX(), e.getY());
 			if (path != null) {
@@ -360,8 +354,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 	 */
 	protected TreePath getOriginalForLink(final Object link) {
 		TreePath linkPath = (TreePath) link;
-		RapidBean linkedBean = ((DocumentTreeNodeBeanLink)
-				linkPath.getLastPathComponent()).getLinkedBean();
+		RapidBean linkedBean = ((DocumentTreeNodeBeanLink) linkPath.getLastPathComponent()).getLinkedBean();
 		TreePath path = new TreePath(this.treeModel.getParentObjects(linkedBean, true));
 		this.tree.expandPath(path);
 		this.tree.setSelectionPath(path);

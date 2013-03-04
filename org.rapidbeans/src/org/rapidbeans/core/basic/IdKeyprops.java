@@ -139,8 +139,7 @@ public class IdKeyprops extends Id {
 	}
 
 	/**
-	 * lazy initialize the Keyprops.
-	 * Used during initialization.
+	 * lazy initialize the Keyprops. Used during initialization.
 	 */
 	protected void initKeyprops() {
 		final StringBuffer sb = new StringBuffer();
@@ -159,8 +158,7 @@ public class IdKeyprops extends Id {
 			}
 		}
 		if (i < 1) {
-			throw new RapidBeansRuntimeException("bean type \""
-					+ this.bean.getType().getName()
+			throw new RapidBeansRuntimeException("bean type \"" + this.bean.getType().getName()
 					+ "\" has no key property defined");
 		}
 	}

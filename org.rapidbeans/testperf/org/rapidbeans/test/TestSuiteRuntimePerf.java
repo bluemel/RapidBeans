@@ -6,8 +6,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Test suite for all runtime tests.
- * These tests mesure how long things take.
+ * Test suite for all runtime tests. These tests mesure how long things take.
  * 
  * @author Martin Bluemel
  */

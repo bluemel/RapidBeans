@@ -30,22 +30,20 @@ public final class ThreadLocalBeanInitDepth {
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<Integer> initDepth =
-			new ThreadLocal<Integer>() {
-				protected synchronized Integer initialValue() {
-					return new Integer(0);
-				}
-			};
+	private static ThreadLocal<Integer> initDepth = new ThreadLocal<Integer>() {
+		protected synchronized Integer initialValue() {
+			return new Integer(0);
+		}
+	};
 
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<List<TypeRapidBean>> typesInitialized =
-			new ThreadLocal<List<TypeRapidBean>>() {
-				protected synchronized List<TypeRapidBean> initialValue() {
-					return new ArrayList<TypeRapidBean>();
-				}
-			};
+	private static ThreadLocal<List<TypeRapidBean>> typesInitialized = new ThreadLocal<List<TypeRapidBean>>() {
+		protected synchronized List<TypeRapidBean> initialValue() {
+			return new ArrayList<TypeRapidBean>();
+		}
+	};
 
 	/**
 	 * ask the depth.

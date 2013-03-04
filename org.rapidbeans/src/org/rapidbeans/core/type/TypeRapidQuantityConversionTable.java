@@ -34,8 +34,7 @@ import org.rapidbeans.core.exception.RapidBeansRuntimeException;
  */
 public final class TypeRapidQuantityConversionTable {
 
-	private static final Logger log = Logger.getLogger(
-			TypeRapidQuantityConversionTable.class.getName());
+	private static final Logger log = Logger.getLogger(TypeRapidQuantityConversionTable.class.getName());
 
 	/**
 	 * the "normal" unit with conversion factor 1
@@ -69,10 +68,9 @@ public final class TypeRapidQuantityConversionTable {
 	 *            the enum type wich is the quantity type's unit.
 	 * @param argDescr
 	 *            the String containing the conversion factors of each unit.
-	 *            There are two different formats accepted to describe
-	 *            the factors:<br/>
-	 *            1) XML:
-	 *            2) Proprietary:
+	 *            There are two different formats accepted to describe the
+	 *            factors:<br/>
+	 *            1) XML: 2) Proprietary:
 	 */
 	public TypeRapidQuantityConversionTable(final TypeRapidEnum argUnitType, final String argDescr) {
 		log.fine("parsing \"" + argDescr + "\"");
@@ -294,8 +292,7 @@ public final class TypeRapidQuantityConversionTable {
 	 * for tracing and testing purposes.
 	 */
 	protected void dump() {
-		System.out.print("unitenum name=\""
-				+ this.units[0].getType().getName() + "\"<");
+		System.out.print("unitenum name=\"" + this.units[0].getType().getName() + "\"<");
 		int i, j;
 		for (i = 0; i < this.units.length; i++) {
 			if (i == 0) {

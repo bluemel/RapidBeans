@@ -47,12 +47,10 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public static File chooseFile(final String title,
-			final FileChooserType dialogType,
-			final File dir, final String filterText, final String filterSuffix) {
+	public static File chooseFile(final String title, final FileChooserType dialogType, final File dir,
+			final String filterText, final String filterSuffix) {
 		FileChooser loadDialog = createInstance();
-		return loadDialog.chooseFileDialog(title, dialogType,
-				null, dir, filterText, filterSuffix);
+		return loadDialog.chooseFileDialog(title, dialogType, null, dir, filterText, filterSuffix);
 	}
 
 	/**
@@ -63,8 +61,8 @@ public abstract class FileChooser {
 	 * @param dialogType
 	 *            open, save, custom
 	 * @param approveButtonText
-	 *            the tedt for the approve button
-	 *            my be null for dialogTye open, save
+	 *            the tedt for the approve button my be null for dialogTye open,
+	 *            save
 	 * @param dir
 	 *            the folder opended initially
 	 * @param filterText
@@ -74,13 +72,10 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public static File chooseFile(final String title,
-			final FileChooserType dialogType,
-			final String approveButtonText, final File dir,
-			final String filterText, final String filterSuffix) {
+	public static File chooseFile(final String title, final FileChooserType dialogType, final String approveButtonText,
+			final File dir, final String filterText, final String filterSuffix) {
 		FileChooser loadDialog = createInstance();
-		return loadDialog.chooseFileDialog(title, dialogType,
-				approveButtonText, dir, filterText, filterSuffix);
+		return loadDialog.chooseFileDialog(title, dialogType, approveButtonText, dir, filterText, filterSuffix);
 	}
 
 	/**
@@ -94,7 +89,8 @@ public abstract class FileChooser {
 	private static final Object[] CONSTRUCTOR_PARAM_ARGS = new Object[0];
 
 	/**
-	 * Creates a FileChooser for the given Document class of the configured GUI type (Swing, Eclipse RCP).
+	 * Creates a FileChooser for the given Document class of the configured GUI
+	 * type (Swing, Eclipse RCP).
 	 * 
 	 * @return the load dialog instance
 	 */
@@ -104,11 +100,9 @@ public abstract class FileChooser {
 		try {
 			final String guitype = ApplicationManager.getApplication().getConfiguration().getGuitype().toString();
 			final String guitypeUpperFirstChar = StringHelper.upperFirstCharacter(guitype);
-			guiclassname = "org.rapidbeans.presentation." + guitype
-					+ ".FileChooser" + guitypeUpperFirstChar;
+			guiclassname = "org.rapidbeans.presentation." + guitype + ".FileChooser" + guitypeUpperFirstChar;
 			final Class<?> guiclass = Class.forName(guiclassname);
-			Constructor<?> constructor =
-					guiclass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
+			Constructor<?> constructor = guiclass.getConstructor(CONSTRUCTOR_PARAM_TYPES);
 			dialog = (FileChooser) constructor.newInstance(CONSTRUCTOR_PARAM_ARGS);
 		} catch (NoSuchMethodException e) {
 			throw new RapidBeansRuntimeException(e.getClass().getName() + ": " + e.getMessage());
@@ -133,8 +127,8 @@ public abstract class FileChooser {
 	 * @param dialogType
 	 *            open, save, custom
 	 * @param approveButtonText
-	 *            the tedt for the approve button
-	 *            my be null for dialogTye open, save
+	 *            the tedt for the approve button my be null for dialogTye open,
+	 *            save
 	 * @param dir
 	 *            the folder opended initially
 	 * @param filterText
@@ -144,7 +138,6 @@ public abstract class FileChooser {
 	 * 
 	 * @return the chosen file
 	 */
-	public abstract File chooseFileDialog(String title,
-			FileChooserType dialogType, String approveButtonText,
-			File dir, String filterText, String filterSuffix);
+	public abstract File chooseFileDialog(String title, FileChooserType dialogType, String approveButtonText, File dir,
+			String filterText, String filterSuffix);
 }

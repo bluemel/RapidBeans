@@ -88,9 +88,7 @@ public class ToolbarButtonSwing extends ToolbarButton {
 	 * @param resourcePath
 	 *            the resource path
 	 */
-	public ToolbarButtonSwing(final ConfigToolbarButton cfg,
-			final Application client,
-			final MainWindow mainWindow,
+	public ToolbarButtonSwing(final ConfigToolbarButton cfg, final Application client, final MainWindow mainWindow,
 			final String resourcePath) {
 		super(client, cfg, resourcePath);
 		this.button.setName(cfg.getName());
@@ -149,8 +147,7 @@ public class ToolbarButtonSwing extends ToolbarButton {
 
 		Action actionConfig = this.getAction();
 		if (actionConfig != null) {
-			this.button.addActionListener(new ActionHandlerActionListener(
-					actionConfig.clone()));
+			this.button.addActionListener(new ActionHandlerActionListener(actionConfig.clone()));
 		}
 
 		this.update();

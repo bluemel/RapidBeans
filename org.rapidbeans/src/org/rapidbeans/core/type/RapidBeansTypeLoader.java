@@ -52,15 +52,13 @@ public final class RapidBeansTypeLoader {
 	/**
 	 * the type map: maps a type name to a RapidBeans type.
 	 */
-	private HashMap<String, RapidBeansType> typeMap =
-			new HashMap<String, RapidBeansType>();
+	private HashMap<String, RapidBeansType> typeMap = new HashMap<String, RapidBeansType>();
 
 	/**
-	 * the XML root element binding map: maps an XML root element name
-	 * to a RapidBeans type.
+	 * the XML root element binding map: maps an XML root element name to a
+	 * RapidBeans type.
 	 */
-	private HashMap<String, TypeRapidBean> xmlRootElementMap =
-			new HashMap<String, TypeRapidBean>();
+	private HashMap<String, TypeRapidBean> xmlRootElementMap = new HashMap<String, TypeRapidBean>();
 
 	/**
 	 * Find an XML root element binding.
@@ -82,8 +80,7 @@ public final class RapidBeansTypeLoader {
 	 * @param typeName
 	 *            the RapidBean type name
 	 */
-	public void addXmlRootElementBinding(final String elementName,
-			final String typeName) {
+	public void addXmlRootElementBinding(final String elementName, final String typeName) {
 		this.addXmlRootElementBinding(elementName, typeName, false);
 	}
 
@@ -95,15 +92,13 @@ public final class RapidBeansTypeLoader {
 	 * @param typeName
 	 *            the RapidBean type name
 	 * @param override
-	 *            if overriding the bind is allowed or not
-	 *            Handle overriding with care
+	 *            if overriding the bind is allowed or not Handle overriding
+	 *            with care
 	 */
-	public void addXmlRootElementBinding(final String elementName,
-			final String typeName,
-			final boolean override) {
+	public void addXmlRootElementBinding(final String elementName, final String typeName, final boolean override) {
 		if ((!override) && this.xmlRootElementMap.get(elementName) != null) {
-			throw new RapidBeansRuntimeException("An XML root element binding"
-					+ " for XML element name \"" + elementName + "\" has already been defined.");
+			throw new RapidBeansRuntimeException("An XML root element binding" + " for XML element name \""
+					+ elementName + "\" has already been defined.");
 		}
 		final TypeRapidBean type = TypeRapidBean.forName(typeName);
 		this.xmlRootElementMap.put(elementName, type);
@@ -123,12 +118,12 @@ public final class RapidBeansTypeLoader {
 	 * 
 	 * @return the stream
 	 */
-	protected static InputStream findDeclaration(final String typename,
-			final String suffix) {
+	protected static InputStream findDeclaration(final String typename, final String suffix) {
 		InputStream is = null;
 		String typeInfoDescrFileName = null;
 		try {
-			// this looks a bit awkward but seems to be a way to load the description
+			// this looks a bit awkward but seems to be a way to load the
+			// description
 			// also in an Applet environment
 			final Class<?> typeclass = Class.forName(typename);
 			if (suffix == null) {
@@ -138,7 +133,8 @@ public final class RapidBeansTypeLoader {
 			}
 			is = typeclass.getResourceAsStream(typeInfoDescrFileName);
 		} catch (ClassNotFoundException e) {
-			// for generic types we take the straight forward method which unfortunately
+			// for generic types we take the straight forward method which
+			// unfortunately
 			// won't run with Applets
 			if (suffix == null) {
 				typeInfoDescrFileName = typename.replace('.', '/') + ".xml";
@@ -160,8 +156,7 @@ public final class RapidBeansTypeLoader {
 	 */
 	public void registerType(final RapidBeansType type) {
 		if (this.typeMap.get(type.getName()) != null) {
-			throw new RapidBeansRuntimeException("bean type \""
-					+ type.getName() + "\" already registered");
+			throw new RapidBeansRuntimeException("bean type \"" + type.getName() + "\" already registered");
 		}
 		this.typeMap.put(type.getName(), type);
 	}
@@ -182,16 +177,15 @@ public final class RapidBeansTypeLoader {
 	}
 
 	/**
-	 * removes a Rapid Beans type registration.
-	 * Caution: for test purposes only!!!
+	 * removes a Rapid Beans type registration. Caution: for test purposes
+	 * only!!!
 	 * 
 	 * @param typename
 	 *            the type's name
 	 */
 	public void unregisterType(final String typename) {
 		if (this.typeMap.get(typename) == null) {
-			throw new RapidBeansRuntimeException("bean type \""
-					+ typename + "\" not registered");
+			throw new RapidBeansRuntimeException("bean type \"" + typename + "\" not registered");
 		}
 		this.typeMap.remove(typename);
 	}
@@ -216,7 +210,8 @@ public final class RapidBeansTypeLoader {
 	 * </p>
 	 * 
 	 * @param typeclass
-	 *            the type's class { TypeRapidEnum, TypeRapidQuantity, TypeRapidBean }
+	 *            the type's class { TypeRapidEnum, TypeRapidQuantity,
+	 *            TypeRapidBean }
 	 * @param typename
 	 *            the types full qualified name
 	 * 
@@ -224,18 +219,17 @@ public final class RapidBeansTypeLoader {
 	 */
 	protected RapidBeansType loadType(final Class<?> typeclass, final String typename) {
 
-		if (typeclass != TypeRapidEnum.class
-				&& typeclass != TypeRapidQuantity.class
+		if (typeclass != TypeRapidEnum.class && typeclass != TypeRapidQuantity.class
 				&& typeclass != TypeRapidBean.class) {
-			throw new RapidBeansRuntimeException("RapidBeansType class \""
-					+ typeclass.getName() + "\" not supported.");
+			throw new RapidBeansRuntimeException("RapidBeansType class \"" + typeclass.getName() + "\" not supported.");
 		}
 
 		RapidBeansType type = this.typeMap.get(typename);
 		Class<?> clazz = null;
 		if (type == null) {
 			try {
-				// the typeinfo implicitly is registered while the class is loaded
+				// the typeinfo implicitly is registered while the class is
+				// loaded
 				// (static initializer of all concrete enum classes)
 				clazz = Class.forName(typename);
 
@@ -250,10 +244,8 @@ public final class RapidBeansTypeLoader {
 
 			if (type == null) {
 				if (typeclass == TypeRapidBean.class) {
-					type = new TypeRapidBean(clazz,
-							RapidBeansType.loadDescription(typename),
-							RapidBeansType.loadDescriptionXmlBinding(typename),
-							true);
+					type = new TypeRapidBean(clazz, RapidBeansType.loadDescription(typename),
+							RapidBeansType.loadDescriptionXmlBinding(typename), true);
 				} else if (typeclass == TypeRapidEnum.class) {
 					type = new TypeRapidEnum(typename);
 					this.registerType(type);
@@ -277,18 +269,17 @@ public final class RapidBeansTypeLoader {
 	}
 
 	/**
-	 * CAUTION: this methods clears the single typeMap.
-	 * Just use this for unit tests or if you exactly know what you're doing.
+	 * CAUTION: this methods clears the single typeMap. Just use this for unit
+	 * tests or if you exactly know what you're doing.
 	 */
 	protected static void typeMapClear() {
 		singleInstance.typeMap.clear();
 	}
 
 	/**
-	 * CAUTION: this methods clears all generic bean types
-	 * out of the single type map.
-	 * Just use this for unit tests
-	 * or if you exactly know what you're doing.
+	 * CAUTION: this methods clears all generic bean types out of the single
+	 * type map. Just use this for unit tests or if you exactly know what you're
+	 * doing.
 	 */
 	protected static void typeMapClearBeanGeneric() {
 		RapidBeansType bbType = null;
@@ -307,9 +298,8 @@ public final class RapidBeansTypeLoader {
 	}
 
 	/**
-	 * CAUTION: this methods clears all root element bindings.
-	 * Just use this for unit tests
-	 * or if you exactly know what you're doing.
+	 * CAUTION: this methods clears all root element bindings. Just use this for
+	 * unit tests or if you exactly know what you're doing.
 	 */
 	protected static void typeMapClearRootElementBindingsGeneric() {
 		final ArrayList<String> elementNames = new ArrayList<String>();

@@ -68,9 +68,8 @@ public abstract class EditorPropertySwing extends EditorProperty {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertySwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		this.label.setText(this.getLabelText(bizBeanEditor, prop));
 	}
@@ -108,8 +107,7 @@ public abstract class EditorPropertySwing extends EditorProperty {
 			} catch (ValidationException ev) {
 				infieldValueNull = false;
 			}
-			if ((this.getProperty().getType().isKeyCandidate()
-					|| this.getProperty().getType().getMandatory())
+			if ((this.getProperty().getType().isKeyCandidate() || this.getProperty().getType().getMandatory())
 					&& infieldValueNull) {
 				if (this.background != null) {
 					restoreNormalBackground();

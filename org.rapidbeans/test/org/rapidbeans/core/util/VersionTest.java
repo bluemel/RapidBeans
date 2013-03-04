@@ -87,29 +87,20 @@ public final class VersionTest extends TestCase {
 	}
 
 	public void testGetNearestVersion() {
-		assertEquals("1.6.0_15", new Version("1.6.0_17").getNearest(
-				new Version[] {
-						new Version("1.6.0"),
-						new Version("1.6.0_20"),
-						new Version("1.6.0_15"),
-						new Version("1.6.0_21"),
-						new Version("1.1")
-				}).toString());
-		assertEquals("1.6.0", new Version("1.6.0_17").getNearest(
-				new Version[] {
-						new Version("1.5.9"),
-						new Version("1.6.0"),
-						new Version("1.6.1"),
-						new Version("1.7.0"),
-						new Version("1.8")
-				}).toString());
-		assertEquals("1.6.0_17", new Version("1.6.0_17").getNearest(
-				new Version[] {
-						new Version("1.5.9"),
-						new Version("1.6.0_18"),
-						new Version("1.6.0_17"),
-						new Version("1.7.0_16"),
-						new Version("1.8")
-				}).toString());
+		assertEquals(
+				"1.6.0_15",
+				new Version("1.6.0_17").getNearest(
+						new Version[] { new Version("1.6.0"), new Version("1.6.0_20"), new Version("1.6.0_15"),
+								new Version("1.6.0_21"), new Version("1.1") }).toString());
+		assertEquals(
+				"1.6.0",
+				new Version("1.6.0_17").getNearest(
+						new Version[] { new Version("1.5.9"), new Version("1.6.0"), new Version("1.6.1"),
+								new Version("1.7.0"), new Version("1.8") }).toString());
+		assertEquals(
+				"1.6.0_17",
+				new Version("1.6.0_17").getNearest(
+						new Version[] { new Version("1.5.9"), new Version("1.6.0_18"), new Version("1.6.0_17"),
+								new Version("1.7.0_16"), new Version("1.8") }).toString());
 	}
 }

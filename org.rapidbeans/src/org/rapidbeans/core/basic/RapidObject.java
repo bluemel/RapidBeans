@@ -20,8 +20,8 @@ package org.rapidbeans.core.basic;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
- * Base class for org.rapidbeans objects with special type or meta info:
- * enums, quantities, beans.
+ * Base class for org.rapidbeans objects with special type or meta info: enums,
+ * quantities, beans.
  * 
  * @author Martin Bluemel
  */

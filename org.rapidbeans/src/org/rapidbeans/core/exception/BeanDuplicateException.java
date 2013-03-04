@@ -42,15 +42,13 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public BeanDuplicateException(
-			final String sig,
-			final RapidBean source,
-			final String message) {
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message) {
 		super(sig, source, message);
 	}
 
 	/**
-	 * Constructor for ValidationInstanceAssocTwiceException with message and cause.
+	 * Constructor for ValidationInstanceAssocTwiceException with message and
+	 * cause.
 	 * 
 	 * @param sig
 	 *            a unique signature for a localized exception message.<br/>
@@ -62,16 +60,13 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public BeanDuplicateException(
-			final String sig,
-			final RapidBean source,
-			final String message,
-			final Throwable cause) {
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message, final Throwable cause) {
 		super(sig, source, message, cause);
 	}
 
 	/**
-	 * Constructor for ValidationInstanceAssocTwiceException with message and arguments.
+	 * Constructor for ValidationInstanceAssocTwiceException with message and
+	 * arguments.
 	 * 
 	 * @param sig
 	 *            a unique signature for a localized exception message.<br/>
@@ -83,10 +78,7 @@ public class BeanDuplicateException extends ValidationException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public BeanDuplicateException(
-			final String sig,
-			final RapidBean source,
-			final String message,
+	public BeanDuplicateException(final String sig, final RapidBean source, final String message,
 			final Object[] messArgs) {
 		super(sig, source, message, messArgs);
 	}

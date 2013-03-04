@@ -42,10 +42,17 @@ public final class PlatformHelper {
 
 	private static final Logger log = Logger.getLogger(PlatformHelper.class.getName());
 
+	public static Logger getLogger() {
+		return log;
+	}
+
 	/**
 	 * @return the current operating system family
 	 */
 	public static OperatingSystemFamily getOsfamily() {
+		if (os == null) {
+			determineSystem();
+		}
 		return osFamily;
 	}
 
@@ -53,6 +60,9 @@ public final class PlatformHelper {
 	 * @return the current operating system
 	 */
 	public static OperatingSystem getOs() {
+		if (os == null) {
+			determineSystem();
+		}
 		return os;
 	}
 
@@ -60,6 +70,9 @@ public final class PlatformHelper {
 	 * @return the current operating system's version
 	 */
 	public static Version getOsVersion() {
+		if (os == null) {
+			determineSystem();
+		}
 		return osVersion;
 	}
 
@@ -77,53 +90,13 @@ public final class PlatformHelper {
 		return System.getProperty("os.arch");
 	}
 
-	// initializer
-	static {
-		final String osName = System.getProperty("os.name");
-		determineSystem(osName, System.getProperty("os.version"));
-		hostname = getHostname();
-	}
-
-	protected static void determineSystem(final String osName, final String osVersionString)
-			throws AssertionError {
-		log.info("OS name = \"" + osName + "\"");
-		osVersion = new Version(osVersionString);
-		log.info("OS version = \"" + osVersion + "\"");
-		if (osName.equals("Linux")) {
-			osFamily = OperatingSystemFamily.linux;
-			os = OperatingSystem.linux;
-		} else if (osName.startsWith("Windows")) {
-			osFamily = OperatingSystemFamily.windows;
-			if (osName.endsWith("XP")) {
-				os = OperatingSystem.windows_xp;
-			} else if (osName.endsWith("Vista")) {
-				os = OperatingSystem.windows_vista;
-			} else if (osName.endsWith("7")) {
-				os = OperatingSystem.windows_7;
-			} else if (osName.endsWith("8")) {
-				os = OperatingSystem.windows_8;
-			} else {
-				// fallback for older Windows
-				if (osVersion.compareTo(new Version("5.1")) < 0) {
-					os = OperatingSystem.windows_unknown_old;
-				} else if (osVersion.compareTo(new Version("8")) > 0) {
-					os = OperatingSystem.windows_unknown_new;
-				} else {
-					throw new AssertionError(
-							"Unable to handle Windows operating system \""
-									+ osName + "\".");
-				}
-			}
-		} else if (osName.startsWith("Mac")) {
-			osFamily = OperatingSystemFamily.mac;
-			os = OperatingSystem.mac;
-		}
-	}
-
 	/**
 	 * @return the operation system specific line feed string.
 	 */
 	public static String getLineFeed() {
+		if (os == null) {
+			determineSystem();
+		}
 		switch (osFamily) {
 		case windows:
 			return "\r\n";
@@ -139,30 +112,10 @@ public final class PlatformHelper {
 	 * @return the host name
 	 */
 	public static String hostname() {
-		return hostname;
-	}
-
-	private static String getHostname() {
-		LineNumberReader reader = null;
-		try {
-			final Process proc = Runtime.getRuntime().exec("hostname");
-			proc.waitFor();
-			reader = new LineNumberReader(new InputStreamReader(
-					proc.getInputStream()));
-			return reader.readLine().trim();
-		} catch (InterruptedException e) {
-			throw new UtilException(e);
-		} catch (IOException e) {
-			throw new UtilException(e);
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					throw new UtilException(e);
-				}
-			}
+		if (hostname == null) {
+			determineHostname();
 		}
+		return hostname;
 	}
 
 	/**
@@ -185,5 +138,82 @@ public final class PlatformHelper {
 	 */
 	public static String currentWorkingDirectory() {
 		return System.getProperty("user.dir");
+	}
+
+	private static String syspropOsName = null;
+
+	private static String syspropOsVersion = null;
+
+	/**
+	 * Package private test helper.
+	 */
+	static void reset(final String osName, final String osVersion) {
+		syspropOsName = osName;
+		syspropOsVersion = osVersion;
+		os = null;
+		hostname = null;
+	}
+
+	private static void determineSystem() throws AssertionError {
+		if (syspropOsName == null) {
+			syspropOsName = System.getProperty("os.name");
+		}
+		if (syspropOsVersion == null) {
+			syspropOsVersion = System.getProperty("os.version");
+		}
+		log.info("OS name = \"" + syspropOsName + "\"");
+		osVersion = new Version(syspropOsVersion);
+		log.info("OS version = \"" + osVersion + "\"");
+		if (syspropOsName.equals("Linux")) {
+			osFamily = OperatingSystemFamily.linux;
+			os = OperatingSystem.linux;
+		} else if (syspropOsName.startsWith("Windows")) {
+			osFamily = OperatingSystemFamily.windows;
+			if (syspropOsName.endsWith("XP")) {
+				os = OperatingSystem.windows_xp;
+			} else if (syspropOsName.endsWith("Vista")) {
+				os = OperatingSystem.windows_vista;
+			} else if (syspropOsName.endsWith("7")) {
+				os = OperatingSystem.windows_7;
+			} else if (syspropOsName.endsWith("8")) {
+				os = OperatingSystem.windows_8;
+			} else {
+				// fallback for older Windows
+				if (osVersion.compareTo(new Version("5.1")) < 0) {
+					os = OperatingSystem.windows_unknown_old;
+				} else if (osVersion.compareTo(new Version("8")) > 0) {
+					os = OperatingSystem.windows_unknown_new;
+				} else {
+					throw new AssertionError("Unable to handle Windows operating system \"" + syspropOsName + "\"");
+				}
+			}
+		} else if (syspropOsName.startsWith("Mac")) {
+			osFamily = OperatingSystemFamily.mac;
+			os = OperatingSystem.mac;
+		} else {
+			throw new AssertionError("Unknown OS \"" + syspropOsName + "\"");
+		}
+	}
+
+	private static void determineHostname() {
+		LineNumberReader reader = null;
+		try {
+			final Process proc = Runtime.getRuntime().exec("hostname");
+			proc.waitFor();
+			reader = new LineNumberReader(new InputStreamReader(proc.getInputStream()));
+			hostname = reader.readLine().trim();
+		} catch (InterruptedException e) {
+			throw new UtilException(e);
+		} catch (IOException e) {
+			throw new UtilException(e);
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					throw new UtilException(e);
+				}
+			}
+		}
 	}
 }

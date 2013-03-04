@@ -101,14 +101,13 @@ import org.rapidbeans.service.ActionQuit;
 import org.rapidbeans.service.ActionSettings;
 
 /**
- * Application is the RapidBeans application's root object
- * (the root of all evil) and additionally
- * the one and only singleton of a RapidBeans application.
+ * Application is the RapidBeans application's root object (the root of all
+ * evil) and additionally the one and only singleton of a RapidBeans
+ * application.
  */
 public class Application implements Appl {
 
-	private static final Logger log = Logger.getLogger(
-			Application.class.getName());
+	private static final Logger log = Logger.getLogger(Application.class.getName());
 
 	private String name = null;
 
@@ -141,19 +140,13 @@ public class Application implements Appl {
 		this(null, (String[]) null, null, null, null, null);
 	}
 
-	public Application(final String appname,
-			final String docroottypename,
-			final String approotpackage,
+	public Application(final String appname, final String docroottypename, final String approotpackage,
 			final String initiallyLoadDocument) {
 		this(appname, new String[] { docroottypename }, approotpackage, initiallyLoadDocument, null, null);
 	}
 
-	public Application(final String appname,
-			final String[] docroottypenames,
-			final String approotpackage,
-			final String initiallyLoadDocument,
-			final String user,
-			final String pwd) {
+	public Application(final String appname, final String[] docroottypenames, final String approotpackage,
+			final String initiallyLoadDocument, final String user, final String pwd) {
 		this.name = appname;
 		if (docroottypenames != null) {
 			for (final String typename : docroottypenames) {
@@ -240,7 +233,8 @@ public class Application implements Appl {
 	private JApplet applet = null;
 
 	/**
-	 * the locales configured for this application (array list to preserve the order)
+	 * the locales configured for this application (array list to preserve the
+	 * order)
 	 */
 	private ArrayList<RapidBeansLocale> locales = new ArrayList<RapidBeansLocale>();
 
@@ -320,8 +314,8 @@ public class Application implements Appl {
 				} else {
 					if (getConfiguration().getAuthorization().getRealm() != null) {
 						try {
-							this.authnDoc = new Document("realm",
-									new URL(getConfiguration().getAuthorization().getRealm()));
+							this.authnDoc = new Document("realm", new URL(getConfiguration().getAuthorization()
+									.getRealm()));
 						} catch (MalformedURLException e) {
 							throw new RapidBeansRuntimeException(e);
 						}
@@ -369,8 +363,8 @@ public class Application implements Appl {
 	}
 
 	/**
-	 * Save a certain document.
-	 * COuld be overwritten by the application for special needs.
+	 * Save a certain document. COuld be overwritten by the application for
+	 * special needs.
 	 * 
 	 * @param doc
 	 *            the document to save
@@ -394,8 +388,7 @@ public class Application implements Appl {
 		}
 		boolean auth = false;
 		if ((getAuthnDoc() != null) && (reqdRoles != null)) {
-			if (this.authenticatedUser != null
-					&& this.authenticatedUser.getPropValue("roles") != null) {
+			if (this.authenticatedUser != null && this.authenticatedUser.getPropValue("roles") != null) {
 				for (final RapidEnum reqdRole : reqdRoles) {
 					for (RapidEnum userRole : (Collection<RapidEnum>) this.authenticatedUser.getPropValue("roles")) {
 						if (userRole.name().equals(reqdRole.name())) {
@@ -425,12 +418,12 @@ public class Application implements Appl {
 		if (this.getConfiguration().getXmlbinding() != null) {
 			if (this.getConfiguration().getXmlbinding().getSeparator() != null
 					&& this.getConfiguration().getXmlbinding().getSeparator().length() > 0) {
-				TypePropertyCollection.setDefaultCharSeparator(
-						this.getConfiguration().getXmlbinding().getSeparator().charAt(0));
+				TypePropertyCollection.setDefaultCharSeparator(this.getConfiguration().getXmlbinding().getSeparator()
+						.charAt(0));
 			}
 			if (this.getConfiguration().getXmlbinding().getEscape() != null) {
-				TypePropertyCollection.setDefaultCharEscape(
-						this.getConfiguration().getXmlbinding().getEscape().charAt(0));
+				TypePropertyCollection.setDefaultCharEscape(this.getConfiguration().getXmlbinding().getEscape()
+						.charAt(0));
 			}
 		}
 
@@ -467,8 +460,8 @@ public class Application implements Appl {
 				}
 				if (this.authenticatedUser == null) {
 					if (this.getTestMode()) {
-						this.authenticatedUser = (User) getAuthnDoc().findBean(
-								"org.rapidbeans.security.User", "testuser");
+						this.authenticatedUser = (User) getAuthnDoc().findBean("org.rapidbeans.security.User",
+								"testuser");
 					} else {
 						this.authenticatedUser = DialogLogin.login(authncfg.getLoginmaxtries());
 						if (this.authenticatedUser == null) {
@@ -489,8 +482,7 @@ public class Application implements Appl {
 			return;
 		}
 		final String userPwd = (String) user.getPropValue("pwd");
-		if ((userPwd != null && userPwd.equals(pwd))
-				|| (userPwd == null && (pwd == null || pwd.length() == 0))) {
+		if ((userPwd != null && userPwd.equals(pwd)) || (userPwd == null && (pwd == null || pwd.length() == 0))) {
 			this.authenticatedUser = user;
 		}
 	}
@@ -547,8 +539,7 @@ public class Application implements Appl {
 	}
 
 	protected void initLocales() {
-		if (this.getConfiguration() != null
-				&& this.getConfiguration().getLocales() != null
+		if (this.getConfiguration() != null && this.getConfiguration().getLocales() != null
 				&& this.getConfiguration().getLocales().size() > 0) {
 			// if any locale is defined
 			RapidBeansLocale locale;
@@ -565,8 +556,7 @@ public class Application implements Appl {
 		}
 		if (this.locales.size() > 0) {
 			if (this.getConfiguration().getDefaultlocale() != null) {
-				final RapidBeansLocale defaultLocale = this.localemap.get(
-						this.getConfiguration().getDefaultlocale());
+				final RapidBeansLocale defaultLocale = this.localemap.get(this.getConfiguration().getDefaultlocale());
 				this.setCurrentLocale(defaultLocale);
 			} else {
 				this.setCurrentLocale(this.locales.get(0));
@@ -612,8 +602,7 @@ public class Application implements Appl {
 	 */
 	public final void addDocument(final Document doc) {
 		if (this.documents.get(doc.getName()) != null) {
-			throw new RapidBeansRuntimeException("document file \""
-					+ doc.getName() + "\" already loaded");
+			throw new RapidBeansRuntimeException("document file \"" + doc.getName() + "\" already loaded");
 		}
 		this.documents.put(doc.getName(), doc);
 	}
@@ -691,8 +680,7 @@ public class Application implements Appl {
 	 * 
 	 * @return the view opened
 	 */
-	public final DocumentView openDocumentView(
-			final Document doc) {
+	public final DocumentView openDocumentView(final Document doc) {
 		return openDocumentView(doc, null, null, null);
 	}
 
@@ -708,9 +696,7 @@ public class Application implements Appl {
 	 * 
 	 * @return the view opened
 	 */
-	public final DocumentView openDocumentView(
-			final Document doc,
-			final String doccfgname, final String viewcfgname) {
+	public final DocumentView openDocumentView(final Document doc, final String doccfgname, final String viewcfgname) {
 		return openDocumentView(doc, doccfgname, viewcfgname, null);
 	}
 
@@ -728,9 +714,7 @@ public class Application implements Appl {
 	 * 
 	 * @return the view opened
 	 */
-	public final DocumentView openDocumentView(
-			final Document doc,
-			final String doccfgname, final String viewcfgname,
+	public final DocumentView openDocumentView(final Document doc, final String doccfgname, final String viewcfgname,
 			final Filter filter) {
 		final String docconfname = getDocconfname(doccfgname);
 		final String viewconfname = getViewconfname(viewcfgname);
@@ -753,11 +737,8 @@ public class Application implements Appl {
 	 * 
 	 * @return the view
 	 */
-	public final DocumentView openDocumentView(
-			final ConfigDocument docconf,
-			final Document doc,
-			final String viewconfname,
-			final ConfigView viewconf) {
+	public final DocumentView openDocumentView(final ConfigDocument docconf, final Document doc,
+			final String viewconfname, final ConfigView viewconf) {
 		return openDocumentView(docconf, doc, viewconfname, viewconf, null);
 	}
 
@@ -777,37 +758,28 @@ public class Application implements Appl {
 	 * 
 	 * @return the view
 	 */
-	public final DocumentView openDocumentView(
-			final ConfigDocument docconf,
-			final Document doc,
-			final String viewconfname,
-			final ConfigView viewconf,
-			final Filter filter) {
+	public final DocumentView openDocumentView(final ConfigDocument docconf, final Document doc,
+			final String viewconfname, final ConfigView viewconf, final Filter filter) {
 
 		Filter localfilter = filter;
 
 		if (this.isUsingAuthorization() && docconf != null) {
-			if (docconf.getReadaccessrolesrequired() != null
-					&& docconf.getReadaccessrolesrequired().size() > 0
+			if (docconf.getReadaccessrolesrequired() != null && docconf.getReadaccessrolesrequired().size() > 0
 					&& (!this.userIsAuthorized(docconf.getReadaccessrolesrequired()))) {
-				throw new AuthorizationException(
-						this.getCurrentLocale().getStringMessage(
-								"authorization.denied.document",
-								this.getAuthenticatedUser().getProperty("accountname").toString()));
+				throw new AuthorizationException(this.getCurrentLocale().getStringMessage(
+						"authorization.denied.document",
+						this.getAuthenticatedUser().getProperty("accountname").toString()));
 			}
-			if (docconf.getWriteaccessrolesrequired() != null
-					&& docconf.getWriteaccessrolesrequired().size() > 0
+			if (docconf.getWriteaccessrolesrequired() != null && docconf.getWriteaccessrolesrequired().size() > 0
 					&& (!this.userIsAuthorized(docconf.getWriteaccessrolesrequired()))) {
 				doc.setReadonly(true);
 			}
 
-			if (docconf.getFilterrules() != null
-					&& docconf.getFilterrules().size() > 0) {
+			if (docconf.getFilterrules() != null && docconf.getFilterrules().size() > 0) {
 				for (final ConfigFilterRuleRoleBased rule : docconf.getFilterrules()) {
 					for (final RapidEnum role : rule.getRoles()) {
 						if (User.hasRoleGeneric(this.getAuthenticatedUser(), role.name())) {
-							if (rule.getIncludesfilters() != null
-									&& rule.getIncludesfilters().length() > 0) {
+							if (rule.getIncludesfilters() != null && rule.getIncludesfilters().length() > 0) {
 								for (final String s : StringHelper.split(rule.getIncludesfilters(), ",")) {
 									log.fine("adding include filter rule: " + s);
 									if (localfilter == null) {
@@ -816,8 +788,7 @@ public class Application implements Appl {
 									localfilter.addIncludes(s);
 								}
 							}
-							if (rule.getExcludesfilters() != null
-									&& rule.getExcludesfilters().length() > 0) {
+							if (rule.getExcludesfilters() != null && rule.getExcludesfilters().length() > 0) {
 								for (final String s : StringHelper.split(rule.getExcludesfilters(), ",")) {
 									log.fine("adding exclude filter rule: " + s);
 									if (localfilter == null) {
@@ -862,12 +833,10 @@ public class Application implements Appl {
 	 * 
 	 * @return the view's name
 	 */
-	final String getViewname(final ConfigDocument docconf,
-			final Document doc, final String viewconfname) {
+	final String getViewname(final ConfigDocument docconf, final Document doc, final String viewconfname) {
 		String viewnamepart = null;
 		if (viewconfname.equals(ConfigView.NAME_NO_CONFIG)) {
-			if (docconf != null && docconf.getDefaultview() != null
-					&& (!docconf.getDefaultview().equals(""))) {
+			if (docconf != null && docconf.getDefaultview() != null && (!docconf.getDefaultview().equals(""))) {
 				viewnamepart = docconf.getDefaultview();
 			} else {
 				viewnamepart = "standard";
@@ -892,9 +861,8 @@ public class Application implements Appl {
 	 * 
 	 * @return the document view opened
 	 */
-	public final DocumentView openNewDocumentView(final String docname,
-			final String typename, final String docconfname,
-			final String viewconfname) {
+	public final DocumentView openNewDocumentView(final String docname, final String typename,
+			final String docconfname, final String viewconfname) {
 		RapidBean root = RapidBeanImplStrict.createInstance(typename);
 		Document doc = new Document(docname, root);
 		return this.openDocumentView(doc, docconfname, viewconfname);
@@ -924,8 +892,7 @@ public class Application implements Appl {
 	 * 
 	 * @return the document's configuration
 	 */
-	private ConfigDocument getDocconf(
-			final Document doc, final String docconfname) {
+	private ConfigDocument getDocconf(final Document doc, final String docconfname) {
 		ConfigDocument docconf = null;
 		if (docconfname.equals(ConfigDocument.NAME_NO_CONFIG)) {
 			docconf = getConfigDocument(doc);
@@ -959,12 +926,9 @@ public class Application implements Appl {
 	 * 
 	 * @return the view's configuration
 	 */
-	private ConfigView getViewconf(
-			final ConfigDocument docconf, final String viewconfname) {
+	private ConfigView getViewconf(final ConfigDocument docconf, final String viewconfname) {
 		ConfigView viewconf = null;
-		if ((viewconfname.equals(ConfigView.NAME_NO_CONFIG))
-				&& docconf != null
-				&& docconf.getDefaultview() != null) {
+		if ((viewconfname.equals(ConfigView.NAME_NO_CONFIG)) && docconf != null && docconf.getDefaultview() != null) {
 			viewconf = docconf.getConfigView(docconf.getDefaultview());
 		} else {
 			if (docconf != null) {
@@ -999,8 +963,8 @@ public class Application implements Appl {
 	private Document settings = null;
 
 	/**
-	 * Supports mocking application instances with settings.
-	 * Production use is discouraged.
+	 * Supports mocking application instances with settings. Production use is
+	 * discouraged.
 	 * 
 	 * @param settingsDoc
 	 *            the settings document
@@ -1014,8 +978,7 @@ public class Application implements Appl {
 	 */
 	public Document getSettingsDoc() {
 		if (this.settings == null) {
-			this.settings = new Document("programsettings",
-					SettingsAll.getFile());
+			this.settings = new Document("programsettings", SettingsAll.getFile());
 		}
 
 		final SettingsBasic bsettings = ((SettingsAll) this.settings.getRoot()).getBasic();
@@ -1023,17 +986,15 @@ public class Application implements Appl {
 		// initialize default encoding
 		if (bsettings.getDefaultencoding() == null) {
 			if (this.configuration != null) {
-				bsettings.setDefaultencoding((CharsetsAvailable)
-						CharsetsAvailable.getEnumType().elementOf(
-								this.configuration.getDefaultcharset()));
+				bsettings.setDefaultencoding((CharsetsAvailable) CharsetsAvailable.getEnumType().elementOf(
+						this.configuration.getDefaultcharset()));
 			} else {
 				bsettings.setDefaultencoding(CharsetsAvailable.getInstance("UTF-8"));
 			}
 		}
 
 		// create SettingsBasicGuiOpenDocHistory only if configured
-		if (this.getConfiguration() != null
-				&& this.getConfiguration().getMainwindow() != null
+		if (this.getConfiguration() != null && this.getConfiguration().getMainwindow() != null
 				&& this.getConfiguration().getMainwindow().getMenubar() != null) {
 			final ConfigMenuHistoryOpenDocument config = this.getConfiguration().getMainwindow().getMenubar()
 					.findFirstMenuHistoryOpenDocument();
@@ -1074,8 +1035,7 @@ public class Application implements Appl {
 	 * @param listener
 	 *            the listener to add
 	 */
-	public synchronized void addSettingsChangedListener(
-			final SettingsChangedListener listener) {
+	public synchronized void addSettingsChangedListener(final SettingsChangedListener listener) {
 		this.settingsChangedListeners.add(listener);
 	}
 
@@ -1085,8 +1045,7 @@ public class Application implements Appl {
 	 * @param listener
 	 *            the listener to add
 	 */
-	public synchronized void removeSettingsChangedListener(
-			final SettingsChangedListener listener) {
+	public synchronized void removeSettingsChangedListener(final SettingsChangedListener listener) {
 		this.settingsChangedListeners.remove(listener);
 	}
 
@@ -1282,13 +1241,11 @@ public class Application implements Appl {
 	}
 
 	/**
-	 * initialize a simple configuration if the configuration
-	 * is not given.
+	 * initialize a simple configuration if the configuration is not given.
 	 */
 	protected void initSimpleDefaultConfiguration() {
 		ConfigApplication cfg = null;
-		if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("applicationcfg")
-				!= null) {
+		if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("applicationcfg") != null) {
 			final TypeRapidBean beantype = RapidBeansTypeLoader.getInstance()
 					.getXmlRootElementBinding("applicationcfg");
 			cfg = (ConfigApplication) RapidBeanImplStrict.createInstance(beantype);
@@ -1301,8 +1258,7 @@ public class Application implements Appl {
 		final String appClassNameShort = StringHelper.splitLast(appClassName, ".");
 		if (this.name == null) {
 			appName = appClassNameShort;
-			if ((appName.endsWith("Application") || appName.endsWith("application"))
-					&& appName.length() > 11) {
+			if ((appName.endsWith("Application") || appName.endsWith("application")) && appName.length() > 11) {
 				appName = appName.substring(0, appName.length() - 11);
 			}
 		} else {
@@ -1340,8 +1296,8 @@ public class Application implements Appl {
 			final ConfigMenuItem menuItemNew1 = new ConfigMenuItem("new");
 			menuItemNew1.setName("new");
 			final Action newAction1 = new ActionDocumentNew();
-			newAction1.addArgument(new ActionArgument(
-					new String[] { "rootclass", this.docroottypes.get(0).getName() }));
+			newAction1
+					.addArgument(new ActionArgument(new String[] { "rootclass", this.docroottypes.get(0).getName() }));
 			menuItemNew1.setChildaction(newAction1);
 			fileMenu.addMenuentry(menuItemNew1);
 			break;
@@ -1355,8 +1311,10 @@ public class Application implements Appl {
 			for (final TypeRapidBean docroottype : this.docroottypes) {
 				final ConfigMenuItem menuItemNew = new ConfigMenuItem("new");
 				try {
-					this.getCurrentLocale().getStringGui("mainwindow.menubar.file.newsubmenu."
-							+ docroottype.getNameShort().toLowerCase() + ".label");
+					this.getCurrentLocale()
+							.getStringGui(
+									"mainwindow.menubar.file.newsubmenu." + docroottype.getNameShort().toLowerCase()
+											+ ".label");
 					menuItemNew.setName(docroottype.getNameShort().toLowerCase());
 				} catch (MissingResourceException e1) {
 					try {
@@ -1368,8 +1326,7 @@ public class Application implements Appl {
 					}
 				}
 				final Action newAction = new ActionDocumentNew();
-				newAction.addArgument(new ActionArgument(
-						new String[] { "rootclass", docroottype.getName() }));
+				newAction.addArgument(new ActionArgument(new String[] { "rootclass", docroottype.getName() }));
 				menuItemNew.setChildaction(newAction);
 				submenuNew.addMenuentry(menuItemNew);
 			}
@@ -1444,8 +1401,7 @@ public class Application implements Appl {
 		return this.views.values();
 	}
 
-	private final class ViewOrderHelper
-			implements Comparable<ViewOrderHelper> {
+	private final class ViewOrderHelper implements Comparable<ViewOrderHelper> {
 		private View view = null;
 
 		public View getView() {
@@ -1507,8 +1463,7 @@ public class Application implements Appl {
 	 * @return the document's title to present in the GUI
 	 */
 	public String getDocumentTitle(final Document doc) {
-		String title = this.currentLocale.getStringGui(
-				"document." + doc.getName() + ".title");
+		String title = this.currentLocale.getStringGui("document." + doc.getName() + ".title");
 		return title;
 	}
 
@@ -1518,17 +1473,15 @@ public class Application implements Appl {
 	 * @param bizBeanType
 	 *            the bean type
 	 * 
-	 * @return the biz bean editor configuration associated to this class
-	 *         or null if not existent.
+	 * @return the biz bean editor configuration associated to this class or
+	 *         null if not existent.
 	 */
-	public final ConfigEditorBean getConfigBeanEditor(
-			final TypeRapidBean bizBeanType) {
+	public final ConfigEditorBean getConfigBeanEditor(final TypeRapidBean bizBeanType) {
 		ConfigEditorBean conf = null;
 		if (this.getConfiguration() == null) {
 			return null;
 		}
-		Collection<ConfigEditorBean> confs =
-				this.getConfiguration().getBeaneditors();
+		Collection<ConfigEditorBean> confs = this.getConfiguration().getBeaneditors();
 		if (confs == null) {
 			return null;
 		}
@@ -1547,11 +1500,10 @@ public class Application implements Appl {
 	 * @param docconfname
 	 *            the document configuration name
 	 * 
-	 * @return the document view configuration associated to this name
-	 *         or null if not existent.
+	 * @return the document view configuration associated to this name or null
+	 *         if not existent.
 	 */
-	public final ConfigDocument getConfigDocument(
-			final String docconfname) {
+	public final ConfigDocument getConfigDocument(final String docconfname) {
 		return this.getConfiguration().getConfigDocument(docconfname);
 	}
 
@@ -1561,11 +1513,10 @@ public class Application implements Appl {
 	 * @param doc
 	 *            the document of which you want to search the configuration
 	 * 
-	 * @return the document view configuration associated to this name
-	 *         or null if not existent.
+	 * @return the document view configuration associated to this name or null
+	 *         if not existent.
 	 */
-	public final ConfigDocument getConfigDocument(
-			final Document doc) {
+	public final ConfigDocument getConfigDocument(final Document doc) {
 		return this.getConfiguration().getConfigDocument(doc);
 	}
 
@@ -1577,11 +1528,10 @@ public class Application implements Appl {
 	 * @param viewconfname
 	 *            the view configuration name
 	 * 
-	 * @return the document view configuration associated to these names
-	 *         or null if not existent.
+	 * @return the document view configuration associated to these names or null
+	 *         if not existent.
 	 */
-	public final ConfigView getConfigView(
-			final String docconfname, final String viewconfname) {
+	public final ConfigView getConfigView(final String docconfname, final String viewconfname) {
 		return this.getConfiguration().getConfigView(docconfname, viewconfname);
 	}
 
@@ -1590,19 +1540,18 @@ public class Application implements Appl {
 	 */
 	public void playSoundError() {
 		if (!this.getTestMode()) {
-			SoundHelper.play(Application.class.getResourceAsStream(
-					"sounds/error.wav"));
+			SoundHelper.play(Application.class.getResourceAsStream("sounds/error.wav"));
 		}
 	}
 
 	/**
-	 * determines if the given document view is the last open
-	 * document view to its document.
+	 * determines if the given document view is the last open document view to
+	 * its document.
 	 * 
 	 * @param view
 	 *            the document to investigate
-	 * @return if the given document view is the last open
-	 *         document view to its document
+	 * @return if the given document view is the last open document view to its
+	 *         document
 	 */
 	public boolean isLastOpenDocumentView(final DocumentView view) {
 		boolean isLast = true;
@@ -1631,43 +1580,39 @@ public class Application implements Appl {
 	public static void setAuthnRoleType(final String typename) {
 		final TypeRapidEnum enumType = TypeRapidEnum.forName(typename);
 
-		final TypeRapidBean cfgMenuEntryType = TypeRapidBean.forName(
-				"org.rapidbeans.presentation.config.ConfigMenuEntry");
-		final TypePropertyChoice cfgMenuEntryRolesProptype =
-				(TypePropertyChoice) cfgMenuEntryType.getPropertyType("rolesrequired");
+		final TypeRapidBean cfgMenuEntryType = TypeRapidBean
+				.forName("org.rapidbeans.presentation.config.ConfigMenuEntry");
+		final TypePropertyChoice cfgMenuEntryRolesProptype = (TypePropertyChoice) cfgMenuEntryType
+				.getPropertyType("rolesrequired");
 		cfgMenuEntryRolesProptype.setEnumType(enumType);
 
-		final TypeRapidBean cfgToolbarButtonType = TypeRapidBean.forName(
-				"org.rapidbeans.presentation.config.ConfigToolbarButton");
-		final TypePropertyChoice cfgToolbarButtonRolesProptype =
-				(TypePropertyChoice) cfgToolbarButtonType.getPropertyType("rolesrequired");
+		final TypeRapidBean cfgToolbarButtonType = TypeRapidBean
+				.forName("org.rapidbeans.presentation.config.ConfigToolbarButton");
+		final TypePropertyChoice cfgToolbarButtonRolesProptype = (TypePropertyChoice) cfgToolbarButtonType
+				.getPropertyType("rolesrequired");
 		cfgToolbarButtonRolesProptype.setEnumType(enumType);
 
-		final TypeRapidBean cfgDocumentType = TypeRapidBean.forName(
-				"org.rapidbeans.presentation.config.ConfigDocument");
-		final TypePropertyChoice cfgDocumentRolesReadProptype =
-				(TypePropertyChoice) cfgDocumentType.getPropertyType("readaccessrolesrequired");
+		final TypeRapidBean cfgDocumentType = TypeRapidBean
+				.forName("org.rapidbeans.presentation.config.ConfigDocument");
+		final TypePropertyChoice cfgDocumentRolesReadProptype = (TypePropertyChoice) cfgDocumentType
+				.getPropertyType("readaccessrolesrequired");
 		cfgDocumentRolesReadProptype.setEnumType(enumType);
-		final TypePropertyChoice cfgDocumentRolesWriteProptype =
-				(TypePropertyChoice) cfgDocumentType.getPropertyType("writeaccessrolesrequired");
+		final TypePropertyChoice cfgDocumentRolesWriteProptype = (TypePropertyChoice) cfgDocumentType
+				.getPropertyType("writeaccessrolesrequired");
 		cfgDocumentRolesWriteProptype.setEnumType(enumType);
 
-		final TypeRapidBean cfgFilterRuleRoleBasedType = TypeRapidBean.forName(
-				"org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased");
-		final TypePropertyChoice cfgFilterRuleRoleBasedProptype =
-				(TypePropertyChoice) cfgFilterRuleRoleBasedType.getPropertyType("roles");
+		final TypeRapidBean cfgFilterRuleRoleBasedType = TypeRapidBean
+				.forName("org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased");
+		final TypePropertyChoice cfgFilterRuleRoleBasedProptype = (TypePropertyChoice) cfgFilterRuleRoleBasedType
+				.getPropertyType("roles");
 		cfgFilterRuleRoleBasedProptype.setEnumType(enumType);
 
-		final TypeRapidBean userType = TypeRapidBean.forName(
-				"org.rapidbeans.security.User");
-		final TypePropertyChoice userRolesProptype =
-				(TypePropertyChoice) userType.getPropertyType("roles");
+		final TypeRapidBean userType = TypeRapidBean.forName("org.rapidbeans.security.User");
+		final TypePropertyChoice userRolesProptype = (TypePropertyChoice) userType.getPropertyType("roles");
 		userRolesProptype.setEnumType(enumType);
 
-		final TypeRapidBean actionType = TypeRapidBean.forName(
-				"org.rapidbeans.service.Action");
-		final TypePropertyChoice actionRolesProptype =
-				(TypePropertyChoice) actionType.getPropertyType("rolesrequired");
+		final TypeRapidBean actionType = TypeRapidBean.forName("org.rapidbeans.service.Action");
+		final TypePropertyChoice actionRolesProptype = (TypePropertyChoice) actionType.getPropertyType("rolesrequired");
 		actionRolesProptype.setEnumType(enumType);
 	}
 
@@ -1743,8 +1688,7 @@ public class Application implements Appl {
 	 */
 	public String getRootpackage() {
 		if (this.rootpackage == null) {
-			if (this.getConfiguration() != null
-					&& this.getConfiguration().getRootpackage() != null) {
+			if (this.getConfiguration() != null && this.getConfiguration().getRootpackage() != null) {
 				this.rootpackage = this.getConfiguration().getRootpackage();
 			}
 		}
@@ -1858,8 +1802,7 @@ public class Application implements Appl {
 				for (final BeanEditorState bedState : vs.getBeaneditors()) {
 					RapidBean bean = null;
 					if (bedState.getBeanid() != null) {
-						bean = viewdoc.findBean(
-								bedState.getBeantype(), bedState.getBeanid());
+						bean = viewdoc.findBean(bedState.getBeantype(), bedState.getBeanid());
 					} else {
 						final StringBuffer queryBuffer = new StringBuffer(bedState.getBeantype());
 						queryBuffer.append("[");
@@ -1882,8 +1825,7 @@ public class Application implements Appl {
 					}
 					if (bean != null) {
 						boolean show = true;
-						if (view.getBeanFilter() != null
-								&& (!view.getBeanFilter().applies(bean))) {
+						if (view.getBeanFilter() != null && (!view.getBeanFilter().applies(bean))) {
 							show = false;
 						}
 						if (show) {

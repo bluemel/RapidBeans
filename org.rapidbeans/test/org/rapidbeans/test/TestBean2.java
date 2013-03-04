@@ -48,20 +48,13 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.surname = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("surname");
-		this.prename = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("prename");
-		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate)
-				this.getProperty("dateofbirth");
-		this.city = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("city");
-		this.zipcode = (org.rapidbeans.core.basic.PropertyInteger)
-				this.getProperty("zipcode");
-		this.email = (org.rapidbeans.core.basic.PropertyString)
-				this.getProperty("email");
-		this.sex = (org.rapidbeans.core.basic.PropertyChoice)
-				this.getProperty("sex");
+		this.surname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("surname");
+		this.prename = (org.rapidbeans.core.basic.PropertyString) this.getProperty("prename");
+		this.dateofbirth = (org.rapidbeans.core.basic.PropertyDate) this.getProperty("dateofbirth");
+		this.city = (org.rapidbeans.core.basic.PropertyString) this.getProperty("city");
+		this.zipcode = (org.rapidbeans.core.basic.PropertyInteger) this.getProperty("zipcode");
+		this.email = (org.rapidbeans.core.basic.PropertyString) this.getProperty("email");
+		this.sex = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("sex");
 	}
 
 	/**
@@ -122,8 +115,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'surname' to set
 	 */
-	public final void setSurname(
-			final String argValue) {
+	public final void setSurname(final String argValue) {
 		this.surname.setValue(argValue);
 	}
 
@@ -144,8 +136,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'prename' to set
 	 */
-	public final void setPrename(
-			final String argValue) {
+	public final void setPrename(final String argValue) {
 		this.prename.setValue(argValue);
 	}
 
@@ -166,8 +157,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'dateofbirth' to set
 	 */
-	public final void setDateofbirth(
-			final java.util.Date argValue) {
+	public final void setDateofbirth(final java.util.Date argValue) {
 		this.dateofbirth.setValue(argValue);
 	}
 
@@ -188,8 +178,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'city' to set
 	 */
-	public final void setCity(
-			final String argValue) {
+	public final void setCity(final String argValue) {
 		this.city.setValue(argValue);
 	}
 
@@ -210,8 +199,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'zipcode' to set
 	 */
-	public final void setZipcode(
-			final int argValue) {
+	public final void setZipcode(final int argValue) {
 		this.zipcode.setValue(new Integer(argValue));
 	}
 
@@ -232,8 +220,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'email' to set
 	 */
-	public final void setEmail(
-			final String argValue) {
+	public final void setEmail(final String argValue) {
 		this.email.setValue(argValue);
 	}
 
@@ -259,10 +246,8 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue
 	 *            value of Property 'sex' to set
 	 */
-	public final void setSex(
-			final org.rapidbeans.domain.org.Sex argValue) {
-		java.util.List<org.rapidbeans.domain.org.Sex> list =
-				new java.util.ArrayList<org.rapidbeans.domain.org.Sex>();
+	public final void setSex(final org.rapidbeans.domain.org.Sex argValue) {
+		java.util.List<org.rapidbeans.domain.org.Sex> list = new java.util.ArrayList<org.rapidbeans.domain.org.Sex>();
 		list.add(argValue);
 		this.sex.setValue(list);
 	}

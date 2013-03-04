@@ -33,9 +33,8 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 
 /**
- * Pops up the usual "About" dialog-
- * This dialog usually shows the applcation's version,
- * the vendor, the developers, etc...
+ * Pops up the usual "About" dialog- This dialog usually shows the applcation's
+ * version, the vendor, the developers, etc...
  * 
  * @author Martin Bluemel
  */
@@ -47,14 +46,12 @@ public class ActionHelpAbout extends Action {
 	public void execute() {
 		Application client = ApplicationManager.getApplication();
 		if (client != null) {
-			client.messageInfo(getInfo(),
-					client.getCurrentLocale().getStringGui("messagedialog.about.title"));
+			client.messageInfo(getInfo(), client.getCurrentLocale().getStringGui("messagedialog.about.title"));
 		}
 	}
 
 	/**
-	 * Compute the version info out of the manifest
-	 * in a localized manner.
+	 * Compute the version info out of the manifest in a localized manner.
 	 * 
 	 * @param locale
 	 *            the locale
@@ -122,8 +119,7 @@ public class ActionHelpAbout extends Action {
 			for (ComponentDescr descr1 : map.values()) {
 				versionString += "\n- " + descr1.getName() + ":";
 				versionString += "\n    " + descr1.getDescription();
-				versionString += "\n    " + locale.getStringMessage("info.about.version.version")
-						+ descr1.getVersion();
+				versionString += "\n    " + locale.getStringMessage("info.about.version.version") + descr1.getVersion();
 			}
 			versionString += "\n\n";
 			versionString += locale.getStringMessage("info.about.version.java.build");

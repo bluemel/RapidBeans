@@ -63,18 +63,15 @@ public final class XalanWrapper {
 					final String nameAndVal = arg.substring(2);
 					final List<String> tokens = split(nameAndVal, "=");
 					if (!(tokens.size() == 2)) {
-						System.err.println("ERROR: invalid parameter option \""
-								+ arg + DQUOTE);
+						System.err.println("ERROR: invalid parameter option \"" + arg + DQUOTE);
 						printUsage();
 						System.exit(ERROR_CODE_INVALID_OPTION);
 					}
 					parameterMap.put(tokens.get(0), tokens.get(1));
-				} else if (arg == "-h" || arg == "--h" || arg == "-help"
-						|| arg == "--help") {
+				} else if (arg == "-h" || arg == "--h" || arg == "-help" || arg == "--help") {
 					printUsage();
 				} else {
-					System.err.println("ERROR: invalid option \"" + arg
-							+ DQUOTE);
+					System.err.println("ERROR: invalid option \"" + arg + DQUOTE);
 					printUsage();
 					System.exit(ERROR_CODE_INVALID_OPTION);
 				}
@@ -129,8 +126,7 @@ public final class XalanWrapper {
 	 * @throws TransformerFactoryConfigurationError
 	 *             in case of XML / XSLT transformer problems
 	 */
-	public static int xslt(final File in, final File style, final File out,
-			final Map<String, String> parameters)
+	public static int xslt(final File in, final File style, final File out, final Map<String, String> parameters)
 			throws TransformerFactoryConfigurationError {
 		int error = 0;
 		try {
@@ -139,54 +135,44 @@ public final class XalanWrapper {
 				parameterMap = new HashMap<String, String>();
 			}
 			if (!in.exists()) {
-				System.err.println("ERROR: can't find input XML file \""
-						+ in.getAbsolutePath() + DQUOTE);
+				System.err.println("ERROR: can't find input XML file \"" + in.getAbsolutePath() + DQUOTE);
 				printUsage();
 				error = ERROR_CODE_FILE;
 			}
 			if (error == 0 && !in.canRead()) {
-				System.err.println("ERROR: can't read input XML file \""
-						+ in.getAbsolutePath() + DQUOTE);
+				System.err.println("ERROR: can't read input XML file \"" + in.getAbsolutePath() + DQUOTE);
 				printUsage();
 				error = ERROR_CODE_FILE;
 			}
 			if (error == 0 && !style.exists()) {
-				System.err.println("ERROR: can't find XSL style sheet file \""
-						+ style.getAbsolutePath() + DQUOTE);
+				System.err.println("ERROR: can't find XSL style sheet file \"" + style.getAbsolutePath() + DQUOTE);
 				printUsage();
 				error = ERROR_CODE_ARGUMENT_COUNT;
 			}
 			if (error == 0 && !style.canRead()) {
-				System.err.println("ERROR: can't read XSL style sheet file \""
-						+ style.getAbsolutePath() + DQUOTE);
+				System.err.println("ERROR: can't read XSL style sheet file \"" + style.getAbsolutePath() + DQUOTE);
 				printUsage();
 				error = ERROR_CODE_FILE;
 			}
 			if (error == 0 && !out.getParentFile().exists()) {
 				if (!out.getParentFile().mkdirs()) {
-					System.err
-							.println("ERROR: can't create parent folder for output file \""
-									+ style.getAbsolutePath() + DQUOTE);
+					System.err.println("ERROR: can't create parent folder for output file \"" + style.getAbsolutePath()
+							+ DQUOTE);
 					error = ERROR_CODE_ARGUMENT_COUNT;
 				}
 			}
 			if (error == 0 && out.exists() && (!out.canWrite())) {
-				System.err.println("ERROR: can't write \""
-						+ style.getAbsolutePath() + DQUOTE);
+				System.err.println("ERROR: can't write \"" + style.getAbsolutePath() + DQUOTE);
 				error = ERROR_CODE_ARGUMENT_COUNT;
 			}
 
 			if (error == 0) {
-				TransformerFactory tFactory =
-						javax.xml.transform.TransformerFactory.newInstance();
-				Transformer transformer =
-						tFactory.newTransformer(new StreamSource(style));
-				for (final Entry<String, String> param : parameterMap
-						.entrySet()) {
+				TransformerFactory tFactory = javax.xml.transform.TransformerFactory.newInstance();
+				Transformer transformer = tFactory.newTransformer(new StreamSource(style));
+				for (final Entry<String, String> param : parameterMap.entrySet()) {
 					transformer.setParameter(param.getKey(), param.getValue());
 				}
-				transformer.transform(new StreamSource(in), new StreamResult(
-						new FileOutputStream(out)));
+				transformer.transform(new StreamSource(in), new StreamResult(new FileOutputStream(out)));
 			}
 		} catch (TransformerConfigurationException e) {
 			e.printStackTrace();
@@ -204,29 +190,30 @@ public final class XalanWrapper {
 		return error;
 	}
 
-    /**
-     * Splits a string into tokens using one or multiple delimiter characters.
-     *
-     * @param string the string to spit.
-     * @param delimChars a string containing all delimiter characters
-     *
-     * @return a list containing all tokens
-     */
-    private static List<String> split(final String string, final String delimChars) {
-        final ArrayList<String> list = new ArrayList<String>();
-        final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
-        while (tokenizer.hasMoreTokens()) {
-            list.add(tokenizer.nextToken());
-        }
-        return list;
-    }
+	/**
+	 * Splits a string into tokens using one or multiple delimiter characters.
+	 * 
+	 * @param string
+	 *            the string to spit.
+	 * @param delimChars
+	 *            a string containing all delimiter characters
+	 * 
+	 * @return a list containing all tokens
+	 */
+	private static List<String> split(final String string, final String delimChars) {
+		final ArrayList<String> list = new ArrayList<String>();
+		final StringTokenizer tokenizer = new StringTokenizer(string, delimChars);
+		while (tokenizer.hasMoreTokens()) {
+			list.add(tokenizer.nextToken());
+		}
+		return list;
+	}
 
 	/**
 	 * Print the command line help.
 	 */
 	private static void printUsage() {
-		System.out
-				.println("  Usage: xslt [ <parameter option> ... ] <in> <style> <out>");
+		System.out.println("  Usage: xslt [ <parameter option> ... ] <in> <style> <out>");
 		System.out.println("    in: the input XML file");
 		System.out.println("    style: the XSL style sheet file");
 		System.out.println("    out: the output file");

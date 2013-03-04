@@ -38,8 +38,7 @@ import org.rapidbeans.presentation.swing.DocumentTreeViewSwing;
  * 
  * @author Martin Bluemel
  */
-public abstract class DocumentTreeView
-		implements View, DocumentChangeListener, SettingsChangedListener {
+public abstract class DocumentTreeView implements View, DocumentChangeListener, SettingsChangedListener {
 
 	/**
 	 * the document viewed.
@@ -113,8 +112,7 @@ public abstract class DocumentTreeView
 	 * setter.
 	 * 
 	 * @param show
-	 *            determines if bean links
-	 *            are presented to the tree view.
+	 *            determines if bean links are presented to the tree view.
 	 */
 	public void setShowBeanLinks(final boolean show) {
 		if (show != this.showBeanLinks) {
@@ -166,8 +164,7 @@ public abstract class DocumentTreeView
 	 * setter.
 	 * 
 	 * @param show
-	 *            determines if properties
-	 *            are presented to the tree view.
+	 *            determines if properties are presented to the tree view.
 	 */
 	public void setShowProperties(final boolean show) {
 		if (show != this.showProperties) {
@@ -193,19 +190,18 @@ public abstract class DocumentTreeView
 	 * 
 	 * @return the instance
 	 */
-	public static DocumentTreeView createInstance(final Application client,
-			final Document document, final Filter filter) {
+	public static DocumentTreeView createInstance(final Application client, final Document document, final Filter filter) {
 		DocumentTreeView treeView = null;
 		switch (client.getConfiguration().getGuitype()) {
 		case swing:
 			treeView = new DocumentTreeViewSwing(client, document, filter);
 			break;
 		case eclipsercp:
-			//mainWindow = new BBMainWindowEclispercp();
+			// mainWindow = new BBMainWindowEclispercp();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("Unknown GUI type \""
-					+ client.getConfiguration().getGuitype().name() + "\"");
+			throw new RapidBeansRuntimeException("Unknown GUI type \"" + client.getConfiguration().getGuitype().name()
+					+ "\"");
 		}
 
 		return treeView;
@@ -217,8 +213,7 @@ public abstract class DocumentTreeView
 	private DocumentTreeViewListener listener = null;
 
 	/**
-	 * adds a tree view listener tha want to be notified be tree view
-	 * events.
+	 * adds a tree view listener tha want to be notified be tree view events.
 	 * 
 	 * @param tlistener
 	 *            the tree view listener to add
@@ -228,8 +223,7 @@ public abstract class DocumentTreeView
 	}
 
 	/**
-	 * removes a tree view listener that does not want to be notified
-	 * anymore.
+	 * removes a tree view listener that does not want to be notified anymore.
 	 */
 	public void clearTreeViewListener() {
 		this.listener = null;
@@ -317,8 +311,7 @@ public abstract class DocumentTreeView
 		// filter beans and the associated keys
 		int j = 0;
 		for (int i = 0; i < selObjs.length; i++) {
-			if (selObjs[i] instanceof RapidBean
-					|| selObjs[i] instanceof DocumentTreeNodeBeanLink) {
+			if (selObjs[i] instanceof RapidBean || selObjs[i] instanceof DocumentTreeNodeBeanLink) {
 				j++;
 			}
 		}
@@ -390,8 +383,7 @@ public abstract class DocumentTreeView
 		if (prop.getClass() != SettingsBasicGuiPropTreeViewShowBeanLinks.class) {
 			return;
 		}
-		boolean newShowLinks = ((SettingsBasicGuiPropTreeViewShowBeanLinks)
-				prop).getValueBoolean();
+		boolean newShowLinks = ((SettingsBasicGuiPropTreeViewShowBeanLinks) prop).getValueBoolean();
 		this.setShowBeanLinks(newShowLinks);
 	}
 

@@ -29,48 +29,48 @@ import org.rapidbeans.core.type.TypeRapidBean;
  * 
  * @author Martin Bluemel
  */
-//TODO Framework 10) map association property
-//TODO Framework 11) (b/c) lob and picture property
-//TODO Framework 21) XML Serialization: consistent null semantics for especially collections
-//TODO Framework 22) XML Serialization: alternatively with JAXB? at least SAX (JAXP)
-//TODO Framework 23) make quantity editing more robust (no exceptions
-//                 if the unit is null while editing)
-//TODO Framework 24) support maps
-//TODO Framework 25) try changing setValue of a collection by
-//                 adding and deleting successively.
-//TODO Framework 25) allow paging for queries
-//TODO Framework 26) Move towards DBs: document partitioning
-//                 incl. partial views, and document merging
+// TODO Framework 10) map association property
+// TODO Framework 11) (b/c) lob and picture property
+// TODO Framework 21) XML Serialization: consistent null semantics for
+// especially collections
+// TODO Framework 22) XML Serialization: alternatively with JAXB? at least SAX
+// (JAXP)
+// TODO Framework 23) make quantity editing more robust (no exceptions
+// if the unit is null while editing)
+// TODO Framework 24) support maps
+// TODO Framework 25) try changing setValue of a collection by
+// adding and deleting successively.
+// TODO Framework 25) allow paging for queries
+// TODO Framework 26) Move towards DBs: document partitioning
+// incl. partial views, and document merging
 
-//TODO Framework 30) icons for buttons and standard menu entries
-//TODO Framework 31) sandwatch, progress bar, etc for actions
-//TODO Framework 32) integrate a toolbox
-//TODO Framework 33) integrate tooltips
+// TODO Framework 30) icons for buttons and standard menu entries
+// TODO Framework 31) sandwatch, progress bar, etc for actions
+// TODO Framework 32) integrate a toolbox
+// TODO Framework 33) integrate tooltips
 
-public interface RapidBean
-		extends Cloneable, Comparable<Link>, Link {
+public interface RapidBean extends Cloneable, Comparable<Link>, Link {
 
 	// Factory methods
 
-	//    public static RapidBean createInstance(final String typename)
-	//    public static RapidBean createInstance(final TypeRapidBean type);
+	// public static RapidBean createInstance(final String typename)
+	// public static RapidBean createInstance(final TypeRapidBean type);
 
 	// Constructors
 
-	//    public RapidBean();
-	//    public RapidBean(final String initvals);
-	//    public RapidBean(final String[] initvals);
-	//    protected RapidBean(final TypeRapidBean type);
-	//    protected RapidBean(final String initvals, final TypeRapidBean type);
-	//    protected RapidBean(final String[] initvals, final TypeRapidBean argType)
+	// public RapidBean();
+	// public RapidBean(final String initvals);
+	// public RapidBean(final String[] initvals);
+	// protected RapidBean(final TypeRapidBean type);
+	// protected RapidBean(final String initvals, final TypeRapidBean type);
+	// protected RapidBean(final String[] initvals, final TypeRapidBean argType)
 
 	// Java standard Object operations to implement
 
 	public String toString();
 
 	/**
-	 * A bean equals another bean it has the same type
-	 * and an equal identity.
+	 * A bean equals another bean it has the same type and an equal identity.
 	 * 
 	 * @param o
 	 *            the object to compare
@@ -103,8 +103,8 @@ public interface RapidBean
 	TypeRapidBean getType();
 
 	/**
-	 * Convenience getter for a property's value.
-	 * Encourages not to hold the bean's property reference for a long time.
+	 * Convenience getter for a property's value. Encourages not to hold the
+	 * bean's property reference for a long time.
 	 * 
 	 * @param name
 	 *            the Property's name
@@ -113,8 +113,8 @@ public interface RapidBean
 	Object getPropValue(final String name);
 
 	/**
-	 * Convenience setter for a property's value.
-	 * Encourages not to hold the bean's property reference for a long time.
+	 * Convenience setter for a property's value. Encourages not to hold the
+	 * bean's property reference for a long time.
 	 * 
 	 * @param name
 	 *            the Property's name
@@ -156,8 +156,8 @@ public interface RapidBean
 	/**
 	 * retrieve all parent beans in the composite hierarcy.
 	 * 
-	 * @return an array of parent beans starting
-	 *         with the (document) root and ending with the direct parent
+	 * @return an array of parent beans starting with the (document) root and
+	 *         ending with the direct parent
 	 */
 	RapidBean[] getParentBeans();
 
@@ -169,10 +169,9 @@ public interface RapidBean
 	PropertyCollection getParentProperty();
 
 	/**
-	 * setter for the parent (composite) bean used internally
-	 * when adding or removing a bean reference to / from a
-	 * collection property of type composition.
-	 * Also used when validating properties in the editor
+	 * setter for the parent (composite) bean used internally when adding or
+	 * removing a bean reference to / from a collection property of type
+	 * composition. Also used when validating properties in the editor
 	 * 
 	 * @param newParent
 	 *            the new parent bean
@@ -219,8 +218,8 @@ public interface RapidBean
 	void setContainer(final Container container);
 
 	/**
-	 * remove all references to and from other beans.
-	 * notify the container about deletion.
+	 * remove all references to and from other beans. notify the container about
+	 * deletion.
 	 */
 	void delete();
 
@@ -246,8 +245,8 @@ public interface RapidBean
 	void removePropertyChangeListener(final PropertyChangeListener l);
 
 	/**
-	 * Fires a property pre change event for that bean.
-	 * For specific processing simply override and call super().
+	 * Fires a property pre change event for that bean. For specific processing
+	 * simply override and call super().
 	 * 
 	 * @param event
 	 *            the PropertyChangeEvent to fire
@@ -255,8 +254,8 @@ public interface RapidBean
 	void propertyChangePre(final PropertyChangeEvent event);
 
 	/**
-	 * Fires a property post change event for that bean.
-	 * For specific processing simply override and call super().
+	 * Fires a property post change event for that bean. For specific processing
+	 * simply override and call super().
 	 * 
 	 * @param event
 	 *            the PropertyChangeEvent to fire
@@ -272,9 +271,8 @@ public interface RapidBean
 	 * @param cloneContainer
 	 *            the container for the cloned bean
 	 * 
-	 * @return a clone of this bean including
-	 *         the whole hierarchy. The container in set to
-	 *         null. Non compositions links are frozen.
+	 * @return a clone of this bean including the whole hierarchy. The container
+	 *         in set to null. Non compositions links are frozen.
 	 */
 	RapidBean cloneExternal(final Container cloneContainer);
 
@@ -292,8 +290,7 @@ public interface RapidBean
 	 *            the locale
 	 * @return the expanded string
 	 */
-	String expandPropertyValues(
-			final String pattern, final RapidBeansLocale locale);
+	String expandPropertyValues(final String pattern, final RapidBeansLocale locale);
 
 	/**
 	 * lazy initialization of the propmap.

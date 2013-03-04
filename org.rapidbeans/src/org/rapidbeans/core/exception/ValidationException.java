@@ -28,8 +28,8 @@ public class ValidationException extends LocalizedException {
 	private Object source = null;
 
 	/**
-	 * @return the exception source.
-	 *         Could be a Property, a Bean, or a different Object.
+	 * @return the exception source. Could be a Property, a Bean, or a different
+	 *         Object.
 	 */
 	public Object getSource() {
 		return this.source;
@@ -51,10 +51,7 @@ public class ValidationException extends LocalizedException {
 	 * @param message
 	 *            the default exception message
 	 */
-	public ValidationException(
-			final String sig,
-			final Object source,
-			final String message) {
+	public ValidationException(final String sig, final Object source, final String message) {
 		super(sig, message);
 		this.source = source;
 	}
@@ -72,11 +69,7 @@ public class ValidationException extends LocalizedException {
 	 * @param cause
 	 *            a Throwable to nest
 	 */
-	public ValidationException(
-			final String sig,
-			final Object source,
-			final String message,
-			final Throwable cause) {
+	public ValidationException(final String sig, final Object source, final String message, final Throwable cause) {
 		super(sig, message, cause);
 		this.source = source;
 	}
@@ -94,11 +87,7 @@ public class ValidationException extends LocalizedException {
 	 * @param messArgs
 	 *            the message arguments
 	 */
-	public ValidationException(
-			final String sig,
-			final Object source,
-			final String message,
-			final Object[] messArgs) {
+	public ValidationException(final String sig, final Object source, final String message, final Object[] messArgs) {
 		super(sig, message, messArgs);
 		this.source = source;
 	}

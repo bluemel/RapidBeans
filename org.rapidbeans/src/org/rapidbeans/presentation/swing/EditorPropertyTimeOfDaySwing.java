@@ -45,9 +45,8 @@ import org.rapidbeans.presentation.EditorBean;
 import org.rapidbeans.presentation.config.ConfigPropEditorBean;
 
 /**
- * a special property editor for RapidQuantity properties.
- * Combines a textHours field for editing the magnitude with
- * a combo box for selecting the unit.
+ * a special property editor for RapidQuantity properties. Combines a textHours
+ * field for editing the magnitude with a combo box for selecting the unit.
  * 
  * @author Martin Bluemel
  */
@@ -97,9 +96,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @param client
 	 *            the client
 	 */
-	public EditorPropertyTimeOfDaySwing(final Application client,
-			final EditorBean bizBeanEditor,
-			final Property prop, final Property propBak) {
+	public EditorPropertyTimeOfDaySwing(final Application client, final EditorBean bizBeanEditor, final Property prop,
+			final Property propBak) {
 		super(client, bizBeanEditor, prop, propBak);
 		Component[] comps = { this.textHours, this.textMinutes };
 		this.panel = new BBEditorPropertyQuantitySwingPanel(comps);
@@ -144,25 +142,15 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 		});
 
 		this.panel.setLayout(this.layout);
-		this.panel.add(this.textHours, new GridBagConstraints(
-				0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST,
-				GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.labelColon, new GridBagConstraints(
-				1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST,
-				GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
-		this.panel.add(this.textMinutes, new GridBagConstraints(
-				2, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST,
-				GridBagConstraints.NONE,
-				new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.textHours, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.labelColon, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+		this.panel.add(this.textMinutes, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 		this.updateUI();
 		final ConfigPropEditorBean cfg = getConfig();
-		if (prop.getReadonly()
-				|| (cfg != null && !cfg.getEnabled())) {
+		if (prop.getReadonly() || (cfg != null && !cfg.getEnabled())) {
 			this.panel.setEnabled(false);
 		}
 	}
@@ -179,8 +167,7 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 				this.textHours.setText("");
 			} else {
 				this.textHours.setText(Integer.toString(value.getHours()));
-				this.textMinutes.setText(normalizeMinutesString(
-						Integer.toString(value.getMinutes())));
+				this.textMinutes.setText(normalizeMinutesString(Integer.toString(value.getMinutes())));
 			}
 		} finally {
 			this.releaseUIEventLock();
@@ -194,9 +181,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 		RapidQuantity ifValue = null;
 		String s = this.textHours.getText();
 		if (s.trim().length() > 0) {
-			ifValue = RapidQuantity.createInstance(
-					((TypePropertyQuantity) this.getProperty().getType()).getQuantitytype().getName(),
-					getInputFieldValueString());
+			ifValue = RapidQuantity.createInstance(((TypePropertyQuantity) this.getProperty().getType())
+					.getQuantitytype().getName(), getInputFieldValueString());
 		}
 		return ifValue;
 	}
@@ -204,15 +190,13 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	/**
 	 * validate an input field.
 	 * 
-	 * @return if the string in the input field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the input field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param ex
 	 *            the validation exception
 	 */
-	protected boolean hasPotentiallyValidInputField(
-			final ValidationException ex) {
+	protected boolean hasPotentiallyValidInputField(final ValidationException ex) {
 		if (ex.getSignature().endsWith("incomplete")) {
 			return this.checkLocalNumber(false);
 		} else {
@@ -251,15 +235,15 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 */
 	private class ParsedNumber {
 
-		//        /**
-		//         * the number.
-		//         */
-		//        private BigDecimal number = null;
+		// /**
+		// * the number.
+		// */
+		// private BigDecimal number = null;
 
-		//        /**
-		//         * the ok flag.
-		//         */
-		//        private boolean ok = false;
+		// /**
+		// * the ok flag.
+		// */
+		// private boolean ok = false;
 
 		/**
 		 * constructor.
@@ -273,41 +257,40 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 			new BigDecimal(s);
 		}
 
-		//        /**
-		//         * @param s the day String to set
-		//         */
-		//        public void setNumber(final String s) {
-		//            this.number = new BigDecimal(s);
-		//        }
+		// /**
+		// * @param s the day String to set
+		// */
+		// public void setNumber(final String s) {
+		// this.number = new BigDecimal(s);
+		// }
 
-		//        /**
-		//         * @param o the ok to set
-		//         */
-		//        public void setOk(final boolean o) {
-		//            this.ok = o;
-		//        }
+		// /**
+		// * @param o the ok to set
+		// */
+		// public void setOk(final boolean o) {
+		// this.ok = o;
+		// }
 
-		//        /**
-		//         * @return the number
-		//         */
-		//        public BigDecimal getNumber() {
-		//            return number;
-		//        }
+		// /**
+		// * @return the number
+		// */
+		// public BigDecimal getNumber() {
+		// return number;
+		// }
 
-		//        /**
-		//         * @return the ok
-		//         */
-		//        public boolean isOk() {
-		//            return ok;
-		//        }
+		// /**
+		// * @return the ok
+		// */
+		// public boolean isOk() {
+		// return ok;
+		// }
 	}
 
 	/**
 	 * validate the hour field.
 	 * 
-	 * @return if the string in the date field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the date field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param completenessRequired
 	 *            if the inpput fiels must be completeS
@@ -320,9 +303,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	/**
 	 * validate the minute field.
 	 * 
-	 * @return if the string in the date field is valid
-	 *         or at least could at least get after appending additional
-	 *         characters.
+	 * @return if the string in the date field is valid or at least could at
+	 *         least get after appending additional characters.
 	 * 
 	 * @param completenessRequired
 	 *            if the inpput fiels must be completeS
@@ -336,8 +318,8 @@ public class EditorPropertyTimeOfDaySwing extends EditorPropertySwing {
 	 * @return the input field value as string.
 	 */
 	public String getInputFieldValueString() {
-		return new TimeOfDay(this.textHours.getText() + ':'
-				+ normalizeMinutesString(this.textMinutes.getText())).toString();
+		return new TimeOfDay(this.textHours.getText() + ':' + normalizeMinutesString(this.textMinutes.getText()))
+				.toString();
 	}
 
 	/**

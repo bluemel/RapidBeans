@@ -19,8 +19,8 @@ import junit.framework.TestCase;
 public final class TimeOfDayTest extends TestCase {
 
 	/**
-	 * test constructor with string: simple integers with one or two
-	 * digits will be interpreted as hours.
+	 * test constructor with string: simple integers with one or two digits will
+	 * be interpreted as hours.
 	 */
 	public void testTimeOfDayHours() {
 		TimeOfDay time = new TimeOfDay("2");
@@ -32,8 +32,8 @@ public final class TimeOfDayTest extends TestCase {
 	}
 
 	/**
-	 * test constructor with string: two integers (each one
-	 * or two digits separated by ':'.
+	 * test constructor with string: two integers (each one or two digits
+	 * separated by ':'.
 	 */
 	public void testTimeOfDayMinutes() {
 		TimeOfDay time = new TimeOfDay("1:59");
@@ -45,8 +45,8 @@ public final class TimeOfDayTest extends TestCase {
 	}
 
 	/**
-	 * test constructor with string: simple quntity coding coding
-	 * with magnitude and unit.
+	 * test constructor with string: simple quntity coding coding with magnitude
+	 * and unit.
 	 */
 	public void testTimeOfDayMinutesQuantity() {
 		TimeOfDay time = new TimeOfDay("1140 min");

@@ -21,8 +21,8 @@ import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
- * Base interface for Rapid Beans enum elements (potentially generic).
- * Although it is nearly the same be careful not to mix up with java.lang.Enum.
+ * Base interface for Rapid Beans enum elements (potentially generic). Although
+ * it is nearly the same be careful not to mix up with java.lang.Enum.
  * 
  * @author Martin Bluemel
  */

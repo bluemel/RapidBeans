@@ -8,10 +8,27 @@
 
 package org.rapidbeans.core.util;
 
+import java.util.logging.Level;
+
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PlatformHelperTest {
+
+	private static Level platformHelperLogLevelBefore;
+
+	@BeforeClass
+	public static void setUpClass() {
+		platformHelperLogLevelBefore = PlatformHelper.getLogger().getLevel();
+		PlatformHelper.getLogger().setLevel(Level.WARNING);
+	}
+
+	@AfterClass
+	public static void tearDownClass() {
+		PlatformHelper.getLogger().setLevel(platformHelperLogLevelBefore);
+	}
 
 	@Test
 	public void testGetOs() {
@@ -20,14 +37,11 @@ public class PlatformHelperTest {
 
 	@Test
 	public void testGetOsName() {
-		System.out.println(PlatformHelper.getOsfamily().toString());
-		System.out.println(PlatformHelper.getOs().toString());
 		Assert.assertTrue(PlatformHelper.getOsName().length() > 0);
 	}
 
 	@Test
 	public void testGetOsVersion() {
-		System.out.println(PlatformHelper.getOsVersion().toString());
 		Assert.assertTrue(PlatformHelper.getOsVersion().toString().length() > 0);
 	}
 
@@ -50,32 +64,26 @@ public class PlatformHelperTest {
 
 	@Test
 	public void testWinXp() {
-		String currentOsName = PlatformHelper.getOsName();
-		Version currentVersion = PlatformHelper.getOsVersion();
-		PlatformHelper.determineSystem("Windows XP", "5.1");
+		PlatformHelper.reset("Windows XP", "5.1");
 		Assert.assertEquals(OperatingSystem.windows_xp, PlatformHelper.getOs());
 		Assert.assertEquals(new Version("5.1"), PlatformHelper.getOsVersion());
-		PlatformHelper.determineSystem(currentOsName, currentVersion.toString());
+		PlatformHelper.reset(null, null);
 	}
 
 	@Test
 	public void testWin2k() {
-		String currentOsName = PlatformHelper.getOsName();
-		Version currentVersion = PlatformHelper.getOsVersion();
-		PlatformHelper.determineSystem("Windows 2000", "5.0");
+		PlatformHelper.reset("Windows 2000", "5.0");
 		Assert.assertEquals(OperatingSystem.windows_unknown_old, PlatformHelper.getOs());
 		Assert.assertEquals(new Version("5.0"), PlatformHelper.getOsVersion());
-		PlatformHelper.determineSystem(currentOsName, currentVersion.toString());
+		PlatformHelper.reset(null, null);
 	}
 
 	@Test
 	public void testWinNt() {
-		String currentOsName = PlatformHelper.getOsName();
-		Version currentVersion = PlatformHelper.getOsVersion();
-		PlatformHelper.determineSystem("Windows NT", "4.0");
+		PlatformHelper.reset("Windows NT", "4.0");
 		Assert.assertEquals(OperatingSystem.windows_unknown_old, PlatformHelper.getOs());
 		Assert.assertEquals(new Version("4.0"), PlatformHelper.getOsVersion());
-		PlatformHelper.determineSystem(currentOsName, currentVersion.toString());
+		PlatformHelper.reset(null, null);
 	}
 
 	@Test

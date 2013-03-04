@@ -38,16 +38,14 @@ import org.rapidbeans.core.util.ClassHelper;
 import org.rapidbeans.core.util.StringHelper;
 
 /**
- * The parent class of strict (generic) and simple (reflective)
- * bean implementations of the RapidBeans framework.
+ * The parent class of strict (generic) and simple (reflective) bean
+ * implementations of the RapidBeans framework.
  * 
  * @author Martin Bluemel
  */
-public abstract class RapidBeanImplParent
-		implements RapidBean, Link {
+public abstract class RapidBeanImplParent implements RapidBean, Link {
 
-	private static final Logger log = Logger.getLogger(
-			RapidBeanImplParent.class.getName());
+	private static final Logger log = Logger.getLogger(RapidBeanImplParent.class.getName());
 
 	/**
 	 * @return the bean's type instance
@@ -72,8 +70,7 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * reset the ID to null.
-	 * Do not use in general.
+	 * reset the ID to null. Do not use in general.
 	 */
 	public final void clearId() {
 		this.id = null;
@@ -107,13 +104,13 @@ public abstract class RapidBeanImplParent
 		this.id = newId;
 	}
 
-	//    /**
-	//     * CAUTION: exclusively use this setter for deserialization.
-	//     * @param idString the serialized id.
-	//     */
-	//    public void setId(final String idString) {
-	//        this.id = Id.createInstance(this, idString);
-	//    }
+	// /**
+	// * CAUTION: exclusively use this setter for deserialization.
+	// * @param idString the serialized id.
+	// */
+	// public void setId(final String idString) {
+	// this.id = Id.createInstance(this, idString);
+	// }
 
 	/**
 	 * Store the bean's state
@@ -152,8 +149,8 @@ public abstract class RapidBeanImplParent
 	/**
 	 * retrieve all parent beans in the composite hierarcy.
 	 * 
-	 * @return an array of parent beans starting
-	 *         with the (document) root and ending with the direct parent
+	 * @return an array of parent beans starting with the (document) root and
+	 *         ending with the direct parent
 	 */
 	public RapidBean[] getParentBeans() {
 		final ArrayList<RapidBean> beans = new ArrayList<RapidBean>();
@@ -190,10 +187,9 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * setter for the parent (composite) bean used internally
-	 * when adding or removing a bean reference to / from a
-	 * collection property of type composition.
-	 * Also used when validating properties in the editor
+	 * setter for the parent (composite) bean used internally when adding or
+	 * removing a bean reference to / from a collection property of type
+	 * composition. Also used when validating properties in the editor
 	 * 
 	 * @param newParent
 	 *            the new parent bean
@@ -204,10 +200,9 @@ public abstract class RapidBeanImplParent
 			// change a component's parent
 			final PropertyCollection parentColProp = this.getParentProperty();
 			parentColProp.removeLink(this, false, true, false);
-			if (ClassHelper.classOf(this.parent.getClass(),
-					newParent.getClass())) {
-				PropertyCollection newParentColProp = (PropertyCollection) newParent.getProperty(
-						parentColProp.getName());
+			if (ClassHelper.classOf(this.parent.getClass(), newParent.getClass())) {
+				PropertyCollection newParentColProp = (PropertyCollection) newParent.getProperty(parentColProp
+						.getName());
 				newParentColProp.addLink(this, false, false, false);
 			}
 		}
@@ -229,8 +224,7 @@ public abstract class RapidBeanImplParent
 				changeids = !doNotChange.booleanValue();
 			}
 			if (changeids) {
-				if (this.container != null
-						&& (this.container.contains(this))) {
+				if (this.container != null && (this.container.contains(this))) {
 					this.container.delete(this);
 					this.id = null;
 					if (newParentBean != null && this.container != null) {
@@ -273,8 +267,8 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * remove all references to and from other beans.
-	 * notify the container about deletion.
+	 * remove all references to and from other beans. notify the container about
+	 * deletion.
 	 */
 	@SuppressWarnings("unchecked")
 	public void delete() {
@@ -319,7 +313,8 @@ public abstract class RapidBeanImplParent
 				}
 				colPropType = (TypePropertyCollection) colProp.getType();
 				if (colPropType.isComposition()) {
-					// we have to store the component beans to delete in a different
+					// we have to store the component beans to delete in a
+					// different
 					// collection before we delete them otherwise we get a
 					// ConcurrentModification exception because col is changed
 					// implicitly while the component bean is deleted and at the
@@ -394,8 +389,7 @@ public abstract class RapidBeanImplParent
 					} else {
 						for (int i = 0; i < propTypes.length; i++) {
 							final String propname = propTypes[i].getPropName();
-							compare = this.getProperty(propname).compareTo(
-									bean.getProperty(propname));
+							compare = this.getProperty(propname).compareTo(bean.getProperty(propname));
 							if (compare != 0) {
 								break;
 							}
@@ -412,8 +406,7 @@ public abstract class RapidBeanImplParent
 			compare = this.getIdString().compareTo(link.getIdString());
 		} else {
 			if (link != null) {
-				throw new RapidBeansRuntimeException("cannot compare a bean with "
-						+ link.getClass().getName());
+				throw new RapidBeansRuntimeException("cannot compare a bean with " + link.getClass().getName());
 			} else {
 				throw new RapidBeansRuntimeException("cannot compare with null");
 			}
@@ -465,8 +458,7 @@ public abstract class RapidBeanImplParent
 				} else {
 					for (int i = 0; i < propTypes.length; i++) {
 						final String propname = propTypes[i].getPropName();
-						compare = this.getProperty(propname).compareTo(
-								bean.getProperty(propname));
+						compare = this.getProperty(propname).compareTo(bean.getProperty(propname));
 						if (compare != 0) {
 							break;
 						}
@@ -487,8 +479,7 @@ public abstract class RapidBeanImplParent
 			LinkFrozen link = (LinkFrozen) o;
 			compare = this.getIdString().compareTo(link.getIdString());
 		} else {
-			throw new RapidBeansRuntimeException("cannot compare a bean with "
-					+ o.getClass().getName());
+			throw new RapidBeansRuntimeException("cannot compare a bean with " + o.getClass().getName());
 		}
 
 		if (compare > 1) {
@@ -548,19 +539,18 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * Helper to determine if both bean types have all properties
-	 * required for sorting with same name and property type.
+	 * Helper to determine if both bean types have all properties required for
+	 * sorting with same name and property type.
 	 * 
 	 * @param bean
 	 *            the bean to compare with
 	 * @param propTypes
 	 *            the property types required for sorting
 	 * 
-	 * @return if sorting can be accomplished according to the
-	 *         given property types
+	 * @return if sorting can be accomplished according to the given property
+	 *         types
 	 */
-	private boolean sameSortingProptypes(RapidBeanImplParent bean,
-			TypeProperty[] propTypes) {
+	private boolean sameSortingProptypes(RapidBeanImplParent bean, TypeProperty[] propTypes) {
 		final TypeRapidBean thisType = this.getType();
 		final TypeRapidBean beanType = bean.getType();
 		for (final TypeProperty propType : propTypes) {
@@ -593,8 +583,7 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * A bean equals another bean it has the same type
-	 * and an equal identity.
+	 * A bean equals another bean it has the same type and an equal identity.
 	 * 
 	 * @param o
 	 *            the object to compare
@@ -653,8 +642,8 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * Fires a property pre change event for that bean.
-	 * For specific processing simply override and call super().
+	 * Fires a property pre change event for that bean. For specific processing
+	 * simply override and call super().
 	 * 
 	 * @param event
 	 *            the PropertyChangeEvent to fire
@@ -672,8 +661,8 @@ public abstract class RapidBeanImplParent
 	}
 
 	/**
-	 * Fires a property post change event for that bean.
-	 * For specific processing simply override and call super().
+	 * Fires a property post change event for that bean. For specific processing
+	 * simply override and call super().
 	 * 
 	 * @param event
 	 *            the PropertyChangeEvent to fire
@@ -704,8 +693,7 @@ public abstract class RapidBeanImplParent
 		if (sGuiType.equals(sGuiId)) {
 			return sGuiId;
 		} else {
-			if (this.getType().getIdtype() == IdType.transientid
-					&& sGuiId.equals(this.getIdString())) {
+			if (this.getType().getIdtype() == IdType.transientid && sGuiId.equals(this.getIdString())) {
 				return sGuiType;
 			} else {
 				return sGuiType + ": " + sGuiId;
@@ -735,8 +723,7 @@ public abstract class RapidBeanImplParent
 		String uistring = null;
 		if (uistring == null) {
 			try {
-				final String key = "bean."
-						+ this.getType().getName().toLowerCase() + ".id";
+				final String key = "bean." + this.getType().getName().toLowerCase() + ".id";
 				uistring = locale.getStringGui(key);
 				uistring = expandPropertyValues(uistring, locale);
 			} catch (MissingResourceException e) {
@@ -762,8 +749,7 @@ public abstract class RapidBeanImplParent
 	 *            the locale
 	 * @return the expanded string
 	 */
-	public String expandPropertyValues(
-			final String pattern, final RapidBeansLocale locale) {
+	public String expandPropertyValues(final String pattern, final RapidBeansLocale locale) {
 		char c;
 		int len = pattern.length();
 		int state = 0;
@@ -888,23 +874,19 @@ public abstract class RapidBeanImplParent
 				}
 				break;
 			default:
-				throw new UtilException("expandBeanPropertyValues(\""
-						+ pattern + "\") failed\n"
-						+ "wrong state " + state);
+				throw new UtilException("expandBeanPropertyValues(\"" + pattern + "\") failed\n" + "wrong state "
+						+ state);
 			}
 		}
 		if (state == 1) {
-			throw new UtilException("expandBeanPropertyValues(\""
-					+ pattern + "\") failed\n"
-					+ "missing closing }");
+			throw new UtilException("expandBeanPropertyValues(\"" + pattern + "\") failed\n" + "missing closing }");
 		}
 		return bufExpanded.toString();
 	}
 
 	/**
-	 * find a property out of the given property name.
-	 * The property name can be ether a simple name or a
-	 * chain of reference (collection, map) properties.
+	 * find a property out of the given property name. The property name can be
+	 * ether a simple name or a chain of reference (collection, map) properties.
 	 * The most right property can be an arbitrary one.
 	 * 
 	 * @param propname
@@ -956,8 +938,7 @@ public abstract class RapidBeanImplParent
 	 */
 	@SuppressWarnings("unchecked")
 	public void trace() {
-		log.info("BIZ BEAN: " + this.getType().getNameShort()
-				+ "::" + this.getIdString());
+		log.info("BIZ BEAN: " + this.getType().getNameShort() + "::" + this.getIdString());
 		for (PropertyCollection prop : this.getColProperties()) {
 			if (prop.getValue() != null) {
 				for (final Link link : (Collection<Link>) prop.getValue()) {
@@ -965,12 +946,10 @@ public abstract class RapidBeanImplParent
 						if (((TypePropertyCollection) prop.getType()).isComposition()) {
 							((RapidBeanImplParent) link).trace();
 						} else {
-							log.info("BEAN LINK: "
-									+ ((RapidBeanImplParent) link).getIdString());
+							log.info("BEAN LINK: " + ((RapidBeanImplParent) link).getIdString());
 						}
 					} else {
-						log.info("FROZEN LINK: "
-								+ ((LinkFrozen) link).getIdString());
+						log.info("FROZEN LINK: " + ((LinkFrozen) link).getIdString());
 					}
 				}
 			}

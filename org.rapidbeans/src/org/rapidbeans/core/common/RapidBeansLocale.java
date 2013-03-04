@@ -1,18 +1,16 @@
 /*
  * Partially generated code file: RapidBeansLocale.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.core.common.RapidBeansLocale
  * 
- * model:    model/org/rapidbeans/core/common/RapidBeansLocale.xml
+ * model: model/org/rapidbeans/core/common/RapidBeansLocale.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.core.common;
-
-
 
 // BEGIN manual code section
 // RapidBeansLocale.import
@@ -29,15 +27,13 @@ import org.rapidbeans.presentation.Application;
 // END manual code section
 
 /**
- * Rapid Bean class: RapidBeansLocale.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: RapidBeansLocale. Partially generated Java class !!!Do only
+ * edit manually in marked sections!!!
  **/
 public class RapidBeansLocale extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// RapidBeansLocale.classBody
-	private static final Logger log = Logger.getLogger(
-			RapidBeansLocale.class.getName());
+	private static final Logger log = Logger.getLogger(RapidBeansLocale.class.getName());
 
 	/**
 	 * the associated Java Locale instance.
@@ -119,8 +115,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting one string.
+	 * return the localized string for a given resource key while inserting one
+	 * string.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -142,8 +138,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting two strings.
+	 * return the localized string for a given resource key while inserting two
+	 * strings.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -154,8 +150,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the localized string
 	 */
-	public final String getStringMessage(final String key, final String arg1,
-			final String arg2) {
+	public final String getStringMessage(final String key, final String arg1, final String arg2) {
 		String s = null;
 		try {
 			s = this.textsMessages.getString(key);
@@ -168,8 +163,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * return the localized string for a given resource key
-	 * while inserting three strings.
+	 * return the localized string for a given resource key while inserting
+	 * three strings.
 	 * 
 	 * @param key
 	 *            the resource key
@@ -182,8 +177,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * 
 	 * @return the localized string
 	 */
-	public final String getStringMessage(final String key, final String arg1,
-			final String arg2, final String arg3) {
+	public final String getStringMessage(final String key, final String arg1, final String arg2, final String arg3) {
 		String s = null;
 		try {
 			s = this.textsMessages.getString(key);
@@ -281,8 +275,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
 	}
 
 	/**
@@ -297,6 +290,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -309,6 +303,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -344,6 +339,7 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */

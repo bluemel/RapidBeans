@@ -34,7 +34,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])} .
 	 */
 	public void testToArrayObjectArray() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -45,7 +45,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#toArray(java.lang.Object[])} .
 	 */
 	public void testToArrayObjectArrayWrongType() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -73,7 +73,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)} .
 	 */
 	public void testIndexOf() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -83,7 +83,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#indexOf(java.lang.Object)} .
 	 */
 	public void testIndexOfSet() {
 		ReadonlyListCollection<Person> persons = createPersonROCollectionSet();
@@ -93,7 +93,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)} .
 	 */
 	public void testLastIndexOf() {
 		ReadonlyListCollection<Person> persons = createPersonROCollection();
@@ -103,7 +103,7 @@ public class ReadonlyListCollectionTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)}.
+	 * Test method for {@link org.rapidbeans.core.common.ReadonlyListCollection#lastIndexOf(java.lang.Object)} .
 	 */
 	public void testLastIndexOfSet() {
 		ReadonlyListCollection<Person> persons = createPersonROCollectionSet();

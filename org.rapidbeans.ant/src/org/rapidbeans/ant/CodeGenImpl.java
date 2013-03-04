@@ -18,6 +18,5 @@
 package org.rapidbeans.ant;
 
 public enum CodeGenImpl {
-	simple,
-	strict
+	simple, strict
 }

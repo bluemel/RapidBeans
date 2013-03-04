@@ -29,13 +29,11 @@ import org.rapidbeans.core.exception.ImmutableCollectionException;
 import org.rapidbeans.core.type.TypeProperty;
 
 /**
- * Encapsulates any collection to make it
- * 1) immutable (read only). Hence if you try to use a changing
- * method like add you get a RuntimeException
- * 2) a List. If the collection is a List the reading List methods
- * use the List directly.
- * 3) If the collection is not a List the reading List methods work
- * on an array (internally made out of it)
+ * Encapsulates any collection to make it 1) immutable (read only). Hence if you
+ * try to use a changing method like add you get a RuntimeException 2) a List.
+ * If the collection is a List the reading List methods use the List directly.
+ * 3) If the collection is not a List the reading List methods work on an array
+ * (internally made out of it)
  * 
  * @author Martin Bluemel
  */
@@ -69,8 +67,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param col
 	 *            the collection to encapsulate.
 	 */
-	public ReadonlyListCollection(final Collection<T> col,
-			final TypeProperty propertyType) {
+	public ReadonlyListCollection(final Collection<T> col, final TypeProperty propertyType) {
 		this.proptype = propertyType;
 		if (col instanceof ReadonlyListCollection) {
 			this.collection = ((ReadonlyListCollection<T>) col).collection;
@@ -118,8 +115,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	}
 
 	/**
-	 * returns the collection converted to an array of Objects.
-	 * Since an array is immutable this is not a problem.
+	 * returns the collection converted to an array of Objects. Since an array
+	 * is immutable this is not a problem.
 	 * 
 	 * @return the collection converted to an array of Objects
 	 */
@@ -136,8 +133,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	}
 
 	/**
-	 * returns the collection converted to a typed array.
-	 * Since an array is immutable this is not a problem.
+	 * returns the collection converted to a typed array. Since an array is
+	 * immutable this is not a problem.
 	 * 
 	 * @param a
 	 *            the pattern array
@@ -145,8 +142,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @return the collection converted to an array
 	 * 
 	 * @throws ArrayStoreException
-	 *             in case the Object[] given
-	 *             has an incorrect type
+	 *             in case the Object[] given has an incorrect type
 	 */
 	@SuppressWarnings("unchecked")
 	public T[] toArray(final Object[] a) {
@@ -245,10 +241,9 @@ public class ReadonlyListCollection<T> implements List<T> {
 	}
 
 	/**
-	 * returns the element at the specified position in the list.
-	 * Caution: Collections that are no Lists will be converted
-	 * to arrays which will cause performance problems in case
-	 * a big collections.
+	 * returns the element at the specified position in the list. Caution:
+	 * Collections that are no Lists will be converted to arrays which will
+	 * cause performance problems in case a big collections.
 	 * 
 	 * @param index
 	 *            the position
@@ -268,7 +263,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @param o
 	 *            the object reference tha specifies the element to search for
-	 * @return the last index of the element with the given reference or -1 if not found
+	 * @return the last index of the element with the given reference or -1 if
+	 *         not found
 	 */
 	public int indexOf(final Object o) {
 		if (this.collection instanceof List) {
@@ -290,7 +286,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @param o
 	 *            the object reference that specifies the element to search for
-	 * @return the last index of the element with the given reference or -1 if not found
+	 * @return the last index of the element with the given reference or -1 if
+	 *         not found
 	 */
 	public int lastIndexOf(final Object o) {
 		if (this.collection instanceof List) {
@@ -340,11 +337,9 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 */
 	public List<T> subList(final int fromIndex, final int toIndex) {
 		if (this.collection instanceof List<?>) {
-			return new ReadonlyListCollection<T>(((List<T>) this.collection).subList(fromIndex, toIndex),
-					this.proptype);
+			return new ReadonlyListCollection<T>(((List<T>) this.collection).subList(fromIndex, toIndex), this.proptype);
 		} else {
-			return new ReadonlyListCollection<T>(this.toArrayList().subList(fromIndex, toIndex),
-					this.proptype);
+			return new ReadonlyListCollection<T>(this.toArrayList().subList(fromIndex, toIndex), this.proptype);
 		}
 	}
 
@@ -454,8 +449,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	}
 
 	/**
-	 * returns the collection converted to an array list.
-	 * Since an array list is not immutable this method is private.
+	 * returns the collection converted to an array list. Since an array list is
+	 * not immutable this method is private.
 	 * 
 	 * @return the collection converted to an array
 	 */

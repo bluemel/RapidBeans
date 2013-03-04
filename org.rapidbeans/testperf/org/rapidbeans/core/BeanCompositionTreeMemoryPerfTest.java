@@ -11,22 +11,19 @@ import org.rapidbeans.presentation.MenuItem;
 import org.rapidbeans.presentation.Submenu;
 
 /**
- * Test heap space needs and garbage collection for a bean
- * composite tree.
+ * Test heap space needs and garbage collection for a bean composite tree.
  * 
  * @author Martin Bluemel
  */
 public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 
 	/**
-	 * the test prooves:
-	 * bean composite trees are garbage collected.
+	 * the test prooves: bean composite trees are garbage collected.
 	 * 
 	 * @throws InterruptedException
 	 *             because of THread.sleep.
 	 */
-	public void testBeanCompositeTreeHeap()
-			throws InterruptedException {
+	public void testBeanCompositeTreeHeap() throws InterruptedException {
 
 		final int count = 400000;
 
@@ -48,18 +45,16 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		} catch (RapidBeansRuntimeException e) {
 			final Throwable e1 = e.getCause();
 			assertTrue("caught BBRuntimeException with cause different from InvocationTargetException"
-					+ e1.getClass().getName() + ": " + e1.getMessage(),
-					e1 instanceof InvocationTargetException);
+					+ e1.getClass().getName() + ": " + e1.getMessage(), e1 instanceof InvocationTargetException);
 			final Throwable e2 = e1.getCause();
 			assertTrue("caught InvocationTargetException with nested exception different from OutOfMemoryError: "
-					+ e2.getClass().getName() + ": " + e2.getMessage(),
-					e2 instanceof OutOfMemoryError);
+					+ e2.getClass().getName() + ": " + e2.getMessage(), e2 instanceof OutOfMemoryError);
 			System.out.println("[BeanCompositionTreeMemoryTest] got an InvocationTargetException"
 					+ " caused by an OutOfMemoryError as expected");
 		} catch (Throwable t) {
-			assertTrue("caught throwable different from OutOfMemoryError: "
-					+ t.getClass().getName() + ": " + t.getMessage(),
-					t instanceof OutOfMemoryError);
+			assertTrue(
+					"caught throwable different from OutOfMemoryError: " + t.getClass().getName() + ": "
+							+ t.getMessage(), t instanceof OutOfMemoryError);
 			System.out.println("[BeanCompositionTreeMemoryTest] got an OutOfMemoryError as expected");
 		}
 
@@ -93,12 +88,13 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		}
 	}
 	//
-	//    /**
-	//     * constructor.
-	//     *
-	//     * @param manager the manager
-	//     */
-	//    public BeanCompositionTreeMemoryPerfTest(final PerformanceTestManager manager) {
-	//        super(manager);
-	//    }
+	// /**
+	// * constructor.
+	// *
+	// * @param manager the manager
+	// */
+	// public BeanCompositionTreeMemoryPerfTest(final PerformanceTestManager
+	// manager) {
+	// super(manager);
+	// }
 }

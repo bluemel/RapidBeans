@@ -29,16 +29,13 @@ public final class RapidQuantityTest extends TestCase {
 	 * test creating a generated instance (typesafe).
 	 */
 	public void testCreateInstanceClass() {
-		RapidQuantity len = RapidQuantity.createInstance(
-				"org.rapidbeans.domain.math.Length", "2123456789 m");
+		RapidQuantity len = RapidQuantity.createInstance("org.rapidbeans.domain.math.Length", "2123456789 m");
 		assertEquals(new BigDecimal(2123456789), len.getMagnitude());
 		assertEquals(2123456789, len.getMagnitudeLong());
 		assertEquals(2123456789.0, len.getMagnitudeDouble());
-		assertEquals(2123456.789,
-				len.convert(UnitLength.km).getMagnitudeDouble());
+		assertEquals(2123456.789, len.convert(UnitLength.km).getMagnitudeDouble());
 		assertSame(UnitLength.m, len.getUnit());
-		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"),
-				len.getType());
+		assertSame(TypeRapidQuantity.forName("org.rapidbeans.domain.math.Length"), len.getType());
 		assertSame(Length.class, len.getClass());
 	}
 
@@ -46,13 +43,13 @@ public final class RapidQuantityTest extends TestCase {
 	 * Test method for hashCode().
 	 */
 	public void testHashCode() {
-		RapidQuantity len = RapidQuantity.createInstance(
-				"org.rapidbeans.domain.math.Length", "2123456789 m");
+		RapidQuantity len = RapidQuantity.createInstance("org.rapidbeans.domain.math.Length", "2123456789 m");
 		assertEquals(new String("2123456789 m").hashCode(), len.hashCode());
 	}
 
 	/**
-	 * Test method for 'org.rapidbeans.rename.BBQuantity.BBQuantity(BigDecimal, RapidEnum)'.
+	 * Test method for 'org.rapidbeans.rename.BBQuantity.BBQuantity(BigDecimal,
+	 * RapidEnum)'.
 	 */
 	public void testBBQuantity() {
 		Length len = new Length(new BigDecimal("1234.567890123456789"), UnitLength.km);
@@ -86,10 +83,8 @@ public final class RapidQuantityTest extends TestCase {
 		assertEquals(0, new Length("112 m").compareTo(new Length("112 m")));
 		assertEquals(1, new Length("10 km").compareTo(new Length("11 pm")));
 		assertEquals(-1, new Length("10 cm").compareTo(new Length("1 m")));
-		assertEquals(0, new Length("1000000000000000000 pm").compareTo(
-				new Length("1000 km")));
-		assertEquals(1, new Length("1000000000000000001 pm").compareTo(
-				new Length("1000 km")));
+		assertEquals(0, new Length("1000000000000000000 pm").compareTo(new Length("1000 km")));
+		assertEquals(1, new Length("1000000000000000001 pm").compareTo(new Length("1000 km")));
 	}
 
 	/**

@@ -47,11 +47,9 @@ public final class CurrencyTest extends TestCase {
 		java.util.Currency cur = java.util.Currency.getInstance(Locale.GERMANY);
 		assertEquals("EUR", cur.getCurrencyCode());
 		// "\u20AC" is the Unicode for the Euro symbol '€'
-		assertTrue(cur.getSymbol().equals("\u20AC")
-				|| cur.getSymbol().equals("EUR"));
+		assertTrue(cur.getSymbol().equals("\u20AC") || cur.getSymbol().equals("EUR"));
 
-		final HashMap<String, java.util.Currency> currencyMap =
-				new HashMap<String, java.util.Currency>();
+		final HashMap<String, java.util.Currency> currencyMap = new HashMap<String, java.util.Currency>();
 		for (String isoLanguage : Locale.getISOLanguages()) {
 			for (String isoCountry : Locale.getISOCountries()) {
 				final Locale locale = new Locale(isoLanguage, isoCountry);
@@ -65,16 +63,18 @@ public final class CurrencyTest extends TestCase {
 				}
 			}
 		}
-		//        final String[] currencyCodes = new String[currencyMap.keySet().size()];
-		//        int i = 0;
-		//        for (final Object o : currencyMap.keySet()) {
-		//            currencyCodes[i++] = (String) o;
-		//        }
-		//        Arrays.sort(currencyCodes);
-		//        for (final String currencyCode : currencyCodes) {
-		//            final java.util.Currency currency = (java.util.Currency) currencyMap.get(currencyCode);
-		//            System.out.println("Currency: " + currency.getCurrencyCode()
-		//                    + ", Symbol: " + currency.getSymbol(Locale.GERMANY));
-		//        }
+		// final String[] currencyCodes = new
+		// String[currencyMap.keySet().size()];
+		// int i = 0;
+		// for (final Object o : currencyMap.keySet()) {
+		// currencyCodes[i++] = (String) o;
+		// }
+		// Arrays.sort(currencyCodes);
+		// for (final String currencyCode : currencyCodes) {
+		// final java.util.Currency currency = (java.util.Currency)
+		// currencyMap.get(currencyCode);
+		// System.out.println("Currency: " + currency.getCurrencyCode()
+		// + ", Symbol: " + currency.getSymbol(Locale.GERMANY));
+		// }
 	}
 }

@@ -42,8 +42,7 @@ public abstract class MessageDialog {
 			messageDialog = new MessageDialogSwing();
 			break;
 		default:
-			throw new RapidBeansRuntimeException("no Message Dialog for GUI type \""
-					+ guitype.name() + "\"");
+			throw new RapidBeansRuntimeException("no Message Dialog for GUI type \"" + guitype.name() + "\"");
 		}
 		return messageDialog;
 	}

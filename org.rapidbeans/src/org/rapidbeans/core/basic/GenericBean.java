@@ -27,10 +27,9 @@ import org.rapidbeans.core.type.TypeRapidBean;
 public class GenericBean extends RapidBeanImplStrict {
 
 	/**
-	 * The Rapid Bean type instance.
-	 * Since we have no class we can't make it a static
-	 * member of the class. So every instance has to have
-	 * a reference to it's type.
+	 * The Rapid Bean type instance. Since we have no class we can't make it a
+	 * static member of the class. So every instance has to have a reference to
+	 * it's type.
 	 */
 	private TypeRapidBean type = null;
 
@@ -42,9 +41,9 @@ public class GenericBean extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * A generic Bean has nothing to initialize here since it
-	 * you can access properties only over the generic ways
-	 * not the concrete ones like in non generic Beans.
+	 * A generic Bean has nothing to initialize here since it you can access
+	 * properties only over the generic ways not the concrete ones like in non
+	 * generic Beans.
 	 */
 	public void initProperties() {
 		// do absolutely nothing
@@ -67,8 +66,8 @@ public class GenericBean extends RapidBeanImplStrict {
 	 * @param argType
 	 *            the Rapid Bean type
 	 * @param initvals
-	 *            String with initial values braced with quotes
-	 *            separated by a blank;
+	 *            String with initial values braced with quotes separated by a
+	 *            blank;
 	 */
 	public GenericBean(final TypeRapidBean argType, final String initvals) {
 		super(initvals, argType);

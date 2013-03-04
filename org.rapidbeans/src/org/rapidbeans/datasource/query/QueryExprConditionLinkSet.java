@@ -28,8 +28,7 @@ import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.type.TypePropertyCollection;
 
 /**
- * The expression that allows to express a condition for a linked
- * object.
+ * The expression that allows to express a condition for a linked object.
  * 
  * @author Martin Bluemel
  */
@@ -75,8 +74,7 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 */
 	public void removeChildExpression(final QueryExpression expr) {
 		if (expr != this.childExpression) {
-			throw new QueryException(
-					"tried to remove non existing child expression");
+			throw new QueryException("tried to remove non existing child expression");
 		}
 		this.childExpression = null;
 	}
@@ -98,8 +96,7 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 	 * @param parent
 	 *            the parent expression
 	 */
-	protected QueryExprConditionLinkSet(final String colPropName,
-			final int mult, final QueryExpression parent) {
+	protected QueryExprConditionLinkSet(final String colPropName, final int mult, final QueryExpression parent) {
 		this.linkname = colPropName;
 		this.multiplicity = mult;
 		this.becomeChildFrom(parent);
@@ -145,13 +142,12 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 			} else {
 				curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
 				if (curColProp == null) {
-					throw new QueryException("No collection property \"" + this.linkname
-							+ "\" found for type \"" + curBean.getType().getName() + "\"");
+					throw new QueryException("No collection property \"" + this.linkname + "\" found for type \""
+							+ curBean.getType().getName() + "\"");
 				}
 
 				if (linkTypename == null) {
-					linkTypename = ((TypePropertyCollection)
-							curColProp.getType()).getTargetType().getName();
+					linkTypename = ((TypePropertyCollection) curColProp.getType()).getTargetType().getName();
 				}
 
 				// check if there are linked beans for the specified
@@ -159,9 +155,8 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 				curLinkSet = (Collection<RapidBean>) curColProp.getValue();
 
 				if ((curLinkSet != null)
-						&& (((this.multiplicity == -1) && (curLinkSet.size() > 0))
-						|| ((this.multiplicity != -1) && (curLinkSet.size() > 0))))
-				{
+						&& (((this.multiplicity == -1) && (curLinkSet.size() > 0)) || ((this.multiplicity != -1) && (curLinkSet
+								.size() > 0)))) {
 					match = false;
 
 					for (Link curLink : curLinkSet) {
@@ -188,14 +183,14 @@ final class QueryExprConditionLinkSet extends QueryExpression {
 		}
 
 		//
-		//            for (RapidBean curBean : resultSet) {
-		//                curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
-		//                curLinkSet = (Collection<RapidBean>) curColProp.getValue();
+		// for (RapidBean curBean : resultSet) {
+		// curColProp = (PropertyCollection) curBean.getProperty(this.linkname);
+		// curLinkSet = (Collection<RapidBean>) curColProp.getValue();
 		//
-		//                // remove all RapidBeans that don't have at least one
-		//                // link target that matches the link condition
-		//            }
-		//        }
+		// // remove all RapidBeans that don't have at least one
+		// // link target that matches the link condition
+		// }
+		// }
 
 		return resultSet;
 	}

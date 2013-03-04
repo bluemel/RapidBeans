@@ -57,12 +57,10 @@ public class CryptoHelperTest {
 		String s = "ThisWorksFine4Me";
 		String senc = CryptoHelper.encrypt(s, "Flaschenbier");
 		File testfile = new File("testdata/cryptoTest.txt");
-		OutputStreamWriter out = new OutputStreamWriter(
-				new FileOutputStream(testfile), "UTF-8");
+		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(testfile), "UTF-8");
 		out.write(senc);
 		out.close();
-		InputStreamReader in = new InputStreamReader(
-				new FileInputStream(testfile), "UTF-8");
+		InputStreamReader in = new InputStreamReader(new FileInputStream(testfile), "UTF-8");
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		int c;
 		while ((c = in.read()) != -1) {

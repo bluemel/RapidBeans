@@ -63,8 +63,7 @@ public class TypePropertyQuantity extends TypeProperty {
 	 * @param parentBeanType
 	 *            the parent bean type
 	 */
-	public TypePropertyQuantity(final XmlNode[] propertyNodes,
-			final TypeRapidBean parentBeanType) {
+	public TypePropertyQuantity(final XmlNode[] propertyNodes, final TypeRapidBean parentBeanType) {
 		super("Quantity", propertyNodes, parentBeanType);
 
 		String s = propertyNodes[0].getAttributeValue("@quantity");
@@ -79,8 +78,7 @@ public class TypePropertyQuantity extends TypeProperty {
 				this.quantitytype = TypeRapidQuantity.forName(s);
 			} catch (TypeNotFoundException e) {
 				if (!s.contains(".")) {
-					this.quantitytype = TypeRapidQuantity.forName(parentBeanType.getPackageName()
-							+ '.' + s);
+					this.quantitytype = TypeRapidQuantity.forName(parentBeanType.getPackageName() + '.' + s);
 				}
 			}
 		}

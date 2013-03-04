@@ -45,8 +45,8 @@ import org.rapidbeans.presentation.swing.DocumentViewSwing;
  * 
  * @author Martin Bluemel
  */
-public abstract class DocumentView
-		implements View, DocumentTreeViewListener, EditorBeanListener, DocumentChangeListener {
+public abstract class DocumentView implements View, DocumentTreeViewListener, EditorBeanListener,
+		DocumentChangeListener {
 
 	/**
 	 * @return the divider location
@@ -79,19 +79,16 @@ public abstract class DocumentView
 	 */
 	public String getTitle() {
 		String idstring = null;
-		final RapidBeansLocale locale =
-				this.getClient().getCurrentLocale();
+		final RapidBeansLocale locale = this.getClient().getCurrentLocale();
 
 		final RapidBean bean = this.document.getRoot();
 
-		// gui.properties:  view.<document config type name>.<config type name>.title
+		// gui.properties: view.<document config type name>.<config type
+		// name>.title
 		if (this.getConfigDocument() != null && this.getConfiguration() != null) {
 			try {
-				final String key = "view."
-						+ this.getConfigDocument().getName()
-						+ "."
-						+ this.getConfiguration().getName()
-						+ ".title";
+				final String key = "view." + this.getConfigDocument().getName() + "."
+						+ this.getConfiguration().getName() + ".title";
 				final String pattern = locale.getStringGui(key);
 				idstring = bean.expandPropertyValues(pattern, locale);
 			} catch (MissingResourceException e) {
@@ -99,12 +96,10 @@ public abstract class DocumentView
 			}
 		}
 
-		// gui.properties:  document.<document config type name>.title
+		// gui.properties: document.<document config type name>.title
 		if (idstring == null && this.getConfigDocument() != null) {
 			try {
-				final String key = "document."
-						+ this.getConfigDocument().getName()
-						+ ".title";
+				final String key = "document." + this.getConfigDocument().getName() + ".title";
 				final String pattern = locale.getStringGui(key);
 				idstring = bean.expandPropertyValues(pattern, locale);
 			} catch (MissingResourceException e) {
@@ -112,12 +107,10 @@ public abstract class DocumentView
 			}
 		}
 
-		// gui.properties:  document.<bean classname>.title
+		// gui.properties: document.<bean classname>.title
 		if (idstring == null) {
 			try {
-				final String key = "document."
-						+ bean.getClass().getName().toLowerCase()
-						+ ".title";
+				final String key = "document." + bean.getClass().getName().toLowerCase() + ".title";
 				final String pattern = locale.getStringGui(key);
 				idstring = bean.expandPropertyValues(pattern, locale);
 			} catch (MissingResourceException e) {
@@ -128,8 +121,7 @@ public abstract class DocumentView
 		// gui.properties: bean.<bean classname>
 		if (idstring == null) {
 			try {
-				final String key = "bean."
-						+ bean.getType().getName().toLowerCase();
+				final String key = "bean." + bean.getType().getName().toLowerCase();
 				final String pattern = locale.getStringGui(key);
 				idstring = bean.expandPropertyValues(pattern, locale);
 			} catch (MissingResourceException e) {
@@ -190,8 +182,8 @@ public abstract class DocumentView
 	}
 
 	/**
-	 * @return the configured persistence strategy if any or
-	 *         'ondemand' per default
+	 * @return the configured persistence strategy if any or 'ondemand' per
+	 *         default
 	 */
 	public ConfigPropPersistencestrategy getPersistencestrategy() {
 		return this.getConfiguration().getPersistencestrategy();
@@ -289,9 +281,8 @@ public abstract class DocumentView
 	 * @param filter
 	 *            the filter to apply
 	 */
-	protected DocumentView(final Application clnt, final Document doc,
-			final String docconfname, final String viewconfname,
-			final Filter filter) {
+	protected DocumentView(final Application clnt, final Document doc, final String docconfname,
+			final String viewconfname, final Filter filter) {
 		this.client = clnt;
 		this.document = doc;
 		if (filter != null) {
@@ -306,8 +297,8 @@ public abstract class DocumentView
 			this.configDocument.setName(docconfname);
 		}
 		if (clnt.getConfiguration() != null) {
-			this.configuration = clnt.getConfiguration().getConfigView(
-					this.getConfigDocument().getName(), viewconfname);
+			this.configuration = clnt.getConfiguration()
+					.getConfigView(this.getConfigDocument().getName(), viewconfname);
 		}
 		if (this.configuration == null) {
 			this.configuration = new ConfigView();
@@ -339,9 +330,9 @@ public abstract class DocumentView
 	 * @param bean
 	 *            the selected bean
 	 * @param newBeanParent
-	 *            a new Bean's parent collection property.
-	 *            Is not null if a new Bean is to be created
-	 *            Is null if an existing bean is simply edited
+	 *            a new Bean's parent collection property. Is not null if a new
+	 *            Bean is to be created Is null if an existing bean is simply
+	 *            edited
 	 * @param treePath
 	 *            the tree path
 	 * @param newMode
@@ -355,8 +346,8 @@ public abstract class DocumentView
 		if (newMode) {
 			final Application app = ApplicationManager.getApplication();
 			if (app != null) {
-				final CreateNewBeansEditorApplyBehaviour mode =
-						app.getSettings().getBasic().getGui().getCreateNewBeansEditorApplyBehaviour();
+				final CreateNewBeansEditorApplyBehaviour mode = app.getSettings().getBasic().getGui()
+						.getCreateNewBeansEditorApplyBehaviour();
 				editor.setCreateApplyMode(mode);
 			}
 		}
@@ -399,11 +390,9 @@ public abstract class DocumentView
 	private String getEditorKey(final boolean isInNewMode, final RapidBean bean) {
 		String key;
 		if (isInNewMode) {
-			key = bean.getType().getName()
-					+ "::@@new@@";
+			key = bean.getType().getName() + "::@@new@@";
 		} else {
-			key = bean.getType().getName()
-					+ "::" + bean.getIdString();
+			key = bean.getType().getName() + "::" + bean.getIdString();
 		}
 		return key;
 	}
@@ -425,8 +414,8 @@ public abstract class DocumentView
 	/**
 	 * constructor argument types.
 	 */
-	private static final Class<?>[] CONSTR_PARTYPES = { Application.class, Document.class,
-			String.class, String.class, Filter.class };
+	private static final Class<?>[] CONSTR_PARTYPES = { Application.class, Document.class, String.class, String.class,
+			Filter.class };
 
 	/**
 	 * create a DocumentView of a special type.
@@ -444,9 +433,8 @@ public abstract class DocumentView
 	 * 
 	 * @return the instance
 	 */
-	public static DocumentView createInstance(final Application client,
-			final Document document, final ConfigDocument docconf,
-			final ConfigView viewconf, final Filter filter) {
+	public static DocumentView createInstance(final Application client, final Document document,
+			final ConfigDocument docconf, final ConfigView viewconf, final Filter filter) {
 		String docconfname = null;
 		if (docconf != null) {
 			docconfname = docconf.getName();
@@ -479,9 +467,8 @@ public abstract class DocumentView
 	 * 
 	 * @return the instance
 	 */
-	public static DocumentView createInstance(final Application client,
-			final Document document, final String doccfgname,
-			final String viewcfgname, final Filter filter) {
+	public static DocumentView createInstance(final Application client, final Document document,
+			final String doccfgname, final String viewcfgname, final Filter filter) {
 		String docconfname = null;
 		if (doccfgname == null) {
 			docconfname = ConfigDocument.NAME_NO_CONFIG;
@@ -498,8 +485,7 @@ public abstract class DocumentView
 		DocumentView documentView = null;
 		final ConfigApplication clientCfg = client.getConfiguration();
 		if (clientCfg != null) {
-			final ConfigView viewconf =
-					clientCfg.getConfigView(docconfname, viewconfname);
+			final ConfigView viewconf = clientCfg.getConfigView(docconfname, viewconfname);
 			if (viewconf != null && viewconf.getViewclass() != null) {
 				Class<?> viewclass = null;
 				try {
@@ -510,8 +496,7 @@ public abstract class DocumentView
 				if (viewclass != null) {
 					try {
 						Constructor<?> constr = viewclass.getConstructor(CONSTR_PARTYPES);
-						Object[] oa = { client, document,
-								docconfname, viewconfname, filter };
+						Object[] oa = { client, document, docconfname, viewconfname, filter };
 						documentView = (DocumentView) constr.newInstance(oa);
 					} catch (SecurityException e) {
 						throw new RapidBeansRuntimeException(e);
@@ -530,11 +515,10 @@ public abstract class DocumentView
 		if (documentView == null) {
 			switch (client.getConfiguration().getGuitype()) {
 			case swing:
-				documentView = new DocumentViewSwing(client, document,
-						docconfname, viewconfname, filter);
+				documentView = new DocumentViewSwing(client, document, docconfname, viewconfname, filter);
 				break;
 			case eclipsercp:
-				//mainWindow = new BBMainWindowEclispercp();
+				// mainWindow = new BBMainWindowEclispercp();
 				break;
 			default:
 				throw new RapidBeansRuntimeException("Unknown GUI type \""
@@ -686,16 +670,12 @@ public abstract class DocumentView
 				break;
 			}
 		}
-		if ((!cancel) && this.document.getChanged()
-				&& this.client.isLastOpenDocumentView(this)
+		if ((!cancel) && this.document.getChanged() && this.client.isLastOpenDocumentView(this)
 				&& (app == null || (!app.getTestMode()))) {
 			final RapidBeansLocale locale = this.client.getCurrentLocale();
-			final String msg = locale.getStringMessage(
-					"messagedialog.documentview.close",
-					this.getTitle());
-			MessageDialogResponse response =
-					this.client.messageYesNoCancel(msg, locale.getStringMessage(
-							"messagedialog.documentview.close.title"));
+			final String msg = locale.getStringMessage("messagedialog.documentview.close", this.getTitle());
+			MessageDialogResponse response = this.client.messageYesNoCancel(msg,
+					locale.getStringMessage("messagedialog.documentview.close.title"));
 			switch (response) {
 			case yes:
 				if (this.document.getUrl() == null) {

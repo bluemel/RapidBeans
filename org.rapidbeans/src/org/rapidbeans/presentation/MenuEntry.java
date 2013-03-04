@@ -1,18 +1,16 @@
 /*
  * Partially generated code file: MenuEntry.java
  * !!!Do only edit manually in marked sections!!!
- *
+ * 
  * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- *
+ * 
  * generated Java implementation of Rapid Beans bean type
  * org.rapidbeans.presentation.MenuEntry
  * 
- * model:    model/org/rapidbeans/presentation/MenuEntry.xml
+ * model: model/org/rapidbeans/presentation/MenuEntry.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation;
-
-
 
 // BEGIN manual code section
 // MenuEntry.import
@@ -32,16 +30,15 @@ import org.rapidbeans.presentation.config.ConfigSubmenu;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuEntry.
- * Partially generated Java class
- * !!!Do only edit manually in marked sections!!!
+ * Rapid Bean class: MenuEntry. Partially generated Java class !!!Do only edit
+ * manually in marked sections!!!
  **/
 public abstract class MenuEntry extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// MenuEntry.classBody
 	/**
-	 * This implementation avoids some syntax errors that would occur
-	 * using an abstract method here.
+	 * This implementation avoids some syntax errors that would occur using an
+	 * abstract method here.
 	 * 
 	 * @return the widget.
 	 */
@@ -50,8 +47,8 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	}
 
 	/**
-	 * create a MenuEntry of a special type out of a configuration
-	 * which is the this object itself.
+	 * create a MenuEntry of a special type out of a configuration which is the
+	 * this object itself.
 	 * 
 	 * @param client
 	 *            the parent client
@@ -60,8 +57,8 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	 * 
 	 * @return the instance
 	 */
-	public static MenuEntry createInstance(final ConfigMenuEntry cfg,
-			final Application client, final String resourcePath) {
+	public static MenuEntry createInstance(final ConfigMenuEntry cfg, final Application client,
+			final String resourcePath) {
 		MenuEntry newEntry = null;
 		if (cfg instanceof ConfigSubmenu) {
 			newEntry = Submenu.createInstance((ConfigSubmenu) cfg, client, resourcePath);
@@ -75,8 +72,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 		} else if (cfg instanceof ConfigMenuToolbars) {
 			newEntry = MenuToolbars.createInstance((ConfigMenuToolbars) cfg, client, resourcePath);
 		} else {
-			throw new RapidBeansRuntimeException("unexpected config object class: "
-					+ cfg.getClass().getName());
+			throw new RapidBeansRuntimeException("unexpected config object class: " + cfg.getClass().getName());
 		}
 		return newEntry;
 	}
@@ -115,8 +111,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString)
-			this.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
 	}
 
 	/**
@@ -131,6 +126,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
+	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -143,6 +139,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
+	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -177,6 +174,7 @@ public abstract class MenuEntry extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
+	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */

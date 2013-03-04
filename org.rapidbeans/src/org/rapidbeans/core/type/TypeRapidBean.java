@@ -79,8 +79,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	 * @return a list with all the bean's collection properties
 	 */
 	public List<TypePropertyCollection> getColPropertyTypes() {
-		final List<TypePropertyCollection> colproptypelist =
-				new ArrayList<TypePropertyCollection>();
+		final List<TypePropertyCollection> colproptypelist = new ArrayList<TypePropertyCollection>();
 		for (final TypeProperty proptype : this.propertyTypes) {
 			if (ClassHelper.classOf(TypePropertyCollection.class, proptype.getClass())) {
 				colproptypelist.add((TypePropertyCollection) proptype);
@@ -114,8 +113,8 @@ public final class TypeRapidBean extends RapidBeansType {
 	}
 
 	/**
-	 * Find's a bean type instance out of it's name
-	 * and loads it if it's not already loaded.
+	 * Find's a bean type instance out of it's name and loads it if it's not
+	 * already loaded.
 	 * 
 	 * @param typename
 	 *            the Bizbean's type name
@@ -177,8 +176,8 @@ public final class TypeRapidBean extends RapidBeansType {
 	private int idtypeParentScopeDepth = 0;
 
 	/**
-	 * the depth of parents in the hierarchy is only valid for
-	 * idtype = "keypropswithparentscope".
+	 * the depth of parents in the hierarchy is only valid for idtype =
+	 * "keypropswithparentscope".
 	 * 
 	 * @return the depth of parents in the hierarchy.
 	 */
@@ -209,16 +208,16 @@ public final class TypeRapidBean extends RapidBeansType {
 	}
 
 	/**
-	 * Mapping of this RapidBean type to an XML element.
-	 * Specifies the name of the root element of an XML document
-	 * if a bean of this type is root of a document.
+	 * Mapping of this RapidBean type to an XML element. Specifies the name of
+	 * the root element of an XML document if a bean of this type is root of a
+	 * document.
 	 */
 	private String xmlRootElement = null;
 
 	/**
-	 * Maps this RapidBean type to an XML element.
-	 * This mapping specifies the name of the root element
-	 * of an XML document if this bean is root of a document.
+	 * Maps this RapidBean type to an XML element. This mapping specifies the
+	 * name of the root element of an XML document if this bean is root of a
+	 * document.
 	 * 
 	 * @return the XML element name of this RapidBean type
 	 */
@@ -261,8 +260,8 @@ public final class TypeRapidBean extends RapidBeansType {
 	}
 
 	/**
-	 * Maps a given XML element name to a name of a property of this
-	 * type if the appropriate XML binding is defined.
+	 * Maps a given XML element name to a name of a property of this type if the
+	 * appropriate XML binding is defined.
 	 * 
 	 * @param xmlRootElement
 	 *            the XML element name
@@ -302,17 +301,16 @@ public final class TypeRapidBean extends RapidBeansType {
 	 * @param register
 	 *            specifies if the type should be registered
 	 */
-	public TypeRapidBean(final Class<?> clazz, final XmlNode typeDescr,
-			final XmlNode xmlBindingDescr,
+	public TypeRapidBean(final Class<?> clazz, final XmlNode typeDescr, final XmlNode xmlBindingDescr,
 			final boolean register) {
 
 		try {
 			ThreadLocalBeanInitDepth.increment(this);
-			//            System.out.println("@@@ INIT["
-			//                    + ThreadLocalBeanInitDepth.getDepth()
-			//                    + "]: " + typeDescr.getAttributeValue("@name"));
+			// System.out.println("@@@ INIT["
+			// + ThreadLocalBeanInitDepth.getDepth()
+			// + "]: " + typeDescr.getAttributeValue("@name"));
 			if (clazz == null) {
-				//implementingClass stays null
+				// implementingClass stays null
 				this.setName(typeDescr.getAttributeValue("@name"));
 			} else {
 				this.setName(clazz.getName());
@@ -327,21 +325,17 @@ public final class TypeRapidBean extends RapidBeansType {
 				}
 			}
 
-			this.isAbstract = Boolean.parseBoolean(
-					typeDescr.getAttributeValue("@abstract", "false"));
-			this.isFinal = Boolean.parseBoolean(
-					typeDescr.getAttributeValue("@final", "false"));
+			this.isAbstract = Boolean.parseBoolean(typeDescr.getAttributeValue("@abstract", "false"));
+			this.isFinal = Boolean.parseBoolean(typeDescr.getAttributeValue("@final", "false"));
 
 			final String superTypeName = typeDescr.getAttributeValue("@extends");
 			if (superTypeName != null) {
 				this.supertype = TypeRapidBean.forName(superTypeName);
 			}
-			if ((this.supertype != null)
-					&& (typeDescr.getAttributeValue("@idtype") == null)) {
+			if ((this.supertype != null) && (typeDescr.getAttributeValue("@idtype") == null)) {
 				this.idtype = this.supertype.getIdtype();
 			} else {
-				this.idtype = IdType.valueOf(typeDescr.getAttributeValue(
-						"@idtype", "transientid"));
+				this.idtype = IdType.valueOf(typeDescr.getAttributeValue("@idtype", "transientid"));
 			}
 			if (this.idtype == IdType.keypropswithparentscope) {
 				final String s = typeDescr.getAttributeValue("@idtypeparentscopedepth", "0");
@@ -361,26 +355,20 @@ public final class TypeRapidBean extends RapidBeansType {
 			for (XmlNode propertyNode : typeDescr.getSubnodes("property")) {
 				XmlNode propertyNodeXmlBinding = null;
 				if (xmlBindingDescr != null) {
-					propertyNodeXmlBinding = retrievePropertyNodeXmlBinding(
-							propertyNode, xmlBindingDescr);
+					propertyNodeXmlBinding = retrievePropertyNodeXmlBinding(propertyNode, xmlBindingDescr);
 				} else {
 					for (XmlNode xmlBindingNode : typeDescr.getSubnodes("xmlbinding")) {
-						propertyNodeXmlBinding = retrievePropertyNodeXmlBinding(
-								propertyNode, xmlBindingNode);
+						propertyNodeXmlBinding = retrievePropertyNodeXmlBinding(propertyNode, xmlBindingNode);
 					}
 				}
-				final TypeProperty propertyType = TypeProperty.createInstance(
-						propertyNode, propertyNodeXmlBinding, this);
+				final TypeProperty propertyType = TypeProperty.createInstance(propertyNode, propertyNodeXmlBinding,
+						this);
 				final TypeProperty superPropType = propMap.get(propertyType.getPropName());
 				if (superPropType != null) {
 					if (this.isFinal || propertyType.getFinal()) {
-						throw new RapidBeansRuntimeException(
-								"Error while initializing"
-										+ " bean type \""
-										+ this.getName()
-										+ "\": final property \""
-										+ propertyType.getPropName()
-										+ "\" may not be overriden.");
+						throw new RapidBeansRuntimeException("Error while initializing" + " bean type \""
+								+ this.getName() + "\": final property \"" + propertyType.getPropName()
+								+ "\" may not be overriden.");
 					}
 					this.propertyTypes.set(getIndexInPropertyTypes(superPropType), propertyType);
 				} else {
@@ -394,20 +382,18 @@ public final class TypeRapidBean extends RapidBeansType {
 					for (final TypePropertyCollection colPropType : typeInited.getColPropertyTypes()) {
 						if (colPropType.getInverse() != null
 								&& colPropType.getTargetType().getPropertyType(colPropType.getInverse()) == null) {
-							final String msg = "Problem with property \""
-									+ typeInited.getName() + "::"
-									+ colPropType.getPropName() + "\":\n"
-									+ "inverse property \""
-									+ colPropType.getTargetType().getName() + "::"
-									+ colPropType.getInverse() + "\" is not defined.";
+							final String msg = "Problem with property \"" + typeInited.getName() + "::"
+									+ colPropType.getPropName() + "\":\n" + "inverse property \""
+									+ colPropType.getTargetType().getName() + "::" + colPropType.getInverse()
+									+ "\" is not defined.";
 							throw new ModelValidationException(msg);
 						}
 					}
 				}
 			}
 
-			if (this.supertype != null && (this.idtype == IdType.keyprops
-					|| this.idtype == IdType.keypropswithparentscope)) {
+			if (this.supertype != null
+					&& (this.idtype == IdType.keyprops || this.idtype == IdType.keypropswithparentscope)) {
 				checkKeypropsSorting();
 			}
 
@@ -437,8 +423,7 @@ public final class TypeRapidBean extends RapidBeansType {
 		return -1;
 	}
 
-	private XmlNode retrievePropertyNodeXmlBinding(
-			final XmlNode propertyNode, final XmlNode xmlBindingDescr) {
+	private XmlNode retrievePropertyNodeXmlBinding(final XmlNode propertyNode, final XmlNode xmlBindingDescr) {
 		final String propName = propertyNode.getAttributeValue("@name");
 		XmlNode propertyNodeXmlBinding = null;
 		for (XmlNode currentNode : xmlBindingDescr.getSubnodes("property")) {
@@ -487,13 +472,9 @@ public final class TypeRapidBean extends RapidBeansType {
 			if (typeLoader.getXmlRootElementBinding(this.xmlRootElement) == null) {
 				typeLoader.addXmlRootElementBinding(this.xmlRootElement, this.getName());
 			} else {
-				if (!typeLoader.getXmlRootElementBinding(this.xmlRootElement).getName().equals(
-						this.getName())) {
-					throw new RapidBeansRuntimeException("An XML root element binding"
-							+ " for XML element name "
-							+ this.xmlRootElement
-							+ " has already been defined differently\n"
-							+ "Current definition: "
+				if (!typeLoader.getXmlRootElementBinding(this.xmlRootElement).getName().equals(this.getName())) {
+					throw new RapidBeansRuntimeException("An XML root element binding" + " for XML element name "
+							+ this.xmlRootElement + " has already been defined differently\n" + "Current definition: "
 							+ typeLoader.getXmlRootElementBinding(this.xmlRootElement).getName());
 				}
 			}
@@ -501,9 +482,8 @@ public final class TypeRapidBean extends RapidBeansType {
 		for (final XmlNode propNode : xmlBindingDescr.getSubnodes("property")) {
 			final String propName = propNode.getAttributeValue("@name");
 			if (propName == null || propName.length() == 0) {
-				throw new RapidBeansRuntimeException(
-						"Invalid XML Binding for type \"" + this.getName() + "\":\n"
-								+ "\"property\" element without or with empty attribute \"name\"");
+				throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + this.getName() + "\":\n"
+						+ "\"property\" element without or with empty attribute \"name\"");
 			}
 			TypeProperty proptype = this.propTypeMap.get(propName);
 			if (proptype == null) {
@@ -514,23 +494,20 @@ public final class TypeRapidBean extends RapidBeansType {
 				}
 			}
 			if (proptype == null) {
-				throw new RapidBeansRuntimeException(
-						"Invalid XML Binding for type \"" + this.getName() + "\":\n"
-								+ "property \"" + proptype + "\" does not exist.");
+				throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + this.getName() + "\":\n"
+						+ "property \"" + proptype + "\" does not exist.");
 			}
 			proptype.evalXmlBinding(this, propNode);
 			for (final XmlNode beantypeNode : propNode.getSubnodes("beantype")) {
 				final String mappedTypeName = beantypeNode.getAttributeValue("@name");
 				if (mappedTypeName == null || mappedTypeName.length() == 0) {
-					throw new RapidBeansRuntimeException(
-							"Invalid XML Binding for type \"" + this.getName() + "\":\n"
-									+ "\"beanype\" element without or with empty attribute \"xmlelement\"");
+					throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + this.getName() + "\":\n"
+							+ "\"beanype\" element without or with empty attribute \"xmlelement\"");
 				}
 				final String xmlPropElement = beantypeNode.getAttributeValue("@xmlelement");
 				if (xmlPropElement == null || xmlPropElement.length() == 0) {
-					throw new RapidBeansRuntimeException(
-							"Invalid XML Binding for type \"" + this.getName() + "\":\n"
-									+ "\"beanype\" element without or with empty attribute \"xmlelement\"");
+					throw new RapidBeansRuntimeException("Invalid XML Binding for type \"" + this.getName() + "\":\n"
+							+ "\"beanype\" element without or with empty attribute \"xmlelement\"");
 				}
 				// lazy initialization
 				if (this.xmlElements == null) {
@@ -553,8 +530,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	 * 
 	 * @return the new type instance
 	 */
-	public static TypeRapidBean createInstance(
-			final Class<?> clazz) {
+	public static TypeRapidBean createInstance(final Class<?> clazz) {
 		TypeRapidBean type = new TypeRapidBean(clazz, loadDescription(clazz.getName()),
 				loadDescriptionXmlBinding(clazz.getName()), true);
 		return type;
@@ -570,8 +546,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	 * 
 	 * @return if the type to test is same or sub type of the super type
 	 */
-	public static boolean isSameOrSubtype(final TypeRapidBean supertype,
-			final TypeRapidBean comptype) {
+	public static boolean isSameOrSubtype(final TypeRapidBean supertype, final TypeRapidBean comptype) {
 		boolean b = false;
 		TypeRapidBean typeToCompare = comptype;
 		while (!b && typeToCompare != null) {
@@ -632,10 +607,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	 * 
 	 * @return the localized String for this Bean
 	 */
-	public String toStringGui(
-			final RapidBeansLocale locale,
-			final boolean plural,
-			final String defaultTypename) {
+	public String toStringGui(final RapidBeansLocale locale, final boolean plural, final String defaultTypename) {
 		String uistring = null;
 
 		if (uistring == null) {
@@ -685,8 +657,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	 */
 	public boolean hasDependendKeyProp() {
 		boolean hasDependendKeyProp = false;
-		if (getIdtype() == IdType.keyprops
-				|| getIdtype() == IdType.keypropswithparentscope) {
+		if (getIdtype() == IdType.keyprops || getIdtype() == IdType.keypropswithparentscope) {
 			for (final TypeProperty proptype : this.getPropertyTypes()) {
 				if (proptype.getDependentFromProps().size() > 0) {
 					hasDependendKeyProp = true;

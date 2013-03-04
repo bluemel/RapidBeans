@@ -24,9 +24,9 @@ import org.rapidbeans.core.basic.Container;
 import org.rapidbeans.core.basic.RapidBean;
 
 /**
- * Type expression for bean queries.
- * The top level expression that mainly focuses on bean types.
- * &lt;RapidBean Type&gt;<b>'['</b>&lt;Subexpression&gt;<b>']'</b><br/>
+ * Type expression for bean queries. The top level expression that mainly
+ * focuses on bean types. &lt;RapidBean
+ * Type&gt;<b>'['</b>&lt;Subexpression&gt;<b>']'</b><br/>
  * 
  * @author Martin Bluemel
  */
@@ -67,21 +67,20 @@ public class QueryExprConditionType extends QueryExpression {
 	 */
 	public void removeChildExpression(final QueryExpression expr) {
 		if (expr != this.childExpression) {
-			throw new QueryException(
-					"tried to remove non existing child expression");
+			throw new QueryException("tried to remove non existing child expression");
 		}
 		this.childExpression = null;
 	}
 
-	//    private boolean closed = false;
+	// private boolean closed = false;
 	//
-	//    public boolean getClosed() {
-	//        return this.closed;
-	//    }
+	// public boolean getClosed() {
+	// return this.closed;
+	// }
 	//
-	//    public void close() {
-	//        this.closed = true;
-	//    }
+	// public void close() {
+	// this.closed = true;
+	// }
 
 	/**
 	 * constructor.
@@ -103,8 +102,7 @@ public class QueryExprConditionType extends QueryExpression {
 	 * 
 	 * @return a Collection with all found beans (result set)
 	 */
-	public List<RapidBean> eval(final Container db,
-			final List<RapidBean> resultSetIn) {
+	public List<RapidBean> eval(final Container db, final List<RapidBean> resultSetIn) {
 		List<RapidBean> bbAll = db.findBeansByType(this.typename);
 		if (this.childExpression == null) {
 			return bbAll;

@@ -27,12 +27,11 @@ public class ThreadLocalValidationSettings {
 	/**
 	 * Thread local property sorter.
 	 */
-	private static ThreadLocal<ThreadLocalValidationSettings> settings =
-			new ThreadLocal<ThreadLocalValidationSettings>() {
-				protected synchronized ThreadLocalValidationSettings initialValue() {
-					return null;
-				}
-			};
+	private static ThreadLocal<ThreadLocalValidationSettings> settings = new ThreadLocal<ThreadLocalValidationSettings>() {
+		protected synchronized ThreadLocalValidationSettings initialValue() {
+			return null;
+		}
+	};
 
 	/**
 	 * @return the thread local property validation settings
@@ -74,9 +73,8 @@ public class ThreadLocalValidationSettings {
 	private boolean validation = true;
 
 	/**
-	 * Switch off validation.
-	 * Be careful. Use only if you are really sure that you
-	 * have to write an invalid object
+	 * Switch off validation. Be careful. Use only if you are really sure that
+	 * you have to write an invalid object
 	 */
 	public static void validationOff() {
 		ThreadLocalValidationSettings currentSettings = settings.get();

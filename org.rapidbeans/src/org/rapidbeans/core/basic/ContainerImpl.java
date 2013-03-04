@@ -18,8 +18,8 @@
 package org.rapidbeans.core.basic;
 
 /**
- * An abstract implementation to hide special
- * methods from the Container interface.
+ * An abstract implementation to hide special methods from the Container
+ * interface.
  * 
  * @author Martin Bluemel
  */
@@ -30,11 +30,10 @@ public abstract class ContainerImpl implements Container {
 	 * @param bean
 	 *            the bean to insert
 	 * @param implicitly
-	 *            special for documents.
-	 *            Usually you do not explicitly insert beans into a document.
-	 *            Instead insert them implicitly by adding them to a
-	 *            parent bean. If you anyway try to insert explicitly
-	 *            the document tries to find an appropriate location
+	 *            special for documents. Usually you do not explicitly insert
+	 *            beans into a document. Instead insert them implicitly by
+	 *            adding them to a parent bean. If you anyway try to insert
+	 *            explicitly the document tries to find an appropriate location
 	 *            according to the following strategy. <li>
 	 *            Find all composition collection properties that have the type of the bean to insert as target type.</li><li>
 	 *            If there is exactly one add the bean there. Otherwise throw an appropriate exception.</li>

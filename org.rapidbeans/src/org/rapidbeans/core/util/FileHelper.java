@@ -42,8 +42,7 @@ import org.rapidbeans.core.exception.UtilException;
  */
 public final class FileHelper {
 
-	private static final Logger log = Logger.getLogger(
-			FileHelper.class.getName());
+	private static final Logger log = Logger.getLogger(FileHelper.class.getName());
 
 	/**
 	 * copies directory trees.
@@ -67,8 +66,7 @@ public final class FileHelper {
 	 * @param force
 	 *            the force flag
 	 */
-	public static void copyDeep(final File src, final File tgt,
-			final boolean force) {
+	public static void copyDeep(final File src, final File tgt, final boolean force) {
 		copyDeep(src, tgt, force, false);
 	}
 
@@ -84,8 +82,7 @@ public final class FileHelper {
 	 * @param excludeSvnDirs
 	 *            flag
 	 */
-	public static void copyDeep(final File src, final File tgt,
-			final boolean force, final boolean excludeSvnDirs) {
+	public static void copyDeep(final File src, final File tgt, final boolean force, final boolean excludeSvnDirs) {
 		if (!src.exists()) {
 			throw new UtilException("source folder \"" + src.getAbsolutePath() + "\" not found.");
 		}
@@ -94,8 +91,7 @@ public final class FileHelper {
 		}
 		if (!tgt.exists()) {
 			if (!tgt.mkdirs()) {
-				throw new UtilException("Creation of target folder \""
-						+ tgt.getAbsolutePath() + "\" failed.");
+				throw new UtilException("Creation of target folder \"" + tgt.getAbsolutePath() + "\" failed.");
 			}
 		}
 		if (!tgt.isDirectory()) {
@@ -226,35 +222,35 @@ public final class FileHelper {
 	 * @param sdir2
 	 *            the path to the second directory
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
 	public static boolean dirsEqual(final File dir1, final String sdir2) {
 		return dirsEqual(dir1, new File(sdir2), -1, false);
 	}
 
 	/**
-	 * Compares all files in a directory tree but exclude
-	 * directories that start with dot.
+	 * Compares all files in a directory tree but exclude directories that start
+	 * with dot.
 	 * 
 	 * @param dir1
 	 *            the first directory
 	 * @param sdir2
 	 *            the path to the second directory
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
 	public static boolean dirsEqualExcludeDotDirs(final File dir1, final String sdir2) {
 		return dirsEqual(dir1, new File(sdir2), -1, true);
 	}
 
 	/**
-	 * Compares all files in a directory tree in a configurable manner.
-	 * - you can configure the depth of the compare
-	 * - you can configure if sub directories that start with . should
-	 * be excluded from the comparison. This is useful for instance
-	 * if the test data is version controlled with Subversion.
+	 * Compares all files in a directory tree in a configurable manner. - you
+	 * can configure the depth of the compare - you can configure if sub
+	 * directories that start with . should be excluded from the comparison.
+	 * This is useful for instance if the test data is version controlled with
+	 * Subversion.
 	 * 
 	 * directories that start with dot.
 	 * 
@@ -263,18 +259,17 @@ public final class FileHelper {
 	 * @param dir2
 	 *            the second directory
 	 * @param depth
-	 *            the depth of comparison in the directory tree.
-	 *            To specify infinite depth just set this parameter
-	 *            to a negative number e. g. -1.
+	 *            the depth of comparison in the directory tree. To specify
+	 *            infinite depth just set this parameter to a negative number e.
+	 *            g. -1.
 	 * @param excludedotdirs
-	 *            if true sub directories that start with . are
-	 *            excluded from comparison.
+	 *            if true sub directories that start with . are excluded from
+	 *            comparison.
 	 * 
-	 * @return true if all files equal,
-	 *         false if there are more ore less or different files.
+	 * @return true if all files equal, false if there are more ore less or
+	 *         different files.
 	 */
-	public static boolean dirsEqual(final File dir1, final File dir2,
-			final int depth, final boolean excludedotdirs) {
+	public static boolean dirsEqual(final File dir1, final File dir2, final int depth, final boolean excludedotdirs) {
 		boolean equals = true;
 
 		if (!dir1.exists()) {
@@ -357,14 +352,13 @@ public final class FileHelper {
 	 * @param differentNamesAllowed
 	 *            if different file names are allowed
 	 * @param compareLineByLine
-	 *            for text files only. You'll get the
-	 *            line where the first difference occurs in the error message
+	 *            for text files only. You'll get the line where the first
+	 *            difference occurs in the error message
 	 * 
 	 * @return true if the files' content is equal,<br/>
 	 *         false if there are differences
 	 */
-	public static boolean filesEqual(final File file1, final File file2,
-			final boolean differentNamesAllowed,
+	public static boolean filesEqual(final File file1, final File file2, final boolean differentNamesAllowed,
 			final boolean compareLineByLine) {
 		boolean equals = true;
 
@@ -396,10 +390,8 @@ public final class FileHelper {
 		LineNumberReader r2 = null;
 		try {
 			if (compareLineByLine) {
-				r1 = new LineNumberReader(
-						new InputStreamReader(new FileInputStream(file1)));
-				r2 = new LineNumberReader(
-						new InputStreamReader(new FileInputStream(file2)));
+				r1 = new LineNumberReader(new InputStreamReader(new FileInputStream(file1)));
+				r2 = new LineNumberReader(new InputStreamReader(new FileInputStream(file2)));
 
 				String l1 = r1.readLine();
 				String l2 = r2.readLine();
@@ -408,8 +400,7 @@ public final class FileHelper {
 						log.fine("files have different number of lines:");
 						log.fine("- file 1: " + file1.getAbsolutePath());
 						log.fine("- file 2: " + file2.getAbsolutePath());
-						log.fine(" line " + r1.getLineNumber() + " of file 1 not"
-								+ " found in file 2");
+						log.fine(" line " + r1.getLineNumber() + " of file 1 not" + " found in file 2");
 						equals = false;
 						break;
 					}
@@ -481,15 +472,16 @@ public final class FileHelper {
 	}
 
 	/**
-	 * List all files in a directory except the files with names matching
-	 * the given pattern.
+	 * List all files in a directory except the files with names matching the
+	 * given pattern.
 	 * 
 	 * @param dir
 	 *            the directory to list
 	 * @param filter
 	 *            the filter pattern for filenames to exclude
 	 * 
-	 * @return the found files and sub directories except the ones matching the pattern
+	 * @return the found files and sub directories except the ones matching the
+	 *         pattern
 	 */
 	public static File[] listFilesExcludeFilter(final File dir, final String filter) {
 		ArrayList<File> l = new ArrayList<File>();
@@ -511,11 +503,9 @@ public final class FileHelper {
 	 * @param filename
 	 *            the file name to search for
 	 * 
-	 * @return true if the file has been found or
-	 *         null if no file has been found
+	 * @return true if the file has been found or null if no file has been found
 	 */
-	public static boolean containsFileWithName(final File[] array,
-			final String filename) {
+	public static boolean containsFileWithName(final File[] array, final String filename) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].getName().equals(filename)) {
 				return true;
@@ -525,10 +515,8 @@ public final class FileHelper {
 	}
 
 	/**
-	 * Creates a directory / folder according to the
-	 * given file handle.
-	 * Parent directories / folders will also be created
-	 * if necessary.
+	 * Creates a directory / folder according to the given file handle. Parent
+	 * directories / folders will also be created if necessary.
 	 * 
 	 * @param dir
 	 *            specifies the directory / folder to be created.
@@ -547,16 +535,14 @@ public final class FileHelper {
 				if (i < (len - 1)) {
 					parentDirsToCreate.get(len - 1).delete();
 				}
-				throw new RapidBeansRuntimeException("Creation of directory \""
-						+ dir.getAbsolutePath() + "\" failed");
+				throw new RapidBeansRuntimeException("Creation of directory \"" + dir.getAbsolutePath() + "\" failed");
 			}
 		}
 		if (!dir.mkdir()) {
 			if (i < (len - 1)) {
 				parentDirsToCreate.get(len - 1).delete();
 			}
-			throw new RapidBeansRuntimeException("Creation of directory \""
-					+ dir.getAbsolutePath() + "\" failed");
+			throw new RapidBeansRuntimeException("Creation of directory \"" + dir.getAbsolutePath() + "\" failed");
 		}
 	}
 
@@ -566,12 +552,11 @@ public final class FileHelper {
 
 	public static File backup(final File file, final String extension) {
 		if (file.isDirectory()) {
-			throw new RapidBeansRuntimeException("Can not backup directory \""
-					+ file.getAbsolutePath() + "\". Only flat files can be backed up.");
+			throw new RapidBeansRuntimeException("Can not backup directory \"" + file.getAbsolutePath()
+					+ "\". Only flat files can be backed up.");
 		}
 		if (!file.exists()) {
-			throw new RapidBeansRuntimeException("Can not backup non existing file \""
-					+ file.getAbsolutePath() + "\".");
+			throw new RapidBeansRuntimeException("Can not backup non existing file \"" + file.getAbsolutePath() + "\".");
 		}
 		String backupFileName = tmpFilename(file);
 		if (extension != null) {
@@ -642,8 +627,7 @@ public final class FileHelper {
 		}
 	}
 
-	public static void changeCharAt(final File file, final int index,
-			final char newChar) {
+	public static void changeCharAt(final File file, final int index, final char newChar) {
 		FileInputStream is = null;
 		FileOutputStream os = null;
 		try {
@@ -682,11 +666,13 @@ public final class FileHelper {
 	 * @param path
 	 *            the path to shorten
 	 * @param maxStart
-	 *            the maximal start string length (except we have one single start path component;
+	 *            the maximal start string length (except we have one single
+	 *            start path component;
 	 * @param shortcutSign
 	 *            the shortcut sign
 	 * @param maxEnd
-	 *            the maximal end string length (except we have one single start path component;
+	 *            the maximal end string length (except we have one single start
+	 *            path component;
 	 * 
 	 * @return the shortened string
 	 */
