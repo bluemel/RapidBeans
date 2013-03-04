@@ -344,8 +344,8 @@ public abstract class RapidQuantity implements Cloneable, Comparable<RapidQuanti
 		RapidQuantity quant = (RapidQuantity) o;
 
 		return (this.getUnit() == quant.getUnit() && ((this.getMagnitude() == null && quant.getMagnitude() == null) || (this
-				.getMagnitude() != null && quant.getMagnitude() != null && this.getMagnitude().equals(
-				quant.getMagnitude()))));
+				.getMagnitude() != null
+				&& quant.getMagnitude() != null && this.getMagnitude().equals(quant.getMagnitude()))));
 	}
 
 	/**

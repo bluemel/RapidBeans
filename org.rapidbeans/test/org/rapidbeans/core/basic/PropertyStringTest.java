@@ -260,7 +260,7 @@ public class PropertyStringTest extends TestCase {
 	 */
 	public void testEscapingTab() {
 		PropertyString prop = this.createStringProperty("<property name=\"test\" type=\"string\""
-		// multiline="true" activates the default escape map
+				// multiline="true" activates the default escape map
 				+ " multiline=\"true\"" + "/>");
 		prop.setValue("aaa\tbbb");
 		assertEquals("aaa\\tbbb", prop.toString());
