@@ -17,9 +17,6 @@
 
 package org.rapidbeans.core.basic;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.util.Calendar;
@@ -88,21 +85,7 @@ public class PropertyDate extends Property {
 	public Date getValue() {
 		Date date = null;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			Method getter;
-			try {
-				getter = getBean().getClass().getMethod("get" + StringHelper.upperFirstCharacter(getName()));
-				date = (Date) getter.invoke(getBean());
-			} catch (SecurityException e) {
-				throw new RapidBeansRuntimeException(e);
-			} catch (NoSuchMethodException e) {
-				throw new RapidBeansRuntimeException(e);
-			} catch (IllegalArgumentException e) {
-				throw new RapidBeansRuntimeException(e);
-			} catch (IllegalAccessException e) {
-				throw new RapidBeansRuntimeException(e);
-			} catch (InvocationTargetException e) {
-				throw new RapidBeansRuntimeException(e);
-			}
+			date = (Date) Property.getValueByReflection(getBean(), getName());
 		} else {
 			if (this.value != null) {
 				// clone the date value object in order
@@ -158,19 +141,7 @@ public class PropertyDate extends Property {
 		if (getBean() instanceof RapidBeanImplSimple) {
 			super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
 				public void setValue(final Object newValue) {
-					try {
-						final Field field = getBean().getClass().getDeclaredField(getName());
-						field.setAccessible(true);
-						field.set(getBean(), newValue);
-					} catch (SecurityException e) {
-						throw new RapidBeansRuntimeException(e);
-					} catch (NoSuchFieldException e) {
-						throw new RapidBeansRuntimeException(e);
-					} catch (IllegalArgumentException e) {
-						throw new RapidBeansRuntimeException(e);
-					} catch (IllegalAccessException e) {
-						throw new RapidBeansRuntimeException(e);
-					}
+					Property.setValueByReflection(getBean(), getName(), newValue);
 				}
 			});
 		} else {

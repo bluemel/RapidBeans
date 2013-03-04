@@ -254,6 +254,10 @@
 	<xsl:text>import org.rapidbeans.core.type.TypeRapidBean;</xsl:text><xsl:value-of select="$newline"/>
 </xsl:if>
 
+<xsl:if test="$codegenimpl = 'Simple'">
+	<xsl:text>import org.rapidbeans.core.basic.Property;</xsl:text><xsl:value-of select="$newline"/>
+</xsl:if>
+
 <xsl:if test="property[(@type = 'association' or @type = 'associationend') and @maxmult = '1']">
 	<xsl:if test="(not ($codegenmode)) or ($codegenmode != 'joint')">
 		<xsl:text>import org.rapidbeans.core.basic.Link;</xsl:text><xsl:value-of select="$newline"/>
@@ -396,14 +400,24 @@
 			<xsl:text> = </xsl:text>
 			<xsl:choose>
 				<xsl:when test="$codegenimpl = 'Simple'">
-					<!-- this.from = (Date) getType().getPropertyType("from").getDefaultValue(); -->
-					<xsl:text>(</xsl:text>
-					<xsl:call-template name="javaType">
-						<xsl:with-param name="mode">get</xsl:with-param>
-					</xsl:call-template>
-					<xsl:text>) getType().getPropertyType("</xsl:text>
-					<xsl:value-of select="@name"/>
-					<xsl:text>").getDefaultValue();</xsl:text>
+					<xsl:choose>
+						<xsl:when test="@type = 'boolean'">
+							<!-- this.xxx ((Boolean) getType().getPropertyType("xxx").getDefaultValue()).booleanValue(); -->
+							<xsl:text>((Boolean) getType().getPropertyType("</xsl:text>
+							<xsl:value-of select="@name"/>
+							<xsl:text>").getDefaultValue()).booleanValue();</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<!-- this.xxx = (Date) getType().getPropertyType("xxx").getDefaultValue(); -->
+							<xsl:text>(</xsl:text>
+							<xsl:call-template name="javaType">
+								<xsl:with-param name="mode">get</xsl:with-param>
+							</xsl:call-template>
+							<xsl:text>) getType().getPropertyType("</xsl:text>
+							<xsl:value-of select="@name"/>
+							<xsl:text>").getDefaultValue();</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:text>(org.rapidbeans.core.basic.Property</xsl:text>
@@ -681,7 +695,7 @@
 				<xsl:choose> <!-- switch over types -->
 
 					<xsl:when test="@type = 'boolean'">
-						<xsl:message terminate="yes">code generation getter for boolean property not yet implemented</xsl:message>
+						<xsl:value-of select="$indent2"/><xsl:text>return this.</xsl:text><xsl:value-of select="@name"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 					</xsl:when>
 
 					<xsl:when test="@type = 'integer'">
@@ -689,7 +703,7 @@
 					</xsl:when>
 
 					<xsl:when test="@type = 'string'">
-						<xsl:message terminate="yes">code generation getter for string property not yet implemented</xsl:message>
+						<xsl:value-of select="$indent2"/><xsl:text>return this.</xsl:text><xsl:value-of select="@name"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 					</xsl:when>
 
 					<xsl:when test="@type = 'url'">
@@ -731,7 +745,7 @@
 					</xsl:when>
 
 					<xsl:otherwise>
-						<xsl:message terminate="yes">code generation getter for string property not yet implemented</xsl:message>
+						<xsl:value-of select="$indent2"/><xsl:text>return this.</xsl:text><xsl:value-of select="@name"/><xsl:text>;</xsl:text><xsl:value-of select="$newline"/>
 					</xsl:otherwise>
 
 				</xsl:choose> <!-- switch over types -->

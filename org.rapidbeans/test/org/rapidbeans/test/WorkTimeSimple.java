@@ -13,6 +13,7 @@
 package org.rapidbeans.test;
 
 
+import org.rapidbeans.core.basic.Property;
 
 // BEGIN manual code section
 // WorkTimeSimple.import
@@ -20,7 +21,6 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Locale;
 
-import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.RapidBeanImplSimple;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.domain.math.Time;

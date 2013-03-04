@@ -18,7 +18,9 @@
 package org.rapidbeans.core.basic;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -36,6 +38,7 @@ import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.ClassHelper;
+import org.rapidbeans.core.util.StringHelper;
 
 /**
  * The base class for every bean property.
@@ -658,5 +661,39 @@ public abstract class Property
 	 */
 	public boolean isDependent() {
 		return this.type.getDependentFromProps().size() > 0;
+	}
+
+	public static void setValueByReflection(final RapidBean bean, final String propname, final Object newValue) {
+		try {
+			final Field field = bean.getClass().getDeclaredField(propname);
+			field.setAccessible(true);
+			field.set(bean, newValue);
+		} catch (SecurityException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (NoSuchFieldException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
+	}
+
+	public static Object getValueByReflection(final RapidBean bean, final String propname) {
+		Method getter;
+		try {
+			getter = bean.getClass().getMethod("get" + StringHelper.upperFirstCharacter(propname));
+			return getter.invoke(bean);
+		} catch (SecurityException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (NoSuchMethodException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (InvocationTargetException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
 	}
 }
