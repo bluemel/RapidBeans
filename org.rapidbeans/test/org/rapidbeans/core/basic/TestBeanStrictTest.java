@@ -12,14 +12,15 @@ import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
+import org.rapidbeans.test.TestBean;
 import org.rapidbeans.test.TestBeanSimple;
 
 /**
- * Unit Test for domain class TestBeanSimple (simple implementation).
+ * Unit Test for domain class TestBean (strict implementation).
  * 
  * @author Martin Bluemel
  */
-public class TestBeanSimpleTest {
+public class TestBeanStrictTest {
 
 	/**
 	 * Date formatter.
@@ -45,7 +46,7 @@ public class TestBeanSimpleTest {
 	 */
 	@Test
 	public void testStringProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals("Ismaning", bean.getCity());
 		bean.setCity("Mannheim");
 		Assert.assertEquals("Mannheim", bean.getCity());
@@ -59,7 +60,7 @@ public class TestBeanSimpleTest {
 
 	@Test
 	public void testDateProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals(DFDATE.parse("14.10.1964"), bean.getDateofbirth());
 		bean.setDateofbirth(DFDATE.parse("15.10.1964"));
 		Assert.assertEquals(DFDATE.parse("15.10.1964"), bean.getDateofbirth());
@@ -73,7 +74,7 @@ public class TestBeanSimpleTest {
 
 	@Test
 	public void testBooleanProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals(true, bean.getMarried());
 		bean.setMarried(false);
 		Assert.assertEquals(false, bean.getMarried());
@@ -87,7 +88,7 @@ public class TestBeanSimpleTest {
 
 	@Test
 	public void testIntegerProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals(43, bean.getShoesize());
 		bean.setShoesize(40);
 		Assert.assertEquals(40, bean.getShoesize());
@@ -103,7 +104,7 @@ public class TestBeanSimpleTest {
 	@Test
 	public void testChoicePropertySingle()
 	{
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals(Sex.male, bean.getSex());
 		bean.setSex(Sex.female);
 		Assert.assertEquals(Sex.female, bean.getSex());
@@ -113,7 +114,7 @@ public class TestBeanSimpleTest {
 	public void testChoicePropertyMultiple()
 	{
 		TypeRapidEnum tlang = TypeRapidEnum.forName("org.rapidbeans.test.Lang");
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		assertListsEqual(Arrays.asList(new RapidEnum[] {
 				tlang.elementOf("german"),
 				tlang.elementOf("english"),

@@ -28,14 +28,14 @@ public class TypeRapidBeanTest extends TestCase {
 	public void testInheritanceWithGenericBeans() {
 		RapidBean bean1 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
 		Collection<TypeProperty> proptypes1 = bean1.getType().getPropertyTypes();
-		assertEquals(9, proptypes1.size());
+		assertEquals(11, proptypes1.size());
 
 		RapidBean bean2 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanExtended1Gen");
 		Collection<TypeProperty> proptypes2 = bean2.getType().getPropertyTypes();
-		assertEquals(10, proptypes2.size());
+		assertEquals(12, proptypes2.size());
 
 		RapidBean bean3 = RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanExtended2Gen");
 		Collection<TypeProperty> proptypes3 = bean3.getType().getPropertyTypes();
-		assertEquals(11, proptypes3.size());
+		assertEquals(13, proptypes3.size());
 	}
 }

@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: Enabler.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.presentation.enabler.Enabler
  * 
- * model: model/org/rapidbeans/presentation/enabler/Enabler.xml
+ * model:    model/org/rapidbeans/presentation/enabler/Enabler.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.enabler;
+
+
 
 // BEGIN manual code section
 // Enabler.import
@@ -25,8 +31,9 @@ import org.rapidbeans.presentation.Application;
 // END manual code section
 
 /**
- * Rapid Bean class: Enabler. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: Enabler.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class Enabler extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -111,7 +118,8 @@ public class Enabler extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.classname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("classname");
+		this.classname = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("classname");
 	}
 
 	/**
@@ -126,7 +134,6 @@ public class Enabler extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -139,7 +146,6 @@ public class Enabler extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -175,7 +181,6 @@ public class Enabler extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'classname'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'classname' to set
 	 */

@@ -53,7 +53,13 @@ public class PropertyBoolean extends Property {
 	 * @return the value of this Property as java.lang.Integer
 	 */
 	public Boolean getValue() {
-		return this.value;
+		Boolean val = null;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			val = (Boolean) Property.getValueByReflection(getBean(), getName());
+		} else {
+			val = this.value;
+		}
+		return val;
 	}
 
 	/**
@@ -91,15 +97,15 @@ public class PropertyBoolean extends Property {
 	 *            <b>String:</b> the boolean as string { 'false' | 'true' }<br/>
 	 */
 	public void setValue(final Object newValue) {
-		if (getBean() instanceof RapidBeanImplSimple) {
-			Property.setValueByReflection(getBean(), getName(), newValue);
-		} else {
-			super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-				public void setValue(final Object newValue) {
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
 					value = (Boolean) newValue;
 				}
-			});
-		}
+			}
+		});
 	}
 
 	/**

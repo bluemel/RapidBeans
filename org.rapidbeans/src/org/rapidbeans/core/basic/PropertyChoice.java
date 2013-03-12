@@ -120,7 +120,19 @@ public class PropertyChoice extends Property {
 		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
 			@SuppressWarnings("unchecked")
 			public void setValue(final Object newValue) {
-				value = (ArrayList<RapidEnum>) newValue;
+				if (getBean() instanceof RapidBeanImplSimple) {
+					if (((TypePropertyChoice) getType()).getMultiple()) {
+						Property.setValueByReflection(getBean(), getName(), newValue);
+					} else {
+						if (newValue == null) {
+							Property.setValueByReflection(getBean(), getName(), null);
+						} else {
+							Property.setValueByReflection(getBean(), getName(), ((List<RapidEnum>) newValue).get(0));
+						}
+					}
+				} else {
+					value = (ArrayList<RapidEnum>) newValue;
+				}
 			}
 		});
 	}

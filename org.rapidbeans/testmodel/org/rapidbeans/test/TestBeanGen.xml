@@ -2,20 +2,22 @@
 
 <beantype name="org.rapidbeans.test.TestBeanGen">
 	<property name="surname"
-		type="string"
 		key="true"
 		maxlength="32"
 		minlength="3"
 	/>
 	<property name="prename"
-		type="string"
 		key="true"
 	/>
 	<property name="dateofbirth"
 		type="date"
 		key="true"
-		maxval="20100101"
+		default="19641014"
+		maxval="20101231"
 		minval="19000101"
+	/>
+	<property name="email"
+		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
 	/>
 	<property name="city"
 		type="string"
@@ -28,13 +30,17 @@
 		maxval="99999"
 		minval="10000"
 	/>
-	<property name="email"
-		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
+	<property name="shoesize"
+		valuetype = "Byte"
+		type="integer"
+		default="43"
+		minval="20"
+		maxval="55"
 	/>
 	<property name="sex"
 		type="choice"
-		default="male"
 		enum="org.rapidbeans.domain.org.Sex"
+		default="male"
 	/>
 	<property name="married"
 		type="boolean"
@@ -46,6 +52,12 @@
 		default="1.73 m"
 		maxval="3.00 m"
 		minval="0.30 m"
+	/>
+	<property name="lang"
+		type="choice"
+		multiple="true"
+		enum="LangGeneric"
+		default="german,english"
 	/>
 	<codegen mode="none"/>
 </beantype>

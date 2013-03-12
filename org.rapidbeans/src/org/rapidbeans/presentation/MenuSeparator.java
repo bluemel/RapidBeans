@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: MenuSeparator.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.presentation.MenuSeparator
  * 
- * model: model/org/rapidbeans/presentation/MenuSeparator.xml
+ * model:    model/org/rapidbeans/presentation/MenuSeparator.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuSeparator.import
@@ -22,8 +28,9 @@ import org.rapidbeans.presentation.swing.MenuSeparatorSwing;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuSeparator. Partially generated Java class !!!Do only
- * edit manually in marked sections!!!
+ * Rapid Bean class: MenuSeparator.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 	// BEGIN manual code section
@@ -88,7 +95,6 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -101,7 +107,6 @@ public class MenuSeparator extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */

@@ -55,7 +55,7 @@ public class IdKeypropsTest extends TestCase {
 	 * Test method for equals().
 	 */
 	public void testEqualsWrongType() {
-		TestBean bean = new TestBean("\"Bl�mel\" \"Martin\" \"19641014\"");
+		TestBean bean = new TestBean("\"Bluemel\" \"Martin\" \"19641014\"");
 		bean.getType().setIdGenerator(new IdGeneratorUuid());
 		IdKeyprops id1 = new IdKeyprops(bean, null);
 		IdUuid id2 = new IdUuid(bean, null);

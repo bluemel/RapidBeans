@@ -97,15 +97,15 @@ public class PropertyString extends Property {
 	 *            <b>String:</b> the String<br/>
 	 */
 	public void setValue(final Object newValue) {
-		if (getBean() instanceof RapidBeanImplSimple) {
-			Property.setValueByReflection(getBean(), getName(), newValue);
-		} else {
-			super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-				public void setValue(final Object newValue) {
+		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
 					value = (String) newValue;
 				}
-			});
-		}
+			}
+		});
 	}
 
 	/**

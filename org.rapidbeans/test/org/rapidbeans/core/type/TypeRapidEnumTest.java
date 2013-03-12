@@ -130,6 +130,6 @@ public final class TypeRapidEnumTest extends TestCase {
 	 */
 	public void testGetImplementingClassGeneric() {
 		TypeRapidEnum type = TypeRapidEnum.forName("org.rapidbeans.test.Lang");
-		assertNull(type.getImplementingClass());
+		assertNotNull(type.getImplementingClass());
 	}
 }

@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: WorkTime.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.test.WorkTime
  * 
- * model: testmodel/org/rapidbeans/test/WorkTime.xml
+ * model:    testmodel/org/rapidbeans/test/WorkTime.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.test;
+
+
 
 // BEGIN manual code section
 // WorkTime.import
@@ -26,8 +32,9 @@ import org.rapidbeans.domain.math.UnitTime;
 // END manual code section
 
 /**
- * Rapid Bean class: WorkTime. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: WorkTime.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class WorkTime extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -70,8 +77,10 @@ public class WorkTime extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.from = (org.rapidbeans.core.basic.PropertyDate) this.getProperty("from");
-		this.to = (org.rapidbeans.core.basic.PropertyDate) this.getProperty("to");
+		this.from = (org.rapidbeans.core.basic.PropertyDate)
+			this.getProperty("from");
+		this.to = (org.rapidbeans.core.basic.PropertyDate)
+			this.getProperty("to");
 	}
 
 	/**
@@ -86,7 +95,6 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -99,7 +107,6 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -135,7 +142,6 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'from'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'from' to set
 	 */
@@ -156,7 +162,6 @@ public class WorkTime extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'to'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'to' to set
 	 */

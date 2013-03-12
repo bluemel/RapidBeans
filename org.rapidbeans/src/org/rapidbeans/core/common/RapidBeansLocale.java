@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: RapidBeansLocale.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.core.common.RapidBeansLocale
  * 
- * model: model/org/rapidbeans/core/common/RapidBeansLocale.xml
+ * model:    model/org/rapidbeans/core/common/RapidBeansLocale.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.core.common;
+
+
 
 // BEGIN manual code section
 // RapidBeansLocale.import
@@ -27,8 +33,9 @@ import org.rapidbeans.presentation.Application;
 // END manual code section
 
 /**
- * Rapid Bean class: RapidBeansLocale. Partially generated Java class !!!Do only
- * edit manually in marked sections!!!
+ * Rapid Bean class: RapidBeansLocale.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class RapidBeansLocale extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -275,7 +282,8 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
+		this.name = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("name");
 	}
 
 	/**
@@ -290,7 +298,6 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -303,7 +310,6 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -339,7 +345,6 @@ public class RapidBeansLocale extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */

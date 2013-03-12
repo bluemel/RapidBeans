@@ -88,9 +88,13 @@ public class PropertyFile extends Property {
 	 *            to the file<br/>
 	 */
 	public void setValue(final Object newValue) {
-		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
+		super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
 			public void setValue(final Object newValue) {
-				value = (File) newValue;
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
+					value = (File) newValue;
+				}
 			}
 		});
 	}

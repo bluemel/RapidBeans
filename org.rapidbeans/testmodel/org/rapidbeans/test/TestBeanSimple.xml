@@ -11,41 +11,47 @@
 	/>
 	<property name="dateofbirth"
 		type="date"
-		default="19641014"
 		key="true" 
+		default="19641014"
 		maxval="20101231"
 		minval="19000101"
+	/>
+	<property name="email"
+		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
 	/>
 	<property name="city"
 		type="string"
 		default="Ismaning"
 	/>
-<!--
 	<property name="country"
 		type="choice"
 		default="germany"
 		enum="org.rapidbeans.domain.org.Country"
 	/>
-	<property name="email"
-		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
+	<property name="shoesize"
+		valuetype = "Byte"
+		type="integer"
+		default="43"
+		minval="20"
+		maxval="55"
 	/>
 	<property name = "sex"
 		type="choice"
 		default="male"
 		enum="org.rapidbeans.domain.org.Sex"
+		mandatory="true"
 	/>
--->
 	<property name="married"
 		type="boolean"
 		default="true"
 	/>
-<!--
 	<property name = "languages"
 		type="choice"
-		initval="german,english,french"
+		default="german,english,french"
 		multiple="true"
 		enum="Lang"
 	/>
+<!--
 	<property name="height"
 		type="quantity"
 		quantity="Length"

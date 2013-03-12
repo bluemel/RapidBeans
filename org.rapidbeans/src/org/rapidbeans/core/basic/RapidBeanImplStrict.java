@@ -190,7 +190,11 @@ public abstract class RapidBeanImplStrict extends RapidBeanImplParent {
 			for (int j = 0; j < this.properties.length; j++) {
 				if (j < lenInitvals) {
 					if (!this.properties[j].isDependent()) {
-						this.properties[j].setValue(initvals[j]);
+						try {
+							this.properties[j].setValue(initvals[j]);
+						} catch (ValidationException e) {
+							throw e;
+						}
 					}
 				}
 			}

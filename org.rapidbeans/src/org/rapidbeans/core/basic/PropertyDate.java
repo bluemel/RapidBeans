@@ -137,19 +137,15 @@ public class PropertyDate extends Property {
 	 *            the new value to set
 	 */
 	public void setValue(final Object newValue) {
-		if (getBean() instanceof RapidBeanImplSimple) {
-			super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
-				public void setValue(final Object newValue) {
+		super.setValueWithEvents(getValue(), newValue, new PropertyValueSetter() {
+			public void setValue(final Object newValue) {
+				if (getBean() instanceof RapidBeanImplSimple) {
 					Property.setValueByReflection(getBean(), getName(), newValue);
-				}
-			});
-		} else {
-			super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
-				public void setValue(final Object newValue) {
+				} else {
 					value = (Date) newValue;
 				}
-			});
-		}
+			}
+		});
 	}
 
 	/**

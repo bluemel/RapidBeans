@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: ConfigView.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.presentation.config.ConfigView
  * 
- * model: model/org/rapidbeans/presentation/config/ConfigView.xml
+ * model:    model/org/rapidbeans/presentation/config/ConfigView.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation.config;
+
+
 
 // BEGIN manual code section
 // ConfigView.import
@@ -20,8 +26,9 @@ import org.rapidbeans.core.type.TypeRapidBean;
 // END manual code section
 
 /**
- * Rapid Bean class: ConfigView. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: ConfigView.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class ConfigView extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -56,9 +63,12 @@ public class ConfigView extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.name = (org.rapidbeans.core.basic.PropertyString) this.getProperty("name");
-		this.persistencestrategy = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("persistencestrategy");
-		this.viewclass = (org.rapidbeans.core.basic.PropertyString) this.getProperty("viewclass");
+		this.name = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("name");
+		this.persistencestrategy = (org.rapidbeans.core.basic.PropertyChoice)
+			this.getProperty("persistencestrategy");
+		this.viewclass = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("viewclass");
 	}
 
 	/**
@@ -73,7 +83,6 @@ public class ConfigView extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -86,7 +95,6 @@ public class ConfigView extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -122,7 +130,6 @@ public class ConfigView extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'name'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'name' to set
 	 */
@@ -148,12 +155,12 @@ public class ConfigView extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'persistencestrategy'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'persistencestrategy' to set
 	 */
 	public void setPersistencestrategy(final org.rapidbeans.presentation.config.ConfigPropPersistencestrategy argValue) {
-		java.util.List<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy> list = new java.util.ArrayList<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy>();
+		java.util.List<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy> list =
+			new java.util.ArrayList<org.rapidbeans.presentation.config.ConfigPropPersistencestrategy>();
 		list.add(argValue);
 		this.persistencestrategy.setValue(list);
 	}
@@ -171,7 +178,6 @@ public class ConfigView extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'viewclass'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'viewclass' to set
 	 */

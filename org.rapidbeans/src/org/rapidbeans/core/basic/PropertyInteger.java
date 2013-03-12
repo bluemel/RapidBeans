@@ -137,7 +137,11 @@ public final class PropertyInteger extends PropertyNumber {
 	public void setValue(final Object newValue) {
 		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
 			public void setValue(final Object newValue) {
-				value = (Number) newValue;
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
+					value = (Number) newValue;
+				}
 			}
 		});
 	}

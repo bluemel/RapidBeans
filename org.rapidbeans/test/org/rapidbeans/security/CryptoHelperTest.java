@@ -16,10 +16,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.security.GeneralSecurityException;
 import java.util.Date;
+import java.util.logging.Level;
 
 import junit.framework.Assert;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.rapidbeans.core.util.PlatformHelper;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.test.codegen.Person;
 
@@ -29,6 +33,19 @@ import org.rapidbeans.test.codegen.Person;
  * @author Martin Bluemel
  */
 public class CryptoHelperTest {
+
+	private static Level platformHelperLogLevelBefore;
+
+	@BeforeClass
+	public static void setUpClass() {
+		platformHelperLogLevelBefore = PlatformHelper.getLogger().getLevel();
+		PlatformHelper.getLogger().setLevel(Level.WARNING);
+	}
+
+	@AfterClass
+	public static void tearDownClass() {
+		PlatformHelper.getLogger().setLevel(platformHelperLogLevelBefore);
+	}
 
 	@Test
 	public void testDecryptString() {

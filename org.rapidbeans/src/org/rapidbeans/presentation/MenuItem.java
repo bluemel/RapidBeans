@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: MenuItem.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.presentation.MenuItem
  * 
- * model: model/org/rapidbeans/presentation/MenuItem.xml
+ * model:    model/org/rapidbeans/presentation/MenuItem.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.presentation;
+
+
 
 // BEGIN manual code section
 // MenuItem.import
@@ -28,8 +34,9 @@ import org.rapidbeans.service.Action;
 // END manual code section
 
 /**
- * Rapid Bean class: MenuItem. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: MenuItem.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	// BEGIN manual code section
@@ -128,8 +135,10 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	 */
 	public void initProperties() {
 		super.initProperties();
-		this.action = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("action");
-		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend) this.getProperty("enabler");
+		this.action = (org.rapidbeans.core.basic.PropertyAssociationend)
+			this.getProperty("action");
+		this.enabler = (org.rapidbeans.core.basic.PropertyAssociationend)
+			this.getProperty("enabler");
 	}
 
 	/**
@@ -144,7 +153,6 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -157,7 +165,6 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -186,14 +193,15 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.service.Action getAction() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.service.Action>) this.action.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
-					throw new UnresolvedLinkException("unresolved link to \"" + "org.rapidbeans.service.Action"
+					throw new UnresolvedLinkException("unresolved link to \""
+							+ "org.rapidbeans.service.Action"
 							+ "\" \"" + link.getIdString() + "\"");
 				} else {
 					return (org.rapidbeans.service.Action) col.iterator().next();
@@ -206,7 +214,6 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * setter for Property 'action'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'action' to set
 	 */
@@ -220,15 +227,16 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 	@SuppressWarnings("unchecked")
 	public org.rapidbeans.presentation.enabler.Enabler getEnabler() {
 		try {
-			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col = (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler
-					.getValue();
+			org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler> col
+				= (org.rapidbeans.core.common.ReadonlyListCollection<org.rapidbeans.presentation.enabler.Enabler>) this.enabler.getValue();
 			if (col == null || col.size() == 0) {
 				return null;
 			} else {
 				Link link = (Link) col.iterator().next();
 				if (link instanceof LinkFrozen) {
 					throw new UnresolvedLinkException("unresolved link to \""
-							+ "org.rapidbeans.presentation.enabler.Enabler" + "\" \"" + link.getIdString() + "\"");
+							+ "org.rapidbeans.presentation.enabler.Enabler"
+							+ "\" \"" + link.getIdString() + "\"");
 				} else {
 					return (org.rapidbeans.presentation.enabler.Enabler) col.iterator().next();
 				}
@@ -240,7 +248,6 @@ public class MenuItem extends org.rapidbeans.presentation.MenuEntry {
 
 	/**
 	 * setter for Property 'enabler'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'enabler' to set
 	 */

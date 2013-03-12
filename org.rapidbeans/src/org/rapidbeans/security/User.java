@@ -1,16 +1,22 @@
 /*
  * Partially generated code file: User.java
  * !!!Do only edit manually in marked sections!!!
- * 
- * Rapid Beans bean generator, Copyright Martin Bluemel, 2008
- * 
- * generated Java implementation of Rapid Beans bean type
+ *
+ * Rapid Beans 
+				bean
+			 generator, Copyright Martin Bluemel, 2008
+ *
+ * generated Java implementation of Rapid Beans 
+				bean
+			 type
  * org.rapidbeans.security.User
  * 
- * model: model/org/rapidbeans/security/User.xml
+ * model:    model/org/rapidbeans/security/User.xml
  * template: codegentemplates/genBean.xsl
  */
 package org.rapidbeans.security;
+
+
 
 // BEGIN manual code section
 // User.import
@@ -31,8 +37,9 @@ import sun.misc.BASE64Encoder;
 // END manual code section
 
 /**
- * Rapid Bean class: User. Partially generated Java class !!!Do only edit
- * manually in marked sections!!!
+ * Rapid Bean class: User.
+ * Partially generated Java class
+ * !!!Do only edit manually in marked sections!!!
  **/
 public class User extends RapidBeanImplStrict {
 	// BEGIN manual code section
@@ -200,12 +207,18 @@ public class User extends RapidBeanImplStrict {
 	 * property references initialization.
 	 */
 	public void initProperties() {
-		this.accountname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("accountname");
-		this.pwd = (org.rapidbeans.core.basic.PropertyString) this.getProperty("pwd");
-		this.lastname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("lastname");
-		this.firstname = (org.rapidbeans.core.basic.PropertyString) this.getProperty("firstname");
-		this.email = (org.rapidbeans.core.basic.PropertyString) this.getProperty("email");
-		this.roles = (org.rapidbeans.core.basic.PropertyChoice) this.getProperty("roles");
+		this.accountname = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("accountname");
+		this.pwd = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("pwd");
+		this.lastname = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("lastname");
+		this.firstname = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("firstname");
+		this.email = (org.rapidbeans.core.basic.PropertyString)
+			this.getProperty("email");
+		this.roles = (org.rapidbeans.core.basic.PropertyChoice)
+			this.getProperty("roles");
 	}
 
 	/**
@@ -220,7 +233,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string.
-	 * 
 	 * @param s
 	 *            the string
 	 */
@@ -233,7 +245,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * constructor out of a string array.
-	 * 
 	 * @param sa
 	 *            the string array
 	 */
@@ -269,7 +280,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'accountname'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'accountname' to set
 	 */
@@ -290,7 +300,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'pwd'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'pwd' to set
 	 */
@@ -311,7 +320,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'lastname'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'lastname' to set
 	 */
@@ -332,7 +340,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'firstname'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'firstname' to set
 	 */
@@ -353,7 +360,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'email'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'email' to set
 	 */
@@ -375,7 +381,6 @@ public class User extends RapidBeanImplStrict {
 
 	/**
 	 * setter for Property 'roles'.
-	 * 
 	 * @param argValue
 	 *            value of Property 'roles' to set
 	 */
