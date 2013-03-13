@@ -1,5 +1,6 @@
 package org.rapidbeans.core.basic;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -13,7 +14,6 @@ import org.rapidbeans.core.type.TypeRapidEnum;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
 import org.rapidbeans.test.TestBean;
-import org.rapidbeans.test.TestBeanSimple;
 
 /**
  * Unit Test for domain class TestBean (strict implementation).
@@ -40,10 +40,6 @@ public class TestBeanStrictTest {
 	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(
 			DateFormat.MEDIUM, DateFormat.LONG, Locale.GERMAN);
 
-	/**
-	 * Constructor test:
-	 * the constructor initializes all date attribute to empty (null).
-	 */
 	@Test
 	public void testStringProperty() throws SecurityException, NoSuchFieldException, ParseException {
 		TestBean bean = new TestBean();
@@ -54,7 +50,7 @@ public class TestBeanStrictTest {
 
 	@Test(expected = ValidationException.class)
 	public void testStringPropertyInvalid() {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		bean.setEmail("xyz");
 	}
 
@@ -68,7 +64,7 @@ public class TestBeanStrictTest {
 
 	@Test(expected = ValidationException.class)
 	public void testDatePropertyInvalid() throws ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		bean.setDateofbirth(DFDATE.parse("14.10.1700"));
 	}
 
@@ -82,7 +78,7 @@ public class TestBeanStrictTest {
 
 	@Test(expected = ValidationException.class)
 	public void testBooleanPropertyInvalid() throws ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		bean.setPropValue("married", null);
 	}
 
@@ -96,7 +92,7 @@ public class TestBeanStrictTest {
 
 	@Test(expected = ValidationException.class)
 	public void testIntegerPropertyInvalid() throws SecurityException, NoSuchFieldException, ParseException {
-		TestBeanSimple bean = new TestBeanSimple();
+		TestBean bean = new TestBean();
 		Assert.assertEquals(43, bean.getShoesize());
 		bean.setShoesize(5);
 	}
@@ -127,6 +123,23 @@ public class TestBeanStrictTest {
 		assertListsEqual(Arrays.asList(new RapidEnum[] {
 				Lang.chinese, Lang.spanish
 		}), bean.getLanguages());
+	}
+
+	@Test
+	public void testFileProperty()
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new File("."), bean.getHomedir());
+		bean.setHomedir(new File(System.getProperty("user.dir")));
+		Assert.assertEquals(new File(System.getProperty("user.dir")), bean.getHomedir());
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testFilePropertyInvalid()
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new File("."), bean.getHomedir());
+		bean.setHomedir(new File("pom.xml"));
 	}
 
 	private void assertListsEqual(List<?> list1, List<?> list2)

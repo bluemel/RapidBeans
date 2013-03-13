@@ -44,6 +44,7 @@
 	<property name="married"
 		type="boolean"
 		default="true"
+		mandatory="true"
 	/>
 	<property name = "languages"
 		type="choice"
@@ -59,6 +60,15 @@
 		maxval="3.00 m"
 		minval="0.30 m"
 	/>
+-->
+
+	<property name="homedir"
+		type="file"
+		filetype="directory"
+		default="."
+	/>
+
+<!--
 	<property name="iq"
 		type="float"
 		initval="187.654321"

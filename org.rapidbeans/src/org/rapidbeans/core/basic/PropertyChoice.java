@@ -216,19 +216,33 @@ public class PropertyChoice extends Property {
 		if (newChoiceValue != null) {
 			int j;
 			for (int i = 0; i < size; i++) {
-				if (newChoiceValue.get(i) != null) {
-					for (j = i + 1; j < size; j++) {
-						if (newChoiceValue.get(i) == newChoiceValue.get(j)) {
-							if (this.getBean() != null) {
-								throw new ValidationException("invalid.prop.choice.duplicate", this, "Bean \""
-										+ this.getBean().getType().getName() + "::" + this.getBean().toString() + ", "
-										+ "Property \"" + this.getType().getPropName() + "\": "
-										+ " invalid duplicate choice." + "\nOne item was chosen more than once.");
-							} else {
-								throw new ValidationException("invalid.prop.choice.duplicate", this, "Property \""
-										+ this.getType().getPropName() + "\": " + " invalid duplicate choice."
-										+ "\nOne item was chosen more than once.");
-							}
+				final RapidEnum newEnumElement = newChoiceValue.get(i);
+				if (newEnumElement == null)
+				{
+					throw new ValidationException("invalid.prop.choice.null", this, "Property \""
+							+ this.getType().getPropName() + "\": " + " null enum is not allowed");
+				}
+				if (!newEnumElement.getType().isAssignableFrom(((TypePropertyChoice) getType()).getEnumType()))
+				{
+					throw new ValidationException("invalid.prop.choice.valuetype", this, "Property \""
+							+ this.getType().getPropName() + "\": " + " value type \""
+							+ newEnumElement.getType().getName() + "\" is not allowed\n"
+							+ "  Allowd value type: \""
+							+ ((TypePropertyChoice) getType()).getEnumType().getName() + "\"",
+							new Object[] { newEnumElement.getType().getName(),
+									((TypePropertyChoice) getType()).getEnumType().getName() });
+				}
+				for (j = i + 1; j < size; j++) {
+					if (newEnumElement == newChoiceValue.get(j)) {
+						if (this.getBean() != null) {
+							throw new ValidationException("invalid.prop.choice.duplicate", this, "Bean \""
+									+ this.getBean().getType().getName() + "::" + this.getBean().toString() + ", "
+									+ "Property \"" + this.getType().getPropName() + "\": "
+									+ " invalid duplicate choice." + "\nOne item was chosen more than once.");
+						} else {
+							throw new ValidationException("invalid.prop.choice.duplicate", this, "Property \""
+									+ this.getType().getPropName() + "\": " + " invalid duplicate choice."
+									+ "\nOne item was chosen more than once.");
 						}
 					}
 				}

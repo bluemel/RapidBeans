@@ -999,7 +999,7 @@
 								</xsl:when>
 								-->
 
-								<xsl:when test="@type = 'string' or @type = 'integer'">
+								<xsl:when test="@type = 'string' or @type = 'integer' or @type = 'file'">
 									<xsl:value-of select="$indent2" />
 									<xsl:text>return this.</xsl:text>
 									<xsl:value-of select="@name" />
@@ -1035,10 +1035,6 @@
 									<xsl:value-of select="$indent2" />
 									<xsl:text>}</xsl:text>
 									<xsl:value-of select="$newline" />
-								</xsl:when>
-
-								<xsl:when test="@type = 'file'">
-									<xsl:message terminate="yes">code generation getter for file property not yet implemented</xsl:message>
 								</xsl:when>
 
 								<xsl:when test="@type = 'quantity'">

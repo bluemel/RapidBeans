@@ -1,5 +1,6 @@
 package org.rapidbeans.core.basic;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
+import org.rapidbeans.test.TestBean;
 import org.rapidbeans.test.TestBeanSimple;
 
 /**
@@ -126,6 +128,23 @@ public class TestBeanSimpleTest {
 		assertListsEqual(Arrays.asList(new RapidEnum[] {
 				Lang.chinese, Lang.spanish
 		}), bean.getLanguages());
+	}
+
+	@Test
+	public void testFileProperty()
+	{
+		TestBeanSimple bean = new TestBeanSimple();
+		Assert.assertEquals(new File("."), bean.getHomedir());
+		bean.setHomedir(new File(System.getProperty("user.dir")));
+		Assert.assertEquals(new File(System.getProperty("user.dir")), bean.getHomedir());
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testFilePropertyInvalid()
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new File("."), bean.getHomedir());
+		bean.setHomedir(new File("pom.xml"));
 	}
 
 	private void assertListsEqual(List<?> list1, List<?> list2)

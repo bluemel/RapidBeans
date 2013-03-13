@@ -82,7 +82,7 @@ public class TypePropertyFile extends TypeProperty {
 
 		String s = propertyNodes[0].getAttributeValue("@default");
 		if (s != null) {
-			setDefaultValue(s);
+			setDefaultValue(new File(s));
 		}
 
 		s = propertyNodes[0].getAttributeValue("@mustExist");

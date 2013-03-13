@@ -139,6 +139,19 @@ public final class TypeRapidEnum extends RapidBeansType {
 	}
 
 	/**
+	 * Check RapidEnum type compatibility.
+	 * 
+	 * @param otherType
+	 *            the other RapidEnum type to compare with
+	 * @return if the types are compatible
+	 */
+	public boolean isAssignableFrom(TypeRapidEnum otherType) {
+		// currently since we do not have the concept of enum inheritance
+		// only equal types are compatible
+		return this == otherType;
+	}
+
+	/**
 	 * Retrieve the localized name of the enum element
 	 * 
 	 * @param locale

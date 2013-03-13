@@ -42,6 +42,7 @@
 	<property name="married"
 		type="boolean"
 		default="true"
+		mandatory="true"
 	/>
 	<property name = "languages"
 		type="choice"
@@ -55,6 +56,11 @@
 		default="1.73 m"
 		maxval="3.00 m"
 		minval="0.30 m"
+	/>
+	<property name="homedir"
+		type="file"
+		filetype="directory"
+		default="."
 	/>
 <!--
 	<property name="zipcode"
