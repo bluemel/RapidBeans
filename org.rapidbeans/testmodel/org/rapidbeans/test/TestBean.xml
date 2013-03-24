@@ -79,13 +79,15 @@
 		maxval="9999999999.9999999999"
 		minval="-9999999999.9999999999"
 	/>
+-->
 	<property name="children"
-		type="assocation"
+		type="association"
 		inverse="father"
-		singularname="child"
+		singular="child"
 		targettype="org.rapidbeans.test.TestBean"
-		minmult="1"
+		minmult="0"
 		maxmult="4"
+		mandatory="true"
 	/>
 	<property name="father"
 		type="association"
@@ -93,8 +95,7 @@
 		targettype="org.rapidbeans.test.TestBean"
 		minmult="1"
 		maxmult="1"
-		navigable="false"
+		mandatory="true"
 	/>
--->
 	<codegen implementation="strict"/>
 </beantype>

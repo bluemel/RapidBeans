@@ -1,6 +1,7 @@
 package org.rapidbeans.core.basic;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -11,6 +12,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
+import org.rapidbeans.domain.math.Length;
+import org.rapidbeans.domain.math.UnitLength;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
 import org.rapidbeans.test.TestBean;
@@ -140,6 +143,80 @@ public class TestBeanStrictTest {
 		TestBean bean = new TestBean();
 		Assert.assertEquals(new File("."), bean.getHomedir());
 		bean.setHomedir(new File("pom.xml"));
+	}
+
+	@Test
+	public void testQuantityProperty()
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new Length(new BigDecimal("1.73"), UnitLength.m), bean.getHeight());
+		bean.setHeight(new Length(new BigDecimal("73"), UnitLength.cm));
+		Assert.assertEquals(new Length(new BigDecimal("73"), UnitLength.cm), bean.getHeight());
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testQuantityInvalid()
+	{
+		TestBean bean = new TestBean();
+		bean.setHeight(new Length(new BigDecimal("3.05"), UnitLength.m));
+	}
+
+	@Test
+	public void testAssociationPropertySingle()
+	{
+		TestBean father = new TestBean();
+		TestBean son = new TestBean();
+		Assert.assertNull(son.getFather());
+		son.setFather(father);
+		Assert.assertSame(father, son.getFather());
+		Assert.assertEquals(1, father.getChildren().size());
+		Assert.assertSame(son, father.getChildren().get(0));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertySingleInvalid()
+	{
+		TestBean father = new TestBean();
+		TestBean son = new TestBean();
+		son.setFather(father);
+		Assert.assertEquals(1, father.getChildren().size());
+		son.setFather(null);
+	}
+
+	@Test
+	public void testAssociationPropertyMultiple()
+	{
+		TestBean father = new TestBean();
+		Assert.assertEquals(0, father.getChildren().size());
+		TestBean son1 = new TestBean();
+		Assert.assertNull(son1.getFather());
+		TestBean son2 = new TestBean();
+		Assert.assertNull(son2.getFather());
+		TestBean son3 = new TestBean();
+		Assert.assertNull(son3.getFather());
+		TestBean son4 = new TestBean();
+		Assert.assertNull(son4.getFather());
+		father.setChildren(Arrays.asList(new TestBean[] {
+				son1, son2, son3, son4
+		}));
+		Assert.assertEquals(4, father.getChildren().size());
+		Assert.assertSame(son1, father.getChildren().get(0));
+		Assert.assertSame(son2, father.getChildren().get(1));
+		Assert.assertSame(son3, father.getChildren().get(2));
+		Assert.assertSame(son4, father.getChildren().get(3));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertyMultipleInvalid()
+	{
+		TestBean bean = new TestBean();
+		bean.setChildren(Arrays.asList(new TestBean[] {
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean()
+		}));
 	}
 
 	private void assertListsEqual(List<?> list1, List<?> list2)

@@ -3,7 +3,7 @@
 <beantype name="org.rapidbeans.test.TestBeanSimple">
 	<property name="surname"
 		key="true"
-		maxlength="32" 
+		maxlength="32"
 		minlength="3"
 	/>
 	<property name="prename"
@@ -52,16 +52,13 @@
 		multiple="true"
 		enum="Lang"
 	/>
-<!--
 	<property name="height"
 		type="quantity"
-		quantity="Length"
+		quantity="org.rapidbeans.domain.math.Length"
 		initval="1.73 m"
 		maxval="3.00 m"
 		minval="0.30 m"
 	/>
--->
-
 	<property name="homedir"
 		type="file"
 		filetype="directory"
@@ -81,13 +78,15 @@
 		maxval="9999999999.9999999999"
 		minval="-9999999999.9999999999"
 	/>
+-->
 	<property name="children"
-		type="assocation"
+		type="association"
 		inverse="father"
-		singularname="child"
+		singular="child"
 		targettype="org.rapidbeans.test.TestBeanSimple"
-		minmult="1"
+		minmult="0"
 		maxmult="4"
+		mandatory="true"
 	/>
 	<property name="father"
 		type="association"
@@ -95,8 +94,7 @@
 		targettype="org.rapidbeans.test.TestBeanSimple"
 		minmult="1"
 		maxmult="1"
-		navigable="false"
+		mandatory="true"
 	/>
--->
 	<codegen implementation="simple"/>
 </beantype>

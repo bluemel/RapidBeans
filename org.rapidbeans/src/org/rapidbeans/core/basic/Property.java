@@ -651,10 +651,25 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 		}
 	}
 
-	public static Object getValueByReflection(final RapidBean bean, final String propname) {
-		Method getter;
+	public static Object getValueFieldByReflection(final RapidBean bean, final String propname) {
 		try {
-			getter = bean.getClass().getMethod("get" + StringHelper.upperFirstCharacter(propname));
+			final Field field = bean.getClass().getDeclaredField(propname);
+			field.setAccessible(true);
+			return field.get(bean);
+		} catch (SecurityException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (NoSuchFieldException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
+	}
+
+	public static Object getValueByReflection(final RapidBean bean, final String propname) {
+		try {
+			final Method getter = bean.getClass().getMethod("get" + StringHelper.upperFirstCharacter(propname));
 			return getter.invoke(bean);
 		} catch (SecurityException e) {
 			throw new RapidBeansRuntimeException(e);

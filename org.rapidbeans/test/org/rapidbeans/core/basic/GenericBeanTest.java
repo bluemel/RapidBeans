@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
+import org.rapidbeans.domain.math.Length;
 import org.rapidbeans.domain.math.UnitLength;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
@@ -259,6 +261,22 @@ public class GenericBeanTest {
 				.createInstance("org.rapidbeans.test.TestBeanExtended1aGen");
 		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
 		assertSame(Sex.female, defaultSex);
+	}
+
+	@Test
+	public void testQuantityProperty()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertEquals(new Length(new BigDecimal("1.73"), UnitLength.m), bean.getPropValue("height"));
+		bean.setPropValue("height", new Length(new BigDecimal("73"), UnitLength.cm));
+		Assert.assertEquals(new Length(new BigDecimal("73"), UnitLength.cm), bean.getPropValue("height"));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testQuantityInvalid()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		bean.setPropValue("height", new Length(new BigDecimal("3.05"), UnitLength.m));
 	}
 
 	private void assertListsEqual(List<?> list1, List<?> list2)

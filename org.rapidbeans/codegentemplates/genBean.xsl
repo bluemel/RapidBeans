@@ -117,13 +117,13 @@
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:otherwise>
-					<!--  take the default -->
+							<!--  take the default -->
 							<xsl:value-of select="'Simple'" />
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
-			<!-- take the given parameter -->
+					<!-- take the given parameter -->
 					<xsl:call-template name="String.upperFirstCharacter">
 						<xsl:with-param name="string">
 							<xsl:value-of select="$implementation" />
@@ -993,13 +993,7 @@
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
-								<!--
-								<xsl:when test="@type = 'integer'">
-									<xsl:message terminate="yes">code generation getter for integer property not yet implemented</xsl:message>
-								</xsl:when>
-								-->
-
-								<xsl:when test="@type = 'string' or @type = 'integer' or @type = 'file'">
+								<xsl:when test="@type = 'string' or @type = 'integer' or @type = 'file' or @type = 'quantity'">
 									<xsl:value-of select="$indent2" />
 									<xsl:text>return this.</xsl:text>
 									<xsl:value-of select="@name" />
@@ -1037,9 +1031,11 @@
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
+<!--
 								<xsl:when test="@type = 'quantity'">
 									<xsl:message terminate="yes">code generation getter for quantity property not yet implemented</xsl:message>
 								</xsl:when>
+-->
 
 								<xsl:when test="@type = 'choice'">
 									<xsl:choose>
@@ -1079,7 +1075,40 @@
 								</xsl:when> <!-- @type = 'choice' -->
 
 								<xsl:when test="@type = 'association' or @type = 'associationend'">
-									<xsl:message terminate="yes">code generation getter for association property not yet implemented</xsl:message>
+									<xsl:choose>
+										<xsl:when test="@maxmult > '1'">
+											<xsl:value-of select="$indent2" />
+											<xsl:text>if (this.</xsl:text>
+											<xsl:value-of select="@name" />
+											<xsl:text> == null) {</xsl:text>
+											<xsl:value-of select="$newline" />
+											<xsl:value-of select="$indent3" />
+											<xsl:text>return null;</xsl:text>
+											<xsl:value-of select="$newline" />
+											<xsl:value-of select="$indent2" />
+											<xsl:text>} else {</xsl:text>
+											<xsl:value-of select="$newline" />
+											<xsl:value-of select="$indent3" />
+											<xsl:text>return new ReadonlyListCollection&lt;</xsl:text>
+											<xsl:value-of select="@targettype"/>
+											<xsl:text>&gt;(this.</xsl:text>
+											<xsl:value-of select="@name" />
+											<xsl:text>, getType().getPropertyType("</xsl:text>
+											<xsl:value-of select="@name" />
+											<xsl:text>"));</xsl:text>
+											<xsl:value-of select="$newline" />
+											<xsl:value-of select="$indent2" />
+											<xsl:text>}</xsl:text>
+											<xsl:value-of select="$newline" />
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="$indent2" />
+											<xsl:text>return this.</xsl:text>
+											<xsl:value-of select="@name" />
+											<xsl:text>;</xsl:text>
+											<xsl:value-of select="$newline" />
+										</xsl:otherwise>
+									</xsl:choose>
 								</xsl:when> <!-- @type = 'association(end)' -->
 
 								<xsl:when test="@type">
@@ -1387,6 +1416,7 @@
 
 							<xsl:choose> <!-- switch over types -->
 
+<!--
 								<xsl:when test="@type = 'boolean'">
 									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
@@ -1400,14 +1430,16 @@
 									<xsl:text>"), this).setValue(argValue);</xsl:text>
 									<xsl:value-of select="$newline" />
 								</xsl:when>
+-->
 
-								<xsl:when test="@type = 'string' or @type = 'date' or @type = 'quantity' or @type = 'file' or @type = 'url' or @type = 'version'">
+								<xsl:when test="@type = 'boolean' or @type = 'integer' or @type = 'string' or @type = 'date' or @type = 'quantity' or @type = 'file' or @type = 'url' or @type = 'version' or @type = 'choice' or @type = 'association' or @type = 'associationend'">
 									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
 									<xsl:text>"), this).setValue(argValue);</xsl:text>
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
+<!--
 								<xsl:when test="@type = 'choice'">
 									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
@@ -1421,6 +1453,7 @@
 									<xsl:text>"), this).setValue(argValue);</xsl:text>
 									<xsl:value-of select="$newline" />
 								</xsl:when>
+-->
 
 								<xsl:when test="@type">
 									<xsl:message terminate="yes">ERROR: unknown type '<xsl:value-of select="@type" />'</xsl:message>
@@ -1564,7 +1597,10 @@
 				<xsl:text>'.</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent1" />
-				<xsl:text> * @param bean the bean to add</xsl:text>
+				<xsl:text> * @param bean</xsl:text>
+				<xsl:value-of select="$newline" />
+				<xsl:value-of select="$indent1" />
+				<xsl:text> *            the bean to add</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent1" />
 				<xsl:text> */</xsl:text>
@@ -1577,13 +1613,26 @@
 				<xsl:text> bean) {</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent2" />
-				<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) this.</xsl:text>
-				<xsl:value-of select="@name" />
-				<xsl:text>).addLink(bean);</xsl:text>
-				<xsl:value-of select="$newline" />
+
+				<xsl:choose>
+					<xsl:when test="$codegenimpl = 'Simple'"> <!-- implementation = Simple -->
+						<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) Property.createInstance(getType().getPropertyType("</xsl:text>
+						<xsl:value-of select="@name" />
+						<xsl:text>"), this)).addLink(bean);</xsl:text>
+						<xsl:value-of select="$newline" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) this.</xsl:text>
+						<xsl:value-of select="@name" />
+						<xsl:text>).addLink(bean);</xsl:text>
+						<xsl:value-of select="$newline" />
+					</xsl:otherwise>
+				</xsl:choose>
+
 				<xsl:value-of select="$indent1" />
 				<xsl:text>}</xsl:text>
 				<xsl:value-of select="$newline" />
+
 			</xsl:if>
 
 <!--
@@ -1602,7 +1651,10 @@
 				<xsl:text>'.</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent1" />
-				<xsl:text> * @param bean the bean to add</xsl:text>
+				<xsl:text> * @param bean</xsl:text>
+				<xsl:value-of select="$newline" />
+				<xsl:value-of select="$indent1" />
+				<xsl:text> *            the bean to remove</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent1" />
 				<xsl:text> */</xsl:text>
@@ -1615,10 +1667,22 @@
 				<xsl:text> bean) {</xsl:text>
 				<xsl:value-of select="$newline" />
 				<xsl:value-of select="$indent2" />
-				<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) this.</xsl:text>
-				<xsl:value-of select="@name" />
-				<xsl:text>).removeLink(bean);</xsl:text>
-				<xsl:value-of select="$newline" />
+
+				<xsl:choose>
+					<xsl:when test="$codegenimpl = 'Simple'"> <!-- implementation = Simple -->
+						<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) Property.createInstance(getType().getPropertyType("</xsl:text>
+						<xsl:value-of select="@name" />
+						<xsl:text>"), this)).removeLink(bean);</xsl:text>
+						<xsl:value-of select="$newline" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>((org.rapidbeans.core.basic.PropertyCollection) this.</xsl:text>
+						<xsl:value-of select="@name" />
+						<xsl:text>).removeLink(bean);</xsl:text>
+						<xsl:value-of select="$newline" />
+					</xsl:otherwise>
+				</xsl:choose>
+
 				<xsl:value-of select="$indent1" />
 				<xsl:text>}</xsl:text>
 				<xsl:value-of select="$newline" />
