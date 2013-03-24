@@ -288,7 +288,7 @@
 			</xsl:if>
 		</xsl:if>
 
-		<xsl:if test="property[(@type = 'association' or @type = 'associationend') and @maxmult = '1']">
+		<xsl:if test="$codegenimpl = 'Strict' and property[(@type = 'association' or @type = 'associationend') and @maxmult = '1']">
 			<xsl:if test="(not ($codegenmode)) or ($codegenmode != 'joint')">
 				<xsl:text>import org.rapidbeans.core.basic.Link;</xsl:text>
 				<xsl:value-of select="$newline" />
@@ -415,7 +415,7 @@
 							<xsl:text>private </xsl:text>
 							<xsl:call-template name="javaType">
 								<xsl:with-param name="mode">
-									<xsl:value-of select="'get'" />
+									<xsl:value-of select="'prop'" />
 								</xsl:with-param>
 							</xsl:call-template>
 						</xsl:when>
@@ -504,7 +504,7 @@
 									<xsl:text>(</xsl:text>
 									<xsl:call-template name="javaType">
 										<xsl:with-param name="mode">
-											<xsl:value-of select="'get'" />
+											<xsl:value-of select="'prop'" />
 										</xsl:with-param>
 									</xsl:call-template>
 									<xsl:text>) getType().getPropertyType("</xsl:text>
@@ -519,7 +519,7 @@
 									<xsl:text>(</xsl:text>
 									<xsl:call-template name="javaType">
 										<xsl:with-param name="mode">
-											<xsl:value-of select="'get'" />
+											<xsl:value-of select="'prop'" />
 										</xsl:with-param>
 									</xsl:call-template>
 									<xsl:text>)</xsl:text>
@@ -534,7 +534,7 @@
 									<xsl:text>(</xsl:text>
 									<xsl:call-template name="javaType">
 										<xsl:with-param name="mode">
-											<xsl:value-of select="'get'" />
+											<xsl:value-of select="'prop'" />
 										</xsl:with-param>
 									</xsl:call-template>
 									<xsl:text>) getType().getPropertyType("</xsl:text>
@@ -1781,6 +1781,32 @@
 						<xsl:choose>
 							<xsl:when test="$mode = 'set'">
 								<xsl:text>java.util.Collection&lt;</xsl:text>
+							</xsl:when>
+							<xsl:when test="$mode = 'prop'">
+								<xsl:choose>
+									<xsl:when test="@flavor = 'bag'">
+										<xsl:choose>
+											<xsl:when test="@collectionclass">
+												<xsl:value-of select="@collectionclass"/>
+												<xsl:text>&lt;</xsl:text>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:text>java.util.ArrayList&lt;</xsl:text>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:when>
+									<xsl:otherwise> <!-- flavor is Set per default -->
+										<xsl:choose>
+											<xsl:when test="@collectionclass">
+												<xsl:value-of select="@collectionclass"/>
+												<xsl:text>&lt;</xsl:text>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:text>java.util.LinkedHashSet&lt;</xsl:text>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:text>org.rapidbeans.core.common.ReadonlyListCollection&lt;</xsl:text>
