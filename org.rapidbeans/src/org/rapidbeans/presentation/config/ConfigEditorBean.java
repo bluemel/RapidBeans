@@ -190,14 +190,16 @@ public class ConfigEditorBean extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'propertycfgs'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addPropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'propertycfgs'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removePropertycfg(final org.rapidbeans.presentation.config.ConfigPropEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.propertycfgs).removeLink(bean);

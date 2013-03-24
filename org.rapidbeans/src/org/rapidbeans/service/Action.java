@@ -313,14 +313,16 @@ public class Action extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addArgument(final org.rapidbeans.service.ActionArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'arguments'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeArgument(final org.rapidbeans.service.ActionArgument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.arguments).removeLink(bean);

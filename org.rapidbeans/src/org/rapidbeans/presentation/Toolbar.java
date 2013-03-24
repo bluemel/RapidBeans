@@ -370,14 +370,16 @@ public class Toolbar extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addButton(final org.rapidbeans.presentation.ToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeButton(final org.rapidbeans.presentation.ToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).removeLink(bean);

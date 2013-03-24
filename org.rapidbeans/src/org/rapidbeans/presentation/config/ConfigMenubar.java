@@ -159,14 +159,16 @@ public class ConfigMenubar extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'menus'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addMenu(final org.rapidbeans.presentation.config.ConfigSubmenu bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menus).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'menus'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeMenu(final org.rapidbeans.presentation.config.ConfigSubmenu bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menus).removeLink(bean);

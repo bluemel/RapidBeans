@@ -284,14 +284,16 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'views'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addView(final org.rapidbeans.presentation.config.ConfigView bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.views).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'views'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeView(final org.rapidbeans.presentation.config.ConfigView bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.views).removeLink(bean);
@@ -320,14 +322,16 @@ public class ConfigDocument extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'filterrules'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addFilterrule(final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'filterrules'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeFilterrule(final org.rapidbeans.presentation.config.ConfigFilterRuleRoleBased bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.filterrules).removeLink(bean);

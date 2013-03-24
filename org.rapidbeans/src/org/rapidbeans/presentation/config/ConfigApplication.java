@@ -409,14 +409,16 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'locales'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addLocale(final org.rapidbeans.presentation.config.ConfigLocale bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.locales).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'locales'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeLocale(final org.rapidbeans.presentation.config.ConfigLocale bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.locales).removeLink(bean);
@@ -479,14 +481,16 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'beaneditors'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addBeaneditor(final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'beaneditors'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeBeaneditor(final org.rapidbeans.presentation.config.ConfigEditorBean bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.beaneditors).removeLink(bean);
@@ -515,14 +519,16 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'documents'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addDocument(final org.rapidbeans.presentation.config.ConfigDocument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.documents).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'documents'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeDocument(final org.rapidbeans.presentation.config.ConfigDocument bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.documents).removeLink(bean);
@@ -551,14 +557,16 @@ public class ConfigApplication extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'actions'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addAction(final org.rapidbeans.service.Action bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.actions).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'actions'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeAction(final org.rapidbeans.service.Action bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.actions).removeLink(bean);

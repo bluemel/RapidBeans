@@ -124,14 +124,16 @@ public class ConfigSubmenu extends org.rapidbeans.presentation.config.ConfigMenu
 	}
 	/**
 	 * add method for Property 'menuentrys'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addMenuentry(final org.rapidbeans.presentation.config.ConfigMenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'menuentrys'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeMenuentry(final org.rapidbeans.presentation.config.ConfigMenuEntry bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.menuentrys).removeLink(bean);

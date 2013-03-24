@@ -171,14 +171,16 @@ public class ConfigToolbar extends org.rapidbeans.presentation.config.ConfigMenu
 	}
 	/**
 	 * add method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'buttons'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeButton(final org.rapidbeans.presentation.config.ConfigToolbarButton bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.buttons).removeLink(bean);

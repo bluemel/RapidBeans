@@ -294,14 +294,16 @@ public class Person extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'groups'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addGroup(final Group bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.groups).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'groups'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeGroup(final Group bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.groups).removeLink(bean);

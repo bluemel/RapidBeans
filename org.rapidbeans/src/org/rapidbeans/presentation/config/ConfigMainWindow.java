@@ -215,14 +215,16 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	}
 	/**
 	 * add method for Property 'toolbars'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to add
 	 */
 	public void addToolbar(final org.rapidbeans.presentation.config.ConfigToolbar bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.toolbars).addLink(bean);
 	}
 	/**
 	 * remove method for Property 'toolbars'.
-	 * @param bean the bean to add
+	 * @param bean
+	 *            the bean to remove
 	 */
 	public void removeToolbar(final org.rapidbeans.presentation.config.ConfigToolbar bean) {
 		((org.rapidbeans.core.basic.PropertyCollection) this.toolbars).removeLink(bean);
