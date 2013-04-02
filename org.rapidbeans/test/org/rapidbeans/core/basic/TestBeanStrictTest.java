@@ -167,6 +167,7 @@ public class TestBeanStrictTest {
 		TestBean father = new TestBean();
 		TestBean son = new TestBean();
 		Assert.assertNull(son.getFather());
+		Assert.assertEquals(0, father.getChildren().size());
 		son.setFather(father);
 		Assert.assertSame(father, son.getFather());
 		Assert.assertEquals(1, father.getChildren().size());
