@@ -2,6 +2,8 @@ package org.rapidbeans.core.basic;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -10,8 +12,10 @@ import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
+import org.rapidbeans.core.util.Version;
 import org.rapidbeans.domain.math.Length;
 import org.rapidbeans.domain.math.UnitLength;
 import org.rapidbeans.domain.org.Sex;
@@ -162,16 +166,62 @@ public class TestBeanStrictTest {
 	}
 
 	@Test
+	public void testVersionProperty()
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new Version("2.0"), bean.getVersion());
+		bean.setVersion(new Version("3.0.0"));
+		Assert.assertEquals(new Version("3.0.0"), bean.getVersion());
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testVersionInvalid()
+	{
+		TestBean bean = new TestBean();
+		bean.setVersion(null);
+	}
+
+	@Test
+	public void testUrlProperty() throws MalformedURLException
+	{
+		TestBean bean = new TestBean();
+		Assert.assertEquals(new URL("http://www.rapidbeans.org"), bean.getWebaddress());
+		bean.setWebaddress(new URL("http://www.martin-bluemel.de"));
+		Assert.assertEquals(new URL("http://www.martin-bluemel.de"), bean.getWebaddress());
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testUrlInvalid()
+	{
+		TestBean bean = new TestBean();
+		bean.setWebaddress(null);
+	}
+
+	@Test
 	public void testAssociationPropertySingle()
 	{
 		TestBean father = new TestBean();
 		TestBean son = new TestBean();
 		Assert.assertNull(son.getFather());
-		Assert.assertEquals(0, father.getChildren().size());
+		Assert.assertNull(father.getChildren());
 		son.setFather(father);
 		Assert.assertSame(father, son.getFather());
 		Assert.assertEquals(1, father.getChildren().size());
 		Assert.assertSame(son, father.getChildren().get(0));
+	}
+
+	@Test
+	@SuppressWarnings("unchecked")
+	public void testAssociationPropertySingleGenericAccess()
+	{
+		TestBean father = new TestBean();
+		TestBean son = new TestBean();
+		Assert.assertNull(son.getPropValue("father"));
+		Assert.assertNull(father.getPropValue("children"));
+		son.setPropValue("father", father);
+		Assert.assertSame(father, son.getFather());
+		Assert.assertEquals(1, ((List<TestBean>) father.getPropValue("children")).size());
+		Assert.assertSame(son, ((List<TestBean>) father.getPropValue("children")).get(0));
 	}
 
 	@Test(expected = ValidationException.class)
@@ -184,11 +234,21 @@ public class TestBeanStrictTest {
 		son.setFather(null);
 	}
 
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertySingleInvalidGenericAccess()
+	{
+		TestBean father = new TestBean();
+		TestBean son = new TestBean();
+		son.setFather(father);
+		Assert.assertEquals(1, father.getChildren().size());
+		son.setPropValue("father", null);
+	}
+
 	@Test
 	public void testAssociationPropertyMultiple()
 	{
 		TestBean father = new TestBean();
-		Assert.assertEquals(0, father.getChildren().size());
+		Assert.assertNull(father.getChildren());
 		TestBean son1 = new TestBean();
 		Assert.assertNull(son1.getFather());
 		TestBean son2 = new TestBean();
@@ -207,11 +267,48 @@ public class TestBeanStrictTest {
 		Assert.assertSame(son4, father.getChildren().get(3));
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testAssociationPropertyMultipleGenericAcces()
+	{
+		TestBean father = new TestBean();
+		Assert.assertEquals(null, father.getPropValue("children"));
+		TestBean son1 = new TestBean();
+		Assert.assertNull(son1.getPropValue("father"));
+		TestBean son2 = new TestBean();
+		Assert.assertNull(son2.getPropValue("father"));
+		TestBean son3 = new TestBean();
+		Assert.assertNull(son3.getPropValue("father"));
+		TestBean son4 = new TestBean();
+		Assert.assertNull(son4.getPropValue("father"));
+		father.setPropValue("children", Arrays.asList(new TestBean[] {
+				son1, son2, son3, son4
+		}));
+		Assert.assertEquals(4, ((ReadonlyListCollection<TestBean>) father.getPropValue("children")).size());
+		Assert.assertSame(son1, ((ReadonlyListCollection<TestBean>) father.getPropValue("children")).get(0));
+		Assert.assertSame(son2, ((ReadonlyListCollection<TestBean>) father.getPropValue("children")).get(1));
+		Assert.assertSame(son3, ((ReadonlyListCollection<TestBean>) father.getPropValue("children")).get(2));
+		Assert.assertSame(son4, ((ReadonlyListCollection<TestBean>) father.getPropValue("children")).get(3));
+	}
+
 	@Test(expected = ValidationException.class)
 	public void testAssociationPropertyMultipleInvalid()
 	{
 		TestBean bean = new TestBean();
 		bean.setChildren(Arrays.asList(new TestBean[] {
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean()
+		}));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertyMultipleInvalidGenericAcces()
+	{
+		TestBean bean = new TestBean();
+		bean.setPropValue("children", Arrays.asList(new TestBean[] {
 				new TestBean(),
 				new TestBean(),
 				new TestBean(),

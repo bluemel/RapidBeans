@@ -993,7 +993,7 @@
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
-								<xsl:when test="@type = 'string' or @type = 'integer' or @type = 'file' or @type = 'quantity'">
+								<xsl:when test="@type = 'string' or @type = 'integer' or @type = 'file' or @type = 'quantity' or @type = 'url' or @type = 'version'">
 									<xsl:value-of select="$indent2" />
 									<xsl:text>return this.</xsl:text>
 									<xsl:value-of select="@name" />
@@ -1001,6 +1001,7 @@
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
+<!--
 								<xsl:when test="@type = 'url'">
 									<xsl:message terminate="yes">code generation getter for url property not yet implemented</xsl:message>
 								</xsl:when>
@@ -1008,6 +1009,7 @@
 								<xsl:when test="@type = 'version'">
 									<xsl:message terminate="yes">code generation getter for version property not yet implemented</xsl:message>
 								</xsl:when>
+-->
 
 								<xsl:when test="@type = 'date'">
 									<xsl:value-of select="$indent2" />
@@ -1330,7 +1332,7 @@
 								</xsl:when>
 
 								<xsl:otherwise>
-					<!-- if @type is not defined take default property type: "string" -->
+									<!-- if @type is not defined take default property type: "string" -->
 									<xsl:text>return (String) this.</xsl:text>
 									<xsl:value-of select="@name" />
 									<xsl:text>.getValue();</xsl:text>
@@ -1416,45 +1418,12 @@
 
 							<xsl:choose> <!-- switch over types -->
 
-<!--
-								<xsl:when test="@type = 'boolean'">
-									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
-									<xsl:value-of select="@name" />
-									<xsl:text>"), this).setValue(argValue);</xsl:text>
-									<xsl:value-of select="$newline" />
-								</xsl:when>
-
-								<xsl:when test="@type = 'integer'">
-									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
-									<xsl:value-of select="@name" />
-									<xsl:text>"), this).setValue(argValue);</xsl:text>
-									<xsl:value-of select="$newline" />
-								</xsl:when>
--->
-
 								<xsl:when test="@type = 'boolean' or @type = 'integer' or @type = 'string' or @type = 'date' or @type = 'quantity' or @type = 'file' or @type = 'url' or @type = 'version' or @type = 'choice' or @type = 'association' or @type = 'associationend'">
 									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
 									<xsl:text>"), this).setValue(argValue);</xsl:text>
 									<xsl:value-of select="$newline" />
 								</xsl:when>
-
-<!--
-								<xsl:when test="@type = 'choice'">
-									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
-									<xsl:value-of select="@name" />
-									<xsl:text>"), this).setValue(argValue);</xsl:text>
-									<xsl:value-of select="$newline" />
-								</xsl:when>
-
-								<xsl:when test="@type = 'association' or @type = 'associationend'">
-									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
-									<xsl:value-of select="@name" />
-									<xsl:text>"), this).setValue(argValue);</xsl:text>
-									<xsl:value-of select="$newline" />
-								</xsl:when>
--->
-
 								<xsl:when test="@type">
 									<xsl:message terminate="yes">ERROR: unknown type '<xsl:value-of select="@type" />'</xsl:message>
 									<!--
@@ -1463,7 +1432,6 @@
 										<xsl:text>'</xsl:text>
 									-->
 								</xsl:when>
-
 								<xsl:otherwise>
 									<xsl:text>Property.createInstance(getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />

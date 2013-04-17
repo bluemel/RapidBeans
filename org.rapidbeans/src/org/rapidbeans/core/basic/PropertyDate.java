@@ -120,7 +120,7 @@ public class PropertyDate extends Property {
 	 * @return the String representation of this Property's value.
 	 */
 	public String toString() {
-		final Date date = this.getValue();
+		final Date date = getValue();
 		if (date == null) {
 			return null;
 		} else {

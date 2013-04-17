@@ -537,15 +537,10 @@ public class PropertyCollectionTest {
 		}
 	}
 
-	@Test
+	@Test(expected = ValidationException.class)
 	public void testSetValueInvalidNullOnMandatory() {
-		Person p = new Person();
-		try {
-			p.setAddress(null);
-			Assert.fail();
-		} catch (ValidationException e) {
-			Assert.assertTrue(true);
-		}
+		TestBean t = new TestBean();
+		t.setChildren(null);
 	}
 
 	@Test

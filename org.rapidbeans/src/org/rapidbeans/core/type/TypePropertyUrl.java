@@ -17,8 +17,10 @@
 
 package org.rapidbeans.core.type;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.util.XmlNode;
 
 /**
@@ -46,7 +48,11 @@ public class TypePropertyUrl extends TypeProperty {
 
 		String s = propertyNodes[0].getAttributeValue("@default");
 		if (s != null) {
-			setDefaultValue(s);
+			try {
+				setDefaultValue(new URL(s));
+			} catch (MalformedURLException e) {
+				throw new RapidBeansRuntimeException("Malformed default URL \"" + s + "\".");
+			}
 		}
 	}
 

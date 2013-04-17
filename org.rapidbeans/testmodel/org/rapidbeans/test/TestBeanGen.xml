@@ -71,5 +71,51 @@
 		enum="LangGeneric"
 		default="german,english"
 	/>
+	<property name="version"
+		type="version"
+		mandatory="true"
+		default="2.0"
+	/>
+	<property name="webaddress"
+		type="url"
+		mandatory="true"
+		default="http://www.rapidbeans.org"
+	/>
+
+<!--
+	<property name="zipcode"
+		type="zipcode"
+		default="85737"
+	/>
+	<property name="iq"
+		type="float"
+		default="187.654321"
+		maxval="200.0"
+		minval="50.0"
+	/>
+	<property name="dec"
+		type="decimal"
+		default="3.141"
+		maxval="9999999999.9999999999"
+		minval="-9999999999.9999999999"
+	/>
+-->
+	<property name="children"
+		type="association"
+		inverse="father"
+		singular="child"
+		targettype="org.rapidbeans.test.TestBeanGen"
+		minmult="0"
+		maxmult="4"
+		mandatory="true"
+	/>
+	<property name="father"
+		type="association"
+		inverse="children"
+		targettype="org.rapidbeans.test.TestBeanGen"
+		minmult="1"
+		maxmult="1"
+		mandatory="true"
+	/>
 	<codegen mode="none"/>
 </beantype>

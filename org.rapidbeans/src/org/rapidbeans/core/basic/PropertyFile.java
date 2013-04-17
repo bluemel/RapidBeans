@@ -60,7 +60,11 @@ public class PropertyFile extends Property {
 	 * @return the String value of this Property
 	 */
 	public File getValue() {
-		return this.value;
+		File value = this.value;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			value = (File) Property.getValueByReflection(getBean(), getName());
+		}
+		return value;
 	}
 
 	/**
@@ -70,10 +74,11 @@ public class PropertyFile extends Property {
 	 *         For a File this is the absolute path.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final File value = getValue();
+		if (value == null) {
 			return null;
 		} else {
-			return this.value.getAbsolutePath();
+			return value.getAbsolutePath();
 		}
 	}
 

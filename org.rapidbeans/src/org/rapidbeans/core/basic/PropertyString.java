@@ -67,24 +67,29 @@ public class PropertyString extends Property {
 	 * @return the String value of this Property
 	 */
 	public String getValue() {
-		return this.value;
+		String value = this.value;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			value = (String) Property.getValueByReflection(getBean(), getName());
+		}
+		return value;
 	}
 
 	/**
 	 * String value getter.
 	 * 
 	 * @return the String representation of the Property's value.<br/>
-	 *         For a String this is the value itself.
+	 *         For a String in is the escaped form of the string itself.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final String internalValue = getValue();
+		if (internalValue == null) {
 			return null;
 		}
 		final EscapeMap escapeMap = ((TypePropertyString) this.getType()).getEscapeMap();
 		if (escapeMap != null) {
-			return StringHelper.escape(this.value, escapeMap);
+			return StringHelper.escape(internalValue, escapeMap);
 		} else {
-			return this.value;
+			return internalValue;
 		}
 	}
 

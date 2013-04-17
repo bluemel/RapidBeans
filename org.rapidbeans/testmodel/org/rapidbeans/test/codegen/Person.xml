@@ -30,7 +30,6 @@
 		targettype="Address"
 		minmult="0"
 		maxmult="1"
-		mandatory="true"
 	/>
 	<property name="personmap" type="association"
         inverse="persons"

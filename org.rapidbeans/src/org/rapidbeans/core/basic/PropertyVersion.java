@@ -54,7 +54,11 @@ public class PropertyVersion extends Property {
 	 * @return the String value of this Property
 	 */
 	public Version getValue() {
-		return this.value;
+		Version value = this.value;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			value = (Version) Property.getValueByReflection(getBean(), getName());
+		}
+		return value;
 	}
 
 	/**
@@ -64,10 +68,11 @@ public class PropertyVersion extends Property {
 	 *         For a String this is the value itself.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final Version value = getValue();
+		if (value == null) {
 			return null;
 		} else {
-			return this.value.toString();
+			return value.toString();
 		}
 	}
 
@@ -82,7 +87,11 @@ public class PropertyVersion extends Property {
 	public void setValue(final Object newValue) {
 		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
 			public void setValue(final Object newValue) {
-				value = (Version) newValue;
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
+					value = (Version) newValue;
+				}
 			}
 		});
 	}

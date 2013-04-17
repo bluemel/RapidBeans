@@ -691,15 +691,6 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 	 */
 	public PropertyCollection(final TypeProperty type, final RapidBean parentBean) {
 		super(type, parentBean);
-		if (getValue() == null && this.getType().getMandatory()) {
-			if (getBean() instanceof RapidBeanImplSimple) {
-				if (((TypePropertyCollection) type).getMaxmult() != 1) {
-					Property.setValueByReflection(getBean(), getName(), createNewCollection());
-				}
-			} else {
-				this.value = createNewCollection();
-			}
-		}
 	}
 
 	/**
@@ -731,14 +722,15 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 	 */
 	@SuppressWarnings("unchecked")
 	public String toString() {
-		if (getValue() == null) {
+		final Collection<?> value = getValue();
+		if (value == null) {
 			return null;
 		}
 		final char sep = ((TypePropertyCollection) this.getType()).getCharSeparator();
 		final char esc = ((TypePropertyCollection) this.getType()).getCharEscape();
 		StringBuffer sb = new StringBuffer();
 		int i = 0;
-		for (final Link link : (Collection<Link>) getValue()) {
+		for (final Link link : (Collection<Link>) value) {
 			if (i > 0) {
 				sb.append(sep);
 			}

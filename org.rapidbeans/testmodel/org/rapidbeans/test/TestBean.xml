@@ -62,6 +62,19 @@
 		filetype="directory"
 		default="."
 	/>
+
+	<property name="version"
+		type="version"
+		mandatory="true"
+		default="2.0"
+	/>
+
+	<property name="webaddress"
+		type="url"
+		mandatory="true"
+		default="http://www.rapidbeans.org"
+	/>
+
 <!--
 	<property name="zipcode"
 		type="zipcode"

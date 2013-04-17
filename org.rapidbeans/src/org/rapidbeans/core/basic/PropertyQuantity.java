@@ -59,7 +59,11 @@ public class PropertyQuantity extends Property {
 	 * @return the value of this Property as RapidQuantity
 	 */
 	public RapidQuantity getValue() {
-		return this.value;
+		RapidQuantity value = this.value;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			value = (RapidQuantity) Property.getValueByReflection(getBean(), getName());
+		}
+		return value;
 	}
 
 	/**
@@ -70,10 +74,11 @@ public class PropertyQuantity extends Property {
 	 *         an RapidEnum name.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final RapidQuantity value = getValue();
+		if (value == null) {
 			return null;
 		} else {
-			return this.value.toString();
+			return value.toString();
 		}
 	}
 
@@ -90,7 +95,11 @@ public class PropertyQuantity extends Property {
 	public void setValue(final Object newValue) {
 		super.setValueWithEvents(this.value, newValue, new PropertyValueSetter() {
 			public void setValue(final Object newValue) {
-				value = (RapidQuantity) newValue;
+				if (getBean() instanceof RapidBeanImplSimple) {
+					Property.setValueByReflection(getBean(), getName(), newValue);
+				} else {
+					value = (RapidQuantity) newValue;
+				}
 			}
 		});
 	}

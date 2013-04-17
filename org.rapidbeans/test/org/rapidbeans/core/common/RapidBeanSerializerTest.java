@@ -7,14 +7,16 @@
  */
 package org.rapidbeans.core.common;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import javax.xml.bind.JAXBException;
 
-import junit.framework.TestCase;
-
+import org.junit.Test;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.util.FileHelper;
 import org.rapidbeans.datasource.Document;
@@ -27,13 +29,14 @@ import org.rapidbeans.test.codegen.Person;
  * 
  * @author Martin Bluemel
  */
-public class RapidBeanSerializerTest extends TestCase {
+public class RapidBeanSerializerTest {
 
 	public static boolean initialized = false;
 
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
+	@Test
 	public void testSerializeStringMultilineAttribute() throws MalformedURLException {
 		AddressBook book = new AddressBook();
 		File testfile = new File("testdata/serialization/out1.xml");
@@ -55,6 +58,7 @@ public class RapidBeanSerializerTest extends TestCase {
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
+	@Test
 	public void testSerializeStringMultilineElement() throws MalformedURLException {
 		AddressBook book = new AddressBook();
 		File testfile = new File("testdata/serialization/out1.xml");
@@ -77,6 +81,7 @@ public class RapidBeanSerializerTest extends TestCase {
 	/**
 	 * Test the default serialization for multiline strings as attributes.
 	 */
+	@Test
 	public void testSerializeStringMultilineElementWithDefinedMapping() throws MalformedURLException {
 		AddressBook book = new AddressBook();
 		File testfile = new File("testdata/serialization/out1.xml");
@@ -98,6 +103,7 @@ public class RapidBeanSerializerTest extends TestCase {
 	 * @throws IOException
 	 * @throws JAXBException
 	 */
+	@Test
 	public void testSaveBeanForJaxb() throws IOException {
 		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
 		File file2 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationTestTweakedBinding.xml");

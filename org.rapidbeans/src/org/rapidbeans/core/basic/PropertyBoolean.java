@@ -68,10 +68,11 @@ public class PropertyBoolean extends Property {
 	 * @return the value of this Property as primitve boolean type
 	 */
 	public boolean getValueBoolean() {
-		if (this.value == null) {
+		final Boolean value = getValue();
+		if (value == null) {
 			throw new RapidBeansRuntimeException("value for property not defined");
 		}
-		return this.value;
+		return value;
 	}
 
 	/**
@@ -81,10 +82,11 @@ public class PropertyBoolean extends Property {
 	 *         this is a decimal number
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final Boolean value = getValue();
+		if (value == null) {
 			return null;
 		}
-		return Boolean.toString(this.value);
+		return Boolean.toString(value);
 	}
 
 	/**

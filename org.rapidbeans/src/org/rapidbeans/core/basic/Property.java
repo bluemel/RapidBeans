@@ -635,23 +635,7 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 		return this.type.getDependentFromProps().size() > 0;
 	}
 
-	public static void setValueByReflection(final RapidBean bean, final String propname, final Object newValue) {
-		try {
-			final Field field = bean.getClass().getDeclaredField(propname);
-			field.setAccessible(true);
-			field.set(bean, newValue);
-		} catch (SecurityException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (NoSuchFieldException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (IllegalArgumentException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e);
-		}
-	}
-
-	public static Object getValueFieldByReflection(final RapidBean bean, final String propname) {
+	protected static Object getValueFieldByReflection(final RapidBean bean, final String propname) {
 		try {
 			final Field field = bean.getClass().getDeclaredField(propname);
 			field.setAccessible(true);
@@ -667,7 +651,7 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 		}
 	}
 
-	public static Object getValueByReflection(final RapidBean bean, final String propname) {
+	protected static Object getValueByReflection(final RapidBean bean, final String propname) {
 		try {
 			final Method getter = bean.getClass().getMethod("get" + StringHelper.upperFirstCharacter(propname));
 			return getter.invoke(bean);
@@ -680,6 +664,22 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 		} catch (IllegalAccessException e) {
 			throw new RapidBeansRuntimeException(e);
 		} catch (InvocationTargetException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
+	}
+
+	protected static void setValueByReflection(final RapidBean bean, final String propname, final Object newValue) {
+		try {
+			final Field field = bean.getClass().getDeclaredField(propname);
+			field.setAccessible(true);
+			field.set(bean, newValue);
+		} catch (SecurityException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (NoSuchFieldException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RapidBeansRuntimeException(e);
+		} catch (IllegalAccessException e) {
 			throw new RapidBeansRuntimeException(e);
 		}
 	}

@@ -7,7 +7,6 @@
 		surname="Bluemel"
 		prename="Martin"
 		dateofbirth="19641014"
-		address=""
 		comment="xxx\nyyy"
 		/>
 </rb:bean>

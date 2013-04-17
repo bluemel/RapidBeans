@@ -18,6 +18,7 @@
 package org.rapidbeans.core.basic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -67,13 +68,25 @@ public class PropertyChoice extends Property {
 	 * @return the value of this Property as java.util.List&lt;RapidEnum&gt;
 	 *         containing all enum elements that are members of this choice
 	 */
+	@SuppressWarnings("unchecked")
 	public ReadonlyListCollection<?> getValue() {
-		if (this.value == null) {
-			return null;
+		ReadonlyListCollection<RapidEnum> value = null;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			final Object refValue = Property.getValueByReflection(getBean(), getName());
+			if (refValue instanceof RapidEnum)
+			{
+				value = new ReadonlyListCollection<RapidEnum>(Arrays.asList(
+						new RapidEnum[] { (RapidEnum) refValue }), this.getType());
+			} else {
+				value = new ReadonlyListCollection<RapidEnum>((List<RapidEnum>) refValue, this.getType());
+			}
 		} else {
-			// we encapsulate the collection to keep the property immutable
-			return new ReadonlyListCollection<RapidEnum>(this.value, this.getType());
+			if (this.value != null) {
+				// we encapsulate the collection to keep the property immutable
+				value = new ReadonlyListCollection<RapidEnum>(this.value, this.getType());
+			}
 		}
+		return value;
 	}
 
 	/**
@@ -85,20 +98,21 @@ public class PropertyChoice extends Property {
 	 *         enum element name.
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final ReadonlyListCollection<?> value = getValue();
+		if (value == null) {
 			return null;
 		}
-		switch (this.value.size()) {
+		switch (value.size()) {
 		case 0:
 			return ("");
 		case 1:
-			return (this.value.get(0).toString());
+			return (value.get(0).toString());
 		default:
-			StringBuffer sb = new StringBuffer(this.value.get(0).toString());
-			int size = this.value.size();
+			StringBuffer sb = new StringBuffer(value.get(0).toString());
+			int size = value.size();
 			for (int i = 1; i < size; i++) {
 				sb.append(",");
-				sb.append(this.value.get(i).toString());
+				sb.append(value.get(i).toString());
 			}
 			return sb.toString();
 		}

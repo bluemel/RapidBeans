@@ -60,7 +60,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 *         BigInteger)
 	 */
 	public Number getValue() {
-		return this.value;
+		Number value = this.value;
+		if (getBean() instanceof RapidBeanImplSimple) {
+			value = (Number) Property.getValueByReflection(getBean(), getName());
+		}
+		return value;
 	}
 
 	/**
@@ -69,10 +73,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 * @return the value of this Property as primitive int type
 	 */
 	public long getValueLong() {
-		if (this.value == null) {
+		final Number number = getValue();
+		if (number == null) {
 			throw new PropValueNullException("value for property not defined");
 		}
-		return this.value.longValue();
+		return number.longValue();
 	}
 
 	/**
@@ -81,10 +86,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 * @return the value of this Property as primitive int type
 	 */
 	public int getValueInt() {
-		if (this.value == null) {
+		final Number number = getValue();
+		if (number == null) {
 			throw new PropValueNullException("value for property not defined");
 		}
-		return this.value.intValue();
+		return number.intValue();
 	}
 
 	/**
@@ -93,10 +99,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 * @return the value of this Property as primitive short type
 	 */
 	public short getValueShort() {
-		if (this.value == null) {
+		final Number number = getValue();
+		if (number == null) {
 			throw new PropValueNullException("value for property not defined");
 		}
-		return this.value.shortValue();
+		return number.shortValue();
 	}
 
 	/**
@@ -105,10 +112,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 * @return the value of this Property as primitive byte type
 	 */
 	public byte getValueByte() {
-		if (this.value == null) {
+		final Number number = getValue();
+		if (number == null) {
 			throw new PropValueNullException("value for property not defined");
 		}
-		return this.value.byteValue();
+		return number.byteValue();
 	}
 
 	/**
@@ -118,10 +126,11 @@ public final class PropertyInteger extends PropertyNumber {
 	 *         this is a decimal number
 	 */
 	public String toString() {
-		if (this.value == null) {
+		final Number number = getValue();
+		if (number == null) {
 			return null;
 		}
-		return this.value.toString();
+		return number.toString();
 	}
 
 	/**

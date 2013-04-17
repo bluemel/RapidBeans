@@ -48,6 +48,7 @@
 	/>
 	<property name = "languages"
 		type="choice"
+		mandatory="true"
 		default="german,english,french"
 		multiple="true"
 		enum="Lang"
@@ -55,7 +56,7 @@
 	<property name="height"
 		type="quantity"
 		quantity="org.rapidbeans.domain.math.Length"
-		initval="1.73 m"
+		default="1.73 m"
 		maxval="3.00 m"
 		minval="0.30 m"
 	/>
@@ -63,6 +64,18 @@
 		type="file"
 		filetype="directory"
 		default="."
+	/>
+
+	<property name="version"
+		type="version"
+		mandatory="true"
+		default="2.0"
+	/>
+
+	<property name="webaddress"
+		type="url"
+		mandatory="true"
+		default="http://www.rapidbeans.org"
 	/>
 
 <!--

@@ -19,12 +19,10 @@ package org.rapidbeans.core.basic;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
-import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.exception.ValidationInstanceAssocTwiceException;
 import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
@@ -257,20 +255,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * @return the Property's value
 	 */
 	public final Object getPropValue(final String name) {
-		Object value = null;
-		try {
-			final Method getter = this.getClass().getMethod("get" + StringHelper.upperFirstCharacter(name));
-			value = getter.invoke(this);
-		} catch (NoSuchMethodException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (IllegalArgumentException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException(e);
-		}
-		return value;
+		return Property.createInstance(getType().getPropertyType(name), this).getValue();
 	}
 
 	/**
@@ -283,20 +268,8 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 *            the Property's value to set
 	 */
 	public final void setPropValue(final String name, final Object value) {
-		try {
-			final Method setter = this.getClass().getMethod("set" + StringHelper.upperFirstCharacter(name),
-					getType().getPropertyType(name).getValuetype());
-			setter.invoke(this, value);
-		} catch (NoSuchMethodException e) {
-			throw new ValidationException("invalid.prop.name", this, "unknown property \"" + name
-					+ "\" for bean type \"" + this.getType().getName() + "\".");
-		} catch (IllegalArgumentException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RapidBeansRuntimeException(e);
-		} catch (InvocationTargetException e) {
-			throw new RapidBeansRuntimeException(e);
-		}
+		final Property prop = Property.createInstance(getType().getPropertyType(name), this);
+		prop.setValue(value);
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class TypePropertyVersion extends TypeProperty {
 		super("Version", propertyNodes, parentBeanType);
 		String s = propertyNodes[0].getAttributeValue("@default");
 		if (s != null) {
-			setDefaultValue(s);
+			setDefaultValue(new Version(s));
 		}
 	}
 

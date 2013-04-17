@@ -7,6 +7,8 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -18,10 +20,12 @@ import org.junit.Test;
 import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.type.TypeRapidEnum;
+import org.rapidbeans.core.util.Version;
 import org.rapidbeans.domain.math.Length;
 import org.rapidbeans.domain.math.UnitLength;
 import org.rapidbeans.domain.org.Sex;
 import org.rapidbeans.test.Lang;
+import org.rapidbeans.test.TestBean;
 import org.rapidbeans.test.TestHelper;
 
 /**
@@ -277,6 +281,98 @@ public class GenericBeanTest {
 	{
 		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("height", new Length(new BigDecimal("3.05"), UnitLength.m));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testAssociationPropertySingle()
+	{
+		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull(son.getPropValue("father"));
+		Assert.assertNull(father.getPropValue("children"));
+		son.setPropValue("father", father);
+		Assert.assertSame(father, ((List<GenericBean>) son.getPropValue("father")).get(0));
+		Assert.assertEquals(1, ((List<GenericBean>) father.getPropValue("children")).size());
+		Assert.assertSame(son, ((List<GenericBean>) father.getPropValue("children")).get(0));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertySingleInvalid()
+	{
+		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		son.setPropValue("father", father);
+		son.setPropValue("father", null);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testAssociationPropertyMultiple()
+	{
+		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull(father.getPropValue("children"));
+		GenericBean son1 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull((son1.getPropValue("father")));
+		GenericBean son2 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull((son2.getPropValue("father")));
+		GenericBean son3 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull((son3.getPropValue("father")));
+		GenericBean son4 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertNull((son4.getPropValue("father")));
+		father.setPropValue("children", Arrays.asList(new GenericBean[] {
+				son1, son2, son3, son4
+		}));
+		Assert.assertEquals(4, ((List<GenericBean>) father.getPropValue("children")).size());
+		Assert.assertSame(son1, ((List<GenericBean>) father.getPropValue("children")).get(0));
+		Assert.assertSame(son2, ((List<GenericBean>) father.getPropValue("children")).get(1));
+		Assert.assertSame(son3, ((List<GenericBean>) father.getPropValue("children")).get(2));
+		Assert.assertSame(son4, ((List<GenericBean>) father.getPropValue("children")).get(3));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testAssociationPropertyMultipleInvalid()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		bean.setPropValue("children", (Arrays.asList(new TestBean[] {
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean(),
+				new TestBean()
+		})));
+	}
+
+	@Test
+	public void testVersionProperty()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertEquals(new Version("2.0"), bean.getPropValue("version"));
+		bean.setPropValue("version", new Version("3.0.0"));
+		Assert.assertEquals(new Version("3.0.0"), bean.getPropValue("version"));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testVersionInvalid()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		bean.setPropValue("version", null);
+	}
+
+	@Test
+	public void testUrlProperty() throws MalformedURLException
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		Assert.assertEquals(new URL("http://www.rapidbeans.org"), bean.getPropValue("webaddress"));
+		bean.setPropValue("webaddress", new URL("http://www.martin-bluemel.de"));
+		Assert.assertEquals(new URL("http://www.martin-bluemel.de"), bean.getPropValue("webaddress"));
+	}
+
+	@Test(expected = ValidationException.class)
+	public void testUrlInvalid()
+	{
+		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		bean.setPropValue("webaddress", null);
 	}
 
 	private void assertListsEqual(List<?> list1, List<?> list2)
