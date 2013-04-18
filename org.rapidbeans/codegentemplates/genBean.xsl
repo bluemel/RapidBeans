@@ -280,12 +280,28 @@
 		</xsl:if>
 
 		<xsl:if test="$codegenimpl = 'Simple'">
-			<xsl:text>import org.rapidbeans.core.basic.Property;</xsl:text>
-			<xsl:value-of select="$newline" />
-			<xsl:if test="property[@type = 'choice' and @multiple = 'true']">
-				<xsl:text>import org.rapidbeans.core.common.ReadonlyListCollection;</xsl:text>
+			<xsl:if test="count(property) > 0">
+				<xsl:text>import org.rapidbeans.core.basic.Property;</xsl:text>
 				<xsl:value-of select="$newline" />
 			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="property[@type = 'choice' and @multiple = 'true']">
+					<xsl:text>import org.rapidbeans.core.common.ReadonlyListCollection;</xsl:text>
+					<xsl:value-of select="$newline" />
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:if test="property[@type = 'association' or @type = 'associationend']">
+						<xsl:choose>
+							<xsl:when test="@maxmult = '1'">
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:text>import org.rapidbeans.core.common.ReadonlyListCollection;</xsl:text>
+								<xsl:value-of select="$newline" />
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:if>
+				</xsl:otherwise>
+			</xsl:choose>
 		</xsl:if>
 
 		<xsl:if test="$codegenimpl = 'Strict' and property[(@type = 'association' or @type = 'associationend') and @maxmult = '1']">
@@ -976,7 +992,7 @@
 							<xsl:value-of select="$indent1" />
 							<xsl:text>}</xsl:text>
 							<xsl:value-of select="$newline" />
-						</xsl:when>
+						</xsl:when> <!-- $codegenmode = 'joint' -->
 					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
@@ -1078,7 +1094,14 @@
 
 								<xsl:when test="@type = 'association' or @type = 'associationend'">
 									<xsl:choose>
-										<xsl:when test="@maxmult > '1'">
+										<xsl:when test="@maxmult = '1'">
+											<xsl:value-of select="$indent2" />
+											<xsl:text>return this.</xsl:text>
+											<xsl:value-of select="@name" />
+											<xsl:text>;</xsl:text>
+											<xsl:value-of select="$newline" />
+										</xsl:when> <!-- maxmult = '1' -->
+										<xsl:otherwise>
 											<xsl:value-of select="$indent2" />
 											<xsl:text>if (this.</xsl:text>
 											<xsl:value-of select="@name" />
@@ -1101,13 +1124,6 @@
 											<xsl:value-of select="$newline" />
 											<xsl:value-of select="$indent2" />
 											<xsl:text>}</xsl:text>
-											<xsl:value-of select="$newline" />
-										</xsl:when>
-										<xsl:otherwise>
-											<xsl:value-of select="$indent2" />
-											<xsl:text>return this.</xsl:text>
-											<xsl:value-of select="@name" />
-											<xsl:text>;</xsl:text>
 											<xsl:value-of select="$newline" />
 										</xsl:otherwise>
 									</xsl:choose>
