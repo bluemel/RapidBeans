@@ -243,7 +243,11 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 * @return the bean's Property with the specified name.
 	 */
 	public final Property getProperty(final String name) {
-		return Property.createInstance(getType().getPropertyType(name), this);
+		final TypeProperty propType = getType().getPropertyType(name);
+		if (propType == null) {
+			return null;
+		}
+		return Property.createInstance(propType, this);
 	}
 
 	/**

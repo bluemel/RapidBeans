@@ -48,6 +48,23 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	private static final Logger log = Logger.getLogger(RapidBeanImplParent.class.getName());
 
 	/**
+	 * Creates a new bean instance from a special type.
+	 * 
+	 * @param type
+	 *            the bean's type
+	 * 
+	 * @return the new bean instance
+	 */
+	public static RapidBeanImplParent createInstance(final TypeRapidBean type) {
+		Class<?> clazz = type.getImplementingClass();
+		if (clazz != null && RapidBeanImplSimple.class.isAssignableFrom(clazz)) {
+			return RapidBeanImplSimple.createInstance(type);
+		} else {
+			return RapidBeanImplStrict.createInstance(type);
+		}
+	}
+
+	/**
 	 * @return the bean's type instance
 	 */
 	public abstract TypeRapidBean getType();

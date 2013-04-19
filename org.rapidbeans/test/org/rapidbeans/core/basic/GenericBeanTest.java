@@ -297,15 +297,6 @@ public class GenericBeanTest {
 		Assert.assertSame(son, ((List<GenericBean>) father.getPropValue("children")).get(0));
 	}
 
-	@Test(expected = ValidationException.class)
-	public void testAssociationPropertySingleInvalid()
-	{
-		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		GenericBean son = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		son.setPropValue("father", father);
-		son.setPropValue("father", null);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testAssociationPropertyMultiple()

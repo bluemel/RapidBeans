@@ -99,7 +99,6 @@
 		targettype="org.rapidbeans.test.TestBeanSimple"
 		minmult="0"
 		maxmult="4"
-		mandatory="true"
 	/>
 	<property name="father"
 		type="association"
@@ -107,7 +106,6 @@
 		targettype="org.rapidbeans.test.TestBeanSimple"
 		minmult="1"
 		maxmult="1"
-		mandatory="true"
 	/>
 	<codegen implementation="simple"/>
 </beantype>

@@ -33,6 +33,7 @@ import org.rapidbeans.core.basic.IdType;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.basic.ThreadLocalValidationSettings;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
@@ -186,7 +187,7 @@ public final class RapidBeanDeserializer {
 			}
 			rootBeanType = TypeRapidBean.forName(typename);
 		}
-		final RapidBean bean = RapidBeanImplStrict.createInstance(rootBeanType);
+		final RapidBean bean = RapidBeanImplParent.createInstance(rootBeanType);
 		loadBeanNode(0, bean, bizBeanNode);
 		if (this.beansWithLateIdBinding != null) {
 			for (RapidBean pbean : this.beansWithLateIdBinding) {

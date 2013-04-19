@@ -52,6 +52,8 @@ import org.rapidbeans.service.Action;
 import org.rapidbeans.test.BillingPeriod;
 import org.rapidbeans.test.ClosingPeriod;
 import org.rapidbeans.test.Location;
+import org.rapidbeans.test.TestBean;
+import org.rapidbeans.test.TestBeanSimple;
 import org.rapidbeans.test.codegen.Address;
 import org.rapidbeans.test.codegen.AddressBook;
 import org.rapidbeans.test.codegen.Person;
@@ -96,6 +98,33 @@ public class DocumentTest {
 				}
 			}
 		}
+	}
+
+	@Test
+	public void testReadFromFileGeneric() {
+		Document testdoc = new Document(
+				new File("../org.rapidbeans/testdata/testBeanGenericExample.xml"));
+		GenericBean bean = (GenericBean) testdoc.getRoot();
+		Assert.assertEquals("Bluemel", bean.getPropValue("surname"));
+		Assert.assertEquals("Martin", bean.getPropValue("prename"));
+	}
+
+	@Test
+	public void testReadFromFileStrict() {
+		Document testdoc = new Document(
+				new File("../org.rapidbeans/testdata/testBeanStrictExample.xml"));
+		TestBean bean = (TestBean) testdoc.getRoot();
+		Assert.assertEquals("Bluemel", bean.getSurname());
+		Assert.assertEquals("Martin", bean.getPrename());
+	}
+
+	@Test
+	public void testReadFromFileSimple() {
+		Document testdoc = new Document(
+				new File("../org.rapidbeans/testdata/testBeanSimpleExample.xml"));
+		TestBeanSimple bean = (TestBeanSimple) testdoc.getRoot();
+		Assert.assertEquals("Bluemel", bean.getSurname());
+		Assert.assertEquals("Martin", bean.getPrename());
 	}
 
 	/**

@@ -460,26 +460,6 @@ public class TestBeanSimpleTest {
 		Assert.assertSame(son, ((List<TestBean>) father.getPropValue("children")).get(0));
 	}
 
-	@Test(expected = ValidationException.class)
-	public void testAssociationPropertySingleInvalid()
-	{
-		TestBeanSimple father = new TestBeanSimple();
-		TestBeanSimple son = new TestBeanSimple();
-		son.setFather(father);
-		Assert.assertEquals(1, father.getChildren().size());
-		son.setFather(null);
-	}
-
-	@Test(expected = ValidationException.class)
-	public void testAssociationPropertySingleInvalidGenericAccess()
-	{
-		TestBeanSimple father = new TestBeanSimple();
-		TestBeanSimple son = new TestBeanSimple();
-		son.setFather(father);
-		Assert.assertEquals(1, father.getChildren().size());
-		son.setPropValue("father", null);
-	}
-
 	@Test
 	public void testAssociationPropertyMultiple()
 	{

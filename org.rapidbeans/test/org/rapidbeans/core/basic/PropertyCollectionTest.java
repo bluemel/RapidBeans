@@ -537,12 +537,6 @@ public class PropertyCollectionTest {
 		}
 	}
 
-	@Test(expected = ValidationException.class)
-	public void testSetValueInvalidNullOnMandatory() {
-		TestBean t = new TestBean();
-		t.setChildren(null);
-	}
-
 	@Test
 	public void testAddLinkInvalidTargetType() {
 		Address adr = new Address();
