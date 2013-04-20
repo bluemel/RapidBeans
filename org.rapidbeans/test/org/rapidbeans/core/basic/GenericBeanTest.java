@@ -126,9 +126,9 @@ public class GenericBeanTest {
 	 */
 	@Test
 	public void testCreateInstanceFromModels() {
-		GenericBean bean1 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean1 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		assertEquals("org.rapidbeans.test.TestBeanGen", bean1.getType().getName());
-		GenericBean bean2 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean2 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		assertEquals("org.rapidbeans.test.TestBeanGen", bean2.getType().getName());
 		// approve that the type instance is registered just once
 		assertSame(bean1.getType(), bean2.getType());
@@ -137,7 +137,7 @@ public class GenericBeanTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testPropertyFile() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		assertSame(Sex.male, (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0));
 		bean.setPropValue("sex", Sex.female);
 		assertSame(Sex.female, (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0));
@@ -145,7 +145,7 @@ public class GenericBeanTest {
 
 	@Test
 	public void testStringProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals("Ismaning", bean.getPropValue("city"));
 		bean.setPropValue("city", "Mannheim");
 		Assert.assertEquals("Mannheim", bean.getPropValue("city"));
@@ -153,13 +153,13 @@ public class GenericBeanTest {
 
 	@Test(expected = ValidationException.class)
 	public void testStringPropertyInvalid() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("email", "xyz");
 	}
 
 	@Test
 	public void testDateProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(DFDATE.parse("14.10.1964"), bean.getPropValue("dateofbirth"));
 		bean.setPropValue("dateofbirth", DFDATE.parse("15.10.1964"));
 		Assert.assertEquals(DFDATE.parse("15.10.1964"), bean.getPropValue("dateofbirth"));
@@ -167,13 +167,13 @@ public class GenericBeanTest {
 
 	@Test(expected = ValidationException.class)
 	public void testDatePropertyInvalid() throws ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("dateofbirth", DFDATE.parse("14.10.1700"));
 	}
 
 	@Test
 	public void testBooleanProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(true, bean.getPropValue("married"));
 		bean.setPropValue("married", false);
 		Assert.assertEquals(false, bean.getPropValue("married"));
@@ -181,13 +181,13 @@ public class GenericBeanTest {
 
 	@Test(expected = ValidationException.class)
 	public void testBooleanPropertyInvalid() throws ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("married", null);
 	}
 
 	@Test
 	public void testIntegerProperty() throws SecurityException, NoSuchFieldException, ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(43, bean.getPropValue("shoesize"));
 		bean.setPropValue("shoesize", 40);
 		Assert.assertEquals(40, bean.getPropValue("shoesize"));
@@ -195,7 +195,7 @@ public class GenericBeanTest {
 
 	@Test(expected = ValidationException.class)
 	public void testIntegerPropertyInvalid() throws SecurityException, NoSuchFieldException, ParseException {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("shoesize", 5);
 	}
 
@@ -203,7 +203,7 @@ public class GenericBeanTest {
 	@Test
 	public void testChoicePropertySingle()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(Sex.male, ((ReadonlyListCollection<Sex>) bean.getPropValue("sex")).get(0));
 		bean.setPropValue("sex", Sex.female);
 		Assert.assertEquals(Sex.female, ((ReadonlyListCollection<Sex>) bean.getPropValue("sex")).get(0));
@@ -212,7 +212,7 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testChoicePropertySingleInvalidEnumType()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("sex", UnitLength.cm);
 	}
 
@@ -221,7 +221,7 @@ public class GenericBeanTest {
 	public void testChoicePropertyMultiple()
 	{
 		TypeRapidEnum tlang = TypeRapidEnum.forName("org.rapidbeans.test.LangGeneric");
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		assertListsEqual(Arrays.asList(new RapidEnum[] {
 				tlang.elementOf("german"),
 				tlang.elementOf("english"),
@@ -238,14 +238,14 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testChoicePropertyMultipleInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("languages", (Arrays.asList(new Lang[] { Lang.chinese, Lang.spanish })));
 	}
 
 	@Test
 	public void testFileProperty()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(new File("."), bean.getPropValue("homedir"));
 		bean.setPropValue("homedir", new File(System.getProperty("user.dir")));
 		Assert.assertEquals(new File(System.getProperty("user.dir")), bean.getPropValue("homedir"));
@@ -254,15 +254,15 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testFilePropertyInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("homedir", new File("pom.xml"));
 	}
 
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testOverriding() {
-		GenericBean bean = (GenericBean) RapidBeanImplStrict
-				.createInstance("org.rapidbeans.test.TestBeanExtended1aGen");
+		GenericBean bean = (GenericBean)
+				RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanExtended1aGen");
 		Sex defaultSex = (Sex) ((List<RapidEnum>) bean.getPropValue("sex")).get(0);
 		assertSame(Sex.female, defaultSex);
 	}
@@ -270,7 +270,7 @@ public class GenericBeanTest {
 	@Test
 	public void testQuantityProperty()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(new Length(new BigDecimal("1.73"), UnitLength.m), bean.getPropValue("height"));
 		bean.setPropValue("height", new Length(new BigDecimal("73"), UnitLength.cm));
 		Assert.assertEquals(new Length(new BigDecimal("73"), UnitLength.cm), bean.getPropValue("height"));
@@ -279,7 +279,7 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testQuantityInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("height", new Length(new BigDecimal("3.05"), UnitLength.m));
 	}
 
@@ -287,8 +287,8 @@ public class GenericBeanTest {
 	@Test
 	public void testAssociationPropertySingle()
 	{
-		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
-		GenericBean son = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean father = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull(son.getPropValue("father"));
 		Assert.assertNull(father.getPropValue("children"));
 		son.setPropValue("father", father);
@@ -301,15 +301,15 @@ public class GenericBeanTest {
 	@Test
 	public void testAssociationPropertyMultiple()
 	{
-		GenericBean father = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean father = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull(father.getPropValue("children"));
-		GenericBean son1 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son1 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull((son1.getPropValue("father")));
-		GenericBean son2 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son2 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull((son2.getPropValue("father")));
-		GenericBean son3 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son3 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull((son3.getPropValue("father")));
-		GenericBean son4 = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean son4 = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertNull((son4.getPropValue("father")));
 		father.setPropValue("children", Arrays.asList(new GenericBean[] {
 				son1, son2, son3, son4
@@ -324,7 +324,7 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testAssociationPropertyMultipleInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("children", (Arrays.asList(new TestBean[] {
 				new TestBean(),
 				new TestBean(),
@@ -337,7 +337,7 @@ public class GenericBeanTest {
 	@Test
 	public void testVersionProperty()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(new Version("2.0"), bean.getPropValue("version"));
 		bean.setPropValue("version", new Version("3.0.0"));
 		Assert.assertEquals(new Version("3.0.0"), bean.getPropValue("version"));
@@ -346,14 +346,14 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testVersionInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("version", null);
 	}
 
 	@Test
 	public void testUrlProperty() throws MalformedURLException
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		Assert.assertEquals(new URL("http://www.rapidbeans.org"), bean.getPropValue("webaddress"));
 		bean.setPropValue("webaddress", new URL("http://www.martin-bluemel.de"));
 		Assert.assertEquals(new URL("http://www.martin-bluemel.de"), bean.getPropValue("webaddress"));
@@ -362,7 +362,7 @@ public class GenericBeanTest {
 	@Test(expected = ValidationException.class)
 	public void testUrlInvalid()
 	{
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("org.rapidbeans.test.TestBeanGen");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("org.rapidbeans.test.TestBeanGen");
 		bean.setPropValue("webaddress", null);
 	}
 

@@ -28,7 +28,7 @@ import org.rapidbeans.core.basic.GenericBean;
 import org.rapidbeans.core.basic.IdGeneratorNumeric;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.BeanDuplicateException;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
@@ -100,6 +100,7 @@ public class DocumentTest {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testReadFromFileGeneric() {
 		Document testdoc = new Document(
@@ -107,6 +108,13 @@ public class DocumentTest {
 		GenericBean bean = (GenericBean) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getPropValue("surname"));
 		Assert.assertEquals("Martin", bean.getPropValue("prename"));
+		Assert.assertEquals(1, ((List<GenericBean>) bean.getPropValue("children")).size());
+		Assert.assertEquals("Bluemel",
+				((List<GenericBean>) bean.getPropValue("children")).get(0).getPropValue("surname"));
+		Assert.assertEquals("Melanie",
+				((List<GenericBean>) bean.getPropValue("children")).get(0).getPropValue("prename"));
+		Assert.assertSame(bean,
+				((List<GenericBean>) bean.getPropValue("children")).get(0).getParentBean());
 	}
 
 	@Test
@@ -116,6 +124,10 @@ public class DocumentTest {
 		TestBean bean = (TestBean) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getSurname());
 		Assert.assertEquals("Martin", bean.getPrename());
+		Assert.assertEquals(1, bean.getChildren().size());
+		Assert.assertEquals("Bluemel", bean.getChildren().get(0).getSurname());
+		Assert.assertEquals("Melanie", bean.getChildren().get(0).getPrename());
+		Assert.assertSame(bean, bean.getChildren().get(0).getParentBean());
 	}
 
 	@Test
@@ -125,6 +137,10 @@ public class DocumentTest {
 		TestBeanSimple bean = (TestBeanSimple) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getSurname());
 		Assert.assertEquals("Martin", bean.getPrename());
+		Assert.assertEquals(1, bean.getChildren().size());
+		Assert.assertEquals("Bluemel", bean.getChildren().get(0).getSurname());
+		Assert.assertEquals("Melanie", bean.getChildren().get(0).getPrename());
+		Assert.assertSame(bean, bean.getChildren().get(0).getParentBean());
 	}
 
 	/**
@@ -1529,7 +1545,7 @@ public class DocumentTest {
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(descr);
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("BillingPeriod");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("BillingPeriod");
 		bean.setPropValue("from", dateBegin);
 		bean.setPropValue("to", dateEnd);
 		return bean;
@@ -1564,7 +1580,7 @@ public class DocumentTest {
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Trainer");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("Trainer");
 		bean.setPropValue("lastname", lastname);
 		bean.setPropValue("firstname", firstname);
 		bean.setPropValue("leader", new Boolean(leader));
@@ -1586,7 +1602,7 @@ public class DocumentTest {
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("Certificate");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("Certificate");
 		bean.setPropValue("name", name);
 		return bean;
 	}
@@ -1622,7 +1638,7 @@ public class DocumentTest {
 			XmlNode xmlNode = XmlNode.getDocumentTopLevel(new ByteArrayInputStream(descr.getBytes()));
 			new TypeRapidBean(null, xmlNode, null, true);
 		}
-		GenericBean bean = (GenericBean) RapidBeanImplStrict.createInstance("TrainingDate");
+		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("TrainingDate");
 		bean.setPropValue("name", name);
 		bean.setPropValue("dayofweek", dayofweek);
 		bean.setPropValue("timestart", tstart);

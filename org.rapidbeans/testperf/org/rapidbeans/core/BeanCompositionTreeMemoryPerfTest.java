@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import junit.framework.TestCase;
 
 import org.rapidbeans.core.basic.PropertyCollection;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.presentation.MenuItem;
 import org.rapidbeans.presentation.Submenu;
@@ -30,7 +30,7 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		// set up a first composite tree
 		System.out.println("[BeanCompositionTreeMemoryTest] setting up 1st composite tree...");
 		Thread.sleep(100);
-		Submenu menu1 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
+		Submenu menu1 = (Submenu) RapidBeanImplParent.createInstance("org.rapidbeans.presentation.Submenu");
 		createSubmenus(menu1, count);
 
 		// set up a second composite tree without releasing the first one
@@ -38,7 +38,7 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		System.out.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree\n"
 				+ "[BeanCompositionTreeMemoryTest]   without releasing the 1st one...");
 		Thread.sleep(100);
-		Submenu menu2 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
+		Submenu menu2 = (Submenu) RapidBeanImplParent.createInstance("org.rapidbeans.presentation.Submenu");
 		try {
 			createSubmenus(menu2, count);
 			fail("expected OutOfMemoryError");
@@ -65,7 +65,7 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 
 		System.out.println("[BeanCompositionTreeMemoryTest] setting up 2nd composite tree again...");
 		Thread.sleep(100);
-		menu2 = (Submenu) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.Submenu");
+		menu2 = (Submenu) RapidBeanImplParent.createInstance("org.rapidbeans.presentation.Submenu");
 		createSubmenus(menu2, count);
 
 		System.out.println("[BeanCompositionTreeMemoryTest] finished: garbage collection succeded");
@@ -83,7 +83,7 @@ public final class BeanCompositionTreeMemoryPerfTest extends TestCase {
 		PropertyCollection propCol = (PropertyCollection) menu.getProperty("menuentrys");
 		MenuItem item;
 		for (int i = 1; i < count; i++) {
-			item = (MenuItem) RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
+			item = (MenuItem) RapidBeanImplParent.createInstance("org.rapidbeans.presentation.MenuItem");
 			propCol.addLink(item);
 		}
 	}

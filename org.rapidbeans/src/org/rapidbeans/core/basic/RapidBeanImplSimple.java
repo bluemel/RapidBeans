@@ -281,11 +281,24 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	 */
 	public RapidBean clone() {
 		RapidBeanImplSimple bClone = RapidBeanImplSimple.createInstance(this.getType());
-		for (int i = 0; i < getPropertyList().size(); i++) {
-			bClone.getPropertyList().get(i).setValue(getPropertyList().get(i).clone(bClone));
-		}
 		bClone.initPropmap();
 		bClone.initProperties();
+		final List<Property> thisProps = getPropertyList();
+		final List<Property> cloneProps = bClone.getPropertyList();
+		final int n = thisProps.size();
+		for (int i = 0; i < n; i++) {
+			final Property thisProp = thisProps.get(i);
+			final Property cloneProp = cloneProps.get(i);
+			if (thisProp instanceof PropertyCollection
+					&& ((TypePropertyCollection) thisProp.getType()).isComposition()
+					&& thisProp.getValue() != null) {
+				for (final Object o : ((PropertyCollection) thisProp).getValue()) {
+					((PropertyCollection) thisProp).addLink(((RapidBean) o).clone());
+				}
+			} else {
+				cloneProp.setValue(thisProp.getValue());
+			}
+		}
 		bClone.setContainer(this.getContainer());
 		return bClone;
 	}
@@ -344,7 +357,7 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 	public void validate() {
 		for (Property prop : getPropertyList()) {
 			ThreadLocalValidationSettings.readonlyOff();
-			prop.validate(prop.getValue());
+			prop.validate(Property.getValueByReflection(this, prop.getName()));
 		}
 	}
 }

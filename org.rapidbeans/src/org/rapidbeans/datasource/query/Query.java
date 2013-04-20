@@ -24,7 +24,7 @@ import org.rapidbeans.core.basic.BeanSorter;
 import org.rapidbeans.core.basic.Container;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.datasource.DatasourceException;
 import org.rapidbeans.presentation.ApplicationManager;
@@ -793,9 +793,9 @@ public final class Query {
 					throw new QueryException("no concrete subtype found for type \"" + type.getName() + "\"");
 				}
 				final TypeRapidBean firstConcreteSubtype = concreteSubtypes.get(0);
-				bbExample = RapidBeanImplStrict.createInstance(firstConcreteSubtype);
+				bbExample = RapidBeanImplParent.createInstance(firstConcreteSubtype);
 			} else {
-				bbExample = RapidBeanImplStrict.createInstance(rootExpr.getTypename());
+				bbExample = RapidBeanImplParent.createInstance(rootExpr.getTypename());
 			}
 			final Property prop = bbExample.getProperty(propPath);
 			if (prop == null) {

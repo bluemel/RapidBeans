@@ -102,6 +102,7 @@
 -->
 	<property name="children"
 		type="association"
+		composition="true"
 		inverse="father"
 		singular="child"
 		targettype="org.rapidbeans.test.TestBeanGen"

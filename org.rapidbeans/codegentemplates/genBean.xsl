@@ -531,7 +531,15 @@
 							<!--
 								this.xxx = (java.util.List<Lang>)
 									((java.util.List<?>) getType().getPropertyType("xxx").getDefaultValue()).get(0);
+								this.xxx = getType().getPropertyType("osfamily").getDefaultValue() == null ? null :
+									(org.rapidbeans.core.util.OperatingSystemFamily)
+		              ((java.util.List<?>) getType().getPropertyType("osfamily").getDefaultValue()).get(0);
 							 -->
+							 		<xsl:text>getType().getPropertyType("</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text>").getDefaultValue() == null ? null :</xsl:text>
+									<xsl:value-of select="$newline" />
+									<xsl:value-of select="$indent4" />
 									<xsl:text>(</xsl:text>
 									<xsl:call-template name="javaType">
 										<xsl:with-param name="mode">

@@ -37,7 +37,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.rapidbeans.core.basic.IdType;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.basic.ThreadLocalValidationSettings;
 import org.rapidbeans.core.common.HistoryList;
@@ -863,7 +863,7 @@ public class Application implements Appl {
 	 */
 	public final DocumentView openNewDocumentView(final String docname, final String typename,
 			final String docconfname, final String viewconfname) {
-		RapidBean root = RapidBeanImplStrict.createInstance(typename);
+		RapidBean root = RapidBeanImplParent.createInstance(typename);
 		Document doc = new Document(docname, root);
 		return this.openDocumentView(doc, docconfname, viewconfname);
 	}
@@ -1248,7 +1248,7 @@ public class Application implements Appl {
 		if (RapidBeansTypeLoader.getInstance().getXmlRootElementBinding("applicationcfg") != null) {
 			final TypeRapidBean beantype = RapidBeansTypeLoader.getInstance()
 					.getXmlRootElementBinding("applicationcfg");
-			cfg = (ConfigApplication) RapidBeanImplStrict.createInstance(beantype);
+			cfg = (ConfigApplication) RapidBeanImplParent.createInstance(beantype);
 		} else {
 			cfg = new ConfigApplication();
 		}

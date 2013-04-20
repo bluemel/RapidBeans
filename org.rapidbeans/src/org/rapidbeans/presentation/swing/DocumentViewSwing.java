@@ -35,7 +35,7 @@ import javax.swing.event.InternalFrameListener;
 
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.datasource.Filter;
@@ -221,7 +221,7 @@ public class DocumentViewSwing extends DocumentView {
 	 */
 	public EditorBean createBean(final Object key, final PropertyCollection parentBeanColProp) {
 		final boolean docChangedBefore = getDocument().getChanged();
-		RapidBean newBean = RapidBeanImplStrict.createInstance(((TypePropertyCollection) parentBeanColProp.getType())
+		RapidBean newBean = RapidBeanImplParent.createInstance(((TypePropertyCollection) parentBeanColProp.getType())
 				.getTargetType().getName());
 		EditorBean editor = this.getEditor(newBean, true);
 		if (editor == null) {

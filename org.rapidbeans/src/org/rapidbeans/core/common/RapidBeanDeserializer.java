@@ -34,7 +34,6 @@ import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.basic.RapidBeanImplParent;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.basic.ThreadLocalValidationSettings;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
@@ -350,7 +349,7 @@ public final class RapidBeanDeserializer {
 			final PropertyCollection colProp) {
 		final TypeRapidBean colPropTargetType = determineColPropTargetType(subnode, colProp);
 		try {
-			final RapidBean subnodeBean = RapidBeanImplStrict.createInstance(colPropTargetType.getName());
+			final RapidBean subnodeBean = RapidBeanImplParent.createInstance(colPropTargetType.getName());
 			loadBeanNode(depth + 1, subnodeBean, subnode);
 			colProp.addLink(subnodeBean);
 			if (subnodeBean.getType().getIdtype() == IdType.keypropswithparentscope
@@ -403,12 +402,17 @@ public final class RapidBeanDeserializer {
 		}
 
 		if (colProp == null) {
+			colProp = bean.findAssociationPropertyWithSingularName(subnodeName);
+		}
+
+		if (colProp == null) {
 			try {
 				colProp = (PropertyCollection) bean.getProperty(bean.getType().mapXmlElementToPropName(subnodeName));
 			} catch (ClassCastException e) {
 				colProp = null;
 			}
 		}
+
 		return colProp;
 	}
 

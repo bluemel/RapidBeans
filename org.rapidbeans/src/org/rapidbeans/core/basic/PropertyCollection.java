@@ -74,7 +74,8 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 		Collection<Link> val = null;
 		if (getBean() instanceof RapidBeanImplSimple)
 		{
-			final Object valobj = Property.getValueByReflection(getBean(), getName());
+			// use getValueField here because the collection will be wrapped later on anyway
+			final Object valobj = Property.getValueFieldByReflection(getBean(), getName());
 			if (valobj != null)
 			{
 				if (valobj instanceof Link) {
@@ -212,7 +213,11 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 			}
 			if (getBean() instanceof RapidBeanImplSimple) {
 				if (proptype.getMaxmult() == 1) {
-					Property.setValueByReflection(getBean(), getName(), newCol.iterator().next());
+					if (newCol != null && newCol.iterator() != null) {
+						Property.setValueByReflection(getBean(), getName(), newCol.iterator().next());
+					} else {
+						Property.setValueByReflection(getBean(), getName(), null);
+					}
 				} else {
 					Property.setValueByReflection(getBean(), getName(), newCol);
 				}
@@ -347,11 +352,11 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 			fireChangePre(this, PropertyChangeEventType.addlink, null, null, link);
 			boolean addSuccess = false;
 			if (getBean() instanceof RapidBeanImplSimple) {
-				final Object valobj = Property.getValueFieldByReflection(getBean(), getName());
+				Object valobj = Property.getValueFieldByReflection(getBean(), getName());
 				if (valobj == null) {
-					throw new AssertionError("null value");
-				}
-				if (valobj instanceof Link) {
+					valobj = createNewCollection();
+					Property.setValueByReflection(getBean(), getName(), createNewCollection());
+				} else if (valobj instanceof Link) {
 					throw new AssertionError("no collection value");
 				}
 				addSuccess = ((Collection<Link>) valobj).add(link);
@@ -376,7 +381,8 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 					}
 				} catch (BeanDuplicateException e) {
 					if (getBean() instanceof RapidBeanImplSimple) {
-						final Object valobj = Property.getValueByReflection(getBean(), getName());
+						// use getValueField here because the collection must be modifiable
+						final Object valobj = Property.getValueFieldByReflection(getBean(), getName());
 						if (valobj == null) {
 							throw new AssertionError("null value");
 						}
@@ -526,7 +532,8 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 			fireChangePre(this, PropertyChangeEventType.removelink, null, null, link);
 			if (getBean() instanceof RapidBeanImplSimple) {
 				if (getValue() != null) {
-					final Object valobj = Property.getValueByReflection(getBean(), getName());
+					// use getValueField here because the collection must be modifiable
+					final Object valobj = Property.getValueFieldByReflection(getBean(), getName());
 					if (valobj == null) {
 						throw new AssertionError("null value");
 					}

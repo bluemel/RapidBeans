@@ -26,7 +26,7 @@ import org.rapidbeans.core.basic.Id;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyAssociationend;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 import org.rapidbeans.core.basic.ThreadLocalValidationSettings;
 
 /**
@@ -196,7 +196,7 @@ class QueryExprConditionAttrval extends QueryExpression {
 			} else {
 				curBop = curBo.getProperty(this.attrName);
 				if (bop == null) {
-					bo = RapidBeanImplStrict.createInstance(curBo.getType().getName());
+					bo = RapidBeanImplParent.createInstance(curBo.getType().getName());
 					bop = bo.getProperty(this.attrName);
 					if (bop == null) {
 						throw new QueryException("Property \"" + this.attrName + "\" not found for type \""

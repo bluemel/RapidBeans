@@ -637,7 +637,8 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 
 	protected static Object getValueFieldByReflection(final RapidBean bean, final String propname) {
 		try {
-			final Field field = bean.getClass().getDeclaredField(propname);
+			// final Field field = bean.getClass().getDeclaredField(propname);
+			final Field field = getDeclaredField(bean.getClass(), propname);
 			field.setAccessible(true);
 			return field.get(bean);
 		} catch (SecurityException e) {
@@ -668,9 +669,22 @@ public abstract class Property implements Cloneable, Comparable<Property> {
 		}
 	}
 
+	private static Field getDeclaredField(final Class<?> clazz, final String name) throws NoSuchFieldException
+	{
+		try {
+			return clazz.getDeclaredField(name);
+		} catch (NoSuchFieldException e) {
+			if (clazz.getSuperclass() != null && (!clazz.getSuperclass().equals(Object.class))) {
+				return getDeclaredField(clazz.getSuperclass(), name);
+			}
+			throw e;
+		}
+	}
+
 	protected static void setValueByReflection(final RapidBean bean, final String propname, final Object newValue) {
 		try {
-			final Field field = bean.getClass().getDeclaredField(propname);
+			// final Field field = bean.getClass().getDeclaredField(propname);
+			final Field field = getDeclaredField(bean.getClass(), propname);
 			field.setAccessible(true);
 			field.set(bean, newValue);
 		} catch (SecurityException e) {

@@ -3,7 +3,7 @@ package org.rapidbeans.core;
 import junit.framework.TestCase;
 
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidBeanImplStrict;
+import org.rapidbeans.core.basic.RapidBeanImplParent;
 
 /**
  * Test heap space needs and garbage collection for a bean array.
@@ -28,7 +28,7 @@ public final class BeanArrayCreateRuntimePerfTest extends TestCase {
 		if (!this.isWarmedUp) {
 			System.out.println("[BeanArrayCreateRuntimePerfTest] warm up...");
 			for (int i = 0; i < 100000; i++) {
-				RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
+				RapidBeanImplParent.createInstance("org.rapidbeans.presentation.MenuItem");
 			}
 			this.isWarmedUp = true;
 		}
@@ -52,7 +52,7 @@ public final class BeanArrayCreateRuntimePerfTest extends TestCase {
 		Thread.sleep(100);
 		RapidBean[] beans1 = new RapidBean[count];
 		for (int i = 0; i < count; i++) {
-			beans1[i] = RapidBeanImplStrict.createInstance("org.rapidbeans.presentation.MenuItem");
+			beans1[i] = RapidBeanImplParent.createInstance("org.rapidbeans.presentation.MenuItem");
 		}
 
 		// check runtime

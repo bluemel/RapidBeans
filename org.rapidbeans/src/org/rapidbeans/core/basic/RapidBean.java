@@ -132,6 +132,15 @@ public interface RapidBean extends Cloneable, Comparable<Link>, Link {
 	Property getProperty(final String name);
 
 	/**
+	 * Find an association property with the given singular name.
+	 * 
+	 * @param subnodeName
+	 *            the assocation property's name.
+	 * @return
+	 */
+	PropertyCollection findAssociationPropertyWithSingularName(String subnodeName);
+
+	/**
 	 * @return a List with all the bean's Properties
 	 */
 	List<Property> getPropertyList();

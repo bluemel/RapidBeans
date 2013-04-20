@@ -50,6 +50,18 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	/**
 	 * Creates a new bean instance from a special type.
 	 * 
+	 * @param typename
+	 *            the name of the bean's type
+	 * 
+	 * @return the new bean instance
+	 */
+	public static RapidBeanImplParent createInstance(final String typename) {
+		return createInstance(TypeRapidBean.forName(typename));
+	}
+
+	/**
+	 * Creates a new bean instance from a special type.
+	 * 
 	 * @param type
 	 *            the bean's type
 	 * 
@@ -182,6 +194,16 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 			parentBeans[i] = beans.get(j++);
 		}
 		return parentBeans;
+	}
+
+	public final PropertyCollection findAssociationPropertyWithSingularName(final String singularName)
+	{
+		for (final PropertyCollection prop : getColProperties()) {
+			if (singularName.equals(((TypePropertyCollection) prop.getType()).getSingular())) {
+				return prop;
+			}
+		}
+		return null;
 	}
 
 	/**

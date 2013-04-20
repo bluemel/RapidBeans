@@ -533,6 +533,17 @@ public class TestBeanSimpleTest {
 		}));
 	}
 
+	@Test
+	public void testClone()
+	{
+		TestBeanSimple bean = new TestBeanSimple();
+		bean.setSurname("Xxx");
+		bean.setPrename("Yyy");
+		TestBeanSimple bean2 = (TestBeanSimple) bean.clone();
+		Assert.assertEquals(bean.getSurname(), bean2.getSurname());
+		Assert.assertEquals(bean.getPrename(), bean2.getPrename());
+	}
+
 	private void assertListsEqual(List<?> list1, List<?> list2)
 	{
 		int len = list1.size();

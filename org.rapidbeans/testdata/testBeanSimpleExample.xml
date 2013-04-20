@@ -5,5 +5,5 @@
 	surname="Bluemel"
 	prename="Martin"
 	>
-	<child name="Bluemel" prename="Melanie"/>
+	<child surname="Bluemel" prename="Melanie"/>
 </rb:bean>
