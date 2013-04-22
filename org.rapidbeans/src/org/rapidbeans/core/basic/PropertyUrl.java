@@ -58,7 +58,7 @@ public class PropertyUrl extends Property {
 	public URL getValue() {
 		URL value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (URL) Property.getValueByReflection(getBean(), getName());
+			value = (URL) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}

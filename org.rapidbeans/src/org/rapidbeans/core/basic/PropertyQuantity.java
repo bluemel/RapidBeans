@@ -61,7 +61,7 @@ public class PropertyQuantity extends Property {
 	public RapidQuantity getValue() {
 		RapidQuantity value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (RapidQuantity) Property.getValueByReflection(getBean(), getName());
+			value = (RapidQuantity) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}

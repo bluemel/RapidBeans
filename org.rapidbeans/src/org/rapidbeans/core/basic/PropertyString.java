@@ -69,7 +69,7 @@ public class PropertyString extends Property {
 	public String getValue() {
 		String value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (String) Property.getValueByReflection(getBean(), getName());
+			value = (String) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}

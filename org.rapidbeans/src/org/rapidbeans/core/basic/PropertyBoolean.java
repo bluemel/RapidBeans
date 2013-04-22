@@ -55,7 +55,7 @@ public class PropertyBoolean extends Property {
 	public Boolean getValue() {
 		Boolean val = null;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			val = (Boolean) Property.getValueByReflection(getBean(), getName());
+			val = (Boolean) Property.getValueFieldByReflection(getBean(), getName());
 		} else {
 			val = this.value;
 		}

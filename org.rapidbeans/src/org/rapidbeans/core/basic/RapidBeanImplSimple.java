@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
+import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.exception.ValidationInstanceAssocTwiceException;
 import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
@@ -163,6 +164,21 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 		try {
 			setBeanState(RapidBeanState.initializing);
 
+			initProperties();
+			final int lenInitvals = initvals.length;
+			final List<Property> props = getPropertyList();
+			for (int j = 0; j < props.size(); j++) {
+				if (j < lenInitvals) {
+					if (!props.get(j).isDependent()) {
+						try {
+							props.get(j).setValue(initvals[j]);
+						} catch (ValidationException e) {
+							throw e;
+						}
+					}
+				}
+			}
+
 			// automatically create child instances for composite children bean
 			// classes
 			// with minimal multiplicity defined
@@ -176,7 +192,6 @@ public abstract class RapidBeanImplSimple extends RapidBeanImplParent {
 					}
 				}
 			}
-			initProperties();
 			setBeanState(RapidBeanState.initialized);
 		} catch (RuntimeException e) {
 			setBeanState(stateBefore);

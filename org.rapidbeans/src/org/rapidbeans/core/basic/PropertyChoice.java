@@ -72,9 +72,10 @@ public class PropertyChoice extends Property {
 	public ReadonlyListCollection<?> getValue() {
 		ReadonlyListCollection<RapidEnum> value = null;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			final Object refValue = Property.getValueByReflection(getBean(), getName());
-			if (refValue instanceof RapidEnum)
-			{
+			final Object refValue = Property.getValueFieldByReflection(getBean(), getName());
+			if (refValue == null) {
+				return null;
+			} else if (refValue instanceof RapidEnum) {
 				value = new ReadonlyListCollection<RapidEnum>(Arrays.asList(
 						new RapidEnum[] { (RapidEnum) refValue }), this.getType());
 			} else {

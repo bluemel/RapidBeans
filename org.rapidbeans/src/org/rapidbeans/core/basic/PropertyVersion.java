@@ -56,7 +56,7 @@ public class PropertyVersion extends Property {
 	public Version getValue() {
 		Version value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (Version) Property.getValueByReflection(getBean(), getName());
+			value = (Version) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}

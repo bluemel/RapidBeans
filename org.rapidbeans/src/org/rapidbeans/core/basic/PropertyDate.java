@@ -83,7 +83,7 @@ public class PropertyDate extends Property {
 	public Date getValue() {
 		Date date = null;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			date = (Date) Property.getValueByReflection(getBean(), getName());
+			date = (Date) Property.getValueFieldByReflection(getBean(), getName());
 		} else {
 			if (this.value != null) {
 				// clone the date value object in order

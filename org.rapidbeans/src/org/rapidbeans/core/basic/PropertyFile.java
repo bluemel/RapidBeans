@@ -62,7 +62,7 @@ public class PropertyFile extends Property {
 	public File getValue() {
 		File value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (File) Property.getValueByReflection(getBean(), getName());
+			value = (File) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}

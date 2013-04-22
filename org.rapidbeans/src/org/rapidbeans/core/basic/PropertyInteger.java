@@ -62,7 +62,7 @@ public final class PropertyInteger extends PropertyNumber {
 	public Number getValue() {
 		Number value = this.value;
 		if (getBean() instanceof RapidBeanImplSimple) {
-			value = (Number) Property.getValueByReflection(getBean(), getName());
+			value = (Number) Property.getValueFieldByReflection(getBean(), getName());
 		}
 		return value;
 	}
