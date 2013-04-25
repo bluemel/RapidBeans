@@ -446,8 +446,11 @@
 									<xsl:text>Associationend</xsl:text>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="translate(substring(@type,1, 1), 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')" />
-									<xsl:value-of select="substring(@type,2, string-length(@type) - 1)" />
+									<xsl:call-template name="String.upperFirstCharacter">
+										<xsl:with-param name="string">
+											<xsl:value-of select="@type" />
+										</xsl:with-param>
+									</xsl:call-template>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:otherwise>
@@ -916,7 +919,7 @@
 			<xsl:text> */</xsl:text>
 			<xsl:value-of select="$newline" />
 
-			<xsl:if test="($codegenimpl = 'Strict') and ((@type = 'choice' and @multiple = 'true') or @type = 'association' or @type = 'associationend')">
+			<xsl:if test="(($codegenimpl = 'Strict') and ((@type = 'choice' and @multiple = 'true') or @type = 'association' or @type = 'associationend')) or (($codegenimpl = 'Simple') and (@type = 'association' or @type = 'associationend') and (count(@maxmult) = 0 or @maxmult > 1))">
 				<xsl:value-of select="$indent1" />
 				<xsl:text>@SuppressWarnings("unchecked")</xsl:text>
 				<xsl:value-of select="$newline" />
@@ -1104,7 +1107,9 @@
 									<xsl:choose>
 										<xsl:when test="@maxmult = '1'">
 											<xsl:value-of select="$indent2" />
-											<xsl:text>return this.</xsl:text>
+											<xsl:text>return (</xsl:text>
+											<xsl:value-of select="@targettype" />
+											<xsl:text>)this.</xsl:text>
 											<xsl:value-of select="@name" />
 											<xsl:text>;</xsl:text>
 											<xsl:value-of select="$newline" />
@@ -1124,8 +1129,11 @@
 											<xsl:value-of select="$indent3" />
 											<xsl:text>return new ReadonlyListCollection&lt;</xsl:text>
 											<xsl:value-of select="@targettype"/>
-											<xsl:text>&gt;(this.</xsl:text>
+											<xsl:text>&gt;((java.util.Collection&lt;</xsl:text>
+											<xsl:value-of select="@targettype"/>
+											<xsl:text>&gt;) ((Object) this.</xsl:text>
 											<xsl:value-of select="@name" />
+											<xsl:text>)</xsl:text>
 											<xsl:text>, getType().getPropertyType("</xsl:text>
 											<xsl:value-of select="@name" />
 											<xsl:text>"));</xsl:text>
@@ -1713,11 +1721,25 @@
 		<xsl:choose>
 
 			<xsl:when test="@type = 'boolean'">
-				<xsl:text>boolean</xsl:text>
+				<xsl:choose>
+					<xsl:when test="$mode = 'prop'">
+						<xsl:text>Boolean</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>boolean</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:when>
 
 			<xsl:when test="@type = 'integer'">
-				<xsl:text>int</xsl:text>
+				<xsl:choose>
+					<xsl:when test="$mode = 'prop'">
+						<xsl:text>Integer</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>int</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:when>
 
 			<xsl:when test="@type = 'string'">
@@ -1767,7 +1789,14 @@
 			<xsl:when test="@type = 'association' or @type = 'associationend'">
 				<xsl:choose>
 					<xsl:when test="@maxmult = 1">
-						<xsl:value-of select="@targettype" />
+						<xsl:choose>
+							<xsl:when test="$mode = 'prop'">
+								<xsl:text>org.rapidbeans.core.basic.Link</xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="@targettype" />
+							</xsl:otherwise>
+						</xsl:choose>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:choose>
@@ -1804,7 +1833,14 @@
 								<xsl:text>org.rapidbeans.core.common.ReadonlyListCollection&lt;</xsl:text>
 							</xsl:otherwise>
 						</xsl:choose>
-						<xsl:value-of select="@targettype" />
+						<xsl:choose>
+							<xsl:when test="$mode = 'prop'">
+								<xsl:text>org.rapidbeans.core.basic.Link</xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="@targettype" />
+							</xsl:otherwise>
+						</xsl:choose>
 						<xsl:text>&gt;</xsl:text>
 					</xsl:otherwise>
 				</xsl:choose>
