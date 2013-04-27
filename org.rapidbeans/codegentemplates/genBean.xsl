@@ -507,16 +507,16 @@
 						<xsl:when test="$codegenimpl = 'Simple'">
 							<xsl:choose>
 								<xsl:when test="@type = 'boolean'">
-							<!-- this.xxx ((Boolean) getType().getPropertyType("xxx").getDefaultValue()).booleanValue(); -->
-									<xsl:text>((Boolean) getType().getPropertyType("</xsl:text>
+							<!-- this.xxx = (Boolean) getType().getPropertyType("xxx").getDefaultValue(); -->
+									<xsl:text>(Boolean) getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
-									<xsl:text>").getDefaultValue()).booleanValue();</xsl:text>
+									<xsl:text>").getDefaultValue();</xsl:text>
 								</xsl:when>
 								<xsl:when test="@type = 'integer'">
-							<!-- this.xxx ((Integer) getType().getPropertyType("xxx").getDefaultValue()).intValue(); -->
-									<xsl:text>((Integer) getType().getPropertyType("</xsl:text>
+							<!-- this.xxx = (Integer) getType().getPropertyType("xxx").getDefaultValue(); -->
+									<xsl:text>(Integer) getType().getPropertyType("</xsl:text>
 									<xsl:value-of select="@name" />
-									<xsl:text>").getDefaultValue()).intValue();</xsl:text>
+									<xsl:text>").getDefaultValue();</xsl:text>
 								</xsl:when>
 								<xsl:when test="@type = 'choice' and @multiple = 'true'">
 							<!-- this.xxx = (Date) getType().getPropertyType("xxx").getDefaultValue(); -->
@@ -1014,9 +1014,55 @@
 
 								<xsl:when test="@type = 'boolean'">
 									<xsl:value-of select="$indent2" />
+									<xsl:text>if (this.</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text> == null) {</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent3" />
+									<xsl:text>throw new org.rapidbeans.core.exception.RapidBeansRuntimeException(</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent5" />
+									<xsl:text>"value for property \&quot;</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text>\&quot; not defined");</xsl:text>
+
+									<xsl:value-of select="$indent2" />
+									<xsl:text>}</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent2" />
 									<xsl:text>return this.</xsl:text>
 									<xsl:value-of select="@name" />
-									<xsl:text>;</xsl:text>
+									<xsl:text>.booleanValue();</xsl:text>
+									<xsl:value-of select="$newline" />
+								</xsl:when>
+
+								<xsl:when test="@type = 'integer'">
+									<xsl:value-of select="$indent2" />
+									<xsl:text>if (this.</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text> == null) {</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent3" />
+									<xsl:text>throw new org.rapidbeans.core.exception.RapidBeansRuntimeException(</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent5" />
+									<xsl:text>"value for property \&quot;</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text>\&quot; not defined");</xsl:text>
+
+									<xsl:value-of select="$indent2" />
+									<xsl:text>}</xsl:text>
+									<xsl:value-of select="$newline" />
+
+									<xsl:value-of select="$indent2" />
+									<xsl:text>return this.</xsl:text>
+									<xsl:value-of select="@name" />
+									<xsl:text>.intValue();</xsl:text>
 									<xsl:value-of select="$newline" />
 								</xsl:when>
 
