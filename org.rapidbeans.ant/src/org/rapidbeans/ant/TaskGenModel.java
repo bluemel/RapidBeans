@@ -436,11 +436,14 @@ public final class TaskGenModel extends Task {
 			return cgen;
 
 		} catch (IOException e) {
-			throw new BuildException(e);
+			throw new BuildException("IOException: while trying to parse XML file \""
+					+ xmlFile.getAbsolutePath() + "\"", e);
 		} catch (ParserConfigurationException e) {
-			throw new BuildException(e);
+			throw new BuildException("ParserConfigurationException: while trying to parse XML file \""
+					+ xmlFile.getAbsolutePath() + "\"", e);
 		} catch (SAXException e) {
-			throw new BuildException(e);
+			throw new BuildException("SAXException: while parsing XML file \""
+					+ xmlFile.getAbsolutePath() + "\"", e);
 		}
 	}
 
