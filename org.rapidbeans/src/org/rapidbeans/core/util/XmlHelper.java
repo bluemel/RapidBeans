@@ -32,8 +32,13 @@ import java.util.StringTokenizer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
+import org.rapidbeans.core.exception.UtilException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -103,14 +108,64 @@ public class XmlHelper {
 	}
 
 	/**
+	 * Helper function using Java XPath support.
 	 * 
 	 * @param node
-	 *            - XML Node
+	 *            an arbitrary XML element node to start the search with
 	 * @param nodePathPattern
+	 *            An XPath expression
 	 *            - e. g.: //Server/Service/Connector/@port
 	 *            Service/Connector[2]/@port
 	 * 
-	 * @return found attribute node
+	 * @return the first found node or null
+	 */
+	public static Node getNode(final Document doc, final String xPathExpression) {
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		Node node;
+		try {
+			node = (Node) xPath.evaluate(xPathExpression, doc.getDocumentElement(), XPathConstants.NODE);
+		} catch (XPathExpressionException e) {
+			throw new UtilException("Error while parsing XPath expression \"" + xPathExpression + "\"", e);
+		}
+		return node;
+	}
+
+	/**
+	 * Helper function using Java XPath support.
+	 * 
+	 * @param node
+	 *            an arbitrary XML element node to start the search with
+	 * @param nodePathPattern
+	 *            An XPath expression
+	 *            - e. g.: //Server/Service/Connector/@port
+	 *            Service/Connector[2]/@port
+	 * 
+	 * @return a list with found nodes (might be empty)
+	 */
+	public static NodeList getNodes(final Document doc, final String xPathExpression) {
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		NodeList nodes;
+		try {
+			nodes = (NodeList) xPath.evaluate(xPathExpression, doc.getDocumentElement(), XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			throw new UtilException("Error while parsing XPath expression \"" + xPathExpression + "\"", e);
+		}
+		return nodes;
+	}
+
+	/**
+	 * Self written search function with XPath like expression syntax.
+	 * Not recommended if you have the document node.
+	 * Then please prefer the getNode() and getNodes() functions above.
+	 * 
+	 * @param node
+	 *            an arbitrary XML element node to start the search with
+	 * @param nodePathPattern
+	 *            An XPath like expression with strong restrictions against XPath
+	 *            - e. g.: //Server/Service/Connector/@port
+	 *            Service/Connector[2]/@port
+	 * 
+	 * @return found element or attribute node / subnode
 	 */
 	public static Node getNode(final Node node, final String nodePathPattern) {
 		if (StringHelper.trim(nodePathPattern).equals("")) {
@@ -132,21 +187,6 @@ public class XmlHelper {
 			return subnodeFilter.filter(subnodes, subnodePathPattern);
 		}
 	}
-
-	// /**
-	// * @param node XML Node
-	// * @param attname pattern
-	// * e. g.: //Server/Service/Connector/@port
-	// * Service/Connector[2]/@port
-	// * @param attval value of the attribute
-	// * @return found attribute node
-	// */
-	// public static Node createAttribute(final Node node, final String attname,
-	// final String attval) {
-	// Element element = (Element) node;
-	// element.setAttribute(attname, attval);
-	// return null;
-	// }
 
 	/**
 	 * extracts the name.
@@ -243,12 +283,44 @@ public class XmlHelper {
 	 *            file name
 	 * @return top level document
 	 */
+	public static Document getDocument(final String xmlResourceFileName) {
+		final InputStream is = ClassLoader.getSystemResourceAsStream(xmlResourceFileName);
+		if (is == null) {
+			throw new RapidBeansRuntimeException("System resource file \"" + xmlResourceFileName + "\" not found");
+		}
+		return (Document) getDocumentTopLevel(is, false);
+	}
+
+	/**
+	 * search for the top level document.
+	 * 
+	 * @param xmlResourceFile
+	 *            the file to load.
+	 * @return top level document
+	 */
+	public static Document getDocument(final File xmlResourceFile) {
+		InputStream is;
+		try {
+			is = new FileInputStream(xmlResourceFile);
+		} catch (FileNotFoundException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
+		return (Document) getDocumentTopLevel(is, false);
+	}
+
+	/**
+	 * search for the top level document.
+	 * 
+	 * @param xmlResourceFileName
+	 *            file name
+	 * @return top level document
+	 */
 	public static Node getDocumentTopLevel(final String xmlResourceFileName) {
 		final InputStream is = ClassLoader.getSystemResourceAsStream(xmlResourceFileName);
 		if (is == null) {
 			throw new RapidBeansRuntimeException("System resource file \"" + xmlResourceFileName + "\" not found");
 		}
-		return getDocumentTopLevel(is);
+		return getDocumentTopLevel(is, true);
 	}
 
 	/**
@@ -265,7 +337,7 @@ public class XmlHelper {
 		} catch (FileNotFoundException e) {
 			throw new RapidBeansRuntimeException(e);
 		}
-		return getDocumentTopLevel(is);
+		return getDocumentTopLevel(is, true);
 	}
 
 	/**
@@ -275,14 +347,17 @@ public class XmlHelper {
 	 *            is
 	 * @return top level document
 	 */
-	public static Node getDocumentTopLevel(final InputStream is) {
+	public static Node getDocumentTopLevel(final InputStream is, final boolean firstChild) {
 		try {
 			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			dbf.setNamespaceAware(true);
+			dbf.setNamespaceAware(false);
 			dbf.setValidating(false);
 			final DocumentBuilder db = dbf.newDocumentBuilder();
 			final Document doc = db.parse(is);
-			return doc.getFirstChild();
+			if (firstChild) {
+				return doc.getFirstChild();
+			}
+			return doc;
 		} catch (ParserConfigurationException e) {
 			throw new RapidBeansRuntimeException(e);
 		} catch (SAXException e) {
@@ -297,6 +372,8 @@ public class XmlHelper {
 			return encInstance.new SubnodeFilterOrder(s);
 		} else if (s.matches(".*\\[@.* *= *'.*'].*")) {
 			return encInstance.new SubnodeFilterAttvals(s);
+		} else if (s.matches(".*\\[\\. *= *'.*'].*")) {
+			return encInstance.new SubnodeFilterNodeval(s);
 		} else {
 			return encInstance.new SubnodeFilterFirst(s);
 		}
@@ -321,7 +398,7 @@ public class XmlHelper {
 
 		public SubnodeFilterFirst(String s) {
 			if (s.indexOf('[') != -1) {
-				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
+				throw new RapidBeansRuntimeException("'[' found in string \"" + s + "\"");
 			}
 		}
 	}
@@ -340,6 +417,30 @@ public class XmlHelper {
 		public SubnodeFilterOrder(String s) {
 			if (s.indexOf('[') > -1) {
 				this.order = Integer.parseInt(s.substring(s.indexOf('[') + 1, s.length() - 1));
+			} else {
+				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
+			}
+		}
+	}
+
+	private class SubnodeFilterNodeval extends SubnodeFilter {
+
+		private String nodeval = null;
+
+		public Node filter(Node[] subnodes, final String subnodePathPattern) {
+			Node ret = null;
+			for (int i = 0; i < subnodes.length; i++) {
+				if (subnodes[i].getFirstChild().getNodeValue().equals(this.nodeval)) {
+					ret = getNode(subnodes[i], subnodePathPattern);
+					break;
+				}
+			}
+			return ret;
+		}
+
+		public SubnodeFilterNodeval(final String s) {
+			if (s.indexOf('[') > -1) {
+				this.nodeval = parseNodeval(s);
 			} else {
 				throw new RapidBeansRuntimeException("'[' not found in string \"" + s + "\"");
 			}
@@ -509,5 +610,75 @@ public class XmlHelper {
 			}
 		}
 		return idAttrs;
+	}
+
+	public static String parseNodeval(final String nodePath) {
+		final StringBuilder sb = new StringBuilder();
+		if (nodePath.contains("[")) {
+			if (nodePath.matches(".*\\[.*\\]\\z")) {
+				final String idAttrString = nodePath.substring(nodePath.indexOf('[') + 1, nodePath.length() - 1);
+				final int len = idAttrString.length();
+				int state = 0;
+				for (int i = 0; i < len && state >= 0; i++) {
+					final char c = idAttrString.charAt(i);
+					switch (state) {
+					case 0:
+						switch (c) {
+						case '.':
+						case ' ':
+						case '\t':
+						case '\n':
+							break;
+						case '=':
+							state = 1;
+							break;
+						default:
+							state = -1;
+							break;
+						}
+						break;
+					case 1:
+						switch (c) {
+						case ' ':
+						case '\t':
+						case '\n':
+							break;
+						case '\'':
+							state = 2;
+							break;
+						default:
+							state = -1;
+							break;
+						}
+						break;
+					case 2:
+						switch (c) {
+						case '\'':
+							state = 5;
+							break;
+						default:
+							sb.append(c);
+							break;
+						}
+						break;
+					case 5:
+						switch (c) {
+						case ' ':
+						case '\t':
+						case '\n':
+							break;
+						default:
+							state = -1;
+							break;
+						}
+						break;
+					}
+					if (state == -1) {
+						throw new UtilException("parseNodeval(\"" + nodePath + "\")  failed with invalid parser state");
+					}
+				}
+			}
+		}
+		return sb.toString();
 	}
 }
