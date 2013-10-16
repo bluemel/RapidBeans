@@ -225,21 +225,7 @@ public class XmlHelper {
 	 * @return the parent
 	 */
 	public static String getParentNodePattern(final String nodePattern) {
-		StringTokenizer st = new StringTokenizer(nodePattern, "/");
-		String token = null;
-		StringBuffer sb = new StringBuffer();
-		int i = 0;
-		while (st.hasMoreTokens()) {
-			if (token != null) {
-				if (i > 0) {
-					sb.append('/');
-				}
-				sb.append(token);
-				i++;
-			}
-			token = st.nextToken();
-		}
-		return sb.toString();
+		return StringHelper.splitBeforeLast(nodePattern, "/");
 	}
 
 	/**
