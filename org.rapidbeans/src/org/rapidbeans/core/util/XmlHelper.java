@@ -93,9 +93,9 @@ public class XmlHelper {
 		return getNodeValue(node, pattern, null);
 	}
 
-	public static String getNodeValue(final Node startnode, final String pattern, final String defaultValue) {
+	public static String getNodeValue(final Node startNode, final String pattern, final String defaultValue) {
 		String ret = defaultValue;
-		Node node = getNode(startnode, pattern);
+		Node node = getNode(startNode, pattern);
 		if (node != null) {
 			final Node firstChild = node.getFirstChild();
 			if (firstChild != null) {
@@ -105,29 +105,6 @@ public class XmlHelper {
 			}
 		}
 		return ret;
-	}
-
-	/**
-	 * Helper function using Java XPath support.
-	 * 
-	 * @param node
-	 *            an arbitrary XML element node to start the search with
-	 * @param nodePathPattern
-	 *            An XPath expression
-	 *            - e. g.: //Server/Service/Connector/@port
-	 *            Service/Connector[2]/@port
-	 * 
-	 * @return the first found node or null
-	 */
-	public static Node getNode(final Document doc, final String xPathExpression) {
-		XPath xPath = XPathFactory.newInstance().newXPath();
-		Node node;
-		try {
-			node = (Node) xPath.evaluate(xPathExpression, doc.getDocumentElement(), XPathConstants.NODE);
-		} catch (XPathExpressionException e) {
-			throw new UtilException("Error while parsing XPath expression \"" + xPathExpression + "\"", e);
-		}
-		return node;
 	}
 
 	/**
@@ -167,25 +144,36 @@ public class XmlHelper {
 	 * 
 	 * @return found element or attribute node / subnode
 	 */
-	public static Node getNode(final Node node, final String nodePathPattern) {
-		if (StringHelper.trim(nodePathPattern).equals("")) {
-			return node;
+	public static Node getNode(final Node startNode, final String xPathExpression) {
+		if (StringHelper.trim(xPathExpression).equals("")) {
+			return startNode;
 		}
-		final StringTokenizer st = new StringTokenizer(nodePathPattern, "/");
-		final String firstPatternToken = st.nextToken();
-		if (firstPatternToken.startsWith("@")) {
-			final String attrName = firstPatternToken.substring(1);
-			return node.getAttributes().getNamedItem(attrName);
-		} else {
-			final String subnodePathPattern = getSubnodePathPattern(nodePathPattern, firstPatternToken);
-			final String subnodeName = getSubnodePathToken(firstPatternToken);
-			final SubnodeFilter subnodeFilter = createSubnodeFilter(new XmlHelper(), firstPatternToken);
-			final Node[] subnodes = getSubnodes(node, subnodeName);
-			if (subnodes == null || subnodes.length == 0) {
-				return null;
+		Node foundNode = null;
+		if (startNode instanceof Document) {
+			final XPath xPath = XPathFactory.newInstance().newXPath();
+			try {
+				foundNode = (Node) xPath.evaluate(xPathExpression, ((Document) startNode).getDocumentElement(),
+						XPathConstants.NODE);
+			} catch (XPathExpressionException e) {
+				throw new UtilException("Error while parsing XPath expression \"" + xPathExpression + "\"", e);
 			}
-			return subnodeFilter.filter(subnodes, subnodePathPattern);
+		} else {
+			final StringTokenizer st = new StringTokenizer(xPathExpression, "/");
+			final String firstPatternToken = st.nextToken();
+			if (firstPatternToken.startsWith("@")) {
+				final String attrName = firstPatternToken.substring(1);
+				foundNode = startNode.getAttributes().getNamedItem(attrName);
+			} else {
+				final String subnodePathPattern = getSubnodePathPattern(xPathExpression, firstPatternToken);
+				final String subnodeName = getSubnodePathToken(firstPatternToken);
+				final SubnodeFilter subnodeFilter = createSubnodeFilter(new XmlHelper(), firstPatternToken);
+				final Node[] subnodes = getSubnodes(startNode, subnodeName);
+				if (subnodes != null && subnodes.length > 0) {
+					foundNode = subnodeFilter.filter(subnodes, subnodePathPattern);
+				}
+			}
 		}
+		return foundNode;
 	}
 
 	/**
