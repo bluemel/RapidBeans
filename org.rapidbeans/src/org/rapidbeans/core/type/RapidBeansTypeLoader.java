@@ -272,7 +272,7 @@ public final class RapidBeansTypeLoader {
 	 * CAUTION: this methods clears the single typeMap. Just use this for unit
 	 * tests or if you exactly know what you're doing.
 	 */
-	protected static void typeMapClear() {
+	public static void typeMapClear() {
 		singleInstance.typeMap.clear();
 	}
 
@@ -281,7 +281,7 @@ public final class RapidBeansTypeLoader {
 	 * type map. Just use this for unit tests or if you exactly know what you're
 	 * doing.
 	 */
-	protected static void typeMapClearBeanGeneric() {
+	public static void typeMapClearBeanGeneric() {
 		RapidBeansType bbType = null;
 		ArrayList<String> sa = new ArrayList<String>();
 		if (singleInstance != null) {
@@ -301,7 +301,7 @@ public final class RapidBeansTypeLoader {
 	 * CAUTION: this methods clears all root element bindings. Just use this for
 	 * unit tests or if you exactly know what you're doing.
 	 */
-	protected static void typeMapClearRootElementBindingsGeneric() {
+	public static void typeMapClearRootElementBindingsGeneric() {
 		final ArrayList<String> elementNames = new ArrayList<String>();
 		if (singleInstance != null) {
 			for (final Object o : singleInstance.xmlRootElementMap.keySet()) {

@@ -98,6 +98,10 @@ public class TypePropertyCollection extends TypeProperty {
 
 	private static char defaultCharSeparator = ' ';
 
+	public static char getDefaultCharSeparator() {
+		return defaultCharSeparator;
+	}
+
 	/**
 	 * @param defaultCharSeparator
 	 *            the defaultCharSeparator to set
