@@ -610,7 +610,7 @@ public final class TypeRapidBean extends RapidBeansType {
 	public String toStringGui(final RapidBeansLocale locale, final boolean plural, final String defaultTypename) {
 		String uistring = null;
 
-		if (uistring == null) {
+		if (locale != null) {
 			try {
 				String pattern = "bean." + getName().toLowerCase();
 				if (plural) {

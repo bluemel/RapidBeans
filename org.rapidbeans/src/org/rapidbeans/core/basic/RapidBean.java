@@ -338,4 +338,5 @@ public interface RapidBean extends Cloneable, Comparable<Link>, Link {
 	 * trace that bean.
 	 */
 	public void trace();
+
 }

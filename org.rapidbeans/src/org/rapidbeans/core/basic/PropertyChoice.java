@@ -234,8 +234,10 @@ public class PropertyChoice extends Property {
 				final RapidEnum newEnumElement = newChoiceValue.get(i);
 				if (newEnumElement == null)
 				{
-					throw new ValidationException("invalid.prop.choice.null", this, "Property \""
-							+ this.getType().getPropName() + "\": " + " null enum is not allowed");
+					throw new ValidationException("invalid.prop.choice.null", this,
+							"Invalid  value \"" + value.toString() + "\" for bean instance \""
+									+ getBean().toStringGui(null) + "\"\n Property \""
+									+ this.getType().getPropName() + "\": " + " null enum is not allowed");
 				}
 				if (!newEnumElement.getType().isAssignableFrom(((TypePropertyChoice) getType()).getEnumType()))
 				{

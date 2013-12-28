@@ -760,7 +760,8 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 	 */
 	public String toStringGuiId(final RapidBeansLocale locale) {
 		String uistring = null;
-		if (uistring == null) {
+
+		if (locale != null) {
 			try {
 				final String key = "bean." + this.getType().getName().toLowerCase() + ".id";
 				uistring = locale.getStringGui(key);
@@ -771,7 +772,11 @@ public abstract class RapidBeanImplParent implements RapidBean, Link {
 		}
 		if (uistring == null) {
 			if (this.getType().getIdtype() == IdType.transientid) {
-				uistring = toStringGuiType(locale);
+				if (getProperty("name") != null && this.getPropValue("name") != null) {
+					uistring = this.getPropValue("name").toString();
+				} else {
+					uistring = toStringGuiType(locale);
+				}
 			} else {
 				uistring = this.getIdString();
 			}
