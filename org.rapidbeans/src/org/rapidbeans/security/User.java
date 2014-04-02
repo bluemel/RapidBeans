@@ -184,6 +184,11 @@ public class User extends RapidBeanImplStrict {
 	private org.rapidbeans.core.basic.PropertyString pwd;
 
 	/**
+	 * property "changePwdAfterNextLogon".
+	 */
+	private org.rapidbeans.core.basic.PropertyChoice changePwdAfterNextLogon;
+
+	/**
 	 * property "lastname".
 	 */
 	private org.rapidbeans.core.basic.PropertyString lastname;
@@ -211,6 +216,8 @@ public class User extends RapidBeanImplStrict {
 			this.getProperty("accountname");
 		this.pwd = (org.rapidbeans.core.basic.PropertyString)
 			this.getProperty("pwd");
+		this.changePwdAfterNextLogon = (org.rapidbeans.core.basic.PropertyChoice)
+			this.getProperty("changePwdAfterNextLogon");
 		this.lastname = (org.rapidbeans.core.basic.PropertyString)
 			this.getProperty("lastname");
 		this.firstname = (org.rapidbeans.core.basic.PropertyString)
@@ -305,6 +312,34 @@ public class User extends RapidBeanImplStrict {
 	 */
 	public void setPwd(final String argValue) {
 		this.pwd.setValue(argValue);
+	}
+
+	/**
+	 * @return value of Property 'changePwdAfterNextLogon'
+	 */
+	public org.rapidbeans.security.ChangePwdAfterNextlogonType getChangePwdAfterNextLogon() {
+		try {
+			java.util.List<?> enumList = (java.util.List<?>) this.changePwdAfterNextLogon.getValue();
+			if (enumList == null || enumList.size() == 0) {
+				return null;
+			} else {
+				return (org.rapidbeans.security.ChangePwdAfterNextlogonType) enumList.get(0);
+			}
+		} catch (NullPointerException e) {
+			throw new org.rapidbeans.core.exception.PropNotInitializedException("changePwdAfterNextLogon");
+		}
+	}
+
+	/**
+	 * setter for Property 'changePwdAfterNextLogon'.
+	 * @param argValue
+	 *            value of Property 'changePwdAfterNextLogon' to set
+	 */
+	public void setChangePwdAfterNextLogon(final org.rapidbeans.security.ChangePwdAfterNextlogonType argValue) {
+		java.util.List<org.rapidbeans.security.ChangePwdAfterNextlogonType> list =
+			new java.util.ArrayList<org.rapidbeans.security.ChangePwdAfterNextlogonType>();
+		list.add(argValue);
+		this.changePwdAfterNextLogon.setValue(list);
 	}
 
 	/**

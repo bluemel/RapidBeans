@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
- * Rapid Beans Framework: User.xml
+ * Rapid Beans Framework: ChangePwdAfterNextlogonType.xml
  *
- * Copyright (C) 2009 Martin Bluemel
+ * Copyright (C) 2014 Martin Bluemel
  *
- * Creation Date: 01/01/2005
+ * Creation Date: 29/03/2014
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
@@ -16,30 +16,8 @@
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
 -->
 
-<beantype name="org.rapidbeans.security.User"
-	idtype="keyprops"
-	final="false">
-	<property name="accountname"
-		key="true"
-		minlen="4"
-	/>
-	<property name="pwd"
-		multiline="true"
-		minlen="4"
-	/>
-	<property name="changePwdAfterNextLogon"
-		type="choice"
-		enum="org.rapidbeans.security.ChangePwdAfterNextlogonType"
-		multiple="false"
-		default="no"
-	/>
-	<property name="lastname"/>
-	<property name="firstname"/>
-	<property name="email"/>
-	<property name="roles"
-		type="choice"
-		enum="org.rapidbeans.core.basic.RapidEnum"
-		multiple="true"
-	/>
-	<codegen mode="joint" implementation="strict"/>
-</beantype>
+<enumtype name="org.rapidbeans.security.ChangePwdAfterNextlogonType">
+	<enum name="no"/>
+	<enum name="recommended"/>
+	<enum name="mandatory"/>
+</enumtype>

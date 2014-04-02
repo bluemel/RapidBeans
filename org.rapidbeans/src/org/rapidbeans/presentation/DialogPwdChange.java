@@ -23,6 +23,7 @@ import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.presentation.config.ApplicationGuiType;
 import org.rapidbeans.presentation.swing.DialogPwdChangeSwing;
 import org.rapidbeans.presentation.swing.EditorPropertyPwd;
+import org.rapidbeans.security.PwdPolicy;
 import org.rapidbeans.security.User;
 
 /**
@@ -78,32 +79,37 @@ public abstract class DialogPwdChange {
 	 */
 	private RapidBean user = null;
 
-	/**
-	 * the gui type independent login method.
-	 * 
-	 * @param the
-	 *            user for which you want to change the password
-	 * 
-	 * @return the authenticated user.
-	 */
 	public static boolean start(final EditorPropertyPwd editor) {
 		final RapidBean user = editor.getProperty().getBean();
+		return start(editor, user);
+	}
+
+	public static boolean start(final RapidBean user) {
+		return start(null, user);
+	}
+
+	private static boolean start(final EditorPropertyPwd editor, final RapidBean user) {
+		final DialogPwdChange dialog = createDialog(user);
 		final Application client = ApplicationManager.getApplication();
 		final RapidBeansLocale loc = client.getCurrentLocale();
-		final DialogPwdChange dialog = createDialog(user);
 		boolean dialogCancelled = false;
 		boolean pwdChanged = false;
 		while ((!dialogCancelled) && (!pwdChanged)) {
 			dialogCancelled = (!dialog.show());
 			if (!dialogCancelled) {
-				String oldPwd = dialog.getPwdOld();
-				if (oldPwd != null && (!oldPwd.endsWith(""))) {
-					final String pwdOld = User.hashPwd(oldPwd, client.getConfiguration().getAuthorization()
-							.getPwdhashalgorithm());
-					if (!((pwdOld.equals(user.getPropValue("pwd"))) || (pwdOld.equals("") && user.getPropValue("pwd") == null))) {
-						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.old"),
-								loc.getStringMessage("pwdchange.wrong.title"));
-					}
+				final String pwdOldUserHashed = (String) user.getPropValue("pwd");
+				final String pwdOldEntered = dialog.getPwdOld();
+				String pwdOldEnteredHashed = "";
+				if (isGiven(pwdOldEntered)) {
+					pwdOldEnteredHashed = User.hashPwd(
+							pwdOldEntered, client.getConfiguration().getAuthorization().getPwdhashalgorithm());
+				}
+				if ((isEmpty(pwdOldUserHashed) && isGiven(pwdOldEnteredHashed))
+						|| (isGiven(pwdOldUserHashed) && isEmpty(pwdOldEnteredHashed))
+						|| (isGiven(pwdOldUserHashed) && isGiven(pwdOldEnteredHashed)
+						&& (!pwdOldEnteredHashed.equals(pwdOldUserHashed)))) {
+					client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.old"),
+							loc.getStringMessage("pwdchange.wrong.title"));
 				} else {
 					final String pwdNew1 = dialog.getPwdNew1();
 					final String pwdNew2 = dialog.getPwdNew2();
@@ -111,26 +117,44 @@ public abstract class DialogPwdChange {
 						client.messageError(loc.getStringMessage("pwdchange.wrong.pwd.new"),
 								loc.getStringMessage("pwdchange.wrong.title"));
 					} else {
-						try {
-							// prevent the editor from resetting the backup bean
-							// when receiving the BeanChangedEvent
-							editor.getBeanEditor().setModifies(true);
-							if (pwdNew1.equals("")) {
-								User.setPwdSecS(user, null, null);
-							} else {
-								User.setPwdSecS(user, pwdNew1, client.getConfiguration().getAuthorization()
-										.getPwdhashalgorithm());
+						final String pwdPolicyCheckResult = new PwdPolicy().check(pwdNew1);
+						if (pwdPolicyCheckResult != null) {
+							client.messageError(loc.getStringMessage(pwdPolicyCheckResult),
+									loc.getStringMessage("pwdchange.wrong.title"));
+						} else {
+							try {
+								// prevent the editor from resetting the backup bean
+								// when receiving the BeanChangedEvent
+								if (editor != null) {
+									editor.getBeanEditor().setModifies(true);
+								}
+								if (pwdNew1.equals("")) {
+									User.setPwdSecS(user, null, null);
+								} else {
+									User.setPwdSecS(user, pwdNew1,
+											client.getConfiguration().getAuthorization().getPwdhashalgorithm());
+								}
+							} finally {
+								if (editor != null) {
+									editor.getBeanEditor().setModifies(false);
+								}
 							}
-						} finally {
-							editor.getBeanEditor().setModifies(false);
+							pwdChanged = true;
 						}
-						pwdChanged = true;
 					}
 				}
 			}
 		}
 		dialog.dispose();
 		return pwdChanged;
+	}
+
+	private static boolean isEmpty(final String s) {
+		return s == null || s.length() == 0;
+	}
+
+	private static boolean isGiven(final String s) {
+		return s != null && s.length() > 0;
 	}
 
 	/**

@@ -22,7 +22,7 @@ package org.rapidbeans.presentation;
  * 
  * @author Martin Bluemel
  */
-interface EditorPropertyListener {
+public interface EditorPropertyListener {
 
 	/**
 	 * @param propEditor

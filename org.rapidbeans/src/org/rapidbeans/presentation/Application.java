@@ -88,6 +88,7 @@ import org.rapidbeans.presentation.settings.SettingsBasicGuiOpenDocHistory;
 import org.rapidbeans.presentation.settings.swing.ApplicationLnfTypeSwing;
 import org.rapidbeans.presentation.settings.swing.SettingsBasicGuiSwing;
 import org.rapidbeans.presentation.swing.DocumentViewSwing;
+import org.rapidbeans.security.ChangePwdAfterNextlogonType;
 import org.rapidbeans.security.LoginType;
 import org.rapidbeans.security.User;
 import org.rapidbeans.service.Action;
@@ -126,6 +127,12 @@ public class Application implements Appl {
 	 */
 	public ActionManager getActionManager() {
 		return actionManager;
+	}
+
+	private boolean pwdChanged = false;
+
+	public boolean getPwdChanged() {
+		return pwdChanged;
 	}
 
 	public void setInitiallyLoadDocument(final String initFilePath) {
@@ -427,6 +434,7 @@ public class Application implements Appl {
 			}
 		}
 
+		// load authorization info and drive the login
 		if (this.isUsingAuthorization()) {
 			final ConfigAuthorization authncfg = this.getConfiguration().getAuthorization();
 			// initialize the authorization document
@@ -460,8 +468,8 @@ public class Application implements Appl {
 				}
 				if (this.authenticatedUser == null) {
 					if (this.getTestMode()) {
-						this.authenticatedUser = (User) getAuthnDoc().findBean("org.rapidbeans.security.User",
-								"testuser");
+						this.authenticatedUser =
+								(User) getAuthnDoc().findBean("org.rapidbeans.security.User", "testuser");
 					} else {
 						this.authenticatedUser = DialogLogin.login(authncfg.getLoginmaxtries());
 						if (this.authenticatedUser == null) {
@@ -471,6 +479,22 @@ public class Application implements Appl {
 				}
 			}
 		}
+
+		// drive password change if recommended or required
+		if (this.isUsingAuthorization() && this.authenticatedUser != null
+				&& this.authenticatedUser instanceof User
+				&& ((User) this.authenticatedUser).getChangePwdAfterNextLogon() != ChangePwdAfterNextlogonType.no)
+		{
+			final ChangePwdAfterNextlogonType changePwdAfterNextLogon =
+					((User) this.authenticatedUser).getChangePwdAfterNextLogon();
+			pwdChanged = DialogPwdChange.start(this.authenticatedUser);
+			if (changePwdAfterNextLogon == ChangePwdAfterNextlogonType.mandatory && (!pwdChanged)) {
+				messageInfo(getCurrentLocale().getStringMessage("login.cancelled.required.pwd.change.failed"));
+				end();
+			}
+		}
+
+		// open the app's main window
 		if ((!this.isUsingAuthorization()) || this.authenticatedUser != null) {
 			this.setMainwindow(MainWindow.createInstance(this, getConfiguration().getMainwindow()));
 		}
