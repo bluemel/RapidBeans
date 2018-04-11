@@ -299,7 +299,7 @@ public class Document extends ContainerImpl {
 			this.root = deser.loadBean(rbType, this.url);
 			this.encoding = deser.getEncoding();
 			this.init();
-			this.validate();
+			//this.validate();
 		} catch (RapidBeansRuntimeException e) {
 			throw new RapidBeansRuntimeException("Error while deserializing document from file \""
 					+ docfile.getAbsolutePath() + "\"", e);
