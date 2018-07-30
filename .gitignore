@@ -1,4 +1,4 @@
-eclipseworkspace
-mavenrepo
-notes
-tools
+pom.xml
+setupenv.cmd
+.project
+.settings
