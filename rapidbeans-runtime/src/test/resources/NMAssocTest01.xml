@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.test.BillingPeriod"
+	>
+	<location
+		id="B"
+		name="B"
+		closedons="20050201_2,20050101_1"
+		/>
+	<location
+		id="A"
+		name="A"
+		closedons="20050201_2,20050101_1"
+		/>
+	<closingperiod
+		id="20050201_2"
+		from="20050201"
+		name="2"
+		to="20050201"
+		locations="B,A"
+		/>
+	<closingperiod
+		id="20050101_1"
+		from="20050101"
+		name="1"
+		to="20050107"
+		locations="B,A"
+		/>
+</rb:bean>

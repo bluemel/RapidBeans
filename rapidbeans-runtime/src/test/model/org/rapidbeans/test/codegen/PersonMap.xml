@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype
+	name="org.rapidbeans.test.codegen.PersonMap"
+	idtype="keyprops"
+	>
+	<property name="name"
+		type="string"
+		key="true"
+	/>
+	<property name="persons"
+		type="association"
+		inverse="personmap"
+		targettype="Person"
+	/>
+	<codegen implementation="strict"/>
+</beantype>

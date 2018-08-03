@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype
+	name="org.rapidbeans.test.codegen.Person"
+	idtype="keyprops"
+	>
+	<property name="surname" type="string"
+		key="true"
+	/>
+	<property name="prename" type="string"
+		key="true"
+	/>
+	<property name="dateofbirth" type="date"
+		key="true"
+		minval="18500101"
+		maxval="20040101"
+	/>
+	<property name="sex" type="choice"
+		fieldtype="must"
+		enum="org.rapidbeans.domain.org.Sex"
+	/>
+	<property name="email" type="string"
+		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"
+	/>
+	<property name="phone" type="string"
+		pattern="\A[+0-9]*[-]*[0-9]*[-]*[0-9]*\z"
+	/>
+	<property name="address" type="association"
+		inverse="inhabitants"
+		targettype="Address"
+		minmult="0"
+		maxmult="1"
+	/>
+	<property name="personmap" type="association"
+        inverse="persons"
+        targettype="PersonMap"
+    />
+	<property name="user" type="association"
+		inverse="person"
+		targettype="TestUser"
+		minmult="0"
+		maxmult="1"
+	/>
+	<property name="comment" type="string"
+		multiline="true"
+	/>
+	<property name="comment2" type="string"
+		multiline="true"
+	/>
+	<property name="comment3" type="string"
+		multiline="true" escape="\n,\\n,\t,\\t"
+	/>
+	<xmlbinding>
+		<property name="comment2" bindingtype="element"/>
+		<property name="comment3" bindingtype="element"/>
+	</xmlbinding>
+	<codegen implementation="strict"/>
+</beantype>

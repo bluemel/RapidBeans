@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.test.BillingPeriod"
+	>
+	<location
+		id="Überseestraße"
+		name="Überseestraße"
+		closedons="20050201_2,20050101_1"
+		/>
+	<location
+		id="A"
+		name="A"
+		closedons="20050201_2,20050101_1"
+		/>
+	<closingperiod
+		id="20050201_2"
+		from="20050201"
+		name="2"
+		to="20050201"
+		locations="Überseestraße,A"
+		/>
+	<closingperiod
+		id="20050101_1"
+		from="20050101"
+		name="1"
+		to="20050107"
+		locations="Überseestraße,A"
+		/>
+</rb:bean>

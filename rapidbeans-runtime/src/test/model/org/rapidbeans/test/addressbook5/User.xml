@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.addressbook5.User"
+    extends="org.rapidbeans.security.User">
+    <property name="roles"
+        type="choice"
+        enum="Role"
+    />
+	<property name="person" type="association"
+		inverse="user"
+		targettype="Person"
+		maxmult="1"
+	/>
+    <codegen mode="none"/>
+</beantype>

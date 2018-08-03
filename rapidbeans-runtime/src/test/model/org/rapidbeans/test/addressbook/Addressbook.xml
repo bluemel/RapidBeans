@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.addressbook.Addressbook">
+	<property name="persons"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.test.addressbook.Person"
+		collectionclass="java.util.TreeSet"
+	/>
+	<property name="adresses"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.test.addressbook.Address"
+		collectionclass="java.util.TreeSet"
+	/>
+	<property name="groups"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.test.addressbook.Group"
+		collectionclass="java.util.TreeSet"
+	/>
+	<codegen implementation="strict"/>
+</beantype>

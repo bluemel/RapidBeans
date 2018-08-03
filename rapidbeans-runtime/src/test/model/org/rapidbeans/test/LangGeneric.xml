@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<enumtype name="org.rapidbeans.test.LangGeneric">
+	<enum name="english"/>
+	<enum name="spanish"/>
+	<enum name="portugese"/>
+	<enum name="chinese"/>
+	<enum name="french"/>
+	<enum name="german"/>
+	<codegen mode="none"/>
+</enumtype>

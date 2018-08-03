@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype
+	name="org.rapidbeans.test.codegen.AddressBook"
+	>
+	<property name="addresss"
+		type="association"
+		composition="true"
+		targettype="Address"
+		collectionclass="java.util.ArrayList"
+		/>
+	<property name="persons"
+		type="association"
+		composition="true"
+		targettype="Person"
+        collectionclass="java.util.ArrayList"
+		/>
+	<codegen implementation="strict"/>
+</beantype>

@@ -1,0 +1,7 @@
+<enumtype name="org.rapidbeans.test.addressbook5.Role">
+    <enum name="user"/>
+    <enum name="administrator"/>
+    <enum name="superadministrator"/>
+    <codegen mode="none"/>
+</enumtype>
+

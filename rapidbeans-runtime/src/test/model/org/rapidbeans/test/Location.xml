@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.Location"
+	idtype="keyprops"
+	>
+	<property name="name" key="true"/>
+	<property name="street"/>
+	<property name="city"/>
+	<property name="closedons"
+		type="association"
+		targettype="org.rapidbeans.test.ClosingPeriod"
+		inverse="locations"
+	/>
+	<xmlbinding>
+		<property name="closedons" separator="," escape="\"/>
+	</xmlbinding>
+	<codegen implementation="strict"/>
+</beantype>

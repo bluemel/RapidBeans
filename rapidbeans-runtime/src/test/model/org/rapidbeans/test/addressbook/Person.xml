@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.addressbook.Person"
+	idtype="uuid">
+	<property name="lastname"/>
+	<property name="firstname"/>
+	<property name="dateofbirth" type="date"/>
+	<property name="email"
+		pattern="\A[.\-0-9A-Za-z]*@[.\-0-9A-Za-z]*\z"/>
+	<property name="sex" type="choice"
+		enum="org.rapidbeans.domain.org.Sex"/>
+	<property name="length" type="quantity"
+		quantity="org.rapidbeans.domain.math.Length"
+		defaultunit="m"/>
+	<property name="address"
+		type="association"
+		targettype="org.rapidbeans.test.addressbook.Address"
+		maxmult="1"
+		inverse="inhabitants"
+	/>
+	<property name="groups"
+		type="association"
+		targettype="org.rapidbeans.test.addressbook.Group"
+		inverse="persons"
+	/>
+	<codegen implementation="strict"/>
+</beantype>

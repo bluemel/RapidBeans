@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ * RapidBean Ant Task Test: Property.xml
+ *
+ * Copyright (C) 2010 Martin Bluemel
+ *
+ * Creation Date: 11/05/2010
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * You should have received a copies of the GNU Lesser General Public License and the
+ * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<beantype name="org.rapidbeans.ant.test.Property" idtype="keyprops">
+
+	<description>A property is a named value that is either defined centrally
+	(mode = "common") or personally (mode = individual).</description>
+
+	<property name="name" key="true" type="string">
+		<description></description>
+	</property>
+
+	<property name="description" type="string"
+		multiline="true">
+		<description>Describes the meaning of this property</description>
+	</property>
+
+	<property name="value" type="string"
+		emptyvalid="true">
+		<description>The property's value depending from its mode:
+common: value simply defines the value.
+individual: value only defines the default value which interactively can be overwritten.</description>
+	</property>
+
+<!--
+	<property name="propmode" type="choice"
+		default="common"
+		enum="PropertyMode">
+		<description>Choice of one of the following values:
+common:     the property's value is defined centrally in the environment configuration file.
+            It can not be overdefined individually.
+individual: the property's value can be defined individually.</description>
+	</property>
+
+	<property name="proptype" type="choice"
+		default="string"
+		enum="PropertyType">
+		<description>Choice of one of the following values:
+string: the property's value is a simple string.
+path:   the property's value is a path to a local file or folder.
+url:    the property's value is a URL.</description>
+	</property>
+
+	<property name="filetype" type="choice"
+		default="directory"
+		enum="PropertyFileType">
+		<description>Choice of one of the following values:
+string: the property's value is a simple string.
+path:   the property's value is a path to a local file or folder.</description>
+	</property>
+-->
+
+	<property name="mustExist" type="boolean"
+		default="true">
+		<description>Only used for propertys of type "file".
+If it is true it is veryfied if the local file or folder exists.</description>
+	</property>
+
+	<property name="createIfNotExist" type="boolean"
+		default="false">
+		<description>Only used for propertys of type "file" and if mustExist = "true".
+If it is true for propertys of type 'common' the path automatically created if it does not exist.
+For propertys of type 'individual' the user is asked for automatic creation if it does not exist.</description>
+	</property>
+
+	<property name="normalize" type="boolean"
+		default="true">
+		<description>If true file propertys are normalized (canonical) file paths.
+Additionally in paths remove duplicate entries.</description>
+	</property>
+
+<!--
+	<property name="specificvalues" type="association"
+		composition="true"
+		targettype="PropertyValue">
+		<description>Specific value definition(s) for this property</description>
+	</property>
+
+	<property name="environments" type="association"
+		composition="true"
+		targettype="Environment">
+		<description>Environment variable definition(s) for this property</description>
+	</property>
+
+	<property name="extensions" type="association"
+		composition="true"
+		targettype="PropertyExtension">
+		<description>Extensions extend the property value by being
+successively appended or prepended.</description>
+	</property>
+-->
+
+	<xmlbinding>
+		<property name="description" bindingtype="element"/>
+	</xmlbinding>
+
+	<codegen mode="none"/>
+</beantype>

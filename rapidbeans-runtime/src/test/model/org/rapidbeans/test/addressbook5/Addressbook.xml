@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<beantype name="org.rapidbeans.test.addressbook5.Addressbook">
+	<property name="persons" type="association"
+        composition="true"
+        targettype="Person"
+        sorting="byPropertyValues: lastname, firstname, dateofbirth"
+    />
+    <property name="groups" type="association"
+        composition="true"
+        targettype="Group"
+        sorting="byPropertyValues: name"
+    />
+    <property name="users" type="association"
+        composition="true"
+        targettype="User"
+        sorting="byPropertyValues: accountname"
+    />
+    <xmlbinding xmlrootelement="addressbook"/>
+    <codegen mode="none"/>
+</beantype>
