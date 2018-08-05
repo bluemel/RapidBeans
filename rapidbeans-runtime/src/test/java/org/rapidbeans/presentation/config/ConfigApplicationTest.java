@@ -25,7 +25,7 @@ public class ConfigApplicationTest extends TestCase {
 	 * load a test configuration.
 	 */
 	public void testLoadConfiguration() {
-		Document doc = new Document(new File("../org.rapidbeans/testdata/rapidclubadmin/config/Client.xml"));
+		Document doc = new Document(new File("src/test/resources/rapidclubadmin/config/Client.xml"));
 		ConfigApplication configRoot = (ConfigApplication) doc.getRoot();
 		ConfigDocument doccfg = configRoot.getDocuments().iterator().next();
 		assertEquals("billingperiod", doccfg.getName());

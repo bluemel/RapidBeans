@@ -97,7 +97,7 @@ public final class RapidBeanTest extends TestCase {
 	public void testGetParentBeans() {
 		Document doc = new Document("testdoc",
 				TypeRapidBean.forName("org.rapidbeans.presentation.config.ConfigApplication"),
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+				new File("src/test/resources/rapidclubadmin/config/Application.xml"));
 		assertNotNull(
 				(ConfigSubmenu) doc.findBeanByQuery("org.rapidbeans.presentation.config.ConfigSubmenu[name = 'test']"));
 		Collection<RapidBean> menuItems = doc

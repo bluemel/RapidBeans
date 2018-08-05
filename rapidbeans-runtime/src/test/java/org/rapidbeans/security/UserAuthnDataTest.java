@@ -27,7 +27,7 @@ public class UserAuthnDataTest extends TestCase {
 	 */
 	public void testReadAuthnDataDoc() {
 		Application.setAuthnRoleType("org.rapidbeans.security.Role");
-		Document doc = new Document("aunthn", new File("../org.rapidbeans/testdata/authn/authn01.xml"));
+		Document doc = new Document("aunthn", new File("src/test/resources/authn/authn01.xml"));
 		User martin = (User) doc.findBean("org.rapidbeans.security.User", "bluemel");
 		assertEquals("Martin", martin.getFirstname());
 		Collection<RapidEnum> roles = (Collection<RapidEnum>) martin.getRoles();
@@ -52,7 +52,7 @@ public class UserAuthnDataTest extends TestCase {
 		rolesList.add(Role.Administrator);
 		authndata.setRoles(rolesList);
 		Document doc = new Document("authn", authndata);
-		File testfile = new File("../org.rapidbeans/testdata/authn/test01.xml");
+		File testfile = new File("src/test/resources/authn/test01.xml");
 		doc.setUrl(testfile.toURI().toURL());
 		doc.save();
 		testfile.delete();

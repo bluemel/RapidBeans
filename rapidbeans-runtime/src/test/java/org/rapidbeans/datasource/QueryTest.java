@@ -47,7 +47,7 @@ public class QueryTest extends TestCase {
 	public void setUp() {
 		if (testdoc01 == null) {
 			testdoc01 = new Document("testdoc01",
-					new File("../org.rapidbeans/testdata/deserialization" + "/AppGenericStyle.xml"));
+					new File("src/test/resources/deserialization" + "/AppGenericStyle.xml"));
 		}
 		if (testdoc02 == null) {
 			TestHelperTypeLoader.clearBeanTypesGeneric();
@@ -56,8 +56,7 @@ public class QueryTest extends TestCase {
 				RapidBeansTypeLoader.getInstance().addXmlRootElementBinding("addressbookdb",
 						"org.rapidbeans.test.addressbook5.AddressbookDb");
 			}
-			testdoc02 = new Document("testdoc02",
-					new File("../org.rapidbeans/testdata/addressbook5" + "/adrbookdb.xml"));
+			testdoc02 = new Document("testdoc02", new File("src/test/resources/addressbook5" + "/adrbookdb.xml"));
 		}
 	}
 
@@ -492,7 +491,7 @@ public class QueryTest extends TestCase {
 	// */
 	// public void testPathQueryRoot() throws IOException {
 	// File file1 = new
-	// File("../org.rapidbeans/testdata/deserialization/AppGenericRapidBeansStyle.xml");
+	// File("src/test/resources/deserialization/AppGenericRapidBeansStyle.xml");
 	// Document doc = new Document("testdoc", file1);
 	// ConfigApplication cfg = (ConfigApplication) doc.getRoot();
 	// assertEquals("org.rapidbeans.presentation.TestClient",

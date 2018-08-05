@@ -77,7 +77,7 @@ public class DocumentTest {
 	@Test
 	public void testReadFromFile() {
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+				new File("src/test/resources/rapidclubadmin/config/Application.xml"));
 		ConfigApplication config = (ConfigApplication) testdoc.getRoot();
 		Assert.assertSame(ApplicationGuiType.swing, config.getGuitype());
 		ConfigMainWindow mainWindow = config.getMainwindow();
@@ -103,7 +103,7 @@ public class DocumentTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testReadFromFileGeneric() {
-		Document testdoc = new Document(new File("../org.rapidbeans/testdata/testBeanGenericExample.xml"));
+		Document testdoc = new Document(new File("src/test/resources/testBeanGenericExample.xml"));
 		GenericBean bean = (GenericBean) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getPropValue("surname"));
 		Assert.assertEquals("Martin", bean.getPropValue("prename"));
@@ -117,7 +117,7 @@ public class DocumentTest {
 
 	@Test
 	public void testReadFromFileStrict() {
-		Document testdoc = new Document(new File("../org.rapidbeans/testdata/testBeanStrictExample.xml"));
+		Document testdoc = new Document(new File("src/test/resources/testBeanStrictExample.xml"));
 		TestBean bean = (TestBean) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getSurname());
 		Assert.assertEquals("Martin", bean.getPrename());
@@ -129,7 +129,7 @@ public class DocumentTest {
 
 	@Test
 	public void testReadFromFileSimple() {
-		Document testdoc = new Document(new File("../org.rapidbeans/testdata/testBeanSimpleExample.xml"));
+		Document testdoc = new Document(new File("src/test/resources/testBeanSimpleExample.xml"));
 		TestBeanSimple bean = (TestBeanSimple) testdoc.getRoot();
 		Assert.assertEquals("Bluemel", bean.getSurname());
 		Assert.assertEquals("Martin", bean.getPrename());
@@ -147,7 +147,7 @@ public class DocumentTest {
 	@Test
 	public void testReadFromURL() throws MalformedURLException {
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-				new File("../org.rapidbeans/testdata/rapidclubadmin" + "/config/Application.xml").toURI().toURL());
+				new File("src/test/resources/rapidclubadmin" + "/config/Application.xml").toURI().toURL());
 		ConfigApplication config = (ConfigApplication) testdoc.getRoot();
 		Assert.assertSame(ApplicationGuiType.swing, config.getGuitype());
 		ConfigMainWindow mainWindow = config.getMainwindow();
@@ -178,7 +178,7 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testReadFromInputStream() throws MalformedURLException, FileNotFoundException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		FileInputStream is = new FileInputStream(file);
 		Document testdoc = new Document("test", TypeRapidBean.forName(ConfigApplication.class.getName()),
 				file.toURI().toURL(), is);
@@ -213,7 +213,7 @@ public class DocumentTest {
 	public void testReadEncodingISO() throws IOException {
 
 		// the test XML file (ISO-8859-1 encoded)
-		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
+		File file = new File("src/test/resources/EncodingTestISO.xml");
 
 		// test readability of German "umlauts" with ISO-8859-1 configured
 		// reader
@@ -249,7 +249,7 @@ public class DocumentTest {
 	@Test
 	public void testReadEncodingUTF() throws IOException {
 		// the test XML file (ISO-8859-1 encoded)
-		File file = new File("../org.rapidbeans/testdata/EncodingTestUTF.xml");
+		File file = new File("src/test/resources/EncodingTestUTF.xml");
 
 		// test readability of German "umlauts" with ISO-8859-1 configured
 		// reader
@@ -298,8 +298,8 @@ public class DocumentTest {
 				.getPropertyType("closedons");
 		cptype1.setCollectionClass(ArrayList.class);
 		// the test XML file (ISO-8859-1 encoded)
-		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
-		File testfile = new File("../org.rapidbeans/testdata/TestEncodingISO.xml");
+		File file = new File("src/test/resources/EncodingTestISO.xml");
+		File testfile = new File("src/test/resources/TestEncodingISO.xml");
 		if (testfile.exists()) {
 			testfile.delete();
 		}
@@ -321,9 +321,9 @@ public class DocumentTest {
 	@Test
 	public void testWriteEncodingDifferent() throws IOException {
 		// the test XML file (ISO-8859-1 encoded)
-		File file = new File("../org.rapidbeans/testdata/EncodingTestISO.xml");
-		File testfileExpected = new File("../org.rapidbeans/testdata/EncodingTestUTF.xml");
-		File testfile = new File("../org.rapidbeans/testdata/TestEncodingChange.xml");
+		File file = new File("src/test/resources/EncodingTestISO.xml");
+		File testfileExpected = new File("src/test/resources/EncodingTestUTF.xml");
+		File testfile = new File("src/test/resources/TestEncodingChange.xml");
 		if (testfile.exists()) {
 			testfile.delete();
 		}
@@ -345,8 +345,8 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testWrite() throws IOException {
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
-		File file2 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationTest.xml");
+		File file1 = new File("src/test/resources/rapidclubadmin/config/Application.xml");
+		File file2 = new File("src/test/resources/rapidclubadmin/config/ApplicationTest.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplicationSwing.class.getName()), file1);
 		testdoc.setUrl(file2.toURI().toURL());
 		testdoc.save();
@@ -357,7 +357,7 @@ public class DocumentTest {
 	@Test
 	public void testInsertComponentExplicitly() {
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication clientCfg = (ConfigApplication) testdoc.getRoot();
 		Collection<ConfigLocale> locales = clientCfg.getLocales();
@@ -383,7 +383,7 @@ public class DocumentTest {
 	public void testInsertComponentImplicitly() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication clientCfg = (ConfigApplication) testdoc.getRoot();
 		Collection<ConfigLocale> locales = clientCfg.getLocales();
@@ -651,7 +651,7 @@ public class DocumentTest {
 		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
 				.setCollectionClass(ArrayList.class);
 
-		Document doc = new Document(new File("../org.rapidbeans/testdata/NMAssocTest01.xml"));
+		Document doc = new Document(new File("src/test/resources/NMAssocTest01.xml"));
 		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
 		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.Location").size());
 		BillingPeriod bp = (BillingPeriod) doc.findBeansByType("org.rapidbeans.test.BillingPeriod").iterator().next();
@@ -764,7 +764,7 @@ public class DocumentTest {
 				.setCollectionClass(TreeSet.class);
 		((TypePropertyCollection) (new ClosingPeriod()).getProperty("locations").getType())
 				.setCollectionClass(TreeSet.class);
-		Document doc = new Document(new File("../org.rapidbeans/testdata/NMAssocTest01.xml"));
+		Document doc = new Document(new File("src/test/resources/NMAssocTest01.xml"));
 		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.ClosingPeriod").size());
 		Assert.assertEquals(2, doc.findBeansByType("org.rapidbeans.test.Location").size());
 		BillingPeriod bp = (BillingPeriod) doc.findBeansByType("org.rapidbeans.test.BillingPeriod").iterator().next();
@@ -861,7 +861,7 @@ public class DocumentTest {
 		it = col.iterator();
 		Assert.assertSame(cp1, it.next());
 
-		Document doc1 = new Document(new File("../org.rapidbeans/testdata/treesettest01.xml"));
+		Document doc1 = new Document(new File("src/test/resources/treesettest01.xml"));
 		col = doc1.findBeansByType("org.rapidbeans.test.Location");
 		it = col.iterator();
 		Location loc1 = (Location) it.next();
@@ -932,7 +932,7 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testChangeParentComponent() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplicationSwing.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
@@ -1012,12 +1012,11 @@ public class DocumentTest {
 		Assert.assertSame(submenuTest, menuItemTest1.getParentBean());
 		Assert.assertSame(submenuEdit, submenuTest2.getParentBean());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File("src/test/resources/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
 		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterMoveComposite.xml"), true,
-				true));
+				new File("src/test/resources/rapidclubadmin/config/ApplicationAfterMoveComposite.xml"), true, true));
 		file1.delete();
 	}
 
@@ -1031,7 +1030,7 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testChangeParentComponentTheWrongWay1() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplicationSwing.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
@@ -1116,12 +1115,12 @@ public class DocumentTest {
 		Assert.assertSame(submenuTest, menuItemTest1.getParentBean());
 		Assert.assertSame(submenuEdit, submenuTest2.getParentBean());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File("src/test/resources/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
 		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterRemoveAndAddComposite.xml"),
-				true, true));
+				new File("src/test/resources/rapidclubadmin/config/ApplicationAfterRemoveAndAddComposite.xml"), true,
+				true));
 		file1.delete();
 	}
 
@@ -1131,7 +1130,7 @@ public class DocumentTest {
 	 */
 	@Test(expected = RapidBeansRuntimeException.class)
 	public void testChangeParentComponentTheWrongWay2() {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
@@ -1200,7 +1199,7 @@ public class DocumentTest {
 	public void testDelete() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigLocale localeconfig = (ConfigLocale) testdoc.findBean(ConfigLocale.class.getName(), "en");
@@ -1223,7 +1222,7 @@ public class DocumentTest {
 	 */
 	@Test
 	public void testDeleteComposite() throws IOException {
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document testdoc = new Document(TypeRapidBean.forName(ConfigApplicationSwing.class.getName()), file);
 		ConfigApplication client = (ConfigApplication) testdoc.getRoot();
 		ConfigMainWindow mainwin = client.getMainwindow();
@@ -1324,12 +1323,11 @@ public class DocumentTest {
 		Assert.assertEquals(0, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigSubmenu").size());
 		Assert.assertEquals(0, testdoc.findBeansByQuery("org.rapidbeans.presentation.config.ConfigMenuEntry").size());
 
-		File file1 = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Test.xml");
+		File file1 = new File("src/test/resources/rapidclubadmin/config/Test.xml");
 		testdoc.setUrl(file1.toURI().toURL());
 		testdoc.save();
 		Assert.assertTrue(FileHelper.filesEqual(file1,
-				new File("../org.rapidbeans/testdata/rapidclubadmin/config/ApplicationAfterDelComposite.xml"), true,
-				true));
+				new File("src/test/resources/rapidclubadmin/config/ApplicationAfterDelComposite.xml"), true, true));
 		file1.delete();
 	}
 
@@ -1340,7 +1338,7 @@ public class DocumentTest {
 	public void testCloneLinkedBeanComposite() {
 
 		// set up a test document out of file Application.xml
-		File file = new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml");
+		File file = new File("src/test/resources/rapidclubadmin/config/Application.xml");
 		Document doc = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()), file);
 		ConfigMainWindow mainwin = (ConfigMainWindow) doc
 				.findBeansByType("org.rapidbeans.presentation.config.ConfigMainWindow").iterator().next();

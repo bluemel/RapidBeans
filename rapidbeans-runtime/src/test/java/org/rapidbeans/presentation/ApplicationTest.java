@@ -60,17 +60,16 @@ public final class ApplicationTest extends TestCase {
 	 * Test load an Application configuration.
 	 */
 	public void testLoadInstance() {
-		ApplicationManager.start(null, "../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml",
-				new TestClient() {
-					@Override
-					public Properties getOptions() {
-						return new Properties();
-					}
+		ApplicationManager.start(null, "src/test/resources/rapidclubadmin/config/Application.xml", new TestClient() {
+			@Override
+			public Properties getOptions() {
+				return new Properties();
+			}
 
-					public boolean getTestMode() {
-						return true;
-					}
-				});
+			public boolean getTestMode() {
+				return true;
+			}
+		});
 		TestClient app = (TestClient) ApplicationManager.getApplication();
 		assertEquals("Test", app.getConfiguration().getName());
 		assertSame(ApplicationGuiType.swing, app.getConfiguration().getGuitype());
@@ -156,11 +155,12 @@ public final class ApplicationTest extends TestCase {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
 			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
-			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+					new File("src/test/resources/rapidclubadmin/config/Application.xml"));
+			assertTrue(doc1.getName()
+					.endsWith("/rapidbeans-runtime/src/test/resources/rapidclubadmin/config/Application.xml"));
 			DocumentView view1 = client.openDocumentView(doc1, null, null);
 			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+					new File("src/test/resources/rapidclubadmin/config/Application.xml"));
 			DocumentView view2 = client.openDocumentView(doc2, null, null);
 			assertSame(view1, view2);
 		} finally {
@@ -176,13 +176,14 @@ public final class ApplicationTest extends TestCase {
 			Application client = PresentationSwingTestHelper.getTestClient();
 			assertNotNull(client);
 			Document doc1 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
-			assertTrue(doc1.getName().endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/Application.xml"));
+					new File("src/test/resources/rapidclubadmin/config/Application.xml"));
+			assertTrue(doc1.getName()
+					.endsWith("/rapidbeans-runtime/src/test/resources/rapidclubadmin/config/Application.xml"));
 			client.openDocumentView(doc1, null, null);
 			Document doc2 = new Document(TypeRapidBean.forName(ConfigApplication.class.getName()),
-					new File("../org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
-			assertTrue(doc2.getName()
-					.endsWith("/org.rapidbeans/testdata/rapidclubadmin/config/subfolder/Application.xml"));
+					new File("src/test/resources/rapidclubadmin/config/subfolder/Application.xml"));
+			assertTrue(doc2.getName().endsWith(
+					"/rapidbeans-runtime/src/test/resources/rapidclubadmin/config/subfolder/Application.xml"));
 			client.openDocumentView(doc2, null, null);
 		} finally {
 			PresentationSwingTestHelper.releaseTestClient();

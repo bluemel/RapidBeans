@@ -18,7 +18,7 @@ public class FilterTest extends TestCase {
 	}
 
 	public void testExcludes01() {
-		final Document doc = new Document(new File("../org.rapidbeans/testdata/addressbook5/adrbookdb.xml"));
+		final Document doc = new Document(new File("src/test/resources/addressbook5/adrbookdb.xml"));
 		final Query query = new Query("org.rapidbeans.test.addressbook5.User");
 		assertEquals(5, doc.findBeansByQuery(query).size());
 		final Filter filter = new Filter();
