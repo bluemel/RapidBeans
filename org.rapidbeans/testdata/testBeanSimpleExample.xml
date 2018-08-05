@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
-	rb:type="org.rapidbeans.test.TestBeanSimple"
-	surname="Bluemel"
-	prename="Martin"
-	>
-	<child surname="Bluemel" prename="Melanie"/>
-</rb:bean>
