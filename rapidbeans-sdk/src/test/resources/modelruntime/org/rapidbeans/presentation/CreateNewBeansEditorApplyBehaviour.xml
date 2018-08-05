@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ * Rapid Beans Framework: CreateNewBeansEditorApplyBehaviour.xml
+ *
+ * Copyright (C) 2009 Martin Bluemel
+ *
+ * Creation Date: 08/12/2009
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU Lesser General Public License as published by the Free Software Foundation;
+ * either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * You should have received a copies of the GNU Lesser General Public License and the
+ * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<enumtype name="org.rapidbeans.presentation.CreateNewBeansEditorApplyBehaviour">
+	<description>
+		<line>Defines the behaviour of the generic bean editor during consecutive</line>
+		<line>creation of more than one new bean when using the "apply" button.</line>
+        <line>In this case it is possible to reuse (parts of) the enterings</line>
+        <line>you made for the last new bean. This can be useful if you want</line>
+        <line>to insert a bunch of similar beans.</line>
+	</description>
+	<enum name="resetall">
+		<description>reset all properties.</description>
+	</enum>
+	<enum name="resetkey">
+		<description>reset only key properties.</description>
+	</enum>
+    <enum name="resetnothing">
+        <description>reset nothing.</description>
+    </enum>
+</enumtype>
