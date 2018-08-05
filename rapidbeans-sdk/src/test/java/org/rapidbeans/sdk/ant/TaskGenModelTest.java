@@ -17,11 +17,12 @@
 
 package org.rapidbeans.sdk.ant;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Delete;
-import org.apache.tools.ant.taskdefs.Mkdir;
 import org.apache.tools.ant.taskdefs.Property;
 import org.junit.Test;
 
@@ -44,20 +45,19 @@ public final class TaskGenModelTest {
 		propTask.setEnvironment("env");
 		propTask.execute();
 
-		Mkdir mkdirTask = new Mkdir();
-		mkdirTask.setDir(new File("testdata/testtmp"));
-		mkdirTask.execute();
+		if (new File("target/genmodel").exists()) {
+			Delete deleteTask = new Delete();
+			deleteTask.setDir(new File("target/genmodel"));
+			deleteTask.execute();
+		}
+		assertTrue(new File("target/genmodel").mkdirs());
 
 		TaskGenModel task = new TaskGenModel();
 		task.setProject(project);
-		task.setSrcdir(new File("../org.rapidbeans/model"));
-		task.setDestdirsimple(new File("testdata/testtmp"));
-		task.setDestdirjoint(new File("testdata/testtmp"));
-		task.setStyledir(new File("../org.rapidbeans/codegentemplates"));
+		task.setSrcdir(new File("src/test/resources/modelruntime"));
+		task.setDestdirsimple(new File("target/genmodel"));
+		task.setDestdirjoint(new File("target/genmodel"));
+		task.setStyledir(new File("src/main/resources/stylesheets"));
 		task.execute();
-
-		Delete deleteTask = new Delete();
-		deleteTask.setDir(new File("testdata/testtmp"));
-		deleteTask.execute();
 	}
 }
