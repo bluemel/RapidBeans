@@ -109,8 +109,6 @@ public class RapidBeansGeneratorMojo extends AbstractMojo {
 	public void execute() throws MojoExecutionException {
 		try {
 			getLog().info("Running RapidBeans code generator...");
-			// FIXME
-			System.out.println("Running RapidBeans code generator...");
 			TaskGenModel task = new TaskGenModel();
 			final Project project = new Project();
 			project.setBaseDir(project.getBaseDir());
@@ -125,10 +123,8 @@ public class RapidBeansGeneratorMojo extends AbstractMojo {
 			task.setIndent(this.indent);
 			task.execute();
 			getLog().info("Finished RapidBEans code generator successfully.");
-			System.out.println("Finished RapidBEans code generator successfully.");
 		} catch (RuntimeException e) {
 			getLog().error("Finished RapidBEans code generator with Exception.", e);
-			System.out.println("Finished RapidBEans code generator with Exception.");
 			e.printStackTrace();
 			throw e;
 		}
