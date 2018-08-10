@@ -78,10 +78,14 @@ public class TaskFileOverviewTest {
 
 	@Test
 	public void testGenerateFolderAndFilesXML0() {
-		final File testdir = new File("testdata");
+		final File testdir = new File("target/testemptydir");
+		if (!testdir.exists())
+		{
+			assertTrue(testdir.mkdirs());
+		}
 		final StringWriter writer = new StringWriter();
 		TaskFileOverview.generateFolderAndFilesXML(testdir, 0, 0, writer, false, true, null);
-		assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + LF + "<folder path=\"testdata\">"
+		assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + LF + "<folder path=\"target/testemptydir\">"
 				+ LF + "</folder>" + LF, writer.toString());
 	}
 }
