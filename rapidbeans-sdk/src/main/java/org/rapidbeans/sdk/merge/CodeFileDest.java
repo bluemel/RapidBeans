@@ -15,19 +15,13 @@
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.rapidbeans.sdk.ant;
+package org.rapidbeans.sdk.merge;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.tools.ant.BuildException;
-import org.rapidbeans.sdk.merge.CodeFile;
-import org.rapidbeans.sdk.merge.CodeFileGen;
-import org.rapidbeans.sdk.merge.CodeFileMan;
-import org.rapidbeans.sdk.merge.CodeFilePart;
-import org.rapidbeans.sdk.merge.CodeFilePartBody;
-import org.rapidbeans.sdk.merge.CodeFilePartLine;
 
 /**
  * the source file with the generated code.
@@ -37,19 +31,12 @@ import org.rapidbeans.sdk.merge.CodeFilePartLine;
 public class CodeFileDest extends CodeFile {
 
 	/**
-	 * the gateway for convenient Ant access.
-	 */
-	private AntGateway ant = null;
-
-	/**
 	 * constructor.
 	 * 
 	 * @param argFile the file
-	 * @param argAnt  Ant gateway
 	 */
-	public CodeFileDest(final File argFile, final AntGateway argAnt) {
+	public CodeFileDest(final File argFile) {
 		super(argFile);
-		this.ant = argAnt;
 	}
 
 	/**
@@ -60,7 +47,7 @@ public class CodeFileDest extends CodeFile {
 			throw new BuildException("No value defined for mandatory attribute \"destfile\".");
 		}
 		if (!this.getFile().getParentFile().exists()) {
-			this.ant.mkdir(this.getFile().getParentFile());
+			this.getFile().getParentFile().mkdirs();
 		}
 		if (!this.getFile().getParentFile().exists()) {
 			throw new BuildException("invalid file given for attribute \"destfile\"."
@@ -132,15 +119,9 @@ public class CodeFileDest extends CodeFile {
 	 * @throws IOException IO problem
 	 */
 	public final void write() throws IOException {
-		FileWriter wr = null;
-		try {
-			wr = new FileWriter(this.getFile());
+		try (final FileWriter wr = new FileWriter(this.getFile())) {
 			for (final CodeFilePart part : this.getParts()) {
 				wr.write(part.getText());
-			}
-		} finally {
-			if (wr != null) {
-				wr.close();
 			}
 		}
 	}

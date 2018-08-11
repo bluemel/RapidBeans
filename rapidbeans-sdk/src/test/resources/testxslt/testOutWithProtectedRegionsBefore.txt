@@ -1,0 +1,17 @@
+Hello folks!
+
+// BEGIN manual code section
+// sectionOne
+Hello there!!!
+// END manual code section
+// sectionOne
+
+Upper
+// BEGIN manual code section
+// sectionTwo
+This is a
+short two liner.
+// END manual code section
+// sectionTwo
+testelement: test 1
+testelement: test 2

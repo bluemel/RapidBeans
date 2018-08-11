@@ -354,9 +354,6 @@ public final class XXslt extends XSLTProcess {
 		param = super.createParam();
 		param.setName("force");
 		param.setExpression(new Boolean(this.force).toString());
-		param = super.createParam();
-		param.setName("force");
-		param.setExpression(new Boolean(this.force).toString());
 		switch (this.pathmode) {
 		case wd:
 			param = super.createParam();

@@ -23,6 +23,7 @@ import java.io.IOException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
+import org.rapidbeans.sdk.merge.CodeFileDest;
 import org.rapidbeans.sdk.merge.CodeFileGen;
 import org.rapidbeans.sdk.merge.CodeFileMan;
 
@@ -198,13 +199,8 @@ public final class TaskMergeSections extends Task {
 	 * @param f the new value for this property.
 	 */
 	public void setDestfile(final File f) {
-		this.destfile = new CodeFileDest(f, this.antGateway);
+		this.destfile = new CodeFileDest(f);
 	}
-
-	/**
-	 * the Ant gateway for convenient use of Ant tesks.
-	 */
-	private AntGateway antGateway = new AntGateway(new Project(), "");
 
 	/**
 	 * The execute method has to be implemented from every Ant task.
@@ -217,7 +213,7 @@ public final class TaskMergeSections extends Task {
 				this.log("srcfileman = \"" + this.srcfileman.getFile().getAbsolutePath(), Project.MSG_VERBOSE);
 			}
 			if (this.destfile == null) {
-				this.destfile = new CodeFileDest(this.srcfileman.getFile(), this.antGateway);
+				this.destfile = new CodeFileDest(this.srcfileman.getFile());
 			} else {
 				this.log("destfile = \"" + this.destfile.getFile().getAbsolutePath(), Project.MSG_VERBOSE);
 			}

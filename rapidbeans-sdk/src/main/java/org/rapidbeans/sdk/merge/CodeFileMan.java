@@ -30,7 +30,7 @@ import org.apache.tools.ant.BuildException;
 public class CodeFileMan extends CodeFile {
 
 	/**
-	 * costructor.
+	 * constructor.
 	 * 
 	 * @param argFile the file
 	 */

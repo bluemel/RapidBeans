@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2013 Martin Bluemel
  *
- * Creation Date: 08/31/2018
+ * Creation Date: 07/31/2018
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU Lesser General Public License as published by the Free Software Foundation;
@@ -14,6 +14,7 @@
  * You should have received a copies of the GNU Lesser General Public License and the
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
+
 package org.rapidbeans.sdk.maven;
 
 import java.io.File;
@@ -23,14 +24,16 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
-import org.apache.tools.ant.Project;
-import org.rapidbeans.sdk.ant.TaskGenModel;
-import org.rapidbeans.sdk.core.BuildException;
 import org.rapidbeans.sdk.core.CodeGenImpl;
 import org.rapidbeans.sdk.core.CodeGenMode;
+import org.rapidbeans.sdk.core.RapidBeansCodeGenerator;
+import org.rapidbeans.sdk.utils.BuildException;
 
 /**
  * Goal which touches a time stamp file.
+ * 
+ * @author Alexander Rolfes
+ * @author Martin Bluemel
  */
 @Mojo(name = "rapidbeans-generator")
 public class RapidBeansGeneratorMojo extends AbstractMojo {
@@ -109,10 +112,11 @@ public class RapidBeansGeneratorMojo extends AbstractMojo {
 	public void execute() throws MojoExecutionException {
 		try {
 			getLog().info("Running RapidBeans code generator...");
-			TaskGenModel task = new TaskGenModel();
-			final Project project = new Project();
-			project.setBaseDir(project.getBaseDir());
-			task.setProject(project);
+//			final TaskGenModel task = new TaskGenModel();
+//			final Project project = new Project();
+//			project.setBaseDir(project.getBaseDir());
+//			task.setProject(project);
+			final RapidBeansCodeGenerator task = new RapidBeansCodeGenerator(new SdkLoggerAdapterMaven(getLog()));
 			task.setForce(this.force);
 			task.setSrcdir(this.srcdir);
 			task.setDestdirsimple(checkDestDir("destdirsimple", this.destdirsimple));

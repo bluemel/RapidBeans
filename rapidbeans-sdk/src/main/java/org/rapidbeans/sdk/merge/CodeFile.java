@@ -110,7 +110,7 @@ public abstract class CodeFile {
 	private static final int STATE_BEGIN_MANCODE_BODY = 1;
 
 	/**
-	 * parser stae: within code body.
+	 * parser state: within code body.
 	 */
 	private static final int STATE_MANCODE_BODY = 2;
 
@@ -131,45 +131,45 @@ public abstract class CodeFile {
 	 */
 	public final void parse(final String oneLineComment, final String beginSection, final String endSection)
 			throws IOException {
-		final String beginSectionComment = oneLineComment + " " + beginSection;
-		final String endSectionComment = oneLineComment + " " + endSection;
-		final LineNumberReader reader = new LineNumberReader(new FileReader(this.getFile()));
-		String line, trimmedLine, signature;
-		CodeFilePartBody body = null;
-		int state = 0;
-		while ((line = reader.readLine()) != null) {
-			trimmedLine = line.trim();
-			switch (state) {
-			case STATE_BASIC:
-				if (trimmedLine.startsWith(beginSectionComment)) {
-					body = new CodeFilePartBody(line);
-					state = STATE_BEGIN_MANCODE_BODY;
-				} else {
-					appendPart(new CodeFilePartLine(line));
-					state = STATE_BASIC;
-				}
-				break;
-			case STATE_BEGIN_MANCODE_BODY:
-				signature = stripOneLineComment(trimmedLine);
-				body.setBeginCommentSignature(line);
-				body.setSignature(signature);
-				state = STATE_MANCODE_BODY;
-				break;
-			case STATE_MANCODE_BODY:
-				if (trimmedLine.startsWith(endSectionComment)) {
-					body.setEndComment(line);
-					this.appendBodyPart(body);
-					state = STATE_BASIC;
-				} else {
-					body.appendLine(line);
+		try (final LineNumberReader reader = new LineNumberReader(new FileReader(this.getFile()))) {
+			final String beginSectionComment = oneLineComment + " " + beginSection;
+			final String endSectionComment = oneLineComment + " " + endSection;
+			String line, trimmedLine, signature;
+			CodeFilePartBody body = null;
+			int state = 0;
+			while ((line = reader.readLine()) != null) {
+				trimmedLine = line.trim();
+				switch (state) {
+				case STATE_BASIC:
+					if (trimmedLine.startsWith(beginSectionComment)) {
+						body = new CodeFilePartBody(line);
+						state = STATE_BEGIN_MANCODE_BODY;
+					} else {
+						appendPart(new CodeFilePartLine(line));
+						state = STATE_BASIC;
+					}
+					break;
+				case STATE_BEGIN_MANCODE_BODY:
+					signature = stripOneLineComment(trimmedLine);
+					body.setBeginCommentSignature(line);
+					body.setSignature(signature);
 					state = STATE_MANCODE_BODY;
+					break;
+				case STATE_MANCODE_BODY:
+					if (trimmedLine.startsWith(endSectionComment)) {
+						body.setEndComment(line);
+						this.appendBodyPart(body);
+						state = STATE_BASIC;
+					} else {
+						body.appendLine(line);
+						state = STATE_MANCODE_BODY;
+					}
+					break;
+				default:
+					throw new BuildException("Parser error: wrong state: " + Integer.toString(state));
 				}
-				break;
-			default:
-				throw new BuildException("Parser error: wrong state: " + Integer.toString(state));
 			}
 		}
-		reader.close();
 	}
 
 	/**
