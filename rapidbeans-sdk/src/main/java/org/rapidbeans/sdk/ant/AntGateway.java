@@ -20,6 +20,8 @@ package org.rapidbeans.sdk.ant;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.tools.ant.BuildException;
@@ -37,6 +39,8 @@ import org.apache.tools.ant.taskdefs.Touch;
 import org.apache.tools.ant.taskdefs.XSLTProcess;
 import org.apache.tools.ant.types.Commandline;
 import org.apache.tools.ant.types.FileSet;
+import org.rapidbeans.sdk.core.XXslt;
+import org.rapidbeans.sdk.core.XslTransformer;
 import org.rapidbeans.sdk.merge.KeyValuePair;
 import org.rapidbeans.sdk.merge.MergeProperties;
 
@@ -126,21 +130,18 @@ public final class AntGateway {
 	 */
 	public void xxslt(final File style, final File in, final File out, final KeyValuePair[] params,
 			final MergeProperties mergeProps, final boolean force) {
-		XXslt task = new XXslt();
-		task.setProject(this.project);
-		setTaskName(task, "xxslt");
+		final XXslt task = new XXslt(new SdkLoggerAdapterAnt(this.project));
 		task.setStyle(style);
 		task.setIn(in);
 		task.setOut(out);
 		task.setForce(force);
+		final Map<String, String> paramMap = new HashMap<String, String>();
 		if (params != null) {
-			XSLTProcess.Param param;
 			for (int i = 0; i < params.length; i++) {
-				param = task.createParam();
-				param.setName(params[i].getKey());
-				param.setExpression(params[i].getValue());
+				paramMap.put(params[i].getKey(), params[i].getValue());
 			}
 		}
+		task.setParameters(paramMap);
 		if (mergeProps != null) {
 			task.setMerge(true);
 			if (mergeProps.getOneLineComment() != null) {
@@ -159,7 +160,7 @@ public final class AntGateway {
 				task.setSectionUnmatchedEnd(mergeProps.getSectionUnmatchedEnd());
 			}
 		}
-		task.execute();
+		task.execute(new XslTransformer());
 	}
 
 	/**

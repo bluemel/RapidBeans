@@ -89,6 +89,8 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<source>1.8</source>
 					<target>1.8</target>
+					<compilerArgument>-verbose</compilerArgument>
+					<compilerArgument>-Xlint:all,-options,-path</compilerArgument>
 				</configuration>
 			</plugin>
 

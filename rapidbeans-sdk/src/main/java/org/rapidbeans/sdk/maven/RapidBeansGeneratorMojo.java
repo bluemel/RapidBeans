@@ -112,10 +112,6 @@ public class RapidBeansGeneratorMojo extends AbstractMojo {
 	public void execute() throws MojoExecutionException {
 		try {
 			getLog().info("Running RapidBeans code generator...");
-//			final TaskGenModel task = new TaskGenModel();
-//			final Project project = new Project();
-//			project.setBaseDir(project.getBaseDir());
-//			task.setProject(project);
 			final RapidBeansCodeGenerator task = new RapidBeansCodeGenerator(new SdkLoggerAdapterMaven(getLog()));
 			task.setForce(this.force);
 			task.setSrcdir(this.srcdir);

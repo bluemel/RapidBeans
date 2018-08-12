@@ -15,76 +15,76 @@
  * GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.rapidbeans.sdk.maven;
+package org.rapidbeans.sdk.ant;
 
-import org.apache.maven.plugin.logging.Log;
+import org.apache.tools.ant.Project;
 import org.rapidbeans.sdk.core.SdkLogger;
 
-public class SdkLoggerAdapterMaven implements SdkLogger {
+public class SdkLoggerAdapterAnt implements SdkLogger {
 
-	private final Log mavenLogger;
+	private final Project antProject;
 
-	public SdkLoggerAdapterMaven(final Log mavenLogger) {
-		this.mavenLogger = mavenLogger;
+	public SdkLoggerAdapterAnt(final Project antProject) {
+		this.antProject = antProject;
 	}
 
 	@Override
 	public void debug(String content) {
-		this.mavenLogger.debug(content);
+		this.antProject.log(content, Project.MSG_DEBUG);
 	}
 
 	@Override
 	public void debug(String content, Throwable error) {
-		this.mavenLogger.debug(content, error);
+		this.antProject.log(content, error, Project.MSG_DEBUG);
 	}
 
 	@Override
 	public void debug(Throwable error) {
-		this.mavenLogger.debug(error);
+		this.antProject.log(error.getClass().getName(), error, Project.MSG_DEBUG);
 	}
 
 	@Override
 	public void info(String content) {
-		this.mavenLogger.info(content);
+		this.antProject.log(content, Project.MSG_INFO);
 	}
 
 	@Override
 	public void info(String content, Throwable error) {
-		this.mavenLogger.info(content, error);
+		this.antProject.log(content, error, Project.MSG_INFO);
 	}
 
 	@Override
 	public void info(Throwable error) {
-		this.mavenLogger.info(error);
+		this.antProject.log(error.getClass().getName(), error, Project.MSG_INFO);
 	}
 
 	@Override
 	public void warn(String content) {
-		this.mavenLogger.warn(content);
+		this.antProject.log(content, Project.MSG_WARN);
 	}
 
 	@Override
 	public void warn(String content, Throwable error) {
-		this.mavenLogger.warn(content, error);
+		this.antProject.log(content, error, Project.MSG_WARN);
 	}
 
 	@Override
 	public void warn(Throwable error) {
-		this.mavenLogger.warn(error);
+		this.antProject.log(error.getClass().getName(), error, Project.MSG_WARN);
 	}
 
 	@Override
 	public void error(String content) {
-		this.mavenLogger.error(content);
+		this.antProject.log(content, Project.MSG_ERR);
 	}
 
 	@Override
 	public void error(String content, Throwable error) {
-		this.mavenLogger.error(content, error);
+		this.antProject.log(content, error, Project.MSG_ERR);
 	}
 
 	@Override
 	public void error(Throwable error) {
-		this.mavenLogger.error(error);
+		this.antProject.log(error.getClass().getName(), error, Project.MSG_ERR);
 	}
 }

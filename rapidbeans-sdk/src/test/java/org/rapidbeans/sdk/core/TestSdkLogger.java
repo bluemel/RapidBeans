@@ -10,39 +10,25 @@ public class TestSdkLogger implements SdkLogger {
 
 	@Override
 	public void warn(Throwable error) {
-		System.out.println("WARNING: " + error.getMessage());
-		error.printStackTrace(System.out);
+		if (this.isWarnEnabled()) {
+			System.out.println("WARNING: " + error.getMessage());
+			error.printStackTrace(System.out);
+		}
 	}
 
 	@Override
-	public void warn(CharSequence content, Throwable error) {
-		System.out.println("WARNING: " + content);
-		error.printStackTrace(System.out);
+	public void warn(String content, Throwable error) {
+		if (this.isWarnEnabled()) {
+			System.out.println("WARNING: " + content);
+			error.printStackTrace(System.out);
+		}
 	}
 
 	@Override
-	public void warn(CharSequence content) {
-		System.out.println("WARNING: " + content);
-	}
-
-	@Override
-	public boolean isWarnEnabled() {
-		return this.level.ordinal() >= Level.WARN.ordinal();
-	}
-
-	@Override
-	public boolean isInfoEnabled() {
-		return this.level.ordinal() >= Level.INFO.ordinal();
-	}
-
-	@Override
-	public boolean isErrorEnabled() {
-		return this.level.ordinal() >= Level.ERROR.ordinal();
-	}
-
-	@Override
-	public boolean isDebugEnabled() {
-		return this.level.ordinal() >= Level.DEBUG.ordinal();
+	public void warn(String content) {
+		if (this.isWarnEnabled()) {
+			System.out.println("WARNING: " + content);
+		}
 	}
 
 	@Override
@@ -54,7 +40,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void info(CharSequence content, Throwable error) {
+	public void info(String content, Throwable error) {
 		if (this.isInfoEnabled()) {
 			System.out.println("INFO: " + content);
 			error.printStackTrace(System.out);
@@ -62,7 +48,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void info(CharSequence content) {
+	public void info(String content) {
 		if (this.isInfoEnabled()) {
 			System.out.println("INFO: " + content);
 		}
@@ -77,7 +63,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void error(CharSequence content, Throwable error) {
+	public void error(String content, Throwable error) {
 		if (this.isErrorEnabled()) {
 			System.err.println("ERROR: " + content);
 			error.printStackTrace();
@@ -85,7 +71,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void error(CharSequence content) {
+	public void error(String content) {
 		if (this.isErrorEnabled()) {
 			System.err.println("ERROR: " + content);
 		}
@@ -100,7 +86,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void debug(CharSequence content, Throwable error) {
+	public void debug(String content, Throwable error) {
 		if (this.isDebugEnabled()) {
 			System.out.println("DEBUG: " + content);
 			error.printStackTrace(System.out);
@@ -108,7 +94,7 @@ public class TestSdkLogger implements SdkLogger {
 	}
 
 	@Override
-	public void debug(CharSequence content) {
+	public void debug(String content) {
 		if (this.isDebugEnabled()) {
 			System.out.println("DEBUG: " + content);
 		}
@@ -120,5 +106,21 @@ public class TestSdkLogger implements SdkLogger {
 
 	public void setLevel(Level level) {
 		this.level = level;
+	}
+
+	private boolean isWarnEnabled() {
+		return this.level.ordinal() >= Level.WARN.ordinal();
+	}
+
+	private boolean isInfoEnabled() {
+		return this.level.ordinal() >= Level.INFO.ordinal();
+	}
+
+	private boolean isErrorEnabled() {
+		return this.level.ordinal() >= Level.ERROR.ordinal();
+	}
+
+	private boolean isDebugEnabled() {
+		return this.level.ordinal() >= Level.DEBUG.ordinal();
 	}
 }

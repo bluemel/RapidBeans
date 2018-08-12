@@ -126,12 +126,12 @@ public class Version {
 
 			// try to convert both components to an integer number
 			try {
-				componentNumThis = new Integer(componentStringThis);
+				componentNumThis = Integer.parseInt(componentStringThis);
 			} catch (NumberFormatException e) {
 				componentNumThis = null;
 			}
 			try {
-				componentNumThat = new Integer(componentStringThat);
+				componentNumThat = Integer.parseInt(componentStringThat);
 			} catch (NumberFormatException e) {
 				componentNumThat = null;
 			}

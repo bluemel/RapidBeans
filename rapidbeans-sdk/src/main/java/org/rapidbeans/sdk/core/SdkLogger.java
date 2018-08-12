@@ -3,16 +3,11 @@ package org.rapidbeans.sdk.core;
 public interface SdkLogger {
 
 	/**
-	 * @return true if the <b>debug</b> error level is enabled
-	 */
-	boolean isDebugEnabled();
-
-	/**
 	 * Send a message to the user in the <b>debug</b> error level.
 	 *
 	 * @param content
 	 */
-	void debug(CharSequence content);
+	void debug(String content);
 
 	/**
 	 * Send a message (and accompanying exception) to the user in the <b>debug</b>
@@ -22,7 +17,7 @@ public interface SdkLogger {
 	 * @param content
 	 * @param error
 	 */
-	void debug(CharSequence content, Throwable error);
+	void debug(String content, Throwable error);
 
 	/**
 	 * Send an exception to the user in the <b>debug</b> error level.<br>
@@ -34,16 +29,11 @@ public interface SdkLogger {
 	void debug(Throwable error);
 
 	/**
-	 * @return true if the <b>info</b> error level is enabled
-	 */
-	boolean isInfoEnabled();
-
-	/**
 	 * Send a message to the user in the <b>info</b> error level.
 	 *
 	 * @param content
 	 */
-	void info(CharSequence content);
+	void info(String content);
 
 	/**
 	 * Send a message (and accompanying exception) to the user in the <b>info</b>
@@ -53,7 +43,7 @@ public interface SdkLogger {
 	 * @param content
 	 * @param error
 	 */
-	void info(CharSequence content, Throwable error);
+	void info(String content, Throwable error);
 
 	/**
 	 * Send an exception to the user in the <b>info</b> error level.<br>
@@ -65,16 +55,11 @@ public interface SdkLogger {
 	void info(Throwable error);
 
 	/**
-	 * @return true if the <b>warn</b> error level is enabled
-	 */
-	boolean isWarnEnabled();
-
-	/**
 	 * Send a message to the user in the <b>warn</b> error level.
 	 *
 	 * @param content
 	 */
-	void warn(CharSequence content);
+	void warn(String content);
 
 	/**
 	 * Send a message (and accompanying exception) to the user in the <b>warn</b>
@@ -84,7 +69,7 @@ public interface SdkLogger {
 	 * @param content
 	 * @param error
 	 */
-	void warn(CharSequence content, Throwable error);
+	void warn(String content, Throwable error);
 
 	/**
 	 * Send an exception to the user in the <b>warn</b> error level.<br>
@@ -96,16 +81,11 @@ public interface SdkLogger {
 	void warn(Throwable error);
 
 	/**
-	 * @return true if the <b>error</b> error level is enabled
-	 */
-	boolean isErrorEnabled();
-
-	/**
 	 * Send a message to the user in the <b>error</b> error level.
 	 *
 	 * @param content
 	 */
-	void error(CharSequence content);
+	void error(String content);
 
 	/**
 	 * Send a message (and accompanying exception) to the user in the <b>error</b>
@@ -115,7 +95,7 @@ public interface SdkLogger {
 	 * @param content
 	 * @param error
 	 */
-	void error(CharSequence content, Throwable error);
+	void error(String content, Throwable error);
 
 	/**
 	 * Send an exception to the user in the <b>error</b> error level.<br>

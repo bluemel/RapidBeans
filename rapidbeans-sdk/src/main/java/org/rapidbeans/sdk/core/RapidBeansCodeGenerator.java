@@ -176,36 +176,6 @@ public final class RapidBeansCodeGenerator {
 		this.indent = indent;
 	}
 
-//	/**
-//	 * the extended XSLT task.
-//	 */
-//	private RapidBeansXXslt xsltTask = null;
-//
-//	/**
-//	 * the package parameter.
-//	 */
-//	private XSLTProcess.Param xsltParameterPackage = null;
-//
-//	/**
-//	 * the classname parameter.
-//	 */
-//	private XSLTProcess.Param xsltParameterClassname = null;
-//
-//	/**
-//	 * the codegen parameter.
-//	 */
-//	private XSLTProcess.Param xsltParameterCodegen = null;
-//
-//	/**
-//	 * the implementation parameter.
-//	 */
-//	private XSLTProcess.Param xsltParameterImplementation = null;
-//
-//	/**
-//	 * the indent parameter.
-//	 */
-//	private XSLTProcess.Param xsltParameterIndent = null;
-
 	private final SdkLogger logger;
 
 	public RapidBeansCodeGenerator(final SdkLogger logger) {
