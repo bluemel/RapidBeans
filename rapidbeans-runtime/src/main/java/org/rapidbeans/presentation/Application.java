@@ -1364,7 +1364,7 @@ public class Application implements Appl {
 			return this.view;
 		}
 
-		private Integer zOrder = new Integer(-1);
+		private Integer zOrder = Integer.valueOf(-1);
 
 		public int compareTo(final ViewOrderHelper other) {
 			return this.zOrder.compareTo(other.zOrder);

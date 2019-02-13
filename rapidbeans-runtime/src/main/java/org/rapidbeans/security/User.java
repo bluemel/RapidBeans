@@ -16,11 +16,11 @@
  */
 package org.rapidbeans.security;
 
-import java.io.UnsupportedEncodingException;
-// BEGIN manual code section
-// User.import
+//BEGIN manual code section
+//User.import
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,7 +30,6 @@ import org.rapidbeans.core.basic.RapidBeanImplStrict;
 import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeRapidBean;
-
 // END manual code section
 
 /**
@@ -40,6 +39,7 @@ import org.rapidbeans.core.type.TypeRapidBean;
 public class User extends RapidBeanImplStrict {
 	// BEGIN manual code section
 	// User.classBody
+
 	/**
 	 * Reset the pwd property to null for a generic bean.
 	 */
@@ -56,34 +56,14 @@ public class User extends RapidBeanImplStrict {
 	 * @return the hashed pwd
 	 */
 	public static final String hashPwd(final String pwdIn, final String pwdHashAlgorithm) {
-//		String pwdHashed = null;
-//		try {
-//			final MessageDigest md = MessageDigest.getInstance(pwdHashAlgorithm);
-//			md.update(pwdIn.getBytes());
-//			pwdHashed = (new BASE64Encoder()).encode(md.digest());
-//		} catch (NoSuchAlgorithmException e) {
-//			throw new RapidBeansRuntimeException(e);
-//		}
-//		return pwdHashed;
 		try {
 			final MessageDigest md = MessageDigest.getInstance(pwdHashAlgorithm);
-			md.reset();
-			md.update(pwdIn.getBytes("UTF-8"));
-			return encode(md);
+			md.update(pwdIn.getBytes());
+			final String pwdHashed = new String(Base64.getEncoder().encode(md.digest()));
+			return pwdHashed;
 		} catch (NoSuchAlgorithmException e) {
 			throw new RapidBeansRuntimeException(e);
-		} catch (UnsupportedEncodingException e) {
-			throw new RapidBeansRuntimeException(e);
 		}
-	}
-
-	private static String encode(final MessageDigest md) {
-		final byte[] digest = md.digest();
-		String hexStr = "";
-		for (int i = 0; i < digest.length; i++) {
-			hexStr += Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1);
-		}
-		return hexStr;
 	}
 
 	/**
