@@ -199,7 +199,7 @@ public final class DocumentTreeViewSwing extends DocumentTreeView {
 					deleteBeans();
 					break;
 				case KeyEvent.VK_S:
-					if (e.getModifiers() == 2) {
+					if (e.getModifiersEx() == 2) {
 						(new ActionDocumentSave()).execute();
 					}
 					break;

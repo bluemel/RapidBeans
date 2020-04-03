@@ -193,7 +193,7 @@ public class TestBean2 extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'zipcode' to set
 	 */
 	public final void setZipcode(final int argValue) {
-		this.zipcode.setValue(new Integer(argValue));
+		this.zipcode.setValue(Integer.valueOf(argValue));
 	}
 
 	/**

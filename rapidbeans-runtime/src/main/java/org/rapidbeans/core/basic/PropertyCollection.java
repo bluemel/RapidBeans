@@ -1051,10 +1051,8 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 		}
 		final TypePropertyCollection cproptype = (TypePropertyCollection) proptype;
 		if (cproptype.getSorting() != null) {
-			switch (cproptype.getSorting()) {
-			case byPropertyValues:
+			if (cproptype.getSorting() == SortingType.byPropertyValues) {
 				BeanSorter.set(cproptype.getSortingProptypes());
-				break;
 			}
 		}
 	}
@@ -1070,10 +1068,8 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 		}
 		final TypePropertyCollection aproptype = (TypePropertyCollection) proptype;
 		if (aproptype.getSorting() != null) {
-			switch (aproptype.getSorting()) {
-			case byPropertyValues:
+			if (aproptype.getSorting() == SortingType.byPropertyValues) {
 				BeanSorter.set(propsbefore);
-				break;
 			}
 		}
 	}

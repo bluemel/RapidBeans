@@ -216,7 +216,7 @@ public class Person extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'shoesize' to set
 	 */
 	public void setShoesize(final int argValue) {
-		this.shoesize.setValue(new Integer(argValue));
+		this.shoesize.setValue(Integer.valueOf(argValue));
 	}
 
 	/**

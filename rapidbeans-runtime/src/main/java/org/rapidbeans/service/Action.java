@@ -360,7 +360,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'waitcursor' to set
 	 */
 	public void setWaitcursor(final boolean argValue) {
-		this.waitcursor.setValue(new Boolean(argValue));
+		this.waitcursor.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'background' to set
 	 */
 	public void setBackground(final boolean argValue) {
-		this.background.setValue(new Boolean(argValue));
+		this.background.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -400,7 +400,7 @@ public class Action extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'progressbar' to set
 	 */
 	public void setProgressbar(final boolean argValue) {
-		this.progressbar.setValue(new Boolean(argValue));
+		this.progressbar.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**

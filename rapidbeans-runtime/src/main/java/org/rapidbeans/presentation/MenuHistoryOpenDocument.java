@@ -269,7 +269,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue value of Property 'on' to set
 	 */
 	public void setOn(final boolean argValue) {
-		this.on.setValue(new Boolean(argValue));
+		this.on.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class MenuHistoryOpenDocument extends org.rapidbeans.presentation.MenuEnt
 	 * @param argValue value of Property 'entryShortage' to set
 	 */
 	public void setEntryShortage(final boolean argValue) {
-		this.entryShortage.setValue(new Boolean(argValue));
+		this.entryShortage.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**

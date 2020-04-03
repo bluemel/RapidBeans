@@ -176,6 +176,8 @@ public final class PlatformHelper {
 				os = OperatingSystem.windows_7;
 			} else if (syspropOsName.endsWith("8")) {
 				os = OperatingSystem.windows_8;
+			} else if (syspropOsName.endsWith("10")) {
+				os = OperatingSystem.windows_10;
 			} else {
 				// fallback for older Windows
 				if (osVersion.compareTo(new Version("5.1")) < 0) {

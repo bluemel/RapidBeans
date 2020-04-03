@@ -89,7 +89,7 @@ class TreeChangeInfo {
 	 * @param index the index to add
 	 */
 	public void addIndex(final int index) {
-		this.indices.add(new Integer(index));
+		this.indices.add(Integer.valueOf(index));
 	}
 
 	/**

@@ -91,13 +91,13 @@ public class EditorPropertyCheckboxSwing extends EditorPropertySwing {
 	 * @return the CheckBox's content
 	 */
 	public Boolean getInputFieldValue() {
-		return new Boolean(this.checkbox.isSelected());
+		return Boolean.valueOf(this.checkbox.isSelected());
 	}
 
 	/**
 	 * @return the CheckBox's content as text
 	 */
 	public String getInputFieldValueString() {
-		return new Boolean(this.checkbox.isSelected()).toString();
+		return Boolean.valueOf(this.checkbox.isSelected()).toString();
 	}
 }

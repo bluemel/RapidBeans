@@ -85,7 +85,7 @@ public class PropIntegerTest extends TestCase {
 	public void testSetValue() {
 		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		assertNull(prop.getValue());
-		prop.setValue(new Integer(-2147483648));
+		prop.setValue(Integer.valueOf(-2147483648));
 		assertEquals(Integer.MIN_VALUE, prop.getValue());
 	}
 
@@ -115,7 +115,7 @@ public class PropIntegerTest extends TestCase {
 	 */
 	public void testConvertInteger() {
 		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
-		assertEquals(123, prop.convertValue(new Integer("123")));
+		assertEquals(123, prop.convertValue(Integer.valueOf("123")));
 	}
 
 	/**

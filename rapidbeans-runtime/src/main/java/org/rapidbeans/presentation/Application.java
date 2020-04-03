@@ -106,6 +106,7 @@ import org.rapidbeans.service.ActionSettings;
  * evil) and additionally the one and only singleton of a RapidBeans
  * application.
  */
+@SuppressWarnings("deprecation")
 public class Application implements Appl {
 
 	private static final Logger log = Logger.getLogger(Application.class.getName());

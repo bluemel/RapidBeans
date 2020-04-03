@@ -293,7 +293,7 @@ public class Toolbar extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'on' to set
 	 */
 	public void setOn(final boolean argValue) {
-		this.on.setValue(new Boolean(argValue));
+		this.on.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**

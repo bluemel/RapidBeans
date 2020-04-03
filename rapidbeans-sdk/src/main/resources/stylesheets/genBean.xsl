@@ -873,13 +873,13 @@ public</xsl:text>
 		<xsl:when test="@type = 'boolean'">
 			<xsl:text>this.</xsl:text>
 			<xsl:value-of select="@name"/>
-			<xsl:text>.setValue(new Boolean(argValue));</xsl:text>
+			<xsl:text>.setValue(Boolean.valueOf(argValue));</xsl:text>
 		</xsl:when>
 
 		<xsl:when test="@type = 'integer'">
 			<xsl:text>this.</xsl:text>
 			<xsl:value-of select="@name"/>
-			<xsl:text>.setValue(new Integer(argValue));</xsl:text>
+			<xsl:text>.setValue(Integer.valueOf(argValue));</xsl:text>
 		</xsl:when>
 
 		<xsl:when test="@type = 'string' or @type = 'date' or @type = 'quantity' or @type = 'file' or @type = 'url' or @type = 'version'">

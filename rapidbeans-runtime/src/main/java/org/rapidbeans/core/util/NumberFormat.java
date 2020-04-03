@@ -224,7 +224,7 @@ public class NumberFormat {
 	}
 
 	public static String format(double d, String numberFormatString, char separatorChar, char decimalChar) {
-		return format(new Double(d).toString(), numberFormatString, separatorChar, decimalChar);
+		return format(Double.valueOf(d).toString(), numberFormatString, separatorChar, decimalChar);
 	}
 
 	/**

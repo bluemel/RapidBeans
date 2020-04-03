@@ -39,6 +39,7 @@ import org.rapidbeans.presentation.config.ConfigApplication;
  * 
  * @author Martin Bluemel
  */
+@SuppressWarnings("deprecation")
 public abstract class ApplicationManager {
 
 	/**

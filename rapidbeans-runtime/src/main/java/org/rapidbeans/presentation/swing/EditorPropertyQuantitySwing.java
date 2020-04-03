@@ -62,7 +62,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	/**
 	 * the combo box.
 	 */
-	private JComboBox combobox = new JComboBox();
+	private JComboBox<Object> combobox = new JComboBox<Object>();
 
 	/**
 	 * the panel.
@@ -91,7 +91,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	/**
 	 * @return the editor's widget
 	 */
-	public JComboBox getWidgetComboBox() {
+	public JComboBox<Object> getWidgetComboBox() {
 		return this.combobox;
 	}
 

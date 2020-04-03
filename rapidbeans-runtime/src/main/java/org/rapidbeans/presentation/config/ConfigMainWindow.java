@@ -160,7 +160,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'width' to set
 	 */
 	public void setWidth(final int argValue) {
-		this.width.setValue(new Integer(argValue));
+		this.width.setValue(Integer.valueOf(argValue));
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class ConfigMainWindow extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'height' to set
 	 */
 	public void setHeight(final int argValue) {
-		this.height.setValue(new Integer(argValue));
+		this.height.setValue(Integer.valueOf(argValue));
 	}
 
 	/**

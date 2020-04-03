@@ -23,6 +23,7 @@
 	<enum name="windows_vista"/>
 	<enum name="windows_7"/>
 	<enum name="windows_8"/>
+	<enum name="windows_10"/>
 	<enum name="windows_unknown_new"/>
 	<enum name="mac"/>
 </enumtype>

@@ -3,6 +3,8 @@
  */
 package org.rapidbeans.presentation.swing;
 
+import static org.junit.Assert.assertEquals;
+
 import java.awt.Color;
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
@@ -26,8 +28,6 @@ import org.rapidbeans.domain.math.UnitLength;
 import org.rapidbeans.presentation.TestClient;
 import org.rapidbeans.presentation.config.ConfigApplication;
 
-import junit.framework.Assert;
-
 /**
  * @author Bluemel Martin
  */
@@ -40,7 +40,7 @@ public class EditorPropertyQuantitySwingTest {
 	public void testTyping() {
 		EditorPropertyQuantitySwing proped = createTestPropEdQuantity();
 		JTextField tf = proped.getWidgetTextField();
-		Assert.assertEquals(EditorPropertySwing.COLOR_NORMAL, tf.getBackground());
+		assertEquals(EditorPropertySwing.COLOR_NORMAL, tf.getBackground());
 		assertValidTyping("", true, true, proped);
 		assertValidTyping("1", true, true, proped);
 		assertValidTyping("a", false, false, proped);
@@ -83,8 +83,8 @@ public class EditorPropertyQuantitySwingTest {
 		} else {
 			color = EditorPropertySwing.COLOR_INVALID;
 		}
-		Assert.assertEquals(shouldBeValid, isValid);
-		Assert.assertEquals(color, tf.getBackground());
+		assertEquals(shouldBeValid, isValid);
+		assertEquals(color, tf.getBackground());
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class EditorPropertyQuantitySwingTest {
 	private void assertPotentialOkQuantity(final String s, final boolean ok, final EditorPropertyQuantitySwing proped,
 			final ValidationException ex) {
 		proped.getWidgetTextField().setText(s);
-		Assert.assertEquals(ok, proped.hasPotentiallyValidInputField(ex));
+		assertEquals(ok, proped.hasPotentiallyValidInputField(ex));
 	}
 
 	/**

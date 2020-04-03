@@ -28,8 +28,8 @@ public class NumberFormatTest extends TestCase {
 	public void testFormatSimple() {
 		assertEquals("20.00", NumberFormat.format(new BigDecimal("20"), locEn, "##.00"));
 		assertEquals("20,00", NumberFormat.format(new BigDecimal("20"), locDe, "##.00"));
-		assertEquals("20.00", NumberFormat.format(new Integer(20), locEn, "##.00"));
-		assertEquals("20,00", NumberFormat.format(new Integer(20), locDe, "##.00"));
+		assertEquals("20.00", NumberFormat.format(Integer.valueOf(20), locEn, "##.00"));
+		assertEquals("20,00", NumberFormat.format(Integer.valueOf(20), locDe, "##.00"));
 		assertEquals("20.00", NumberFormat.format(new Long(20), locEn, "##.00"));
 		assertEquals("20,00", NumberFormat.format(new Long(20), locDe, "##.00"));
 	}
@@ -37,8 +37,8 @@ public class NumberFormatTest extends TestCase {
 	public void testFormatUpperBoundaries() {
 		assertEquals("20.00", NumberFormat.format(new BigDecimal("20"), locEn, "##.00"));
 		assertEquals("20,00", NumberFormat.format(new BigDecimal("20"), locDe, "##.00"));
-		assertEquals("2111222333.00", NumberFormat.format(new Integer(2111222333), locEn, "##########.00"));
-		assertEquals("2111222333,00", NumberFormat.format(new Integer(2111222333), locDe, "##########.00"));
+		assertEquals("2111222333.00", NumberFormat.format(Integer.valueOf(2111222333), locEn, "##########.00"));
+		assertEquals("2111222333,00", NumberFormat.format(Integer.valueOf(2111222333), locDe, "##########.00"));
 		assertEquals("9111222333444555666.00",
 				NumberFormat.format(new Long(9111222333444555666L), locEn, "###################.00"));
 		assertEquals("9111222333444555666,00",

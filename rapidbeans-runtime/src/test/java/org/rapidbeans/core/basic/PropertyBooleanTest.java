@@ -141,7 +141,7 @@ public class PropertyBooleanTest extends TestCase {
 	public void testConvertInvalid() {
 		PropertyBoolean prop = this.createBooleanProperty("<property name=\"test\"/>");
 		try {
-			prop.convertValue(new Integer(123));
+			prop.convertValue(Integer.valueOf(123));
 			fail("expected validation exception");
 		} catch (ValidationException e) {
 			assertEquals("invalid.prop.boolean.type", e.getSignature());

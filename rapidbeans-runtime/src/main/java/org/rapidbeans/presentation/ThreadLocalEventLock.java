@@ -29,7 +29,7 @@ public final class ThreadLocalEventLock {
 	 */
 	private static ThreadLocal<Integer> lockLevel = new ThreadLocal<Integer>() {
 		protected synchronized Integer initialValue() {
-			return new Integer(0);
+			return Integer.valueOf(0);
 		}
 	};
 
@@ -47,7 +47,7 @@ public final class ThreadLocalEventLock {
 	 */
 	public static void set(final EditorProperty propEditor) {
 		int i = lockLevel.get().intValue();
-		lockLevel.set(new Integer(i + 1));
+		lockLevel.set(Integer.valueOf(i + 1));
 		if (propEditor != null) {
 			sourcePropertyEditor.set(propEditor);
 		}
@@ -59,7 +59,7 @@ public final class ThreadLocalEventLock {
 	public static void release() {
 		int i = lockLevel.get().intValue();
 		if (i > 0) {
-			lockLevel.set(new Integer(i - 1));
+			lockLevel.set(Integer.valueOf(i - 1));
 		}
 		sourcePropertyEditor.remove();
 	}

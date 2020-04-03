@@ -240,7 +240,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 * @param argValue value of Property 'on' to set
 	 */
 	public void setOn(final boolean argValue) {
-		this.on.setValue(new Boolean(argValue));
+		this.on.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -287,7 +287,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 * @param argValue value of Property 'entryShortage' to set
 	 */
 	public void setEntryShortage(final boolean argValue) {
-		this.entryShortage.setValue(new Boolean(argValue));
+		this.entryShortage.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 * @param argValue value of Property 'maxNumberOfEntries' to set
 	 */
 	public void setMaxNumberOfEntries(final int argValue) {
-		this.maxNumberOfEntries.setValue(new Integer(argValue));
+		this.maxNumberOfEntries.setValue(Integer.valueOf(argValue));
 	}
 
 	/**
@@ -347,6 +347,6 @@ public class SettingsBasicGuiOpenDocHistory extends org.rapidbeans.presentation.
 	 * @param argValue value of Property 'factorySettings' to set
 	 */
 	public void setFactorySettings(final boolean argValue) {
-		this.factorySettings.setValue(new Boolean(argValue));
+		this.factorySettings.setValue(Boolean.valueOf(argValue));
 	}
 }

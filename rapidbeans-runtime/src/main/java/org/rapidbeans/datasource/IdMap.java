@@ -105,7 +105,7 @@ public final class IdMap {
 		}
 		map.remove(id);
 		if (map.size() == 0) {
-			this.idmap.remove(map);
+			this.idmap.remove(id);
 		}
 	}
 

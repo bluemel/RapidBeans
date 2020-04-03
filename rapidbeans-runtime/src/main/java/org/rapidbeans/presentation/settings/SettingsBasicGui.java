@@ -222,6 +222,6 @@ public class SettingsBasicGui extends org.rapidbeans.presentation.settings.Setti
 	 * @param argValue value of Property 'treeViewShowBeanLinks' to set
 	 */
 	public void setTreeViewShowBeanLinks(final boolean argValue) {
-		this.treeViewShowBeanLinks.setValue(new Boolean(argValue));
+		this.treeViewShowBeanLinks.setValue(Boolean.valueOf(argValue));
 	}
 }

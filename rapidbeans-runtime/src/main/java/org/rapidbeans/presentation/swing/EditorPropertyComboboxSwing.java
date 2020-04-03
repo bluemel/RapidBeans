@@ -26,6 +26,7 @@ import javax.swing.JComboBox;
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyChoice;
 import org.rapidbeans.core.basic.PropertyCollection;
+import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyChoice;
@@ -46,7 +47,7 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	/**
 	 * the text field.
 	 */
-	private JComboBox comboBox = new JComboBox();
+	private JComboBox<?> comboBox = new JComboBox<Object>();
 
 	/**
 	 * @return the editor's widget
@@ -83,8 +84,9 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 			this.comboBox.setModel(new ModelComboBoxEnum((TypePropertyChoice) prop.getType()));
 			this.comboBox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
-			this.comboBox.setModel(new ModelComboBoxCollection((PropertyCollection) this.getProperty(),
-					this.getBeanEditor().getDocumentView().getDocument()));
+			final ModelComboBoxCollection cbModel = new ModelComboBoxCollection((PropertyCollection) this.getProperty(),
+					this.getBeanEditor().getDocumentView().getDocument());
+			this.comboBox.setModel(cbModel);
 			this.comboBox.setRenderer(new RendererListCollection(this.getBeanEditor().getDocumentView().getDocument(),
 					client.getCurrentLocale()));
 		} else {
@@ -131,8 +133,9 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		final Object selectedItem = this.comboBox.getSelectedItem();
 		final TypeProperty proptype = this.getProperty().getType();
 		if (proptype instanceof TypePropertyCollection) {
-			this.comboBox.setModel(new ModelComboBoxCollection((PropertyCollection) this.getProperty(),
-					this.getBeanEditor().getDocumentView().getDocument()));
+			final ModelComboBoxCollection cbModel = new ModelComboBoxCollection((PropertyCollection) this.getProperty(),
+					this.getBeanEditor().getDocumentView().getDocument());
+			this.comboBox.setModel(cbModel);
 		}
 		if (proptype instanceof TypePropertyChoice) {
 			this.comboBox.setModel(new ModelComboBoxEnum((TypePropertyChoice) this.getProperty().getType()));

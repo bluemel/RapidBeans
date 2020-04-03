@@ -178,7 +178,7 @@ public class ConfigPropEditorBean extends RapidBeanImplStrict {
 	 * @param argValue value of Property 'enabled' to set
 	 */
 	public void setEnabled(final boolean argValue) {
-		this.enabled.setValue(new Boolean(argValue));
+		this.enabled.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**

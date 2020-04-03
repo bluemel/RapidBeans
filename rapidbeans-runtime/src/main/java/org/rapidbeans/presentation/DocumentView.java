@@ -390,7 +390,7 @@ public abstract class DocumentView
 	 * select the currently selected editor in the tree view.
 	 */
 	public void selectBeanInTreeView(final RapidBean bean) {
-		this.treeView.setSelectedBean(this.treePaths.get(bean));
+		this.treeView.setSelectedBean(this.treePaths.get(bean.getId().toString()));
 	}
 
 	/**
