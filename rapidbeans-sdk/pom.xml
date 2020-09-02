@@ -3,10 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.rapidbeans</groupId>
 	<artifactId>rapidbeans-sdk</artifactId>
-	<version>1.0.0</version>
-
+	<parent>
+		<groupId>org.rapidbeans</groupId>
+		<artifactId>rapidbeans-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 	<packaging>maven-plugin</packaging>
 	<name>rapidbeans-sdk</name>
 	<url>https://github.com/bluemel/RapidBeans</url>
@@ -48,13 +50,6 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>16.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -100,8 +95,7 @@
 
 			<plugins>
 				<!-- for Eclipse M2E only -->
-				<!-- Plugin execution not covered by lifecycle configuration:
-				    org.apache.maven.plugins:maven-plugin-plugin:3.2:descriptor 
+				<!-- Plugin execution not covered by lifecycle configuration: org.apache.maven.plugins:maven-plugin-plugin:3.2:descriptor 
 					(execution: default-descriptor, phase: process-classes) -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>

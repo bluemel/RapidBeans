@@ -30,7 +30,6 @@ import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.swing.JApplet;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -106,7 +105,6 @@ import org.rapidbeans.service.ActionSettings;
  * evil) and additionally the one and only singleton of a RapidBeans
  * application.
  */
-@SuppressWarnings("deprecation")
 public class Application implements Appl {
 
 	private static final Logger log = Logger.getLogger(Application.class.getName());
@@ -234,11 +232,6 @@ public class Application implements Appl {
 	private MessageDialog messageDialog = null;
 
 	/**
-	 * The applet is not null if the application runs as applet.
-	 */
-	private JApplet applet = null;
-
-	/**
 	 * the locales configured for this application (array list to preserve the
 	 * order)
 	 */
@@ -290,13 +283,6 @@ public class Application implements Appl {
 	 */
 	public void setCurrentLocale(RapidBeansLocale currentLocale) {
 		this.currentLocale = currentLocale;
-	}
-
-	/**
-	 * @param applet the applet to set
-	 */
-	public void setApplet(final JApplet applet) {
-		this.applet = applet;
 	}
 
 	/**
@@ -1341,12 +1327,7 @@ public class Application implements Appl {
 			if (this.getMainwindow() != null) {
 				this.getMainwindow().close();
 			}
-			if (this.applet != null) {
-				this.applet.stop();
-				this.applet.destroy();
-			} else {
-				System.exit(0);
-			}
+			System.exit(0);
 		}
 		return cancel;
 	}
@@ -1516,13 +1497,6 @@ public class Application implements Appl {
 			}
 		}
 		return isLast;
-	}
-
-	/**
-	 * @return the applet
-	 */
-	protected JApplet getApplet() {
-		return applet;
 	}
 
 	private static final String[] SA = new String[0];

@@ -21,12 +21,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JApplet;
 
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.RapidBeansTypeLoader;
@@ -39,7 +38,6 @@ import org.rapidbeans.presentation.config.ConfigApplication;
  * 
  * @author Martin Bluemel
  */
-@SuppressWarnings("deprecation")
 public abstract class ApplicationManager {
 
 	/**
@@ -146,19 +144,16 @@ public abstract class ApplicationManager {
 			newApp = (Application) appl;
 		} else {
 			try {
-				newApp = (Application) determineApplicationClass(appConfigFilePath, config).newInstance();
-			} catch (InstantiationException e) {
-				throw new RapidBeansRuntimeException(e);
-			} catch (IllegalAccessException e) {
+				final Class<?> appClass = determineApplicationClass(appConfigFilePath, config);
+				newApp = (Application) appClass.getConstructor(new Class<?>[0]).newInstance();
+			} catch (IllegalArgumentException | InvocationTargetException | InstantiationException
+					| NoSuchMethodException | IllegalAccessException | SecurityException e) {
 				throw new RapidBeansRuntimeException(e);
 			}
 		}
 		newApp.setConfiguration(config);
 		newApp.setConfigFilePath(appConfigFilePath);
 		newApp.setResourceLoader(resourceLoader);
-		if (appl instanceof JApplet) {
-			newApp.setApplet((JApplet) appl);
-		}
 		start(newApp);
 	}
 
