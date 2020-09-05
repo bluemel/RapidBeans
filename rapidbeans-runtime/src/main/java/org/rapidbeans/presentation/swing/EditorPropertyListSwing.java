@@ -77,7 +77,7 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements Edit
 	/**
 	 * the list.
 	 */
-	private JList list = new JList();
+	private JList<Object> list = new JList<Object>();
 
 	/**
 	 * the edit list button.
@@ -94,7 +94,7 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements Edit
 	/**
 	 * @return the editor's list widget
 	 */
-	public JList getWidgetList() {
+	public JList<Object> getWidgetList() {
 		return this.list;
 	}
 
@@ -269,9 +269,9 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements Edit
 	 * @return the input field value as string.
 	 */
 	public String getInputFieldValueString() {
-		StringBuffer sb = new StringBuffer();
+		final StringBuffer sb = new StringBuffer();
 		int i = 0;
-		for (Object selobj : this.list.getSelectedValues()) {
+		for (final Object selobj : this.list.getSelectedValuesList()) {
 			if (i < 0) {
 				sb.append(',');
 			}
@@ -282,7 +282,6 @@ public class EditorPropertyListSwing extends EditorPropertySwing implements Edit
 			}
 			i++;
 		}
-
 		return sb.toString();
 	}
 

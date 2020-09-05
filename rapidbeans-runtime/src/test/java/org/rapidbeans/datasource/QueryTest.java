@@ -425,7 +425,7 @@ public class QueryTest extends TestCase {
 		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("Trainer");
 		bean.setPropValue("lastname", lastname);
 		bean.setPropValue("firstname", firstname);
-		bean.setPropValue("leader", new Boolean(leader));
+		bean.setPropValue("leader", Boolean.valueOf(leader));
 		return bean;
 	}
 

@@ -35,7 +35,7 @@ import org.rapidbeans.datasource.Document;
  * 
  * @author Martin Bluemel
  */
-public class ModelComboBoxCollection extends DefaultComboBoxModel {
+public class ModelComboBoxCollection<E> extends DefaultComboBoxModel<Object> {
 
 	/**
 	 * serial id.

@@ -63,7 +63,7 @@ public final class MainWindowSwing extends MainWindow {
 	/**
 	 * background color for selected items.
 	 */
-	public static final Color COLOR_SELECTED_BACKGROUND = new JList().getSelectionBackground();
+	public static final Color COLOR_SELECTED_BACKGROUND = new JList<Object>().getSelectionBackground();
 
 	/**
 	 * the frame instance.

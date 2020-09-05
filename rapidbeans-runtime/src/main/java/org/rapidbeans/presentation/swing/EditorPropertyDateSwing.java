@@ -149,7 +149,7 @@ public class EditorPropertyDateSwing extends EditorPropertySwing {
 				&& (dateOld != null && dateNew != null && !dateOld.equals(dateNew))) {
 			fireInputFieldChanged();
 		} else if (dateOld != null && dateNew != null && dateOld.equals(dateNew)
-				&& !this.text.equals(getInputFieldValueString())) {
+				&& !this.text.getText().equals(getInputFieldValueString())) {
 			updateUI();
 		}
 	}

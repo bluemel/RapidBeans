@@ -123,7 +123,7 @@ public class PropIntegerTest extends TestCase {
 	 */
 	public void testConvertLongToIntOk() {
 		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
-		assertEquals(-1234567, prop.convertValue(new Long(-1234567)));
+		assertEquals(-1234567, prop.convertValue(Long.valueOf(-1234567)));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class PropIntegerTest extends TestCase {
 	public void testConvertLongToIntTooLarge() {
 		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		try {
-			prop.convertValue(new Long(new Long(Integer.MAX_VALUE) + 1));
+			prop.convertValue(Long.valueOf(Long.valueOf(Integer.MAX_VALUE) + 1));
 			fail("expected ValidationException");
 		} catch (ValidationException e) {
 			assertTrue(true);
@@ -145,7 +145,7 @@ public class PropIntegerTest extends TestCase {
 	public void testConvertLongToIntTooSmall() {
 		PropertyInteger prop = this.createIntegerProperty();
 		try {
-			prop.convertValue(new Long(new Long(Integer.MIN_VALUE) - 1));
+			prop.convertValue(Long.valueOf(Long.valueOf(Integer.MIN_VALUE) - 1));
 			fail("expected ValidationException");
 		} catch (ValidationException e) {
 			assertTrue(true);
@@ -180,7 +180,7 @@ public class PropIntegerTest extends TestCase {
 	public void testConvertInvalid() {
 		PropertyInteger prop = this.createIntegerProperty("<property name=\"test\"/>");
 		try {
-			prop.convertValue(new Double(123.0));
+			prop.convertValue(Double.valueOf(123.0));
 			fail("expected validation exception");
 		} catch (ValidationException e) {
 			assertTrue(true);

@@ -35,7 +35,7 @@ import org.rapidbeans.core.common.RapidBeansLocale;
  * 
  * @author Martin Bluemel
  */
-public class RendererListCollection implements ListCellRenderer {
+public class RendererListCollection implements ListCellRenderer<Object> {
 
 	/**
 	 * the locale to retrieve the appropriate text.
@@ -70,7 +70,7 @@ public class RendererListCollection implements ListCellRenderer {
 	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
 	 *      java.lang.Object, int, boolean, boolean)
 	 */
-	public Component getListCellRendererComponent(final JList list, final Object value, final int index,
+	public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index,
 			final boolean isSelected, final boolean cellHasFocus) {
 		JLabel label = new JLabel();
 		if (value == null) {

@@ -32,7 +32,7 @@ import org.rapidbeans.datasource.Document;
  * 
  * @author Martin Bluemel
  */
-public final class ModelListCollection extends DefaultListModel {
+public final class ModelListCollection extends DefaultListModel<Object> {
 
 	/**
 	 * serial id.

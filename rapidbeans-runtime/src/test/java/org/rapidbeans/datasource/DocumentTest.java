@@ -1429,14 +1429,14 @@ public class DocumentTest {
 		GenericBean berit = (GenericBean) doc.findBeansByQuery("Trainer[firstname = 'Berit']").get(0);
 		Assert.assertFalse(((Boolean) berit.getProperty("leader").getValue()).booleanValue());
 		// writing the same value does not change the document
-		berit.getProperty("leader").setValue(new Boolean(false));
+		berit.getProperty("leader").setValue(Boolean.valueOf(false));
 		Assert.assertFalse(doc.getChanged());
 		// writing another value causes the document to be changed
-		berit.getProperty("leader").setValue(new Boolean(true));
+		berit.getProperty("leader").setValue(Boolean.valueOf(true));
 		Assert.assertTrue(doc.getChanged());
 		// writing back the old value does n o t cause the
 		// document to be unchanged
-		berit.getProperty("leader").setValue(new Boolean(false));
+		berit.getProperty("leader").setValue(Boolean.valueOf(false));
 		Assert.assertTrue(doc.getChanged());
 	}
 
@@ -1563,7 +1563,7 @@ public class DocumentTest {
 		GenericBean bean = (GenericBean) RapidBeanImplParent.createInstance("Trainer");
 		bean.setPropValue("lastname", lastname);
 		bean.setPropValue("firstname", firstname);
-		bean.setPropValue("leader", new Boolean(leader));
+		bean.setPropValue("leader", Boolean.valueOf(leader));
 		return bean;
 	}
 

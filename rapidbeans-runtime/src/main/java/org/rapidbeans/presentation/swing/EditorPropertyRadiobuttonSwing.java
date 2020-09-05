@@ -91,13 +91,13 @@ public class EditorPropertyRadiobuttonSwing extends EditorPropertySwing {
 	 * @return the CheckBox's content
 	 */
 	public Boolean getInputFieldValue() {
-		return new Boolean(this.radioButton.isSelected());
+		return Boolean.valueOf(this.radioButton.isSelected());
 	}
 
 	/**
 	 * @return the input field value as string.
 	 */
 	public String getInputFieldValueString() {
-		return new Boolean(this.radioButton.isSelected()).toString();
+		return Boolean.valueOf(this.radioButton.isSelected()).toString();
 	}
 }

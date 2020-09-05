@@ -357,7 +357,7 @@ public class EditorBeanSwingTest extends TestCase {
 	// }
 	// if (propEditor.getProperty().getType().getPropName().
 	// equals("leader")) {
-	// assertEquals(new Boolean(false), propEditor.getInputFieldValue());
+	// assertEquals(Boolean.valueOf(false), propEditor.getInputFieldValue());
 	// JCheckBox cb = (JCheckBox) propEditor.getWidget();
 	// assertEquals(EditorPropertySwing.COLOR_MANDATORY, cb.getBackground());
 	// }
@@ -420,7 +420,7 @@ public class EditorBeanSwingTest extends TestCase {
 	// }
 	// if (propEditor.getProperty().getType().getPropName().
 	// equals("leader")) {
-	// assertEquals(new Boolean(false), propEditor.getInputFieldValue());
+	// assertEquals(Boolean.valueOf(false), propEditor.getInputFieldValue());
 	// JCheckBox cb = (JCheckBox) propEditor.getWidget();
 	// assertEquals(EditorPropertySwing.COLOR_MANDATORY, cb.getBackground());
 	// }

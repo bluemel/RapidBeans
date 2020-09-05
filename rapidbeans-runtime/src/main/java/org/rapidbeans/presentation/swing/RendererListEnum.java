@@ -39,7 +39,7 @@ import org.rapidbeans.presentation.EditorProperty;
  * 
  * @author Martin Bluemel
  */
-public class RendererListEnum implements ListCellRenderer {
+public class RendererListEnum implements ListCellRenderer<Object> {
 
 	/**
 	 * the parent property editor.
@@ -73,7 +73,7 @@ public class RendererListEnum implements ListCellRenderer {
 	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
 	 *      java.lang.Object, int, boolean, boolean)
 	 */
-	public Component getListCellRendererComponent(final JList list, final Object value, final int index,
+	public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index,
 			final boolean isSelected, final boolean cellHasFocus) {
 		JLabel label = new JLabel();
 		if (value != null) {

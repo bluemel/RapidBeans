@@ -24,11 +24,11 @@ import org.rapidbeans.core.type.TypePropertyQuantity;
 import org.rapidbeans.core.type.TypeRapidEnum;
 
 /**
- * the combo box model for BBEnums.
+ * the combo box model for RapidEnums.
  * 
  * @author Martin Bluemel
  */
-public final class ModelComboBoxEnum extends DefaultComboBoxModel {
+public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<Object> {
 
 	/**
 	 * serial id.

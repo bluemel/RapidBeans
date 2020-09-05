@@ -99,7 +99,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 	/**
 	 * the list.
 	 */
-	private JList listIn = new JList();
+	private JList<Object> listIn = new JList<Object>();
 
 	/**
 	 * the tree view's scroll pane.
@@ -114,7 +114,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 	/**
 	 * the list.
 	 */
-	private JList listOut = new JList();
+	private JList<Object> listOut = new JList<Object>();
 
 	/**
 	 * the arrow buttons panel.
@@ -161,14 +161,14 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 	/**
 	 * @return the editor's left list widget
 	 */
-	public JList getWidgetListIn() {
+	public JList<Object> getWidgetListIn() {
 		return this.listIn;
 	}
 
 	/**
 	 * @return the editor's right list widget
 	 */
-	public JList getWidgetListOut() {
+	public JList<Object> getWidgetListOut() {
 		return this.listOut;
 	}
 
@@ -302,7 +302,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 			if (this.getProperty() instanceof PropertyCollection) {
 				final PropertyCollection colProp = (PropertyCollection) this.getProperty();
 				if (this.listOut.getSelectedIndex() > -1) {
-					for (Object o : this.listOut.getSelectedValues()) {
+					for (Object o : this.listOut.getSelectedValuesList()) {
 						try {
 							colProp.addLink((RapidBean) o, true, false, true);
 						} catch (ValidationException e) {
@@ -321,7 +321,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 								newChoice.add((RapidEnum) o1);
 							}
 						}
-						for (final Object o : this.listOut.getSelectedValues()) {
+						for (final Object o : this.listOut.getSelectedValuesList()) {
 							if (newChoice.contains(o)) {
 								throw new RapidBeansRuntimeException("Assertion failed:"
 										+ " new choice unexpectedly already contains the enum to add.");
@@ -345,7 +345,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 				this.indicateError(e);
 				if (this.getProperty() instanceof PropertyCollection) {
 					final PropertyCollection colProp = (PropertyCollection) this.getProperty();
-					for (Object o : this.listOut.getSelectedValues()) {
+					for (Object o : this.listOut.getSelectedValuesList()) {
 						if (((Collection<?>) colProp.getValue()).contains((RapidBean) o)) {
 							colProp.removeLink((RapidBean) o, false, false, true);
 						}
@@ -402,7 +402,7 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 			final Collection<?> oldValue = (Collection<?>) this.getProperty().getValue();
 			if (this.getProperty() instanceof PropertyCollection) {
 				if (this.listIn.getSelectedIndex() > -1) {
-					for (Object o : this.listIn.getSelectedValues()) {
+					for (Object o : this.listIn.getSelectedValuesList()) {
 						try {
 							((PropertyCollection) this.getProperty()).removeLink((RapidBean) o);
 						} catch (ValidationException e) {
@@ -414,11 +414,11 @@ public class EditorPropertyList2Swing extends EditorPropertySwing implements Edi
 			} else if (this.getProperty() instanceof PropertyChoice) {
 				if (this.listIn.getSelectedIndex() > -1) {
 					final ArrayList<RapidEnum> newValue = new ArrayList<RapidEnum>();
-					for (Object o : oldValue) {
+					for (final Object o : oldValue) {
 						newValue.add((RapidEnum) o);
 					}
 					boolean changed = false;
-					for (Object o : this.listIn.getSelectedValues()) {
+					for (final Object o : this.listIn.getSelectedValuesList()) {
 						if (newValue.remove((RapidEnum) o)) {
 							changed = true;
 						}

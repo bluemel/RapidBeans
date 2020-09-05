@@ -30,7 +30,7 @@ import org.rapidbeans.core.basic.RapidBean;
  * 
  * @author Martin Bluemel
  */
-public final class ModelListChoice extends DefaultListModel {
+public final class ModelListChoice extends DefaultListModel<Object> {
 
 	/**
 	 * serial id.

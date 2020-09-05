@@ -32,7 +32,7 @@ import org.rapidbeans.core.type.TypePropertyChoice;
  * 
  * @author Martin Bluemel
  */
-public final class ModelListChoiceWithout extends DefaultListModel {
+public final class ModelListChoiceWithout extends DefaultListModel<Object> {
 
 	/**
 	 * serial id.

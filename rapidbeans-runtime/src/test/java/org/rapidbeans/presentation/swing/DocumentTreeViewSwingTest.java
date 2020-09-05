@@ -355,7 +355,7 @@ public class DocumentTreeViewSwingTest extends TestCase {
 	// RapidBeanImplStrict.createInstance("Trainer");
 	// bean.setPropValue("lastname", lastname);
 	// bean.setPropValue("firstname", firstname);
-	// bean.setPropValue("leader", new Boolean(leader));
+	// bean.setPropValue("leader", Boolean.valueOf(leader));
 	// return bean;
 	// }
 
