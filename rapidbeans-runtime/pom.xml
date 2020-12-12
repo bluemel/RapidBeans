@@ -156,7 +156,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.rapidbeans</groupId>
 										<artifactId>rapidbeans-sdk</artifactId>
-										<versionRange>(1.0.0,)</versionRange>
+										<versionRange>(0.0.0,)</versionRange>
 										<goals>
 											<goal>rapidbeans-generator</goal>
 										</goals>
