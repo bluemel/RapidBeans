@@ -8,11 +8,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.rapidbeans.sdk.utils.FileTestHelper;
-
-import com.google.common.io.Files;
 
 public class XXsltTest {
 
@@ -87,7 +86,7 @@ public class XXsltTest {
 		long outLastModifiedBefore = new File("target/testxslt/test.txt").lastModified();
 		// wait a blink of time
 		Thread.sleep(10);
-		Files.touch(new File("src/test/resources/testxslt/testIn.xml"));
+		FileUtils.touch(new File("src/test/resources/testxslt/testIn.xml"));
 		// try again without force: should execute
 		xxslt(new File("src/test/resources/testxslt/testIn.xml"), new File("src/test/resources/testxslt/testStyle.xsl"),
 				new File("target/testxslt/test.txt"), null, false, false);
@@ -103,7 +102,7 @@ public class XXsltTest {
 		long outLastModifiedBefore = new File("target/testxslt/test.txt").lastModified();
 		// wait a blink of time
 		Thread.sleep(10);
-		Files.touch(new File("src/test/resources/testxslt/testStyle.xsl"));
+		FileUtils.touch(new File("src/test/resources/testxslt/testStyle.xsl"));
 		// try again without force: should execute
 		xxslt(new File("src/test/resources/testxslt/testIn.xml"), new File("src/test/resources/testxslt/testStyle.xsl"),
 				new File("target/testxslt/test.txt"), null, false, false);
@@ -116,7 +115,7 @@ public class XXsltTest {
 		if (!new File("target/testxslt").exists()) {
 			assertTrue(new File("target/testxslt").mkdirs());
 		}
-		Files.copy(new File("src/test/resources/testxslt/testOutWithProtectedRegionsBefore.txt"),
+		FileUtils.copyFile(new File("src/test/resources/testxslt/testOutWithProtectedRegionsBefore.txt"),
 				new File("target/testxslt/test.txt"));
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("testp1", "a b c");

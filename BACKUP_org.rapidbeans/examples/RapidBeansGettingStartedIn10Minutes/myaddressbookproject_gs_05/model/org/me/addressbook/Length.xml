@@ -1,5 +1,0 @@
-<quantitytype name="org.me.addressbook.Length" 
-    unitenum="UnitLength">
-    <unit name="meter" factor="1"/>
-    <unit name="centimeter" factor="/1E2"/>
-</quantitytype>

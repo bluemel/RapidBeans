@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-
-<enumtype name="org.rapidbeans.test.addressbook5.Sex">
-    <enum name="male"/>
-    <enum name="female"/>
-    <codegen mode="none"/>
-</enumtype>

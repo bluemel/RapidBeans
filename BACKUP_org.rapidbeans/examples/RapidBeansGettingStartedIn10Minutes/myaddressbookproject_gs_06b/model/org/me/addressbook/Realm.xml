@@ -1,7 +1,0 @@
-<beantype name="org.me.addressbook.Realm">
-    <property name="users" type="association"
-        composition="true"
-        targettype="org.me.addressbook.User"
-        sorting="byPropertyValues: accountname"
-    />
-</beantype>

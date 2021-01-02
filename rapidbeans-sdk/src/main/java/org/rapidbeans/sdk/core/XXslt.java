@@ -21,13 +21,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.tools.ant.BuildException;
 import org.rapidbeans.sdk.merge.CodeFileDest;
 import org.rapidbeans.sdk.merge.CodeFileGen;
 import org.rapidbeans.sdk.merge.CodeFileMan;
 import org.rapidbeans.sdk.merge.MergeProperties;
-
-import com.google.common.io.Files;
 
 /**
  * This class combines XSL transformation with merge of protected regions that
@@ -129,7 +128,7 @@ public final class XXslt {
 						String.format("merging generated file with previous version %s", this.out.getAbsolutePath()));
 				mergeSections(out1, this.out, out2, new MergeProperties(this.oneLineComment, this.sectionBegin,
 						this.sectionEnd, this.sectionUnmatchedBegin, this.sectionUnmatchedEnd));
-				Files.copy(out2, this.out);
+				FileUtils.copyFile(out2, this.out);
 			} else {
 				xslt(this.in, this.style, this.out, this.parameters, xslTransformer);
 				this.logger.debug(String.format("Merge not neccessary. No previous version of file %s found.",

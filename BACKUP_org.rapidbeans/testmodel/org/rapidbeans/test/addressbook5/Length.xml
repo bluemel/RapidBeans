@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-
-<quantitytype name="org.rapidbeans.test.addressbook5.Length" 
-    unitenum="UnitLength">
-    <unit name="meter" factor="1"/>
-    <unit name="centimeter" factor="/1E2"/>
-    <codegen mode="none"/>
-</quantitytype>

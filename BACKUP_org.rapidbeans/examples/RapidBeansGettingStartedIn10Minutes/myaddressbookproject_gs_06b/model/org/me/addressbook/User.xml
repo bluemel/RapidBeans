@@ -1,7 +1,0 @@
-<beantype name="org.me.addressbook.User"
-    extends="org.rapidbeans.security.User">
-    <property name="roles"
-        type="choice"
-        enum="org.me.addressbook.Role"
-    />
-</beantype>
