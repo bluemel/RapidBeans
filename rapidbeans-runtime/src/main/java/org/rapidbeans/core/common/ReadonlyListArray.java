@@ -73,7 +73,6 @@ public class ReadonlyListArray<T> implements List<T> {
 	}
 
 	/**
-	 * @TODO xxx
 	 * @return a readonly form of the Iterator.
 	 */
 	public Iterator<T> iterator() {
@@ -95,9 +94,10 @@ public class ReadonlyListArray<T> implements List<T> {
 	 * @param a the pattern array
 	 * @return the array
 	 */
-	@SuppressWarnings("unchecked")
-	public Object[] toArray(final Object[] a) {
-		return this.array;
+	@SuppressWarnings({ "hiding", "unchecked" })
+	@Override
+	public <T> T[] toArray(T[] a) {
+		return (T[]) this.array;
 	}
 
 	/**
@@ -144,8 +144,7 @@ public class ReadonlyListArray<T> implements List<T> {
 	 * @param c the collection with instances to add
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
-	@SuppressWarnings("rawtypes")
-	public boolean addAll(final Collection c) {
+	public boolean addAll(Collection<? extends T> c) {
 		throw new ImmutableCollectionException();
 	}
 

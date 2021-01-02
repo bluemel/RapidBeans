@@ -35,7 +35,7 @@ import org.rapidbeans.datasource.Document;
  * 
  * @author Martin Bluemel
  */
-public class ModelComboBoxCollection<E> extends DefaultComboBoxModel<Object> {
+public class ModelComboBoxCollection<E> extends DefaultComboBoxModel<RapidBean> {
 
 	/**
 	 * serial id.
@@ -123,7 +123,7 @@ public class ModelComboBoxCollection<E> extends DefaultComboBoxModel<Object> {
 	 * @param index the index
 	 * @return the element of index
 	 */
-	public Object getElementAt(final int index) {
+	public RapidBean getElementAt(final int index) {
 		if (this.provideEmpty) {
 			if (index == 0) {
 				return null;

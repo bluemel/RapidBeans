@@ -77,6 +77,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	/**
 	 * @return the size of the collection
 	 */
+	@Override
 	public int size() {
 		return this.collection.size();
 	}
@@ -84,6 +85,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	/**
 	 * @return if the collection is empty
 	 */
+	@Override
 	public boolean isEmpty() {
 		return this.collection.isEmpty();
 	}
@@ -92,6 +94,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param o the object to query
 	 * @return if the collection contains a given instance.
 	 */
+	@Override
 	public boolean contains(final Object o) {
 		boolean contains;
 		final TypeProperty[] propsbefore = BeanSorter.get();
@@ -107,6 +110,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	/**
 	 * @return a read only form of the Iterator.
 	 */
+	@Override
 	public ReadonlyIteratorCollection<T> iterator() {
 		return new ReadonlyIteratorCollection<T>(this.collection.iterator());
 	}
@@ -117,16 +121,15 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @return the collection converted to an array of Objects
 	 */
+	@Override
 	public Object[] toArray() {
-		Object[] array;
 		final TypeProperty[] propsbefore = BeanSorter.get();
 		try {
 			PropertyCollection.prepareSorting(this.proptype);
-			array = this.collection.toArray();
+			return this.collection.toArray();
 		} finally {
 			PropertyCollection.cleanupSorting(this.proptype, propsbefore);
 		}
-		return array;
 	}
 
 	/**
@@ -139,17 +142,16 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @throws ArrayStoreException in case the Object[] given has an incorrect type
 	 */
-	@SuppressWarnings("unchecked")
-	public T[] toArray(final Object[] a) {
-		T[] array;
+	@SuppressWarnings("hiding")
+	@Override
+    public <T> T[] toArray(T[] a) {
 		final TypeProperty[] propsbefore = BeanSorter.get();
 		try {
 			PropertyCollection.prepareSorting(this.proptype);
-			array = (T[]) this.collection.toArray(a);
+			return (T[]) this.collection.toArray(a);
 		} finally {
 			PropertyCollection.cleanupSorting(this.proptype, propsbefore);
 		}
-		return array;
 	}
 
 	/**
@@ -208,6 +210,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param c the collection with instances to remove
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
+	@Override
 	public boolean removeAll(final Collection<?> c) {
 		throw new ImmutableCollectionException();
 	}
@@ -218,6 +221,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param c the collection with instances not to remove
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
+	@Override
 	public boolean retainAll(final Collection<?> c) {
 		throw new ImmutableCollectionException();
 	}
@@ -225,6 +229,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	/**
 	 * removing an instance from an immutable collection is not allowed.
 	 */
+	@Override
 	public void clear() {
 		throw new ImmutableCollectionException();
 	}
@@ -237,6 +242,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param index the position
 	 * @return the element at the specified position in the list.
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public T get(final int index) {
 		if (this.collection instanceof List) {
@@ -253,6 +259,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @return the last index of the element with the given reference or -1 if not
 	 *         found
 	 */
+	@Override
 	public int indexOf(final Object o) {
 		if (this.collection instanceof List) {
 			return ((List<?>) this.collection).indexOf(o);
@@ -275,6 +282,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @return the last index of the element with the given reference or -1 if not
 	 *         found
 	 */
+	@Override
 	public int lastIndexOf(final Object o) {
 		if (this.collection instanceof List) {
 			return ((List<?>) this.collection).lastIndexOf(o);
@@ -292,6 +300,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	/**
 	 * @return a list iterator starting at the begin of this list
 	 */
+	@Override
 	public ListIterator<T> listIterator() {
 		if (this.collection instanceof List<?>) {
 			return new ReadonlyIteratorCollection<T>(((List<T>) this.collection).listIterator());
@@ -305,6 +314,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @return a list iterator starting at the given index
 	 */
+	@Override
 	public ListIterator<T> listIterator(final int index) {
 		if (this.collection instanceof List<?>) {
 			return new ReadonlyIteratorCollection<T>(((List<T>) this.collection).listIterator(index));
@@ -318,6 +328,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param toIndex   the index of the last element to include
 	 * @return a list with part of the elements of this list
 	 */
+	@Override
 	public List<T> subList(final int fromIndex, final int toIndex) {
 		if (this.collection instanceof List<?>) {
 			return new ReadonlyListCollection<T>(((List<T>) this.collection).subList(fromIndex, toIndex),
@@ -334,6 +345,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param element the object to set
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
+	@Override
 	public T set(final int index, final T element) {
 		throw new ImmutableCollectionException();
 	}
@@ -344,6 +356,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param index   the position where to add the element
 	 * @param element the object to add
 	 */
+	@Override
 	public void add(final int index, final Object element) {
 		throw new ImmutableCollectionException();
 	}
@@ -355,8 +368,8 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param c     the collection with elements to add
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
-	@SuppressWarnings("rawtypes")
-	public boolean addAll(final int index, final Collection c) {
+	@Override
+	public boolean addAll(int index, Collection<? extends T> c) {
 		throw new ImmutableCollectionException();
 	}
 
@@ -366,6 +379,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * @param index the position where to remove the element
 	 * @return no return this will throw a ImmutableCollectionException
 	 */
+	@Override
 	public T remove(final int index) {
 		throw new ImmutableCollectionException();
 	}
@@ -377,6 +391,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @return if the collection equals or not.
 	 */
+	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
@@ -408,6 +423,7 @@ public class ReadonlyListCollection<T> implements List<T> {
 	 * 
 	 * @return the hash code.
 	 */
+	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}

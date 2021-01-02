@@ -77,8 +77,11 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 			if (valobj != null) {
 				if (valobj instanceof Link) {
 					val = Arrays.asList(new Link[] { (Link) valobj });
-				} else {
+				} else if (valobj instanceof Collection) {
 					val = (Collection<Link>) valobj;
+				} else {
+					throw new RapidBeansRuntimeException(
+							String.format("Unexpected value class \"%s\"", valobj.getClass().getName()));
 				}
 			}
 		} else {
@@ -1072,15 +1075,6 @@ public class PropertyCollection extends PropertyAssociationend implements Proper
 				BeanSorter.set(propsbefore);
 			}
 		}
-	}
-
-	/**
-	 * The finalizer of any collection property not used anymore.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected void finalize() {
-		removePropertyChangeListeners((Collection<Link>) getValue());
 	}
 
 	/**

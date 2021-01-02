@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 
 import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyQuantity;
+import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.basic.RapidQuantity;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.exception.ValidationException;
@@ -62,7 +63,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	/**
 	 * the combo box.
 	 */
-	private JComboBox<Object> combobox = new JComboBox<Object>();
+	private JComboBox<RapidEnum> combobox = new JComboBox<>();
 
 	/**
 	 * the panel.
@@ -91,7 +92,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 	/**
 	 * @return the editor's widget
 	 */
-	public JComboBox<Object> getWidgetComboBox() {
+	public JComboBox<RapidEnum> getWidgetComboBox() {
 		return this.combobox;
 	}
 
@@ -141,7 +142,7 @@ public class EditorPropertyQuantitySwing extends EditorPropertySwing {
 			}
 		});
 
-		this.combobox.setModel(new ModelComboBoxEnum((TypePropertyQuantity) prop.getType()));
+		this.combobox.setModel(new ModelComboBoxEnum<>((TypePropertyQuantity) prop.getType()));
 		this.combobox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		this.combobox.addItemListener(new ItemListener() {
 			public void itemStateChanged(final ItemEvent e) {

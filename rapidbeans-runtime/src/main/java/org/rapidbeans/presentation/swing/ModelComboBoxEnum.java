@@ -19,6 +19,7 @@ package org.rapidbeans.presentation.swing;
 
 import javax.swing.DefaultComboBoxModel;
 
+import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.type.TypePropertyChoice;
 import org.rapidbeans.core.type.TypePropertyQuantity;
 import org.rapidbeans.core.type.TypeRapidEnum;
@@ -28,7 +29,7 @@ import org.rapidbeans.core.type.TypeRapidEnum;
  * 
  * @author Martin Bluemel
  */
-public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<Object> {
+public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<RapidEnum> {
 
 	/**
 	 * serial id.
@@ -82,7 +83,7 @@ public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<Object> {
 	 * @param index the index
 	 * @return the enum of index
 	 */
-	public Object getElementAt(final int index) {
+	public RapidEnum getElementAt(final int index) {
 		if (this.provideEmpty) {
 			if (index == 0) {
 				return null;
