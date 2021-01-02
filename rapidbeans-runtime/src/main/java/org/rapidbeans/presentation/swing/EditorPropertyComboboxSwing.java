@@ -17,7 +17,6 @@
 
 package org.rapidbeans.presentation.swing;
 
-import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -28,7 +27,6 @@ import org.rapidbeans.core.basic.Property;
 import org.rapidbeans.core.basic.PropertyChoice;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.basic.RapidEnum;
 import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyChoice;
@@ -50,13 +48,14 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	/**
 	 * the combo box.
 	 */
-	private ComboBoxWrapper comboBox = new ComboBoxWrapper();
+	// private ComboBoxWrapper comboBox = new ComboBoxWrapper();
+	private JComboBox<Object> comboBox = new JComboBox<>();
 
 	/**
 	 * @return the editor's widget
 	 */
 	public Object getWidget() {
-		return comboBox.get();
+		return this.comboBox;
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 		super.initColors();
 		if (prop instanceof PropertyChoice) {
 			final TypePropertyChoice propType = (TypePropertyChoice) prop.getType();
-			final ModelComboBoxEnum<RapidEnum> model = new ModelComboBoxEnum<>(propType);
+			final ModelComboBoxEnum<Object> model = new ModelComboBoxEnum<>(propType);
 			this.comboBox.setModel(model);
 			this.comboBox.setRenderer(new RendererListEnum(client.getCurrentLocale(), this));
 		} else if (prop instanceof PropertyCollection) {
@@ -190,92 +189,5 @@ public class EditorPropertyComboboxSwing extends EditorPropertySwing {
 	 */
 	public void beanChanged(final ChangedEvent e) {
 		super.beanChanged(e);
-		// TypePropertyCollection colPropType = null;
-		// TypePropertyChoice choicePropType = null;
-		// final TypeProperty proptype = this.getProperty().getType();
-		// if (proptype instanceof TypePropertyCollection) {
-		// colPropType = (TypePropertyCollection) proptype;
-		// }
-		// if (proptype instanceof TypePropertyChoice) {
-		// choicePropType = (TypePropertyChoice) proptype;
-		// }
-		// if (colPropType != null || choicePropType != null) {
-		// this.updateUI();
-		// }
-	}
-
-	class ComboBoxWrapper {
-		private JComboBox<RapidEnum> enumComboBox = null;
-		private JComboBox<RapidBean> beanComboBox = null;
-
-		public Object get() {
-			if (this.enumComboBox != null) {
-				return this.enumComboBox;
-			}
-			return this.beanComboBox;
-		}
-
-		public void setModel(final ModelComboBoxEnum<RapidEnum> model) {
-			this.enumComboBox = new JComboBox<>();
-		}
-
-		public void setRenderer(final RendererListEnum rendererListEnum) {
-			this.enumComboBox.setRenderer(rendererListEnum);
-		}
-
-		public void setModel(final ModelComboBoxCollection<RapidBean> model) {
-			this.beanComboBox = new JComboBox<>();
-		}
-
-		public void setRenderer(final RendererListCollection rendererListCollection) {
-			this.beanComboBox.setRenderer(rendererListCollection);
-		}
-
-		public Object getSelectedItem() {
-			if (this.enumComboBox != null) {
-				return this.enumComboBox.getSelectedItem();
-			}
-			return this.beanComboBox.getSelectedItem();
-		}
-
-		public void setSelectedItem(final Object selectedItem) {
-			if (this.enumComboBox != null) {
-				this.enumComboBox.setSelectedItem(selectedItem);
-			} else {
-				this.beanComboBox.setSelectedItem(selectedItem);
-			}
-		}
-
-		public void setSelectedIndex(final int i) {
-			if (this.enumComboBox != null) {
-				this.enumComboBox.setSelectedIndex(i);
-			} else {
-				this.beanComboBox.setSelectedIndex(i);
-			}
-		}
-
-		public void setEnabled(final boolean b) {
-			if (this.enumComboBox != null) {
-				this.enumComboBox.setEnabled(b);
-			} else {
-				this.beanComboBox.setEnabled(b);
-			}
-		}
-
-		public void setBackground(final Color colorKey) {
-			if (this.enumComboBox != null) {
-				this.enumComboBox.setBackground(colorKey);
-			} else {
-				this.beanComboBox.setBackground(colorKey);
-			}
-		}
-
-		public void addItemListener(final ItemListener itemListener) {
-			if (this.enumComboBox != null) {
-				this.enumComboBox.addItemListener(itemListener);
-			} else {
-				this.beanComboBox.addItemListener(itemListener);
-			}
-		}
 	}
 }

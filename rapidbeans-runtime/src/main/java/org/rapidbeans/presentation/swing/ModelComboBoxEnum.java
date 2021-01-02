@@ -29,7 +29,7 @@ import org.rapidbeans.core.type.TypeRapidEnum;
  * 
  * @author Martin Bluemel
  */
-public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<RapidEnum> {
+public final class ModelComboBoxEnum<E> extends DefaultComboBoxModel<Object> {
 
 	/**
 	 * serial id.
