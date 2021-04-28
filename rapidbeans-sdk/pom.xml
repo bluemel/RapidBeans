@@ -23,12 +23,12 @@
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
-			<version>3.6.0</version>
+			<version>3.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
 			<artifactId>maven-plugin-annotations</artifactId>
-			<version>3.6.0</version>
+			<version>3.6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -39,20 +39,20 @@
 		<dependency>
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
-			<version>1.9.15</version>
+			<version>1.10.10</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.7</version>
+			<version>2.8.0</version>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>16.0.1</version>
-		</dependency>
--->
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
 
 	</dependencies>
 
@@ -94,8 +94,12 @@
 		</plugins>
 
 		<pluginManagement>
-
 			<plugins>
+				<plugin>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>3.6.1</version>
+				</plugin>
+
 				<!-- for Eclipse M2E only -->
 				<!-- Plugin execution not covered by lifecycle configuration: org.apache.maven.plugins:maven-plugin-plugin:3.2:descriptor 
 					(execution: default-descriptor, phase: process-classes) -->
