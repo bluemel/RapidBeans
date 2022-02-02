@@ -275,12 +275,14 @@ public class PropertyChoice extends Property {
 	public String toStringGui(final RapidBeansLocale locale) {
 		int i = 0;
 		StringBuffer sb = new StringBuffer();
-		for (RapidEnum entry : this.value) {
-			if (i > 0) {
-				sb.append(", ");
+		if (this.value != null) {
+			for (RapidEnum entry : this.value) {
+				if (i > 0) {
+					sb.append(", ");
+				}
+				sb.append(entry.toStringGui(locale));
+				i++;
 			}
-			sb.append(entry.toStringGui(locale));
-			i++;
 		}
 		return sb.toString();
 	}
